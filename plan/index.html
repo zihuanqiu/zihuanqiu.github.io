@@ -17,10 +17,19 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>标签 - Hexo</title>
+  <title>计划 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -42,7 +51,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -130,7 +139,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607043306.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -159,8 +168,45 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="text-center tagcloud">
-  
+<div class="page-content">
+  <p class="note note-info" align="middle" style="font-size:1.2em; color: #8EC0E4; font-weight: bold;"  >本计划最后更新于：2020年6月7日</p>
+<h4 id="机器学习"><a class="markdownIt-Anchor" href="#机器学习"></a> 机器学习</h4>
+<hr />
+<ul>
+<li>
+<input type="checkbox" disabled > 统计学习方法
+</li>
+<li>
+<input type="checkbox" disabled > 机器学习
+</li>
+<li>
+<input type="checkbox" disabled > 模式识别
+</li>
+<li>
+<input type="checkbox" disabled > 神经网络与深度学习
+</li>
+<li>
+<input type="checkbox" disabled > 机器学习理论导论
+</li>
+</ul>
+<h4 id="数学"><a class="markdownIt-Anchor" href="#数学"></a> 数学</h4>
+<hr />
+<ul>
+<li>
+<input type="checkbox" disabled > 矩阵论
+</li>
+<li>
+<input type="checkbox" disabled > 凸优化
+</li>
+</ul>
+<h4 id="编程"><a class="markdownIt-Anchor" href="#编程"></a> 编程</h4>
+<hr />
+<ul>
+<li>
+<input type="checkbox" disabled > 利用Python进行数据分析
+</li>
+</ul>
+
 </div>
 
               </div>
@@ -278,7 +324,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "计划&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
@@ -292,6 +338,21 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
