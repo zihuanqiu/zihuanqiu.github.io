@@ -289,7 +289,7 @@ s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></sp
 </blockquote>
 <h2 id="低维到高维的映射"><a class="markdownIt-Anchor" href="#低维到高维的映射"></a> 低维到高维的映射</h2>
 <p>改写优化目标函数和限制条件后的SVM可以应用于非线性可分的数据集中。但是这样的SVM仍然是在试图寻找一条直线将正负样本划分，在某些情况下这仍然不够好，例如：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014617.png" srcset="/img/loading.gif" alt="1590496039067"  />
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014617.png" srcset="/img/loading.gif" alt="" /></p>
 <p>不同于其他机器学习算法，SVM试图通过高维映射，使低维空间的线性不可分问题变成高维空间中的线性可分问题，从而在高维空间中画出超平面对数据集进行划分。</p>
 <p>我们定义高维映射<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi (\boldsymbol{x})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mclose">)</span></span></span></span>：</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold-italic">x</mi><mover><mo stretchy="true">→</mo><mpadded width="+0.6em" lspace="0.3em"><mi>φ</mi></mpadded></mover><mi>φ</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\boldsymbol{x}\xrightarrow{\varphi }\varphi  ( \boldsymbol{x} )
