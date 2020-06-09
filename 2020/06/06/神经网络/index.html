@@ -7,17 +7,17 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>神经网络 - Hexo</title>
+  <title>神经网络 - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -190,14 +190,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月7日 凌晨
+                  本文最后更新于：2020年6月7日 下午
                 
               </p>
             
             <article class="markdown-body">
               <h1 id="感知机"><a class="markdownIt-Anchor" href="#感知机"></a> 感知机</h1>
 <p>1943年，心理学家W.S.McCulloch和数理逻辑学家W.Pitts基于神经元的生理特征，建立了单个神经元的数学模型（MP模型）</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015045.png" srcset="/img/loading.gif" alt="1590596848395" style="zoom: 67%;" />
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015045.png" srcset="/img/loading.gif" alt="" /></p>
 <blockquote>
 <p>实际上没啥依据</p>
 </blockquote>
@@ -226,8 +226,10 @@
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="bold-italic">w</mi><mi mathvariant="bold-italic">T</mi></msup><mi mathvariant="bold-italic">x</mi><mo>+</mo><mi>b</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b&lt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.926607em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8432769999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord boldsymbol mtight" style="margin-right:0.15972em;">T</span></span></span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时同理</p>
 </blockquote>
 <p>Frank Rosenblatt从数学上证明了，若数据集线性可分，那么以上的算法一定会收敛，下图是感知机在二维特征空间画出的一条直线</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015050.png" srcset="/img/loading.gif" style="zoom:67%;"  />
-<p>注意，感知机画出的直线与SVM有很大不同。感知机画出的直线只是做到了划分正负样本，而没有像SVM那样有最大的margin（毕竟SVM是90年代的东西，感知机早了将近半个世纪）</p>
+<p align="center">
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015050.png" srcset="/img/loading.gif" style="zoom:67%;" />
+</p>
+注意，感知机画出的直线与SVM有很大不同。感知机画出的直线只是做到了划分正负样本，而没有像SVM那样有最大的margin（毕竟SVM是90年代的东西，感知机早了将近半个世纪）
 <h2 id="感知机算法收敛定理"><a class="markdownIt-Anchor" href="#感知机算法收敛定理"></a> 感知机算法收敛定理</h2>
 <p>刚刚我们提到了，Frank Rosenblatt从数学上证明了，若数据集线性可分，那么感知机算法一定会收敛。下面我们加以证明：</p>
 <p>首先，为下面证明过程书写方便，</p>
@@ -283,7 +285,7 @@
 <p>1969年，Minsky指出了感知机没办法处理非线性可分的数据，在日常生活中很多分类问题是非线性的，人工智能进入了第一次冬天。</p>
 <p>在80年代，人们创造了多层神经网络（Multiple Layer Neural Networks），从而可以实现对非线性可分数据集的分类，人工智能从新复苏。</p>
 <p>下面是一个两层神经网络的例子：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015057.png" srcset="/img/loading.gif" alt="1590654191025" style="zoom:80%;"  />
+<p align="center"><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015057.png" srcset="/img/loading.gif" alt="1590654191025" style="zoom:80%;"  /><p/>
 <blockquote>
 <p>若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>φ</mi><mrow><mo fence="true">(</mo><mo>⋅</mo><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\varphi\left( \cdot \right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">φ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">⋅</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>为线性函数，则多层神经网络和单层没有区别</p>
 </blockquote>
@@ -591,7 +593,7 @@ nn.b&#123;k&#125; = nn.b&#123;k&#125; - nn.learning_rate*nn.b_grad&#123;k&#125;;
 <p>（1）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="bold-italic">w</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\boldsymbol{w},b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span>的每一个分量获得的梯度绝对值有大有小，一些情况下，将会迫使优化路径变成Z字形状</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015144.png" srcset="/img/loading.gif" alt="1590747272690" /></p>
 <p>（2）SGD求梯度的策略过于随机，由于上一次和下一次用的是完全不同的BATCH数据，将会出现优化的方向随机的情况。</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015147.png" srcset="/img/loading.gif" style="zoom: 67%;" />
+<p align="center"><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015147.png" srcset="/img/loading.gif" style="zoom: 67%;" /><p/>
 <ol start="2">
 <li>
 <p>AdaGrad（解决各个方向梯度不一致问题）</p>
