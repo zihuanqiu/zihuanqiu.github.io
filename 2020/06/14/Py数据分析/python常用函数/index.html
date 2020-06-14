@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Py数据分析/python常用函数 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-14 15:51">
+      2020年6月14日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年6月14日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="二元操作符"><a class="markdownIt-Anchor" href="#二元操作符"></a> 二元操作符</h1>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a + b</td>
+<td>a加b</td>
+</tr>
+<tr>
+<td>a - b</td>
+<td>a减b</td>
+</tr>
+<tr>
+<td>a * b</td>
+<td>a乘b</td>
+</tr>
+<tr>
+<td>a / b</td>
+<td>a除以b</td>
+</tr>
+<tr>
+<td>a // b</td>
+<td>a整除以b</td>
+</tr>
+<tr>
+<td>a ** b</td>
+<td>a的b次方</td>
+</tr>
+<tr>
+<td>a &amp; b</td>
+<td>a与b；对于整数则是按位AND</td>
+</tr>
+<tr>
+<td>a | b</td>
+<td>a或b；对于整数则是按位OR</td>
+</tr>
+<tr>
+<td>a ^ b</td>
+<td>对布尔值，a异或b；对整数则是按位异或</td>
+</tr>
+<tr>
+<td>a == b</td>
+<td>a和b相等则为True</td>
+</tr>
+<tr>
+<td>a != b</td>
+<td>a和b不相等则为True</td>
+</tr>
+<tr>
+<td>a &lt;= b,  a &lt; b</td>
+<td>小于等于，小于</td>
+</tr>
+<tr>
+<td>a&gt;b, a &gt;= b</td>
+<td>大于，大于等于</td>
+</tr>
+<tr>
+<td>a is b</td>
+<td>a和b是同一个Python对象则为True</td>
+</tr>
+<tr>
+<td>a is not b</td>
+<td>a和b不是同一个Python对象则为True</td>
+</tr>
+</tbody>
+</table>
+<h1 id="type"><a class="markdownIt-Anchor" href="#type"></a> type()</h1>
+<h2 id="描述"><a class="markdownIt-Anchor" href="#描述"></a> 描述</h2>
+<p>type() 函数如果你只有第一个参数则返回对象的类型，三个参数返回新的类型对象。</p>
+<blockquote>
+<p>isinstance() 与 type() 区别：</p>
+<ul>
+<li>type() 不会认为子类是一种父类类型，不考虑继承关系。</li>
+<li>isinstance() 会认为子类是一种父类类型，考虑继承关系。</li>
+</ul>
+<p>如果要判断两个类型是否相同推荐使用 isinstance()。</p>
+</blockquote>
+<h2 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h2>
+<p>以下是 type() 方法的语法:</p>
+<pre><code class="hljs elm"><span class="hljs-keyword">type</span>(object)
+<span class="hljs-keyword">type</span>(name, bases, dict)</code></pre>
+<h2 id="参数"><a class="markdownIt-Anchor" href="#参数"></a> 参数</h2>
+<ul>
+<li>name – 类的名称。</li>
+<li>bases – 基类的元组。</li>
+<li>dict – 字典，类内定义的命名空间变量。</li>
+</ul>
+<h2 id="返回值"><a class="markdownIt-Anchor" href="#返回值"></a> 返回值</h2>
+<p>一个参数返回对象类型, 三个参数，返回新的类型对象。</p>
+<h2 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h2>
+<p>以下展示了使用 type 函数的实例：</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># 一个参数实例</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; type(<span class="hljs-number">1</span>)
+&lt;type <span class="hljs-string">'int'</span>&gt;
+<span class="hljs-meta">&gt;&gt;</span>&gt; type(<span class="hljs-string">'runoob'</span>)
+&lt;type <span class="hljs-string">'str'</span>&gt;
+<span class="hljs-meta">&gt;&gt;</span>&gt; type([<span class="hljs-number">2</span>])
+&lt;type <span class="hljs-string">'list'</span>&gt;
+<span class="hljs-meta">&gt;&gt;</span>&gt; type(&#123;<span class="hljs-number">0</span><span class="hljs-symbol">:<span class="hljs-string">'zero'</span></span>&#125;)
+&lt;type <span class="hljs-string">'dict'</span>&gt;
+<span class="hljs-meta">&gt;&gt;</span>&gt; x = <span class="hljs-number">1</span>          
+<span class="hljs-meta">&gt;&gt;</span>&gt; type( x ) == int    <span class="hljs-comment"># 判断类型是否相等</span>
+True
+ 
+<span class="hljs-comment"># 三个参数</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">X</span>(<span class="hljs-title">object</span>):</span>
+...     a = <span class="hljs-number">1</span>
+...
+<span class="hljs-meta">&gt;&gt;</span>&gt; X = type(<span class="hljs-string">'X'</span>, (object,), dict(a=<span class="hljs-number">1</span>))  <span class="hljs-comment"># 产生一个新的类型 X</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; X
+&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> '<span class="hljs-title">__main__</span>.<span class="hljs-title">X</span>'&gt;</span></code></pre>
+<h2 id="type-与-isinstance区别"><a class="markdownIt-Anchor" href="#type-与-isinstance区别"></a> type() 与 isinstance()区别：</h2>
+<pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">A:</span>
+    <span class="hljs-symbol">pass</span>
+ 
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">B</span>(<span class="hljs-symbol">A</span>):
+    <span class="hljs-symbol">pass</span>
+ 
+<span class="hljs-symbol">isinstance</span>(<span class="hljs-symbol">A</span>(), <span class="hljs-symbol">A</span>)    # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">type</span>(<span class="hljs-symbol">A</span>()) == <span class="hljs-symbol">A</span>        # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">isinstance</span>(<span class="hljs-symbol">B</span>(), <span class="hljs-symbol">A</span>)    # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">type</span>(<span class="hljs-symbol">B</span>()) == <span class="hljs-symbol">A</span>        # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">False</span></code></pre>
+<h1 id="isinstance"><a class="markdownIt-Anchor" href="#isinstance"></a> isinstance()</h1>
+<h2 id="描述-2"><a class="markdownIt-Anchor" href="#描述-2"></a> 描述</h2>
+<p>isinstance() 函数来判断一个对象是否是一个已知的类型，类似 type()。</p>
+<blockquote>
+<p>isinstance() 与 type() 区别：</p>
+<ul>
+<li>type() 不会认为子类是一种父类类型，不考虑继承关系。</li>
+<li>isinstance() 会认为子类是一种父类类型，考虑继承关系。</li>
+</ul>
+<p>如果要判断两个类型是否相同推荐使用 isinstance()。</p>
+</blockquote>
+<h2 id="语法-2"><a class="markdownIt-Anchor" href="#语法-2"></a> 语法</h2>
+<p>以下是 isinstance() 方法的语法:</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">isinstance</span><span class="hljs-params">(object, classinfo)</span></span></code></pre>
+<h2 id="参数-2"><a class="markdownIt-Anchor" href="#参数-2"></a> 参数</h2>
+<ul>
+<li>object – 实例对象。</li>
+<li>classinfo – 可以是直接或间接类名、基本类型或者由它们组成的元组。</li>
+</ul>
+<h2 id="返回值-2"><a class="markdownIt-Anchor" href="#返回值-2"></a> 返回值</h2>
+<p>如果对象的类型与参数二的类型（classinfo）相同则返回 True，否则返回 False。</p>
+<h2 id="实例-2"><a class="markdownIt-Anchor" href="#实例-2"></a> 实例</h2>
+<p>以下展示了使用 isinstance 函数的实例：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt;a = <span class="hljs-number">2</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; isinstance (a,int)
+True
+<span class="hljs-meta">&gt;&gt;</span>&gt; isinstance (a,str)
+False
+<span class="hljs-meta">&gt;&gt;</span>&gt; isinstance (a,(str,int,list))    <span class="hljs-comment"># 是元组中的一个返回 True</span>
+True</code></pre>
+<h2 id="type-与-isinstance区别-2"><a class="markdownIt-Anchor" href="#type-与-isinstance区别-2"></a> type() 与 isinstance()区别：</h2>
+<pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">A:</span>
+    <span class="hljs-symbol">pass</span>
+ 
+<span class="hljs-symbol">class</span> <span class="hljs-symbol">B</span>(<span class="hljs-symbol">A</span>):
+    <span class="hljs-symbol">pass</span>
+ 
+<span class="hljs-symbol">isinstance</span>(<span class="hljs-symbol">A</span>(), <span class="hljs-symbol">A</span>)    # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">type</span>(<span class="hljs-symbol">A</span>()) == <span class="hljs-symbol">A</span>        # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">isinstance</span>(<span class="hljs-symbol">B</span>(), <span class="hljs-symbol">A</span>)    # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">True</span>
+<span class="hljs-symbol">type</span>(<span class="hljs-symbol">B</span>()) == <span class="hljs-symbol">A</span>        # <span class="hljs-symbol">returns</span> <span class="hljs-symbol">False</span></code></pre>
+<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> list()</h1>
+<h2 id="描述-3"><a class="markdownIt-Anchor" href="#描述-3"></a> 描述</h2>
+<p>list() 方法用于将元组或字符串转换为列表。</p>
+<p>**注：**元组与列表是非常类似的，区别在于元组的元素值不能修改，元组是放在括号中，列表是放于方括号中。</p>
+<h2 id="语法-3"><a class="markdownIt-Anchor" href="#语法-3"></a> 语法</h2>
+<p>list()方法语法：</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">list</span><span class="hljs-params">( seq )</span></span></code></pre>
+<h2 id="参数-3"><a class="markdownIt-Anchor" href="#参数-3"></a> 参数</h2>
+<ul>
+<li>seq – 要转换为列表的元组或字符串。</li>
+</ul>
+<h2 id="返回值-3"><a class="markdownIt-Anchor" href="#返回值-3"></a> 返回值</h2>
+<p>返回列表。</p>
+<h2 id="实例-3"><a class="markdownIt-Anchor" href="#实例-3"></a> 实例</h2>
+<p>以下实例展示了 list()函数的使用方法：</p>
+<pre><code class="hljs routeros">aTuple = (123, <span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>)
+list1 = list(aTuple)
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"列表元素 : "</span>, list1)
+&gt; 列表元素 :  [123, <span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]  
+<span class="hljs-attribute">str</span>=<span class="hljs-string">"Hello World"</span>
+<span class="hljs-attribute">list2</span>=list(str)
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"列表元素 : "</span>, list2)
+&gt; 列表元素 :  [<span class="hljs-string">'H'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'l'</span>, <span class="hljs-string">'l'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'W'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'r'</span>, <span class="hljs-string">'l'</span>, <span class="hljs-string">'d'</span>]</code></pre>
+<h1 id="str"><a class="markdownIt-Anchor" href="#str"></a> str()</h1>
+<h2 id="描述-4"><a class="markdownIt-Anchor" href="#描述-4"></a> 描述</h2>
+<p>str() 函数将对象转化为适于人阅读的形式。</p>
+<h2 id="语法-4"><a class="markdownIt-Anchor" href="#语法-4"></a> 语法</h2>
+<p>以下是 str() 方法的语法:</p>
+<pre><code class="hljs isbl"><span class="hljs-variable">class</span> <span class="hljs-function"><span class="hljs-title">str</span>(<span class="hljs-variable"><span class="hljs-class">object</span></span>=<span class="hljs-string">''</span>)</span></code></pre>
+<h2 id="参数-4"><a class="markdownIt-Anchor" href="#参数-4"></a> 参数</h2>
+<ul>
+<li>object – 对象。</li>
+</ul>
+<h2 id="返回值-4"><a class="markdownIt-Anchor" href="#返回值-4"></a> 返回值</h2>
+<p>返回一个对象的string格式。</p>
+<h2 id="实例-4"><a class="markdownIt-Anchor" href="#实例-4"></a> 实例</h2>
+<p>以下展示了使用 str() 方法的实例：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt;s = <span class="hljs-string">'RUNOOB'</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; str(s)
+<span class="hljs-string">'RUNOOB'</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; dict = &#123;<span class="hljs-string">'runoob'</span>: <span class="hljs-string">'runoob.com'</span>, <span class="hljs-string">'google'</span>: <span class="hljs-string">'google.com'</span>&#125;;
+<span class="hljs-meta">&gt;&gt;</span>&gt; str(dict)
+<span class="hljs-string">"&#123;'google': 'google.com', 'runoob': 'runoob.com'&#125;"</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt;</code></pre>
+<h1 id="strcount"><a class="markdownIt-Anchor" href="#strcount"></a> str.count()</h1>
+<h2 id="描述-5"><a class="markdownIt-Anchor" href="#描述-5"></a> 描述</h2>
+<p>Python count() 方法用于统计字符串里某个字符出现的次数。可选参数为在字符串搜索的开始与结束位置。</p>
+<h2 id="语法-5"><a class="markdownIt-Anchor" href="#语法-5"></a> 语法</h2>
+<p>count()方法语法：</p>
+<pre><code class="hljs livecodeserver">str.count(sub, <span class="hljs-built_in">start</span>= <span class="hljs-number">0</span>,<span class="hljs-keyword">end</span>=<span class="hljs-built_in">len</span>(<span class="hljs-keyword">string</span>))</code></pre>
+<h2 id="参数-5"><a class="markdownIt-Anchor" href="#参数-5"></a> 参数</h2>
+<ul>
+<li>sub – 搜索的子字符串</li>
+<li>start – 字符串开始搜索的位置。默认为第一个字符,第一个字符索引值为0。</li>
+<li>end – 字符串中结束搜索的位置。字符中第一个字符的索引为 0。默认为字符串的最后一个位置。</li>
+</ul>
+<h2 id="返回值-5"><a class="markdownIt-Anchor" href="#返回值-5"></a> 返回值</h2>
+<p>该方法返回子字符串在字符串中出现的次数。</p>
+<h2 id="实例-5"><a class="markdownIt-Anchor" href="#实例-5"></a> 实例</h2>
+<p>以下实例展示了count()方法的实例：</p>
+<pre><code class="hljs perl">str = <span class="hljs-string">"this is string example....wow!!!"</span>;
+<span class="hljs-function"><span class="hljs-keyword">sub</span> = "<span class="hljs-title">i</span>"</span>;
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"str.count(sub, 4, 40) : "</span>, str.count(<span class="hljs-function"><span class="hljs-keyword">sub</span>, 4, 40))</span>
+<span class="hljs-function">&gt; <span class="hljs-title">str</span>.<span class="hljs-title">count</span>(<span class="hljs-title">sub</span>, 4, 40) :  2</span>
+<span class="hljs-function"></span>
+<span class="hljs-function"><span class="hljs-title">sub</span> = "<span class="hljs-title">wow</span>"</span>;
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"str.count(sub) : "</span>, str.count(<span class="hljs-function"><span class="hljs-keyword">sub</span>))</span>
+<span class="hljs-function">&gt; <span class="hljs-title">str</span>.<span class="hljs-title">count</span>(<span class="hljs-title">sub</span>) :  1</span></code></pre>
+<pre><code class="hljs awk">c = <span class="hljs-string">"""</span>
+<span class="hljs-string">This is a longer string that</span>
+<span class="hljs-string">spans multiple lines</span>
+<span class="hljs-string">"""</span>
+c.count(<span class="hljs-string">'\n'</span>)
+&gt; <span class="hljs-number">3</span></code></pre>
+<blockquote>
+<p>所以c是有3行的，&quot;&quot;&quot;后的换行也算</p>
+</blockquote>
+<h1 id="strformat"><a class="markdownIt-Anchor" href="#strformat"></a> <strong>str.format()</strong></h1>
+<p>Python2.6 开始，新增了一种格式化字符串的函数 <strong>str.format()</strong>，它增强了字符串格式化的功能。</p>
+<p>基本语法是通过 <strong>{}</strong> 和 <strong>:</strong> 来代替以前的 <strong>%</strong> 。</p>
+<h2 id="实例-6"><a class="markdownIt-Anchor" href="#实例-6"></a> 实例</h2>
+<p>format 函数可以接受不限个参数，位置可以不按顺序</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt;<span class="hljs-string">"&#123;&#125; &#123;&#125;"</span>.format(<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>)    <span class="hljs-comment"># 不设置指定位置，按默认顺序 'hello world'  </span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; <span class="hljs-string">"&#123;0&#125; &#123;1&#125;"</span>.format(<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>)  <span class="hljs-comment"># 设置指定位置 'hello world'  </span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; <span class="hljs-string">"&#123;1&#125; &#123;0&#125; &#123;1&#125;"</span>.format(<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>)  <span class="hljs-comment"># 设置指定位置 'world hello world'</span></code></pre>
+<p>也可以设置参数：</p>
+<pre><code class="hljs routeros"><span class="hljs-builtin-name">print</span>(<span class="hljs-string">"网站名：&#123;name&#125;, 地址 &#123;url&#125;"</span>.format(<span class="hljs-attribute">name</span>=<span class="hljs-string">"菜鸟教程"</span>, <span class="hljs-attribute">url</span>=<span class="hljs-string">"www.runoob.com"</span>))
+ 
+<span class="hljs-comment"># 通过字典设置参数</span>
+site = &#123;<span class="hljs-string">"name"</span>: <span class="hljs-string">"菜鸟教程"</span>, <span class="hljs-string">"url"</span>: <span class="hljs-string">"www.runoob.com"</span>&#125;
+<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"网站名：&#123;name&#125;, 地址 &#123;url&#125;"</span>.format(**site))
+ 
+<span class="hljs-comment"># 通过列表索引设置参数</span>
+my_list = [<span class="hljs-string">'菜鸟教程'</span>, <span class="hljs-string">'www.runoob.com'</span>]
+<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"网站名：&#123;0[0]&#125;, 地址 &#123;0[1]&#125;"</span>.format(my_list))  # <span class="hljs-string">"0"</span> 是必须的</code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs css">网站名：菜鸟教程, 地址 <span class="hljs-selector-tag">www</span><span class="hljs-selector-class">.runoob</span><span class="hljs-selector-class">.com</span>
+网站名：菜鸟教程, 地址 <span class="hljs-selector-tag">www</span><span class="hljs-selector-class">.runoob</span><span class="hljs-selector-class">.com</span>
+网站名：菜鸟教程, 地址 <span class="hljs-selector-tag">www</span><span class="hljs-selector-class">.runoob</span><span class="hljs-selector-class">.com</span></code></pre>
+<p>也可以向 str.format() 传入对象：</p>
+<pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AssignValue</span>(<span class="hljs-title">object</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, value)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-keyword">self</span>.value = value
+my_value = AssignValue(<span class="hljs-number">6</span>)
+print(<span class="hljs-string">'value 为: &#123;0.value&#125;'</span>.format(my_value))  <span class="hljs-comment"># "0" 是可选的</span></code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs angelscript">value 为: <span class="hljs-number">6</span></code></pre>
+<h2 id="数字格式化"><a class="markdownIt-Anchor" href="#数字格式化"></a> 数字格式化</h2>
+<p>下表展示了 str.format() 格式化数字的多种方法：</p>
+<pre><code class="hljs gauss">&gt;&gt;&gt; <span class="hljs-keyword">print</span>(<span class="hljs-string">"&#123;:.2f&#125;"</span>.<span class="hljs-keyword">format</span>(<span class="hljs-number">3.1415926</span>));
+<span class="hljs-number">3.14</span></code></pre>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>格式</th>
+<th>输出</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1415926</td>
+<td>{:.2f}</td>
+<td>3.14</td>
+<td>保留小数点后两位</td>
+</tr>
+<tr>
+<td>3.1415926</td>
+<td>{:+.2f}</td>
+<td>+3.14</td>
+<td>带符号保留小数点后两位</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>{:+.2f}</td>
+<td>-1.00</td>
+<td>带符号保留小数点后两位</td>
+</tr>
+<tr>
+<td>2.71828</td>
+<td>{:.0f}</td>
+<td>3</td>
+<td>不带小数</td>
+</tr>
+<tr>
+<td>5</td>
+<td>{:0&gt;2d}</td>
+<td>05</td>
+<td>数字补零 (填充左边, 宽度为2)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>{:x&lt;4d}</td>
+<td>5xxx</td>
+<td>数字补x (填充右边, 宽度为4)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>{:x&lt;4d}</td>
+<td>10xx</td>
+<td>数字补x (填充右边, 宽度为4)</td>
+</tr>
+<tr>
+<td>1000000</td>
+<td>{:,}</td>
+<td>1,000,000</td>
+<td>以逗号分隔的数字格式</td>
+</tr>
+<tr>
+<td>0.25</td>
+<td>{:.2%}</td>
+<td>25.00%</td>
+<td>百分比格式</td>
+</tr>
+<tr>
+<td>1000000000</td>
+<td>{:.2e}</td>
+<td>1.00e+09</td>
+<td>指数记法</td>
+</tr>
+<tr>
+<td>13</td>
+<td>{:&gt;10d}</td>
+<td>13</td>
+<td>右对齐 (默认, 宽度为10)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>{:&lt;10d}</td>
+<td>13</td>
+<td>左对齐 (宽度为10)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>{:^10d}</td>
+<td>13</td>
+<td>中间对齐 (宽度为10)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>‘{:b}’.format(11) <br />‘{:d}’.format(11) <br />‘{😮}’.format(11) <br />‘{:x}’.format(11) <br />‘{:#x}’.format(11)<br />’{:#X}’.format(11)</td>
+<td>1011 <br />11 <br />13 <br />b <br />0xb <br />0XB</td>
+<td>进制</td>
+</tr>
+</tbody>
+</table>
+<p>^, &lt;, &gt; 分别是居中、左对齐、右对齐，后面带宽度， : 号后面带填充的字符，只能是一个字符，不指定则默认是用空格填充。</p>
+<p>+ 表示在正数前显示 +，负数前显示 -； （空格）表示在正数前加空格</p>
+<p>b、d、o、x 分别是二进制、十进制、八进制、十六进制。</p>
+<p>此外我们可以使用大括号 {} 来转义大括号，如下实例：</p>
+<pre><code class="hljs gauss"><span class="hljs-keyword">print</span> (<span class="hljs-string">"&#123;&#125; 对应的位置是 &#123;&#123;0&#125;&#125;"</span>.<span class="hljs-keyword">format</span>(<span class="hljs-string">"runoob"</span>))</code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs angelscript">runoob 对应的位置是 &#123;<span class="hljs-number">0</span>&#125;</code></pre>
+<h1 id="range"><a class="markdownIt-Anchor" href="#range"></a> range()</h1>
+<p>python range() 函数可创建一个整数列表，一般用在 for 循环中。</p>
+<h2 id="函数语法"><a class="markdownIt-Anchor" href="#函数语法"></a> 函数语法</h2>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">range</span><span class="hljs-params">(start, stop[, step])</span></span></code></pre>
+<h2 id="参数-6"><a class="markdownIt-Anchor" href="#参数-6"></a> 参数</h2>
+<ul>
+<li>start: 计数从 start 开始。默认是从 0 开始。例如range（5）等价于range（0， 5）;</li>
+<li>stop: 计数到 stop 结束，但不包括 stop。例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5</li>
+<li>step：步长，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1)</li>
+</ul>
+<h2 id="实例-7"><a class="markdownIt-Anchor" href="#实例-7"></a> 实例</h2>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;range(<span class="hljs-number">10</span>)        # 从 <span class="hljs-number">0</span> 开始到 <span class="hljs-number">10</span>
+[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]
+&gt;&gt;&gt; range(<span class="hljs-number">1</span>, <span class="hljs-number">11</span>)     # 从 <span class="hljs-number">1</span> 开始到 <span class="hljs-number">11</span>
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>]
+&gt;&gt;&gt; range(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">5</span>)  # 步长为 <span class="hljs-number">5</span>
+[<span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">25</span>]
+&gt;&gt;&gt; range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>)  # 步长为 <span class="hljs-number">3</span>
+[<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+&gt;&gt;&gt; range(<span class="hljs-number">0</span>, <span class="hljs-number">-10</span>, <span class="hljs-number">-1</span>) # 负数
+[<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-2</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">-4</span>, <span class="hljs-number">-5</span>, <span class="hljs-number">-6</span>, <span class="hljs-number">-7</span>, <span class="hljs-number">-8</span>, <span class="hljs-number">-9</span>]
+&gt;&gt;&gt; range(<span class="hljs-number">0</span>)
+[]
+&gt;&gt;&gt; range(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)
+[]</code></pre>
+<p>以下是 range 在 for 中的使用，循环出runoob 的每个字母:</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt;x = <span class="hljs-string">'runoob'</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; for i in range(len(x)) <span class="hljs-symbol">:</span>
+...     print(x[i])
+... 
+r
+u
+n
+o
+o
+b
+<span class="hljs-meta">&gt;&gt;</span>&gt;</code></pre>
+<h1 id="tuple"><a class="markdownIt-Anchor" href="#tuple"></a> tuple()</h1>
+<h2 id="描述-6"><a class="markdownIt-Anchor" href="#描述-6"></a> 描述</h2>
+<p>Python 元组 tuple() 函数将任意序列或迭代器转换为元组。</p>
+<h2 id="语法-6"><a class="markdownIt-Anchor" href="#语法-6"></a> 语法</h2>
+<p>tuple()方法语法：</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tuple</span><span class="hljs-params">( iterable )</span></span></code></pre>
+<h2 id="参数-7"><a class="markdownIt-Anchor" href="#参数-7"></a> 参数</h2>
+<ul>
+<li>iterable – 要转换为元组的可迭代序列。</li>
+</ul>
+<h2 id="返回值-6"><a class="markdownIt-Anchor" href="#返回值-6"></a> 返回值</h2>
+<p>返回元组。</p>
+<h2 id="实例-8"><a class="markdownIt-Anchor" href="#实例-8"></a> 实例</h2>
+<p>以下实例展示了 tuple()函数的使用方法：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;tuple([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])
+ 
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+ 
+&gt;&gt;&gt; tuple(&#123;<span class="hljs-number">1</span>:<span class="hljs-number">2</span>,<span class="hljs-number">3</span>:<span class="hljs-number">4</span>&#125;)    #针对字典 会返回字典的key组成的tuple
+ 
+(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+ 
+&gt;&gt;&gt; tuple((<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))    #元组会返回元组自身
+ 
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)</code></pre>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">aList</span> = [123, <span class="hljs-string">'xyz'</span>, <span class="hljs-string">'zara'</span>, <span class="hljs-string">'abc'</span>];
+<span class="hljs-attribute">aTuple</span> = tuple(aList)
+ 
+print (<span class="hljs-string">"Tuple elements : "</span>, aTuple)</code></pre>
+<p>以上实例输出结果为：</p>
+<pre><code class="hljs groovy">Tuple <span class="hljs-string">elements :</span>  (<span class="hljs-number">123</span>, <span class="hljs-string">'xyz'</span>, <span class="hljs-string">'zara'</span>, <span class="hljs-string">'abc'</span>)</code></pre>
+<h1 id="listappend"><a class="markdownIt-Anchor" href="#listappend"></a> list.append()</h1>
+<h2 id="描述-7"><a class="markdownIt-Anchor" href="#描述-7"></a> 描述</h2>
+<p>append() 方法用于在列表末尾添加新的对象。</p>
+<h2 id="语法-7"><a class="markdownIt-Anchor" href="#语法-7"></a> 语法</h2>
+<p>append()方法语法：</p>
+<pre><code class="hljs sqf"><span class="hljs-built_in">list</span>.<span class="hljs-built_in">append</span>(obj)</code></pre>
+<h2 id="参数-8"><a class="markdownIt-Anchor" href="#参数-8"></a> 参数</h2>
+<ul>
+<li>obj – 添加到列表末尾的对象。</li>
+</ul>
+<h2 id="返回值-7"><a class="markdownIt-Anchor" href="#返回值-7"></a> 返回值</h2>
+<p>该方法无返回值，但是会修改原来的列表。</p>
+<h2 id="实例-9"><a class="markdownIt-Anchor" href="#实例-9"></a> 实例</h2>
+<p>以下实例展示了 append()函数的使用方法：</p>
+<pre><code class="hljs go">list1 = [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]
+list1.<span class="hljs-built_in">append</span>(<span class="hljs-string">'Baidu'</span>)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"更新后的列表 : "</span>, list1)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css">更新后的列表 :  <span class="hljs-selector-attr">[<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>, <span class="hljs-string">'Baidu'</span>]</span></code></pre>
+<h2 id="关于深浅拷贝"><a class="markdownIt-Anchor" href="#关于深浅拷贝"></a> 关于深浅拷贝</h2>
+<p>在 Python 中，对象赋值实际上是对象的引用。当创建一个对象，然后把它赋给另一个变量的时候，Python 并没有拷贝这个对象，而只是拷贝了这个对象的引用，我们称之为浅拷贝。</p>
+<p>当 list 类型的对象进行 append 操作时，实际上追加的是该对象的引用。</p>
+<p><strong>id()</strong> 函数：返回对象的唯一标识，可以类比成该对象在内存中的地址。</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt;alist = []
+<span class="hljs-meta">&gt;&gt;</span>&gt; num = [<span class="hljs-number">2</span>]
+<span class="hljs-meta">&gt;&gt;</span>&gt; alist.append( num )
+<span class="hljs-meta">&gt;&gt;</span>&gt; id( num ) == id( alist[<span class="hljs-number">0</span>] )
+True</code></pre>
+<p>如上例所示，当 num 发生变化时(前提是 id(num) 不发生变化），alist 的内容随之会发生变化。往往会带来意想不到的后果，想避免这种情况，可以采用深拷贝解决：</p>
+<pre><code class="hljs maxima">alist.<span class="hljs-built_in">append</span>( <span class="hljs-built_in">copy</span>.deepcopy( <span class="hljs-built_in">num</span> ) )</code></pre>
+<h2 id="python-直接赋值-浅拷贝和深度拷贝解析"><a class="markdownIt-Anchor" href="#python-直接赋值-浅拷贝和深度拷贝解析"></a> Python 直接赋值、浅拷贝和深度拷贝解析</h2>
+<ul>
+<li>**直接赋值：**其实就是对象的引用（别名）。</li>
+<li>**浅拷贝(copy)：**拷贝父对象，不会拷贝对象的内部的子对象。</li>
+<li><strong>深拷贝(deepcopy)：</strong> copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。</li>
+</ul>
+<h3 id="字典浅拷贝实例"><a class="markdownIt-Anchor" href="#字典浅拷贝实例"></a> 字典浅拷贝实例</h3>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;a = &#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]&#125;
+&gt;&gt;&gt; b = a.copy()
+&gt;&gt;&gt; a, b
+(&#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&#125;, &#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&#125;)
+&gt;&gt;&gt; a[<span class="hljs-number">1</span>].append(<span class="hljs-number">4</span>)
+&gt;&gt;&gt; a, b
+(&#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]&#125;, &#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]&#125;)</code></pre>
+<h3 id="深度拷贝需要引入-copy-模块"><a class="markdownIt-Anchor" href="#深度拷贝需要引入-copy-模块"></a> 深度拷贝需要引入 copy 模块：</h3>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;<span class="hljs-keyword">import</span> copy
+&gt;&gt;&gt; c = copy.deepcopy(a)
+&gt;&gt;&gt; a, c
+(&#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]&#125;, &#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]&#125;)
+&gt;&gt;&gt; a[<span class="hljs-number">1</span>].append(<span class="hljs-number">5</span>)
+&gt;&gt;&gt; a, c
+(&#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]&#125;, &#123;<span class="hljs-number">1</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]&#125;)</code></pre>
+<h3 id="解析"><a class="markdownIt-Anchor" href="#解析"></a> 解析</h3>
+<p>1、<strong>b = a:</strong> 赋值引用，a 和 b 都指向同一个对象。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200614192931.png" srcset="/img/loading.gif" alt="img" /></p>
+<p><strong>2、b = a.copy():</strong> 浅拷贝, a 和 b 是一个独立的对象，但他们的子对象还是指向统一对象（是引用）。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200614192936.png" srcset="/img/loading.gif" alt="img" /></p>
+<p><strong>b = copy.deepcopy(a):</strong> 深度拷贝, a 和 b 完全拷贝了父对象及其子对象，两者是完全独立的。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200614192917.png" srcset="/img/loading.gif" alt="img" /></p>
+<h3 id="更多实例"><a class="markdownIt-Anchor" href="#更多实例"></a> 更多实例</h3>
+<p>以下实例是使用 copy 模块的 copy.copy（ 浅拷贝 ）和（copy.deepcopy ）:</p>
+<pre><code class="hljs stylus">import copy
+<span class="hljs-selector-tag">a</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]] #原始对象
+ 
+<span class="hljs-selector-tag">b</span> = <span class="hljs-selector-tag">a</span>                       #赋值，传对象的引用
+c = copy.copy(a)            #对象拷贝，浅拷贝
+d = copy.deepcopy(a)        #对象拷贝，深拷贝
+ 
+<span class="hljs-selector-tag">a</span>.append(<span class="hljs-number">5</span>)                 #修改对象a
+<span class="hljs-selector-tag">a</span>[<span class="hljs-number">4</span>].append(<span class="hljs-string">'c'</span>)            #修改对象a中的[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>]数组对象
+ 
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">( <span class="hljs-string">'a = '</span>, a )</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">( <span class="hljs-string">'b = '</span>, b )</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">( <span class="hljs-string">'c = '</span>, c )</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">( <span class="hljs-string">'d = '</span>, d )</span></span></code></pre>
+<p>以上实例执行输出结果为：</p>
+<pre><code class="hljs scheme">(<span class="hljs-symbol">'a</span> = ', [<span class="hljs-name">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-symbol">'a</span>', <span class="hljs-symbol">'b</span>', <span class="hljs-symbol">'c</span>'], <span class="hljs-number">5</span>])
+(<span class="hljs-symbol">'b</span> = ', [<span class="hljs-name">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-symbol">'a</span>', <span class="hljs-symbol">'b</span>', <span class="hljs-symbol">'c</span>'], <span class="hljs-number">5</span>])
+(<span class="hljs-symbol">'c</span> = ', [<span class="hljs-name">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-symbol">'a</span>', <span class="hljs-symbol">'b</span>', <span class="hljs-symbol">'c</span>']])
+(<span class="hljs-symbol">'d</span> = ', [<span class="hljs-name">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-symbol">'a</span>', <span class="hljs-symbol">'b</span>']])</code></pre>
+<h1 id="listinsert"><a class="markdownIt-Anchor" href="#listinsert"></a> list.insert()</h1>
+<h2 id="描述-8"><a class="markdownIt-Anchor" href="#描述-8"></a> 描述</h2>
+<p>insert() 函数用于将指定对象插入列表的指定位置。</p>
+<h2 id="语法-8"><a class="markdownIt-Anchor" href="#语法-8"></a> 语法</h2>
+<p>insert()方法语法：</p>
+<pre><code class="hljs sas"><span class="hljs-meta">list</span>.<span class="hljs-meta">insert</span>(<span class="hljs-meta">index</span>, obj)</code></pre>
+<h2 id="参数-9"><a class="markdownIt-Anchor" href="#参数-9"></a> 参数</h2>
+<ul>
+<li>index – 对象obj需要插入的索引位置。</li>
+<li>obj – 要插入列表中的对象。</li>
+</ul>
+<h2 id="返回值-8"><a class="markdownIt-Anchor" href="#返回值-8"></a> 返回值</h2>
+<p>该方法没有返回值，但会在列表指定位置插入对象。</p>
+<h2 id="实例-10"><a class="markdownIt-Anchor" href="#实例-10"></a> 实例</h2>
+<p>以下实例展示了 insert()函数的使用方法：</p>
+<pre><code class="hljs lua">list1 = [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]
+list1.<span class="hljs-built_in">insert</span>(<span class="hljs-number">1</span>, <span class="hljs-string">'Baidu'</span>)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'列表插入元素后为 : '</span>, list1)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css">列表插入元素后为 :  <span class="hljs-selector-attr">[<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Baidu'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]</span></code></pre>
+<p>同样，insert()和append()都是浅拷贝，insert()只是比append()多了选择插入位置的功能而已。</p>
+<p><strong>注：insert()和append()相比，计算代价更高。</strong></p>
+<h1 id="listpop"><a class="markdownIt-Anchor" href="#listpop"></a> list.pop()</h1>
+<h2 id="描述-9"><a class="markdownIt-Anchor" href="#描述-9"></a> 描述</h2>
+<p>pop() 函数用于移除列表中的一个元素（默认最后一个元素），并且返回该元素的值。</p>
+<h2 id="语法-9"><a class="markdownIt-Anchor" href="#语法-9"></a> 语法</h2>
+<p>pop()方法语法：</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">list</span>.<span class="hljs-keyword">pop</span>([<span class="hljs-built_in">index</span>=-<span class="hljs-number">1</span>])</code></pre>
+<h2 id="参数-10"><a class="markdownIt-Anchor" href="#参数-10"></a> 参数</h2>
+<ul>
+<li>index – 可选参数，要移除列表元素的索引值，不能超过列表总长度，默认为 index=-1，删除最后一个列表值。</li>
+</ul>
+<h2 id="返回值-9"><a class="markdownIt-Anchor" href="#返回值-9"></a> 返回值</h2>
+<p>该方法返回从列表中移除的元素对象。</p>
+<h2 id="实例-11"><a class="markdownIt-Anchor" href="#实例-11"></a> 实例</h2>
+<p>以下实例展示了 pop()函数的使用方法：</p>
+<pre><code class="hljs gradle">list1 = [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]
+list1.<span class="hljs-keyword">pop</span>()
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"列表现在为 : "</span>, list1)
+list1.<span class="hljs-keyword">pop</span>(<span class="hljs-number">1</span>)
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"列表现在为 : "</span>, list1)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css">列表现在为 :  <span class="hljs-selector-attr">[<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>]</span>
+列表现在为 :  <span class="hljs-selector-attr">[<span class="hljs-string">'Google'</span>]</span></code></pre>
+<h1 id="listremove"><a class="markdownIt-Anchor" href="#listremove"></a> list.remove()</h1>
+<h2 id="描述-10"><a class="markdownIt-Anchor" href="#描述-10"></a> 描述</h2>
+<p>remove() 函数用于移除列表中某个值的第一个匹配项。</p>
+<h2 id="语法-10"><a class="markdownIt-Anchor" href="#语法-10"></a> 语法</h2>
+<p>remove()方法语法：</p>
+<pre><code class="hljs arduino"><span class="hljs-built_in">list</span>.<span class="hljs-built_in">remove</span>(obj)</code></pre>
+<h2 id="参数-11"><a class="markdownIt-Anchor" href="#参数-11"></a> 参数</h2>
+<ul>
+<li>obj – 列表中要移除的对象。</li>
+</ul>
+<h2 id="返回值-10"><a class="markdownIt-Anchor" href="#返回值-10"></a> 返回值</h2>
+<p>该方法没有返回值但是会移除列表中的某个值的第一个匹配项。</p>
+<h2 id="实例-12"><a class="markdownIt-Anchor" href="#实例-12"></a> 实例</h2>
+<p>以下实例展示了 remove()函数的使用方法：</p>
+<pre><code class="hljs routeros">list1 = [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>, <span class="hljs-string">'Baidu'</span>]
+list1.<span class="hljs-builtin-name">remove</span>(<span class="hljs-string">'Taobao'</span>)
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"列表现在为 : "</span>, list1)
+list1.<span class="hljs-builtin-name">remove</span>(<span class="hljs-string">'Baidu'</span>)
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"列表现在为 : "</span>, list1)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css">列表现在为 :  <span class="hljs-selector-attr">[<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Baidu'</span>]</span>
+列表现在为 :  <span class="hljs-selector-attr">[<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>]</span></code></pre>
+<h1 id="listextend"><a class="markdownIt-Anchor" href="#listextend"></a> list.extend()</h1>
+<h2 id="描述-11"><a class="markdownIt-Anchor" href="#描述-11"></a> 描述</h2>
+<p>extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。</p>
+<h2 id="语法-11"><a class="markdownIt-Anchor" href="#语法-11"></a> 语法</h2>
+<p>extend()方法语法：</p>
+<pre><code class="hljs vim"><span class="hljs-keyword">list</span>.<span class="hljs-built_in">extend</span>(seq)</code></pre>
+<h2 id="参数-12"><a class="markdownIt-Anchor" href="#参数-12"></a> 参数</h2>
+<ul>
+<li>seq – 元素列表，可以是列表、元组、集合、字典，若为字典,则仅会将键(key)作为元素依次添加至原列表的末尾。</li>
+</ul>
+<h2 id="返回值-11"><a class="markdownIt-Anchor" href="#返回值-11"></a> 返回值</h2>
+<p>该方法没有返回值，但会在已存在的列表中添加新的列表内容。</p>
+<h2 id="实例-13"><a class="markdownIt-Anchor" href="#实例-13"></a> 实例</h2>
+<p>以下实例展示了 extend()函数的使用方法：</p>
+<pre><code class="hljs livescript">list1 = [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]
+list2=<span class="hljs-keyword">list</span>(range(<span class="hljs-number">5</span>)) <span class="hljs-comment"># 创建 0-4 的列表</span>
+list1.extend(list2)  <span class="hljs-comment"># 扩展列表</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"扩展后的列表："</span>, list1)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs angelscript">扩展后的列表： [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]</code></pre>
+<p>不同数据类型：</p>
+<pre><code class="hljs vala"><span class="hljs-meta"># 语言列表</span>
+language = [<span class="hljs-string">'French'</span>, <span class="hljs-string">'English'</span>, <span class="hljs-string">'German'</span>]
+ 
+<span class="hljs-meta"># 元组</span>
+language_tuple = (<span class="hljs-string">'Spanish'</span>, <span class="hljs-string">'Portuguese'</span>)
+ 
+<span class="hljs-meta"># 集合</span>
+language_set = &#123;<span class="hljs-string">'Chinese'</span>, <span class="hljs-string">'Japanese'</span>&#125;
+ 
+<span class="hljs-meta"># 添加元组元素到列表末尾</span>
+language.extend(language_tuple)
+ 
+print(<span class="hljs-string">'新列表: '</span>, language)
+ 
+<span class="hljs-meta"># 添加集合元素到列表末尾</span>
+language.extend(language_set)
+ 
+print(<span class="hljs-string">'新列表: '</span>, language)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css">新列表:  <span class="hljs-selector-attr">[<span class="hljs-string">'French'</span>, <span class="hljs-string">'English'</span>, <span class="hljs-string">'German'</span>, <span class="hljs-string">'Spanish'</span>, <span class="hljs-string">'Portuguese'</span>]</span>
+新列表:  <span class="hljs-selector-attr">[<span class="hljs-string">'French'</span>, <span class="hljs-string">'English'</span>, <span class="hljs-string">'German'</span>, <span class="hljs-string">'Spanish'</span>, <span class="hljs-string">'Portuguese'</span>, <span class="hljs-string">'Japanese'</span>, <span class="hljs-string">'Chinese'</span>]</span></code></pre>
+<h2 id="append和extend的区别"><a class="markdownIt-Anchor" href="#append和extend的区别"></a> append()和extend()的区别</h2>
+<p>list.append(object) 向列表中添加一个对象object<br />
+list.extend(sequence) 把一个序列seq的内容添加到列表中</p>
+<pre><code class="hljs haxe">music_media = [<span class="hljs-string">'compact disc'</span>, <span class="hljs-string">'8-track tape'</span>, <span class="hljs-string">'long playing record'</span>]
+<span class="hljs-keyword">new</span><span class="hljs-type">_media</span> = [<span class="hljs-string">'DVD Audio disc'</span>, <span class="hljs-string">'Super Audio CD'</span>]
+music_media.append(<span class="hljs-keyword">new</span><span class="hljs-type">_media</span>)
+print music_media
+&gt;&gt;&gt;[<span class="hljs-string">'compact disc'</span>, <span class="hljs-string">'8-track tape'</span>, <span class="hljs-string">'long playing record'</span>, [<span class="hljs-string">'DVD Audio disc'</span>, <span class="hljs-string">'Super Audio CD'</span>]]</code></pre>
+<blockquote>
+<p>使用append的时候，是将new_media看作一个对象，整体打包添加到music_media对象中。</p>
+</blockquote>
+<pre><code class="hljs haxe">music_media = [<span class="hljs-string">'compact disc'</span>, <span class="hljs-string">'8-track tape'</span>, <span class="hljs-string">'long playing record'</span>]
+<span class="hljs-keyword">new</span><span class="hljs-type">_media</span> = [<span class="hljs-string">'DVD Audio disc'</span>, <span class="hljs-string">'Super Audio CD'</span>]
+music_media.extend(<span class="hljs-keyword">new</span><span class="hljs-type">_media</span>)
+print music_media
+&gt;&gt;&gt;[<span class="hljs-string">'compact disc'</span>, <span class="hljs-string">'8-track tape'</span>, <span class="hljs-string">'long playing record'</span>, <span class="hljs-string">'DVD Audio disc'</span>, <span class="hljs-string">'Super Audio CD'</span>]</code></pre>
+<blockquote>
+<p>使用extend的时候，是将new_media看作一个序列，将这个序列和music_media序列合并，并放在其后面。</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/14/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/numpy%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Py数据分析/numpy常用函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/13/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index/">
+                        <span class="hidden-mobile">目录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Py数据分析/python常用函数&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
