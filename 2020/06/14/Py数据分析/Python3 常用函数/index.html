@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>python常用函数 - zihuan&#39;s Space</title>
+  <title>Python3 常用函数 - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月15日 凌晨
+                  本文最后更新于：2020年6月23日 晚上
                 
               </p>
             
@@ -864,6 +864,571 @@ print music_media
 <blockquote>
 <p>使用extend的时候，是将new_media看作一个序列，将这个序列和music_media序列合并，并放在其后面。</p>
 </blockquote>
+<h1 id="listsort"><a class="markdownIt-Anchor" href="#listsort"></a> list.sort()</h1>
+<h2 id="描述-12"><a class="markdownIt-Anchor" href="#描述-12"></a> 描述</h2>
+<p>sort() 函数用于对原列表进行排序，如果指定参数，则使用比较函数指定的比较函数。</p>
+<h2 id="语法-12"><a class="markdownIt-Anchor" href="#语法-12"></a> 语法</h2>
+<p>sort()方法语法：</p>
+<pre><code class="hljs routeros">list.sort( <span class="hljs-attribute">key</span>=None, <span class="hljs-attribute">reverse</span>=<span class="hljs-literal">False</span>)</code></pre>
+<h2 id="参数-13"><a class="markdownIt-Anchor" href="#参数-13"></a> 参数</h2>
+<ul>
+<li>key –  主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。</li>
+<li>reverse – 排序规则，<strong>reverse = True</strong> 降序， <strong>reverse = False</strong> 升序（默认）。</li>
+</ul>
+<h2 id="返回值-12"><a class="markdownIt-Anchor" href="#返回值-12"></a> 返回值</h2>
+<p>该方法没有返回值，但是会对列表的对象进行排序。</p>
+<h2 id="实例-14"><a class="markdownIt-Anchor" href="#实例-14"></a> 实例</h2>
+<p>以下实例展示了 sort() 函数的使用方法：</p>
+<pre><code class="hljs gradle">aList = [<span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>, <span class="hljs-string">'Facebook'</span>]
+ 
+aList.<span class="hljs-keyword">sort</span>()
+<span class="hljs-keyword">print</span> ( <span class="hljs-string">"List : "</span>, aList)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">List</span> :  <span class="hljs-selector-attr">[<span class="hljs-string">'Facebook'</span>, <span class="hljs-string">'Google'</span>, <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Taobao'</span>]</span></code></pre>
+<p>以下实例降序输出列表：</p>
+<pre><code class="hljs routeros"><span class="hljs-comment"># 列表</span>
+vowels = [<span class="hljs-string">'e'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'i'</span>]
+ 
+<span class="hljs-comment"># 降序</span>
+vowels.sort(<span class="hljs-attribute">reverse</span>=<span class="hljs-literal">True</span>)
+ 
+<span class="hljs-comment"># 输出结果</span>
+<span class="hljs-builtin-name">print</span> ( <span class="hljs-string">'降序输出:'</span>, vowels )</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs css">降序输出: <span class="hljs-selector-attr">[<span class="hljs-string">'u'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'i'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'a'</span>]</span></code></pre>
+<p>以下实例演示了通过指定列表中的元素排序来输出列表：</p>
+<pre><code class="hljs angelscript"># 获取列表的第二个元素
+def takeSecond(elem):
+    <span class="hljs-keyword">return</span> elem[<span class="hljs-number">1</span>]
+ 
+# 列表
+random = [(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">4</span>), (<span class="hljs-number">4</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)]
+ 
+# 指定第二个元素排序
+random.sort(key=takeSecond)
+ 
+# 输出类别
+print (<span class="hljs-string">'排序列表：'</span>, random)</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs angelscript">排序列表：[(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), (<span class="hljs-number">1</span>, <span class="hljs-number">3</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)]</code></pre>
+<h1 id="enumerate"><a class="markdownIt-Anchor" href="#enumerate"></a> enumerate()</h1>
+<h2 id="描述-13"><a class="markdownIt-Anchor" href="#描述-13"></a> 描述</h2>
+<p>enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。</p>
+<h2 id="语法-13"><a class="markdownIt-Anchor" href="#语法-13"></a> 语法</h2>
+<p>以下是 enumerate() 方法的语法:</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">enumerate</span><span class="hljs-params">(sequence, [start=<span class="hljs-number">0</span>])</span></span></code></pre>
+<h2 id="参数-14"><a class="markdownIt-Anchor" href="#参数-14"></a> 参数</h2>
+<ul>
+<li>sequence – 一个序列、迭代器或其他支持迭代对象。</li>
+<li>start – 下标起始位置。</li>
+</ul>
+<h2 id="返回值-13"><a class="markdownIt-Anchor" href="#返回值-13"></a> 返回值</h2>
+<p>返回 enumerate(枚举) 对象。</p>
+<h2 id="实例-15"><a class="markdownIt-Anchor" href="#实例-15"></a> 实例</h2>
+<p>以下展示了使用 enumerate() 方法的实例：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; seasons = [<span class="hljs-string">'Spring'</span>, <span class="hljs-string">'Summer'</span>, <span class="hljs-string">'Fall'</span>, <span class="hljs-string">'Winter'</span>]
+<span class="hljs-meta">&gt;&gt;</span>&gt; list(enumerate(seasons))
+[(<span class="hljs-number">0</span>, <span class="hljs-string">'Spring'</span>), (<span class="hljs-number">1</span>, <span class="hljs-string">'Summer'</span>), (<span class="hljs-number">2</span>, <span class="hljs-string">'Fall'</span>), (<span class="hljs-number">3</span>, <span class="hljs-string">'Winter'</span>)]
+<span class="hljs-meta">&gt;&gt;</span>&gt; list(enumerate(seasons, start=<span class="hljs-number">1</span>))       <span class="hljs-comment"># 小标从 1 开始</span>
+[(<span class="hljs-number">1</span>, <span class="hljs-string">'Spring'</span>), (<span class="hljs-number">2</span>, <span class="hljs-string">'Summer'</span>), (<span class="hljs-number">3</span>, <span class="hljs-string">'Fall'</span>), (<span class="hljs-number">4</span>, <span class="hljs-string">'Winter'</span>)]</code></pre>
+<h3 id="普通的-for-循环"><a class="markdownIt-Anchor" href="#普通的-for-循环"></a> <strong>普通的 for 循环</strong></h3>
+<pre><code class="hljs perl">i = <span class="hljs-number">0</span>
+seq = [<span class="hljs-string">'one'</span>, <span class="hljs-string">'two'</span>, <span class="hljs-string">'three'</span>]
+<span class="hljs-keyword">for</span> element in seq:
+    <span class="hljs-keyword">print</span>(i, se<span class="hljs-string">q[i]</span>)
+    i += <span class="hljs-number">1</span></code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs basic"><span class="hljs-symbol">0 </span>one
+<span class="hljs-symbol">1 </span>two
+<span class="hljs-symbol">2 </span>three</code></pre>
+<h3 id="for-循环使用-enumerate"><a class="markdownIt-Anchor" href="#for-循环使用-enumerate"></a> <strong>for 循环使用 enumerate</strong></h3>
+<pre><code class="hljs livecodeserver">seq = [<span class="hljs-string">'one'</span>, <span class="hljs-string">'two'</span>, <span class="hljs-string">'three'</span>]
+<span class="hljs-keyword">for</span> i, <span class="hljs-keyword">element</span> <span class="hljs-keyword">in</span> enumerate(seq):
+    print(i, <span class="hljs-keyword">element</span>)</code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs basic"><span class="hljs-symbol">0 </span>one
+<span class="hljs-symbol">1 </span>two
+<span class="hljs-symbol">2 </span>three</code></pre>
+<h1 id="sorted"><a class="markdownIt-Anchor" href="#sorted"></a> <strong>sorted()</strong></h1>
+<h2 id="描述-14"><a class="markdownIt-Anchor" href="#描述-14"></a> 描述</h2>
+<p><strong>sorted()</strong> 函数对所有可迭代的对象进行排序操作</p>
+<blockquote>
+<p><strong>sort 与 sorted 区别：</strong></p>
+<p>sort 是应用在 list 上的方法，sorted 可以对所有可迭代的对象进行排序操作。</p>
+<p>list 的 sort 方法返回的是对已经存在的列表进行操作，而内建函数 sorted 方法返回的是一个新的 list，而不是在原来的基础上进行的操作。</p>
+</blockquote>
+<h2 id="语法-14"><a class="markdownIt-Anchor" href="#语法-14"></a> 语法</h2>
+<p>sorted 语法：</p>
+<pre><code class="hljs routeros">sorted(iterable, <span class="hljs-attribute">key</span>=None, <span class="hljs-attribute">reverse</span>=<span class="hljs-literal">False</span>)</code></pre>
+<p>参数说明：</p>
+<ul>
+<li>iterable –  可迭代对象。</li>
+<li>key –  主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。</li>
+<li>reverse –  排序规则，reverse = True  降序 ， reverse = False 升序（默认）。</li>
+</ul>
+<h2 id="返回值-14"><a class="markdownIt-Anchor" href="#返回值-14"></a> 返回值</h2>
+<p>返回重新排序的列表。</p>
+<h2 id="实例-16"><a class="markdownIt-Anchor" href="#实例-16"></a> 实例</h2>
+<p>以下实例展示了 sorted 的最简单的使用方法：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;sorted([<span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>])
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]                      # 默认为升序</code></pre>
+<p>你也可以使用 list 的 list.sort() 方法。这个方法会修改原始的 list（返回值为None）。通常这个方法不如sorted()方便-如果你不需要原始的 list，list.sort()方法效率会稍微高一些。</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;a=[<span class="hljs-number">5</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>]
+&gt;&gt;&gt; a.sort()
+&gt;&gt;&gt; a
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]</code></pre>
+<p>另一个区别在于list.sort() 方法只为 list 定义。而 sorted() 函数可以接收任何的 iterable。</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;sorted(&#123;<span class="hljs-number">1</span>: <span class="hljs-string">'D'</span>, <span class="hljs-number">2</span>: <span class="hljs-string">'B'</span>, <span class="hljs-number">3</span>: <span class="hljs-string">'B'</span>, <span class="hljs-number">4</span>: <span class="hljs-string">'E'</span>, <span class="hljs-number">5</span>: <span class="hljs-string">'A'</span>&#125;)
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]</code></pre>
+<p>利用key进行倒序排序</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;example_list = [<span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+&gt;&gt;&gt; result_list = sorted(example_list, key=lambda x: x*<span class="hljs-number">-1</span>)
+&gt;&gt;&gt; print(result_list)
+[<span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]
+&gt;&gt;&gt;</code></pre>
+<p>要进行反向排序，也可以通过传入第三个参数 reverse=True：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;example_list = [<span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+&gt;&gt;&gt; sorted(example_list, reverse=True)
+[<span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]</code></pre>
+<h1 id="zip"><a class="markdownIt-Anchor" href="#zip"></a> zip()</h1>
+<h2 id="描述-15"><a class="markdownIt-Anchor" href="#描述-15"></a> 描述</h2>
+<p><strong>zip()</strong> 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。</p>
+<p>我们可以使用 list() 转换来输出列表。</p>
+<p>如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 ***** 号操作符，可以将元组解压为列表。</p>
+<blockquote>
+<p>zip 方法在 Python 2 和 Python 3 中的不同：在 Python 2.x zip() 返回的是一个列表。</p>
+<p>如果需要了解 Pyhton2 的应用，可以参考 <a href="https://www.runoob.com/python/python-func-zip.html" target="_blank" rel="noopener">Python zip()</a>。</p>
+</blockquote>
+<h2 id="语法-15"><a class="markdownIt-Anchor" href="#语法-15"></a> 语法</h2>
+<p>zip 语法：</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">zip</span><span class="hljs-params">([iterable, ...])</span></span></code></pre>
+<p>参数说明：</p>
+<ul>
+<li>iterabl – 一个或多个迭代器;</li>
+</ul>
+<h2 id="返回值-15"><a class="markdownIt-Anchor" href="#返回值-15"></a> 返回值</h2>
+<p>返回一个对象。</p>
+<h2 id="实例-17"><a class="markdownIt-Anchor" href="#实例-17"></a> 实例</h2>
+<p>以下实例展示了 zip 的使用方法：</p>
+<pre><code class="hljs lsl">&gt;&gt;&gt;a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+&gt;&gt;&gt; b = [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]
+&gt;&gt;&gt; c = [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]
+&gt;&gt;&gt; zipped = zip(a,b)     # 返回一个对象
+&gt;&gt;&gt; zipped
+&lt;zip object at <span class="hljs-number">0x103abc288</span>&gt;
+&gt;&gt;&gt; <span class="hljs-type">list</span>(zipped)  # <span class="hljs-type">list</span>() 转换为列表
+[(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">5</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">6</span>)]
+&gt;&gt;&gt; <span class="hljs-type">list</span>(zip(a,c))              # 元素个数与最短的列表一致
+[(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">5</span>), (<span class="hljs-number">3</span>, <span class="hljs-number">6</span>)]
+ 
+&gt;&gt;&gt; a1, a2 = zip(*zip(a,b))          # 与 zip 相反，zip(*) 可理解为解压，返回二维矩阵式
+&gt;&gt;&gt; <span class="hljs-type">list</span>(a1)
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+&gt;&gt;&gt; <span class="hljs-type">list</span>(a2)
+[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+&gt;&gt;&gt;</code></pre>
+<h1 id="reversed"><a class="markdownIt-Anchor" href="#reversed"></a> reversed()</h1>
+<h2 id="描述-16"><a class="markdownIt-Anchor" href="#描述-16"></a> 描述</h2>
+<p>reversed 函数返回一个反转的迭代器。</p>
+<h3 id="语法-16"><a class="markdownIt-Anchor" href="#语法-16"></a> 语法</h3>
+<p>以下是 reversed 的语法:</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">reversed</span><span class="hljs-params">(seq)</span></span></code></pre>
+<h3 id="参数-15"><a class="markdownIt-Anchor" href="#参数-15"></a> 参数</h3>
+<ul>
+<li>seq – 要转换的序列，可以是 tuple, string, list 或 range。</li>
+</ul>
+<h3 id="返回值-16"><a class="markdownIt-Anchor" href="#返回值-16"></a> 返回值</h3>
+<p>返回一个反转的迭代器。</p>
+<h2 id="实例-18"><a class="markdownIt-Anchor" href="#实例-18"></a> 实例</h2>
+<p>以下展示了使用 tuple 的实例：</p>
+<pre><code class="hljs livescript"><span class="hljs-comment"># 字符串</span>
+seqString = <span class="hljs-string">'Runoob'</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-keyword">list</span>(reversed(seqString)))
+ 
+<span class="hljs-comment"># 元组</span>
+seqTuple = (<span class="hljs-string">'R'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'b'</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-keyword">list</span>(reversed(seqTuple)))
+ 
+<span class="hljs-comment"># range</span>
+seqRange = range(<span class="hljs-number">5</span>, <span class="hljs-number">9</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-keyword">list</span>(reversed(seqRange)))
+ 
+<span class="hljs-comment"># 列表</span>
+seqList = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-keyword">list</span>(reversed(seqList)))</code></pre>
+<p>以上实例输出结果为：</p>
+<pre><code class="hljs scheme">[<span class="hljs-symbol">'b</span>', <span class="hljs-symbol">'o</span>', <span class="hljs-symbol">'o</span>', <span class="hljs-symbol">'n</span>', <span class="hljs-symbol">'u</span>', <span class="hljs-symbol">'R</span>']
+[<span class="hljs-symbol">'b</span>', <span class="hljs-symbol">'o</span>', <span class="hljs-symbol">'o</span>', <span class="hljs-symbol">'n</span>', <span class="hljs-symbol">'u</span>', <span class="hljs-symbol">'R</span>']
+[<span class="hljs-name">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>]
+[<span class="hljs-name">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]</code></pre>
+<blockquote>
+<p>reversed是一个生成器，因此如果没有实例化（例如使用list函数或进行for循环）的时候，他并不会产生一个倒序的列表</p>
+</blockquote>
+<h1 id="dictpop"><a class="markdownIt-Anchor" href="#dictpop"></a> dict.pop()</h1>
+<h2 id="描述-17"><a class="markdownIt-Anchor" href="#描述-17"></a> 描述</h2>
+<p>Python 字典 pop() 方法删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。</p>
+<h2 id="语法-17"><a class="markdownIt-Anchor" href="#语法-17"></a> 语法</h2>
+<p>pop()方法语法：</p>
+<pre><code class="hljs gauss"><span class="hljs-keyword">pop</span>(<span class="hljs-built_in">key</span>[,default])</code></pre>
+<h2 id="参数-16"><a class="markdownIt-Anchor" href="#参数-16"></a> 参数</h2>
+<ul>
+<li>key: 要删除的键值</li>
+<li>default: 如果没有 key，返回 default 值</li>
+</ul>
+<h2 id="返回值-17"><a class="markdownIt-Anchor" href="#返回值-17"></a> 返回值</h2>
+<p>返回被删除的值。</p>
+<h2 id="实例-19"><a class="markdownIt-Anchor" href="#实例-19"></a> 实例</h2>
+<p>以下实例展示了 pop() 方法的使用方法：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; site= &#123;<span class="hljs-string">'name'</span>: <span class="hljs-string">'菜鸟教程'</span>, <span class="hljs-string">'alexa'</span>: <span class="hljs-number">10000</span>, <span class="hljs-string">'url'</span>: <span class="hljs-string">'www.runoob.com'</span>&#125;
+<span class="hljs-meta">&gt;&gt;</span>&gt; pop_obj=site.pop(<span class="hljs-string">'name'</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; print(pop_obj)
+菜鸟教程</code></pre>
+<h1 id="dictupdate"><a class="markdownIt-Anchor" href="#dictupdate"></a> dict.update()</h1>
+<h2 id="描述-18"><a class="markdownIt-Anchor" href="#描述-18"></a> 描述</h2>
+<p>Python 字典 update() 函数把字典参数 dict2 的 <strong>key/value(键/值)</strong> 对更新到字典 dict 里。</p>
+<h2 id="语法-18"><a class="markdownIt-Anchor" href="#语法-18"></a> 语法</h2>
+<p>update() 方法语法：</p>
+<pre><code class="hljs tcl"><span class="hljs-keyword">dict</span>.<span class="hljs-keyword">update</span>(dict2)</code></pre>
+<h2 id="参数-17"><a class="markdownIt-Anchor" href="#参数-17"></a> 参数</h2>
+<ul>
+<li>dict2 – 添加到指定字典dict里的字典。</li>
+</ul>
+<h2 id="返回值-18"><a class="markdownIt-Anchor" href="#返回值-18"></a> 返回值</h2>
+<p>该方法没有任何返回值。</p>
+<h2 id="实例-20"><a class="markdownIt-Anchor" href="#实例-20"></a> 实例</h2>
+<p>以下实例展示了 update()函数的使用方法：</p>
+<pre><code class="hljs routeros">dict = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Age'</span>: 7&#125;
+dict2 = &#123;<span class="hljs-string">'Sex'</span>: <span class="hljs-string">'female'</span> &#125;
+ 
+dict.update(dict2)
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"更新字典 dict : "</span>, dict)</code></pre>
+<p>以上实例输出结果为：</p>
+<pre><code class="hljs groovy">更新字典 <span class="hljs-string">dict :</span>  &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>, <span class="hljs-string">'Sex'</span>: <span class="hljs-string">'female'</span>&#125;</code></pre>
+<blockquote>
+<p>若dict2中的key与dict的key相同，则会用dict2的key覆盖dict的key</p>
+</blockquote>
+<h1 id="dictget"><a class="markdownIt-Anchor" href="#dictget"></a> dict.get()</h1>
+<h2 id="描述-19"><a class="markdownIt-Anchor" href="#描述-19"></a> 描述</h2>
+<p>Python 字典 get() 函数返回指定键的值，如果值不在字典中返回默认值。</p>
+<h2 id="语法-19"><a class="markdownIt-Anchor" href="#语法-19"></a> 语法</h2>
+<p>get()方法语法：</p>
+<pre><code class="hljs routeros">dict.<span class="hljs-builtin-name">get</span>(key, <span class="hljs-attribute">default</span>=None)</code></pre>
+<h2 id="参数-18"><a class="markdownIt-Anchor" href="#参数-18"></a> 参数</h2>
+<ul>
+<li>key – 字典中要查找的键。</li>
+<li>default – 如果指定键的值不存在时，返回该默认值值。</li>
+</ul>
+<h2 id="返回值-19"><a class="markdownIt-Anchor" href="#返回值-19"></a> 返回值</h2>
+<p>返回指定键的值，如果值不在字典中返回默认值 None。</p>
+<h2 id="实例-21"><a class="markdownIt-Anchor" href="#实例-21"></a> 实例</h2>
+<p>以下实例展示了 get()函数的使用方法：</p>
+<pre><code class="hljs routeros">dict = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Age'</span>: 27&#125;
+
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"Age 值为 : %s"</span> %  dict.<span class="hljs-builtin-name">get</span>(<span class="hljs-string">'Age'</span>))
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"Sex 值为 : %s"</span> %  dict.<span class="hljs-builtin-name">get</span>(<span class="hljs-string">'Sex'</span>, <span class="hljs-string">"NA"</span>))</code></pre>
+<p>以上实例输出结果为：</p>
+<pre><code class="hljs ada">Age 值为 : 27
+Sex 值为 : <span class="hljs-type">NA</span></code></pre>
+<h1 id="dictsetdefault"><a class="markdownIt-Anchor" href="#dictsetdefault"></a> dict.setdefault()</h1>
+<h2 id="描述-20"><a class="markdownIt-Anchor" href="#描述-20"></a> 描述</h2>
+<p>Python 字典 setdefault() 方法和 <a href="https://www.runoob.com/python3/python3-att-dictionary-get.html" target="_blank" rel="noopener">get()方法</a> 类似, 如果键不已经存在于字典中，将会添加键并将值设为默认值。</p>
+<h2 id="语法-20"><a class="markdownIt-Anchor" href="#语法-20"></a> 语法</h2>
+<p>setdefault()方法语法：</p>
+<pre><code class="hljs fortran">dict.setdefault(key, <span class="hljs-keyword">default</span>=<span class="hljs-keyword">None</span>)</code></pre>
+<h2 id="参数-19"><a class="markdownIt-Anchor" href="#参数-19"></a> 参数</h2>
+<ul>
+<li>key – 查找的键值。</li>
+<li>default – 键不存在时，设置的默认键值。</li>
+</ul>
+<h2 id="返回值-20"><a class="markdownIt-Anchor" href="#返回值-20"></a> 返回值</h2>
+<p>如果 key 在 字典中，返回对应的值。如果不在字典中，则插入 key 及设置的默认值 default，并返回 default ，default 默认值为 None。</p>
+<h2 id="实例-22"><a class="markdownIt-Anchor" href="#实例-22"></a> 实例</h2>
+<p>以下实例展示了 setdefault() 方法的使用方法：</p>
+<pre><code class="hljs routeros">dict = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Age'</span>: 7&#125;
+ 
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"Age 键的值为 : %s"</span> %  dict.setdefault(<span class="hljs-string">'Age'</span>, None))
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"Sex 键的值为 : %s"</span> %  dict.setdefault(<span class="hljs-string">'Sex'</span>, None))
+<span class="hljs-builtin-name">print</span> (<span class="hljs-string">"新字典为："</span>, dict)</code></pre>
+<p>以上实例输出结果为：</p>
+<pre><code class="hljs ada">Age 键的值为 : 7
+Sex 键的值为 : <span class="hljs-type">None</span>
+新字典为： &#123;<span class="hljs-symbol">'Age</span>': <span class="hljs-number">7</span>, <span class="hljs-symbol">'Name</span>': <span class="hljs-symbol">'Runoob</span>', <span class="hljs-symbol">'Sex</span>': None&#125;</code></pre>
+<blockquote>
+<p>比dict.get()方法多了一个如果不在，就添加键值的功能</p>
+</blockquote>
+<h1 id="dictitems"><a class="markdownIt-Anchor" href="#dictitems"></a> dict.items()</h1>
+<h2 id="描述-21"><a class="markdownIt-Anchor" href="#描述-21"></a> 描述</h2>
+<p>Python 字典 items() 方法以列表返回可遍历的(键, 值) 元组数组。</p>
+<h2 id="语法-21"><a class="markdownIt-Anchor" href="#语法-21"></a> 语法</h2>
+<p>items()方法语法：</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">dict</span><span class="hljs-selector-class">.items</span>()</code></pre>
+<h2 id="参数-20"><a class="markdownIt-Anchor" href="#参数-20"></a> 参数</h2>
+<ul>
+<li>NA。</li>
+</ul>
+<h2 id="返回值-21"><a class="markdownIt-Anchor" href="#返回值-21"></a> 返回值</h2>
+<p>返回可遍历的(键, 值) 元组数组。</p>
+<h2 id="实例-23"><a class="markdownIt-Anchor" href="#实例-23"></a> 实例</h2>
+<p>以下实例展示了 items() 方法的使用方法：</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">dict</span><span class="hljs-selector-class">.items</span>()</code></pre>
+<p>以上实例输出结果为：</p>
+<pre><code class="hljs lisp">dict_items([('Name', 'Runoob'), ('Age', <span class="hljs-number">7</span>)])</code></pre>
+<pre><code class="hljs pgsql">dict = &#123;<span class="hljs-string">'Name'</span>: <span class="hljs-string">'Runoob'</span>, <span class="hljs-string">'Age'</span>: <span class="hljs-number">7</span>&#125;
+<span class="hljs-keyword">for key</span>,<span class="hljs-keyword">value</span> <span class="hljs-keyword">in</span> dict.items():
+    print("key=&#123;0&#125;, value=&#123;1&#125;".format(key,<span class="hljs-keyword">value</span>))</code></pre>
+<p>输出：</p>
+<pre><code class="hljs routeros"><span class="hljs-attribute">key</span>=Name, <span class="hljs-attribute">value</span>=Runoob
+<span class="hljs-attribute">key</span>=Age, <span class="hljs-attribute">value</span>=7</code></pre>
+<h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> <strong>hash()</strong></h1>
+<h2 id="描述-22"><a class="markdownIt-Anchor" href="#描述-22"></a> 描述</h2>
+<p><strong>hash()</strong> 用于获取取一个对象（字符串或者数值等）的哈希值。</p>
+<h2 id="语法-22"><a class="markdownIt-Anchor" href="#语法-22"></a> 语法</h2>
+<p>hash 语法：</p>
+<pre><code class="hljs isbl"><span class="hljs-function"><span class="hljs-title">hash</span>(<span class="hljs-variable"><span class="hljs-class">object</span></span>)</span></code></pre>
+<p>参数说明：</p>
+<ul>
+<li>object –  对象；</li>
+</ul>
+<h2 id="返回值-22"><a class="markdownIt-Anchor" href="#返回值-22"></a> 返回值</h2>
+<p>返回对象的哈希值。</p>
+<h2 id="实例-24"><a class="markdownIt-Anchor" href="#实例-24"></a> 实例</h2>
+<p>以下实例展示了 hash 的使用方法：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt;hash(<span class="hljs-string">'test'</span>)            <span class="hljs-comment"># 字符串</span>
+<span class="hljs-number">2314058222102390712</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; hash(<span class="hljs-number">1</span>)                 <span class="hljs-comment"># 数字</span>
+<span class="hljs-number">1</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; hash(str([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]))      <span class="hljs-comment"># 集合</span>
+<span class="hljs-number">1335416675971793195</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; hash(str(sorted(&#123;<span class="hljs-string">'1'</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span>&#125;))) <span class="hljs-comment"># 字典</span>
+<span class="hljs-number">7666464346782421378</span></code></pre>
+<blockquote>
+<p>dict的value可以是任何Python对象，但key必须是不可变的对象，比如标量类型（整数、浮点数、字符串）或元组（且元组内对象也必须是不可变对象）。这里要使用到一个术语叫做哈希化，通过hash函数可以检查一个对象是否可以哈希化（即是否可以作为dict的key）</p>
+</blockquote>
+<pre><code class="hljs lsl">hash('<span class="hljs-type">string</span>')
+hash((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)))
+hash((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])) # fails because lists are mutable</code></pre>
+<p>输出结果为</p>
+<pre><code class="hljs angelscript">
+<span class="hljs-number">1087538042632871474</span>
+<span class="hljs-number">1097636502276347782</span>
+----------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input<span class="hljs-number">-15</span>-ec207acb6583&gt; <span class="hljs-keyword">in</span> &lt;module&gt;
+      <span class="hljs-number">1</span> hash(<span class="hljs-string">'string'</span>)
+      <span class="hljs-number">2</span> hash((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)))
+----&gt; <span class="hljs-number">3</span> hash((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>])) # fails because lists are mutable
+
+TypeError: unhashable type: <span class="hljs-string">'list'</span></code></pre>
+<h1 id="strupper"><a class="markdownIt-Anchor" href="#strupper"></a> str.upper()</h1>
+<h2 id="描述-23"><a class="markdownIt-Anchor" href="#描述-23"></a> 描述</h2>
+<p>Python upper() 方法将字符串中的小写字母转为大写字母。</p>
+<h2 id="语法-23"><a class="markdownIt-Anchor" href="#语法-23"></a> 语法</h2>
+<p>upper()方法语法：</p>
+<pre><code class="hljs axapta"><span class="hljs-keyword">str</span>.upper()</code></pre>
+<h2 id="参数-21"><a class="markdownIt-Anchor" href="#参数-21"></a> 参数</h2>
+<ul>
+<li>NA。</li>
+</ul>
+<h2 id="返回值-23"><a class="markdownIt-Anchor" href="#返回值-23"></a> 返回值</h2>
+<p>返回小写字母转为大写字母的字符串。</p>
+<h2 id="实例-25"><a class="markdownIt-Anchor" href="#实例-25"></a> 实例</h2>
+<p>以下实例展示了 upper()函数的使用方法：</p>
+<pre><code class="hljs processing"><span class="hljs-built_in">str</span> = <span class="hljs-string">"this is string example from runoob....wow!!!"</span>;
+
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"str.upper() : "</span>, <span class="hljs-built_in">str</span>.upper())</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs erlang-repl">str.upper() :  THIS IS STRING EXAMPLE FROM RUNOOB....WOW!!!</code></pre>
+<h1 id="strstrip"><a class="markdownIt-Anchor" href="#strstrip"></a> str.strip()</h1>
+<h2 id="描述-24"><a class="markdownIt-Anchor" href="#描述-24"></a> 描述</h2>
+<p>Python strip() 方法用于移除字符串头尾指定的字符（默认为空格）或字符序列。</p>
+<p>**注意：**该方法只能删除开头或是结尾的字符，不能删除中间部分的字符。</p>
+<h2 id="语法-24"><a class="markdownIt-Anchor" href="#语法-24"></a> 语法</h2>
+<p>strip()方法语法：</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">str</span><span class="hljs-selector-class">.strip</span>(<span class="hljs-selector-attr">[chars]</span>);</code></pre>
+<h2 id="参数-22"><a class="markdownIt-Anchor" href="#参数-22"></a> 参数</h2>
+<ul>
+<li>chars – 移除字符串头尾指定的字符序列。</li>
+</ul>
+<h2 id="返回值-24"><a class="markdownIt-Anchor" href="#返回值-24"></a> 返回值</h2>
+<p>返回移除字符串头尾指定的字符序列生成的新字符串。</p>
+<h2 id="实例-26"><a class="markdownIt-Anchor" href="#实例-26"></a> 实例</h2>
+<p>以下实例展示了 strip() 函数的使用方法：</p>
+<pre><code class="hljs axapta"><span class="hljs-keyword">str</span> = <span class="hljs-string">"*****this is **string** example....wow!!!*****"</span>
+print (<span class="hljs-keyword">str</span>.strip( <span class="hljs-string">'*'</span> ))  <span class="hljs-meta"># 指定字符串 *</span></code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs angelscript"><span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> **<span class="hljs-built_in">string</span>** example....wow!!!</code></pre>
+<p>从结果上看，可以注意到中间部分的字符并未删除。</p>
+<p>下例演示了只要头尾包含有指定字符序列中的字符就删除：</p>
+<pre><code class="hljs axapta"><span class="hljs-keyword">str</span> = <span class="hljs-string">"123abcrunoob321"</span>
+print (<span class="hljs-keyword">str</span>.strip( <span class="hljs-string">'12'</span> ))  <span class="hljs-meta"># 字符序列为 12</span></code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs angelscript"><span class="hljs-number">3</span>abcrunoob3</code></pre>
+<h1 id="strtitle"><a class="markdownIt-Anchor" href="#strtitle"></a> str.title()</h1>
+<h2 id="描述-25"><a class="markdownIt-Anchor" href="#描述-25"></a> 描述</h2>
+<p>Python title() 方法返回&quot;标题化&quot;的字符串,就是说所有单词的首个字母转化为大写，其余字母均为小写(见 <a href="https://www.runoob.com/python3/python3-string-istitle.html" target="_blank" rel="noopener">istitle()</a>)。</p>
+<h2 id="语法-25"><a class="markdownIt-Anchor" href="#语法-25"></a> 语法</h2>
+<p>title()方法语法：</p>
+<pre><code class="hljs abnf">str.title()<span class="hljs-comment">;</span></code></pre>
+<h2 id="参数-23"><a class="markdownIt-Anchor" href="#参数-23"></a> 参数</h2>
+<ul>
+<li>NA。</li>
+</ul>
+<h2 id="返回值-25"><a class="markdownIt-Anchor" href="#返回值-25"></a> 返回值</h2>
+<p>返回&quot;标题化&quot;的字符串,就是说所有单词的首字母都转化为大写。</p>
+<h2 id="实例-27"><a class="markdownIt-Anchor" href="#实例-27"></a> 实例</h2>
+<p>以下实例展示了 title()函数的使用方法：</p>
+<pre><code class="hljs lisp">str = <span class="hljs-string">"this is string example from runoob....wow!!!"</span>
+print (<span class="hljs-name">str</span>.title())</code></pre>
+<p>以上实例输出结果如下：</p>
+<pre><code class="hljs erlang-repl">This Is String Example From Runoob....Wow!!!</code></pre>
+<p>请注意，非字母后的第一个字母将转换为大写字母：</p>
+<pre><code class="hljs sas">txt = <span class="hljs-string">"hello b2b2b2 and 3g3g3g"</span>
+<span class="hljs-meta">x</span> = txt.<span class="hljs-meta">title</span>()
+p<span class="hljs-meta">rint(</span><span class="hljs-meta">x</span>)</code></pre>
+<p>输出结果为：</p>
+<pre><code class="hljs armasm"><span class="hljs-symbol">Hello</span> <span class="hljs-keyword">B2B2B2 </span><span class="hljs-keyword">And </span><span class="hljs-number">3</span>G3G3G</code></pre>
+<h1 id="set"><a class="markdownIt-Anchor" href="#set"></a> <strong>set()</strong></h1>
+<h2 id="描述-26"><a class="markdownIt-Anchor" href="#描述-26"></a> 描述</h2>
+<p><strong>set()</strong> 函数创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。</p>
+<h2 id="语法-26"><a class="markdownIt-Anchor" href="#语法-26"></a> 语法</h2>
+<p>set 语法：</p>
+<pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">set</span>([<span class="hljs-symbol">iterable</span>])</code></pre>
+<p>参数说明：</p>
+<ul>
+<li>iterable –  可迭代对象对象；</li>
+</ul>
+<h2 id="返回值-26"><a class="markdownIt-Anchor" href="#返回值-26"></a> 返回值</h2>
+<p>返回新的集合对象。</p>
+<h2 id="实例-28"><a class="markdownIt-Anchor" href="#实例-28"></a> 实例</h2>
+<p>以下实例展示了 set 的使用方法：</p>
+<pre><code class="hljs routeros">&gt;&gt;&gt;x = <span class="hljs-builtin-name">set</span>(<span class="hljs-string">'runoob'</span>)
+&gt;&gt;&gt; y = <span class="hljs-builtin-name">set</span>(<span class="hljs-string">'google'</span>)
+&gt;&gt;&gt; x, y
+(<span class="hljs-builtin-name">set</span>([<span class="hljs-string">'b'</span>, <span class="hljs-string">'r'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'n'</span>]), <span class="hljs-builtin-name">set</span>([<span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'g'</span>, <span class="hljs-string">'l'</span>]))   # 重复的被删除
+&gt;&gt;&gt; x &amp; y         # 交集
+<span class="hljs-builtin-name">set</span>([<span class="hljs-string">'o'</span>])
+&gt;&gt;&gt; x | y         # 并集
+<span class="hljs-builtin-name">set</span>([<span class="hljs-string">'b'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'g'</span>, <span class="hljs-string">'l'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'r'</span>, <span class="hljs-string">'u'</span>])
+&gt;&gt;&gt; x - y         # 差集
+<span class="hljs-builtin-name">set</span>([<span class="hljs-string">'r'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'n'</span>])</code></pre>
+<h1 id="集合操作"><a class="markdownIt-Anchor" href="#集合操作"></a> 集合操作</h1>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>替代方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a.add(x)</td>
+<td>无</td>
+<td>将元素x加入集合a</td>
+</tr>
+<tr>
+<td>a.clear()</td>
+<td>无</td>
+<td>将集合重置为空，清空所有元素</td>
+</tr>
+<tr>
+<td>a.remove(x)</td>
+<td>无</td>
+<td>从集合a移除某个元素</td>
+</tr>
+<tr>
+<td>a.pop()</td>
+<td>无</td>
+<td>移除任意元素。如果集合是空的抛出keyError</td>
+</tr>
+<tr>
+<td>a.union(b)</td>
+<td>a|b</td>
+<td>a和b中的所有不同元素</td>
+</tr>
+<tr>
+<td>a.update(b)</td>
+<td>a|=b</td>
+<td>将a的内容设置为a和b的并集</td>
+</tr>
+<tr>
+<td>a.intersection(b)</td>
+<td>a&amp;b</td>
+<td>a、b中同时包含的元素</td>
+</tr>
+<tr>
+<td>a.intersection_update(b)</td>
+<td>a&amp;=b</td>
+<td>将a的内容设为a和b的交集</td>
+</tr>
+<tr>
+<td>a.difference(b)</td>
+<td>a-b</td>
+<td>在a不在b的元素</td>
+</tr>
+<tr>
+<td>a.difference_update(b)</td>
+<td>a-=b</td>
+<td>将a的内容设为在a不在b的元素</td>
+</tr>
+<tr>
+<td>a.symmetric_difference(b)</td>
+<td>a^b</td>
+<td>所有在a或b中，但不同时在a和b中的元素</td>
+</tr>
+<tr>
+<td>a.symmetric_difference_update(b)</td>
+<td>a^=b</td>
+<td>将a的内容设为所有所有在a或b中，但不同时在a和b中的元素</td>
+</tr>
+<tr>
+<td>a.issubset(b)</td>
+<td>无</td>
+<td>如果a包含于b返回True</td>
+</tr>
+<tr>
+<td>a.issuperset(b)</td>
+<td>无</td>
+<td>如果a包含b返回True</td>
+</tr>
+<tr>
+<td>a.isdisjoint(b)</td>
+<td>无</td>
+<td>a、b没有交集返回True</td>
+</tr>
+</tbody>
+</table>
+<h1 id="map"><a class="markdownIt-Anchor" href="#map"></a> map()</h1>
+<h2 id="描述-27"><a class="markdownIt-Anchor" href="#描述-27"></a> 描述</h2>
+<p><strong>map()</strong> 会根据提供的函数对指定序列做映射。</p>
+<p>第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。</p>
+<h2 id="语法-27"><a class="markdownIt-Anchor" href="#语法-27"></a> 语法</h2>
+<p>map() 函数语法：</p>
+<pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">function, iterable, ...</span>)</span></code></pre>
+<h2 id="参数-24"><a class="markdownIt-Anchor" href="#参数-24"></a> 参数</h2>
+<ul>
+<li>function – 函数</li>
+<li>iterable – 一个或多个序列</li>
+</ul>
+<h2 id="返回值-27"><a class="markdownIt-Anchor" href="#返回值-27"></a> 返回值</h2>
+<p>Python 2.x 返回列表。</p>
+<p>Python 3.x 返回迭代器。</p>
+<h2 id="实例-29"><a class="markdownIt-Anchor" href="#实例-29"></a> 实例</h2>
+<p>以下实例展示了 map() 的使用方法：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt;def square(x) :            # 计算平方数
+...     <span class="hljs-keyword">return</span> x ** <span class="hljs-number">2</span>
+... 
+&gt;&gt;&gt; map(square, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>])   # 计算列表各个元素的平方
+[<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>]
+&gt;&gt;&gt; map(lambda x: x ** <span class="hljs-number">2</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])  # 使用 lambda 匿名函数
+[<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span>]
+ 
+# 提供了两个列表，对相同位置的列表数据进行相加
+&gt;&gt;&gt; map(lambda x, y: x + y, [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>])
+[<span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span>, <span class="hljs-number">15</span>, <span class="hljs-number">19</span>]</code></pre>
+<blockquote>
+<p>python3必须list(map)或者set(map)，否则得到的是map对象</p>
+</blockquote>
 
             </article>
             <hr>
@@ -894,9 +1459,9 @@ print music_media
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/14/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/numpy%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+                      <a href="/2020/06/14/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Numpy%20%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">numpy常用函数</span>
+                        <span class="hidden-mobile">Numpy 常用函数</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1070,7 +1635,7 @@ print music_media
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "python常用函数&nbsp;",
+        "Python3 常用函数&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,

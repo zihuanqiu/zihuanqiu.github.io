@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Python3 数字 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-24 15:25">
+      2020年6月24日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年6月24日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="python3-数字number"><a class="markdownIt-Anchor" href="#python3-数字number"></a> Python3 数字(Number)</h1>
+<p>Python 数字数据类型用于存储数值。</p>
+<p>数据类型是不允许改变的,这就意味着如果改变数字数据类型的值，将重新分配内存空间。</p>
+<p>以下实例在变量赋值时 Number 对象将被创建：</p>
+<pre><code class="hljs ini"><span class="hljs-attr">var1</span> = <span class="hljs-number">1</span>
+<span class="hljs-attr">var2</span> = <span class="hljs-number">10</span></code></pre>
+<p>您也可以使用del语句删除一些数字对象的引用。</p>
+<p>del语句的语法是：</p>
+<pre><code class="hljs inform7">del var1<span class="hljs-comment">[,var2<span class="hljs-comment">[,var3<span class="hljs-comment">[....,varN]</span>]</span>]</span></code></pre>
+<p>您可以通过使用del语句删除单个或多个对象的引用，例如：</p>
+<pre><code class="hljs maxima"><span class="hljs-built_in">del</span> <span class="hljs-built_in">var</span>
+<span class="hljs-built_in">del</span> var_a, var_b</code></pre>
+<p>Python 支持三种不同的数值类型：</p>
+<ul>
+<li><strong>整型(Int)</strong> - 通常被称为是整型或整数，是正或负整数，不带小数点。Python3 整型是没有限制大小的，可以当作 Long 类型使用，所以 Python3 没有 Python2 的 Long 类型。</li>
+<li><strong>浮点型(float)</strong> - 浮点型由整数部分与小数部分组成，浮点型也可以使用科学计数法表示（2.5e2 = 2.5 x 102 = 250）</li>
+<li><strong>复数( (complex))</strong> - 复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示， 复数的实部a和虚部b都是浮点型。</li>
+</ul>
+<p>我们可以使用十六进制和八进制来代表整数：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; number = <span class="hljs-number">0xA0F</span> <span class="hljs-comment"># 十六进制</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; number
+<span class="hljs-number">2575</span>
+
+<span class="hljs-meta">&gt;&gt;</span>&gt; number=0o37 <span class="hljs-comment"># 八进制</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; number
+<span class="hljs-number">31</span></code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">int</th>
+<th style="text-align:left">float</th>
+<th style="text-align:left">complex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">0.0</td>
+<td style="text-align:left">3.14j</td>
+</tr>
+<tr>
+<td style="text-align:left">100</td>
+<td style="text-align:left">15.20</td>
+<td style="text-align:left">45.j</td>
+</tr>
+<tr>
+<td style="text-align:left">-786</td>
+<td style="text-align:left">-21.9</td>
+<td style="text-align:left">9.322e-36j</td>
+</tr>
+<tr>
+<td style="text-align:left">080</td>
+<td style="text-align:left">32.3e+18</td>
+<td style="text-align:left">.876j</td>
+</tr>
+<tr>
+<td style="text-align:left">-0490</td>
+<td style="text-align:left">-90.</td>
+<td style="text-align:left">-.6545+0J</td>
+</tr>
+<tr>
+<td style="text-align:left">-0x260</td>
+<td style="text-align:left">-32.54e100</td>
+<td style="text-align:left">3e+26J</td>
+</tr>
+<tr>
+<td style="text-align:left">0x69</td>
+<td style="text-align:left">70.2E-12</td>
+<td style="text-align:left">4.53e-7j</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Python支持复数，复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示， 复数的实部a和虚部b都是浮点型。</li>
+</ul>
+<h2 id="python-数字类型转换"><a class="markdownIt-Anchor" href="#python-数字类型转换"></a> Python 数字类型转换</h2>
+<p>有时候，我们需要对数据内置的类型进行转换，数据类型的转换，你只需要将数据类型作为函数名即可。</p>
+<ul>
+<li><strong>int(x)</strong> 将x转换为一个整数。</li>
+<li><strong>float(x)</strong> 将x转换到一个浮点数。</li>
+<li><strong>complex(x)</strong> 将x转换到一个复数，实数部分为 x，虚数部分为 0。</li>
+<li><strong>complex(x, y)</strong> 将 x 和 y 转换到一个复数，实数部分为 x，虚数部分为 y。x 和 y 是数字表达式。</li>
+</ul>
+<p>以下实例将浮点数变量 a 转换为整数：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; a = <span class="hljs-number">1.0</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; int(a)
+<span class="hljs-number">1</span></code></pre>
+<hr />
+<h2 id="python-数字运算"><a class="markdownIt-Anchor" href="#python-数字运算"></a> Python 数字运算</h2>
+<p>Python 解释器可以作为一个简单的计算器，您可以在解释器里输入一个表达式，它将输出表达式的值。</p>
+<p>表达式的语法很直白： <strong>+</strong>, <strong>-</strong>, ***** 和 <strong>/</strong>, 和其它语言（如Pascal或C）里一样。例如：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt; <span class="hljs-number">2</span> + <span class="hljs-number">2</span>
+<span class="hljs-number">4</span>
+&gt;&gt;&gt; <span class="hljs-number">50</span> - <span class="hljs-number">5</span>*<span class="hljs-number">6</span>
+<span class="hljs-number">20</span>
+&gt;&gt;&gt; (<span class="hljs-number">50</span> - <span class="hljs-number">5</span>*<span class="hljs-number">6</span>) / <span class="hljs-number">4</span>
+<span class="hljs-number">5.0</span>
+&gt;&gt;&gt; <span class="hljs-number">8</span> / <span class="hljs-number">5</span>  # 总是返回一个浮点数
+<span class="hljs-number">1.6</span></code></pre>
+<p>**注意：**在不同的机器上浮点运算的结果可能会不一样。</p>
+<p>在整数除法中，除法 <strong>/</strong> 总是返回一个浮点数，如果只想得到整数的结果，丢弃可能的分数部分，可以使用运算符 <strong>//</strong> ：</p>
+<pre><code class="hljs yaml"><span class="hljs-string">&gt;&gt;&gt;</span> <span class="hljs-number">17</span> <span class="hljs-string">/</span> <span class="hljs-number">3</span>  <span class="hljs-comment"># 整数除法返回浮点型</span>
+<span class="hljs-number">5.666666666666667</span>
+<span class="hljs-string">&gt;&gt;&gt;</span>
+<span class="hljs-string">&gt;&gt;&gt;</span> <span class="hljs-number">17</span> <span class="hljs-string">//</span> <span class="hljs-number">3</span>  <span class="hljs-comment"># 整数除法返回向下取整后的结果</span>
+<span class="hljs-number">5</span>
+<span class="hljs-string">&gt;&gt;&gt;</span> <span class="hljs-number">17</span> <span class="hljs-string">%</span> <span class="hljs-number">3</span>  <span class="hljs-comment"># ％操作符返回除法的余数</span>
+<span class="hljs-number">2</span>
+<span class="hljs-string">&gt;&gt;&gt;</span> <span class="hljs-number">5</span> <span class="hljs-string">*</span> <span class="hljs-number">3</span> <span class="hljs-string">+</span> <span class="hljs-number">2</span> 
+<span class="hljs-number">17</span></code></pre>
+<p><strong>注意：****//</strong> 得到的并不一定是整数类型的数，它与分母分子的数据类型有关系。</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt; <span class="hljs-number">7</span><span class="hljs-comment">//2</span>
+<span class="hljs-number">3</span>
+&gt;&gt;&gt; <span class="hljs-number">7.0</span><span class="hljs-comment">//2</span>
+<span class="hljs-number">3.0</span>
+&gt;&gt;&gt; <span class="hljs-number">7</span><span class="hljs-comment">//2.0</span>
+<span class="hljs-number">3.0</span>
+&gt;&gt;&gt;</code></pre>
+<p>等号 <strong>=</strong> 用于给变量赋值。赋值之后，除了下一个提示符，解释器不会显示任何结果。</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; width = <span class="hljs-number">20</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; height = <span class="hljs-number">5</span>*<span class="hljs-number">9</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; width * height
+<span class="hljs-number">900</span></code></pre>
+<p>Python 可以使用 *<strong>*</strong> 操作来进行幂运算：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt; <span class="hljs-number">5</span> ** <span class="hljs-number">2</span>  # <span class="hljs-number">5</span> 的平方
+<span class="hljs-number">25</span>
+&gt;&gt;&gt; <span class="hljs-number">2</span> ** <span class="hljs-number">7</span>  # <span class="hljs-number">2</span>的<span class="hljs-number">7</span>次方
+<span class="hljs-number">128</span></code></pre>
+<p>变量在使用前必须先&quot;定义&quot;（即赋予变量一个值），否则会出现错误：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; n   <span class="hljs-comment"># 尝试访问一个未定义的变量</span>
+Traceback (most recent call last)<span class="hljs-symbol">:</span>
+  File <span class="hljs-string">"&lt;stdin&gt;"</span>, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;<span class="hljs-class"><span class="hljs-keyword">module</span>&gt;</span>
+<span class="hljs-symbol">NameError:</span> name <span class="hljs-string">'n'</span> is <span class="hljs-keyword">not</span> <span class="hljs-keyword">defined</span></code></pre>
+<p>不同类型的数混合运算时会将整数转换为浮点数：</p>
+<pre><code class="hljs angelscript">&gt;&gt;&gt; <span class="hljs-number">3</span> * <span class="hljs-number">3.75</span> / <span class="hljs-number">1.5</span>
+<span class="hljs-number">7.5</span>
+&gt;&gt;&gt; <span class="hljs-number">7.0</span> / <span class="hljs-number">2</span>
+<span class="hljs-number">3.5</span></code></pre>
+<p>在交互模式中，最后被输出的表达式结果被赋值给变量 <strong>_</strong> 。例如：</p>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; tax = <span class="hljs-number">12.5</span> / <span class="hljs-number">100</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; price = <span class="hljs-number">100.50</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; price * tax
+<span class="hljs-number">12.5625</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; price + <span class="hljs-number">_</span>
+<span class="hljs-number">113.0625</span>
+<span class="hljs-meta">&gt;&gt;</span>&gt; round(<span class="hljs-number">_</span>, <span class="hljs-number">2</span>)
+<span class="hljs-number">113.06</span></code></pre>
+<p>此处， <strong>_</strong> 变量应被用户视为只读变量。</p>
+<h2 id="数学函数"><a class="markdownIt-Anchor" href="#数学函数"></a> 数学函数</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">返回值 ( 描述 )</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-abs.html" target="_blank" rel="noopener">abs(x)</a></td>
+<td style="text-align:left">返回数字的绝对值，如abs(-10) 返回 10</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-ceil.html" target="_blank" rel="noopener">ceil(x)</a></td>
+<td style="text-align:left">返回数字的上入整数，如math.ceil(4.1) 返回 5</td>
+</tr>
+<tr>
+<td style="text-align:left">cmp(x, y)</td>
+<td style="text-align:left">如果 x &lt; y 返回 -1, 如果 x == y 返回 0, 如果 x &gt; y 返回 1。 <strong>Python 3 已废弃，使用 (x&gt;y)-(x&lt;y) 替换</strong>。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-exp.html" target="_blank" rel="noopener">exp(x)</a></td>
+<td style="text-align:left">返回e的x次幂(ex),如math.exp(1) 返回2.718281828459045</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-fabs.html" target="_blank" rel="noopener">fabs(x)</a></td>
+<td style="text-align:left">返回数字的绝对值，如math.fabs(-10) 返回10.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-floor.html" target="_blank" rel="noopener">floor(x)</a></td>
+<td style="text-align:left">返回数字的下舍整数，如math.floor(4.9)返回 4</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-log.html" target="_blank" rel="noopener">log(x)</a></td>
+<td style="text-align:left">如math.log(math.e)返回1.0,math.log(100,10)返回2.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-log10.html" target="_blank" rel="noopener">log10(x)</a></td>
+<td style="text-align:left">返回以10为基数的x的对数，如math.log10(100)返回 2.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-max.html" target="_blank" rel="noopener">max(x1, x2,…)</a></td>
+<td style="text-align:left">返回给定参数的最大值，参数可以为序列。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-min.html" target="_blank" rel="noopener">min(x1, x2,…)</a></td>
+<td style="text-align:left">返回给定参数的最小值，参数可以为序列。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-modf.html" target="_blank" rel="noopener">modf(x)</a></td>
+<td style="text-align:left">返回x的整数部分与小数部分，两部分的数值符号与x相同，整数部分以浮点型表示。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-pow.html" target="_blank" rel="noopener">pow(x, y)</a></td>
+<td style="text-align:left">x**y 运算后的值。</td>
+</tr>
+<tr>
+<td style="text-align:left">[round(x <a href="https://www.runoob.com/python3/python3-func-number-round.html" target="_blank" rel="noopener">,n])</a></td>
+<td style="text-align:left">返回浮点数 x 的四舍五入值，如给出 n 值，则代表舍入到小数点后的位数。<strong>其实准确的说是保留值将保留到离上一位更近的一端。</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-sqrt.html" target="_blank" rel="noopener">sqrt(x)</a></td>
+<td style="text-align:left">返回数字x的平方根。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="随机数函数"><a class="markdownIt-Anchor" href="#随机数函数"></a> 随机数函数</h2>
+<p>随机数可以用于数学，游戏，安全等领域中，还经常被嵌入到算法中，用以提高算法效率，并提高程序的安全性。</p>
+<p>Python包含以下常用随机数函数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-choice.html" target="_blank" rel="noopener">choice(seq)</a></td>
+<td style="text-align:left">从序列的元素中随机挑选一个元素，比如random.choice(range(10))，从0到9中随机挑选一个整数。</td>
+</tr>
+<tr>
+<td style="text-align:left">[randrange (<a href="https://www.runoob.com/python3/python3-func-number-randrange.html" target="_blank" rel="noopener">start,] stop [,step])</a></td>
+<td style="text-align:left">从指定范围内，按指定基数递增的集合中获取一个随机数，基数默认值为 1</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-random.html" target="_blank" rel="noopener">random()</a></td>
+<td style="text-align:left">随机生成下一个实数，它在[0,1)范围内。</td>
+</tr>
+<tr>
+<td style="text-align:left">[seed(<a href="https://www.runoob.com/python3/python3-func-number-seed.html" target="_blank" rel="noopener">x])</a></td>
+<td style="text-align:left">改变随机数生成器的种子seed。如果你不了解其原理，你不必特别去设定seed，Python会帮你选择seed。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-shuffle.html" target="_blank" rel="noopener">shuffle(lst)</a></td>
+<td style="text-align:left">将序列的所有元素随机排序</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-uniform.html" target="_blank" rel="noopener">uniform(x, y)</a></td>
+<td style="text-align:left">随机生成下一个实数，它在[x,y]范围内。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三角函数"><a class="markdownIt-Anchor" href="#三角函数"></a> 三角函数</h2>
+<p>Python包括以下三角函数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-acos.html" target="_blank" rel="noopener">acos(x)</a></td>
+<td style="text-align:left">返回x的反余弦弧度值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-asin.html" target="_blank" rel="noopener">asin(x)</a></td>
+<td style="text-align:left">返回x的反正弦弧度值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-atan.html" target="_blank" rel="noopener">atan(x)</a></td>
+<td style="text-align:left">返回x的反正切弧度值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-atan2.html" target="_blank" rel="noopener">atan2(y, x)</a></td>
+<td style="text-align:left">返回给定的 X 及 Y 坐标值的反正切值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-cos.html" target="_blank" rel="noopener">cos(x)</a></td>
+<td style="text-align:left">返回x的弧度的余弦值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-hypot.html" target="_blank" rel="noopener">hypot(x, y)</a></td>
+<td style="text-align:left">返回欧几里德范数 sqrt(x<em>x + y</em>y)。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-sin.html" target="_blank" rel="noopener">sin(x)</a></td>
+<td style="text-align:left">返回的x弧度的正弦值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-tan.html" target="_blank" rel="noopener">tan(x)</a></td>
+<td style="text-align:left">返回x弧度的正切值。</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-degrees.html" target="_blank" rel="noopener">degrees(x)</a></td>
+<td style="text-align:left">将弧度转换为角度,如degrees(math.pi/2) ， 返回90.0</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.runoob.com/python3/python3-func-number-radians.html" target="_blank" rel="noopener">radians(x)</a></td>
+<td style="text-align:left">将角度转换为弧度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数学常量"><a class="markdownIt-Anchor" href="#数学常量"></a> 数学常量</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常量</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">pi</td>
+<td style="text-align:left">数学常量 pi（圆周率，一般以π来表示）</td>
+</tr>
+<tr>
+<td style="text-align:left">e</td>
+<td style="text-align:left">数学常量 e，e即自然常数（自然常数）。</td>
+</tr>
+</tbody>
+</table>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%AD%97%E5%85%B8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python3 字典</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                        <span class="hidden-mobile">Python3 字符串</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python3 数字&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
