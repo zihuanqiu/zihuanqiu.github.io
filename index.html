@@ -180,6 +180,365 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E8%BF%AD%E4%BB%A3%E6%95%B0%E7%BB%84%20/">NumPy 迭代数组</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E8%BF%AD%E4%BB%A3%E6%95%B0%E7%BB%84%20/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy 迭代数组
+NumPy 迭代器对象 numpy.nditer  提供了一种灵活访问一个或者多个数组元素的方式。
+迭代器最基本的任务的可以完成对数组元素的访问。
+接下来我们使用 arange() 函数创建一个 2X3 数组，并使用 nditer 对它进行迭代。
+import numpy as np
+ 
+a = np.arange(6).reshape(2,3)
+print ('原始数组是</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%B9%BF%E6%92%AD(Broadcast)%20/">NumPy 广播(Broadcast)</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%B9%BF%E6%92%AD(Broadcast)%20/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy 广播(Broadcast)
+广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行。
+如果两个数组 a 和 b 形状相同，即满足 a.shape == b.shape，那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同。
+import numpy as np 
+ 
+a </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E9%AB%98%E7%BA%A7%E7%B4%A2%E5%BC%95/">NumPy 高级索引</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E9%AB%98%E7%BA%A7%E7%B4%A2%E5%BC%95/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy 高级索引
+NumPy 比一般的 Python 序列提供更多的索引方式。除了之前看到的用整数和切片的索引外，数组可以由整数数组索引、布尔索引及花式索引。
+ 整数数组索引
+以下实例获取数组中(0,0)，(1,1)和(2,0)位置处的元素。
+import numpy as np 
+ 
+x = np.array([[1,  2],  [3,  4],  [5,  6]]) 
+y = x[[0</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%87%E7%89%87%E5%92%8C%E7%B4%A2%E5%BC%95/">NumPy 切片和索引</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%87%E7%89%87%E5%92%8C%E7%B4%A2%E5%BC%95/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy  切片和索引
+ndarray对象的内容可以通过索引或切片来访问和修改，与 Python 中 list 的切片操作一样。
+ndarray 数组可以基于 0 - n 的下标进行索引，切片对象可以通过内置的 slice 函数，并设置 start, stop 及 step 参数进行，从原数组中切割出一个新数组。
+import numpy as np
+ 
+a = np.arange(10)
+s</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/">NumPy 从数值范围创建数组</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy 从数值范围创建数组
+这一章节我们将学习如何从数值范围创建数组。
+ numpy.arange
+numpy 包中的使用 arange 函数创建数值范围并返回 ndarray 对象，函数格式如下：
+numpy.arange(start, stop, step, dtype)
+根据 start 与 stop 指定的范围以及 step 设定的步长，生成一个 ndarray。
+ 参数说明：
+
+
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E5%B7%B2%E6%9C%89%E7%9A%84%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/">NumPy 从已有的数组创建数组</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E5%B7%B2%E6%9C%89%E7%9A%84%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy 从已有的数组创建数组
+本章节我们将学习如何从已有的数组创建数组。
+ numpy.asarray
+numpy.asarray 类似 numpy.array，但 numpy.asarray  参数只有三个，比 numpy.array 少两个。
+numpy.asarray(a, dtype = None, order = None)
+ 参数说明：
+
+
+
+参数
+描述
+
+
+
+
+a
+任意形式的输</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84%20/">NumPy 创建数组</a>
+
+      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84%20/" class="index-excerpt">
+        
+        
+          
+        
+        <div> NumPy 创建数组
+ndarray 数组除了可以使用底层 ndarray 构造器来创建外，也可以通过以下几种方式来创建。
+ numpy.empty
+numpy.empty 方法用来创建一个指定形状（shape）、数据类型（dtype）且未初始化的数组：
+numpy.empty(shape, dtype = float, order = 'C')
+参数说明：
+
+
+
+参数
+描述
+
+
+
+
+shape</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
+            
+              <a href="/tags/Numpy/">Numpy</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7%20/">NumPy 数组属性</a>
 
       <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7%20/" class="index-excerpt">
@@ -331,354 +690,11 @@ ndarray 内部由以下内容组成：
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/">Python3 命名空间的作用域</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python3 命名空间和作用域
- 命名空间
-先看看官方文档的一段话：
-
-A namespace is a mapping from names to objects. Most namespaces are currently implemented as Python dictionaries。
-
-命名空间(Namespace)是从名称到对象的映射，大部分的命名空间都是通过 Python 字</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E9%9B%86%E5%90%88/">Python3 集合</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E9%9B%86%E5%90%88/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python3 集合
-集合（set）是一个无序的不重复元素序列。
-可以使用大括号 { } 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。
-创建格式：
-parame = &#123;value01,value02,...&#125;
-或者
-set(value)
-&gt;&gt;&gt;basket = &#123;'ap</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%AD%97%E5%85%B8/">Python3 字典</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%AD%97%E5%85%B8/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python3 字典
-字典是另一种可变容器模型，且可存储任意类型对象。
-字典的每个键值(key=&gt;value)对用冒号(:)分割，每个对之间用逗号(,)分割，整个字典包括在花括号(**{})**中 ,格式如下所示：
-d = &#123;key1 : value1, key2 : value2 &#125;
-键必须是唯一的，但值则不必。
-值可以取任何数据类型，但键必须是不可变的，如字符串，数</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E6%95%B0%E5%AD%97/">Python3 数字</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E6%95%B0%E5%AD%97/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python3 数字(Number)
-Python 数字数据类型用于存储数值。
-数据类型是不允许改变的,这就意味着如果改变数字数据类型的值，将重新分配内存空间。
-以下实例在变量赋值时 Number 对象将被创建：
-var1 = 1
-var2 = 10
-您也可以使用del语句删除一些数字对象的引用。
-del语句的语法是：
-del var1[,var2[,var3[....,varN]]]
-您可以通</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">Python3 字符串</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python3 字符串
-字符串是 Python 中最常用的数据类型。我们可以使用引号( ’ 或 &quot; )来创建字符串。
-创建字符串很简单，只要为变量分配一个值即可。例如：
-var1 = 'Hello World!'
-var2 = "Runoob"
- Python 访问字符串中的值
-Python 不支持单字符类型，单字符在 Python 中也是作为一个字符串使用。
-Python 访问子字符</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%88%97%E8%A1%A8/">Python3 列表</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python3%20%E5%88%97%E8%A1%A8/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python3 列表
-序列是Python中最基本的数据结构。序列中的每个元素都分配一个数字 - 它的位置，或索引，第一个索引是0，第二个索引是1，依此类推。
-Python有6个序列的内置类型，但最常见的是列表和元组。
-序列都可以进行的操作包括索引，切片，加，乘，检查成员。
-此外，Python已经内置确定序列的长度以及确定最大和最小的元素的方法。
-列表是最常用的Python数据类型，它可以作为一个</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python%E4%B8%AD%E4%BC%98%E9%9B%85%E7%9A%84%E7%94%A8%E6%B3%95/">Python中优雅的用法</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/Python%E4%B8%AD%E4%BC%98%E9%9B%85%E7%9A%84%E7%94%A8%E6%B3%95/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 枚举
-之前我们这样操作：
-i = 0
-for item in iterable:
-    print i, item
-    i += 1
-现在我们这样操作：
-for i, item in enumerate(iterable):
-    print i, item
-enumerate函数还可以接收第二个参数。就像下面这样：
-&gt;&gt;&gt; list(enumerate('abc'))</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Python3/">Python3</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
