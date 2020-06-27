@@ -609,35 +609,27 @@ a和b相等则为True
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/13/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index/">目录</a>
+      <a class="index-header" href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/">SVM</a>
 
-      <a href="/2020/06/13/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index/" class="index-excerpt">
+      <a href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/" class="index-excerpt">
         
         
           
         
-        <div> 吴恩达机器学习笔记目录
+        <div> SVM（线性模型）数学推导
 
-一、 引言(Introduction)
-1.1 欢迎
-1.2 机器学习是什么？
-1.3 监督学习
-1.4 无监督学习
+学习路线：先线性二分类解释清楚，再加入核方法扩展至非线性二分类
+ 几个重要的概念
 
-二、单变量线性回归(Linear Regression with One Variable)
-2.1 模型表示
-2.2 代价函数
-2.3 代价函数的直观理解I
-2.4 代价函数的直观理解II
-2.5 梯度下降
-2.6 梯度下降的直观理解
-2.7 梯度下</div>
+
+训练样本集
+(xi,yi)(\boldsymbol{x}_i,y_i)(xi​,yi​)，其中xi\boldsymbol{x_i}xi​为nnn维列向量，表示nnn维特征；yiy_iyi​为标签，当yi=+1y_i=+1yi​=+1时为正样本，yi=−1y_i=-1yi​=−1时为</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-13
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-06
           </div>
         
         
@@ -652,7 +644,7 @@ a和b相等则为True
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">吴恩达机器学习网课笔记</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -664,26 +656,32 @@ a和b相等则为True
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/13/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/week1/">第一周</a>
+      <a class="index-header" href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ROC%E6%9B%B2%E7%BA%BF/">ROC曲线</a>
 
-      <a href="/2020/06/13/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/week1/" class="index-excerpt">
+      <a href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ROC%E6%9B%B2%E7%BA%BF/" class="index-excerpt">
         
         
           
         
-        <div> 第1周
- 一、引言(Introduction)
- 1.1 欢迎
-参考视频: 1 - 1 - Welcome (7 min).mkv
-第一个视频主要讲了什么是机器学习，机器学习能做些什么事情。
-机器学习是目前信息技术中最激动人心的方向之一。在这门课中，你将学习到这门技术的前沿，并可以自己实现学习机器学习的算法。
-你或许每天都在不知不觉中使用了机器学习的算法每次，你打开谷歌、必应搜索到你需要的内容，</div>
+        <div> 四个概率
+TPTPTP——将正样本预测为正（的概率）
+FNFNFN——将正样本预测为负（的概率）
+FPFPFP——将负样本预测为正（的概率）
+TNTNTN——将负样本预测为负（的概率）
+精确度定义为：
+P=TPTP+FPP=\frac{TP}{TP+FP}
+P=TP+FPTP​
+
+分母为所有判断为正的样本，PPP表示在所有被判断为正的样本中真正的正样本的概率
+
+召回率定义为：
+R=TPTP+FN</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-13
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-06
           </div>
         
         
@@ -698,7 +696,7 @@ a和b相等则为True
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">吴恩达机器学习网课笔记</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -710,7 +708,7 @@ a和b相等则为True
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
