@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>Global Pooling - zihuan&#39;s Space</title>
+  <title>Global Average Pooling - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -206,34 +206,25 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月28日 下午
+                  本文最后更新于：2020年6月30日 晚上
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="global-pooling"><a class="markdownIt-Anchor" href="#global-pooling"></a> Global Pooling</h1>
-<div class="note note-info">
-            <p>最近在阅读Adaptive Context Network for Scene Parsing<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Fu J, Liu J, Wang Y, et al. Adaptive context network for scene parsing[C]//Proceedings of the IEEE international conference on computer vision. 2019: 6748-6757.">[1]</span></a></sup>论文时，对其中使用的Global Pooling不是很了解，于是学习一下，做个笔记。</p><p>Golbal Average Pooling 第一次出现在论文Network in Network<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="Lin M, Chen Q, Yan S. Network in network[J]. arXiv preprint arXiv:1312.4400, 2013.">[2]</span></a></sup>中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。</p>
-          </div>
-<h2 id="traditional-pooling-methods"><a class="markdownIt-Anchor" href="#traditional-pooling-methods"></a> Traditional Pooling Methods</h2>
-<p>要想真正的理解Global Average Pooling，首先要了解深度网络中常见的pooling方式，以及全连接层。</p>
-<p>众所周知CNN网络中常见结构是：卷积、池化和激活。卷积层是CNN网络的核心，激活函数帮助网络获得非线性特征，而池化的作用则体现在降采样：保留显著特征、降低特征维度，增大kernel的感受野。深度网络越往后面越能捕捉到物体的语义信息，这种语义信息是建立在较大的感受野基础上。已古人的例子来做解释，想必大家都知道盲人摸象这个成语的来历，每个盲人只能触摸到大象的一部分，也就是只能获得local response，基于这些local response，盲人们很难猜对他们到底在摸什么。即使是一个明眼人，眼睛紧贴这大象后背看，也很难猜到看的是什么。这个例子告诉我们局部信息很难提供更高层的语义信息，因此对feature map降维，进而增大后面各层kernel的感受野是一件很重要的事情。另外一点值得注意：pooling也可以提供一些旋转不变性。</p>
-<h2 id="fully-connected-layer"><a class="markdownIt-Anchor" href="#fully-connected-layer"></a> Fully Connected layer</h2>
-<p>很长一段时间以来，全连接网络一直是CNN分类网络的标配结构。一般在全连接后会有激活函数来做分类，假设这个激活函数是一个多分类softmax，那么全连接网络的作用就是将最后一层卷积得到的feature map stretch成向量，对这个向量做乘法，最终降低其维度，然后输入到softmax层中得到对应的每个类别的得分。</p>
-<p>全连接层如此的重要，以至于全连接层过多的参数重要到会造成过拟合，所以也会有一些方法专门用来解决过拟合，比如dropout。</p>
-<h2 id="global-average-pooling"><a class="markdownIt-Anchor" href="#global-average-pooling"></a> Global Average Pooling</h2>
-<p>有了上面的基础，再来看看global average poolilng。既然全连接网络可以使feature map的维度减少，进而输入到softmax，但是又会造成过拟合，是不是可以用pooling来代替全连接。</p>
-<p>答案是肯定的，Network in Network工作使用GAP来取代了最后的全连接层，直接实现了降维，更重要的是极大地减少了网络的参数(CNN网络中占比最大的参数其实后面的全连接层)。Global average pooling的结构如下图所示:</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200628145839.png" srcset="/img/loading.gif" alt="image-20200628145837139" /></p>
-<p>简单来说，就是在卷积层之后，用GAP替代FC全连接层。有两个有点：一是GAP在特征图与最终的分类间转换更加简单自然；二是不像FC层需要大量训练调优的参数，降低了空间参数会使模型更加健壮，抗过拟合效果更佳。</p>
+              <h1 id="global-average-pooling"><a class="markdownIt-Anchor" href="#global-average-pooling"></a> Global Average Pooling</h1>
+<p>Golbal Average Pooling 第一次出现在论文Network in Network<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Lin M, Chen Q, Yan S. Network in network[J]. arXiv preprint arXiv:1312.4400, 2013.
+">[1]</span></a></sup>中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。</p>
+<p>在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是使用GAP来替代该全连接层(即使用池化层的方式来降维)。相比于全连接层，GAP有以下优点：</p>
+<ol>
+<li>参数量少。以往网络的参数几乎全部集中于全连接层，使用mlpconv搭配GAP可以在不降低性能的同时极大地减少参数量。</li>
+<li>可解释性强。使用GAP可以显式强制最后一个mlpconv输出的feature map成为分类的confidence map。相比于以往在卷积层之后加入全连接层，很难解释最后一层的feature map有什么意义。相比之下，通过可视化可以发现，在真实分类的confidence map内，可以看到最大的激活区域出现在与原物体相同的区域。</li>
+<li>不容易过拟合。全连接层很容易发生过拟合，因此非常依赖于使用dropout进行正则化。而GAP就是简单地把最后一层的feature map做了空域的平均值然后送入softmax分类器。GAP没有参数，不容易使网络发生过拟合。并且通过实验可以证明，GAP本身就是一种结构化的正则器。</li>
+</ol>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200628151037.png" srcset="/img/loading.gif" alt="image-20200628150712960" /></p>
-<p>假设卷积层的最后输出是h × w × d 的三维特征图，具体大小为6 × 6 × 3，经过GAP转换后，变成了大小为 1 × 1 × 3 的输出值，也就是每一层 h × w 会被平均化成一个值。</p>
-<p>实验证明，这种方法是非常有效的，</p>
-<p>这样做还有另外一个好处：不用在乎网络输入的图像尺寸。同时需要注意的是，使用gap也有可能造成收敛变慢。</p>
+<p>假设卷积层的最后输出是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>×</mo><mi>w</mi><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">h\times w\times d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的三维特征图，，经过GAP转换后，变成了大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">1\times 1\times d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的输出值，也就是每一层<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>×</mo><mi>w</mi></mrow><annotation encoding="application/x-tex">h\times w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>会被平均化成一个值。实验证明，这种方法是非常有效的。这样做还有另外一个好处：不用在乎网络输入的图像尺寸。同时需要注意的是，使用GAP也有可能造成收敛变慢。</p>
 <h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h1>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Fu J, Liu J, Wang Y, et al. Adaptive context network for scene parsing[C]//Proceedings of the IEEE international conference on computer vision. 2019: 6748-6757.
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>Lin M, Chen Q, Yan S. Network in network[J]. arXiv preprint arXiv:1312.4400, 2013.
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Lin M, Chen Q, Yan S. Network in network[J]. arXiv preprint arXiv:1312.4400, 2013.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </article>
             <hr>
             <div>
@@ -439,7 +430,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Global Pooling&nbsp;",
+        "Global Average Pooling&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
