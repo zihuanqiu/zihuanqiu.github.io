@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Python 基本数据类型 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-13 16:03">
+      2020年7月13日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月13日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161020.png" srcset="/img/loading.gif" alt="image-20200713161017237" /></p>
+<h1 id="第一部分-数字类型"><a class="markdownIt-Anchor" href="#第一部分-数字类型"></a> 第一部分 数字类型</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161755.png" srcset="/img/loading.gif" alt="image-20200713161752710" /></p>
+<h2 id="11-数字类型的组成"><a class="markdownIt-Anchor" href="#11-数字类型的组成"></a> 1.1 数字类型的组成</h2>
+<h3 id="111-整数不同进制的转换"><a class="markdownIt-Anchor" href="#111-整数不同进制的转换"></a> 1.1.1 整数——不同进制的转换</h3>
+<ul>
+<li>默认输入十进制</li>
+<li>二进制0b、八进制0o、十六进制0x</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">16</span> == <span class="hljs-number">0b10000</span> == <span class="hljs-number">0o20</span> == <span class="hljs-number">0x10</span></code></pre>
+<pre><code>True
+</code></pre>
+<ul>
+<li>十进制与其他进制的转换</li>
+</ul>
+<pre><code class="hljs python">a = bin(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转二进制</span>
+b = oct(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转八进制</span>
+c = hex(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转十六进制</span>
+print(a, b, c)</code></pre>
+<pre><code>0b10000 0o20 0x10
+</code></pre>
+<p><strong>注意：上述转换后结果为字符串类型</strong></p>
+<pre><code class="hljs python">a == b == c</code></pre>
+<pre><code>False
+</code></pre>
+<pre><code class="hljs python">type(a)</code></pre>
+<pre><code>str
+</code></pre>
+<pre><code class="hljs python">a
+b
+c
+eval(a)
+eval(b)
+eval(c)</code></pre>
+<pre><code>'0b10000'
+
+
+'0o20'
+
+
+'0x10'
+
+
+16
+
+
+16
+
+
+16
+</code></pre>
+<ul>
+<li>其他进制转十进制</li>
+</ul>
+<pre><code class="hljs python">d = int(a, <span class="hljs-number">2</span>)      <span class="hljs-comment"># 二进制转十进制</span>
+e = int(b, <span class="hljs-number">8</span>)      <span class="hljs-comment"># 八进制转十进制</span>
+f = int(c, <span class="hljs-number">16</span>)     <span class="hljs-comment"># 十六进制转十进制</span>
+print(d, e, f)</code></pre>
+<pre><code>16 16 16
+</code></pre>
+<h3 id="112-浮点数不确定性"><a class="markdownIt-Anchor" href="#112-浮点数不确定性"></a> 1.1.2 浮点数——不确定性</h3>
+<ul>
+<li>不确定小数问题</li>
+</ul>
+<pre><code class="hljs python">(<span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span>) == <span class="hljs-number">0.3</span></code></pre>
+<pre><code>False
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span></code></pre>
+<pre><code>0.30000000000000004
+</code></pre>
+<p><strong>计算机采用二进制小数来表示浮点数的小数部分</strong></p>
+<ul>
+<li>
+<p>部分小数不能用二进制小数完全表示</p>
+<table>
+<thead>
+<tr>
+<th>二进制</th>
+<th>十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.00011001100110011001</td>
+<td>0.09999942779541016</td>
+</tr>
+<tr>
+<td>0.0011001100110011</td>
+<td>0.1999969482421875</td>
+</tr>
+<tr>
+<td>0.01001100110011001</td>
+<td>0.29999542236328125</td>
+</tr>
+<tr>
+<td>0.01100110011001101</td>
+<td>0.40000152587890625</td>
+</tr>
+<tr>
+<td>0.1</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>通常情况下不会影响计算精度</p>
+</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">0.1</span> + <span class="hljs-number">0.7</span></code></pre>
+<pre><code>0.7999999999999999
+</code></pre>
+<ul>
+<li>四舍五入获得精确解</li>
+</ul>
+<pre><code class="hljs python">a = <span class="hljs-number">3</span>*<span class="hljs-number">0.1</span>
+print(a)</code></pre>
+<pre><code>0.30000000000000004
+</code></pre>
+<pre><code class="hljs python">b = round(a, <span class="hljs-number">1</span>)
+print(b)
+b == <span class="hljs-number">0.3</span>
+round(<span class="hljs-number">0.033</span>, <span class="hljs-number">1</span>)</code></pre>
+<pre><code>0.3
+
+True
+
+
+0.0
+</code></pre>
+<blockquote>
+<p>round(v1,v2)     v1是变量，v2是四舍五入至小数点后多少位</p>
+</blockquote>
+<h3 id="113-复数abj"><a class="markdownIt-Anchor" href="#113-复数abj"></a> 1.1.3 复数——a+bj</h3>
+<ul>
+<li>大写J或小写j均可</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">3</span>+<span class="hljs-number">4j</span>
+<span class="hljs-number">2</span>+<span class="hljs-number">5J</span></code></pre>
+<pre><code>(3+4j)
+
+
+(2+5j)
+</code></pre>
+<ul>
+<li>虚部系数为1时，需要显式写出</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">2</span>+<span class="hljs-number">1j</span></code></pre>
+<pre><code>(2+1j)
+</code></pre>
+<h2 id="12-数字运算操作符a-操作符-b"><a class="markdownIt-Anchor" href="#12-数字运算操作符a-操作符-b"></a> 1.2 数字运算操作符（a 操作符 b）</h2>
+<ul>
+<li>加减乘除运算    +   -   /   *</li>
+</ul>
+<pre><code class="hljs python">(<span class="hljs-number">1</span> + <span class="hljs-number">3</span> - <span class="hljs-number">4</span>*<span class="hljs-number">2</span>)/<span class="hljs-number">5</span></code></pre>
+<pre><code>-0.8
+</code></pre>
+<ul>
+<li>取反   -</li>
+</ul>
+<pre><code class="hljs python">x = <span class="hljs-number">1</span>
+-x</code></pre>
+<pre><code>-1
+</code></pre>
+<ul>
+<li>乘方运算   **</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">2</span>**<span class="hljs-number">3</span></code></pre>
+<pre><code>8
+</code></pre>
+<ul>
+<li>整数商//   和   模运算%</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">13</span>//<span class="hljs-number">5</span>    <span class="hljs-comment"># 整数商    x/y 向下取整数</span></code></pre>
+<pre><code>2
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-number">13</span> % <span class="hljs-number">5</span>   <span class="hljs-comment"># 模运算    余数 13=2*5+3</span></code></pre>
+<pre><code>3
+</code></pre>
+<p><strong>几点说明</strong></p>
+<ul>
+<li>整数与浮点数运算结果是浮点数</li>
+<li>除法运算的结果是浮点数</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-number">1</span>+<span class="hljs-number">1.5</span></code></pre>
+<pre><code>2.5
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-number">2</span>/<span class="hljs-number">5</span></code></pre>
+<pre><code>0.4
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-number">8</span>/<span class="hljs-number">4</span></code></pre>
+<pre><code>2.0
+</code></pre>
+<h2 id="13-数字运算操作函数-functionx"><a class="markdownIt-Anchor" href="#13-数字运算操作函数-functionx"></a> 1.3 数字运算操作函数   function(x, …)</h2>
+<ul>
+<li>求绝对值 abs()</li>
+</ul>
+<pre><code class="hljs python">abs(<span class="hljs-number">-5</span>)</code></pre>
+<pre><code>5
+</code></pre>
+<pre><code class="hljs python">abs(<span class="hljs-number">3</span>+<span class="hljs-number">4j</span>)  <span class="hljs-comment"># 对复数a+bj 执行的是求模运算(a^2+b^2)^0.5</span></code></pre>
+<pre><code>5.0
+</code></pre>
+<ul>
+<li>幂次方 pow(x,n)</li>
+</ul>
+<pre><code class="hljs python">pow(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)  <span class="hljs-comment"># pow(x,n) x的n次方  等价于x**n</span></code></pre>
+<pre><code>32
+</code></pre>
+<pre><code class="hljs python">pow(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># 2^5 % 3  更快速</span></code></pre>
+<pre><code>2
+</code></pre>
+<ul>
+<li>四舍五入 round(x,n)</li>
+</ul>
+<pre><code class="hljs python">a = <span class="hljs-number">1.618</span>
+print(round(a))      <span class="hljs-comment"># 默认四舍五入为整数</span></code></pre>
+<pre><code>2
+</code></pre>
+<pre><code class="hljs python">print(round(a, <span class="hljs-number">2</span>))   <span class="hljs-comment"># 参数2表示四舍五入后保留2位小数</span></code></pre>
+<pre><code>1.62
+</code></pre>
+<pre><code class="hljs python">print(round(a, <span class="hljs-number">5</span>))   <span class="hljs-comment"># 位数不足，无需补齐</span></code></pre>
+<pre><code>1.618
+</code></pre>
+<ul>
+<li>整数商和模运算 divmod(x,y)</li>
+<li>等价于返回二元元组（x//y,x % y）</li>
+</ul>
+<pre><code class="hljs python">divmod(<span class="hljs-number">13</span>, <span class="hljs-number">5</span>)   <span class="hljs-comment"># 较（x//y,x % y）更快，只执行了一次x/y</span></code></pre>
+<pre><code>(2, 3)
+</code></pre>
+<ul>
+<li>序列最大/最小值 max( )   min( )</li>
+</ul>
+<pre><code class="hljs python">max(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)</code></pre>
+<pre><code>9
+</code></pre>
+<pre><code class="hljs python">a = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+print(<span class="hljs-string">"max:"</span>, max(a))
+print(<span class="hljs-string">"min:"</span>, min(a))</code></pre>
+<pre><code>max: 9
+min: 2
+</code></pre>
+<ul>
+<li>求和sum(x)</li>
+</ul>
+<pre><code class="hljs python">sum((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>))</code></pre>
+<pre><code>15
+</code></pre>
+<ul>
+<li>借助科学计算库 math\scipy\numpy</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> math   <span class="hljs-comment"># 导入库</span>
+print(math.exp(<span class="hljs-number">1</span>))   <span class="hljs-comment"># 指数运算 e^x</span>
+print(math.log2(<span class="hljs-number">2</span>))  <span class="hljs-comment"># 对数运算</span>
+print(math.sqrt(<span class="hljs-number">4</span>))  <span class="hljs-comment"># 开平方运算  等价于4^0.5</span></code></pre>
+<pre><code>2.718281828459045
+1.0
+2.0
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+print(np.mean(a))    <span class="hljs-comment"># 求均值</span>
+print(np.median(a))  <span class="hljs-comment"># 求中位数</span>
+print(np.std(a))     <span class="hljs-comment"># 求标准差</span></code></pre>
+<pre><code>3.0
+3.0
+1.4142135623730951
+</code></pre>
+<h1 id="第二部分-字符串类型"><a class="markdownIt-Anchor" href="#第二部分-字符串类型"></a> 第二部分 字符串类型</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161814.png" srcset="/img/loading.gif" alt="image-20200713161811073" /></p>
+<h2 id="21-字符串的表达"><a class="markdownIt-Anchor" href="#21-字符串的表达"></a> 2.1 字符串的表达</h2>
+<ul>
+<li>用&quot;&quot;或’'括起来的任意字符</li>
+</ul>
+<pre><code class="hljs python">print(<span class="hljs-string">"Python"</span>)
+print(<span class="hljs-string">'Python'</span>)</code></pre>
+<pre><code>Python
+Python
+</code></pre>
+<ul>
+<li>字符串中有双引号或单引号的情况</li>
+</ul>
+<p><strong>双中有单</strong></p>
+<pre><code class="hljs python">print(<span class="hljs-string">"I'm 18 years old"</span>)</code></pre>
+<pre><code>I'm 18 years old
+</code></pre>
+<p><strong>单中有双</strong></p>
+<pre><code class="hljs python">print(<span class="hljs-string">'"Python" is good'</span>)</code></pre>
+<pre><code>&quot;Python&quot; is good
+</code></pre>
+<p><strong>双中有双，单中有单</strong>——转义符   \</p>
+<pre><code class="hljs python"><span class="hljs-comment"># print(""Python" is good")</span>
+print(<span class="hljs-string">"\"Python\" is good"</span>)  <span class="hljs-comment"># \ 我是个字符呀</span></code></pre>
+<pre><code>&quot;Python&quot; is good
+</code></pre>
+<p><strong>转义符可以用来换行继续输入</strong></p>
+<pre><code class="hljs python"><span class="hljs-comment"># 等等，我还没完事！</span>
+s = <span class="hljs-string">"py\</span>
+<span class="hljs-string">thon"</span>                    
+print(s)</code></pre>
+<pre><code>python
+</code></pre>
+<h2 id="22-字符串的性质"><a class="markdownIt-Anchor" href="#22-字符串的性质"></a> 2.2 字符串的性质</h2>
+<h3 id="221-字符串的索引"><a class="markdownIt-Anchor" href="#221-字符串的索引"></a> 2.2.1 字符串的索引</h3>
+<pre><code class="hljs python">s = <span class="hljs-string">"My name is Peppa Pig"</span></code></pre>
+<p><strong>变量名[位置编号]</strong></p>
+<ul>
+<li>正向索引——从零开始递增</li>
+<li>位置编号不能超过字符串的长度</li>
+</ul>
+<pre><code class="hljs python">print(s[<span class="hljs-number">0</span>])   
+print(s[<span class="hljs-number">2</span>])
+print(s[<span class="hljs-number">5</span>])</code></pre>
+<pre><code>M
+ 
+m
+</code></pre>
+<pre><code class="hljs python">s = <span class="hljs-string">"My name is Peppa Pig"</span></code></pre>
+<ul>
+<li>反向索引——从-1开始递减</li>
+</ul>
+<pre><code class="hljs python">print(s[<span class="hljs-number">-1</span>])
+print(s[<span class="hljs-number">-3</span>])
+print(s[<span class="hljs-number">-5</span>])</code></pre>
+<pre><code>g
+P
+a
+</code></pre>
+<p><strong>索引只能获得一个字符，如何获得多个字符？</strong></p>
+<h3 id="222-字符串的切片"><a class="markdownIt-Anchor" href="#222-字符串的切片"></a> 2.2.2 字符串的切片</h3>
+<p><strong>变量名[开始位置：结束位置：切片间隔]</strong></p>
+<ul>
+<li>切片间隔如不设置默认为1，可省略</li>
+<li>切片范围不包含结束位置</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"Python"</span>
+print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">1</span>])</code></pre>
+<pre><code>Pyt
+</code></pre>
+<pre><code class="hljs python">print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>])</code></pre>
+<pre><code>Pyt
+</code></pre>
+<pre><code class="hljs python">print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>])</code></pre>
+<pre><code>Pt
+</code></pre>
+<ul>
+<li>起始位置是0 可以省略</li>
+<li>结束位置省略，代表可以取到最后一个字符</li>
+<li>可以使用反向索引</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"Python"</span>
+print(s[<span class="hljs-number">0</span>:<span class="hljs-number">6</span>])</code></pre>
+<pre><code>Python
+</code></pre>
+<pre><code class="hljs python">print(s[:<span class="hljs-number">6</span>])</code></pre>
+<pre><code>Python
+</code></pre>
+<pre><code class="hljs python">print(s[:])</code></pre>
+<pre><code>Python
+</code></pre>
+<pre><code class="hljs python">print(s[<span class="hljs-number">-6</span>:])</code></pre>
+<pre><code>Python
+</code></pre>
+<p><strong>反向切片</strong></p>
+<ul>
+<li>起始位置是-1也可以省略</li>
+<li>结束位置省略，代表可以取到第一个字符</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"123456789"</span>
+print(s[<span class="hljs-number">-1</span>:<span class="hljs-number">-10</span>:<span class="hljs-number">-1</span>])</code></pre>
+<pre><code>987654321
+</code></pre>
+<pre><code class="hljs python">print(s[:<span class="hljs-number">-10</span>:<span class="hljs-number">-1</span>])</code></pre>
+<pre><code>987654321
+</code></pre>
+<pre><code class="hljs python">print(s[::<span class="hljs-number">-1</span>])</code></pre>
+<pre><code>987654321
+</code></pre>
+<pre><code class="hljs python">print(s[<span class="hljs-number">3</span>::<span class="hljs-number">-1</span>])</code></pre>
+<pre><code>4321
+</code></pre>
+<h2 id="23-字符串操作符"><a class="markdownIt-Anchor" href="#23-字符串操作符"></a> 2.3 字符串操作符</h2>
+<h3 id="231-字符串的拼接"><a class="markdownIt-Anchor" href="#231-字符串的拼接"></a> 2.3.1 字符串的拼接</h3>
+<ul>
+<li>字符串1+字符串2</li>
+</ul>
+<pre><code class="hljs python">a = <span class="hljs-string">"I love "</span>
+b = <span class="hljs-string">"my wife "</span>
+a+b</code></pre>
+<pre><code>'I love my wife '
+</code></pre>
+<h3 id="232-字符串的成倍复制"><a class="markdownIt-Anchor" href="#232-字符串的成倍复制"></a> 2.3.2 字符串的成倍复制</h3>
+<ul>
+<li>字符串 * n   n * 字符串</li>
+</ul>
+<pre><code class="hljs python">c = a+b
+print(c*<span class="hljs-number">3</span>)
+print(<span class="hljs-number">3</span>*c)</code></pre>
+<pre><code>I love my wife I love my wife I love my wife 
+I love my wife I love my wife I love my wife 
+</code></pre>
+<h3 id="223-成员运算"><a class="markdownIt-Anchor" href="#223-成员运算"></a> 2.2.3 成员运算</h3>
+<ul>
+<li><strong>子集in全集</strong>     任何一个连续的切片都是原字符串的子集</li>
+</ul>
+<pre><code class="hljs python">folk_singers = <span class="hljs-string">"Peter, Paul and Mary"</span>    
+<span class="hljs-string">"Peter"</span> <span class="hljs-keyword">in</span> folk_singers
+<span class="hljs-string">' a'</span> <span class="hljs-keyword">in</span> folk_singers</code></pre>
+<pre><code>True
+
+
+True
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-string">"PPM"</span> <span class="hljs-keyword">in</span> folk_singers</code></pre>
+<pre><code>False
+</code></pre>
+<ul>
+<li><strong>遍历字符串字符</strong>    for 字符 in 字符串</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> <span class="hljs-string">"Python"</span>:
+    print(s)</code></pre>
+<pre><code>P
+y
+t
+h
+o
+n
+</code></pre>
+<h2 id="24-字符串处理函数"><a class="markdownIt-Anchor" href="#24-字符串处理函数"></a> 2.4 字符串处理函数</h2>
+<h3 id="241-字符串的长度"><a class="markdownIt-Anchor" href="#241-字符串的长度"></a> 2.4.1 字符串的长度</h3>
+<ul>
+<li>所含字符的个数</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"python"</span>
+len(s)</code></pre>
+<pre><code>6
+</code></pre>
+<h3 id="242-字符编码"><a class="markdownIt-Anchor" href="#242-字符编码"></a> 2.4.2 字符编码</h3>
+<p><strong>将中文字库，英文字母、数字、特殊字符等转化成计算机可识别的二进制数</strong></p>
+<ul>
+<li>每个单一字符对应一个唯一的互不重复的二进制编码</li>
+<li>Python 中使用的是Unicode编码</li>
+</ul>
+<p><strong>将字符转化为Unicode码</strong>——ord(字符)</p>
+<pre><code class="hljs python">print(ord(<span class="hljs-string">"1"</span>))
+print(ord(<span class="hljs-string">"a"</span>))
+print(ord(<span class="hljs-string">"*"</span>))
+print(ord(<span class="hljs-string">"中"</span>))
+print(ord(<span class="hljs-string">"国"</span>))</code></pre>
+<pre><code>49
+97
+42
+20013
+22269
+</code></pre>
+<p><strong>将Unicode码转化为字符</strong>——chr(Unicode码)</p>
+<pre><code class="hljs python">print(chr(<span class="hljs-number">1010</span>))
+print(chr(<span class="hljs-number">10000</span>))
+print(chr(<span class="hljs-number">12345</span>))
+print(chr(<span class="hljs-number">23456</span>))</code></pre>
+<pre><code>ϲ
+✐
+〹
+宠
+</code></pre>
+<h2 id="25-字符串的处理方法"><a class="markdownIt-Anchor" href="#25-字符串的处理方法"></a> 2.5 字符串的处理方法</h2>
+<h3 id="251-字符串的分割字符串split分割字符"><a class="markdownIt-Anchor" href="#251-字符串的分割字符串split分割字符"></a> 2.5.1 字符串的分割——字符串.split(分割字符)</h3>
+<ul>
+<li>返回一个列表</li>
+<li>原字符串不变</li>
+</ul>
+<p><strong>上述特性适合以下所有字符串处理方法</strong></p>
+<pre><code class="hljs python">languages = <span class="hljs-string">"Python C C++ Java PHP R"</span>
+languages_list = languages.split(<span class="hljs-string">" "</span>)
+print(languages_list)
+print(languages)</code></pre>
+<pre><code>['Python', 'C', 'C++', 'Java', 'PHP', 'R']
+Python C C++ Java PHP R
+</code></pre>
+<h3 id="252-字符串的聚合聚合字符join可迭代数据类型"><a class="markdownIt-Anchor" href="#252-字符串的聚合聚合字符join可迭代数据类型"></a> 2.5.2  字符串的聚合——“聚合字符”.join(可迭代数据类型)</h3>
+<ul>
+<li>可迭代类型 如：字符串、列表</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"12345"</span>
+s_join = <span class="hljs-string">","</span>.join(s)
+s_join</code></pre>
+<pre><code>'1,2,3,4,5'
+</code></pre>
+<ul>
+<li>序列类型的元素必须是字符类型</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-comment"># s = [1, 2, 3, 4, 5]</span>
+s = [<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"5"</span>]
+<span class="hljs-string">"*"</span>.join(s)</code></pre>
+<pre><code>'1*2*3*4*5'
+</code></pre>
+<h3 id="353-删除两端特定字符字符串strip删除字符"><a class="markdownIt-Anchor" href="#353-删除两端特定字符字符串strip删除字符"></a> 3.5.3 删除两端特定字符——字符串.strip(删除字符)</h3>
+<ul>
+<li>strip从两侧开始搜索，遇到指定字符执行删除，遇到非指定字符，搜索停止</li>
+<li>类似的还有左删除lstrip和右删除rstrip</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"      I have many blanks     "</span>
+print(s.strip(<span class="hljs-string">" "</span>))                        <span class="hljs-comment"># 还有吗？hahaha</span>
+print(s.lstrip(<span class="hljs-string">" "</span>))
+print(s.rstrip(<span class="hljs-string">" "</span>))
+print(s)</code></pre>
+<pre><code>I have many blanks
+I have many blanks     
+      I have many blanks
+      I have many blanks     
+</code></pre>
+<h3 id="354-字符串的替换字符串replace被替换替换成"><a class="markdownIt-Anchor" href="#354-字符串的替换字符串replace被替换替换成"></a> 3.5.4 字符串的替换——字符串.replace(“被替换”，“替换成”)</h3>
+<pre><code class="hljs python">s = <span class="hljs-string">"Python is coming"</span>
+s1 = s.replace(<span class="hljs-string">"Python"</span>,<span class="hljs-string">"Py"</span>)
+print(s1)</code></pre>
+<pre><code>Py is coming
+</code></pre>
+<h3 id="355-字符串统计字符串count待统计字符串"><a class="markdownIt-Anchor" href="#355-字符串统计字符串count待统计字符串"></a> 3.5.5 字符串统计——字符串.count(“待统计字符串”)</h3>
+<pre><code class="hljs python">s = <span class="hljs-string">"Python is an excellent language"</span>
+print(<span class="hljs-string">"an:"</span>, s.count(<span class="hljs-string">"an"</span>))
+print(<span class="hljs-string">"e:"</span>, s.count(<span class="hljs-string">"e"</span>))</code></pre>
+<pre><code>an: 2
+e: 4
+</code></pre>
+<h3 id="336-字符串字母大小写"><a class="markdownIt-Anchor" href="#336-字符串字母大小写"></a> 3.3.6 字符串字母大小写</h3>
+<ul>
+<li>字符串.upper() 字母全部大写</li>
+</ul>
+<pre><code class="hljs python">s = <span class="hljs-string">"Python"</span>
+s.upper()</code></pre>
+<pre><code>'PYTHON'
+</code></pre>
+<ul>
+<li>字符串.lower() 字母全部小写</li>
+</ul>
+<pre><code class="hljs python">print(s.lower())
+print(s)</code></pre>
+<pre><code>python
+Python
+</code></pre>
+<ul>
+<li>字符串.title()首字母大写</li>
+</ul>
+<pre><code class="hljs python">s.title()</code></pre>
+<pre><code>'Python'
+</code></pre>
+<h1 id="第三部分-布尔类型-true-or-false"><a class="markdownIt-Anchor" href="#第三部分-布尔类型-true-or-false"></a> 第三部分 布尔类型 TRUE or False</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161835.png" srcset="/img/loading.gif" alt="image-20200713161833452" /></p>
+<h2 id="31-逻辑运算的结果"><a class="markdownIt-Anchor" href="#31-逻辑运算的结果"></a> 3.1 逻辑运算的结果</h2>
+<pre><code class="hljs python">a = <span class="hljs-number">10</span>
+print(a &gt; <span class="hljs-number">8</span>)
+print(a == <span class="hljs-number">12</span>)
+print(a &lt; <span class="hljs-number">5</span>)</code></pre>
+<pre><code>True
+False
+False
+</code></pre>
+<ul>
+<li>any() all()</li>
+</ul>
+<pre><code class="hljs python">print(any([<span class="hljs-literal">False</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">None</span>]))   <span class="hljs-comment"># 0 False None 都是无</span>
+print(all([<span class="hljs-literal">False</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">None</span>]))</code></pre>
+<pre><code>True
+False
+</code></pre>
+<h2 id="32-指示条件"><a class="markdownIt-Anchor" href="#32-指示条件"></a> 3.2 指示条件</h2>
+<pre><code class="hljs python">n = <span class="hljs-number">2800</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    m = eval(input(<span class="hljs-string">"请输入一个正整数："</span>))
+    <span class="hljs-keyword">if</span> m == n:
+        print(<span class="hljs-string">"你猜对啦"</span>)
+        <span class="hljs-keyword">break</span>
+    <span class="hljs-keyword">elif</span> m &gt; n:
+        print(<span class="hljs-string">"太大了"</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">"太小了"</span>)</code></pre>
+<pre><code>请输入一个正整数：40
+太小了
+请输入一个正整数：60
+太小了
+请输入一个正整数：1000
+太小了
+请输入一个正整数：28001
+太大了
+请输入一个正整数：2800
+你猜对啦
+</code></pre>
+<h2 id="33-作为掩码"><a class="markdownIt-Anchor" href="#33-作为掩码"></a> 3.3 作为掩码</h2>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>]])   <span class="hljs-comment"># 定义 numpy数组</span>
+print(x &gt; <span class="hljs-number">3</span>)
+x[x &gt; <span class="hljs-number">3</span>]</code></pre>
+<pre><code>[[False False False  True  True]]
+
+array([5, 7])
+</code></pre>
+<h1 id="第四部分-类型判别及类型转换"><a class="markdownIt-Anchor" href="#第四部分-类型判别及类型转换"></a> 第四部分 类型判别及类型转换</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161846.png" srcset="/img/loading.gif" alt="image-20200713161845449" /></p>
+<h2 id="41-类型判别"><a class="markdownIt-Anchor" href="#41-类型判别"></a> 4.1 类型判别</h2>
+<ul>
+<li>type(变量)</li>
+</ul>
+<pre><code class="hljs python">age = <span class="hljs-number">20</span>
+name = <span class="hljs-string">"Ada"</span>
+print(type(age))
+print(type(name))</code></pre>
+<pre><code>&lt;class 'int'&gt;
+&lt;class 'str'&gt;
+</code></pre>
+<ul>
+<li>isinstance(变量,预判类型) <strong>承认继承</strong></li>
+<li>变量类型是预判类型的子类型，则为真，否则为假</li>
+</ul>
+<pre><code class="hljs python">print(isinstance(age, int))        <span class="hljs-comment"># 承认继承</span></code></pre>
+<pre><code>True
+</code></pre>
+<pre><code class="hljs python">print(isinstance(age, object))
+print(isinstance(name, object))    <span class="hljs-comment"># object 是老祖宗</span></code></pre>
+<pre><code>True
+True
+</code></pre>
+<ul>
+<li>字符串检查方法</li>
+</ul>
+<p><strong>字符串.isdigit()字符是否只有数字组成</strong></p>
+<pre><code class="hljs python">age = <span class="hljs-string">"20"</span>
+name = <span class="hljs-string">"Ada"</span></code></pre>
+<pre><code class="hljs python">age.isdigit()</code></pre>
+<pre><code>True
+</code></pre>
+<pre><code class="hljs python">name.isdigit()</code></pre>
+<pre><code>False
+</code></pre>
+<p><strong>字符串.isalpha()字符是否只有字母组成</strong></p>
+<pre><code class="hljs python">name.isalpha()</code></pre>
+<pre><code>True
+</code></pre>
+<pre><code class="hljs python">age.isalpha()</code></pre>
+<pre><code>False
+</code></pre>
+<p><strong>字符串.isalnum()字符是否只有数字和字母组成</strong></p>
+<pre><code class="hljs python"><span class="hljs-string">"Ada20"</span>.isalnum()    <span class="hljs-comment"># 比如可用于判断用户名是否合法</span></code></pre>
+<pre><code>True
+</code></pre>
+<h2 id="42-类型转换"><a class="markdownIt-Anchor" href="#42-类型转换"></a> 4.2 类型转换</h2>
+<ul>
+<li>数字类型转字符串  str(数字类型)</li>
+</ul>
+<pre><code class="hljs python">age = <span class="hljs-number">20</span>
+print(<span class="hljs-string">"My age is "</span>+str(age))</code></pre>
+<pre><code>My age is 20
+</code></pre>
+<ul>
+<li>仅有数字组成的字符串转数字  int()  float()  eval()</li>
+</ul>
+<pre><code class="hljs python">s1 = <span class="hljs-string">"20"</span>
+s2 = <span class="hljs-string">"10.1"</span></code></pre>
+<pre><code class="hljs python">int(s1)     <span class="hljs-comment"># 仅整型</span>
+<span class="hljs-comment"># int(s2)</span></code></pre>
+<pre><code>20
+</code></pre>
+<pre><code class="hljs python">float(s1)</code></pre>
+<pre><code>20.0
+</code></pre>
+<pre><code class="hljs python">float(s2)</code></pre>
+<pre><code>10.1
+</code></pre>
+<pre><code class="hljs python">eval(s1)</code></pre>
+<pre><code>20
+</code></pre>
+<pre><code class="hljs python">eval(s2)</code></pre>
+<pre><code>10.1
+</code></pre>
+<blockquote>
+<p>eval()负责把字符串转化为最合适的数据类型，而int()和float()可以把除了字符以外的转化为整型和浮点型</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python 组合数据类型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">
+                        <span class="hidden-mobile">Python 基本语法元素</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python 基本数据类型&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
