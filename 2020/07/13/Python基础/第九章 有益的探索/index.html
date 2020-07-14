@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Python 有益的探索 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-13 21:13">
+      2020年7月13日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月13日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="有益的探索"><a class="markdownIt-Anchor" href="#有益的探索"></a> 有益的探索</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713211351.png" srcset="/img/loading.gif" alt="image-20200713211348595" /></p>
+<p>尝试着潜入水中，往冰山的深处扎一个小小的猛子</p>
+<h2 id="91-数据类型的底层实现"><a class="markdownIt-Anchor" href="#91-数据类型的底层实现"></a> 9.1 数据类型的底层实现</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713214705.png" srcset="/img/loading.gif" alt="image-20200713214702744" /></p>
+<h3 id="911-从奇怪的列表说起"><a class="markdownIt-Anchor" href="#911-从奇怪的列表说起"></a> 9.1.1 从奇怪的列表说起</h3>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713211529.png" srcset="/img/loading.gif" alt="image-20200713211524028" /></p>
+<p><strong>1、错综复杂的复制</strong></p>
+<pre><code class="hljs python">list_1 = [<span class="hljs-number">1</span>, [<span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>], (<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>), &#123;<span class="hljs-string">"name"</span>: <span class="hljs-string">"Sarah"</span>&#125;]</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713212855.png" srcset="/img/loading.gif" alt="image-20200713212853714" /></p>
+<ul>
+<li>浅拷贝</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-comment"># list_3 = list_1          # 错误！！！</span>
+list_2 = list_1.copy()     <span class="hljs-comment"># 或者list_1[:] \ list(list_1) 均可实现浅拷贝</span></code></pre>
+<ul>
+<li>对浅拷贝前后两列表分别进行操作</li>
+</ul>
+<pre><code class="hljs python">list_2[<span class="hljs-number">1</span>].append(<span class="hljs-number">55</span>)
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [1, [22, 33, 44, 55], (5, 6, 7), {'name': 'Sarah'}]
+list_2:   [1, [22, 33, 44, 55], (5, 6, 7), {'name': 'Sarah'}]
+</code></pre>
+<p><strong>2、列表的底层实现</strong></p>
+<p><strong>引用数组的概念</strong></p>
+<p>列表内的元素可以分散的存储在内存中</p>
+<p>列表存储的，实际上是这些<strong>元素的地址！！！</strong>——地址的存储在内存中是连续的</p>
+<pre><code class="hljs python">list_1 = [<span class="hljs-number">1</span>, [<span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>], (<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>), &#123;<span class="hljs-string">"name"</span>: <span class="hljs-string">"Sarah"</span>&#125;]
+list_2 = list(list_1)   <span class="hljs-comment"># 浅拷贝   与list_1.copy()功能一样</span></code></pre>
+<p>（1）新增元素</p>
+<pre><code class="hljs python">list_1.append(<span class="hljs-number">100</span>)
+list_2.append(<span class="hljs-string">"n"</span>)
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [1, [22, 33, 44], (5, 6, 7), {'name': 'Sarah'}, 100]
+list_2:   [1, [22, 33, 44], (5, 6, 7), {'name': 'Sarah'}, 'n']
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713213916.png" srcset="/img/loading.gif" alt="image-20200713213914825" /></p>
+<p>（2）修改元素</p>
+<pre><code class="hljs python">list_1[<span class="hljs-number">0</span>] = <span class="hljs-number">10</span>
+list_2[<span class="hljs-number">0</span>] = <span class="hljs-number">20</span>
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [10, [22, 33, 44], (5, 6, 7), {'name': 'Sarah'}, 100]
+list_2:   [20, [22, 33, 44], (5, 6, 7), {'name': 'Sarah'}, 'n']
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713213837.png" srcset="/img/loading.gif" alt="image-20200713213835580" /></p>
+<p>（3）对列表型元素进行操作</p>
+<pre><code class="hljs python">list_1[<span class="hljs-number">1</span>].remove(<span class="hljs-number">44</span>)
+list_2[<span class="hljs-number">1</span>] += [<span class="hljs-number">55</span>, <span class="hljs-number">66</span>]
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [10, [22, 33, 55, 66], (5, 6, 7), {'name': 'Sarah'}, 100]
+list_2:   [20, [22, 33, 55, 66], (5, 6, 7), {'name': 'Sarah'}, 'n']
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713213747.png" srcset="/img/loading.gif" alt="image-20200713213744822" /></p>
+<p>（4）对元组型元素进行操作</p>
+<pre><code class="hljs python">list_2[<span class="hljs-number">2</span>] += (<span class="hljs-number">8</span>,<span class="hljs-number">9</span>)
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [10, [22, 33, 55, 66], (5, 6, 7), {'name': 'Sarah'}, 100]
+list_2:   [20, [22, 33, 55, 66], (5, 6, 7, 8, 9), {'name': 'Sarah'}, 'n']
+</code></pre>
+<p>元组是不可变的！！！</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713214001.png" srcset="/img/loading.gif" alt="image-20200713214000287" /></p>
+<p>（5）对字典型元素进行操作</p>
+<pre><code class="hljs python">list_1[<span class="hljs-number">-2</span>][<span class="hljs-string">"age"</span>] = <span class="hljs-number">18</span>
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [10, [22, 33, 55, 66], (5, 6, 7), {'name': 'Sarah', 'age': 18}, 100]
+list_2:   [20, [22, 33, 55, 66], (5, 6, 7, 8, 9), {'name': 'Sarah', 'age': 18}, 'n']
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713214053.png" srcset="/img/loading.gif" alt="image-20200713214051420" /></p>
+<p><strong>3、引入深拷贝</strong></p>
+<p><strong>浅拷贝之后</strong></p>
+<ul>
+<li>
+<p>针对不可变元素（数字、字符串、元组）的操作，都各自生效了</p>
+</li>
+<li>
+<p>针对不可变元素（列表、集合）的操作，发生了一些混淆</p>
+</li>
+</ul>
+<p><strong>引入深拷贝</strong></p>
+<ul>
+<li>深拷贝将所有层级的相关元素全部复制，完全分开，泾渭分明，避免了上述问题</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> copy
+
+list_1 = [<span class="hljs-number">1</span>, [<span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">44</span>], (<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>), &#123;<span class="hljs-string">"name"</span>: <span class="hljs-string">"Sarah"</span>&#125;]
+list_2 = copy.deepcopy(list_1)
+list_1[<span class="hljs-number">-1</span>][<span class="hljs-string">"age"</span>] = <span class="hljs-number">18</span>
+list_2[<span class="hljs-number">1</span>].append(<span class="hljs-number">55</span>)
+
+print(<span class="hljs-string">"list_1:  "</span>, list_1)
+print(<span class="hljs-string">"list_2:  "</span>, list_2)</code></pre>
+<pre><code>list_1:   [1, [22, 33, 44], (5, 6, 7), {'name': 'Sarah', 'age': 18}]
+list_2:   [1, [22, 33, 44, 55], (5, 6, 7), {'name': 'Sarah'}]
+</code></pre>
+<h3 id="912-神秘的字典"><a class="markdownIt-Anchor" href="#912-神秘的字典"></a> 9.1.2 神秘的字典</h3>
+<p><strong>1、快速的查找</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+ls_1 = list(range(<span class="hljs-number">1000000</span>))
+ls_2 = list(range(<span class="hljs-number">500</span>))+[<span class="hljs-number">-10</span>]*<span class="hljs-number">500</span>
+
+start = time.time()
+count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ls_2:
+    <span class="hljs-keyword">if</span> n <span class="hljs-keyword">in</span> ls_1:
+        count += <span class="hljs-number">1</span>
+end = time.time()
+print(<span class="hljs-string">"查找&#123;&#125;个元素，在ls_1列表中的有&#123;&#125;个，共用时&#123;&#125;秒"</span>.format(len(ls_2), count,round((end-start),<span class="hljs-number">2</span>)))</code></pre>
+<pre><code>查找1000个元素，在ls_1列表中的有500个，共用时6.19秒
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+d = &#123;i:i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100000</span>)&#125;
+ls_2 = list(range(<span class="hljs-number">500</span>))+[<span class="hljs-number">-10</span>]*<span class="hljs-number">500</span>
+
+start = time.time()
+count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ls_2:
+    <span class="hljs-keyword">try</span>:
+        d[n]
+    <span class="hljs-keyword">except</span>:
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-keyword">else</span>:
+        count += <span class="hljs-number">1</span>
+end = time.time()
+print(<span class="hljs-string">"查找&#123;&#125;个元素，在ls_1列表中的有&#123;&#125;个，共用时&#123;&#125;秒"</span>.format(len(ls_2), count,round(end-start)))</code></pre>
+<pre><code>查找1000个元素，在ls_1列表中的有500个，共用时0秒
+</code></pre>
+<p><strong>2、字典的底层实现</strong></p>
+<p>通过稀疏数组来实现值的存储与访问</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713214254.png" srcset="/img/loading.gif" alt="image-20200713214251309" /></p>
+<p><strong>字典的创建过程</strong></p>
+<ul>
+<li>第一步：创建一个散列表（稀疏数组 N &gt;&gt; n）</li>
+</ul>
+<pre><code class="hljs python">d = &#123;&#125;</code></pre>
+<ul>
+<li>第一步：通过hash()计算键的散列值</li>
+</ul>
+<pre><code class="hljs python">print(hash(<span class="hljs-string">"python"</span>))
+print(hash(<span class="hljs-number">1024</span>))
+print(hash((<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)))</code></pre>
+<pre><code>-4771046564460599764
+1024
+3713081631934410656
+</code></pre>
+<pre><code class="hljs python">d[<span class="hljs-string">"age"</span>] = <span class="hljs-number">18</span>    <span class="hljs-comment"># 增加键值对的操作，首先会计算键的散列值hash("age")</span>
+print(hash(<span class="hljs-string">"age"</span>))</code></pre>
+<pre><code class="hljs angelscript"><span class="hljs-number">-2747130482557202317</span></code></pre>
+<ul>
+<li>第二步：根据计算的散列值确定其在散列表中的位置</li>
+</ul>
+<p>极个别时候，散列值会发生冲突，则内部有相应的解决冲突的办法</p>
+<ul>
+<li>第三步：在该位置上存入值</li>
+</ul>
+<p><strong>键值对的访问过程</strong></p>
+<pre><code class="hljs python">d[<span class="hljs-string">"age"</span>]</code></pre>
+<ul>
+<li>
+<p>第一步：计算要访问的键的散列值</p>
+</li>
+<li>
+<p>第二步：根据计算的散列值，通过一定的规则，确定其在散列表中的位置</p>
+</li>
+<li>
+<p>第三步：读取该位置上存储的值</p>
+<pre><code> 如果存在，则返回该值  
+ 如果不存在，则报错KeyError
+</code></pre>
+</li>
+</ul>
+<p><strong>3、小结</strong></p>
+<p><strong>（1）字典数据类型，通过空间换时间，实现了快速的数据查找</strong></p>
+<ul>
+<li>也就注定了字典的空间利用效率低下</li>
+</ul>
+<p><strong>（2）因为散列值对应位置的顺序与键在字典中显示的顺序可能不同，因此表现出来字典是无序的</strong></p>
+<ul>
+<li>
+<p>回顾一下 N &gt;&gt; n<br />
+如果N = n，会产生很多位置冲突</p>
+</li>
+<li>
+<p>思考一下开头的小例子，为什么字典实现了比列表更快速的查找</p>
+</li>
+</ul>
+<h3 id="913-紧凑的字符串"><a class="markdownIt-Anchor" href="#913-紧凑的字符串"></a> 9.1.3 紧凑的字符串</h3>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713214632.png" srcset="/img/loading.gif" alt="image-20200713214631561" /></p>
+<p><strong>通过紧凑数组实现字符串的存储</strong></p>
+<ul>
+<li>
+<p>数据在内存中是连续存放的，效率更高，节省空间</p>
+</li>
+<li>
+<p>思考一下，同为序列类型，为什么列表采用引用数组，而字符串采用紧凑数组</p>
+</li>
+</ul>
+<h3 id="914-是否可变"><a class="markdownIt-Anchor" href="#914-是否可变"></a> 9.1.4 是否可变</h3>
+<p><strong>1、不可变类型：数字、字符串、元组</strong></p>
+<p><strong>在生命周期中保持内容不变</strong></p>
+<ul>
+<li>
+<p>换句话说，改变了就不是它自己了（id变了）</p>
+</li>
+<li>
+<p>不可变对象的 += 操作 实际上创建了一个新的对象</p>
+</li>
+</ul>
+<pre><code class="hljs python">x = <span class="hljs-number">1</span>
+y = <span class="hljs-string">"Python"</span>
+
+print(<span class="hljs-string">"x id:"</span>, id(x))
+print(<span class="hljs-string">"y id:"</span>, id(y))</code></pre>
+<pre><code>x id: 140718440616768
+y id: 2040939892664
+</code></pre>
+<pre><code class="hljs python">x += <span class="hljs-number">2</span>
+y += <span class="hljs-string">"3.7"</span>
+
+print(<span class="hljs-string">"x id:"</span>, id(x))
+print(<span class="hljs-string">"y id:"</span>, id(y))</code></pre>
+<pre><code>x id: 140718440616832
+y id: 2040992707056
+</code></pre>
+<p><strong>元组并不是总是不可变的</strong></p>
+<pre><code class="hljs python">t = (<span class="hljs-number">1</span>,[<span class="hljs-number">2</span>])
+t[<span class="hljs-number">1</span>].append(<span class="hljs-number">3</span>)
+
+print(t)</code></pre>
+<pre><code>(1, [2, 3])
+</code></pre>
+<p><strong>2、可变类型：列表、字典、集合</strong></p>
+<ul>
+<li>
+<p>id 保持不变，但是里面的内容可以变</p>
+</li>
+<li>
+<p>可变对象的 += 操作 实际在原对象的基础上就地修改</p>
+</li>
+</ul>
+<pre><code class="hljs python">ls = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+d = &#123;<span class="hljs-string">"Name"</span>: <span class="hljs-string">"Sarah"</span>, <span class="hljs-string">"Age"</span>: <span class="hljs-number">18</span>&#125;
+
+print(<span class="hljs-string">"ls id:"</span>, id(ls))
+print(<span class="hljs-string">"d id:"</span>, id(d))</code></pre>
+<pre><code>ls id: 2040991750856
+d id: 2040992761608
+</code></pre>
+<pre><code class="hljs python">ls += [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+d_2 = &#123;<span class="hljs-string">"Sex"</span>: <span class="hljs-string">"female"</span>&#125;
+d.update(d_2)            <span class="hljs-comment"># 把d_2 中的元素更新到d中</span>
+
+print(<span class="hljs-string">"ls id:"</span>, id(ls))
+print(<span class="hljs-string">"d id:"</span>, id(d))</code></pre>
+<pre><code>ls id: 2040991750856
+d id: 2040992761608
+</code></pre>
+<h3 id="915-列表操作的几个小例子"><a class="markdownIt-Anchor" href="#915-列表操作的几个小例子"></a> 9.1.5 列表操作的几个小例子</h3>
+<p><strong>【例1】 删除列表内的特定元素</strong></p>
+<ul>
+<li>方法1 存在运算删除法</li>
+</ul>
+<p>缺点：每次存在运算，都要从头对列表进行遍历、查找、效率低</p>
+<pre><code class="hljs python">alist = [<span class="hljs-string">"d"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"d"</span> ,<span class="hljs-string">"d"</span>, <span class="hljs-string">"4"</span>]
+s = <span class="hljs-string">"d"</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    <span class="hljs-keyword">if</span> s <span class="hljs-keyword">in</span> alist:
+        alist.remove(s)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">break</span>
+print(alist)</code></pre>
+<pre><code>['2', '2', '4']
+</code></pre>
+<ul>
+<li>方法2 一次性遍历元素执行删除</li>
+</ul>
+<pre><code class="hljs python">alist = [<span class="hljs-string">"d"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"d"</span> ,<span class="hljs-string">"d"</span>, <span class="hljs-string">"4"</span>]
+<span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> alist:
+    <span class="hljs-keyword">if</span> s == <span class="hljs-string">"d"</span>:
+        alist.remove(s)      <span class="hljs-comment"># remove（s） 删除列表中第一次出现的该元素</span>
+print(alist)</code></pre>
+<pre><code>['2', '2', 'd', 'd', '4']
+</code></pre>
+<p>解决方法：使用负向索引</p>
+<pre><code class="hljs python">alist = [<span class="hljs-string">"d"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"d"</span> ,<span class="hljs-string">"d"</span>, <span class="hljs-string">"4"</span>]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(-len(alist), <span class="hljs-number">0</span>):
+    <span class="hljs-keyword">if</span> alist[i] == <span class="hljs-string">"d"</span>:
+        alist.remove(alist[i])      <span class="hljs-comment"># remove（s） 删除列表中第一次出现的该元素</span>
+print(alist)</code></pre>
+<pre><code>['2', '2', '4']
+</code></pre>
+<p><strong>【例2】 多维列表的创建</strong></p>
+<pre><code class="hljs python">ls = [[<span class="hljs-number">0</span>]*<span class="hljs-number">10</span>]*<span class="hljs-number">5</span>
+ls</code></pre>
+<pre><code>[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+</code></pre>
+<pre><code class="hljs python">ls[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+ls</code></pre>
+<pre><code>[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+</code></pre>
+<h2 id="92-更加简洁的语法"><a class="markdownIt-Anchor" href="#92-更加简洁的语法"></a> 9.2 更加简洁的语法</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713215114.png" srcset="/img/loading.gif" alt="image-20200713215112711" /></p>
+<h3 id="921-解析语法"><a class="markdownIt-Anchor" href="#921-解析语法"></a> 9.2.1 解析语法</h3>
+<pre><code class="hljs python">ls = [[<span class="hljs-number">0</span>]*<span class="hljs-number">10</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>)]
+ls</code></pre>
+<pre><code>[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+</code></pre>
+<pre><code class="hljs python">ls[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+ls</code></pre>
+<pre><code>[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+</code></pre>
+<p><strong>1、解析语法的基本结构——以列表解析为例（也称为列表推导）</strong></p>
+<p>[expression <strong>for value in iterable</strong> if conditihon]</p>
+<ul>
+<li>三要素：表达式、可迭代对象、if条件（可选）</li>
+</ul>
+<p><strong>执行过程</strong></p>
+<p>（1）从可迭代对象中拿出一个元素</p>
+<p>（2）通过if条件（如果有的话），对元素进行筛选</p>
+<pre><code> 若通过筛选：则把元素传递给表达式  
+   
+ 若未通过：  则进入（1）步骤，进入下一次迭代
+</code></pre>
+<p>（3）将传递给表达式的元素，代入表达式进行处理，产生一个结果</p>
+<p>（4）将（3）步产生的结果作为列表的一个元素进行存储</p>
+<p>（5）重复（1）~（4）步，直至迭代对象迭代结束，返回新创建的列表</p>
+<pre><code class="hljs python"><span class="hljs-comment"># 等价于如下代码</span>
+result = []
+<span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> iterale:
+    <span class="hljs-keyword">if</span> condition:
+        result.append(expression)</code></pre>
+<p>【例】求20以内奇数的平方</p>
+<pre><code class="hljs python">squares = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">21</span>):
+    <span class="hljs-keyword">if</span> i%<span class="hljs-number">2</span> == <span class="hljs-number">1</span>:
+        squares.append(i**<span class="hljs-number">2</span>)
+print(squares)</code></pre>
+<pre><code>[1, 9, 25, 49, 81, 121, 169, 225, 289, 361]
+</code></pre>
+<pre><code class="hljs python">squares = [i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">21</span>) <span class="hljs-keyword">if</span> i%<span class="hljs-number">2</span> == <span class="hljs-number">1</span>]
+print(squares)</code></pre>
+<pre><code>[1, 9, 25, 49, 81, 121, 169, 225, 289, 361]
+</code></pre>
+<p><strong>支持多变量</strong></p>
+<pre><code class="hljs python">x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+y = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+
+results = [i*j <span class="hljs-keyword">for</span> i,j <span class="hljs-keyword">in</span> zip(x, y)]
+results</code></pre>
+<pre><code>[1, 4, 9]
+</code></pre>
+<p><strong>支持循环嵌套</strong></p>
+<pre><code class="hljs python">colors = [<span class="hljs-string">"black"</span>, <span class="hljs-string">"white"</span>]
+sizes = [<span class="hljs-string">"S"</span>, <span class="hljs-string">"M"</span>, <span class="hljs-string">"L"</span>]
+tshirts = [<span class="hljs-string">"&#123;&#125; &#123;&#125;"</span>.format(color, size) <span class="hljs-keyword">for</span> color <span class="hljs-keyword">in</span> colors <span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> sizes]
+tshirts</code></pre>
+<pre><code>['black S', 'black M', 'black L', 'white S', 'white M', 'white L']
+</code></pre>
+<p><strong>2、其他解析语法的例子</strong></p>
+<ul>
+<li>解析语法构造字典（字典推导）</li>
+</ul>
+<pre><code class="hljs python">squares = &#123;i: i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)&#125;
+<span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> squares.items():
+    print(k, <span class="hljs-string">":  "</span>, v)</code></pre>
+<pre><code>0 :   0
+1 :   1
+2 :   4
+3 :   9
+4 :   16
+5 :   25
+6 :   36
+7 :   49
+8 :   64
+9 :   81
+</code></pre>
+<ul>
+<li>解析语法构造集合（集合推导）</li>
+</ul>
+<pre><code class="hljs python">squares = &#123;i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)&#125;
+squares</code></pre>
+<pre><code>{0, 1, 4, 9, 16, 25, 36, 49, 64, 81}
+</code></pre>
+<ul>
+<li>生成器表达式</li>
+</ul>
+<pre><code class="hljs python">squares = (i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>))
+squares</code></pre>
+<pre><code>&lt;generator object &lt;genexpr&gt; at 0x000001DB37A58390&gt;
+</code></pre>
+<pre><code class="hljs python">colors = [<span class="hljs-string">"black"</span>, <span class="hljs-string">"white"</span>]
+sizes = [<span class="hljs-string">"S"</span>, <span class="hljs-string">"M"</span>, <span class="hljs-string">"L"</span>]
+tshirts = (<span class="hljs-string">"&#123;&#125; &#123;&#125;"</span>.format(color, size) <span class="hljs-keyword">for</span> color <span class="hljs-keyword">in</span> colors <span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> sizes)
+<span class="hljs-keyword">for</span> tshirt <span class="hljs-keyword">in</span> tshirts:
+    print(tshirt)</code></pre>
+<pre><code>black S
+black M
+black L
+white S
+white M
+white L
+</code></pre>
+<h3 id="922-条件表达式"><a class="markdownIt-Anchor" href="#922-条件表达式"></a> 9.2.2 条件表达式</h3>
+<p><strong>expr1</strong> if <strong>condition</strong> else <strong>expr2</strong></p>
+<p>【例】将变量n的绝对值赋值给变量x</p>
+<pre><code class="hljs python">n = <span class="hljs-number">-10</span>
+<span class="hljs-keyword">if</span> n &gt;= <span class="hljs-number">0</span>:
+    x = n
+<span class="hljs-keyword">else</span>:
+    x = -n
+x</code></pre>
+<pre><code>10
+</code></pre>
+<pre><code class="hljs python">n = <span class="hljs-number">-10</span>
+x = n <span class="hljs-keyword">if</span> n&gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> -n
+x</code></pre>
+<pre><code>10
+</code></pre>
+<p><strong>条件表达式和解析语法简单实用、运行速度相对更快一些，相信大家会慢慢的爱上它们</strong></p>
+<h2 id="93-三大神器"><a class="markdownIt-Anchor" href="#93-三大神器"></a> 9.3 三大神器</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713215230.png" srcset="/img/loading.gif" alt="image-20200713215228848" /></p>
+<h3 id="931-生成器"><a class="markdownIt-Anchor" href="#931-生成器"></a> 9.3.1 生成器</h3>
+<pre><code class="hljs python">ls = [i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">1000001</span>)]</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ls:
+    <span class="hljs-keyword">pass</span></code></pre>
+<p>缺点：占用大量内存</p>
+<p><strong>生成器</strong></p>
+<p>（1）采用惰性计算的方式</p>
+<p>（2）无需一次性存储海量数据</p>
+<p>（3）一边执行一边计算，只计算每次需要的值</p>
+<p>（4）实际上一直在执行next()操作，直到无值可取</p>
+<p><strong>1、生成器表达式</strong></p>
+<ul>
+<li>海量数据，不需存储</li>
+</ul>
+<pre><code class="hljs python">squares = (i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1000000</span>))</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> squares:
+    <span class="hljs-keyword">pass</span></code></pre>
+<ul>
+<li>求0~100的和</li>
+</ul>
+<p>无需显示存储全部数据，节省内存</p>
+<pre><code class="hljs python">sum((i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">101</span>)))</code></pre>
+<pre><code>5050
+</code></pre>
+<p><strong>2、生成器函数——yield</strong></p>
+<ul>
+<li>生产斐波那契数列</li>
+</ul>
+<p>数列前两个元素为1,1 之后的元素为其前两个元素之和</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span><span class="hljs-params">(max)</span>:</span>
+    ls = []
+    n, a, b = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> n &lt; max:
+        ls.append(a)
+        a, b = b, a + b
+        n = n + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> ls
+
+
+fib(<span class="hljs-number">10</span>)</code></pre>
+<pre><code>[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+</code></pre>
+<p>中间尝试</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span><span class="hljs-params">(max)</span>:</span>
+    n, a, b = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> n &lt; max:
+        print(a)
+        a, b = b, a + b
+        n = n + <span class="hljs-number">1</span>
+
+
+fib(<span class="hljs-number">10</span>)</code></pre>
+<pre><code>1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+</code></pre>
+<p>构造生成器函数</p>
+<p>在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span><span class="hljs-params">(max)</span>:</span>
+    n, a, b = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> n &lt; max:
+        <span class="hljs-keyword">yield</span> a
+        a, b = b, a + b
+        n = n + <span class="hljs-number">1</span>
+        
+
+fib(<span class="hljs-number">10</span>)</code></pre>
+<pre><code>&lt;generator object fib at 0x000001BE11B19048&gt;
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> fib(<span class="hljs-number">10</span>):
+    print(i)</code></pre>
+<pre><code>1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+</code></pre>
+<h3 id="932-迭代器"><a class="markdownIt-Anchor" href="#932-迭代器"></a> 9.3.2 迭代器</h3>
+<p><strong>1、可迭代对象</strong></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713222232.png" srcset="/img/loading.gif" alt="image-20200713222231146" /></p>
+<p>可直接作用于for循环的对象统称为可迭代对象：Iterable</p>
+<p><strong>（1）列表、元组、字符串、字典、集合、文件</strong></p>
+<p>可以使用isinstance()判断一个对象是否是Iterable对象</p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Iterable  <span class="hljs-comment">#python3.7之后得先导入这个库才有Iterable这个对象</span>
+
+isinstance([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], Iterable)</code></pre>
+<pre><code>True
+</code></pre>
+<pre><code class="hljs python">isinstance(&#123;<span class="hljs-string">"name"</span>: <span class="hljs-string">"Sarah"</span>&#125;, Iterable)</code></pre>
+<pre><code>True
+</code></pre>
+<pre><code class="hljs python">isinstance(<span class="hljs-string">'Python'</span>, Iterable)</code></pre>
+<pre><code>True
+</code></pre>
+<p><strong>（2）生成器</strong></p>
+<pre><code class="hljs python">squares = (i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>))
+isinstance(squares, Iterable)</code></pre>
+<pre><code>True
+</code></pre>
+<p>生成器不但可以用于for循环，还可以被next()函数调用</p>
+<pre><code class="hljs python">print(next(squares))
+print(next(squares))
+print(next(squares))
+print(next(squares))
+print(next(squares))</code></pre>
+<pre><code>0
+1
+4
+9
+16
+</code></pre>
+<p>直到没有数据可取，抛出StopIteration</p>
+<pre><code class="hljs python">print(next(squares))</code></pre>
+<pre><code>---------------------------------------------------------------------------
+
+StopIteration                             Traceback (most recent call last)
+
+&lt;ipython-input-66-f5163ac9e49b&gt; in &lt;module&gt;
+----&gt; 1 print(next(squares))
+
+
+StopIteration: 
+</code></pre>
+<p><strong>可以被next()函数调用并不断返回下一个值，直至没有数据可取的对象称为迭代器：Iterator</strong></p>
+<p><strong>2、迭代器</strong></p>
+<p>可以使用isinstance()判断一个对象是否是Iterator对象</p>
+<p><strong>（1） 生成器都是迭代器</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Iterator
+
+squares = (i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>))
+isinstance(squares, Iterator)</code></pre>
+<pre><code>True
+</code></pre>
+<p><strong>（2） 列表、元组、字符串、字典、集合不是迭代器</strong></p>
+<pre><code class="hljs python">isinstance([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], Iterator)</code></pre>
+<pre><code>False
+</code></pre>
+<p>可以通过iter(Iterable)创建迭代器</p>
+<pre><code class="hljs python">isinstance(iter([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]), Iterator)</code></pre>
+<pre><code>True
+</code></pre>
+<p>for item in Iterable 等价于：</p>
+<pre><code>先通过iter()函数获取可迭代对象Iterable的迭代器
+  
+然后对获取到的迭代器不断调用next()方法来获取下一个值并将其赋值给item
+   
+当遇到StopIteration的异常后循环结束
+</code></pre>
+<p><strong>（3）zip enumerate 等itertools里的函数是迭代器</strong></p>
+<pre><code class="hljs python">x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+y = [<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>]
+zip(x, y)</code></pre>
+<pre><code>&lt;zip at 0x1be11b13c48&gt;
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> zip(x, y):
+    print(i)
+    
+isinstance(zip(x, y), Iterator)</code></pre>
+<pre><code>(1, 'a')
+(2, 'b')
+
+True
+</code></pre>
+<pre><code class="hljs python">numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+enumerate(numbers)</code></pre>
+<pre><code>&lt;enumerate at 0x1be11b39990&gt;
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> enumerate(numbers):
+    print(i)
+    
+isinstance(enumerate(numbers), Iterator)</code></pre>
+<pre><code>(0, 1)
+(1, 2)
+(2, 3)
+(3, 4)
+(4, 5)
+
+True
+</code></pre>
+<p><strong>(4) 文件是迭代器</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">"测试文件.txt"</span>, <span class="hljs-string">"r"</span>, encoding = <span class="hljs-string">"utf-8"</span>) <span class="hljs-keyword">as</span> f:
+    print(isinstance(f, Iterator))</code></pre>
+<pre><code>True
+</code></pre>
+<p><strong>（5）迭代器是可耗尽的</strong></p>
+<pre><code class="hljs python">squares = (i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>))
+<span class="hljs-keyword">for</span> square <span class="hljs-keyword">in</span> squares:
+    print(square)</code></pre>
+<pre><code>0
+1
+4
+9
+16
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> square <span class="hljs-keyword">in</span> squares:
+    print(square)</code></pre>
+<p><strong>（6）range()不是迭代器</strong></p>
+<pre><code class="hljs python">numbers = range(<span class="hljs-number">10</span>)
+isinstance(numbers, Iterator)</code></pre>
+<pre><code>False
+</code></pre>
+<pre><code class="hljs python">print(len(numbers))   <span class="hljs-comment"># 有长度</span>
+print(numbers[<span class="hljs-number">0</span>])     <span class="hljs-comment"># 可索引</span>
+print(<span class="hljs-number">9</span> <span class="hljs-keyword">in</span> numbers)   <span class="hljs-comment"># 可存在计算</span>
+next(numbers)         <span class="hljs-comment"># 不可被next()调用</span></code></pre>
+<pre><code>10
+0
+True
+
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-76-7c59bf859258&gt; in &lt;module&gt;
+      2 print(numbers[0])     # 可索引
+      3 print(9 in numbers)   # 可存在计算
+----&gt; 4 next(numbers)         # 不可被next()调用
+
+
+TypeError: 'range' object is not an iterator
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> numbers:
+    print(number)</code></pre>
+<pre><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</code></pre>
+<p>不会被耗尽</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> numbers:
+    print(number)</code></pre>
+<pre><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</code></pre>
+<p>可以称range()为懒序列</p>
+<pre><code>它是一种序列
+  
+但并不包含任何内存中的内容
+  
+而是通过计算来回答问题
+</code></pre>
+<h3 id="933-装饰器"><a class="markdownIt-Anchor" href="#933-装饰器"></a> 9.3.3 装饰器</h3>
+<p><strong>1、需求的提出</strong></p>
+<p>（1）需要对已开发上线的程序添加某些功能</p>
+<p>（2）不能对程序中函数的源代码进行修改</p>
+<p>（3）不能改变程序中函数的调用方式</p>
+<p><strong>比如说，要统计每个函数的运行时间</strong></p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f2</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f3</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+f1()
+f2()
+f3()</code></pre>
+<p><strong>没问题，我们有装饰器！！！</strong></p>
+<p><strong>2、函数对象</strong></p>
+<p>函数是Python中的第一类对象</p>
+<p>（1）可以把函数赋值给变量</p>
+<p>（2）对该变量进行调用，可实现原函数的功能</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">square</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> x**<span class="hljs-number">2</span>
+
+print(type(square))      <span class="hljs-comment"># square 是function类的一个实例</span></code></pre>
+<pre><code>&lt;class 'function'&gt;
+</code></pre>
+<pre><code class="hljs python">pow_2 = square          <span class="hljs-comment"># 可以理解成给这个函数起了个别名pow_2</span>
+print(pow_2(<span class="hljs-number">5</span>))
+print(square(<span class="hljs-number">5</span>))</code></pre>
+<pre><code>25
+25
+</code></pre>
+<p>可以将函数作为参数进行传递</p>
+<p><strong>3、高阶函数</strong></p>
+<p>（1）接收函数作为参数</p>
+<p>（2）或者返回一个函数</p>
+<p><strong>满足上述条件之一的函数称之为高阶函数</strong></p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">square</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> x**<span class="hljs-number">2</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pow_2</span><span class="hljs-params">(fun)</span>:</span>
+    <span class="hljs-keyword">return</span> fun
+
+
+f = pow_2(square)
+f(<span class="hljs-number">8</span>)</code></pre>
+<pre><code>64
+</code></pre>
+<pre><code class="hljs python">print(f == square)</code></pre>
+<pre><code>True
+</code></pre>
+<p><strong>4、 嵌套函数</strong></p>
+<p><strong>在函数内部定义一个函数</strong></p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"outer is running"</span>)
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"inner is running"</span>)
+        
+    inner()
+
+
+outer()</code></pre>
+<pre><code>outer is running
+inner is running
+</code></pre>
+<p><strong>5、闭包</strong></p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    z = <span class="hljs-number">10</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        y = x+<span class="hljs-number">100</span>
+        <span class="hljs-keyword">return</span> y, z
+        
+    <span class="hljs-keyword">return</span> inner
+
+
+f = outer()                <span class="hljs-comment"># 实际上f包含了inner函数本身+outer函数的环境</span>
+print(f)</code></pre>
+<pre><code>&lt;function outer.&lt;locals&gt;.inner at 0x000001BE11B1D730&gt;
+</code></pre>
+<pre><code class="hljs python">print(f.__closure__)         <span class="hljs-comment"># __closure__属性中包含了来自外部函数的信息</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> f.__closure__:
+    print(i.cell_contents)</code></pre>
+<pre><code>(&lt;cell at 0x000001BE0FDE06D8: int object at 0x00007FF910D59340&gt;, &lt;cell at 0x000001BE0FDE0A98: int object at 0x00007FF910D59460&gt;)
+1
+10
+</code></pre>
+<pre><code class="hljs python">res = f()
+print(res)</code></pre>
+<pre><code>(101, 10)
+</code></pre>
+<p><strong>闭包：延伸了作用域的函数</strong></p>
+<p><strong>如果一个函数定义在另一个函数的作用域内，并且引用了外层函数的变量，则该函数称为闭包</strong></p>
+<p><strong>闭包是由函数及其相关的引用环境组合而成的实体(即：闭包=函数+引用环境)</strong></p>
+<ul>
+<li>一旦在内层函数重新定义了相同名字的变量，则变量成为局部变量</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        x = x+<span class="hljs-number">100</span>
+        <span class="hljs-keyword">return</span> x
+        
+    <span class="hljs-keyword">return</span> inner
+
+
+f = outer()             
+f()</code></pre>
+<pre><code>---------------------------------------------------------------------------
+
+UnboundLocalError                         Traceback (most recent call last)
+
+&lt;ipython-input-87-d2da1048af8b&gt; in &lt;module&gt;
+     10 
+     11 f = outer()
+---&gt; 12 f()
+
+
+&lt;ipython-input-87-d2da1048af8b&gt; in inner()
+      3 
+      4     def inner():
+----&gt; 5         x = x+100
+      6         return x
+      7 
+
+
+UnboundLocalError: local variable 'x' referenced before assignment
+</code></pre>
+<p>nonlocal允许内嵌的函数来修改闭包变量</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        <span class="hljs-keyword">nonlocal</span> x
+        x = x+<span class="hljs-number">100</span>
+        <span class="hljs-keyword">return</span> x  
+    <span class="hljs-keyword">return</span> inner
+
+
+f = outer()             
+f()</code></pre>
+<pre><code>1
+
+101
+</code></pre>
+<p><strong>6、一个简单的装饰器</strong></p>
+<p><strong>嵌套函数实现</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(func)</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"inner run"</span>)
+        start = time.time()
+        func()
+        end = time.time()
+        print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+    
+    <span class="hljs-keyword">return</span> inner
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f1 run"</span>)
+    time.sleep(<span class="hljs-number">1</span>)
+
+
+
+f1 = timer(f1)             <span class="hljs-comment"># 包含inner()和timer的环境，如传递过来的参数func</span>
+f1()</code></pre>
+<pre><code>inner run
+f1 run
+f1 函数运行用时1.00秒
+</code></pre>
+<p><strong>语法糖</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(func)</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"inner run"</span>)
+        start = time.time()
+        func()
+        end = time.time()
+        print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+    
+    <span class="hljs-keyword">return</span> inner
+
+<span class="hljs-meta">@timer                      # 相当于实现了f1 = timer(f1)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f1 run"</span>)
+    time.sleep(<span class="hljs-number">1</span>)
+    
+    
+f1()</code></pre>
+<pre><code>inner run
+f1 run
+f1 函数运行用时1.00秒
+</code></pre>
+<p><strong>7、装饰有参函数</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(func)</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">(*args, **kwargs)</span>:</span>
+        print(<span class="hljs-string">"inner run"</span>)
+        start = time.time()
+        func(*args, **kwargs)
+        end = time.time()
+        print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+    
+    <span class="hljs-keyword">return</span> inner
+
+
+<span class="hljs-meta">@timer                # 相当于实现了f1 = timer(f1)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">(n)</span>:</span>
+    print(<span class="hljs-string">"f1 run"</span>)
+    time.sleep(n)
+
+    
+f1(<span class="hljs-number">2</span>)</code></pre>
+<pre><code>inner run
+f1 run
+f1 函数运行用时2.00秒
+</code></pre>
+<p>被装饰函数有返回值的情况</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(func)</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">(*args, **kwargs)</span>:</span>
+        print(<span class="hljs-string">"inner run"</span>)
+        start = time.time()
+        res = func(*args, **kwargs)
+        end = time.time()
+        print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+        <span class="hljs-keyword">return</span> res
+    
+    <span class="hljs-keyword">return</span> inner
+
+
+<span class="hljs-meta">@timer                   # 相当于实现了f1 = timer(f1)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">(n)</span>:</span>
+    print(<span class="hljs-string">"f1 run"</span>)
+    time.sleep(n)
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"wake up"</span>
+    
+res = f1(<span class="hljs-number">2</span>)
+print(res)</code></pre>
+<pre><code>inner run
+f1 run
+f1 函数运行用时2.00秒
+wake up
+</code></pre>
+<p><strong>8、带参数的装饰器</strong></p>
+<p>装饰器本身要传递一些额外参数</p>
+<ul>
+<li>需求：有时需要统计绝对时间，有时需要统计绝对时间的2倍</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(method)</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span><span class="hljs-params">(func)</span>:</span>
+    
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">(*args, **kwargs)</span>:</span>
+            print(<span class="hljs-string">"inner run"</span>)
+            <span class="hljs-keyword">if</span> method == <span class="hljs-string">"origin"</span>:
+                print(<span class="hljs-string">"origin_inner run"</span>)
+                start = time.time()
+                res = func(*args, **kwargs)
+                end = time.time()
+                print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+            <span class="hljs-keyword">elif</span> method == <span class="hljs-string">"double"</span>:
+                print(<span class="hljs-string">"double_inner run"</span>)
+                start = time.time()
+                res = func(*args, **kwargs)
+                end = time.time()
+                print(<span class="hljs-string">"&#123;&#125; 函数运行双倍用时&#123;:.2f&#125;秒"</span>.format(func.__name__, <span class="hljs-number">2</span>*(end-start)))
+            <span class="hljs-keyword">return</span> res
+    
+        <span class="hljs-keyword">return</span> inner
+    
+    <span class="hljs-keyword">return</span> outer
+
+
+<span class="hljs-meta">@timer(method="origin")  # 相当于timer = timer(method = "origin")   f1 = timer(f1)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f1 run"</span>)
+    time.sleep(<span class="hljs-number">1</span>)
+    
+    
+<span class="hljs-meta">@timer(method="double")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f2</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f2 run"</span>)
+    time.sleep(<span class="hljs-number">1</span>)
+
+
+f1()
+print()
+f2()</code></pre>
+<pre><code>inner run
+origin_inner run
+f1 run
+f1 函数运行用时1.00秒
+
+inner run
+double_inner run
+f2 run
+f2 函数运行双倍用时2.00秒
+</code></pre>
+<p><strong>理解闭包是关键！！！</strong></p>
+<p><strong>9、何时执行装饰器</strong></p>
+<ul>
+<li>一装饰就执行，不必等调用</li>
+</ul>
+<pre><code class="hljs python">func_names=[]
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find_function</span><span class="hljs-params">(func)</span>:</span>
+    print(<span class="hljs-string">"run"</span>)
+    func_names.append(func)
+    <span class="hljs-keyword">return</span> func
+
+
+<span class="hljs-meta">@find_function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f1 run"</span>)
+    
+
+<span class="hljs-meta">@find_function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f2</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f2 run"</span>)
+    
+
+<span class="hljs-meta">@find_function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f3</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"f3 run"</span>)</code></pre>
+<pre><code>run
+run
+run
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> func <span class="hljs-keyword">in</span> func_names:
+    print(func.__name__)
+    func()
+    print()</code></pre>
+<pre><code>f1
+f1 run
+
+f2
+f2 run
+
+f3
+f3 run
+</code></pre>
+<p><strong>10、回归本源</strong></p>
+<ul>
+<li>原函数的属性被掩盖了</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(func)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"inner run"</span>)
+        start = time.time()
+        func()
+        end = time.time()
+        print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+    
+    <span class="hljs-keyword">return</span> inner
+
+<span class="hljs-meta">@timer                # 相当于实现了f1 = timer(f1)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    time.sleep(<span class="hljs-number">1</span>)
+    print(<span class="hljs-string">"f1 run"</span>)
+
+print(f1.__name__)</code></pre>
+<pre><code>inner
+</code></pre>
+<ul>
+<li>回来</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> wraps
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span><span class="hljs-params">(func)</span>:</span>
+<span class="hljs-meta">    @wraps(func)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"inner run"</span>)
+        start = time.time()
+        func()
+        end = time.time()
+        print(<span class="hljs-string">"&#123;&#125; 函数运行用时&#123;:.2f&#125;秒"</span>.format(func.__name__, (end-start)))
+    
+    <span class="hljs-keyword">return</span> inner
+
+<span class="hljs-meta">@timer                # 相当于实现了f1 = timer(f1)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span>:</span>
+    time.sleep(<span class="hljs-number">1</span>)
+    print(<span class="hljs-string">"f1 run"</span>)
+
+print(f1.__name__) 
+f1()</code></pre>
+<pre><code>f1
+inner run
+f1 run
+f1 函数运行用时1.00秒
+</code></pre>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python 标准库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/">
+                        <span class="hidden-mobile">Python 文件、异常和模块</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python 有益的探索&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

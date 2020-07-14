@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Python 标准库 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-13 22:29">
+      2020年7月13日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月14日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="python标准库"><a class="markdownIt-Anchor" href="#python标准库"></a> Python标准库</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713223159.png" srcset="/img/loading.gif" alt="image-20200713223157073" /></p>
+<p>Python自身提供了比较丰富的生态，拿来即用，可极大的提高开发效率</p>
+<h2 id="101-time库"><a class="markdownIt-Anchor" href="#101-time库"></a> 10.1 time库</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713224213.png" srcset="/img/loading.gif" alt="image-20200713224211529" /></p>
+<p><strong>Python处理时间的标准库</strong></p>
+<p><strong>1、获取现在时间</strong></p>
+<p>（1）time.localtime()  本地时间</p>
+<p>（2）time.gmtime()   UTC世界统一时间</p>
+<p>北京时间比时间统一时间UTC早8个小时</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+t_local = time.localtime()
+t_UTC = time.gmtime()
+print(<span class="hljs-string">"t_local"</span>, t_local)           <span class="hljs-comment"># 本地时间</span>
+print(<span class="hljs-string">"t_UTC"</span>, t_UTC)               <span class="hljs-comment"># UTC统一时间</span></code></pre>
+<pre><code>t_local time.struct_time(tm_year=2020, tm_mon=7, tm_mday=13, tm_hour=22, tm_min=28, tm_sec=43, tm_wday=0, tm_yday=195, tm_isdst=0)
+t_UTC time.struct_time(tm_year=2020, tm_mon=7, tm_mday=13, tm_hour=14, tm_min=28, tm_sec=43, tm_wday=0, tm_yday=195, tm_isdst=0)
+</code></pre>
+<pre><code class="hljs python">time.ctime()                      <span class="hljs-comment"># 返回本地时间的字符串</span></code></pre>
+<pre><code>'Mon Jul 13 22:28:43 2020'
+</code></pre>
+<p><strong>2、时间戳与计时器</strong></p>
+<p>（1）time.time()           返回自纪元以来的秒数，记录sleep</p>
+<p>（2）time.perf_counter()      随意选取一个时间点，记录现在时间到该时间点的间隔秒数，记录sleep</p>
+<p>（3）time.process_time()      随意选取一个时间点，记录现在时间到该时间点的间隔秒数，不记录sleep</p>
+<p>perf_counter()精度较time()更高一些</p>
+<pre><code class="hljs python">t_1_start = time.time()
+t_2_start = time.perf_counter()
+t_3_start = time.process_time()
+print(t_1_start)
+print(t_2_start)
+print(t_3_start)
+
+res = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1000000</span>):
+    res += i
+    
+time.sleep(<span class="hljs-number">5</span>)
+t_1_end = time.time()
+t_2_end = time.perf_counter()
+t_3_end = time.process_time()
+
+print(<span class="hljs-string">"time方法：&#123;:.3f&#125;秒"</span>.format(t_1_end-t_1_start))
+print(<span class="hljs-string">"perf_counter方法：&#123;:.3f&#125;秒"</span>.format(t_2_end-t_2_start))
+print(<span class="hljs-string">"process_time方法：&#123;:.3f&#125;秒"</span>.format(t_3_end-t_3_start))</code></pre>
+<pre><code>1594650523.2838056
+1.0856994
+0.828125
+time方法：5.217秒
+perf_counter方法：5.217秒
+process_time方法：0.219秒
+</code></pre>
+<p><strong>3、格式化</strong></p>
+<p>（1）time.strftime 自定义格式化输出</p>
+<pre><code class="hljs python">lctime = time.localtime()
+time.strftime(<span class="hljs-string">"%Y-%m-%d %A %H:%M:%S"</span>, lctime)</code></pre>
+<pre><code>'2020-07-13 Monday 22:28:48'
+</code></pre>
+<p><strong>4、睡觉觉</strong></p>
+<p>（1）time.sleep()</p>
+<h2 id="102-random库"><a class="markdownIt-Anchor" href="#102-random库"></a> 10.2 random库</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713224235.png" srcset="/img/loading.gif" alt="image-20200713224232564" /></p>
+<p><strong>随机数在计算机应用中十分常见</strong></p>
+<p><strong>Python通过random库提供各种伪随机数</strong></p>
+<p><strong>基本可以用于除加密解密算法外的大多数工程应用</strong></p>
+<p><strong>1、随机种子——seed(a=None)</strong></p>
+<p>（1）相同种子会产生相同的随机数</p>
+<p>（2）如果不设置随机种子，以系统当前时间为默认值</p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> *
+
+seed(<span class="hljs-number">10</span>)
+print(random())
+seed(<span class="hljs-number">10</span>)
+print(random())</code></pre>
+<pre><code>0.5714025946899135
+0.5714025946899135
+</code></pre>
+<pre><code class="hljs python">print(random())</code></pre>
+<pre><code>0.4288890546751146
+</code></pre>
+<p><strong>2、产生随机整数</strong></p>
+<p><strong>（1）randint(a, b)——产生[a, b]之间的随机整数</strong></p>
+<pre><code class="hljs python">numbers = [randint(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+numbers</code></pre>
+<pre><code>[10, 1, 4, 8, 8, 5, 3, 1, 9, 8]
+</code></pre>
+<p><strong>（2）randrange(a)——产生[0, a)之间的随机整数</strong></p>
+<pre><code class="hljs python">numbers = [randrange(<span class="hljs-number">10</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+numbers</code></pre>
+<pre><code>[5, 1, 3, 5, 0, 6, 2, 9, 5, 6]
+</code></pre>
+<p><strong>（3）randrange(a, b, step)——产生[a, b)之间以setp为步长的随机整数</strong></p>
+<pre><code class="hljs python">numbers = [randrange(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+numbers</code></pre>
+<pre><code>[6, 4, 4, 6, 2, 4, 4, 2, 6, 2]
+</code></pre>
+<p><strong>3、产生随机浮点数</strong></p>
+<p><strong>（1）random()——产生[0.0, 1.0)之间的随机浮点数</strong></p>
+<pre><code class="hljs python">numbers = [random() <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+numbers</code></pre>
+<pre><code>[0.9693881604049188,
+ 0.613326820546709,
+ 0.0442606328646209,
+ 0.004055144158407464,
+ 0.13397252704913387,
+ 0.941002271395834,
+ 0.3028605620290723,
+ 0.3661456016604264,
+ 0.8981962445391883,
+ 0.31436380495645067]
+</code></pre>
+<p><strong>（2）uniform(a, b)——产生[a, b]之间的随机浮点数</strong></p>
+<pre><code class="hljs python">numbers = [uniform(<span class="hljs-number">2.1</span>, <span class="hljs-number">3.5</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+numbers</code></pre>
+<pre><code>[2.8685750576173676,
+ 2.710443340673771,
+ 2.190991846577591,
+ 2.9183647159827024,
+ 3.281695056726663,
+ 2.318986485742369,
+ 2.414018556160458,
+ 2.678018290800777,
+ 2.1516948166820806,
+ 2.7952448980631672]
+</code></pre>
+<p><strong>4、序列用函数</strong></p>
+<p><strong>（1）choice(seq)——从序列类型中随机返回一个元素</strong></p>
+<pre><code class="hljs python">choice([<span class="hljs-string">'win'</span>, <span class="hljs-string">'lose'</span>, <span class="hljs-string">'draw'</span>])</code></pre>
+<pre><code>'draw'
+</code></pre>
+<pre><code class="hljs python">choice(<span class="hljs-string">"python"</span>)</code></pre>
+<pre><code>'n'
+</code></pre>
+<p><strong>（2）choices(seq,weights=None, k)——对序列类型进行k次重复采样，可设置权重</strong></p>
+<pre><code class="hljs python">choices([<span class="hljs-string">'win'</span>, <span class="hljs-string">'lose'</span>, <span class="hljs-string">'draw'</span>], k=<span class="hljs-number">5</span>)</code></pre>
+<pre><code>['win', 'draw', 'win', 'lose', 'draw']
+</code></pre>
+<pre><code class="hljs python">choices([<span class="hljs-string">'win'</span>, <span class="hljs-string">'lose'</span>, <span class="hljs-string">'draw'</span>], [<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>], k=<span class="hljs-number">10</span>)</code></pre>
+<pre><code>['draw', 'win', 'draw', 'lose', 'lose', 'draw', 'win', 'win', 'draw', 'lose']
+</code></pre>
+<p><strong>（3）shuffle(seq)——将序列类型中元素随机排列，返回打乱后的序列</strong></p>
+<pre><code class="hljs python">numbers = [<span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>, <span class="hljs-string">"three"</span>, <span class="hljs-string">"four"</span>]
+shuffle(numbers)
+numbers</code></pre>
+<pre><code>['two', 'four', 'one', 'three']
+</code></pre>
+<p><strong>（4）sample(pop, k)——从pop类型中随机选取k个元素，以列表类型返回</strong></p>
+<pre><code class="hljs python">sample([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>], k=<span class="hljs-number">3</span>)</code></pre>
+<pre><code>[10, 30, 20]
+</code></pre>
+<p><strong>5、概率分布——以高斯分布为例</strong></p>
+<p><strong>gauss(mean, std)——生产一个符合高斯分布的随机数</strong></p>
+<pre><code class="hljs python">number = random.gauss(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+number</code></pre>
+<pre><code>-0.4766824049599741
+</code></pre>
+<p><strong>多生成几个</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+res = [gauss(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100000</span>)]
+
+plt.hist(res, bins=<span class="hljs-number">1000</span>)
+plt.show()</code></pre>
+<pre><code>(array([  1.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   1.,   0.,
+          0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   1.,   0.,   0.,   0.,   0.,   0.,   1.,   1.,   0.,   2.,
+          0.,   1.,   0.,   0.,   0.,   0.,   1.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   2.,   0.,   0.,   0.,   1.,   1.,   0.,   0.,
+          1.,   1.,   0.,   0.,   1.,   1.,   1.,   1.,   2.,   1.,   1.,
+          1.,   1.,   1.,   0.,   1.,   0.,   0.,   1.,   1.,   2.,   0.,
+          0.,   1.,   1.,   1.,   1.,   0.,   1.,   1.,   0.,   1.,   1.,
+          3.,   1.,   0.,   3.,   6.,   1.,   3.,   1.,   4.,   2.,   1.,
+          1.,   3.,   0.,   2.,   2.,   2.,   3.,   1.,   2.,   3.,   1.,
+          2.,   1.,   6.,   3.,   6.,   5.,   3.,   5.,   2.,   1.,   4.,
+          5.,   2.,   2.,   4.,   6.,   2.,   5.,   3.,   1.,   5.,   3.,
+          2.,   7.,   5.,   4.,   6.,   4.,   4.,   3.,   7.,   3.,   5.,
+          4.,   6.,   3.,   6.,   3.,   9.,   5.,   6.,   6.,  10.,  11.,
+          9.,   9.,  11.,   8.,   6.,   7.,   5.,   8.,  11.,  13.,  16.,
+          9.,   7.,   8.,   6.,  10.,  11.,  17.,  13.,   3.,  14.,  17.,
+         21.,  16.,  11.,  14.,  25.,  12.,  10.,  13.,   9.,  12.,  22.,
+         12.,  20.,  10.,  19.,  17.,  24.,  21.,  21.,  15.,  30.,  22.,
+         25.,  13.,  26.,  24.,  23.,  31.,  21.,  24.,  25.,  19.,  31.,
+         21.,  28.,  24.,  30.,  27.,  30.,  31.,  26.,  32.,  29.,  37.,
+         27.,  31.,  28.,  36.,  32.,  25.,  34.,  47.,  34.,  30.,  45.,
+         30.,  33.,  41.,  43.,  42.,  42.,  38.,  32.,  37.,  42.,  51.,
+         49.,  44.,  39.,  49.,  49.,  54.,  43.,  53.,  43.,  42.,  48.,
+         50.,  71.,  60.,  52.,  61.,  58.,  53.,  56.,  79.,  69.,  55.,
+         62.,  75.,  76.,  55.,  64.,  65.,  68.,  78.,  67.,  81.,  73.,
+         76.,  82.,  91.,  87.,  83.,  90.,  82.,  91.,  88.,  72.,  86.,
+         95.,  88., 108., 101.,  91.,  91., 103., 101.,  93., 102.,  95.,
+        101., 115., 111., 122., 122., 119., 119., 108.,  93., 119., 115.,
+        124., 123., 139., 123., 149., 112., 142., 121., 134., 148., 140.,
+        117., 154., 148., 139., 160., 131., 187., 170., 145., 175., 130.,
+        141., 168., 172., 134., 157., 169., 177., 165., 165., 167., 171.,
+        192., 171., 184., 177., 202., 180., 183., 184., 190., 196., 189.,
+        193., 189., 203., 216., 199., 247., 200., 204., 193., 199., 218.,
+        216., 216., 220., 235., 216., 235., 231., 215., 218., 244., 193.,
+        232., 222., 240., 236., 233., 232., 245., 274., 249., 249., 232.,
+        244., 238., 264., 259., 275., 270., 270., 276., 303., 274., 274.,
+        257., 287., 270., 298., 259., 299., 269., 270., 292., 298., 270.,
+        282., 297., 312., 279., 299., 281., 320., 292., 275., 307., 319.,
+        307., 281., 293., 349., 327., 284., 305., 323., 317., 299., 334.,
+        304., 290., 309., 331., 310., 304., 289., 317., 325., 296., 327.,
+        310., 331., 335., 329., 340., 323., 326., 327., 321., 328., 316.,
+        345., 354., 335., 379., 319., 324., 338., 328., 363., 316., 334.,
+        359., 334., 333., 365., 326., 334., 373., 336., 329., 315., 335.,
+        343., 347., 348., 350., 335., 360., 344., 377., 366., 315., 369.,
+        354., 359., 329., 357., 363., 332., 324., 344., 413., 342., 337.,
+        368., 323., 322., 350., 329., 347., 348., 324., 348., 323., 358.,
+        304., 328., 357., 323., 340., 355., 339., 312., 293., 340., 301.,
+        322., 333., 292., 323., 306., 301., 309., 291., 316., 308., 338.,
+        304., 288., 298., 276., 292., 321., 279., 292., 306., 291., 315.,
+        310., 296., 292., 299., 297., 277., 284., 262., 270., 290., 275.,
+        270., 294., 270., 274., 258., 288., 280., 277., 271., 281., 248.,
+        244., 240., 278., 281., 247., 247., 234., 225., 268., 262., 226.,
+        219., 232., 239., 243., 237., 245., 208., 239., 226., 241., 227.,
+        208., 215., 216., 236., 212., 239., 201., 215., 211., 194., 224.,
+        224., 207., 209., 185., 203., 200., 197., 212., 199., 206., 196.,
+        182., 197., 179., 174., 186., 183., 160., 179., 164., 180., 184.,
+        151., 165., 176., 170., 146., 166., 167., 161., 159., 145., 146.,
+        160., 142., 135., 125., 141., 134., 128., 140., 138., 138., 142.,
+        132., 127., 117., 127., 125., 121., 107., 106.,  89., 126., 109.,
+        115., 100., 116.,  89.,  99.,  98., 105., 105.,  97.,  97.,  95.,
+         89.,  93.,  90., 120.,  91., 112.,  90.,  95.,  87.,  94.,  80.,
+         76.,  74.,  74.,  83.,  67.,  72.,  74.,  63.,  89.,  66.,  72.,
+         83.,  63.,  68.,  65.,  68.,  76.,  63.,  65.,  49.,  54.,  53.,
+         64.,  62.,  45.,  48.,  49.,  68.,  49.,  59.,  46.,  46.,  49.,
+         58.,  53.,  58.,  43.,  46.,  51.,  46.,  40.,  39.,  34.,  45.,
+         42.,  47.,  48.,  38.,  35.,  38.,  29.,  41.,  48.,  39.,  35.,
+         34.,  38.,  26.,  27.,  33.,  26.,  23.,  30.,  30.,  30.,  33.,
+         36.,  23.,  27.,  14.,  27.,  35.,  19.,  32.,  26.,  24.,  28.,
+         22.,  21.,  22.,  18.,  19.,  22.,  23.,  14.,  17.,  10.,  24.,
+         14.,  10.,  16.,  13.,  18.,  12.,  15.,  12.,  12.,  14.,  18.,
+         19.,  14.,   8.,  14.,  13.,  11.,  15.,  14.,   7.,  10.,   6.,
+         10.,   9.,   9.,  15.,  14.,   9.,   6.,  13.,   8.,  15.,   9.,
+          8.,  10.,   5.,   5.,   9.,   9.,  12.,   9.,   3.,   9.,   9.,
+          7.,   4.,  11.,   5.,   4.,   5.,   5.,  11.,   3.,   7.,   5.,
+          3.,   6.,   3.,   4.,   6.,   4.,   6.,   4.,   3.,   4.,   2.,
+          4.,   2.,   3.,   6.,   6.,   3.,   2.,   5.,   4.,   5.,   5.,
+          2.,   2.,   2.,   1.,   3.,   1.,   1.,   0.,   2.,   1.,   1.,
+          3.,   1.,   1.,   2.,   2.,   1.,   0.,   1.,   1.,   2.,   0.,
+          1.,   2.,   2.,   1.,   1.,   4.,   1.,   0.,   0.,   0.,   0.,
+          0.,   2.,   2.,   0.,   2.,   2.,   2.,   1.,   0.,   0.,   3.,
+          0.,   0.,   1.,   0.,   2.,   0.,   1.,   0.,   0.,   1.,   0.,
+          0.,   1.,   0.,   0.,   1.,   0.,   1.,   0.,   1.,   1.,   0.,
+          1.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   0.,   1.,   0.,   1.,   3.,   1.,   0.,   0.,
+          0.,   0.,   0.,   0.,   0.,   0.,   0.,   1.,   1.,   0.,   0.,
+          1.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+          0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   1.]),
+ array([-4.27284199, -4.2642488 , -4.25565561, ...,  4.30316341,
+         4.3117566 ,  4.3203498 ]),
+ &lt;a list of 1000 Patch objects&gt;)
+
+
+&lt;Figure size 640x480 with 1 Axes&gt;
+</code></pre>
+<p>【例1】用random库实现简单的微信红包分配</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">red_packet</span><span class="hljs-params">(total, num)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, num):
+        per = random.uniform(<span class="hljs-number">0.01</span>, total/(num-i+<span class="hljs-number">1</span>)*<span class="hljs-number">2</span>)          <span class="hljs-comment"># 保证每个人获得红包的期望是total/num</span>
+        total = total - per
+        print(<span class="hljs-string">"第&#123;&#125;位红包金额： &#123;:.2f&#125;元"</span>.format(i, per))
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">"第&#123;&#125;位红包金额： &#123;:.2f&#125;元"</span>.format(num, total))
+            
+            
+red_packet(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)</code></pre>
+<pre><code>第1位红包金额： 1.85元
+第2位红包金额： 3.91元
+第3位红包金额： 1.66元
+第4位红包金额： 2.50元
+第5位红包金额： 0.08元
+</code></pre>
+<blockquote>
+<p>当迭代的对象迭代完并为空时，位于else的子句将执行，而如果在for循环中含有break时则直接终止循环，并不会执行else子句。</p>
+</blockquote>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">red_packet</span><span class="hljs-params">(total, num)</span>:</span>
+    ls = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, num):
+        per = round(random.uniform(<span class="hljs-number">0.01</span>, total/(num-i+<span class="hljs-number">1</span>)*<span class="hljs-number">2</span>), <span class="hljs-number">2</span>)     <span class="hljs-comment"># 保证每个人获得红包的期望是total/num</span>
+        ls.append(per)
+        total = total - per
+    <span class="hljs-keyword">else</span>:
+        ls.append(total)
+        
+    <span class="hljs-keyword">return</span> ls
+            
+            
+<span class="hljs-comment"># 重复发十万次红包，统计每个位置的平均值（约等于期望）</span>
+res = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100000</span>):
+    ls = red_packet(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>)
+    res.append(ls)
+
+res = np.array(res)
+print(res[:<span class="hljs-number">10</span>])
+np.mean(res, axis=<span class="hljs-number">0</span>)</code></pre>
+<pre><code>[[1.71 0.83 3.27 0.7  3.49]
+ [0.39 3.03 0.75 1.89 3.94]
+ [2.27 0.85 3.48 0.47 2.93]
+ [1.26 3.27 1.99 0.42 3.06]
+ [0.09 4.37 0.27 5.15 0.12]
+ [0.84 1.24 1.27 2.33 4.32]
+ [0.65 2.59 0.5  4.4  1.86]
+ [3.51 2.63 2.07 1.42 0.37]
+ [0.43 1.78 4.22 0.05 3.52]
+ [2.86 1.36 3.67 1.33 0.78]]
+
+
+
+
+
+array([2.0040861, 2.0042645, 2.0043338, 1.9987458, 1.9885698])
+</code></pre>
+<p>【例2】生产4位由数字和英文字母构成的验证码</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> string
+
+print(string.digits)
+print(string.ascii_letters)
+
+s=string.digits + string.ascii_letters
+v=random.sample(s,<span class="hljs-number">4</span>)
+print(v)
+print(<span class="hljs-string">''</span>.join(v))</code></pre>
+<pre><code>0123456789
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+['1', 'j', 'Z', '7']
+1jZ7
+</code></pre>
+<h2 id="103-collections库容器数据类型"><a class="markdownIt-Anchor" href="#103-collections库容器数据类型"></a> 10.3 collections库——容器数据类型</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713224245.png" srcset="/img/loading.gif" alt="image-20200713224244743" /></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> collections</code></pre>
+<p><strong>1、namedtuple——具名元组</strong></p>
+<ul>
+<li>点的坐标，仅看数据，很难知道表达的是一个点的坐标</li>
+</ul>
+<pre><code class="hljs python">p = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</code></pre>
+<ul>
+<li>
+<p>构建一个新的元组子类</p>
+<p>定义方法如下：typename 是元组名字，field_names 是域名</p>
+</li>
+</ul>
+<pre><code class="hljs python">collections.namedtuple(typename, field_names, *, rename=<span class="hljs-literal">False</span>, defaults=<span class="hljs-literal">None</span>, module=<span class="hljs-literal">None</span>)</code></pre>
+<pre><code class="hljs python">Point = collections.namedtuple(<span class="hljs-string">"Point"</span>, [<span class="hljs-string">"x"</span>, <span class="hljs-string">"y"</span>])
+p = Point(<span class="hljs-number">1</span>, y=<span class="hljs-number">2</span>)
+p</code></pre>
+<pre><code>Point(x=1, y=2)
+</code></pre>
+<ul>
+<li>可以调用属性</li>
+</ul>
+<pre><code class="hljs python">print(p.x)
+print(p.y)</code></pre>
+<pre><code>1
+2
+</code></pre>
+<ul>
+<li>有元组的性质</li>
+</ul>
+<pre><code class="hljs python">print(p[<span class="hljs-number">0</span>])
+print(p[<span class="hljs-number">1</span>])
+x, y = p
+print(x)
+print(y)</code></pre>
+<pre><code>1
+2
+1
+2
+</code></pre>
+<ul>
+<li>确实是元组的子类</li>
+</ul>
+<pre><code class="hljs python">print(isinstance(p, tuple))</code></pre>
+<pre><code>True
+</code></pre>
+<p>【例】模拟扑克牌</p>
+<pre><code class="hljs python">Card = collections.namedtuple(<span class="hljs-string">"Card"</span>, [<span class="hljs-string">"rank"</span>, <span class="hljs-string">"suit"</span>])
+ranks = [str(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, <span class="hljs-number">11</span>)] + list(<span class="hljs-string">"JQKA"</span>)    
+suits = <span class="hljs-string">"spades diamonds clubs hearts"</span>.split()
+print(<span class="hljs-string">"ranks"</span>, ranks)
+print(<span class="hljs-string">"suits"</span>, suits)
+cards = [Card(rank, suit) <span class="hljs-keyword">for</span> rank <span class="hljs-keyword">in</span> ranks
+                          <span class="hljs-keyword">for</span> suit <span class="hljs-keyword">in</span> suits]
+cards</code></pre>
+<pre><code>ranks ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+suits ['spades', 'diamonds', 'clubs', 'hearts']
+
+
+
+
+
+[Card(rank='2', suit='spades'),
+ Card(rank='2', suit='diamonds'),
+ Card(rank='2', suit='clubs'),
+ Card(rank='2', suit='hearts'),
+ Card(rank='3', suit='spades'),
+ Card(rank='3', suit='diamonds'),
+ Card(rank='3', suit='clubs'),
+ Card(rank='3', suit='hearts'),
+ Card(rank='4', suit='spades'),
+ Card(rank='4', suit='diamonds'),
+ Card(rank='4', suit='clubs'),
+ Card(rank='4', suit='hearts'),
+ Card(rank='5', suit='spades'),
+ Card(rank='5', suit='diamonds'),
+ Card(rank='5', suit='clubs'),
+ Card(rank='5', suit='hearts'),
+ Card(rank='6', suit='spades'),
+ Card(rank='6', suit='diamonds'),
+ Card(rank='6', suit='clubs'),
+ Card(rank='6', suit='hearts'),
+ Card(rank='7', suit='spades'),
+ Card(rank='7', suit='diamonds'),
+ Card(rank='7', suit='clubs'),
+ Card(rank='7', suit='hearts'),
+ Card(rank='8', suit='spades'),
+ Card(rank='8', suit='diamonds'),
+ Card(rank='8', suit='clubs'),
+ Card(rank='8', suit='hearts'),
+ Card(rank='9', suit='spades'),
+ Card(rank='9', suit='diamonds'),
+ Card(rank='9', suit='clubs'),
+ Card(rank='9', suit='hearts'),
+ Card(rank='10', suit='spades'),
+ Card(rank='10', suit='diamonds'),
+ Card(rank='10', suit='clubs'),
+ Card(rank='10', suit='hearts'),
+ Card(rank='J', suit='spades'),
+ Card(rank='J', suit='diamonds'),
+ Card(rank='J', suit='clubs'),
+ Card(rank='J', suit='hearts'),
+ Card(rank='Q', suit='spades'),
+ Card(rank='Q', suit='diamonds'),
+ Card(rank='Q', suit='clubs'),
+ Card(rank='Q', suit='hearts'),
+ Card(rank='K', suit='spades'),
+ Card(rank='K', suit='diamonds'),
+ Card(rank='K', suit='clubs'),
+ Card(rank='K', suit='hearts'),
+ Card(rank='A', suit='spades'),
+ Card(rank='A', suit='diamonds'),
+ Card(rank='A', suit='clubs'),
+ Card(rank='A', suit='hearts')]
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> *</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 洗牌</span>
+shuffle(cards)
+cards</code></pre>
+<pre><code>[Card(rank='4', suit='spades'),
+ Card(rank='Q', suit='spades'),
+ Card(rank='8', suit='diamonds'),
+ Card(rank='3', suit='hearts'),
+ Card(rank='Q', suit='diamonds'),
+ Card(rank='10', suit='diamonds'),
+ Card(rank='10', suit='spades'),
+ Card(rank='A', suit='spades'),
+ Card(rank='7', suit='hearts'),
+ Card(rank='2', suit='diamonds'),
+ Card(rank='9', suit='clubs'),
+ Card(rank='8', suit='spades'),
+ Card(rank='6', suit='diamonds'),
+ Card(rank='4', suit='hearts'),
+ Card(rank='A', suit='clubs'),
+ Card(rank='9', suit='hearts'),
+ Card(rank='3', suit='clubs'),
+ Card(rank='Q', suit='hearts'),
+ Card(rank='K', suit='hearts'),
+ Card(rank='6', suit='hearts'),
+ Card(rank='10', suit='hearts'),
+ Card(rank='5', suit='spades'),
+ Card(rank='K', suit='clubs'),
+ Card(rank='3', suit='spades'),
+ Card(rank='J', suit='hearts'),
+ Card(rank='5', suit='hearts'),
+ Card(rank='7', suit='spades'),
+ Card(rank='K', suit='diamonds'),
+ Card(rank='A', suit='diamonds'),
+ Card(rank='6', suit='clubs'),
+ Card(rank='5', suit='diamonds'),
+ Card(rank='2', suit='spades'),
+ Card(rank='7', suit='diamonds'),
+ Card(rank='J', suit='diamonds'),
+ Card(rank='A', suit='hearts'),
+ Card(rank='5', suit='clubs'),
+ Card(rank='8', suit='hearts'),
+ Card(rank='2', suit='hearts'),
+ Card(rank='4', suit='clubs'),
+ Card(rank='6', suit='spades'),
+ Card(rank='J', suit='spades'),
+ Card(rank='10', suit='clubs'),
+ Card(rank='9', suit='spades'),
+ Card(rank='2', suit='clubs'),
+ Card(rank='3', suit='diamonds'),
+ Card(rank='J', suit='clubs'),
+ Card(rank='Q', suit='clubs'),
+ Card(rank='K', suit='spades'),
+ Card(rank='4', suit='diamonds'),
+ Card(rank='7', suit='clubs'),
+ Card(rank='9', suit='diamonds'),
+ Card(rank='8', suit='clubs')]
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 随机抽一张牌</span>
+choice(cards)</code></pre>
+<pre><code>Card(rank='J', suit='hearts')
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 随机抽多张牌</span>
+sample(cards, k=<span class="hljs-number">5</span>)</code></pre>
+<pre><code>[Card(rank='5', suit='diamonds'),
+ Card(rank='8', suit='spades'),
+ Card(rank='Q', suit='hearts'),
+ Card(rank='K', suit='diamonds'),
+ Card(rank='K', suit='hearts')]
+</code></pre>
+<p><strong>2、Counter——计数器工具</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter</code></pre>
+<pre><code class="hljs python">s = <span class="hljs-string">"牛奶奶找刘奶奶买牛奶"</span>
+colors = [<span class="hljs-string">'red'</span>, <span class="hljs-string">'blue'</span>, <span class="hljs-string">'red'</span>, <span class="hljs-string">'green'</span>, <span class="hljs-string">'blue'</span>, <span class="hljs-string">'blue'</span>]
+cnt_str = Counter(s)
+cnt_color = Counter(colors)
+print(cnt_str)
+print(cnt_color)</code></pre>
+<pre><code>Counter({'奶': 5, '牛': 2, '找': 1, '刘': 1, '买': 1})
+Counter({'blue': 3, 'red': 2, 'green': 1})
+</code></pre>
+<ul>
+<li>是字典的一个子类</li>
+</ul>
+<pre><code class="hljs python">print(isinstance(Counter(), dict))</code></pre>
+<pre><code>True
+</code></pre>
+<ul>
+<li>最常见的统计——most_commom(n)<br />
+提供 n 个频率最高的元素和计数</li>
+</ul>
+<pre><code class="hljs python">cnt_color.most_common(<span class="hljs-number">2</span>)</code></pre>
+<pre><code>[('blue', 3), ('red', 2)]
+</code></pre>
+<ul>
+<li>元素展开——elements()</li>
+</ul>
+<pre><code class="hljs python">list(cnt_str.elements())</code></pre>
+<pre><code>['牛', '牛', '奶', '奶', '奶', '奶', '奶', '找', '刘', '买']
+</code></pre>
+<ul>
+<li>其他一些加减操作</li>
+</ul>
+<pre><code class="hljs python">c = Counter(a=<span class="hljs-number">3</span>, b=<span class="hljs-number">1</span>)
+d = Counter(a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>)
+c+d</code></pre>
+<pre><code>Counter({'a': 4, 'b': 3})
+</code></pre>
+<p>【例】从一副牌中抽取10张，大于10的比例有多少</p>
+<pre><code class="hljs python">cards = collections.Counter(tens=<span class="hljs-number">16</span>, low_cards=<span class="hljs-number">36</span>)
+seen = sample(list(cards.elements()), k=<span class="hljs-number">10</span>)
+print(seen)</code></pre>
+<pre><code>['low_cards', 'tens', 'tens', 'low_cards', 'low_cards', 'tens', 'low_cards', 'tens', 'tens', 'tens']
+</code></pre>
+<pre><code class="hljs python">seen.count(<span class="hljs-string">'tens'</span>) / <span class="hljs-number">10</span></code></pre>
+<pre><code>0.6
+</code></pre>
+<p><strong>3、deque——双向队列</strong></p>
+<p>列表访问数据非常快速</p>
+<p>插入和删除操作非常慢——通过移动元素位置来实现</p>
+<p>特别是 insert(0, v) 和 pop(0)，在列表开始进行的插入和删除操作</p>
+<p><strong>双向队列可以方便的在队列两边高效、快速的增加和删除元素</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque
+
+d = deque(<span class="hljs-string">'cde'</span>) 
+d</code></pre>
+<pre><code>deque(['c', 'd', 'e'])
+</code></pre>
+<pre><code class="hljs python">d.append(<span class="hljs-string">"f"</span>)            <span class="hljs-comment"># 右端增加</span>
+d.append(<span class="hljs-string">"g"</span>)
+d.appendleft(<span class="hljs-string">"b"</span>)        <span class="hljs-comment"># 左端增加</span>
+d.appendleft(<span class="hljs-string">"a"</span>)
+d</code></pre>
+<pre><code>deque(['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+</code></pre>
+<pre><code class="hljs python">d.pop()           <span class="hljs-comment"># 右端删除 </span>
+d.popleft()       <span class="hljs-comment"># 左端删除</span>
+d</code></pre>
+<pre><code>'g'
+
+
+
+
+
+
+'a'
+
+
+
+
+
+
+deque(['b', 'c', 'd', 'e', 'f'])
+</code></pre>
+<p>deque 其他用法可参考官方文档</p>
+<h2 id="104-itertools库迭代器"><a class="markdownIt-Anchor" href="#104-itertools库迭代器"></a> 10.4 itertools库——迭代器</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713224257.png" srcset="/img/loading.gif" alt="image-20200713224255792" /></p>
+<p><strong>1、排列组合迭代器</strong></p>
+<p>（1）product——笛卡尔积</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> itertools
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.product(<span class="hljs-string">'ABC'</span>, <span class="hljs-string">'01'</span>):
+    print(i)</code></pre>
+<pre><code>('A', '0')
+('A', '1')
+('B', '0')
+('B', '1')
+('C', '0')
+('C', '1')
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.product(<span class="hljs-string">'ABC'</span>, repeat=<span class="hljs-number">3</span>):
+    print(i)</code></pre>
+<pre><code>('A', 'A', 'A')
+('A', 'A', 'B')
+('A', 'A', 'C')
+('A', 'B', 'A')
+('A', 'B', 'B')
+('A', 'B', 'C')
+('A', 'C', 'A')
+('A', 'C', 'B')
+('A', 'C', 'C')
+('B', 'A', 'A')
+('B', 'A', 'B')
+('B', 'A', 'C')
+('B', 'B', 'A')
+('B', 'B', 'B')
+('B', 'B', 'C')
+('B', 'C', 'A')
+('B', 'C', 'B')
+('B', 'C', 'C')
+('C', 'A', 'A')
+('C', 'A', 'B')
+('C', 'A', 'C')
+('C', 'B', 'A')
+('C', 'B', 'B')
+('C', 'B', 'C')
+('C', 'C', 'A')
+('C', 'C', 'B')
+('C', 'C', 'C')
+</code></pre>
+<p>（2）  permutations——排列</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.permutations(<span class="hljs-string">'ABCD'</span>, <span class="hljs-number">3</span>):   <span class="hljs-comment"># 3 是排列的长度</span>
+    print(i)</code></pre>
+<pre><code>('A', 'B', 'C')
+('A', 'B', 'D')
+('A', 'C', 'B')
+('A', 'C', 'D')
+('A', 'D', 'B')
+('A', 'D', 'C')
+('B', 'A', 'C')
+('B', 'A', 'D')
+('B', 'C', 'A')
+('B', 'C', 'D')
+('B', 'D', 'A')
+('B', 'D', 'C')
+('C', 'A', 'B')
+('C', 'A', 'D')
+('C', 'B', 'A')
+('C', 'B', 'D')
+('C', 'D', 'A')
+('C', 'D', 'B')
+('D', 'A', 'B')
+('D', 'A', 'C')
+('D', 'B', 'A')
+('D', 'B', 'C')
+('D', 'C', 'A')
+('D', 'C', 'B')
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.permutations(range(<span class="hljs-number">3</span>)):
+    print(i)</code></pre>
+<pre><code>(0, 1, 2)
+(0, 2, 1)
+(1, 0, 2)
+(1, 2, 0)
+(2, 0, 1)
+(2, 1, 0)
+</code></pre>
+<p>（3）combinations——组合</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.combinations(<span class="hljs-string">'ABCD'</span>, <span class="hljs-number">2</span>):  <span class="hljs-comment"># 2是组合的长度</span>
+    print(i)</code></pre>
+<pre><code>('A', 'B')
+('A', 'C')
+('A', 'D')
+('B', 'C')
+('B', 'D')
+('C', 'D')
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.combinations(range(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>):
+    print(i)</code></pre>
+<pre><code>(0, 1, 2)
+(0, 1, 3)
+(0, 2, 3)
+(1, 2, 3)
+</code></pre>
+<p>（4）combinations_with_replacement——元素可重复组合</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.combinations_with_replacement(<span class="hljs-string">'ABC'</span>, <span class="hljs-number">2</span>):  <span class="hljs-comment"># 2是组合的长度</span>
+    print(i)</code></pre>
+<pre><code>('A', 'A')
+('A', 'B')
+('A', 'C')
+('B', 'B')
+('B', 'C')
+('C', 'C')
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.product(<span class="hljs-string">'ABC'</span>,repeat=<span class="hljs-number">2</span>):
+    print(i)</code></pre>
+<pre><code>('A', 'A')
+('A', 'B')
+('A', 'C')
+('B', 'A')
+('B', 'B')
+('B', 'C')
+('C', 'A')
+('C', 'B')
+('C', 'C')
+</code></pre>
+<p><strong>2、拉链</strong></p>
+<p>（1）zip——短拉链</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> zip(<span class="hljs-string">"ABC"</span>, <span class="hljs-string">"012"</span>, <span class="hljs-string">"xyz"</span>):
+    print(i)</code></pre>
+<pre><code>('A', '0', 'x')
+('B', '1', 'y')
+('C', '2', 'z')
+</code></pre>
+<p>长度不一时，执行到最短的对象处，就停止</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> zip(<span class="hljs-string">"ABC"</span>, [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]):          <span class="hljs-comment"># 注意zip是内置的，不需要加itertools</span>
+    print(i)</code></pre>
+<pre><code>('A', 0)
+('B', 1)
+('C', 2)
+</code></pre>
+<p>（2）zip_longest——长拉链</p>
+<p>长度不一时，执行到最长的对象处，就停止，缺省元素用None或指定字符替代</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.zip_longest(<span class="hljs-string">"ABC"</span>, <span class="hljs-string">"012345"</span>):
+    print(i)</code></pre>
+<pre><code>('A', '0')
+('B', '1')
+('C', '2')
+(None, '3')
+(None, '4')
+(None, '5')
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.zip_longest(<span class="hljs-string">"ABC"</span>, <span class="hljs-string">"012345"</span>, fillvalue = <span class="hljs-string">"?"</span>):
+    print(i)</code></pre>
+<pre><code>('A', '0')
+('B', '1')
+('C', '2')
+('?', '3')
+('?', '4')
+('?', '5')
+</code></pre>
+<p><strong>3、无穷迭代器</strong></p>
+<p>（1）count(start=0, step=1)——计数</p>
+<pre><code>创建一个迭代器，它从 start 值开始，返回均匀间隔的值
+</code></pre>
+<pre><code class="hljs python">itertools.count(<span class="hljs-number">10</span>)
+<span class="hljs-number">10</span>
+<span class="hljs-number">11</span>
+<span class="hljs-number">12</span>
+.
+.
+.</code></pre>
+<pre><code>  File &quot;&lt;ipython-input-58-858571c7d016&gt;&quot;, line 5
+    .
+    ^
+SyntaxError: invalid syntax
+</code></pre>
+<p>（2）cycle(iterable)——循环</p>
+<pre><code>创建一个迭代器，返回 iterable 中所有元素，无限重复
+</code></pre>
+<pre><code class="hljs python">itertools.cycle(<span class="hljs-string">"ABC"</span>)
+A
+B
+C
+A
+B
+C
+.
+.
+.</code></pre>
+<pre><code>  File &quot;&lt;ipython-input-59-2857ab1abed6&gt;&quot;, line 8
+    .
+    ^
+SyntaxError: invalid syntax
+</code></pre>
+<p>（3）repeat(object  [, times])——重复</p>
+<pre><code>创建一个迭代器，不断重复 object 。除非设定参数 times ，否则将无限重复
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.repeat(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>):
+    print(i)</code></pre>
+<pre><code>10
+10
+10
+</code></pre>
+<p><strong>4、其他</strong></p>
+<p>（1）chain(iterables)——锁链</p>
+<pre><code>把一组迭代对象串联起来，形成一个更大的迭代器
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.chain(<span class="hljs-string">'ABC'</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]):
+    print(i)</code></pre>
+<pre><code>A
+B
+C
+1
+2
+3
+</code></pre>
+<p>（2）enumerate(iterable, start=0)——枚举（Python内置）</p>
+<pre><code>产出由两个元素组成的元组，结构是（index, item）,其中index 从start开始，item从iterable中取
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> enumerate(<span class="hljs-string">"Python"</span>, start=<span class="hljs-number">1</span>):
+    print(i)</code></pre>
+<pre><code>(1, 'P')
+(2, 'y')
+(3, 't')
+(4, 'h')
+(5, 'o')
+(6, 'n')
+</code></pre>
+<p>（3）groupby(iterable, key=None)——分组</p>
+<pre><code>创建一个迭代器，按照key指定的方式，返回 iterable 中连续的键和组
+一般来说，要预先对数据进行排序
+key为None默认把连续重复元素分组
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> key, group <span class="hljs-keyword">in</span> itertools.groupby(<span class="hljs-string">'AAAABBBCCDAABBB'</span>):
+    print(key, list(group))</code></pre>
+<pre><code>A ['A', 'A', 'A', 'A']
+B ['B', 'B', 'B']
+C ['C', 'C']
+D ['D']
+A ['A', 'A']
+B ['B', 'B', 'B']
+</code></pre>
+<pre><code class="hljs python">animals = [<span class="hljs-string">"duck"</span>, <span class="hljs-string">"eagle"</span>, <span class="hljs-string">"rat"</span>, <span class="hljs-string">"giraffe"</span>, <span class="hljs-string">"bear"</span>, <span class="hljs-string">"bat"</span>, <span class="hljs-string">"dolphin"</span>, <span class="hljs-string">"shark"</span>, <span class="hljs-string">"lion"</span>]
+animals.sort(key=len)
+print(animals)</code></pre>
+<pre><code>['rat', 'bat', 'duck', 'bear', 'lion', 'eagle', 'shark', 'giraffe', 'dolphin']
+</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> key, group <span class="hljs-keyword">in</span> itertools.groupby(animals, key=len):
+    print(key, list(group))</code></pre>
+<pre><code>3 ['rat', 'bat']
+4 ['duck', 'bear', 'lion']
+5 ['eagle', 'shark']
+7 ['giraffe', 'dolphin']
+</code></pre>
+<pre><code class="hljs python">animals = [<span class="hljs-string">"duck"</span>, <span class="hljs-string">"eagle"</span>, <span class="hljs-string">"rat"</span>, <span class="hljs-string">"giraffe"</span>, <span class="hljs-string">"bear"</span>, <span class="hljs-string">"bat"</span>, <span class="hljs-string">"dolphin"</span>, <span class="hljs-string">"shark"</span>, <span class="hljs-string">"lion"</span>]
+animals.sort(key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>])
+print(animals)
+<span class="hljs-keyword">for</span> key, group <span class="hljs-keyword">in</span> itertools.groupby(animals, key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>]):
+    print(key, list(group))</code></pre>
+<pre><code>['bear', 'bat', 'duck', 'dolphin', 'eagle', 'giraffe', 'lion', 'rat', 'shark']
+b ['bear', 'bat']
+d ['duck', 'dolphin']
+e ['eagle']
+g ['giraffe']
+l ['lion']
+r ['rat']
+s ['shark']
+</code></pre>
+<p><strong>itertools 其他函数可参考官方文档</strong></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python Numpy库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">
+                        <span class="hidden-mobile">Python 有益的探索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python 标准库&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

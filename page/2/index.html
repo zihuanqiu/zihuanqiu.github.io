@@ -184,21 +184,216 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E8%BF%AD%E4%BB%A3%E6%95%B0%E7%BB%84%20/">NumPy 迭代数组</a>
+      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">Python 基本语法元素</a>
 
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E8%BF%AD%E4%BB%A3%E6%95%B0%E7%BB%84%20/" class="index-excerpt">
+      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/" class="index-excerpt">
         
         
           
         
-        <div> NumPy 迭代数组
-NumPy 迭代器对象 numpy.nditer  提供了一种灵活访问一个或者多个数组元素的方式。
-迭代器最基本的任务的可以完成对数组元素的访问。
-接下来我们使用 arange() 函数创建一个 2X3 数组，并使用 nditer 对它进行迭代。
-import numpy as np
- 
-a = np.arange(6).reshape(2,3)
-print ('原始数组是</div>
+        <div>
+ 第一部分 数据类型
+ 1. 基本类型：数字、字符串、布尔
+ 1.1 数字类型
+
+int     整型          整数
+
+2
+
+float   浮点型       带小数的数
+
+2.0
+
+complex 复数          a+bj
+
+3+4j
+ 1.2 字符串类型
+
+str 字符串      视作文本
+组成： 由数字、字母、空格、其他字符等组合而成
+表达： 用&quot; &quo</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Network%20In%20Network/">Network In Network</a>
+
+      <a href="/2020/06/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Network%20In%20Network/" class="index-excerpt">
+        
+        
+          
+        
+        <div> Network In Network
+本文[21]是2014年ICLR上一篇非常有名的文章，作者Min Lin , Qiang Chen , Shuicheng Yan 来自于新加坡国立大学。这篇paper改进了传统的CNN网络，采用了少量的参数就松松击败了Alexnet网络，Alexnet网络参数大小是230M，采用这篇paper的算法才29M，减小了将近10倍。主要有两个创新点：multil</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Global-Pooling/">Global Pooling</a>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%BC%98%E5%8C%96/">网络架构优化</a>
+            
+              <a href="/tags/classification/">classification</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">Global Average Pooling</a>
+
+      <a href="/2020/06/28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/" class="index-excerpt">
+        
+        
+          
+        
+        <div> Global Average Pooling
+Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。
+在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/">深度学习模块</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/26/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Adaptive%20Context%20Network%20for%20Scene%20Parsing/">Adaptive Context Network for Scene Parsing</a>
+
+      <a href="/2020/06/26/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Adaptive%20Context%20Network%20for%20Scene%20Parsing/" class="index-excerpt">
+        
+        
+          
+        
+        <div> Adaptive Context Network for Scene Parsing
+
+            报告简介：​		场景解析中需要预测出场景图像中的像素点属于某一目标类或场景类。上下文的利用对于识别每个像素点十分关键。 当前的方法主要是基于全卷积神经网络上将不同上下文融合到高层语义部特征中。具体来说，利用全局上下文来改善局部特征的歧义，利用浅层的局部上下文补充空间细节。这些方法在融合</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-26
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Scene-Parsing/">Scene Parsing</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Detection%20in%20Crowded%20Scenes%20One%20Proposal,%20Multiple%20Predictions/">Detection in Crowded Scenes: One Proposal, Multiple Predictions</a>
+
+      <a href="/2020/06/25/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Detection%20in%20Crowded%20Scenes%20One%20Proposal,%20Multiple%20Predictions/" class="index-excerpt">
+        
+        
+          
+        
+        <div> Detection in Crowded Scenes: One Proposal, Multiple Predictions
+
+            参考文献[1]
+          
+ Common detection methods
+
+Two Stage Methods
+
+Fast R-CNN
+Faster R-CNN
+Cascade R-CNN
+
+
+One  Stage Method</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -211,7 +406,7 @@ print ('原始数组是</div>
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
             
           </div>
         
@@ -219,9 +414,7 @@ print ('原始数组是</div>
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
+              <a href="/tags/Detection/">Detection</a>
             
           </div>
         
@@ -233,32 +426,34 @@ print ('原始数组是</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%B9%BF%E6%92%AD(Broadcast)%20/">NumPy 广播(Broadcast)</a>
+      <a class="index-header" href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/">SVM</a>
 
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%B9%BF%E6%92%AD(Broadcast)%20/" class="index-excerpt">
+      <a href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/" class="index-excerpt">
         
         
           
         
-        <div> NumPy 广播(Broadcast)
-广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行。
-如果两个数组 a 和 b 形状相同，即满足 a.shape == b.shape，那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同。
-import numpy as np 
- 
-a </div>
+        <div> SVM（线性模型）数学推导
+
+学习路线：先线性二分类解释清楚，再加入核方法扩展至非线性二分类
+ 几个重要的概念
+
+
+训练样本集
+(xi,yi)(\boldsymbol{x}_i,y_i)(xi​,yi​)，其中xi\boldsymbol{x_i}xi​为nnn维列向量，表示nnn维特征；yiy_iyi​为标签，当yi=+1y_i=+1yi​=+1时为正样本，yi=−1y_i=-1yi​=−1时为</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-06
           </div>
         
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
             
           </div>
         
@@ -266,9 +461,7 @@ a </div>
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -280,34 +473,39 @@ a </div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E9%AB%98%E7%BA%A7%E7%B4%A2%E5%BC%95/">NumPy 高级索引</a>
+      <a class="index-header" href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ROC%E6%9B%B2%E7%BA%BF/">ROC曲线</a>
 
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E9%AB%98%E7%BA%A7%E7%B4%A2%E5%BC%95/" class="index-excerpt">
+      <a href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ROC%E6%9B%B2%E7%BA%BF/" class="index-excerpt">
         
         
           
         
-        <div> NumPy 高级索引
-NumPy 比一般的 Python 序列提供更多的索引方式。除了之前看到的用整数和切片的索引外，数组可以由整数数组索引、布尔索引及花式索引。
- 整数数组索引
-以下实例获取数组中(0,0)，(1,1)和(2,0)位置处的元素。
-import numpy as np 
- 
-x = np.array([[1,  2],  [3,  4],  [5,  6]]) 
-y = x[[0</div>
+        <div> 四个概率
+TPTPTP——将正样本预测为正（的概率）
+FNFNFN——将正样本预测为负（的概率）
+FPFPFP——将负样本预测为正（的概率）
+TNTNTN——将负样本预测为负（的概率）
+精确度定义为：
+P=TPTP+FPP=\frac{TP}{TP+FP}
+P=TP+FPTP​
+
+分母为所有判断为正的样本，PPP表示在所有被判断为正的样本中真正的正样本的概率
+
+召回率定义为：
+R=TPTP+FN</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-06
           </div>
         
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
             
           </div>
         
@@ -315,9 +513,7 @@ y = x[[0</div>
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -329,33 +525,33 @@ y = x[[0</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%87%E7%89%87%E5%92%8C%E7%B4%A2%E5%BC%95/">NumPy 切片和索引</a>
+      <a class="index-header" href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PCA/">PCA</a>
 
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%87%E7%89%87%E5%92%8C%E7%B4%A2%E5%BC%95/" class="index-excerpt">
+      <a href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PCA/" class="index-excerpt">
         
         
           
         
-        <div> NumPy  切片和索引
-ndarray对象的内容可以通过索引或切片来访问和修改，与 Python 中 list 的切片操作一样。
-ndarray 数组可以基于 0 - n 的下标进行索引，切片对象可以通过内置的 slice 函数，并设置 start, stop 及 step 参数进行，从原数组中切割出一个新数组。
-import numpy as np
- 
-a = np.arange(10)
-s</div>
+        <div> PCA
+
+主成分分析（PCA，Principle Component Analysis）就是在寻找使方差最大的方向，并在该方向上投影。(通常方差越大被视为越重要，方差也常常被称为能量)
+Y=A(X−X‾)Y=A\left( X-\overline{X} \right)
+Y=A(X−X)
+
+YYY是PCA的输出，aaa是投影的方向矩阵，XXX是PCA的输入，X‾\overline{X}X是XXX的</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-06
           </div>
         
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
             
           </div>
         
@@ -363,9 +559,7 @@ s</div>
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -377,36 +571,34 @@ s</div>
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/">NumPy 从数值范围创建数组</a>
+      <a class="index-header" href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
 
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/" class="index-excerpt">
+      <a href="/2020/06/06/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="index-excerpt">
         
         
           
         
-        <div> NumPy 从数值范围创建数组
-这一章节我们将学习如何从数值范围创建数组。
- numpy.arange
-numpy 包中的使用 arange 函数创建数值范围并返回 ndarray 对象，函数格式如下：
-numpy.arange(start, stop, step, dtype)
-根据 start 与 stop 指定的范围以及 step 设定的步长，生成一个 ndarray。
- 参数说明：
+        <div> 感知机
+1943年，心理学家W.S.McCulloch和数理逻辑学家W.Pitts基于神经元的生理特征，建立了单个神经元的数学模型（MP模型）
 
 
-</div>
+实际上没啥依据
+
+
+1957年，Frank Rosenblatt从纯数学的度重新考察这一模型，指出能够从一些输入输出对     中通过学习算法获得权重w\boldsymbol{w}w和bbb  。（这被认为是第一个机器学习算法，SVM是90年代的算法</div>
       </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-06
           </div>
         
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
             
           </div>
         
@@ -414,279 +606,7 @@ numpy.arange(start, stop, step, dtype)
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E5%B7%B2%E6%9C%89%E7%9A%84%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/">NumPy 从已有的数组创建数组</a>
-
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E4%BB%8E%E5%B7%B2%E6%9C%89%E7%9A%84%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84/" class="index-excerpt">
-        
-        
-          
-        
-        <div> NumPy 从已有的数组创建数组
-本章节我们将学习如何从已有的数组创建数组。
- numpy.asarray
-numpy.asarray 类似 numpy.array，但 numpy.asarray  参数只有三个，比 numpy.array 少两个。
-numpy.asarray(a, dtype = None, order = None)
- 参数说明：
-
-
-
-参数
-描述
-
-
-
-
-a
-任意形式的输</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84%20/">NumPy 创建数组</a>
-
-      <a href="/2020/06/25/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84%20/" class="index-excerpt">
-        
-        
-          
-        
-        <div> NumPy 创建数组
-ndarray 数组除了可以使用底层 ndarray 构造器来创建外，也可以通过以下几种方式来创建。
- numpy.empty
-numpy.empty 方法用来创建一个指定形状（shape）、数据类型（dtype）且未初始化的数组：
-numpy.empty(shape, dtype = float, order = 'C')
-参数说明：
-
-
-
-参数
-描述
-
-
-
-
-shape</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7%20/">NumPy 数组属性</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7%20/" class="index-excerpt">
-        
-        
-          
-        
-        <div> NumPy 数组属性
-本章节我们将来了解 NumPy 数组的一些基本属性。
-NumPy 数组的维数称为秩（rank），秩就是轴的数量，即数组的维度，一维数组的秩为 1，二维数组的秩为 2，以此类推。
-在  NumPy中，每一个线性的数组称为是一个轴（axis），也就是维度（dimensions）。比如说，二维数组相当于是两个一维数组，其中第一个一维数组中每个元素又是一个一维数组。所以一维数组就是</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">NumPy 数据类型</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="index-excerpt">
-        
-        
-          
-        
-        <div> NumPy 数据类型
-numpy 支持的数据类型比 Python 内置的类型要多很多，基本上可以和 C 语言的数据类型对应上，其中部分类型对应为 Python 内置的类型。下表列举了常用 NumPy 基本类型。
-
-
-
-名称
-描述
-
-
-
-
-bool_
-布尔型数据类型（True 或者 False）
-
-
-int_
-默认的整数类型（类似于 C 语言中的 long，int32 或 int64）
-
-
-int</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20Ndarray%20%E5%AF%B9%E8%B1%A1/">NumPy Ndarray对象</a>
-
-      <a href="/2020/06/24/Py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/NumPy%20Ndarray%20%E5%AF%B9%E8%B1%A1/" class="index-excerpt">
-        
-        
-          
-        
-        <div> NumPy Ndarray 对象
-NumPy 最重要的一个特点是其 N 维数组对象 ndarray，它是一系列同类型数据的集合，以 0 下标为开始进行集合中元素的索引。
-ndarray 对象是用于存放同类型元素的多维数组。
-ndarray 中的每个元素在内存中都有相同存储大小的区域。
-ndarray 内部由以下内容组成：
-
-一个指向数据（内存或内存映射文件中的一块数据）的指针。
-数据类型或 dt</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-24
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%BD%BF%E7%94%A8Python/">使用Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">利用python进行数据分析</a>
-            
-              <a href="/tags/Numpy/">Numpy</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -698,7 +618,7 @@ ndarray 内部由以下内容组成：
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </span>
   </nav>
   
