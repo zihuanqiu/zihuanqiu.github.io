@@ -184,14 +184,27 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">Pytorch的Tensor</a>
+      <a class="index-header" href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">张量的操作与线性回归</a>
 
       <a href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="index-excerpt">
         
         
           
         
-        <div></div>
+        <div> 1. 张量的操作：拼接、切分、索引和变换
+
+ 1.1 张量拼接与切分
+ 1.1.1 通过torch.cat不拓展维度拼接
+torch.cat(tensors, dim=0, out=None)
+功能：将张量按维度dim进行拼接
+
+tensors: 张量序列
+dim : 要拼接的维度
+
+import torch
+torch.manual_seed(1)
+
+t = torch.ones((2, 3)</div>
       </a>
 
       <div class="index-btm post-metas">
