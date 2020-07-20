@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Pytorch的Tensor</title>
+    <link href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/"/>
+    <url>/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-张量是什么"><a class="markdownIt-Anchor" href="#1-张量是什么"></a> 1 张量是什么</h1><p>张量是一个多维数组，它是标量、向量、矩阵的高维拓展</p><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200720140740.png" srcset="/img/loading.gif" alt="image-20200720140731459" /></p><p>Pytorch0.4.0版开始，Variable并入Tensor</p><ul><li><p>dtype:张量的数据类型，如torch.FloatTensor,torch.cuda.FloatTensor</p></li><li><p>shape:张量的形状，如(64,3,224,224)</p></li><li><p>device:张量所在设备，GPU/CPU，是加速的关键</p></li></ul><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200720141408.png" srcset="/img/loading.gif" alt="image-20200720141349926" style="zoom: 67%;" /><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200720143004.png" srcset="/img/loading.gif" alt="image-20200720142848284" style="zoom:67%;" /><h1 id="2-张量的创建"><a class="markdownIt-Anchor" href="#2-张量的创建"></a> 2 张量的创建</h1><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200720142726.png" srcset="/img/loading.gif" alt="image-20200720142506582" style="zoom: 33%;" /><h2 id="21-从ndarray创建"><a class="markdownIt-Anchor" href="#21-从ndarray创建"></a> 2.1 从ndarray创建</h2><h3 id="211-通过torchtensor创建张量"><a class="markdownIt-Anchor" href="#211-通过torchtensor创建张量"></a> 2.1.1 通过torch.tensor创建张量</h3><pre><code class="hljs python">torch.tensor(data,dtype=<span class="hljs-literal">None</span>,     device=<span class="hljs-literal">None</span>,     requires_grad=<span class="hljs-literal">False</span>,     pin_memory=<span class="hljs-literal">False</span>)</code></pre><p>功能：从data创建tensor<br />• data: 数据, 可以是list, numpy<br />• dtype : 数据类型，默认与data的一致<br />• device : 所在设备, cuda/cpu<br />• requires_grad：是否需要梯度<br />• pin_memory：是否存于锁页内存</p><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> nptorch.manual_seed(<span class="hljs-number">1</span>)arr = np.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))print(<span class="hljs-string">"ndarray的数据类型："</span>, arr.dtype)t = torch.tensor(arr, device=<span class="hljs-string">'cuda'</span>)<span class="hljs-comment"># t = torch.tensor(arr)</span>print(t)</code></pre><pre><code>ndarray的数据类型： float64tensor([[1., 1., 1.],        [1., 1., 1.],        [1., 1., 1.]], device='cuda:0', dtype=torch.float64)</code></pre><h3 id="212-通过torchfrom_numpy创建张量"><a class="markdownIt-Anchor" href="#212-通过torchfrom_numpy创建张量"></a> 2.1.2  通过torch.from_numpy创建张量</h3><pre><code class="hljs python">torch.from_numpy(ndarray)</code></pre><p>功能：从numpy创建tensor<br />注意事项：从torch.from_numpy创建的tensor于原ndarray共享内存，当修改其中一个的数据，另外一个也将会被改动</p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200720142411.png" srcset="/img/loading.gif" alt="image-20200720142410333" style="zoom:50%;" /><pre><code class="hljs python">arr = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])t = torch.from_numpy(arr)print(<span class="hljs-string">"numpy array: \n"</span>, arr)print(<span class="hljs-string">"tensor : \n"</span>, t)print(<span class="hljs-string">"\n修改arr"</span>)arr[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span>print(<span class="hljs-string">"numpy array: "</span>, arr)print(<span class="hljs-string">"tensor : "</span>, t)print(<span class="hljs-string">"\n修改tensor"</span>)t[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>print(<span class="hljs-string">"numpy array: "</span>, arr)print(<span class="hljs-string">"tensor : "</span>, t)</code></pre><pre><code>numpy array:  [[1 2 3] [4 5 6]]tensor :  tensor([[1, 2, 3],        [4, 5, 6]], dtype=torch.int32)修改arrnumpy array:  [[0 2 3] [4 5 6]]tensor :  tensor([[0, 2, 3],        [4, 5, 6]], dtype=torch.int32)修改tensornumpy array:  [[-1  2  3] [ 4  5  6]]tensor :  tensor([[-1,  2,  3],        [ 4,  5,  6]], dtype=torch.int32)</code></pre><h2 id="22-依据数值创建"><a class="markdownIt-Anchor" href="#22-依据数值创建"></a> 2.2 依据数值创建</h2><h3 id="221-通过torchzeros创建张量"><a class="markdownIt-Anchor" href="#221-通过torchzeros创建张量"></a> 2.2.1 通过torch.zeros创建张量</h3><pre><code class="hljs python">out_t = torch.tensor([<span class="hljs-number">1</span>])t = torch.zeros((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), out=out_t)print(t, <span class="hljs-string">'\n'</span>, out_t)print(id(t), id(out_t), id(t) == id(out_t))</code></pre><pre><code>tensor([[0, 0, 0],        [0, 0, 0],        [0, 0, 0]])  tensor([[0, 0, 0],        [0, 0, 0],        [0, 0, 0]])2028621356232 2028621356232 True</code></pre><h3 id="222-通过torchfull创建张量"><a class="markdownIt-Anchor" href="#222-通过torchfull创建张量"></a> 2.2.2 通过torch.full创建张量</h3><pre><code class="hljs python">t = torch.full((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), <span class="hljs-number">1</span>, dtype=float)print(t)</code></pre><pre><code>tensor([[1., 1., 1.],        [1., 1., 1.],        [1., 1., 1.]], dtype=torch.float64)</code></pre><h3 id="223-通过torcharange创建等差数列张量"><a class="markdownIt-Anchor" href="#223-通过torcharange创建等差数列张量"></a> 2.2.3 通过torch.arange创建等差数列张量</h3><pre><code class="hljs python">t = torch.arange(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)print(t)</code></pre><pre><code>tensor([2, 4, 6, 8])</code></pre><h3 id="224-通过torchlinspace创建均分数列张量"><a class="markdownIt-Anchor" href="#224-通过torchlinspace创建均分数列张量"></a> 2.2.4 通过torch.linspace创建均分数列张量</h3><pre><code class="hljs python"><span class="hljs-comment"># t = torch.linspace(2, 10, 5)</span>t = torch.linspace(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">6</span>)print(t)</code></pre><pre><code>tensor([ 2.0000,  3.6000,  5.2000,  6.8000,  8.4000, 10.0000])</code></pre><h1 id="23-依概率分布创建张量"><a class="markdownIt-Anchor" href="#23-依概率分布创建张量"></a> 2.3 依概率分布创建张量</h1><h3 id="231-通过torchnormal创建正态分布张量"><a class="markdownIt-Anchor" href="#231-通过torchnormal创建正态分布张量"></a> 2.3.1 通过torch.normal创建正态分布张量</h3><pre><code class="hljs python"><span class="hljs-comment"># mean：张量 std: 张量</span>mean = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)std = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)t_normal = torch.normal(mean, std)print(<span class="hljs-string">"mean:&#123;&#125;\nstd:&#123;&#125;"</span>.format(mean, std))print(t_normal)<span class="hljs-comment"># mean：标量 std: 标量</span>t_normal = torch.normal(<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, size=(<span class="hljs-number">4</span>,))print(t_normal)<span class="hljs-comment"># mean：张量 std: 标量</span>mean = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)std = <span class="hljs-number">1</span>t_normal = torch.normal(mean, std)print(<span class="hljs-string">"mean:&#123;&#125;\nstd:&#123;&#125;"</span>.format(mean, std))print(t_normal)</code></pre><pre><code>mean:tensor([1., 2., 3., 4.])std:tensor([1., 2., 3., 4.])tensor([1.6614, 2.5338, 3.1850, 6.4853])tensor([-0.4519, -0.1661, -1.5228,  0.3817])mean:tensor([1., 2., 3., 4.])std:1tensor([-0.0276,  1.4369,  2.1077,  3.9417])</code></pre><pre><code class="hljs python"></code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>Pytorch</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Pytorch基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python Pandas库</title>
     <link href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/"/>
     <url>/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/</url>
@@ -297,9 +322,9 @@
       
       <tag>Global Pooling</tag>
       
-      <tag>网络架构优化</tag>
-      
       <tag>classification</tag>
+      
+      <tag>网络架构优化</tag>
       
     </tags>
     
