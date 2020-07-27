@@ -184,6 +184,253 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">transforms方法详解</a>
+
+      <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="index-excerpt">
+        
+        
+          
+        
+        <div>
+ 1. transforms——裁剪
+ 1.1 transforms.CenterCrop
+torchvision.transforms.CenterCrop(size)
+功能：从给出的PIL图像中心裁剪图片
+
+size：所需裁剪图片尺寸
+
+实验
+
+
+首先自定义一个函数transform_invert(img_, transform_train)用于可视化torchvision.transfor</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-24
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/">transforms运行机制</a>
+
+      <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" class="index-excerpt">
+        
+        
+          
+        
+        <div>通过import torchvision.transforms as transforms导入pytorch的计算机视觉包torchvision中的transforms模块。
+torchvision 包由流行的数据集、模型体系结构和用于计算机视觉的常见图像转换组成
+
+torchvision.transforms : 常用的图像预处理方法
+
+数据中心化
+数据标准化
+缩放
+裁剪
+旋转
+翻转
+填充
+噪声</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-24
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">DataLoader与DataSet</a>
+
+      <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. 为什么要DataSet和DataLoader
+
+
+相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。
+使用DataSet和DataLoader可以帮助我们进行小批次训练。
+
+ 2. Da</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-21
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd%E4%B8%8E%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/">autograd与逻辑回归</a>
+
+      <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd%E4%B8%8E%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. autograd—自动求导系统
+ 1.1 torch.autograd.backward
+torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None)
+功能：自动求取梯度
+
+tensors: 用于求导的张量，如 loss
+reta</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-21
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">计算图与动态图机制</a>
+
+      <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. 计算图
+ 1.1 用计算图表示：
+
+计算图是用来描述运算的有向无环图，计算图有两个主要元素：结点（Node）和边（Edge）
+结点表示数据，如向量，矩阵，张量，边表示运算，如加减乘除卷积等
+y=(x+w)∗(w+1)a=x+wb=w+1y=a∗by = (x+ w) * (w+1)\\
+
+a = x + w \\
+
+b = w + 1\\
+
+y = a * b
+y=(x+w)∗(w+1)a</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-21
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">张量的操作与线性回归</a>
 
       <a href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="index-excerpt">
@@ -195,7 +442,7 @@
 
  1.1 张量拼接与切分
  1.1.1 通过torch.cat不拓展维度拼接
-torch.cat(tensors, dim=0, out=None)
+torch.cat(tensors, dim=0, out=None) → Tensor
 功能：将张量按维度dim进行拼接
 
 tensors: 张量序列
@@ -204,7 +451,7 @@ dim : 要拼接的维度
 import torch
 torch.manual_seed(1)
 
-t = torch.ones((2, 3)</div>
+t = torch.on</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -244,7 +491,7 @@ t = torch.ones((2, 3)</div>
         
           
         
-        <div> 1 张量是什么
+        <div> 1. 张量是什么
 张量是一个多维数组，它是标量、向量、矩阵的高维拓展
 
 Pytorch0.4.0版开始，Variable并入Tensor
@@ -261,7 +508,7 @@ device:张量所在设备，GPU/CPU，是加速的关键
 
 
 
- 2 张量的创建</div>
+ 2. 张量的</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -415,283 +662,6 @@ import time
 
 t_local = time.localtime()
 t</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">Python 有益的探索</a>
-
-      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 有益的探索
-
-尝试着潜入水中，往冰山的深处扎一个小小的猛子
- 9.1 数据类型的底层实现
-
- 9.1.1 从奇怪的列表说起
-
-1、错综复杂的复制
-list_1 = [1, [22, 33, 44], (5, 6, 7), &#123;"name": "Sarah"&#125;]
-
-
-浅拷贝
-
-# list_3 = list_1          # 错误！！！
-list_2 = list_1.c</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/">Python 文件、异常和模块</a>
-
-      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 文件、异常和模块
-
-实际应用中，我们绝大多数的数据都是通过文件的交互完成的
- 8.1 文件的读写
-
- 8.1.1 文件的打开
-
-文件的打开通用格式
-
-with open("文件路径", "打开模式", encoding = "操作文件的字符编码") as f:
-    "对文件进行相应的读写操作"
-使用with 块的好处：执行完毕后，自动对文件进行close操作。
-【例1】一个简单的文件读取
-w</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/">Python 类——面向对象的编程</a>
-
-      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 类——面向对象的编程
-
- 引子
-
-Why：面向对象更符合人类对客观世界的抽象和理解
-
-
-一切皆对象
-一只小狗，一把椅子，一张信用卡，一条巧克力。。。
-
-
-一切对象，都有自己内在的属性
-狗狗的品种、椅子的质地、信用卡的额度、巧克力的口味。。。
-
-
-一切行为，皆是对象的行为
-狗狗蹲下、椅子移动位置、刷信用卡、巧克力融化了。。。
-
-
-How：类是对象的载体
-不同年龄、肤色、品质的猫，每一只都是一个对象</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">Python 函数</a>
-
-      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 函数
-
- 4.1 函数的定义及调用
-
- 4.1.1 为什么要用函数
-1、提高代码复用性——抽象出来，封装为函数
-2、将复杂的大问题分解成一系列小问题，分而治之——模块化设计的思想
-3、利于代码的维护和管理
-顺序式
-# 5的阶乘
-n = 5
-res = 1
-for i in range(1, n+1):
-    res *= i
-print(res)
-
-# 20的阶乘
-n = 20
-res = 1</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">Python 程序控制结构</a>
-
-      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 程序控制结构
-
-非顺序式的程序控制，往往需要根据一定的条件，决定程序运行的路线。因此，我们首先来认识一下什么叫条件测试。
- 第一部分 条件测试
-
- 1、比较运算
-a = 10
-b = 8
-print(a &gt; b)     # 大于
-print(a &lt; b)     # 小于
-print(a &gt;= b)    # 大于等于
-print(a &lt;= b)    # 小于等于
-p</div>
       </a>
 
       <div class="index-btm post-metas">

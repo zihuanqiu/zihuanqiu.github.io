@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>autograd与逻辑回归 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-21 14:23">
+      2020年7月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月23日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="1-autograd自动求导系统"><a class="markdownIt-Anchor" href="#1-autograd自动求导系统"></a> 1. autograd—自动求导系统</h1>
+<h2 id="11-torchautogradbackward"><a class="markdownIt-Anchor" href="#11-torchautogradbackward"></a> 1.1 torch.autograd.backward</h2>
+<pre><code class="hljs python">torch.autograd.backward(tensors, grad_tensors=<span class="hljs-literal">None</span>, retain_graph=<span class="hljs-literal">None</span>, create_graph=<span class="hljs-literal">False</span>, grad_variables=<span class="hljs-literal">None</span>)</code></pre>
+<p>功能：自动求取梯度</p>
+<ul>
+<li>tensors: 用于求导的张量，如 loss</li>
+<li>retain_graph : 保存计算图</li>
+<li>create_graph : 创建导数计算图，用于高阶求导</li>
+<li>grad_tensors：多梯度权重</li>
+</ul>
+<pre><code class="hljs python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+y.backward()
+print(w.grad)</code></pre>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">5</span>.])</span></span></code></pre>
+<blockquote>
+<p>注意：使用自动求导，必须在建立变量时声明requires_grad=True</p>
+<p>y这个tensor的类里面的方法backward只有一个函数，就是torch.autograd.backward。</p>
+<p>那么实际上我们对loss调用backward方法，就可以直接对叶子节点调用tensor.grad属性得到他们的梯度了</p>
+</blockquote>
+<pre><code class="hljs python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+a = torch.add(w, x)     <span class="hljs-comment"># retain_grad()</span>
+b = torch.add(w, <span class="hljs-number">1</span>)
+
+y0 = torch.mul(a, b)    <span class="hljs-comment"># y0 = (x+w) * (w+1)</span>
+y1 = torch.add(a, b)    <span class="hljs-comment"># y1 = (x+w) + (w+1)    dy1/dw = 2</span>
+
+loss = torch.cat([y0, y1], dim=<span class="hljs-number">0</span>)       <span class="hljs-comment"># [y0, y1]</span>
+grad_tensors = torch.tensor([<span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>])
+
+loss.backward(gradient=grad_tensors)    <span class="hljs-comment"># gradient 传入 torch.autograd.backward()中的grad_tensors</span>
+
+print(w.grad)</code></pre>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">9</span>.])</span></span></code></pre>
+<blockquote>
+<p>这里loss是两个数的拼接，那么使用grad_tensors可以给这两数求加权和，再计算总的梯度。上面代码中，dy1/dw总是等于2，所以总的梯度就是y0的梯度5x1 加上y1的梯度2x2，结果就是9</p>
+</blockquote>
+<h2 id="12-torchautogradgrad"><a class="markdownIt-Anchor" href="#12-torchautogradgrad"></a> 1.2 torch.autograd.grad</h2>
+<pre><code class="hljs python">torch.autograd.grad(outputs, inputs, grad_outputs=<span class="hljs-literal">None</span>, retain_graph=<span class="hljs-literal">None</span>, create_graph=<span class="hljs-literal">False</span>, only_inputs=<span class="hljs-literal">True</span>, allow_unused=<span class="hljs-literal">False</span>)</code></pre>
+<p>功能：求取梯度</p>
+<ul>
+<li>outputs: 用于求导的张量，如 loss（dy/dx的y）</li>
+<li>inputs : 需要梯度的张量（dy/dx的x）</li>
+<li>create_graph : 创建导数计算图，用于高阶求导</li>
+<li>retain_graph : 保存计算图</li>
+<li>grad_outputs：多梯度权重</li>
+</ul>
+<pre><code class="hljs python">x = torch.tensor([<span class="hljs-number">3.</span>], requires_grad=<span class="hljs-literal">True</span>)
+y = torch.pow(x, <span class="hljs-number">2</span>)     <span class="hljs-comment"># y = x**2</span>
+
+grad_1 = torch.autograd.grad(y, x, create_graph=<span class="hljs-literal">True</span>)   <span class="hljs-comment"># grad_1 = dy/dx = 2x = 2 * 3 = 6</span>
+print(grad_1)
+
+grad_2 = torch.autograd.grad(grad_1[<span class="hljs-number">0</span>], x)              <span class="hljs-comment"># grad_2 = d(dy/dx)/dx = d(2x)/dx = 2</span>
+print(grad_2)</code></pre>
+<pre><code class="hljs scheme">(<span class="hljs-name">tensor</span>([<span class="hljs-name">6.</span>], grad_fn=&lt;MulBackward0&gt;),)
+(<span class="hljs-name">tensor</span>([<span class="hljs-name">2.</span>]),)</code></pre>
+<blockquote>
+<p>grad_1中create_graph=True保存了计算图，使得可以继续计算grad_1相对于x的导数，实现二阶求导</p>
+</blockquote>
+<h2 id="13-autograd的注意事项"><a class="markdownIt-Anchor" href="#13-autograd的注意事项"></a> 1.3 autograd的注意事项</h2>
+<h3 id="131-梯度不自动清零"><a class="markdownIt-Anchor" href="#131-梯度不自动清零"></a> 1.3.1 梯度不自动清零</h3>
+<pre><code class="hljs python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>):
+    a = torch.add(w, x)
+    b = torch.add(w, <span class="hljs-number">1</span>)
+    y = torch.mul(a, b)
+
+    y.backward()
+    print(w.grad)
+
+    <span class="hljs-comment"># w.grad.zero_()</span></code></pre>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">5</span>.])</span></span>
+<span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">10</span>.])</span></span>
+<span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">15</span>.])</span></span>
+<span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">20</span>.])</span></span></code></pre>
+<blockquote>
+<p>只有开启了w.grad.zero_()以后，梯度才会清零</p>
+</blockquote>
+<h3 id="132-依赖于叶子结点的结点requires_grad默认为true"><a class="markdownIt-Anchor" href="#132-依赖于叶子结点的结点requires_grad默认为true"></a> 1.3.2 依赖于叶子结点的结点，requires_grad默认为True</h3>
+<pre><code class="hljs python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+print(a.requires_grad, b.requires_grad, y.requires_grad)</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-literal">True</span> <span class="hljs-literal">True</span> <span class="hljs-literal">True</span></code></pre>
+<blockquote>
+<p>w和x是叶子节点，则a和b直接与叶子节点相连，requires_grad=True；y与a和b相连，间接依赖于叶子节点，requires_grad=True。</p>
+<p>其实，在计算图中所有的节点，估计都是requires_grad=True的，因为都需要他们的导数进行反向传播</p>
+</blockquote>
+<h3 id="133-叶子结点不可执行in-place"><a class="markdownIt-Anchor" href="#133-叶子结点不可执行in-place"></a> 1.3.3 叶子结点不可执行in-place</h3>
+<h4 id="1331-in-place运算"><a class="markdownIt-Anchor" href="#1331-in-place运算"></a> 1.3.3.1 in-place运算</h4>
+<pre><code class="hljs python">a = torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+
+a += torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)</code></pre>
+<pre><code class="hljs basic"><span class="hljs-symbol">2627959083480 </span>tensor([<span class="hljs-number">1.</span>])
+<span class="hljs-symbol">2627959083480 </span>tensor([<span class="hljs-number">2.</span>])</code></pre>
+<blockquote>
+<p>自加运算是原位运算，不改变地址</p>
+</blockquote>
+<pre><code class="hljs python">a = torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+
+a.add_(<span class="hljs-number">1</span>)
+print(id(a), a)</code></pre>
+<pre><code class="hljs basic"><span class="hljs-symbol">3110703681928 </span>tensor([<span class="hljs-number">1.</span>])
+<span class="hljs-symbol">3110703681928 </span>tensor([<span class="hljs-number">2.</span>])</code></pre>
+<blockquote>
+<p>add_()也是原位运算哦，通常函数后带下划线的都是原位运算。add()就不是原位运算。</p>
+</blockquote>
+<pre><code class="hljs python">a = torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+
+a = a + torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)</code></pre>
+<pre><code class="hljs basic"><span class="hljs-symbol">2088678674824 </span>tensor([<span class="hljs-number">1.</span>])
+<span class="hljs-symbol">2088680712216 </span>tensor([<span class="hljs-number">2.</span>])</code></pre>
+<blockquote>
+<p>这样就不是原位运算了，地址被改变</p>
+</blockquote>
+<h4 id="1332-叶子节点不能做in-place运算"><a class="markdownIt-Anchor" href="#1332-叶子节点不能做in-place运算"></a> 1.3.3.2 叶子节点不能做in-place运算</h4>
+<pre><code class="hljs python">a = torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)
+
+a += torch.ones((<span class="hljs-number">1</span>, ))
+print(id(a), a)</code></pre>
+<pre><code class="hljs python">w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+a = torch.add(w, x)
+b = torch.add(w, <span class="hljs-number">1</span>)
+y = torch.mul(a, b)
+
+w.add_(<span class="hljs-number">1</span>)
+
+y.backward()</code></pre>
+<pre><code class="hljs sql">Traceback (most recent <span class="hljs-keyword">call</span> <span class="hljs-keyword">last</span>):
+ &lt;<span class="hljs-keyword">module</span>&gt;
+    w.add_(<span class="hljs-number">1</span>)
+RuntimeError: a leaf <span class="hljs-keyword">Variable</span> that requires grad <span class="hljs-keyword">is</span> being used <span class="hljs-keyword">in</span> an <span class="hljs-keyword">in</span>-place operation.</code></pre>
+<blockquote>
+<p>报错了，w.add_(1)是原位运算。在计算图中，各个节点的导数计算都依赖于叶子节点的值。因此不能在计算图中对叶子节点做原位运算。</p>
+</blockquote>
+<h1 id="2-逻辑回归"><a class="markdownIt-Anchor" href="#2-逻辑回归"></a> 2. 逻辑回归</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721165605.png" srcset="/img/loading.gif" alt="image-20200721163100486" /></p>
+<p>逻辑回归是线性的二分类模型 模型表达式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>W</mi><mi>X</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">y=f(W X+b)\\
+f(x)=\frac{1}{1+e^{-x}}\\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.697331em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace newline"></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi mathvariant="normal">称</mi><mi mathvariant="normal">为</mi><mi>S</mi><mi>i</mi><mi>g</mi><mi>m</mi><mi>o</mi><mi>i</mi><mi>d</mi><mi mathvariant="normal">函</mi><mi mathvariant="normal">数</mi><mo separator="true">,</mo><mi mathvariant="normal">也</mi><mi mathvariant="normal">称</mi><mi mathvariant="normal">为</mi><mi>L</mi><mi>o</mi><mi>g</mi><mi>i</mi><mi>s</mi><mi>t</mi><mi>i</mi><mi>c</mi><mi mathvariant="normal">函</mi><mi mathvariant="normal">数</mi></mrow><annotation encoding="application/x-tex">f(x) 称为Sigmoid函数, 也称为 Logistic函数
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord cjk_fallback">称</span><span class="mord cjk_fallback">为</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mord cjk_fallback">函</span><span class="mord cjk_fallback">数</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">也</span><span class="mord cjk_fallback">称</span><span class="mord cjk_fallback">为</span><span class="mord mathdefault">L</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord cjk_fallback">函</span><span class="mord cjk_fallback">数</span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext> class </mtext><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.15999999999999992em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0.5</mn><mo>&gt;</mo><mi>y</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0.5</mn><mo>≤</mo><mi>y</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\text { class }=\left\{\begin{array}{ll}
+0, &amp; 0.5&gt;y \\
+1, &amp; 0.5 \leq y
+\end{array}\right.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord"> class </span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">{</span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721163454.png" srcset="/img/loading.gif" alt="image-20200721163452471" style="zoom:80%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721163536.png" srcset="/img/loading.gif" alt="image-20200721163534436" style="zoom:67%;" />
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">10</span>)
+
+
+<span class="hljs-comment"># ============================ step 1/5 生成数据 ============================</span>
+sample_nums = <span class="hljs-number">100</span>
+mean_value = <span class="hljs-number">1.7</span>
+bias = <span class="hljs-number">1</span>
+n_data = torch.ones(sample_nums, <span class="hljs-number">2</span>)
+x0 = torch.normal(mean_value * n_data, <span class="hljs-number">1</span>) + bias      <span class="hljs-comment"># 类别0 数据 shape=(100, 2)</span>
+y0 = torch.zeros(sample_nums)                         <span class="hljs-comment"># 类别0 标签 shape=(100, 1)</span>
+x1 = torch.normal(-mean_value * n_data, <span class="hljs-number">1</span>) + bias     <span class="hljs-comment"># 类别1 数据 shape=(100, 2)</span>
+y1 = torch.ones(sample_nums)                          <span class="hljs-comment"># 类别1 标签 shape=(100, 1)</span>
+train_x = torch.cat((x0, x1), <span class="hljs-number">0</span>)
+train_y = torch.cat((y0, y1), <span class="hljs-number">0</span>)
+
+
+<span class="hljs-comment"># ============================ step 2/5 选择模型 ============================</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LR</span><span class="hljs-params">(nn.Module)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        super(LR, self).__init__()
+        self.features = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+        self.sigmoid = nn.Sigmoid()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, x)</span>:</span>
+        x = self.features(x)
+        x = self.sigmoid(x)
+        <span class="hljs-keyword">return</span> x
+
+
+lr_net = LR()   <span class="hljs-comment"># 实例化逻辑回归模型</span>
+
+
+<span class="hljs-comment"># ============================ step 3/5 选择损失函数 ============================</span>
+loss_fn = nn.BCELoss()
+
+<span class="hljs-comment"># ============================ step 4/5 选择优化器   ============================</span>
+lr = <span class="hljs-number">0.01</span>  <span class="hljs-comment"># 学习率</span>
+optimizer = torch.optim.SGD(lr_net.parameters(), lr=lr, momentum=<span class="hljs-number">0.9</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 模型训练 ============================</span>
+<span class="hljs-keyword">for</span> iteration <span class="hljs-keyword">in</span> range(<span class="hljs-number">1000</span>):
+
+    <span class="hljs-comment"># 前向传播</span>
+    y_pred = lr_net(train_x)
+
+    <span class="hljs-comment"># 计算 loss</span>
+    loss = loss_fn(y_pred.squeeze(), train_y)
+
+    <span class="hljs-comment"># 反向传播</span>
+    loss.backward()
+
+    <span class="hljs-comment"># 更新参数</span>
+    optimizer.step()
+
+    <span class="hljs-comment"># 清空梯度</span>
+    optimizer.zero_grad()
+
+    <span class="hljs-comment"># 绘图</span>
+    <span class="hljs-keyword">if</span> iteration % <span class="hljs-number">20</span> == <span class="hljs-number">0</span>:
+
+        mask = y_pred.ge(<span class="hljs-number">0.5</span>).float().squeeze()  <span class="hljs-comment"># 以0.5为阈值进行分类</span>
+        correct = (mask == train_y).sum()  <span class="hljs-comment"># 计算正确预测的样本个数</span>
+        acc = correct.item() / train_y.size(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 计算分类准确率</span>
+
+        plt.scatter(x0.data.numpy()[:, <span class="hljs-number">0</span>], x0.data.numpy()[:, <span class="hljs-number">1</span>], c=<span class="hljs-string">'r'</span>, label=<span class="hljs-string">'class 0'</span>)
+        plt.scatter(x1.data.numpy()[:, <span class="hljs-number">0</span>], x1.data.numpy()[:, <span class="hljs-number">1</span>], c=<span class="hljs-string">'b'</span>, label=<span class="hljs-string">'class 1'</span>)
+
+        w0, w1 = lr_net.features.weight[<span class="hljs-number">0</span>]
+        w0, w1 = float(w0.item()), float(w1.item())
+        plot_b = float(lr_net.features.bias[<span class="hljs-number">0</span>].item())
+        plot_x = np.arange(<span class="hljs-number">-6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0.1</span>)
+        plot_y = (-w0 * plot_x - plot_b) / w1
+
+        plt.xlim(<span class="hljs-number">-5</span>, <span class="hljs-number">7</span>)
+        plt.ylim(<span class="hljs-number">-7</span>, <span class="hljs-number">7</span>)
+        plt.plot(plot_x, plot_y)
+
+        plt.text(<span class="hljs-number">-5</span>, <span class="hljs-number">5</span>, <span class="hljs-string">'Loss=%.4f'</span> % loss.data.numpy(), fontdict=&#123;<span class="hljs-string">'size'</span>: <span class="hljs-number">20</span>, <span class="hljs-string">'color'</span>: <span class="hljs-string">'red'</span>&#125;)
+        plt.title(<span class="hljs-string">"Iteration: &#123;&#125;\nw0:&#123;:.2f&#125; w1:&#123;:.2f&#125; b: &#123;:.2f&#125; accuracy:&#123;:.2%&#125;"</span>.format(iteration, w0, w1, plot_b, acc))
+        plt.legend()
+
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+
+        <span class="hljs-keyword">if</span> acc &gt; <span class="hljs-number">0.99</span>:
+            <span class="hljs-keyword">break</span></code></pre>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721165533.png" srcset="/img/loading.gif" alt="image-20200721165532110" style="zoom:67%;" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DataLoader与DataSet</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">
+                        <span class="hidden-mobile">计算图与动态图机制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "autograd与逻辑回归&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

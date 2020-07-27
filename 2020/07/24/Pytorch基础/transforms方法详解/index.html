@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>transforms方法详解 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-24 12:03">
+      2020年7月24日 中午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月27日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727145834.png" srcset="/img/loading.gif" alt="transforms方法" /></p>
+<h1 id="1-transforms裁剪"><a class="markdownIt-Anchor" href="#1-transforms裁剪"></a> 1. transforms——裁剪</h1>
+<h2 id="11-transformscentercrop"><a class="markdownIt-Anchor" href="#11-transformscentercrop"></a> 1.1 transforms.CenterCrop</h2>
+<pre><code class="hljs python">torchvision.transforms.CenterCrop(size)</code></pre>
+<p>功能：从给出的PIL图像中心裁剪图片</p>
+<ul>
+<li>size：所需裁剪图片尺寸</li>
+</ul>
+<p><strong>实验</strong></p>
+<ol>
+<li>
+<p>首先自定义一个函数<code>transform_invert(img_, transform_train)</code>用于可视化<code>torchvision.transforms.CenterCrop(size)</code>的操作结果。</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transform_invert</span><span class="hljs-params">(img_, transform_train)</span>:</span>
+    <span class="hljs-string">"""</span>
+<span class="hljs-string">    将data 进行反归一化操作，并转换为PIL的image类型</span>
+<span class="hljs-string">    :param img_: tensor</span>
+<span class="hljs-string">    :param transform_train: torchvision.transforms</span>
+<span class="hljs-string">    :return: PIL image</span>
+<span class="hljs-string">    """</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">'Normalize'</span> <span class="hljs-keyword">in</span> str(transform_train):
+        norm_transform = list(filter(<span class="hljs-keyword">lambda</span> x: isinstance(x, transforms.Normalize), transform_train.transforms))
+        mean = torch.tensor(norm_transform[<span class="hljs-number">0</span>].mean, dtype=img_.dtype, device=img_.device)
+        std = torch.tensor(norm_transform[<span class="hljs-number">0</span>].std, dtype=img_.dtype, device=img_.device)
+        img_.mul_(std[:, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>]).add_(mean[:, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>])
+
+    img_ = img_.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># C*H*W --&gt; H*W*C</span>
+    img_ = np.array(img_) * <span class="hljs-number">255</span>
+
+    <span class="hljs-keyword">if</span> img_.shape[<span class="hljs-number">2</span>] == <span class="hljs-number">3</span>:
+        img_ = Image.fromarray(img_.astype(<span class="hljs-string">'uint8'</span>)).convert(<span class="hljs-string">'RGB'</span>)
+    <span class="hljs-keyword">elif</span> img_.shape[<span class="hljs-number">2</span>] == <span class="hljs-number">1</span>:
+        img_ = Image.fromarray(img_.astype(<span class="hljs-string">'uint8'</span>).squeeze())
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"Invalid img shape, expected 1 or 3 in axis 2, but got &#123;&#125;!"</span>.format(img_.shape[<span class="hljs-number">2</span>]))
+
+    <span class="hljs-keyword">return</span> img_</code></pre>
+</li>
+<li>
+<p>主程序：</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 1 CenterCrop</span>
+    transforms.CenterCrop(<span class="hljs-number">196</span>),     
+    
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data  <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]  <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>可以看到，图片已经从224x224剪裁为196x196了</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724134848.png" srcset="/img/loading.gif" alt="image-20200724134458082" style="zoom: 67%;" />
+</li>
+<li>
+<p>如果将size设置为（224，196），效果如下图</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724134855.png" srcset="/img/loading.gif" alt="image-20200724134704745" style="zoom:67%;" />
+</li>
+<li>
+<p>如果将size设置为512，超过了原来224的尺寸，就会zero padding</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724134857.png" srcset="/img/loading.gif" alt="image-20200724134839744" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="12-transformsrandomcrop"><a class="markdownIt-Anchor" href="#12-transformsrandomcrop"></a> 1.2 transforms.RandomCrop</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomCrop(size, padding=<span class="hljs-literal">None</span>, pad_if_needed=<span class="hljs-literal">False</span>, fill=<span class="hljs-number">0</span>, padding_mode=<span class="hljs-string">'constant'</span>)</code></pre>
+<p>功能：从图片中随机裁剪出尺寸为size的图片</p>
+<ul>
+<li>size：所需裁剪图片尺寸</li>
+<li>padding：设置填充大小<br />
+当为a时，上下左右均填充a个像素<br />
+当为(a, b)时，左右填充a个像素，上下填充b个像素<br />
+当为(a, b, c, d)时，左，上，右，下分别填充a, b, c, d</li>
+<li>pad_if_need：若图像小于设定size，则填充</li>
+<li>padding_mode：填充模式，有4种模式
+<ol>
+<li>constant：像素值由fill设定</li>
+<li>edge：像素值由图像边缘像素决定</li>
+<li>reflect：镜像填充，最后一个像素不镜像，eg：[1,2,3,4] → [3,2,1,2,3,4,3,2]</li>
+<li>symmetric：镜像填充，最后一个像素镜像，eg：[1,2,3,4] → [2,1,1,2,3,4,4,3]</li>
+</ol>
+</li>
+<li>fill：constant时，设置填充的像素值</li>
+</ul>
+<p><strong>实验</strong></p>
+<ol>
+<li>
+<p>程序如下，本实验分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 2 RandomCrop</span>
+    transforms.RandomCrop(<span class="hljs-number">224</span>, padding=<span class="hljs-number">16</span>),
+    <span class="hljs-comment"># transforms.RandomCrop(224+16*2, padding=16),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=(16, 64)),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=16, fill=(255, 0, 0)),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(512, pad_if_needed=True),   # pad_if_needed=True</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=64, padding_mode='edge'),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=64, padding_mode='reflect'),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(1024, padding=1024, padding_mode='symmetric'),    </span>
+    
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data  <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]  <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(224, padding=16)</code>，可以发现先做了上下左右16的zero padding，然后再随机裁剪224x224的区域。若执行<code>transforms.RandomCrop(512, padding=16)</code>则会报错，因为已经超过了原尺寸+padding的大小。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184335.png" srcset="/img/loading.gif" alt="image-20200724140246505" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(224+16*2, padding=16)</code>会发现，得到的就是原图片上下左右zero padding 16的结果，因为没得选了哈哈。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184332.png" srcset="/img/loading.gif" alt="image-20200724140804559" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(224, padding=(16, 64))</code>，发现填充的区域上下变宽，左右变窄。padding=一个int时，就是左右上下等宽，此外还可以接受一个二元组控制左右和上下，甚至可以接受一个四元组控制左、上、右、下。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184328.png" srcset="/img/loading.gif" alt="image-20200724141354570" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(224, padding=16, fill=(255, 0, 0))</code>，发现填充的像素变成了红色。实际上fill=(R, G, B)是一个RGB三元组，控制填充颜色。此外，如果fill=一个int，那么不是RGB三个通道都等于这个int哦，只是R通道等于这个int，GB通道是0。但是默认fill=0是确实又是RGB都为0，比较奇怪。使用时还是写三元组避免问题。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184325.png" srcset="/img/loading.gif" alt="image-20200724141103792" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(512, pad_if_needed=True)</code>，就可以对大于图片尺寸的区域做随机剪裁了。（应该无论size多大，总会有原图像的全部像素在里面吧）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184323.png" srcset="/img/loading.gif" alt="image-20200724143011081" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(224, padding=64, padding_mode='edge')</code>，用最外的一圈像素padding。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184316.png" srcset="/img/loading.gif" alt="image-20200724143206924" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(224, padding=64, padding_mode='reflect')</code>，做反射填充（原图像最外一圈像素不镜像）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184314.png" srcset="/img/loading.gif" alt="image-20200724143349581" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomCrop(1024, padding=1024, padding_mode='symmetric')</code>，做对称填充（原图像最外一圈像素也镜像）。其实<code>padding_mode='symmetric'</code>和<code>padding_mode='reflect'</code>的区别不大，仅一圈像素不同。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184311.png" srcset="/img/loading.gif" alt="image-20200724143550692" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="13-randomresizedcrop"><a class="markdownIt-Anchor" href="#13-randomresizedcrop"></a> 1.3 RandomResizedCrop</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomResizedCrop(size, scale=(<span class="hljs-number">0.08</span>, <span class="hljs-number">1.0</span>), ratio=(<span class="hljs-number">3</span>/<span class="hljs-number">4</span>, <span class="hljs-number">4</span>/<span class="hljs-number">3</span>), interpolation=<span class="hljs-number">2</span>)</code></pre>
+<p>功能：随机大小、长宽比裁剪图片</p>
+<ul>
+<li>
+<p>size：所需裁剪图片尺寸</p>
+</li>
+<li>
+<p>scale：随机裁剪面积比例, 默认(0.08, 1)</p>
+</li>
+<li>
+<p>ratio：随机长宽比，默认(3/4, 4/3)</p>
+</li>
+<li>
+<p>interpolation：插值方法<br />
+PIL.Image.NEAREST   (0)<br />
+PIL.Image.BILINEAR   (2)<br />
+PIL.Image.BICUBIC     (3)</p>
+<blockquote>
+<p>Default: PIL.Image.BILINEAR</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>实验</strong></p>
+<ol>
+<li>
+<p>程序如下</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+	<span class="hljs-comment"># 3 RandomResizedCrop</span>
+    transforms.RandomResizedCrop(size=<span class="hljs-number">224</span>, scale=(<span class="hljs-number">0.08</span>, <span class="hljs-number">1</span>), ratio=(<span class="hljs-number">1.</span> / <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span> / <span class="hljs-number">1.</span>)),  
+    
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data  <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]  <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出结果</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184057.png" srcset="/img/loading.gif" alt="image-20200724183908753" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184100.png" srcset="/img/loading.gif" alt="image-20200724183930644" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184103.png" srcset="/img/loading.gif" alt="image-20200724183938326" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184301.png" srcset="/img/loading.gif" alt="image-20200724183948494" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="14-fivecrop"><a class="markdownIt-Anchor" href="#14-fivecrop"></a> 1.4 FiveCrop</h2>
+<pre><code class="hljs python">torchvision.transforms.FiveCrop(size)</code></pre>
+<p>功能：将给定的PIL图像裁剪出左上、左下、右上、右下以及中央的五块区域</p>
+<ul>
+<li>size：每个图像的尺寸，如果size是一个int而不是(h, w)的，则生成一个大小(size, size)的正方形裁剪。</li>
+</ul>
+<blockquote>
+<p>注意：此转换返回图像的元组，数据集返回的输入和目标数量可能不匹配。请参阅下面的示例，了解如何处理此问题。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203230.png" srcset="/img/loading.gif" alt="image-20200724185916290" /></p>
+</blockquote>
+<pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>transform = Compose([
+<span class="hljs-meta">&gt;&gt;&gt; </span>   FiveCrop(size), <span class="hljs-comment"># this is a list of PIL Images</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>   Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([ToTensor()(crop) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])) <span class="hljs-comment"># returns a 4D tensor</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>])
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-comment">#In your test loop you can do the following:</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>input, target = batch <span class="hljs-comment"># input is a 5d tensor, target is 2d</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>bs, ncrops, c, h, w = input.size()
+<span class="hljs-meta">&gt;&gt;&gt; </span>result = model(input.view(<span class="hljs-number">-1</span>, c, h, w)) <span class="hljs-comment"># fuse batch size and ncrops</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>result_avg = result.view(bs, ncrops, <span class="hljs-number">-1</span>).mean(<span class="hljs-number">1</span>) <span class="hljs-comment"># avg over crops</span></code></pre>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+    
+    <span class="hljs-comment"># 4 FiveCrop</span>
+    transforms.FiveCrop(<span class="hljs-number">112</span>),
+    transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([(transforms.ToTensor()(crop)) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])),
+
+])
+
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+        bs, ncrops, c, h, w = inputs.shape
+        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(ncrops):
+            img_tensor = inputs[<span class="hljs-number">0</span>, n, ...]  <span class="hljs-comment"># C H W</span>
+            img = transform_invert(img_tensor, train_transform)
+            plt.imshow(img)
+            plt.show()
+            plt.pause(<span class="hljs-number">1</span>)</code></pre>
+</li>
+<li>
+<p>通过调试可以看到，inputs是一个shape为(1，5，3，112，112)的五维tensor。由于我们设置的batch-size=1，所以第一个维度的维数为1。这里我们通过<code>img_tensor = inputs[0, n, ...]</code>将5张照片依次检索出来，并转成PIL图片显示。<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203242.png" srcset="/img/loading.gif" alt="image-20200724202242205" /></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203112.png" srcset="/img/loading.gif" alt="image-20200724202815577" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203108.png" srcset="/img/loading.gif" alt="image-20200724202848292" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724205219.png" srcset="/img/loading.gif" alt="image-20200724202904656" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203128.png" srcset="/img/loading.gif" alt="image-20200724202912438" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203137.png" srcset="/img/loading.gif" alt="image-20200724202920264" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="15-tencrop"><a class="markdownIt-Anchor" href="#15-tencrop"></a> 1.5 TenCrop</h2>
+<pre><code class="hljs python">torchvision.transforms.TenCrop(size, vertical_flip=<span class="hljs-literal">False</span>)</code></pre>
+<p>功能：将给定的PIL图像裁剪成四个角以及中央部分，加上这些角的翻转版本（默认情况下使用水平翻转）</p>
+<ul>
+<li>size：所需裁剪图片尺寸</li>
+<li>vertical_flip：是否垂直翻转</li>
+</ul>
+<blockquote>
+<p>和FiveCrop一样，也是返回一个含有10个PIL照片的元组</p>
+</blockquote>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+    
+	<span class="hljs-comment"># 5 TenCrop</span>
+	transforms.TenCrop(<span class="hljs-number">112</span>, vertical_flip=<span class="hljs-literal">False</span>),
+	transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([(transforms.ToTensor()(crop)) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+        bs, ncrops, c, h, w = inputs.shape
+        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(ncrops):
+            img_tensor = inputs[<span class="hljs-number">0</span>, n, ...]  <span class="hljs-comment"># C H W</span>
+            img = transform_invert(img_tensor, train_transform)
+            plt.imshow(img)
+            plt.show()
+            plt.pause(<span class="hljs-number">1</span>)</code></pre>
+</li>
+<li>
+<p>输出照片</p>
+</li>
+</ol>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204708.png" srcset="/img/loading.gif" alt="image-20200724204705488" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204730.png" srcset="/img/loading.gif" alt="image-20200724204727237" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204808.png" srcset="/img/loading.gif" alt="image-20200724204746163" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204826.png" srcset="/img/loading.gif" alt="image-20200724204821648" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204841.png" srcset="/img/loading.gif" alt="image-20200724204837885" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204915.png" srcset="/img/loading.gif" alt="image-20200724204914629" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204935.png" srcset="/img/loading.gif" alt="image-20200724204929888" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724205000.png" srcset="/img/loading.gif" alt="image-20200724204951493" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724205018.png" srcset="/img/loading.gif" alt="image-20200724205017175" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724205033.png" srcset="/img/loading.gif" alt="image-20200724205032275" style="zoom:67%;" />
+<h1 id="2-transforms翻转-旋转"><a class="markdownIt-Anchor" href="#2-transforms翻转-旋转"></a> 2. transforms——翻转、旋转</h1>
+<h2 id="21-randomhorizontalflip"><a class="markdownIt-Anchor" href="#21-randomhorizontalflip"></a> 2.1 RandomHorizontalFlip</h2>
+<pre><code class="hljs reasonml">torchvision.transforms.<span class="hljs-constructor">RandomHorizontalFlip(<span class="hljs-params">p</span>=0.5)</span></code></pre>
+<p>功能：以给定的概率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 水平翻转给定的图像，图像可以是PIL图像或pytorch张量。</p>
+<ul>
+<li><strong>p</strong> (<a href="https://docs.python.org/3/library/functions.html#float" target="_blank" rel="noopener"><em>float</em></a>) – 图像被翻转的概率。默认值为0.5</li>
+</ul>
+<p><strong>实验</strong>：</p>
+<ol>
+<li>
+<p>主程序：</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 1 Horizontal Flip</span>
+    transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出图像以0.5的概率水平翻转</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724211925.png" srcset="/img/loading.gif" alt="image-20200724211919150" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="22-randomverticalflip"><a class="markdownIt-Anchor" href="#22-randomverticalflip"></a> 2.2 RandomVerticalFlip</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomVerticalFlip(p=<span class="hljs-number">0.5</span>)</code></pre>
+<p>功能：以给定的概率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 上下翻转给定的图像，图像可以是PIL图像或pytorch张量。</p>
+<ul>
+<li><strong>p</strong> (<a href="https://docs.python.org/3/library/functions.html#float" target="_blank" rel="noopener"><em>float</em></a>) – 图像被翻转的概率。默认值为0.5</li>
+</ul>
+<p><strong>实验</strong>：</p>
+<p>​	代码同上，只需要改写一句即可。输出图像按概率0.5上下翻转</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724212221.png" srcset="/img/loading.gif" alt="image-20200724212217117" style="zoom:67%;" />
+<h2 id="23-randomrotation"><a class="markdownIt-Anchor" href="#23-randomrotation"></a> 2.3 RandomRotation</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomRotation(degrees, resample=<span class="hljs-literal">False</span>, expand=<span class="hljs-literal">False</span>, center=<span class="hljs-literal">None</span>, fill=<span class="hljs-literal">None</span>)</code></pre>
+<p>功能：随机旋转图片</p>
+<ul>
+<li>degrees：旋转角度<br />
+当为a时，在（-a，a）之间选择旋转角度<br />
+当为(a, b)时，在(a, b)之间选择旋转角度</li>
+<li>resample：重采样方法</li>
+<li>expand：是否扩大图片，以保持原图信息</li>
+<li>degrees：旋转角度<br />
+当为a时，在（-a，a）之间选择旋转角度<br />
+当为(a, b)时，在(a,  b)之间选择旋转角度</li>
+<li>resample：重采样方法</li>
+<li>expand：是否扩大图片，以保持原图信息</li>
+<li>center：旋转点设置，默认中心旋转</li>
+</ul>
+<blockquote>
+<p>注意：旋转之后，如果不设置expand=True，图片的信息会损失，但是图片尺寸不变。如果设置expand=Flase，图片的信息不会损失，但是图片尺寸改变。</p>
+</blockquote>
+<p><strong>实验</strong>：</p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+	<span class="hljs-comment"># 3 RandomRotation</span>
+    transforms.RandomRotation(<span class="hljs-number">90</span>),
+    <span class="hljs-comment"># transforms.RandomRotation((90), expand=True),</span>
+    <span class="hljs-comment"># transforms.RandomRotation(30, center=(0, 0)),</span>
+    <span class="hljs-comment"># transforms.RandomRotation(30, center=(0, 0), expand=True),   # expand only for center rotation</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>选择<code>transforms.RandomRotation(90)</code>，图片以0.5的概率随机旋转(-90, 90)</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724213812.png" srcset="/img/loading.gif" alt="image-20200724213627390" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomRotation((90), expand=True)</code>，图片以0.5的概率随机旋转(-90, 90)，并且开启expand。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724213807.png" srcset="/img/loading.gif" alt="image-20200724213804568" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomRotation(30, center=(0, 0))</code>，图片以0.5的概率随机绕左上角顶点旋转(-30, 30)。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724213946.png" srcset="/img/loading.gif" alt="image-20200724213945121" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomRotation(30, center=(0, 0), expand=True)</code>，图片以0.5的概率随机绕左上角顶点旋转(-30, 30)，并且开启expand。我们发现expand并没有帮助我们保留图片的全部信息。其实expand是根据中心旋转的模式计算的padding范围，所以只有当绕中心旋转时，expand才有效。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724214200.png" srcset="/img/loading.gif" alt="image-20200724214025465" style="zoom:67%;" />
+</li>
+</ol>
+<h1 id="3-transforms-图像变换"><a class="markdownIt-Anchor" href="#3-transforms-图像变换"></a> 3. transforms ——图像变换</h1>
+<h2 id="31-transformspad"><a class="markdownIt-Anchor" href="#31-transformspad"></a> 3.1 transforms.Pad</h2>
+<pre><code class="hljs python">torchvision.transforms.Pad(padding, fill=<span class="hljs-number">0</span>, padding_mode=<span class="hljs-string">'constant'</span>)</code></pre>
+<p>功能：对图片边缘进行填充</p>
+<ul>
+<li>padding：设置填充大小<br />
+当为a时，上下左右均填充a个像素<br />
+当为(a, b)时，上下填充b个像素，左右填充a个像素<br />
+当为(a, b, c, d)时，左，上，右，下分别填充a, b, c, d</li>
+<li>padding_mode：填充模式，有4种模式，constant、edge、reflect和symmetric</li>
+<li>fill：constant时，设置填充的像素值，(R, G, B) or (Gray)</li>
+</ul>
+<p><strong>实验</strong>：</p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+	<span class="hljs-comment"># 1 Pad</span>
+    transforms.Pad(padding=<span class="hljs-number">32</span>, fill=(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), padding_mode=<span class="hljs-string">'constant'</span>),
+    <span class="hljs-comment"># transforms.Pad(padding=(8, 64), fill=(255, 0, 0), padding_mode='constant'),</span>
+    <span class="hljs-comment"># transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode='constant'),</span>
+    <span class="hljs-comment"># transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode='symmetric'),</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>选择<code>transforms.Pad(padding=32, fill=(255, 0, 0), padding_mode='constant')</code>，发现上下左右都填充了宽度32的红色像素。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725113559.png" srcset="/img/loading.gif" alt="image-20200724230737668" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.Pad(padding=(8, 64), fill=(255, 0, 0), padding_mode='constant')</code></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724230904.png" srcset="/img/loading.gif" alt="image-20200724230902441" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode='constant')</code></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724230931.png" srcset="/img/loading.gif" alt="image-20200724230929961" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode='symmetric')</code></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724231000.png" srcset="/img/loading.gif" alt="image-20200724230958489" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="32-transformscolorjitter"><a class="markdownIt-Anchor" href="#32-transformscolorjitter"></a> 3.2 transforms.ColorJitter</h2>
+<pre><code class="hljs python">torchvision.transforms.ColorJitter(brightness=<span class="hljs-number">0</span>, contrast=<span class="hljs-number">0</span>, saturation=<span class="hljs-number">0</span>, hue=<span class="hljs-number">0</span>)</code></pre>
+<p>功能：调整亮度、对比度、饱和度和色相</p>
+<ul>
+<li>
+<p>brightness：亮度调整因子<br />
+当为a时，从[max(0, 1-a), 1+a]中随机选择<br />
+当为(a, b)时，从[a, b]中</p>
+</li>
+<li>
+<p>contrast：对比度参数，同brightness</p>
+</li>
+<li>
+<p>saturation：饱和度参数，同brightness</p>
+</li>
+<li>
+<p>hue：色相参数，</p>
+<p>当为a时，从[-a, a]中选择参数，注： 0&lt;= a &lt;= 0.5<br />
+当为(a, b)时，从[a, b]中选择参数，注：-0.5 &lt;= a &lt;= b &lt;= 0.5</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 2 ColorJitter</span>
+    transforms.ColorJitter(brightness=<span class="hljs-number">0.5</span>),
+    <span class="hljs-comment"># transforms.ColorJitter(contrast=0.5),</span>
+    <span class="hljs-comment"># transforms.ColorJitter(saturation=0.5),</span>
+    <span class="hljs-comment"># transforms.ColorJitter(hue=0.5),</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>原图</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725114055.png" srcset="/img/loading.gif" alt="image-20200725114053978" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.ColorJitter(brightness=0.5)</code>，图片亮度随机在(0.5, 1.5)之间变化。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725114344.png" srcset="/img/loading.gif" alt="image-20200725114342925" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.ColorJitter(contrast=0.5)</code>，图片对比度随机在(0.5, 1.5)之间变化。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725132216.png" srcset="/img/loading.gif" alt="image-20200725132214278" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.ColorJitter(saturation=0.5)</code>，图片饱和度随机在(0.5, 1.5)之间变化。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725132326.png" srcset="/img/loading.gif" alt="image-20200725132321875" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.ColorJitter(hue=0.5)</code>，图片色度随机在(0.5, 1.5)之间变化。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725154347.png" srcset="/img/loading.gif" alt="image-20200725132345791" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="33-transformsgrayscale"><a class="markdownIt-Anchor" href="#33-transformsgrayscale"></a> 3.3 transforms.Grayscale</h2>
+<pre><code class="hljs python">torchvision.transforms.Grayscale(num_output_channels=<span class="hljs-number">1</span>)</code></pre>
+<p>功能：将图片转换为灰度图</p>
+<p>参数：</p>
+<ul>
+<li><strong>num_output_channels</strong> (<a href="https://docs.python.org/3/library/functions.html#int" target="_blank" rel="noopener"><em>int</em></a>) – (1 or 3) 输出图像所需的通道数</li>
+</ul>
+<p>返回值：PIL图像</p>
+<ul>
+<li>If <code>num_output_channels == 1</code> : 返回单通道图像</li>
+<li>If <code>num_output_channels == 3</code> : 返回 r == g == b的三通道图像</li>
+</ul>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 3 transforms.Grayscale</span>
+    transforms.Grayscale(num_output_channels=<span class="hljs-number">3</span>),
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出图像</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725144044.png" srcset="/img/loading.gif" alt="image-20200725144037942" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="34-transformsrandomgrayscale"><a class="markdownIt-Anchor" href="#34-transformsrandomgrayscale"></a> 3.4 transforms.RandomGrayscale</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomGrayscale(p=<span class="hljs-number">0.1</span>)</code></pre>
+<p>功能：依概率将图片转换为灰度图</p>
+<ul>
+<li>p：概率值，图像被转换为灰度图的概率</li>
+</ul>
+<p>和3.3没什么区别，多了一个概率而已，代码和实验跳过</p>
+<h2 id="35-transformsrandomaffine"><a class="markdownIt-Anchor" href="#35-transformsrandomaffine"></a> 3.5 transforms.RandomAffine</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomAffine(degrees, translate=<span class="hljs-literal">None</span>, scale=<span class="hljs-literal">None</span>, shear=<span class="hljs-literal">None</span>, resample=<span class="hljs-literal">False</span>, fillcolor=<span class="hljs-number">0</span>)</code></pre>
+<p>功能：对图像进行仿射变换，仿射变换是二维的线性变换，由五种基本原子变换构成，分别 是旋转、平移、缩放、错切和翻转</p>
+<ul>
+<li>degrees：旋转角度设置</li>
+<li>translate：平移区间设置，如(a, b), a设置宽（width），b设置高(height)<br />
+图像在宽维度平移的区间为 -img_width * a &lt; dx &lt; img_width * a</li>
+<li>scale：缩放比例（以面积为单位）</li>
+<li>fill_color：填充颜色设置</li>
+<li>shear：错切角度设置，有水平错切和垂直错切<br />
+若为a，则仅在x轴错切，错切角度在(-a, a)之间<br />
+若为(a，b)，则a设置x轴角度，b设置y的角度<br />
+若为(a, b, c, d)，则a, b设置x轴角度，c, d设置y轴角度</li>
+<li>resample：重采样方式，有NEAREST 、BILINEAR、BICUBIC</li>
+</ul>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 4 Affine</span>
+    transforms.RandomAffine(degrees=<span class="hljs-number">30</span>),
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, translate=(0.2, 0.2), fillcolor=(255, 0, 0)),</span>
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, scale=(0.7, 0.7)),</span>
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, shear=(0, 0, 0, 45)),</span>
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, shear=90, fillcolor=(255, 0, 0)),</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>选择<code>transforms.RandomAffine(degrees=30)</code>，图像随机旋转(-30, 30)</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725145213.png" srcset="/img/loading.gif" alt="image-20200725145211665" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725154602.png" srcset="/img/loading.gif" alt="image-20200725145227441" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725145213.png" srcset="/img/loading.gif" alt="image-20200725145211665" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomAffine(degrees=0, translate=(0.2, 0.2), fillcolor=(255, 0, 0))</code>，图像随机左右，上下平移0.2倍图像的框和高，并用红色像素填充。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725145857.png" srcset="/img/loading.gif" alt="image-20200725145855139" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725145912.png" srcset="/img/loading.gif" alt="image-20200725145911179" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725145928.png" srcset="/img/loading.gif" alt="image-20200725145926095" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomAffine(degrees=0, scale=(0.7, 0.7))</code>，缩放0.7倍（掐死区间了，就随机不起来了）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725150145.png" srcset="/img/loading.gif" alt="image-20200725150143359" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomAffine(degrees=0, shear=(0, 0, 0, 45))</code>，图像在y方向错切(0, 45)</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725151256.png" srcset="/img/loading.gif" alt="image-20200725151254855" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725151320.png" srcset="/img/loading.gif" alt="image-20200725151314294" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725151331.png" srcset="/img/loading.gif" alt="image-20200725151327432" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomAffine(degrees=0, shear=90, fillcolor=(255, 0, 0))</code>，图像在x方向错切(-90, 90)，并用红色像素填充。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725151558.png" srcset="/img/loading.gif" alt="image-20200725151557434" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725151611.png" srcset="/img/loading.gif" alt="image-20200725151610443" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725151620.png" srcset="/img/loading.gif" alt="image-20200725151619749" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="36-transformsrandomerasing"><a class="markdownIt-Anchor" href="#36-transformsrandomerasing"></a> 3.6 transforms.RandomErasing</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomErasing(p=<span class="hljs-number">0.5</span>, scale=(<span class="hljs-number">0.02</span>, <span class="hljs-number">0.33</span>), ratio=(<span class="hljs-number">0.3</span>, <span class="hljs-number">3.3</span>), value=<span class="hljs-number">0</span>, inplace=<span class="hljs-literal">False</span>)</code></pre>
+<p>功能：对图像进行随机遮挡</p>
+<ul>
+<li>
+<p>p：概率值，执行该操作的概率</p>
+</li>
+<li>
+<p>scale：遮挡区域的面积</p>
+</li>
+<li>
+<p>ratio：遮挡区域长宽比</p>
+</li>
+<li>
+<p>value：设置遮挡区域的像素值，(R, G, B) or (Gray)</p>
+<p>​			 如果设置为’random’，那么将会用正态分布像素值遮挡（其实value=字符型都是这样的）</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：此函数操作的对象是tensor，因此需要先将PIL图片转换为tensor</p>
+</blockquote>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 5 Erasing</span>
+    transforms.ToTensor(),
+    transforms.RandomErasing(p=<span class="hljs-number">1</span>, scale=(<span class="hljs-number">0.02</span>, <span class="hljs-number">0.33</span>), ratio=(<span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>), value=(<span class="hljs-number">245</span>/<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)),
+    <span class="hljs-comment"># transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.5, 1), value='random'),</span>
+
+
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>选择<code>transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.5, 1), value=(245/255, 0, 0))</code> ，随机选择(0.02, 0.33)倍的原图像面积区域进行遮挡，遮挡区域长宽比随机范围为(0.5, 1)，填充的颜色RGB=(245/255, 0, 0)。注意，由于已经是tensor了，所以应该用(0, 1)的tensor浮点数来表示RGB各通道的值。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725153032.png" srcset="/img/loading.gif" alt="image-20200725153031251" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725153044.png" srcset="/img/loading.gif" alt="image-20200725153042761" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725153054.png" srcset="/img/loading.gif" alt="image-20200725153053195" style="zoom:67%;" />
+</li>
+<li>
+<p>选择<code>transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.5, 1), value='random')</code>，遮挡区域变成了正态分布随机像素值</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725154217.png" srcset="/img/loading.gif" alt="image-20200725154216327" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725154228.png" srcset="/img/loading.gif" alt="image-20200725154226970" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725154238.png" srcset="/img/loading.gif" alt="image-20200725154237085" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="37-transformslambda"><a class="markdownIt-Anchor" href="#37-transformslambda"></a> 3.7 transforms.Lambda</h2>
+<pre><code class="hljs python">torchvision.transforms.Lambda(lambd)</code></pre>
+<p>功能：用户自定义lambda方法</p>
+<ul>
+<li>
+<p>lambd：lambda匿名函数</p>
+<p>lambda [arg1 [,arg2, … , argn]] : expression</p>
+</li>
+</ul>
+<p>用于在变换中，自定义变化方法。之前我们在FiveCrop和TenCrop中也使用过。</p>
+<pre><code class="hljs python">transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([transforms.Totensor()(crop) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops]))</code></pre>
+<h1 id="4-transforms-transforms方法操作"><a class="markdownIt-Anchor" href="#4-transforms-transforms方法操作"></a> 4. transforms ——transforms方法操作</h1>
+<h2 id="41-transformsrandomchoice"><a class="markdownIt-Anchor" href="#41-transformsrandomchoice"></a> 4.1 transforms.RandomChoice</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomChoice([transforms1, transforms2, transforms3])</code></pre>
+<p>功能：从列表中随机选取一个transforms操作</p>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 1 RandomChoice</span>
+    transforms.RandomChoice([transforms.RandomVerticalFlip(p=<span class="hljs-number">1</span>), transforms.RandomHorizontalFlip(p=<span class="hljs-number">1</span>)]),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出图像（顺序选取前三张）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134028.png" srcset="/img/loading.gif" alt="image-20200727133941261" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134050.png" srcset="/img/loading.gif" alt="image-20200727133950640" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134124.png" srcset="/img/loading.gif" alt="image-20200727134010346" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="42-transformsrandomapply"><a class="markdownIt-Anchor" href="#42-transformsrandomapply"></a> 4.2 transforms.RandomApply</h2>
+<pre><code class="hljs python">torchvision.transforms.RandomApply([transforms1, transforms2, transforms3], p=<span class="hljs-number">0.5</span>)</code></pre>
+<p>功能：依据概率执行一组transforms操作</p>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 2 RandomApply</span>
+    transforms.RandomApply([transforms.RandomAffine(degrees=<span class="hljs-number">0</span>, shear=<span class="hljs-number">45</span>, fillcolor=(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)), transforms.Grayscale(num_output_channels=<span class="hljs-number">3</span>)], p=<span class="hljs-number">0.5</span>),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出图像（顺序选取前三张）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134647.png" srcset="/img/loading.gif" alt="image-20200727134645204" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134730.png" srcset="/img/loading.gif" alt="image-20200727134728527" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134747.png" srcset="/img/loading.gif" alt="image-20200727134746055" style="zoom:67%;" />
+</li>
+</ol>
+<h2 id="43-transformsrandomorder"><a class="markdownIt-Anchor" href="#43-transformsrandomorder"></a> 4.3 transforms.RandomOrder</h2>
+<pre><code class="hljs python">transforms.RandomOrder([transforms1, transforms2, transforms3])</code></pre>
+<p>功能：对一组transforms操作打乱顺序</p>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p>主程序：分别打开注释</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+       <span class="hljs-comment"># 3 RandomOrder</span>
+    transforms.RandomOrder([transforms.RandomRotation(<span class="hljs-number">5</span>), transforms.Pad(padding=<span class="hljs-number">32</span>), transforms.RandomAffine(degrees=<span class="hljs-number">0</span>, translate=(<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>), scale=(<span class="hljs-number">0.9</span>, <span class="hljs-number">1.1</span>))]),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出图像（顺序选取前三张）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727135216.png" srcset="/img/loading.gif" alt="image-20200727135214233" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727135228.png" srcset="/img/loading.gif" alt="image-20200727135227157" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727135242.png" srcset="/img/loading.gif" alt="image-20200727135240011" style="zoom:67%;" />
+</li>
+</ol>
+<h1 id="5-自定义transforms方法"><a class="markdownIt-Anchor" href="#5-自定义transforms方法"></a> 5. 自定义transforms方法</h1>
+<p>自定义transforms要素：</p>
+<ol>
+<li>
+<p>仅接收一个参数，返回一个参数</p>
+</li>
+<li>
+<p>注意上下游的输出与输入</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Compose</span><span class="hljs-params">(object)</span>:</span>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, img)</span>:</span>
+        <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> self.transforms:
+        	img = t(img)
+        <span class="hljs-keyword">return</span> img</code></pre>
+<p>由于transforms是在<code>class Compose</code>的<code>__call__(self, img)</code>中通过一个for循环实现的，因此需要注意上一个transform的输出是现在的transform的输入，前后数据类型需要匹配。</p>
+</li>
+</ol>
+<p>自定义transform通过类实现多参数传入：</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourTransforms</span><span class="hljs-params">(object)</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, ...)</span>:</span>
+...
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, img)</span>:</span>
+...
+<span class="hljs-keyword">return</span> img</code></pre>
+<p><strong>实验：</strong></p>
+<p>以自定义一个生成椒盐噪声的transform为例</p>
+<p>椒盐噪声又称为脉冲噪声，是一种随机出现的白点或者黑点, 白点称为盐噪声，黑色为椒噪声<br />
+信噪比（Signal-Noise Rate, SNR）是衡量噪声的比例，图像中为图像像素的占比</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727140203.png" srcset="/img/loading.gif" alt="image-20200727140131503" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727140209.png" srcset="/img/loading.gif" alt="image-20200727140143083" /></p>
+<ol>
+<li>
+<p>自定义transform的代码：</p>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddPepperNoise</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, snr, p=<span class="hljs-number">0.9</span>)</span>:</span>
+        <span class="hljs-keyword">assert</span> isinstance(snr, float) <span class="hljs-keyword">or</span> (isinstance(p, float))
+        self.snr = snr
+        self.p = p
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, img)</span>:</span>
+        <span class="hljs-keyword">if</span> random.uniform(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) &lt; self.p:
+            img_ = np.array(img).copy()
+            h, w, c = img_.shape
+            signal_pct = self.snr
+            noise_pct = <span class="hljs-number">1</span> - self.snr
+            mask = np.random.choice((<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), size=(h, w, <span class="hljs-number">1</span>), p=[signal_pct, noise_pct/<span class="hljs-number">2</span>, noise_pct/<span class="hljs-number">2</span>])  <span class="hljs-comment"># 从0，1，2</span>
+            <span class="hljs-comment"># 中按概率选取，形成size形状的ndarray</span>
+            mask = np.repeat(mask, c, axis=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 按第三个维度，也就是通道数重复2</span>
+            img_[mask == <span class="hljs-number">1</span>] = <span class="hljs-number">255</span>  <span class="hljs-comment"># 椒噪声</span>
+            img_[mask == <span class="hljs-number">2</span>] = <span class="hljs-number">0</span>  <span class="hljs-comment"># 盐噪声</span>
+            <span class="hljs-keyword">return</span> Image.fromarray(img_.astype(<span class="hljs-string">'uint8'</span>)).convert(<span class="hljs-string">"RGB"</span>)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> img</code></pre>
+</li>
+<li>
+<p>主程序：</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 4 自定义transforms</span>
+    AddPepperNoise(<span class="hljs-number">0.8</span>, p=<span class="hljs-number">0.8</span>),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
+<li>
+<p>输出图像（顺序选取前三张）：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727144320.png" srcset="/img/loading.gif" alt="image-20200727144319495" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727144338.png" srcset="/img/loading.gif" alt="image-20200727144336806" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727144349.png" srcset="/img/loading.gif" alt="image-20200727144348026" style="zoom:67%;" />
+</li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/">
+                        <span class="hidden-mobile">transforms运行机制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "transforms方法详解&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
