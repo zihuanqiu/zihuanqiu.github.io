@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>模型创建与nn.Module - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-27 19:57">
+      2020年7月27日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年7月28日 凌晨
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="1-网络模型创建步骤"><a class="markdownIt-Anchor" href="#1-网络模型创建步骤"></a> 1. 网络模型创建步骤</h1>
+<p>前几次已经学完了数据部分，现在开始学习模型部分。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727224450.png" srcset="/img/loading.gif" alt="image-20200727224448921" /></p>
+<p>模型又分为模型创建和权值初始化。其中，模型创建还可以进一步分为构建网络层和拼接网络层。这些工作都可以用nn.Module来完成。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727204825.png" srcset="/img/loading.gif" alt="image-20200727204822556" /></p>
+<p>本节我们用7层结构的LeNet来学习模型创建和nn.Module。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727204944.png" srcset="/img/loading.gif" alt="image-20200727204943120" /></p>
+<p><strong>实验</strong>：</p>
+<ol>
+<li>
+<p>设置断点，进去LeNet</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727220914.png" srcset="/img/loading.gif" alt="image-20200727220912817" /></p>
+</li>
+<li>
+<p>跳转到lenet.py的<code>class LeNet(nn.Module)</code>的<code>__init__(self, classes)</code>内，构建子模块（如卷积层）就是在模型的<code>__init__</code>中完成的。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728012614.png" srcset="/img/loading.gif" alt="image-20200727221123998" /></p>
+</li>
+<li>
+<p>单步运行后会跳出<code>__init__</code>回到主函数，完成了模型的初始化。我们再设置断点，运行至断点处。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727221700.png" srcset="/img/loading.gif" alt="image-20200727221659818" /></p>
+</li>
+<li>
+<p>进入<code>net(inputs)</code>，跳转到module.py的<code>class Module(object)</code>的<code>__call__</code>函数。运行到<code>self.forward</code>，进入。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727222339.png" srcset="/img/loading.gif" alt="image-20200727222338701" /></p>
+</li>
+<li>
+<p>跳转到lenet.py的<code>class LeNet(nn.Module)</code>的<code>forward(self, x)</code>内。单步运行，最后会返回out。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727222244.png" srcset="/img/loading.gif" alt="image-20200727222242664" /></p>
+</li>
+<li>
+<p><a href="http://xn--module-o88iu4s4se0viqn5fn12d.py" target="_blank" rel="noopener">然后会返回到module.py</a>，得到result，最后返回result。从下图可知，前向传播计算得到result靠的就是<code>self.forward</code>，也就是你自定义网络中的<code>forward</code>函数。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727222753.png" srcset="/img/loading.gif" alt="image-20200727222751404" /></p>
+</li>
+<li>
+<p>单步运行，返回result后跳回主程序。返回的result就是我们一次迭代计算的output。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727223116.png" srcset="/img/loading.gif" alt="image-20200727223113685" /></p>
+</li>
+</ol>
+<p>于是我们知道了，首先定义一个模型需要继承<code>nn.module</code>，然后重写<code>__init__</code>和<code>__forward__</code>函数。其中，<code>__init__</code>构建子模块，在模型初始化时需要运行<code>__init__</code>函数；在数据前向传播过程中，需要用到<code>__forward__</code>函数，因此需要在<code>__forward__</code>函数中拼接子模块。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727215859.png" srcset="/img/loading.gif" alt="image-20200727215859011" /></p>
+<h1 id="2-nnmodule属性"><a class="markdownIt-Anchor" href="#2-nnmodule属性"></a> 2. nn.Module属性</h1>
+<p>所有的模型都是<code>nn.Module</code>的子类，就像在数据部分中，我们自定义的数据集都得继承dataset这个类一样。在本节的例子中，LeNet就需要继承<code>nn.Module</code>，因此LeNet也是<code>nn.Module</code>类的，包括LeNet中的子模块也是<code>nn.Module</code>类。</p>
+<p>下图展示了pytorch的神经网络包<code>torch.nn</code>，本节重点研究<code>nn.Module</code>。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727224519.png" srcset="/img/loading.gif" alt="image-20200727224518359" /></p>
+<p>在<code>nn.module</code>类中，有8个字典属性用于管理模型。这里我们只需要关注parameters和modules。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727224904.png" srcset="/img/loading.gif" alt="image-20200727224904004" /></p>
+<p>下面我们观察<code>nn.module</code>的创建以及属性管理的机制。</p>
+<p><strong>实验</strong>：</p>
+<ol>
+<li>
+<p>设置断点，进去LeNet</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727220914.png" srcset="/img/loading.gif" alt="image-20200727220912817" /></p>
+</li>
+<li>
+<p>可以看到，LeNet是继承于<code>nn.Module</code>的子类，进入<code>super(LeNet, self).__init__()</code>。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727225313.png" srcset="/img/loading.gif" alt="image-20200727225311640" /></p>
+</li>
+<li>
+<p>跳转到module.py的<code>class Module(object)</code>的<code>__init__(self)</code>中。可以看到，在这里进行了8个字典属性的初始化。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727225604.png" srcset="/img/loading.gif" alt="image-20200727225603035" /></p>
+</li>
+<li>
+<p>跳出函数，<a href="http://xn--lenet-6o6hp3z.py" target="_blank" rel="noopener">回到lenet.py</a>，可以看到LeNet类的初始化完成，已经具有了nn.Module的8个属性，现在暂时还是空的。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727230209.png" srcset="/img/loading.gif" alt="image-20200727230207259" /></p>
+</li>
+<li>
+<p>进入<code>nn.Conv2d(3, 6, 5)</code>观察子模块的构建。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727230343.png" srcset="/img/loading.gif" alt="image-20200727230341772" /></p>
+</li>
+<li>
+<p>跳转到conv.py的<code>class Conv2d(_ConvNd)</code>的<code>__init__</code>函数。Conv2d是继承于_ConvNd的。运行到<code>super(Conv2d, self).__init__</code>，然后进入。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727230619.png" srcset="/img/loading.gif" alt="image-20200727230618259" /></p>
+</li>
+<li>
+<p><a href="http://xn--utils-rt2h20lpyb913zzcd18a.py" target="_blank" rel="noopener">进入会跳转到utils.py</a>，跳出再进入就能到达conv.py的<code>class _ConvNd</code>中，可以发现_ConvNd也是继承于<code>nn.Module</code>的，所以子模块也都是<code>nn.Module</code>的子类。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727231124.png" srcset="/img/loading.gif" alt="image-20200727231123064" /></p>
+</li>
+<li>
+<p>进入<code>super(_ConvNd, self).__init__</code>，就又跳转到module.py的<code>class Module(object)</code>的<code>__init__(self)</code>中，这里进行了8个字典属性的初始化。跳出函数，回到lenet.py的<code>__init__</code>，此时已经完成了conv1子模块的初始化。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727225604.png" srcset="/img/loading.gif" alt="image-20200727225603035" /></p>
+</li>
+<li>
+<p>现在再看LeNet类的属性，发现<code>_modules</code>多了一个元素，就是我们刚刚加入的子模块conv1。键是<code>conv1</code>，值是<code>nn.Conv2d(3, 6, 5)</code>。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728005041.png" srcset="/img/loading.gif" alt="image-20200728003854943" /></p>
+</li>
+<li>
+<p>conv1同样也是<code>nn.Module</code>的子类，也有这8个属性，我们同样可以查看。发现<code>_parameters</code>有元素，而<code>_modules</code>没有。这是因为conv1没有嵌套的子模块了，并且conv1有许多的可训练参数。而<code>_parameters</code>是继承于tensor类的，所以有tensor的属性。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728005037.png" srcset="/img/loading.gif" alt="image-20200728005036248" /></p>
+</li>
+<li>
+<p>当lenet.py的<code>__init__</code>全部完成以后，跳转回主函数可以发现，全部子模块都已添加到属性<code>_modules</code>中。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728012433.png" srcset="/img/loading.gif" alt="image-20200728012348636" /></p>
+</li>
+</ol>
+<h1 id="3-nnmodule总结"><a class="markdownIt-Anchor" href="#3-nnmodule总结"></a> 3. nn.Module总结</h1>
+<ul>
+<li>
+<p>一个module可以包含多个子module</p>
+</li>
+<li>
+<p>一个module相当于一个运算，必须实现forward()函数</p>
+</li>
+<li>
+<p>每个module都有8个字典管理它的属性</p>
+</li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">
+                        <span class="hidden-mobile">transforms方法详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "模型创建与nn.Module&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
