@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月28日 凌晨
+                  本文最后更新于：2020年7月28日 下午
                 
               </p>
             
@@ -225,7 +225,7 @@
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727220914.png" srcset="/img/loading.gif" alt="image-20200727220912817" /></p>
 </li>
 <li>
-<p>跳转到lenet.py的<code>class LeNet(nn.Module)</code>的<code>__init__(self, classes)</code>内，构建子模块（如卷积层）就是在模型的<code>__init__</code>中完成的。</p>
+<p>跳转到lenet.py的<code>class LeNet(nn.Module)</code>的<code>__init__(self, classes)</code>内，构建网络层（如卷积层）就是在模型的<code>__init__</code>中完成的。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728012614.png" srcset="/img/loading.gif" alt="image-20200727221123998" /></p>
 </li>
 <li>
@@ -249,13 +249,13 @@
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727223116.png" srcset="/img/loading.gif" alt="image-20200727223113685" /></p>
 </li>
 </ol>
-<p>于是我们知道了，首先定义一个模型需要继承<code>nn.module</code>，然后重写<code>__init__</code>和<code>__forward__</code>函数。其中，<code>__init__</code>构建子模块，在模型初始化时需要运行<code>__init__</code>函数；在数据前向传播过程中，需要用到<code>__forward__</code>函数，因此需要在<code>__forward__</code>函数中拼接子模块。</p>
+<p>于是我们知道了，首先定义一个模型需要继承<code>nn.module</code>，然后重写<code>__init__</code>和<code>__forward__</code>函数。其中，<code>__init__</code>构建网络层，在模型初始化时需要运行<code>__init__</code>函数；在数据前向传播过程中，需要用到<code>__forward__</code>函数，因此需要在<code>__forward__</code>函数中拼接网络层。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727215859.png" srcset="/img/loading.gif" alt="image-20200727215859011" /></p>
 <h1 id="2-nnmodule属性"><a class="markdownIt-Anchor" href="#2-nnmodule属性"></a> 2. nn.Module属性</h1>
-<p>所有的模型都是<code>nn.Module</code>的子类，就像在数据部分中，我们自定义的数据集都得继承dataset这个类一样。在本节的例子中，LeNet就需要继承<code>nn.Module</code>，因此LeNet也是<code>nn.Module</code>类的，包括LeNet中的子模块也是<code>nn.Module</code>类。</p>
+<p>所有的模型都是<code>nn.Module</code>的子类，就像在数据部分中，我们自定义的数据集都得继承dataset这个类一样。在本节的例子中，LeNet就需要继承<code>nn.Module</code>，因此LeNet也是<code>nn.Module</code>类的，包括LeNet中的网络层也是<code>nn.Module</code>类。</p>
 <p>下图展示了pytorch的神经网络包<code>torch.nn</code>，本节重点研究<code>nn.Module</code>。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727224519.png" srcset="/img/loading.gif" alt="image-20200727224518359" /></p>
-<p>在<code>nn.module</code>类中，有8个字典属性用于管理模型。这里我们只需要关注parameters和modules。</p>
+<p>在<code>nn.module</code>类中，有8个有序字典属性用于管理模型。这里我们只需要关注parameters和modules。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727224904.png" srcset="/img/loading.gif" alt="image-20200727224904004" /></p>
 <p>下面我们观察<code>nn.module</code>的创建以及属性管理的机制。</p>
 <p><strong>实验</strong>：</p>
@@ -269,7 +269,7 @@
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727225313.png" srcset="/img/loading.gif" alt="image-20200727225311640" /></p>
 </li>
 <li>
-<p>跳转到module.py的<code>class Module(object)</code>的<code>__init__(self)</code>中。可以看到，在这里进行了8个字典属性的初始化。</p>
+<p>跳转到module.py的<code>class Module(object)</code>的<code>__init__(self)</code>中。可以看到，在这里进行了8个有序字典属性的初始化。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727225604.png" srcset="/img/loading.gif" alt="image-20200727225603035" /></p>
 </li>
 <li>
@@ -277,7 +277,7 @@
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727230209.png" srcset="/img/loading.gif" alt="image-20200727230207259" /></p>
 </li>
 <li>
-<p>进入<code>nn.Conv2d(3, 6, 5)</code>观察子模块的构建。</p>
+<p>进入<code>nn.Conv2d(3, 6, 5)</code>观察网络层的构建。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727230343.png" srcset="/img/loading.gif" alt="image-20200727230341772" /></p>
 </li>
 <li>
@@ -285,23 +285,23 @@
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727230619.png" srcset="/img/loading.gif" alt="image-20200727230618259" /></p>
 </li>
 <li>
-<p><a href="http://xn--utils-rt2h20lpyb913zzcd18a.py" target="_blank" rel="noopener">进入会跳转到utils.py</a>，跳出再进入就能到达conv.py的<code>class _ConvNd</code>中，可以发现_ConvNd也是继承于<code>nn.Module</code>的，所以子模块也都是<code>nn.Module</code>的子类。</p>
+<p><a href="http://xn--utils-rt2h20lpyb913zzcd18a.py" target="_blank" rel="noopener">进入会跳转到utils.py</a>，跳出再进入就能到达conv.py的<code>class _ConvNd</code>中，可以发现_ConvNd也是继承于<code>nn.Module</code>的，所以网络层也都是<code>nn.Module</code>的子类。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727231124.png" srcset="/img/loading.gif" alt="image-20200727231123064" /></p>
 </li>
 <li>
-<p>进入<code>super(_ConvNd, self).__init__</code>，就又跳转到module.py的<code>class Module(object)</code>的<code>__init__(self)</code>中，这里进行了8个字典属性的初始化。跳出函数，回到lenet.py的<code>__init__</code>，此时已经完成了conv1子模块的初始化。</p>
+<p>进入<code>super(_ConvNd, self).__init__</code>，就又跳转到module.py的<code>class Module(object)</code>的<code>__init__(self)</code>中，这里进行了8个有序字典属性的初始化。跳出函数，回到lenet.py的<code>__init__</code>，此时已经完成了conv1网络层的初始化。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727225604.png" srcset="/img/loading.gif" alt="image-20200727225603035" /></p>
 </li>
 <li>
-<p>现在再看LeNet类的属性，发现<code>_modules</code>多了一个元素，就是我们刚刚加入的子模块conv1。键是<code>conv1</code>，值是<code>nn.Conv2d(3, 6, 5)</code>。</p>
+<p>现在再看LeNet类的属性，发现<code>_modules</code>多了一个元素，就是我们刚刚加入的网络层conv1。键是<code>conv1</code>，值是<code>nn.Conv2d(3, 6, 5)</code>。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728005041.png" srcset="/img/loading.gif" alt="image-20200728003854943" /></p>
 </li>
 <li>
-<p>conv1同样也是<code>nn.Module</code>的子类，也有这8个属性，我们同样可以查看。发现<code>_parameters</code>有元素，而<code>_modules</code>没有。这是因为conv1没有嵌套的子模块了，并且conv1有许多的可训练参数。而<code>_parameters</code>是继承于tensor类的，所以有tensor的属性。</p>
+<p>conv1同样也是<code>nn.Module</code>的子类，也有这8个属性，我们同样可以查看。发现<code>_parameters</code>有元素，而<code>_modules</code>没有。这是因为conv1没有嵌套的网络层了，并且conv1有许多的可训练参数。而<code>_parameters</code>是继承于tensor类的，所以有tensor的属性。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728005037.png" srcset="/img/loading.gif" alt="image-20200728005036248" /></p>
 </li>
 <li>
-<p>当lenet.py的<code>__init__</code>全部完成以后，跳转回主函数可以发现，全部子模块都已添加到属性<code>_modules</code>中。</p>
+<p>当lenet.py的<code>__init__</code>全部完成以后，跳转回主函数可以发现，全部网络层都已添加到属性<code>_modules</code>中。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728012433.png" srcset="/img/loading.gif" alt="image-20200728012348636" /></p>
 </li>
 </ol>
@@ -314,7 +314,7 @@
 <p>一个module相当于一个运算，必须实现forward()函数</p>
 </li>
 <li>
-<p>每个module都有8个字典管理它的属性</p>
+<p>每个module都有8个有序字典管理它的属性</p>
 </li>
 </ul>
 
@@ -346,6 +346,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模型容器与AlexNet构建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

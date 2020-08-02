@@ -184,6 +184,198 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/">权值初始化</a>
+
+      <a href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. 梯度消失与爆炸
+对于一个没有激活函数（先不考虑激活函数）的多层神经网络，参数的导数可以计算如下
+
+H2=H1∗W2ΔW2=∂Loss∂W2=∂Loss∂out∗∂out∂H2∗∂H2∂w2=∂Loss∂out∗∂out∂H2∗H1\begin{aligned}
+\text{H}_2&amp;=\text{H}_1*\text{W}_2
+\\
+	\Delta \text{W}_2&amp;=</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-31
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/">nn网络层-池化-线性-激活函数层</a>
+
+      <a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. 池化层——Pooling Layer
+池化运算：对信号进行 “收集”并 “总结”。
+“收集”：多变少 “总结”：最大值/平均值
+
+ 1.1 nn.MaxPool2d
+nn.MaxPool2d(kernel_size, 
+             stride=None, 
+             padding=0, 
+             dilation=1, 
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-30
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/29/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/">nn网络层-卷积层</a>
+
+      <a href="/2020/07/29/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 卷积层
+ 1. 1d/2d/3d卷积
+卷积维度：一般情况下，卷积核在几个维度上滑动，
+就是几维卷积。
+
+ 2. 卷积-nn.Conv2d
+torch.nn.Conv2d(in_channels,
+				out_channels,
+				kernel_size,
+				stride=1,
+                padding=0,
+                dilation=</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-29
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/">模型容器与AlexNet构建</a>
+
+      <a href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. 网络层容器(Containers)
+上一节我们学习了如何构建一个LeNet，回顾代码如下：
+class LeNet(nn.Module):
+    def __init__(self, classes):
+        super(LeNet, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.co</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-28
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/">模型创建与nn.Module</a>
 
       <a href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/" class="index-excerpt">
@@ -481,221 +673,11 @@ y=(x+w)∗(w+1)a</div>
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">张量的操作与线性回归</a>
-
-      <a href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 1. 张量的操作：拼接、切分、索引和变换
-
- 1.1 张量拼接与切分
- 1.1.1 通过torch.cat不拓展维度拼接
-torch.cat(tensors, dim=0, out=None) → Tensor
-功能：将张量按维度dim进行拼接
-
-tensors: 张量序列
-dim : 要拼接的维度
-
-import torch
-torch.manual_seed(1)
-
-t = torch.on</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/">Pytorch的Tensor</a>
-
-      <a href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/" class="index-excerpt">
-        
-        
-          
-        
-        <div> 1. 张量是什么
-张量是一个多维数组，它是标量、向量、矩阵的高维拓展
-
-Pytorch0.4.0版开始，Variable并入Tensor
-
-
-dtype:张量的数据类型，如torch.FloatTensor,torch.cuda.FloatTensor
-
-
-shape:张量的形状，如(64,3,224,224)
-
-
-device:张量所在设备，GPU/CPU，是加速的关键
-
-
-
-
- 2. 张量的</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">Python Pandas库</a>
-
-      <a href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Pandas库
-
- 引子
-Numpy 在向量化的数值计算中表现优异
-但是在处理更灵活、复杂的数据任务：
-如为数据添加标签、处理缺失值、分组和透视表等方面
-Numpy显得力不从心
-而基于Numpy构建的Pandas库，提供了使得数据分析变得更快更简单的高级数据结构和操作工具
- 12.1 对象创建
- 12.1.1 Pandas Series对象
-Series 是带标签数据的一维数组
-Series对象</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-14
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">Python Numpy库</a>
-
-      <a href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Numpy库
-
- 11.1 为什么要用Numpy
-
- 11.1.1  低效的Python for循环
-【例】 求100万个数的倒数
-def compute_reciprocals(values):
-    res = []
-    for value in values:      # 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数
-        res.append(1/</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-14
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
