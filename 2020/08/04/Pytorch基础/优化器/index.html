@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>优化器 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-04 16:12">
+      2020年8月4日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月5日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="1-optimizer的属性"><a class="markdownIt-Anchor" href="#1-optimizer的属性"></a> 1. optimizer的属性</h1>
+<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Optimizer</span><span class="hljs-params">(object)</span>:</span>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, params, defaults)</span>:</span>
+		self.defaults = defaults
+        self.state = defaultdict(dict)
+        self.param_groups = []</code></pre>
+<ul>
+<li>defaults：优化器超参数（字典：包含’lr’, 'momentum’等等关于优化器的超参数）</li>
+<li>state：参数的缓存，如momentum的缓存</li>
+<li>params_groups：管理的参数组（params_groups是一个list，list内有字典；字典内有一组参数，以及这一组参数对应的超参数设置）</li>
+<li>_step_count：记录更新次数，学习率调整中使用</li>
+</ul>
+<h1 id="2-optimizer的方法"><a class="markdownIt-Anchor" href="#2-optimizer的方法"></a> 2. optimizer的方法</h1>
+<h2 id="21-step"><a class="markdownIt-Anchor" href="#21-step"></a> 2.1 step()</h2>
+<p>功能：执行一步更新</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+
+optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
+
+print(<span class="hljs-string">"weight before step:&#123;&#125;"</span>.format(weight.data))
+optimizer.step()        <span class="hljs-comment"># 修改lr=1 0.1观察结果</span>
+print(<span class="hljs-string">"weight after step:&#123;&#125;"</span>.format(weight.data))</code></pre>
+<pre><code class="hljs python">weight before step:tensor([[<span class="hljs-number">0.6614</span>, <span class="hljs-number">0.2669</span>],
+        [<span class="hljs-number">0.0617</span>, <span class="hljs-number">0.6213</span>]])
+weight after step:tensor([[ <span class="hljs-number">0.5614</span>,  <span class="hljs-number">0.1669</span>],
+        [<span class="hljs-number">-0.0383</span>,  <span class="hljs-number">0.5213</span>]])</code></pre>
+<p>手动设置了梯度为1，并且lr=0.1，所以参数更新后各减去0.1</p>
+<h2 id="22-zero_grad"><a class="markdownIt-Anchor" href="#22-zero_grad"></a> 2.2 zero_grad()</h2>
+<p>功能：清空所管理参数的梯度</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+
+optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
+
+print(<span class="hljs-string">"weight before step:&#123;&#125;"</span>.format(weight.data))
+optimizer.step()        <span class="hljs-comment"># 修改lr=1 0.1观察结果</span>
+print(<span class="hljs-string">"weight after step:&#123;&#125;"</span>.format(weight.data))
+
+print(<span class="hljs-string">"weight in optimizer:&#123;&#125;\nweight in weight:&#123;&#125;\n"</span>.format(id(optimizer.param_groups[<span class="hljs-number">0</span>][<span class="hljs-string">'params'</span>][<span class="hljs-number">0</span>]), id(weight)))
+
+print(<span class="hljs-string">"weight.grad is &#123;&#125;\n"</span>.format(weight.grad))
+optimizer.zero_grad()
+print(<span class="hljs-string">"after optimizer.zero_grad(), weight.grad is\n&#123;&#125;"</span>.format(weight.grad))</code></pre>
+<pre><code class="hljs python">weight before step:tensor([[<span class="hljs-number">0.6614</span>, <span class="hljs-number">0.2669</span>],
+        [<span class="hljs-number">0.0617</span>, <span class="hljs-number">0.6213</span>]])
+weight after step:tensor([[ <span class="hljs-number">0.5614</span>,  <span class="hljs-number">0.1669</span>],
+        [<span class="hljs-number">-0.0383</span>,  <span class="hljs-number">0.5213</span>]])
+weight <span class="hljs-keyword">in</span> optimizer:<span class="hljs-number">2188611511704</span>
+weight <span class="hljs-keyword">in</span> weight:<span class="hljs-number">2188611511704</span>
+
+weight.grad <span class="hljs-keyword">is</span> tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]])
+
+after optimizer.zero_grad(), weight.grad <span class="hljs-keyword">is</span>
+tensor([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+        [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</code></pre>
+<blockquote>
+<p>从weight in optimizer:2188611511704，weight in weight:2188611511704可以看出，优化器内的参数和weight的参数是同一个地址的，也就是说任何一个改变都将引起另外一个的改变，这是非常合理的。</p>
+<p>在运行了optimizer.zero_grad()之后，梯度被清零了。实际上我们在每一轮迭代中都要设置optimizer.zero_grad()清空梯度（不然会累加），以保证每一轮计算的梯度都是正确的。</p>
+</blockquote>
+<h2 id="23-add_param_group"><a class="markdownIt-Anchor" href="#23-add_param_group"></a> 2.3 add_param_group()</h2>
+<p>功能：添加参数组</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+
+optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
+
+print(<span class="hljs-string">"optimizer.param_groups is\n&#123;&#125;"</span>.format(optimizer.param_groups))
+
+w2 = torch.randn((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), requires_grad=<span class="hljs-literal">True</span>)
+
+optimizer.add_param_group(&#123;<span class="hljs-string">"params"</span>: w2, <span class="hljs-string">'lr'</span>: <span class="hljs-number">0.0001</span>&#125;)
+
+print(<span class="hljs-string">"optimizer.param_groups is\n&#123;&#125;"</span>.format(optimizer.param_groups))</code></pre>
+<pre><code class="hljs python">optimizer.param_groups <span class="hljs-keyword">is</span>
+[&#123;<span class="hljs-string">'params'</span>: [tensor([[<span class="hljs-number">0.6614</span>, <span class="hljs-number">0.2669</span>],
+        [<span class="hljs-number">0.0617</span>, <span class="hljs-number">0.6213</span>]], requires_grad=<span class="hljs-literal">True</span>)], <span class="hljs-string">'lr'</span>: <span class="hljs-number">0.1</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>&#125;]
+optimizer.param_groups <span class="hljs-keyword">is</span>
+[&#123;<span class="hljs-string">'params'</span>: [tensor([[<span class="hljs-number">0.6614</span>, <span class="hljs-number">0.2669</span>],
+        [<span class="hljs-number">0.0617</span>, <span class="hljs-number">0.6213</span>]], requires_grad=<span class="hljs-literal">True</span>)], <span class="hljs-string">'lr'</span>: <span class="hljs-number">0.1</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>&#125;, &#123;<span class="hljs-string">'params'</span>: [tensor([[<span class="hljs-number">-0.4519</span>, <span class="hljs-number">-0.1661</span>, <span class="hljs-number">-1.5228</span>],
+        [ <span class="hljs-number">0.3817</span>, <span class="hljs-number">-1.0276</span>, <span class="hljs-number">-0.5631</span>],
+        [<span class="hljs-number">-0.8923</span>, <span class="hljs-number">-0.0583</span>, <span class="hljs-number">-0.1955</span>]], requires_grad=<span class="hljs-literal">True</span>)], <span class="hljs-string">'lr'</span>: <span class="hljs-number">0.0001</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>&#125;]</code></pre>
+<p>如果想使两组weight使用不同的学习率或者其他的超参数，那么可以使用add_param_group函数。使用之后，optimizer.param_groups列表中多了一个字典，用于管理w2的超参数设置。</p>
+<h2 id="24-state_dict"><a class="markdownIt-Anchor" href="#24-state_dict"></a> 2.4 state_dict()</h2>
+<p>功能：获取优化器当前状态信息字典</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+
+optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
+
+optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>, momentum=<span class="hljs-number">0.9</span>)
+opt_state_dict = optimizer.state_dict()
+
+print(<span class="hljs-string">"state_dict before step:\n"</span>, opt_state_dict)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+    optimizer.step()
+
+print(<span class="hljs-string">"state_dict after step:\n"</span>, optimizer.state_dict())
+
+torch.save(optimizer.state_dict(), os.path.join(BASE_DIR, <span class="hljs-string">"optimizer_state_dict.pkl"</span>))</code></pre>
+<pre><code class="hljs python">state_dict before step:
+ &#123;<span class="hljs-string">'state'</span>: &#123;&#125;, <span class="hljs-string">'param_groups'</span>: [&#123;<span class="hljs-string">'lr'</span>: <span class="hljs-number">0.1</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0.9</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>, <span class="hljs-string">'params'</span>: [<span class="hljs-number">2529699450456</span>]&#125;]&#125;
+state_dict after step:
+ &#123;<span class="hljs-string">'state'</span>: &#123;<span class="hljs-number">2529699450456</span>: &#123;<span class="hljs-string">'momentum_buffer'</span>: tensor([[<span class="hljs-number">6.5132</span>, <span class="hljs-number">6.5132</span>],
+        [<span class="hljs-number">6.5132</span>, <span class="hljs-number">6.5132</span>]])&#125;, <span class="hljs-string">'default_factory'</span>: &#123;&#125;&#125;, <span class="hljs-string">'param_groups'</span>: [&#123;<span class="hljs-string">'lr'</span>: <span class="hljs-number">0.1</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0.9</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>, <span class="hljs-string">'params'</span>: [<span class="hljs-number">2529699450456</span>]&#125;]&#125;</code></pre>
+<p>optimizer.state_dict()函数返回一个字典，有’state’和’param_groups’两个键，用于保存当前的状态信息，以便于下一次训练时直接从这个状态开始。</p>
+<h2 id="25-load_state_dict"><a class="markdownIt-Anchor" href="#25-load_state_dict"></a> 2.5 load_state_dict()</h2>
+<p>功能：加载状态信息字典</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python">optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>, momentum=<span class="hljs-number">0.9</span>)
+state_dict = torch.load(os.path.join(BASE_DIR, <span class="hljs-string">"optimizer_state_dict.pkl"</span>))
+
+print(<span class="hljs-string">"state_dict before load state:\n"</span>, optimizer.state_dict())
+optimizer.load_state_dict(state_dict)
+print(<span class="hljs-string">"state_dict after load state:\n"</span>, optimizer.state_dict())</code></pre>
+<pre><code class="hljs python">state_dict before load state:
+ &#123;<span class="hljs-string">'state'</span>: &#123;&#125;, <span class="hljs-string">'param_groups'</span>: [&#123;<span class="hljs-string">'lr'</span>: <span class="hljs-number">0.1</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0.9</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>, <span class="hljs-string">'params'</span>: [<span class="hljs-number">1517314336152</span>]&#125;]&#125;
+state_dict after load state:
+ &#123;<span class="hljs-string">'state'</span>: &#123;<span class="hljs-number">1517314336152</span>: &#123;<span class="hljs-string">'momentum_buffer'</span>: tensor([[<span class="hljs-number">6.5132</span>, <span class="hljs-number">6.5132</span>],
+        [<span class="hljs-number">6.5132</span>, <span class="hljs-number">6.5132</span>]])&#125;, <span class="hljs-string">'default_factory'</span>: &#123;&#125;&#125;, <span class="hljs-string">'param_groups'</span>: [&#123;<span class="hljs-string">'lr'</span>: <span class="hljs-number">0.1</span>, <span class="hljs-string">'momentum'</span>: <span class="hljs-number">0.9</span>, <span class="hljs-string">'dampening'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'weight_decay'</span>: <span class="hljs-number">0</span>, <span class="hljs-string">'nesterov'</span>: <span class="hljs-literal">False</span>, <span class="hljs-string">'params'</span>: [<span class="hljs-number">1517314336152</span>]&#125;]&#125;</code></pre>
+<h1 id="3-学习率和动量"><a class="markdownIt-Anchor" href="#3-学习率和动量"></a> 3. 学习率和动量</h1>
+<h2 id="31-学习率learning-rate"><a class="markdownIt-Anchor" href="#31-学习率learning-rate"></a> 3.1 学习率（learning rate）</h2>
+<p>梯度下降：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>w</mi><mi>i</mi></msub><mo>−</mo><mi>L</mi><mi>R</mi><mo>∗</mo><mi>g</mi><mrow><mo fence="true">(</mo><msub><mi>w</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">w_{i+1}=w_{i}-L R * g\left(w_{i}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></p>
+<p>学习率（learning rate）控制更新的步伐</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(x_t)</span>:</span>
+    <span class="hljs-string">"""</span>
+<span class="hljs-string">    y = (2x)^2 = 4*x^2      dy/dx = 8x</span>
+<span class="hljs-string">    """</span>
+    <span class="hljs-keyword">return</span> torch.pow(<span class="hljs-number">2</span>*x_t, <span class="hljs-number">2</span>)
+
+
+<span class="hljs-comment"># init</span>
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ------------------------------ plot data ------------------------------</span>
+x_t = torch.linspace(<span class="hljs-number">-3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">100</span>)
+y = func(x_t)
+plt.plot(x_t.numpy(), y.numpy(), label=<span class="hljs-string">"y = 4*x^2"</span>)
+plt.grid()
+plt.xlabel(<span class="hljs-string">"x"</span>)
+plt.ylabel(<span class="hljs-string">"y"</span>)
+plt.legend()
+plt.show()</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804221934.png" srcset="/img/loading.gif" alt="image-20200804221925914" /></p>
+<pre><code class="hljs python"><span class="hljs-comment"># ------------------------------ gradient descent ------------------------------</span>
+iter_rec, loss_rec, x_rec = list(), list(), list()
+
+lr = <span class="hljs-number">0.01</span>    <span class="hljs-comment"># /1. /.5 /.2 /.1 /.125</span>
+max_iteration = <span class="hljs-number">20</span>   <span class="hljs-comment"># /1. 4     /.5 4   /.2 20 200</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(max_iteration):
+
+    y = func(x)
+    y.backward()
+
+    print(<span class="hljs-string">"Iter:&#123;&#125;, X:&#123;:8&#125;, X.grad:&#123;:8&#125;, loss:&#123;:10&#125;"</span>.format(
+        i, x.detach().numpy()[<span class="hljs-number">0</span>], x.grad.detach().numpy()[<span class="hljs-number">0</span>], y.item()))
+
+    x_rec.append(x.item())
+
+    x.data.sub_(lr * x.grad)    <span class="hljs-comment"># x -= x.grad  数学表达式意义:  x = x - x.grad    # 0.5 0.2 0.1 0.125</span>
+    x.grad.zero_()
+
+    iter_rec.append(i)
+    loss_rec.append(y)
+
+plt.subplot(<span class="hljs-number">121</span>).plot(iter_rec, loss_rec, <span class="hljs-string">'-ro'</span>)
+plt.xlabel(<span class="hljs-string">"Iteration"</span>)
+plt.ylabel(<span class="hljs-string">"Loss value"</span>)
+
+x_t = torch.linspace(<span class="hljs-number">-3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">100</span>)
+y = func(x_t)
+plt.subplot(<span class="hljs-number">122</span>).plot(x_t.numpy(), y.numpy(), label=<span class="hljs-string">"y = 4*x^2"</span>)
+plt.grid()
+y_rec = [func(torch.tensor(i)).item() <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x_rec]
+plt.subplot(<span class="hljs-number">122</span>).plot(x_rec, y_rec, <span class="hljs-string">'-ro'</span>)
+plt.legend()
+plt.show()</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804222854.png" srcset="/img/loading.gif" alt="image-20200804222853062" /></p>
+<p>如果更改学习率，得到的图如下所示：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804223156.png" srcset="/img/loading.gif" alt="image-20200804223156014" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804223225.png" srcset="/img/loading.gif" alt="image-20200804223224473" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804223251.png" srcset="/img/loading.gif" alt="image-20200804223250241" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804223315.png" srcset="/img/loading.gif" alt="image-20200804223314188" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804223345.png" srcset="/img/loading.gif" alt="image-20200804223344313" /></p>
+<p>从上面图中，我们得到结论：</p>
+<ol>
+<li>
+<p>大的学习率容易造成结果不收敛，loss不降反增。</p>
+</li>
+<li>
+<p>小的学习率总是可以使结果收敛，越小的loss单次步进距离越小，所需要的训练时间越长</p>
+</li>
+<li>
+<p>学习率也不是越小越好。如上图中，lr=0.1没有lr=0.125效果好，lr=0.125直接一步到位，因为2-16*0.125=0</p>
+</li>
+</ol>
+<pre><code class="hljs python">iteration = <span class="hljs-number">100</span>
+num_lr = <span class="hljs-number">10</span>
+lr_min, lr_max = <span class="hljs-number">0.01</span>, <span class="hljs-number">0.2</span>  <span class="hljs-comment"># .5 .3 .2</span>
+
+lr_list = np.linspace(lr_min, lr_max, num=num_lr).tolist()
+loss_rec = [[] <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> range(len(lr_list))]
+iter_rec = list()
+
+<span class="hljs-keyword">for</span> i, lr <span class="hljs-keyword">in</span> enumerate(lr_list):
+    x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+    <span class="hljs-keyword">for</span> iter <span class="hljs-keyword">in</span> range(iteration):
+
+        y = func(x)
+        y.backward()
+        x.data.sub_(lr * x.grad)  <span class="hljs-comment"># x.data -= x.grad</span>
+        x.grad.zero_()
+
+        loss_rec[i].append(y.item())
+
+<span class="hljs-keyword">for</span> i, loss_r <span class="hljs-keyword">in</span> enumerate(loss_rec):
+    plt.plot(range(len(loss_r)), loss_r, label=<span class="hljs-string">"LR: &#123;&#125;"</span>.format(lr_list[i]))
+plt.legend()
+plt.xlabel(<span class="hljs-string">'Iterations'</span>)
+plt.ylabel(<span class="hljs-string">'Loss value'</span>)
+plt.show()</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804224131.png" srcset="/img/loading.gif" alt="image-20200804224130169" /></p>
+<p>做一个横向对比，也能得到我们刚才的结论。</p>
+<h2 id="32-动量momentum"><a class="markdownIt-Anchor" href="#32-动量momentum"></a> 3.2 动量（momentum）</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><mi>m</mi><mo>∗</mo><msub><mi>v</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mi>g</mi><mrow><mo fence="true">(</mo><msub><mi>w</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">v_{i}=m * v_{i-1}+g\left(w_{i}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.791661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>w</mi><mi>i</mi></msub><mo>−</mo><mi>l</mi><mi>r</mi><mo>∗</mo><msub><mi>v</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_{i+1}=w_{i}-l r * v_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>𝒘</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">𝒘_{i+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.652771em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.11111em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.11111em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>：第i+1次更新的参数<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">lr</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span>：学习率<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>𝒗</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">𝒗_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.59444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.11111em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.11111em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ：更新量<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>：momentum系数<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>𝒈</mi><mo stretchy="false">(</mo><msub><mi>𝒘</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">𝒈(𝒘_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord boldsymbol" style="margin-right:0.105em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.11111em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.11111em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>： 𝒘𝒊的梯度</p>
+</blockquote>
+<p>以第100次的更新量<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mn>100</mn></msub></mrow><annotation encoding="application/x-tex">v_{100}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>为例：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi mathvariant="bold-italic">v</mi><mn>100</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi mathvariant="bold-italic">m</mi><mo>∗</mo><msub><mi mathvariant="bold-italic">v</mi><mn>99</mn></msub><mo>+</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>100</mn></msub><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>100</mn></msub><mo fence="true">)</mo></mrow><mo>+</mo><mi mathvariant="bold-italic">m</mi><mo>∗</mo><mrow><mo fence="true">(</mo><mi mathvariant="bold-italic">m</mi><mo>∗</mo><msub><mi mathvariant="bold-italic">v</mi><mn>98</mn></msub><mo>+</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>99</mn></msub><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>100</mn></msub><mo fence="true">)</mo></mrow><mo>+</mo><mi mathvariant="bold-italic">m</mi><mo>∗</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>99</mn></msub><mo fence="true">)</mo></mrow><mo>+</mo><msup><mi mathvariant="bold-italic">m</mi><mn>2</mn></msup><mo>∗</mo><msub><mi mathvariant="bold-italic">v</mi><mn>98</mn></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>100</mn></msub><mo fence="true">)</mo></mrow><mo>+</mo><mi mathvariant="bold-italic">m</mi><mo>∗</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>99</mn></msub><mo fence="true">)</mo></mrow><mo>+</mo><msup><mi mathvariant="bold-italic">m</mi><mn>2</mn></msup><mo>∗</mo><mi mathvariant="bold-italic">g</mi><mrow><mo fence="true">(</mo><msub><mi mathvariant="bold-italic">w</mi><mn>98</mn></msub><mo fence="true">)</mo></mrow><mo>+</mo><msup><mi mathvariant="bold-italic">m</mi><mn>3</mn></msup><mo>∗</mo><msub><mi mathvariant="bold-italic">v</mi><mn>97</mn></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned} \boldsymbol{v}_{100} &amp;=\boldsymbol{m} * \boldsymbol{v}_{99}+\boldsymbol{g}\left(\boldsymbol{w}_{100}\right) \\ &amp;=\boldsymbol{g}\left(\boldsymbol{w}_{100}\right)+\boldsymbol{m} *\left(\boldsymbol{m} * \boldsymbol{v}_{98}+\boldsymbol{g}\left(\boldsymbol{w}_{99}\right)\right) \\ &amp;=\boldsymbol{g}\left(\boldsymbol{w}_{100}\right)+\boldsymbol{m} * \boldsymbol{g}\left(\boldsymbol{w}_{99}\right)+\boldsymbol{m}^{2} * \boldsymbol{v}_{98} \\ &amp;=\boldsymbol{g}\left(\boldsymbol{w}_{100}\right)+\boldsymbol{m} * \boldsymbol{g}\left(\boldsymbol{w}_{99}\right)+\boldsymbol{m}^{2} * \boldsymbol{g}\left(\boldsymbol{w}_{98}\right)+\boldsymbol{m}^{3} * \boldsymbol{v}_{97} \end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:6.048216em;vertical-align:-2.774108em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.274108em;"><span style="top:-5.434108em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.9341079999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span><span style="top:-2.4099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span><span style="top:-0.8858920000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.774108em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.274108em;"><span style="top:-5.434108em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">9</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span><span style="top:-3.9341079999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">8</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">9</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span><span style="top:-2.4099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">9</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">8</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-0.8858920000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">9</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.02778em;">w</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">8</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol">m</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">7</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.774108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>可以看到，momentum是考虑了过去参数的梯度对现在更新的影响。m越小，则对过去的考虑越少；m越接近1，则对过去的考虑越多。一般m可以取0.9</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805151857.png" srcset="/img/loading.gif" alt="image-20200805151856145" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805152708.png" srcset="/img/loading.gif" alt="image-20200805152705059" /></p>
+<blockquote>
+<p>对权重归一化之后的图如上所述</p>
+</blockquote>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(x)</span>:</span>
+    <span class="hljs-keyword">return</span> torch.pow(<span class="hljs-number">2</span>*x, <span class="hljs-number">2</span>)    <span class="hljs-comment"># y = (2x)^2 = 4*x^2        dy/dx = 8x</span>
+
+iteration = <span class="hljs-number">100</span>
+m = <span class="hljs-number">0.0</span>     <span class="hljs-comment"># .9 .63</span>
+
+lr_list = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.03</span>]
+
+momentum_list = list()
+loss_rec = [[] <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> range(len(lr_list))]
+iter_rec = list()
+
+<span class="hljs-keyword">for</span> i, lr <span class="hljs-keyword">in</span> enumerate(lr_list):
+    x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+    momentum = <span class="hljs-number">0.</span> <span class="hljs-keyword">if</span> lr == <span class="hljs-number">0.03</span> <span class="hljs-keyword">else</span> m
+    momentum_list.append(momentum)
+
+    optimizer = optim.SGD([x], lr=lr, momentum=momentum)
+
+    <span class="hljs-keyword">for</span> iter <span class="hljs-keyword">in</span> range(iteration):
+
+        y = func(x)
+        y.backward()
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+        loss_rec[i].append(y.item())
+
+<span class="hljs-keyword">for</span> i, loss_r <span class="hljs-keyword">in</span> enumerate(loss_rec):
+    plt.plot(range(len(loss_r)), loss_r, label=<span class="hljs-string">"LR: &#123;&#125; M:&#123;&#125;"</span>.format(lr_list[i], momentum_list[i]))
+plt.legend()
+plt.xlabel(<span class="hljs-string">'Iterations'</span>)
+plt.ylabel(<span class="hljs-string">'Loss value'</span>)
+plt.show()</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805161603.png" srcset="/img/loading.gif" alt="image-20200805161602501" /></p>
+<p>当m=0时，lr=0.03比lr=0.01更快收敛</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805161852.png" srcset="/img/loading.gif" alt="image-20200805161852025" /></p>
+<p>当m=0.9时，lr=0.01出现了超调震荡，也就是m过大了</p>
+<p><img src="%E4%BC%98%E5%8C%96%E5%99%A8.assets/image-20200805162125934.png" srcset="/img/loading.gif" alt="image-20200805162125934" /></p>
+<p>当m=0.63时，lr=0.01比lr=0.03更快收敛</p>
+<h1 id="4-优化器"><a class="markdownIt-Anchor" href="#4-优化器"></a> 4. 优化器</h1>
+<h2 id="41-optimsgd随机梯度下降法"><a class="markdownIt-Anchor" href="#41-optimsgd随机梯度下降法"></a> 4.1 optim.SGD：随机梯度下降法</h2>
+<pre><code class="hljs python">optim.SGD(params, 
+          lr=&lt;object object&gt;,
+          momentum=<span class="hljs-number">0</span>, 
+          dampening=<span class="hljs-number">0</span>, 
+          weight_decay=<span class="hljs-number">0</span>, 
+          nesterov=<span class="hljs-literal">False</span>)</code></pre>
+<p>主要参数：</p>
+<ul>
+<li>params：管理的参数组</li>
+<li>lr：初始学习率</li>
+<li>momentum：动量系数，贝塔</li>
+<li>weight_decay：L2正则化系数</li>
+<li>nesterov：是否采用NAG</li>
+</ul>
+<h2 id="42-optimadagrad自适应学习率梯度下降法"><a class="markdownIt-Anchor" href="#42-optimadagrad自适应学习率梯度下降法"></a> 4.2 optim.Adagrad：自适应学习率梯度下降法</h2>
+<h2 id="43-optimrmsprop-adagrad的改进"><a class="markdownIt-Anchor" href="#43-optimrmsprop-adagrad的改进"></a> 4.3 optim.RMSprop： Adagrad的改进</h2>
+<h2 id="44-optimadadelta-adagrad的改进"><a class="markdownIt-Anchor" href="#44-optimadadelta-adagrad的改进"></a> 4.4  optim.Adadelta： Adagrad的改进</h2>
+<h2 id="45-optimadamrmsprop结合momentum"><a class="markdownIt-Anchor" href="#45-optimadamrmsprop结合momentum"></a> 4.5 optim.Adam：RMSprop结合Momentum</h2>
+<h2 id="46-optimadamaxadam增加学习率上限"><a class="markdownIt-Anchor" href="#46-optimadamaxadam增加学习率上限"></a> 4.6 optim.Adamax：Adam增加学习率上限</h2>
+<h2 id="47-optimsparseadam稀疏版的adam"><a class="markdownIt-Anchor" href="#47-optimsparseadam稀疏版的adam"></a> 4.7 optim.SparseAdam：稀疏版的Adam</h2>
+<h2 id="48-optimasgd随机平均梯度下降"><a class="markdownIt-Anchor" href="#48-optimasgd随机平均梯度下降"></a> 4.8 optim.ASGD：随机平均梯度下降</h2>
+<h2 id="49-optimrprop弹性反向传播"><a class="markdownIt-Anchor" href="#49-optimrprop弹性反向传播"></a> 4.9 optim.Rprop：弹性反向传播</h2>
+<h2 id="410-optimlbfgsbfgs的改进"><a class="markdownIt-Anchor" href="#410-optimlbfgsbfgs的改进"></a> 4.10 optim.LBFGS：BFGS的改进</h2>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">学习率调整策略</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">
+                        <span class="hidden-mobile">损失函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "优化器&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -17,10 +17,19 @@
   <meta name="description" content="">
   <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>分类 - Pytorch - zihuan&#39;s Space</title>
+  <title>学习率调整策略 - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -46,7 +55,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -146,7 +155,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042958.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -154,6 +163,25 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-05 16:33">
+      2020年8月5日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -166,103 +194,130 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 15 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">学习率调整策略</span>
-      <span style="float: right;">08-05</span>
-    </a>
-  
-    
-    <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">优化器</span>
-      <span style="float: right;">08-04</span>
-    </a>
-  
-    
-    <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">损失函数</span>
-      <span style="float: right;">08-03</span>
-    </a>
-  
-    
-    <a href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">权值初始化</span>
-      <span style="float: right;">07-31</span>
-    </a>
-  
-    
-    <a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">nn网络层-池化-线性-激活函数层</span>
-      <span style="float: right;">07-30</span>
-    </a>
-  
-    
-    <a href="/2020/07/29/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">nn网络层-卷积层</span>
-      <span style="float: right;">07-29</span>
-    </a>
-  
-    
-    <a href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">模型容器与AlexNet构建</span>
-      <span style="float: right;">07-28</span>
-    </a>
-  
-    
-    <a href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">模型创建与nn.Module</span>
-      <span style="float: right;">07-27</span>
-    </a>
-  
-    
-    <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">transforms方法详解</span>
-      <span style="float: right;">07-24</span>
-    </a>
-  
-    
-    <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">transforms运行机制</span>
-      <span style="float: right;">07-24</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/categories/Pytorch/page/2/">2</a><a class="extend next" rel="next" href="/categories/Pytorch/page/2/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月5日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="1-为什么要调整学习率"><a class="markdownIt-Anchor" href="#1-为什么要调整学习率"></a> 1. 为什么要调整学习率？</h1>
+<p>可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。</p>
+<p>学习率调整策略的函数都继承于_LRScheduler这个基类。</p>
+<p>主要属性：</p>
+<ul>
+<li>optimizer：关联的优化器</li>
+<li>last_epoch：记录epoch数</li>
+<li>base_lrs：记录初始学习率</li>
+</ul>
+<p>主要方法：</p>
+<ul>
+<li>step()：更新下一个epoch的学习率（一次iteration运行一次step函数以更新学习率；在一次iteration以内，学习率不应该改变）</li>
+<li>get_lr()：虚函数（需要子类重写），计算下一个epoch的学习率</li>
+</ul>
+<h1 id="2-pytorch的六种学习率调整策略"><a class="markdownIt-Anchor" href="#2-pytorch的六种学习率调整策略"></a> 2. pytorch的六种学习率调整策略</h1>
+<h2 id="21-steplr"><a class="markdownIt-Anchor" href="#21-steplr"></a> 2.1 StepLR</h2>
+<h2 id="22-multisteplr"><a class="markdownIt-Anchor" href="#22-multisteplr"></a> 2.2 MultiStepLR</h2>
+<h2 id="23-exponentiallr"><a class="markdownIt-Anchor" href="#23-exponentiallr"></a> 2.3 ExponentialLR</h2>
+<h2 id="24-cosineannealinglr"><a class="markdownIt-Anchor" href="#24-cosineannealinglr"></a> 2.4 CosineAnnealingLR</h2>
+<h2 id="25-reducelronplateau"><a class="markdownIt-Anchor" href="#25-reducelronplateau"></a> 2.5 ReduceLRonPlateau</h2>
+<h2 id="26-lambdalr"><a class="markdownIt-Anchor" href="#26-lambdalr"></a> 2.6 LambdaLR</h2>
+<h1 id="3-学习率调整小结"><a class="markdownIt-Anchor" href="#3-学习率调整小结"></a> 3. 学习率调整小结</h1>
+<p>学习率调整小结</p>
+<ol>
+<li>
+<p>有序调整：Step、MultiStep、Exponential 和 CosineAnnealing</p>
+</li>
+<li>
+<p>自适应调整：ReduceLROnPleateau</p>
+</li>
+<li>
+<p>自定义调整：Lambda</p>
+</li>
+</ol>
+<p>学习率初始化：</p>
+<ol>
+<li>设置较小数：0.01、0.001、0.0001</li>
+<li>搜索最大学习率： 《Cyclical Learning Rates for Training Neural<br />
+Networks》</li>
+</ol>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171209.png" srcset="/img/loading.gif" alt="image-20200805171206930" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171212.png" srcset="/img/loading.gif" alt="image-20200805171210988" /></p>
 
-
-
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/">
+                        <span class="hidden-mobile">优化器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -377,6 +432,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -384,7 +464,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "分类 - Pytorch&nbsp;",
+        "学习率调整策略&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
@@ -398,6 +478,21 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
@@ -413,9 +508,30 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
 
 
 
