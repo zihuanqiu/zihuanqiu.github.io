@@ -227,6 +227,17 @@
 </ul>
 <h1 id="2-pytorch的六种学习率调整策略"><a class="markdownIt-Anchor" href="#2-pytorch的六种学习率调整策略"></a> 2. pytorch的六种学习率调整策略</h1>
 <h2 id="21-steplr"><a class="markdownIt-Anchor" href="#21-steplr"></a> 2.1 StepLR</h2>
+<pre><code class="hljs python">lr_scheduler.StepLR(optimizer, 
+                    step_size, 
+                    gamma=<span class="hljs-number">0.1</span>, 
+                    last_epoch=<span class="hljs-number">-1</span>)</code></pre>
+<p>功能：等间隔调整学习率<br />
+主要参数：</p>
+<ul>
+<li>step_size：调整间隔数</li>
+<li>gamma：调整系数</li>
+</ul>
+<p>调整方式：lr = lr * gamma</p>
 <h2 id="22-multisteplr"><a class="markdownIt-Anchor" href="#22-multisteplr"></a> 2.2 MultiStepLR</h2>
 <h2 id="23-exponentiallr"><a class="markdownIt-Anchor" href="#23-exponentiallr"></a> 2.3 ExponentialLR</h2>
 <h2 id="24-cosineannealinglr"><a class="markdownIt-Anchor" href="#24-cosineannealinglr"></a> 2.4 CosineAnnealingLR</h2>
