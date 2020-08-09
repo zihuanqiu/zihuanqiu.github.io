@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月6日 晚上
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -240,7 +240,13 @@
 </ul>
 <p>调整方式：lr = lr * gamma</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">LR = <span class="hljs-number">0.1</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
 iteration = <span class="hljs-number">10</span>
 max_epoch = <span class="hljs-number">200</span>
 
@@ -294,7 +300,17 @@ plt.show()</code></pre>
 </ul>
 <p>调整方式：lr = lr * gamma</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">milestones = [<span class="hljs-number">50</span>, <span class="hljs-number">125</span>, <span class="hljs-number">160</span>]
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+milestones = [<span class="hljs-number">50</span>, <span class="hljs-number">125</span>, <span class="hljs-number">160</span>]
 scheduler_lr = optim.lr_scheduler.MultiStepLR(optimizer, milestones=milestones, gamma=<span class="hljs-number">0.1</span>)
 
 lr_list, epoch_list = list(), list()
@@ -331,7 +347,17 @@ plt.show()</code></pre>
 </ul>
 <p>调整方式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>r</mi><mo>=</mo><mi>l</mi><mi>r</mi><mo>∗</mo><mi>g</mi><mi>a</mi><mi>m</mi><mi>m</mi><msup><mi>a</mi><mrow><mi>e</mi><mi>p</mi><mi>o</mi><mi>c</mi><mi>h</mi></mrow></msup></mrow><annotation encoding="application/x-tex">lr = lr * gamma ^ {epoch}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">gamma = <span class="hljs-number">0.95</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+gamma = <span class="hljs-number">0.95</span>
 scheduler_lr = optim.lr_scheduler.ExponentialLR(optimizer, gamma=gamma)
 
 lr_list, epoch_list = list(), list()
@@ -369,7 +395,17 @@ plt.show()</code></pre>
 </ul>
 <p>调整方式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>η</mi><mi>t</mi></msub><mo>=</mo><msub><mi>η</mi><mi>min</mi><mo>⁡</mo></msub><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo fence="true">(</mo><msub><mi>η</mi><mi>max</mi><mo>⁡</mo></msub><mo>−</mo><msub><mi>η</mi><mi>min</mi><mo>⁡</mo></msub><mo fence="true">)</mo></mrow><mrow><mo fence="true">(</mo><mn>1</mn><mo>+</mo><mi>cos</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><msub><mi>T</mi><mrow><mi>c</mi><mi>u</mi><mi>r</mi></mrow></msub><msub><mi>T</mi><mi>max</mi><mo>⁡</mo></msub></mfrac><mi>π</mi><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\eta_{t}=\eta_{\min }+\frac{1}{2}\left(\eta_{\max }-\eta_{\min }\right)\left(1+\cos \left(\frac{T_{c u r}}{T_{\max }} \pi\right)\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.317502em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.467502em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.151392em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.301392em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">max</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.317502em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.467502em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884309999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.1645428571428575em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.3075428571428573em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mop mtight">max</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">t_max = <span class="hljs-number">50</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+t_max = <span class="hljs-number">50</span>
 scheduler_lr = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=t_max, eta_min=<span class="hljs-number">0.</span>)
 
 lr_list, epoch_list = list(), list()
@@ -417,7 +453,17 @@ plt.show()</code></pre>
 <li>eps：学习率衰减最小值，如果更新后的lr与原来的lr的差不大于eps，则此次更新会被忽视。</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">loss_value = <span class="hljs-number">0.5</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+loss_value = <span class="hljs-number">0.5</span>
 accuray = <span class="hljs-number">0.9</span>
 
 factor = <span class="hljs-number">0.1</span>
@@ -462,7 +508,17 @@ Epoch    59: reducing learning rate of<span class="hljs-built_in"> group </span>
 <li>lr_lambda：function or list ，学习率调整函数</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">lr_init = <span class="hljs-number">0.1</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+lr_init = <span class="hljs-number">0.1</span>
 
 weights_1 = torch.randn((<span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>))
 weights_2 = torch.ones((<span class="hljs-number">5</span>, <span class="hljs-number">5</span>))

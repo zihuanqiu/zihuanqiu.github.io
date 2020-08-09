@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月28日 下午
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -219,6 +219,174 @@
 <p>本节我们用7层结构的LeNet来学习模型创建和nn.Module。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727204944.png" srcset="/img/loading.gif" alt="image-20200727204943120" /></p>
 <p><strong>实验</strong>：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_seed</span><span class="hljs-params">(seed=<span class="hljs-number">1</span>)</span>:</span>
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+
+
+set_seed()  <span class="hljs-comment"># 设置随机种子</span>
+rmb_label = &#123;<span class="hljs-string">"1"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"100"</span>: <span class="hljs-number">1</span>&#125;
+
+<span class="hljs-comment"># 参数设置</span>
+MAX_EPOCH = <span class="hljs-number">10</span>
+BATCH_SIZE = <span class="hljs-number">16</span>
+LR = <span class="hljs-number">0.01</span>
+log_interval = <span class="hljs-number">10</span>
+val_interval = <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+
+split_dir = os.path.join(<span class="hljs-string">"data"</span>, <span class="hljs-string">"rmb_split"</span>)
+train_dir = os.path.join(split_dir, <span class="hljs-string">"train"</span>)
+valid_dir = os.path.join(split_dir, <span class="hljs-string">"valid"</span>)
+
+norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
+norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
+
+train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.RandomCrop(<span class="hljs-number">32</span>, padding=<span class="hljs-number">4</span>),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+valid_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+net = LeNet(classes=<span class="hljs-number">2</span>)
+<span class="hljs-comment"># print(net)</span>
+net.initialize_weights()
+
+<span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span>
+criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span>
+
+<span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span>
+optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)                        <span class="hljs-comment"># 选择优化器</span>
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">10</span>, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span>
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+train_curve = list()
+valid_curve = list()
+
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+
+    loss_mean = <span class="hljs-number">0.</span>
+    correct = <span class="hljs-number">0.</span>
+    total = <span class="hljs-number">0.</span>
+
+    net.train()
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        <span class="hljs-comment"># forward</span>
+        inputs, labels = data
+        outputs = net(inputs)
+
+        <span class="hljs-comment"># backward</span>
+        optimizer.zero_grad()
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        <span class="hljs-comment"># update weights</span>
+        optimizer.step()
+
+        <span class="hljs-comment"># 统计分类情况</span>
+        _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+        total += labels.size(<span class="hljs-number">0</span>)
+        correct += (predicted == labels).squeeze().sum().numpy()
+
+        <span class="hljs-comment"># 打印训练信息</span>
+        loss_mean += loss.item()
+        train_curve.append(loss.item())
+        <span class="hljs-keyword">if</span> (i+<span class="hljs-number">1</span>) % log_interval == <span class="hljs-number">0</span>:
+            loss_mean = loss_mean / log_interval
+            print(<span class="hljs-string">"Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;"</span>.format(
+                epoch, MAX_EPOCH, i+<span class="hljs-number">1</span>, len(train_loader), loss_mean, correct / total))
+            loss_mean = <span class="hljs-number">0.</span>
+
+    scheduler.step()  <span class="hljs-comment"># 更新学习率</span>
+
+    <span class="hljs-comment"># validate the model</span>
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % val_interval == <span class="hljs-number">0</span>:
+
+        correct_val = <span class="hljs-number">0.</span>
+        total_val = <span class="hljs-number">0.</span>
+        loss_val = <span class="hljs-number">0.</span>
+        net.eval()
+        <span class="hljs-keyword">with</span> torch.no_grad():
+            <span class="hljs-keyword">for</span> j, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
+                inputs, labels = data
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+
+                _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+                total_val += labels.size(<span class="hljs-number">0</span>)
+                correct_val += (predicted == labels).squeeze().sum().numpy()
+
+                loss_val += loss.item()
+
+            valid_curve.append(loss_val)
+            print(<span class="hljs-string">"Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;"</span>.format(
+                epoch, MAX_EPOCH, j+<span class="hljs-number">1</span>, len(valid_loader), loss_val, correct / total))
+
+
+train_x = range(len(train_curve))
+train_y = train_curve
+
+train_iters = len(train_loader)
+valid_x = np.arange(<span class="hljs-number">1</span>, len(valid_curve)+<span class="hljs-number">1</span>) * train_iters*val_interval <span class="hljs-comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span>
+valid_y = valid_curve
+
+plt.plot(train_x, train_y, label=<span class="hljs-string">'Train'</span>)
+plt.plot(valid_x, valid_y, label=<span class="hljs-string">'Valid'</span>)
+
+plt.legend(loc=<span class="hljs-string">'upper right'</span>)
+plt.ylabel(<span class="hljs-string">'loss value'</span>)
+plt.xlabel(<span class="hljs-string">'Iteration'</span>)
+plt.show()
+
+<span class="hljs-comment"># ============================ inference ============================</span>
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+test_dir = os.path.join(BASE_DIR, <span class="hljs-string">"test_data"</span>)
+
+test_data = RMBDataset(data_dir=test_dir, transform=valid_transform)
+valid_loader = DataLoader(dataset=test_data, batch_size=<span class="hljs-number">1</span>)
+
+<span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
+    <span class="hljs-comment"># forward</span>
+    inputs, labels = data
+    outputs = net(inputs)
+    _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+
+    rmb = <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> predicted.numpy()[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">100</span>
+    print(<span class="hljs-string">"模型获得&#123;&#125;元"</span>.format(rmb))</code></pre>
 <ol>
 <li>
 <p>设置断点，进去LeNet</p>

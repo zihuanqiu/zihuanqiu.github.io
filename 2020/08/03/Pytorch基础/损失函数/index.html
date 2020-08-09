@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月3日 晚上
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -301,7 +301,16 @@ print(<span class="hljs-string">"Cross Entropy Loss:\n "</span>, loss_none, loss
 </ul>
 <p>​</p>
 <p>再看看weight的功能：</p>
-<pre><code class="hljs python"><span class="hljs-comment"># def loss function</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># fake data</span>
+inputs = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>]], dtype=torch.float)
+target = torch.tensor([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>], dtype=torch.long)
+
+<span class="hljs-comment"># def loss function</span>
 weights = torch.tensor([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], dtype=torch.float)
 
 loss_f_none_w = nn.CrossEntropyLoss(weight=weights, reduction=<span class="hljs-string">'none'</span>)
@@ -340,7 +349,12 @@ mean-加权平均，返回标量</li>
 <p>如果最后一层是softmax（softmax居然在转化为概率之后还加了一个对数，为什么pytorch总是有多余的动作？），那么用上这个nn.NLLLoss就构成了nn.CrossEntropyLoss的效果。当然，如果你最后一层不想用softmax，那么可以直接用nn.CrossEntropyLoss。</p>
 <p>​</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-comment"># fake data</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># fake data</span>
 inputs = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>]], dtype=torch.float)
 target = torch.tensor([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>], dtype=torch.long)
 
@@ -380,7 +394,12 @@ mean-加权平均，返回标量</li>
 <p>另外BCELoss的forward函数接受的标签的格式也不一样，这里接受的是onehot标签，而且数据类型是torch.float。</p>
 </blockquote>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">inputs = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>], [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.2</span>], [<span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>], [<span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>]], dtype=torch.float)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+inputs = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>], [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.2</span>], [<span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>], [<span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>]], dtype=torch.float)
 target_bce = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]], dtype=torch.float)
 
 loss_f_none = nn.BCELoss(reduction=<span class="hljs-string">'none'</span>)
@@ -433,7 +452,12 @@ mean-加权平均，返回标量</li>
 <p>就是比nn.BCELoss多了一个sigmoid的激活；参数多了一个pos_weight ，在正负样本数量不平衡时，可以用这个权重抵消这种差异带来的影响（比如正样本只有100个而负样本有300个，可以设置pos_weight =3）。</p>
 <p>​</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">inputs = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]], dtype=torch.float)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+inputs = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]], dtype=torch.float)
 target = torch.tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]], dtype=torch.float)
 
 target_bce = target
@@ -561,7 +585,16 @@ mean- 加权平均，返回标量</li>
 </ul>
 <p>计算公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>l</mi><mi>n</mi></msub><mo>=</mo><msup><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><msub><mi>y</mi><mi>n</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">l_{n}=\left(x_{n}-y_{n}\right)^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.204008em;vertical-align:-0.25em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p><strong>实验:</strong></p>
-<pre><code class="hljs python">inputs = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+inputs = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 target = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)) * <span class="hljs-number">3</span>
 
 loss_f_mse = nn.MSELoss(reduction=<span class="hljs-string">'none'</span>)
@@ -607,7 +640,16 @@ MSE loss:tensor([[<span class="hljs-number">4.</span>, <span class="hljs-number"
 <li>full ：计算所有loss，默认为False</li>
 <li>eps ：修正项，避免log（input）为nan</li>
 </ul>
-<pre><code class="hljs python">inputs = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+inputs = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 target = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 
 loss_f = nn.PoissonNLLLoss(log_input=<span class="hljs-literal">True</span>, full=<span class="hljs-literal">False</span>, reduction=<span class="hljs-string">'none'</span>)
@@ -655,7 +697,16 @@ mean- 加权平均，返回标量</li>
 <p>并且发现这里的输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">x_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>没有取对数，这是因为有些层的函数自带log-probabilities，比如说softmax层，所以这里为了方便就省去了。</p>
 <p>当reduction='batchmean’就实现了KL散度的公式（还除多了一个N），带一个均值功能。</p>
 </blockquote>
-<pre><code class="hljs python">inputs = torch.tensor([[<span class="hljs-number">0.5</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.2</span>], [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.5</span>]])
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+inputs = torch.tensor([[<span class="hljs-number">0.5</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.2</span>], [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.5</span>]])
 inputs_log = torch.log(inputs)
 target = torch.tensor([[<span class="hljs-number">0.9</span>, <span class="hljs-number">0.05</span>, <span class="hljs-number">0.05</span>], [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.2</span>]], dtype=torch.float)
 
@@ -700,7 +751,16 @@ y = -1时，希望x2比x1大，当x2&gt;x1时，不产生loss</p>
 <p>计算公式：</p>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">loss</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mo>−</mo><mi>y</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>x</mi><mn>1</mn><mo>−</mo><mi>x</mi><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mi mathvariant="normal">margin</mi><mo>⁡</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{loss}(x, y)=\max (0,-y *(x 1-x 2)+\operatorname{margin})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">l</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">s</span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">m</span><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span></span><span class="mclose">)</span></span></span></span></p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">x1 = torch.tensor([[<span class="hljs-number">1</span>], [<span class="hljs-number">2</span>], [<span class="hljs-number">3</span>]], dtype=torch.float)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+x1 = torch.tensor([[<span class="hljs-number">1</span>], [<span class="hljs-number">2</span>], [<span class="hljs-number">3</span>]], dtype=torch.float)
 x2 = torch.tensor([[<span class="hljs-number">3</span>], [<span class="hljs-number">2</span>], [<span class="hljs-number">2</span>]], dtype=torch.float)
 
 target = torch.tensor([<span class="hljs-number">1</span>], dtype=torch.float)
@@ -751,7 +811,16 @@ print(loss)</code></pre>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo stretchy="false">[</mo><mi>y</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>−</mo><mi>x</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">x[y[j]]-x[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span>的意思是：属于类别的input值减去不属于类别的input值</p>
 </blockquote>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">x = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.8</span>]])
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+x = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.8</span>]])
 y = torch.tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>]], dtype=torch.long)
 
 loss_f = nn.MultiLabelMarginLoss(reduction=<span class="hljs-string">'none'</span>)

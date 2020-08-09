@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月9日 晚上
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -249,7 +249,14 @@ TensorBoard <span class="hljs-number">2.2</span><span class="hljs-number">.1</sp
 </blockquote>
 <h1 id="2-tensorboard使用"><a class="markdownIt-Anchor" href="#2-tensorboard使用"></a> 2. TensorBoard使用</h1>
 <h2 id="21-summarywriter"><a class="markdownIt-Anchor" href="#21-summarywriter"></a> 2.1 SummaryWriter</h2>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SummaryWriter</span><span class="hljs-params">(object)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SummaryWriter</span><span class="hljs-params">(object)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, </span></span>
 <span class="hljs-function"><span class="hljs-params">                 log_dir=None, </span></span>
 <span class="hljs-function"><span class="hljs-params">                 comment=<span class="hljs-string">''</span>, </span></span>
@@ -265,7 +272,14 @@ TensorBoard <span class="hljs-number">2.2</span><span class="hljs-number">.1</sp
 <li>filename_suffix：为log_dir目录中所有event file文件名添加后缀</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">log_dir = <span class="hljs-string">"./train_log/test_log_dir"</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+log_dir = <span class="hljs-string">"./train_log/test_log_dir"</span>
 writer = SummaryWriter()
 <span class="hljs-comment"># writer = SummaryWriter(log_dir=log_dir, comment='_scalars', filename_suffix="12345678")</span>
 <span class="hljs-comment"># writer = SummaryWriter(comment='_scalars', filename_suffix="12345678")</span>
@@ -301,6 +315,7 @@ writer.close()</code></pre>
 </ul>
 <p><strong>实验：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
 writer = SummaryWriter()
 x = range(<span class="hljs-number">100</span>)
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x:
@@ -319,6 +334,7 @@ writer.close()</code></pre>
 </ul>
 <p><strong>实验：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
 writer = SummaryWriter()
 r = <span class="hljs-number">5</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>):
@@ -350,7 +366,14 @@ writer.close()
 </li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">writer = SummaryWriter(comment=<span class="hljs-string">'test_comment'</span>, filename_suffix=<span class="hljs-string">"test_suffix"</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+writer = SummaryWriter(comment=<span class="hljs-string">'test_comment'</span>, filename_suffix=<span class="hljs-string">"test_suffix"</span>)
 
 <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>):
 
@@ -405,8 +428,173 @@ writer.add_histogram(<span class="hljs-string">'distribution normal'</span>, dat
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808193833.png" srcset="/img/loading.gif" alt="image-20200808193832336" style="zoom: 80%;" />
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808193857.png" srcset="/img/loading.gif" alt="image-20200808193856160" style="zoom: 80%;" />
 <p><strong>所以我猜测：这个图的计算方法是先按给定的bins参数绘制出直方图，然后对直方图等间隔采样30个数据点，再将这些数据点用折线连接起来。数据点的值做了归一化处理，与bins的数量无关。</strong></p>
-<h3 id="214-实战一"><a class="markdownIt-Anchor" href="#214-实战一"></a> 2.1.4 实战一</h3>
+<h3 id="214-实战一-监控loss-accuracy-weights-gradients"><a class="markdownIt-Anchor" href="#214-实战一-监控loss-accuracy-weights-gradients"></a> 2.1.4 实战一： 监控loss, accuracy, weights, gradients</h3>
 <p>下面是我们之前用Lenet做的的rmb二分类的tensorboard可视化的结果。</p>
+<p><strong>实验代码：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed()  <span class="hljs-comment"># 设置随机种子</span>
+rmb_label = &#123;<span class="hljs-string">"1"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"100"</span>: <span class="hljs-number">1</span>&#125;
+
+<span class="hljs-comment"># 参数设置</span>
+MAX_EPOCH = <span class="hljs-number">10</span>
+BATCH_SIZE = <span class="hljs-number">16</span>
+LR = <span class="hljs-number">0.01</span>
+log_interval = <span class="hljs-number">10</span>
+val_interval = <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+
+split_dir = os.path.join(<span class="hljs-string">".."</span>, <span class="hljs-string">"data"</span>, <span class="hljs-string">"rmb_split"</span>)
+train_dir = os.path.join(split_dir, <span class="hljs-string">"train"</span>)
+valid_dir = os.path.join(split_dir, <span class="hljs-string">"valid"</span>)
+
+norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
+norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
+
+train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.RandomCrop(<span class="hljs-number">32</span>, padding=<span class="hljs-number">4</span>),
+    transforms.RandomGrayscale(p=<span class="hljs-number">0.8</span>),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+valid_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+
+net = LeNet(classes=<span class="hljs-number">2</span>)
+net.initialize_weights()
+
+<span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span>
+criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span>
+
+<span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span>
+optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)                        <span class="hljs-comment"># 选择优化器</span>
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">10</span>, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span>
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+train_curve = list()
+valid_curve = list()
+
+iter_count = <span class="hljs-number">0</span>
+
+<span class="hljs-comment"># 构建 SummaryWriter</span>
+writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
+
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+
+    loss_mean = <span class="hljs-number">0.</span>
+    correct = <span class="hljs-number">0.</span>
+    total = <span class="hljs-number">0.</span>
+
+    net.train()
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        iter_count += <span class="hljs-number">1</span>
+
+        <span class="hljs-comment"># forward</span>
+        inputs, labels = data
+        outputs = net(inputs)
+
+        <span class="hljs-comment"># backward</span>
+        optimizer.zero_grad()
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        <span class="hljs-comment"># update weights</span>
+        optimizer.step()
+
+        <span class="hljs-comment"># 统计分类情况</span>
+        _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+        total += labels.size(<span class="hljs-number">0</span>)
+        correct += (predicted == labels).squeeze().sum().numpy()
+
+        <span class="hljs-comment"># 打印训练信息</span>
+        loss_mean += loss.item()  <span class="hljs-comment"># tensor转换为float</span>
+        train_curve.append(loss.item())
+        <span class="hljs-keyword">if</span> (i+<span class="hljs-number">1</span>) % log_interval == <span class="hljs-number">0</span>:
+            loss_mean = loss_mean / log_interval
+            print(<span class="hljs-string">"Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;"</span>.format(
+                epoch, MAX_EPOCH, i+<span class="hljs-number">1</span>, len(train_loader), loss_mean, correct / total))
+            loss_mean = <span class="hljs-number">0.</span>
+
+        <span class="hljs-comment"># 记录数据，保存于event file 每个iteration，记录Loss，Accuracy</span>
+        writer.add_scalars(<span class="hljs-string">"Loss"</span>, &#123;<span class="hljs-string">"Train"</span>: loss.item()&#125;, iter_count)
+        writer.add_scalars(<span class="hljs-string">"Accuracy"</span>, &#123;<span class="hljs-string">"Train"</span>: correct / total&#125;, iter_count)
+
+    <span class="hljs-comment"># 每个epoch，记录梯度，权值</span>
+    <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net.named_parameters():
+        writer.add_histogram(name + <span class="hljs-string">'_grad'</span>, param.grad, epoch)
+        writer.add_histogram(name + <span class="hljs-string">'_data'</span>, param, epoch)
+
+    scheduler.step()  <span class="hljs-comment"># 更新学习率</span>
+
+    <span class="hljs-comment"># validate the model</span>
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % val_interval == <span class="hljs-number">0</span>:
+
+        correct_val = <span class="hljs-number">0.</span>
+        total_val = <span class="hljs-number">0.</span>
+        loss_val = <span class="hljs-number">0.</span>
+        net.eval()
+        <span class="hljs-keyword">with</span> torch.no_grad():
+            <span class="hljs-keyword">for</span> j, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
+                inputs, labels = data
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+
+                _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+                total_val += labels.size(<span class="hljs-number">0</span>)
+                correct_val += (predicted == labels).squeeze().sum().numpy()
+
+                loss_val += loss.item()
+
+            valid_curve.append(loss.item())
+            print(<span class="hljs-string">"Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;"</span>.format(
+                epoch, MAX_EPOCH, j+<span class="hljs-number">1</span>, len(valid_loader), loss_val, correct / total))
+
+            <span class="hljs-comment"># 记录数据，保存于event file</span>
+            writer.add_scalars(<span class="hljs-string">"Loss"</span>, &#123;<span class="hljs-string">"Valid"</span>: np.mean(valid_curve)&#125;, iter_count)
+            writer.add_scalars(<span class="hljs-string">"Accuracy"</span>, &#123;<span class="hljs-string">"Valid"</span>: correct / total&#125;, iter_count)
+
+train_x = range(len(train_curve))
+train_y = train_curve
+
+train_iters = len(train_loader)
+valid_x = np.arange(<span class="hljs-number">1</span>, len(valid_curve)+<span class="hljs-number">1</span>) * train_iters*val_interval <span class="hljs-comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span>
+valid_y = valid_curve
+
+plt.plot(train_x, train_y, label=<span class="hljs-string">'Train'</span>)
+plt.plot(valid_x, valid_y, label=<span class="hljs-string">'Valid'</span>)
+
+plt.legend(loc=<span class="hljs-string">'upper right'</span>)
+plt.ylabel(<span class="hljs-string">'loss value'</span>)
+plt.xlabel(<span class="hljs-string">'Iteration'</span>)
+plt.show()</code></pre>
 <ol>
 <li>
 <p>Accuracy</p>
@@ -463,7 +651,19 @@ writer.add_histogram(<span class="hljs-string">'distribution normal'</span>, dat
 <li>dataformats：数据形式，CHW，HWC，HW</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+
+writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
 
 <span class="hljs-comment"># img 1     random</span>
 fake_img = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)
@@ -535,7 +735,19 @@ writer.close()</code></pre>
 <li>pad_value：padding的像素值</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+
+writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
 
 split_dir = os.path.join(<span class="hljs-string">".."</span>, <span class="hljs-string">"data"</span>, <span class="hljs-string">"rmb_split"</span>)
 train_dir = os.path.join(split_dir, <span class="hljs-string">"train"</span>)
@@ -550,9 +762,20 @@ img_grid = vutils.make_grid(data_batch, nrow=<span class="hljs-number">4</span>)
 writer.close()</code></pre>
 <p>输出图像：</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809155826.png" srcset="/img/loading.gif" alt="image-20200809155825299" /></p>
-<h3 id="217-实战二"><a class="markdownIt-Anchor" href="#217-实战二"></a> 2.1.7 实战二</h3>
+<h3 id="217-实战二-卷积核和特征图的可视化"><a class="markdownIt-Anchor" href="#217-实战二-卷积核和特征图的可视化"></a> 2.1.7 实战二 ：卷积核和特征图的可视化</h3>
 <p>下面是我们对alexnet前两个卷积层的卷积核可视化的结果：</p>
-<pre><code class="hljs python">writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+
+writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
 
 alexnet = models.alexnet(pretrained=<span class="hljs-literal">True</span>)
 
@@ -582,7 +805,18 @@ writer.close()</code></pre>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809182113.png" srcset="/img/loading.gif" alt="image-20200809175151439" /></p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809182110.png" srcset="/img/loading.gif" alt="image-20200809175212965" /></p>
 <p>下面是我们对alexnet第一个卷积层的输出特征图可视化的结果</p>
-<pre><code class="hljs python">writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+
+writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
 
 <span class="hljs-comment"># 数据</span>
 path_img = <span class="hljs-string">"./lena.png"</span>     <span class="hljs-comment"># your path to image</span>
@@ -628,7 +862,19 @@ writer.close()</code></pre>
 <li>verbose：是否打印计算图结构信息</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+
+writer = SummaryWriter(comment=<span class="hljs-string">'test_your_comment'</span>, filename_suffix=<span class="hljs-string">"_test_your_filename_suffix"</span>)
 
 <span class="hljs-comment"># 模型</span>
 fake_img = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>)
@@ -707,6 +953,12 @@ Estimated Total Size (MB): <span class="hljs-number">0.30</span>
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0%E4%B8%8ECAM%E7%AE%97%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hook函数与CAM算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月21日 下午
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -277,7 +277,10 @@ tensor([[1., 1., 1.],
 <p>功能：从numpy创建tensor<br />
 注意事项：从torch.from_numpy创建的tensor于原ndarray共享内存，当修改其中一个的数据，另外一个也将会被改动</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200720142411.png" srcset="/img/loading.gif" alt="image-20200720142410333" style="zoom:50%;" />
-<pre><code class="hljs python">
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
 arr = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
 t = torch.from_numpy(arr)
 print(<span class="hljs-string">"numpy array: \n"</span>, arr)
@@ -337,7 +340,11 @@ tensor :  tensor([[-1,  2,  3],
 <p>requires_grad：是否需要梯度</p>
 </li>
 </ul>
-<pre><code class="hljs python">out_t = torch.tensor([<span class="hljs-number">1</span>])
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+out_t = torch.tensor([<span class="hljs-number">1</span>])
 
 t = torch.zeros((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), out=out_t)
 
@@ -395,7 +402,12 @@ print(id(t), id(out_t), id(t) == id(out_t))</code></pre>
            layout=torch.strided, 
            device=<span class="hljs-literal">None</span>, 
            requires_grad=<span class="hljs-literal">False</span>)</code></pre>
-<pre><code class="hljs python">t = torch.full((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), <span class="hljs-number">1</span>, dtype=float)
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.full((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), <span class="hljs-number">1</span>, dtype=float)
 print(t)</code></pre>
 <pre><code>tensor([[1., 1., 1.],
         [1., 1., 1.],
@@ -429,7 +441,11 @@ print(t)</code></pre>
 <li>end : 数列“结束值”</li>
 <li>step: 数列公差，默认为1</li>
 </ul>
-<pre><code class="hljs python">t = torch.arange(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.arange(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)
 print(t)</code></pre>
 <pre><code>tensor([2, 4, 6, 8])
 </code></pre>
@@ -455,7 +471,11 @@ print(t)</code></pre>
 <p>steps: 数列长度</p>
 </li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-comment"># t = torch.linspace(2, 10, 5)</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># t = torch.linspace(2, 10, 5)</span>
 t = torch.linspace(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">6</span>)
 print(t)</code></pre>
 <pre><code>tensor([ 2.0000,  3.6000,  5.2000,  6.8000,  8.4000, 10.0000])
@@ -478,16 +498,28 @@ print(t)</code></pre>
 <li>steps: 数列长度</li>
 <li>base : 对数函数的底，默认为10</li>
 </ul>
-<pre><code class="hljs angelscript">t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>)
+<pre><code class="hljs angelscript"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy as np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>)
 print(t)</code></pre>
 <pre><code class="hljs angelscript">tensor([<span class="hljs-number">1.0000e+01</span>, <span class="hljs-number">1.0000e+04</span>, <span class="hljs-number">1.0000e+07</span>, <span class="hljs-number">1.0000e+10</span>])</code></pre>
-<pre><code class="hljs angelscript">t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
+<pre><code class="hljs angelscript"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy as np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
 print(t)</code></pre>
 <pre><code class="hljs angelscript">tensor([   <span class="hljs-number">2.</span>,   <span class="hljs-number">16.</span>,  <span class="hljs-number">128.</span>, <span class="hljs-number">1024.</span>])</code></pre>
 <blockquote>
 <p>其实就是一个指数等比数列，logspace对数均分的意思是，取了对数以后是均分</p>
 </blockquote>
-<pre><code class="hljs python">t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
 print(np.log2(t))</code></pre>
 <pre><code class="hljs angelscript">tensor([ <span class="hljs-number">1.</span>,  <span class="hljs-number">4.</span>,  <span class="hljs-number">7.</span>, <span class="hljs-number">10.</span>])</code></pre>
 <h3 id="2210-通过torcheye创建单位对角矩阵"><a class="markdownIt-Anchor" href="#2210-通过torcheye创建单位对角矩阵"></a> 2.2.10 通过torch.eye创建单位对角矩阵</h3>
@@ -514,7 +546,11 @@ print(np.log2(t))</code></pre>
 <li>mean : 均值</li>
 <li>std : 标准差</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-comment"># mean：张量 std: 张量</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># mean：张量 std: 张量</span>
 mean = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)
 std = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)
 t_normal = torch.normal(mean, std)
@@ -599,13 +635,14 @@ tensor([-0.0276,  1.4369,  2.1077,  3.9417])
         [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>],
         [<span class="hljs-number">0</span>, <span class="hljs-number">7</span>, <span class="hljs-number">5</span>]])</code></pre>
 <h3 id="237-通过-torchrandint_like创建均匀分布张量"><a class="markdownIt-Anchor" href="#237-通过-torchrandint_like创建均匀分布张量"></a> 2.3.7 通过 torch.randint_like创建均匀分布张量</h3>
-<pre><code class="hljs python">torch.randint(low=<span class="hljs-number">0</span>,
-              high,
-              input,
+<pre><code class="hljs python">torch.randint(input,
+              low=<span class="hljs-number">0</span>,
               dtype=<span class="hljs-literal">None</span>, 
               layout=torch.strided, 
               device=<span class="hljs-literal">None</span>, 
-              requires_grad=<span class="hljs-literal">False</span>)</code></pre>
+              requires_grad=<span class="hljs-literal">False</span>,
+              memory_format=torch.preserve_format
+             )</code></pre>
 <p>功能：区间[low, high)生成整数均匀分布</p>
 <pre><code class="hljs python">t = torch.randint_like(torch.tensor(np.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))), <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)
 print(t)</code></pre>
@@ -613,7 +650,7 @@ print(t)</code></pre>
         [<span class="hljs-number">8.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
         [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">9.</span>]], dtype=torch.<span class="hljs-built_in">float</span>64)</code></pre>
 <blockquote>
-<p>不知道为什么，参数的位置和函数的不一样</p>
+<p>注意：上面是1.5.1版本的函数，1.6的参数位置不同</p>
 </blockquote>
 <h3 id="238-通过torchrandperm创建0到n-1的随机排列张量"><a class="markdownIt-Anchor" href="#238-通过torchrandperm创建0到n-1的随机排列张量"></a> 2.3.8 通过torch.randperm创建0到n-1的随机排列张量</h3>
 <pre><code class="hljs python">torch.randperm( n,
@@ -639,14 +676,26 @@ print(t)</code></pre>
 <ul>
 <li>input : 概率值</li>
 </ul>
-<pre><code class="hljs python">t = torch.bernoulli(torch.tensor(np.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))), <span class="hljs-number">0.5</span>)
-print(t)</code></pre>
-<pre><code class="hljs angelscript">tensor([[<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
-        [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
-        [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>]], dtype=torch.<span class="hljs-built_in">float</span>64)</code></pre>
-<blockquote>
-<p>不知道为什么，参数的位置和函数的不一样</p>
-</blockquote>
+<pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = torch.empty(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>).uniform_(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># generate a uniform random matrix with range [0, 1]</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>a
+tensor([[ <span class="hljs-number">0.1737</span>,  <span class="hljs-number">0.0950</span>,  <span class="hljs-number">0.3609</span>],
+        [ <span class="hljs-number">0.7148</span>,  <span class="hljs-number">0.0289</span>,  <span class="hljs-number">0.2676</span>],
+        [ <span class="hljs-number">0.9456</span>,  <span class="hljs-number">0.8937</span>,  <span class="hljs-number">0.7202</span>]])
+<span class="hljs-meta">&gt;&gt;&gt; </span>torch.bernoulli(a)
+tensor([[ <span class="hljs-number">1.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
+        [ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
+        [ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>]])
+
+<span class="hljs-meta">&gt;&gt;&gt; </span>a = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># probability of drawing "1" is 1</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>torch.bernoulli(a)
+tensor([[ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>],
+        [ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>],
+        [ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>]])
+<span class="hljs-meta">&gt;&gt;&gt; </span>a = torch.zeros(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># probability of drawing "1" is 0</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>torch.bernoulli(a)
+tensor([[ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
+        [ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
+        [ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>]])</code></pre>
 
             </article>
             <hr>

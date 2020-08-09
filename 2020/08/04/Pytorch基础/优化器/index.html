@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月5日 下午
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -227,7 +227,15 @@
 <h2 id="21-step"><a class="markdownIt-Anchor" href="#21-step"></a> 2.1 step()</h2>
 <p>功能：执行一步更新</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
 weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 
 optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
@@ -243,7 +251,15 @@ weight after step:tensor([[ <span class="hljs-number">0.5614</span>,  <span clas
 <h2 id="22-zero_grad"><a class="markdownIt-Anchor" href="#22-zero_grad"></a> 2.2 zero_grad()</h2>
 <p>功能：清空所管理参数的梯度</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
 weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 
 optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
@@ -277,7 +293,15 @@ tensor([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span
 <h2 id="23-add_param_group"><a class="markdownIt-Anchor" href="#23-add_param_group"></a> 2.3 add_param_group()</h2>
 <p>功能：添加参数组</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
 weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 
 optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
@@ -301,7 +325,15 @@ optimizer.param_groups <span class="hljs-keyword">is</span>
 <h2 id="24-state_dict"><a class="markdownIt-Anchor" href="#24-state_dict"></a> 2.4 state_dict()</h2>
 <p>功能：获取优化器当前状态信息字典</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
 weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
 
 optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>)
@@ -326,7 +358,18 @@ state_dict after step:
 <h2 id="25-load_state_dict"><a class="markdownIt-Anchor" href="#25-load_state_dict"></a> 2.5 load_state_dict()</h2>
 <p>功能：加载状态信息字典</p>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python">optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>, momentum=<span class="hljs-number">0.9</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+weight = torch.randn((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>), requires_grad=<span class="hljs-literal">True</span>)
+weight.grad = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+
+optimizer = optim.SGD([weight], lr=<span class="hljs-number">0.1</span>, momentum=<span class="hljs-number">0.9</span>)
 state_dict = torch.load(os.path.join(BASE_DIR, <span class="hljs-string">"optimizer_state_dict.pkl"</span>))
 
 print(<span class="hljs-string">"state_dict before load state:\n"</span>, optimizer.state_dict())
@@ -368,7 +411,23 @@ plt.ylabel(<span class="hljs-string">"y"</span>)
 plt.legend()
 plt.show()</code></pre>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200804221934.png" srcset="/img/loading.gif" alt="image-20200804221925914" /></p>
-<pre><code class="hljs python"><span class="hljs-comment"># ------------------------------ gradient descent ------------------------------</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(x_t)</span>:</span>
+    <span class="hljs-string">"""</span>
+<span class="hljs-string">    y = (2x)^2 = 4*x^2      dy/dx = 8x</span>
+<span class="hljs-string">    """</span>
+    <span class="hljs-keyword">return</span> torch.pow(<span class="hljs-number">2</span>*x_t, <span class="hljs-number">2</span>)
+
+
+<span class="hljs-comment"># init</span>
+x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ------------------------------ gradient descent ------------------------------</span>
 iter_rec, loss_rec, x_rec = list(), list(), list()
 
 lr = <span class="hljs-number">0.01</span>    <span class="hljs-comment"># /1. /.5 /.2 /.1 /.125</span>
@@ -421,7 +480,20 @@ plt.show()</code></pre>
 <p>学习率也不是越小越好。如上图中，lr=0.1没有lr=0.125效果好，lr=0.125直接一步到位，因为2-16*0.125=0</p>
 </li>
 </ol>
-<pre><code class="hljs python">iteration = <span class="hljs-number">100</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(x_t)</span>:</span>
+    <span class="hljs-string">"""</span>
+<span class="hljs-string">    y = (2x)^2 = 4*x^2      dy/dx = 8x</span>
+<span class="hljs-string">    """</span>
+    <span class="hljs-keyword">return</span> torch.pow(<span class="hljs-number">2</span>*x_t, <span class="hljs-number">2</span>)
+
+
+iteration = <span class="hljs-number">100</span>
 num_lr = <span class="hljs-number">10</span>
 lr_min, lr_max = <span class="hljs-number">0.01</span>, <span class="hljs-number">0.2</span>  <span class="hljs-comment"># .5 .3 .2</span>
 
@@ -467,7 +539,13 @@ plt.show()</code></pre>
 <p>对权重归一化之后的图如上所述</p>
 </blockquote>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(x)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(x)</span>:</span>
     <span class="hljs-keyword">return</span> torch.pow(<span class="hljs-number">2</span>*x, <span class="hljs-number">2</span>)    <span class="hljs-comment"># y = (2x)^2 = 4*x^2        dy/dx = 8x</span>
 
 iteration = <span class="hljs-number">100</span>
@@ -507,8 +585,7 @@ plt.show()</code></pre>
 <p>当m=0时，lr=0.03比lr=0.01更快收敛</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805161852.png" srcset="/img/loading.gif" alt="image-20200805161852025" /></p>
 <p>当m=0.9时，lr=0.01出现了超调震荡，也就是m过大了</p>
-<p><img src="%E4%BC%98%E5%8C%96%E5%99%A8.assets/image-20200805162125934.png" srcset="/img/loading.gif" alt="image-20200805162125934" /></p>
-<p>当m=0.63时，lr=0.01比lr=0.03更快收敛</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810020433.png" srcset="/img/loading.gif" alt="image-20200810020432511" />当m=0.63时，lr=0.01比lr=0.03更快收敛</p>
 <h1 id="4-优化器"><a class="markdownIt-Anchor" href="#4-优化器"></a> 4. 优化器</h1>
 <h2 id="41-optimsgd随机梯度下降法"><a class="markdownIt-Anchor" href="#41-optimsgd随机梯度下降法"></a> 4.1 optim.SGD：随机梯度下降法</h2>
 <pre><code class="hljs python">optim.SGD(params, 

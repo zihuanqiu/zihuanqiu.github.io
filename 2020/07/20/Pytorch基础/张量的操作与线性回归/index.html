@@ -206,7 +206,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月21日 下午
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
@@ -247,7 +247,12 @@ t_1:tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</
 <li>tensors:张量序列</li>
 <li>dim :要拼接的维度</li>
 </ul>
-<pre><code class="hljs python">t = torch.tensor(np.arange(<span class="hljs-number">6</span>).reshape(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.tensor(np.arange(<span class="hljs-number">6</span>).reshape(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
 
 t_stack = torch.stack([t, t], dim=<span class="hljs-number">2</span>)
 
@@ -283,7 +288,12 @@ print(<span class="hljs-string">"\nt_stack:&#123;&#125; shape:&#123;&#125;"</spa
 <li>chunks : 要切分的份数</li>
 <li>dim : 要切分的维度</li>
 </ul>
-<pre><code class="hljs python">a = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">7</span>)) 
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+a = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">7</span>)) 
 list_of_tensors = torch.chunk(a, dim=<span class="hljs-number">1</span>, chunks=<span class="hljs-number">3</span>)  
 
 <span class="hljs-keyword">for</span> idx, t <span class="hljs-keyword">in</span> enumerate(list_of_tensors):
@@ -306,7 +316,12 @@ print(<span class="hljs-string">"第&#123;&#125;个张量：&#123;&#125;, shape 
 <li>split_size_or_sections : 为int时，表示每一份的长度；为list时，按list元素切分</li>
 <li>dim : 要切分的维度</li>
 </ul>
-<pre><code class="hljs python">t = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">5</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.ones((<span class="hljs-number">2</span>, <span class="hljs-number">5</span>))
 list_of_tensors = torch.split(t, <span class="hljs-number">2</span>, dim=<span class="hljs-number">1</span>)  
 <span class="hljs-keyword">for</span> idx, t <span class="hljs-keyword">in</span> enumerate(list_of_tensors):
 	print(<span class="hljs-string">"第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;"</span>.format(idx+<span class="hljs-number">1</span>, t, t.shape))</code></pre>
@@ -342,7 +357,12 @@ list_of_tensors = torch.split(t, [<span class="hljs-number">2</span>, <span clas
 <li>dim: 要索引的维度</li>
 <li>index : 要索引数据的序号</li>
 </ul>
-<pre><code class="hljs python">t = torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
 idx = torch.tensor([<span class="hljs-number">0</span>, <span class="hljs-number">2</span>], dtype=torch.long)  <span class="hljs-comment"># float</span>
 t_select = torch.index_select(t, dim=<span class="hljs-number">0</span>, index=idx)
 print(<span class="hljs-string">"t:\n&#123;&#125;\nt_select:\n&#123;&#125;"</span>.format(t, t_select))</code></pre>
@@ -366,7 +386,12 @@ Process finished with exit code <span class="hljs-number">0</span></code></pre>
 <li>input: 要索引的张量</li>
 <li>mask: 与input同形状的布尔类型张量</li>
 </ul>
-<pre><code class="hljs python">t = torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
 mask = t.le(<span class="hljs-number">5</span>)  <span class="hljs-comment"># ge is mean greater than or equal/   gt: greater than  le  lt</span>
 t_select = torch.masked_select(t, mask)
 print(<span class="hljs-string">"t:\n&#123;&#125;\nmask:\n&#123;&#125;\nt_select:\n&#123;&#125; "</span>.format(t, mask, t_select))</code></pre>
@@ -390,7 +415,12 @@ print(<span class="hljs-string">"t:\n&#123;&#125;\nmask:\n&#123;&#125;\nt_select
 注意事项：当张量在内存中是连续时，新张量与input共享数据内存<br />
 • input: 要变换的张量<br />
 • shape: 新张量的形状</p>
-<pre><code class="hljs python">t = torch.randperm(<span class="hljs-number">8</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.randperm(<span class="hljs-number">8</span>)
 t_reshape = torch.reshape(t, (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>))
 print(<span class="hljs-string">"t:&#123;&#125;\nt_reshape:\n&#123;&#125;"</span>.format(t, t_reshape))
 
@@ -443,7 +473,12 @@ t_reshape.data 内存地址:<span class="hljs-number">1488245429096</span></code
 <li>dim0: 要交换的维度</li>
 <li>dim1: 要交换的维度</li>
 </ul>
-<pre><code class="hljs python">t = torch.rand((<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.rand((<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
 t_transpose = torch.transpose(t, dim0=<span class="hljs-number">1</span>, dim1=<span class="hljs-number">2</span>)  <span class="hljs-comment"># c*h*w     h*w*c</span>
 print(<span class="hljs-string">"t:&#123;&#125;\nt shape:&#123;&#125;\nt_transpose:&#123;&#125;\nt_transpose shape: &#123;&#125;"</span>.format(t, t.shape, t_transpose, t_transpose.shape))</code></pre>
 <pre><code class="hljs angelscript">t:tensor([[[<span class="hljs-number">0.7576</span>, <span class="hljs-number">0.2793</span>, <span class="hljs-number">0.4031</span>, <span class="hljs-number">0.7347</span>],
@@ -468,7 +503,12 @@ t_transpose shape: torch.Size([<span class="hljs-number">2</span>, <span class="
 <pre><code class="hljs python">torch.t(input) → Tensor</code></pre>
 <p>功能：2维张量转置，对矩阵而言，等价于</p>
 <pre><code class="hljs python">torch.transpose(input, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)</code></pre>
-<pre><code class="hljs python">t = torch.rand((<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.rand((<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
 t_transpose = torch.t(t)  <span class="hljs-comment"># c*h*w     h*w*c</span>
 print(<span class="hljs-string">"t:&#123;&#125;\nt shape:&#123;&#125;\nt_transpose:&#123;&#125;\nt_transpose shape: &#123;&#125;"</span>.format(t, t.shape, t_transpose, t_transpose.shape))</code></pre>
 <pre><code class="hljs python">t:tensor([[<span class="hljs-number">0.7576</span>, <span class="hljs-number">0.2793</span>, <span class="hljs-number">0.4031</span>],
@@ -484,7 +524,12 @@ t_transpose shape: torch.Size([<span class="hljs-number">3</span>, <span class="
 <ul>
 <li>dim: 若为None，移除所有长度为1的轴；若指定维度，当且仅当该轴长度为1时，可以被移除；</li>
 </ul>
-<pre><code class="hljs python">t = torch.rand((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.rand((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>))
 t_sq = torch.squeeze(t)
 t_0 = torch.squeeze(t, dim=<span class="hljs-number">0</span>)
 t_1 = torch.squeeze(t, dim=<span class="hljs-number">1</span>)
@@ -535,7 +580,12 @@ t_1.shape = torch.Size([<span class="hljs-number">1</span>, <span class="hljs-nu
 <ul>
 <li>dim: 扩展的维度</li>
 </ul>
-<pre><code class="hljs python">t = torch.arange(<span class="hljs-number">3</span>)
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t = torch.arange(<span class="hljs-number">3</span>)
 t = torch.reshape(t, (<span class="hljs-number">1</span>, <span class="hljs-number">3</span>))
 t_sq = torch.squeeze(t)
 t_0 = torch.unsqueeze(t_sq, dim=<span class="hljs-number">0</span>)
@@ -575,7 +625,12 @@ torch.add(input, other, out=<span class="hljs-literal">None</span>)</code></pre>
 <li>alpha: 乘项因子</li>
 <li>other: 第二个张量</li>
 </ul>
-<pre><code class="hljs python">t_0 = torch.randn((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t_0 = torch.randn((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
 t_1 = torch.ones_like(t_0)
 t_add = torch.add(t_0, <span class="hljs-number">10</span>, t_1)
 
@@ -602,7 +657,12 @@ tensor([[<span class="hljs-number">10.6614</span>, <span class="hljs-number">10.
 <li><strong>out</strong> (<a href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" target="_blank" rel="noopener"><em>Tensor</em></a><em>,</em> <em>optional</em>) – the output tensor.</li>
 </ul>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721122736.png" srcset="/img/loading.gif" alt="image-20200721122433733" /></p>
-<pre><code class="hljs python">t_0 = torch.reshape(torch.arange(<span class="hljs-number">6</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t_0 = torch.reshape(torch.arange(<span class="hljs-number">6</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
 t_1 = torch.reshape(torch.arange(<span class="hljs-number">6</span>, <span class="hljs-number">12</span>), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
 t_2 = torch.ones_like(t_0)
 t_add = torch.addcmul(t_0, t_1, t_2, value=<span class="hljs-number">2</span>)
@@ -620,7 +680,12 @@ tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>,
 t_add:
 tensor([[<span class="hljs-number">12</span>, <span class="hljs-number">15</span>, <span class="hljs-number">18</span>],
         [<span class="hljs-number">21</span>, <span class="hljs-number">24</span>, <span class="hljs-number">27</span>]])</code></pre>
-<pre><code class="hljs python">t_0 = torch.reshape(torch.arange(<span class="hljs-number">6</span>, dtype=float), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+t_0 = torch.reshape(torch.arange(<span class="hljs-number">6</span>, dtype=float), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
 t_1 = torch.reshape(torch.arange(<span class="hljs-number">6</span>, <span class="hljs-number">12</span>, dtype=float), (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>))
 t_2 = torch.ones_like(t_0, dtype=float)
 t_add = torch.addcmul(t_0, t_1, t_2, value=<span class="hljs-number">0.2</span>)

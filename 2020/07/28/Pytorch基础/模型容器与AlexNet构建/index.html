@@ -206,14 +206,19 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月28日 晚上
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
             <article class="markdown-body">
               <h1 id="1-网络层容器containers"><a class="markdownIt-Anchor" href="#1-网络层容器containers"></a> 1. 网络层容器(Containers)</h1>
 <p>上一节我们学习了如何构建一个LeNet，回顾代码如下：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNet</span><span class="hljs-params">(nn.Module)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNet</span><span class="hljs-params">(nn.Module)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, classes)</span>:</span>
         super(LeNet, self).__init__()
         self.conv1 = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>)
@@ -240,7 +245,12 @@
 <p>nn.Sequential 是 nn.module的容器，用于按顺序包装一组网络层。这里我们以LeNet为例，前四层封装为features层，后3层封装为classifier层。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728165215.png" srcset="/img/loading.gif" alt="image-20200728165214229" /></p>
 <p>代码如下：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNetSequential</span><span class="hljs-params">(nn.Module)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNetSequential</span><span class="hljs-params">(nn.Module)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, classes)</span>:</span>
         super(LeNetSequential, self).__init__()
         self.features = nn.Sequential(
@@ -364,7 +374,12 @@ print(output)</code></pre>
 </li>
 <li>
 <p>解决的方法很简单，之前我们在Sequential中传入的是元组。如果我们传入一个有序字典OrderedDict就能解决这个问题。</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNetSequential</span><span class="hljs-params">(nn.Module)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNetSequential</span><span class="hljs-params">(nn.Module)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, classes)</span>:</span>
         super(LeNetSequentialOrderDict, self).__init__()
 
@@ -444,7 +459,12 @@ print(output)</code></pre>
 <li>insert()：指定在ModuleList中位置插入网络层</li>
 </ul>
 <p>代码如下：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModuleList</span><span class="hljs-params">(nn.Module)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModuleList</span><span class="hljs-params">(nn.Module)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
         super(ModuleList, self).__init__()
         self.linears = nn.ModuleList([nn.Linear(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">20</span>)])
@@ -527,7 +547,12 @@ print(output)</code></pre>
 <li>pop()：返回一对键值，并从字典中删除</li>
 </ul>
 <p>代码如下：</p>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModuleDict</span><span class="hljs-params">(nn.Module)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModuleDict</span><span class="hljs-params">(nn.Module)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
         super(ModuleDict, self).__init__()
         self.choices = nn.ModuleDict(&#123;

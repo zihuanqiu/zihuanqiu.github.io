@@ -206,26 +206,75 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月27日 下午
+                  本文最后更新于：2020年8月10日 凌晨
                 
               </p>
             
             <article class="markdown-body">
               <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727145834.png" srcset="/img/loading.gif" alt="transforms方法" /></p>
 <h1 id="1-transforms裁剪"><a class="markdownIt-Anchor" href="#1-transforms裁剪"></a> 1. transforms——裁剪</h1>
-<h2 id="11-transformscentercrop"><a class="markdownIt-Anchor" href="#11-transformscentercrop"></a> 1.1 transforms.CenterCrop</h2>
-<pre><code class="hljs python">torchvision.transforms.CenterCrop(size)</code></pre>
-<p>功能：从给出的PIL图像中心裁剪图片</p>
-<ul>
-<li>size：所需裁剪图片尺寸</li>
-</ul>
-<p><strong>实验</strong></p>
-<ol>
-<li>
-<p>首先自定义一个函数<code>transform_invert(img_, transform_train)</code>用于可视化<code>torchvision.transforms.CenterCrop(size)</code>的操作结果。</p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transform_invert</span><span class="hljs-params">(img_, transform_train)</span>:</span>
+<p><strong>实验代码：</strong></p>
+<pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">"""</span>
+<span class="hljs-string"># @file name  : transforms_methods_1.py</span>
+<span class="hljs-string"># @author     : tingsongyu</span>
+<span class="hljs-string"># @date       : 2019-09-11 10:08:00</span>
+<span class="hljs-string"># @brief      : transforms方法(一)</span>
+<span class="hljs-string">"""</span>
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_seed</span><span class="hljs-params">(seed=<span class="hljs-number">1</span>)</span>:</span>
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-comment"># 参数设置</span>
+MAX_EPOCH = <span class="hljs-number">10</span>
+BATCH_SIZE = <span class="hljs-number">1</span>
+LR = <span class="hljs-number">0.01</span>
+log_interval = <span class="hljs-number">10</span>
+val_interval = <span class="hljs-number">1</span>
+rmb_label = &#123;<span class="hljs-string">"1"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"100"</span>: <span class="hljs-number">1</span>&#125;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddPepperNoise</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, snr, p=<span class="hljs-number">0.9</span>)</span>:</span>
+        <span class="hljs-keyword">assert</span> isinstance(snr, float) <span class="hljs-keyword">or</span> (isinstance(p, float))
+        self.snr = snr
+        self.p = p
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, img)</span>:</span>
+        <span class="hljs-keyword">if</span> random.uniform(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) &lt; self.p:
+            img_ = np.array(img).copy()
+            h, w, c = img_.shape
+            signal_pct = self.snr
+            noise_pct = <span class="hljs-number">1</span> - self.snr
+            mask = np.random.choice((<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), size=(h, w, <span class="hljs-number">1</span>), p=[signal_pct, noise_pct/<span class="hljs-number">2</span>, noise_pct/<span class="hljs-number">2</span>])  <span class="hljs-comment"># 从0，1，2</span>
+            <span class="hljs-comment"># 中按概率选取，形成size形状的ndarray</span>
+            mask = np.repeat(mask, c, axis=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 按第三个维度，也就是通道数重复2</span>
+            img_[mask == <span class="hljs-number">1</span>] = <span class="hljs-number">255</span>  <span class="hljs-comment"># 椒噪声</span>
+            img_[mask == <span class="hljs-number">2</span>] = <span class="hljs-number">0</span>  <span class="hljs-comment"># 盐噪声</span>
+            <span class="hljs-keyword">return</span> Image.fromarray(img_.astype(<span class="hljs-string">'uint8'</span>)).convert(<span class="hljs-string">"RGB"</span>)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> img
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transform_invert</span><span class="hljs-params">(img_, transform_train)</span>:</span>
     <span class="hljs-string">"""</span>
-<span class="hljs-string">    将data 进行反归一化操作，并转换为PIL的image类型</span>
+<span class="hljs-string">    将data 进行反transfrom操作</span>
 <span class="hljs-string">    :param img_: tensor</span>
 <span class="hljs-string">    :param transform_train: torchvision.transforms</span>
 <span class="hljs-string">    :return: PIL image</span>
@@ -244,13 +293,34 @@
     <span class="hljs-keyword">elif</span> img_.shape[<span class="hljs-number">2</span>] == <span class="hljs-number">1</span>:
         img_ = Image.fromarray(img_.astype(<span class="hljs-string">'uint8'</span>).squeeze())
     <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"Invalid img shape, expected 1 or 3 in axis 2, but got &#123;&#125;!"</span>.format(img_.shape[<span class="hljs-number">2</span>]))
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"Invalid img shape, expected 1 or 3 in axis 2, but got &#123;&#125;!"</span>.format(img_.shape[<span class="hljs-number">2</span>]) )
 
-    <span class="hljs-keyword">return</span> img_</code></pre>
-</li>
-<li>
-<p>主程序：</p>
-<pre><code class="hljs python">train_transform = transforms.Compose([
+    <span class="hljs-keyword">return</span> img_
+
+
+<span class="hljs-comment"># ============================ step 1/2 数据 ============================</span>
+split_dir = os.path.join(<span class="hljs-string">"rmb_split"</span>)
+train_dir = os.path.join(split_dir, <span class="hljs-string">"train"</span>)
+valid_dir = os.path.join(split_dir, <span class="hljs-string">"valid"</span>)
+
+norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
+norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
+
+<span class="hljs-comment"># =======================================================================</span>
+<span class="hljs-comment">#							填充下面代码</span>
+<span class="hljs-comment"># train_transform = transforms.Compose([.....</span>
+<span class="hljs-comment">#</span></code></pre>
+<h2 id="11-transformscentercrop"><a class="markdownIt-Anchor" href="#11-transformscentercrop"></a> 1.1 transforms.CenterCrop</h2>
+<pre><code class="hljs python">torchvision.transforms.CenterCrop(size)</code></pre>
+<p>功能：从给出的PIL图像中心裁剪图片</p>
+<ul>
+<li>size：所需裁剪图片尺寸</li>
+</ul>
+<p><strong>实验</strong></p>
+<ol>
+<li></li>
+</ol>
+   <pre><code class="hljs python">train_transform = transforms.Compose([
     transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
     <span class="hljs-comment"># 1 CenterCrop</span>
@@ -266,7 +336,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         inputs, labels = data  <span class="hljs-comment"># B C H W</span>
@@ -277,7 +347,7 @@ train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<sp
         plt.show()
         plt.pause(<span class="hljs-number">0.5</span>)
         plt.close()</code></pre>
-</li>
+<ol start="3">
 <li>
 <p>可以看到，图片已经从224x224剪裁为196x196了</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724134848.png" srcset="/img/loading.gif" alt="image-20200724134458082" style="zoom: 67%;" />
@@ -338,7 +408,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         inputs, labels = data  <span class="hljs-comment"># B C H W</span>
@@ -426,7 +496,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         inputs, labels = data  <span class="hljs-comment"># B C H W</span>
@@ -486,7 +556,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         inputs, labels = data   <span class="hljs-comment"># B C H W</span>
@@ -536,7 +606,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         inputs, labels = data   <span class="hljs-comment"># B C H W</span>
@@ -589,7 +659,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -659,7 +729,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -725,7 +795,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -799,7 +869,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -865,7 +935,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -930,7 +1000,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -1016,7 +1086,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -1079,7 +1149,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -1124,7 +1194,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -1169,7 +1239,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
@@ -1262,7 +1332,7 @@ train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
 <span class="hljs-comment"># 构建DataLoder</span>
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
 <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
 
