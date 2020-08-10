@@ -184,6 +184,58 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/">模型创建与nn.Module</a>
+
+      <a href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 1. 网络模型创建步骤
+前几次已经学完了数据部分，现在开始学习模型部分。
+
+模型又分为模型创建和权值初始化。其中，模型创建还可以进一步分为构建网络层和拼接网络层。这些工作都可以用nn.Module来完成。
+
+本节我们用7层结构的LeNet来学习模型创建和nn.Module。
+
+实验：
+import os
+import random
+import numpy as np
+import torch
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-27
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">transforms方法详解</a>
 
       <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="index-excerpt">
@@ -540,6 +592,60 @@ device:张量所在设备，GPU/CPU，是加速的关键
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/19/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Pytorch离线安装教程</a>
+
+      <a href="/2020/07/19/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="index-excerpt">
+        
+        
+          
+        
+        <div> Pytorch离线安装教程
+我们总共需要4个文件：
+
+ 步骤一：安装两个包
+
+下载地址：http://download.pytorch.org/whl/torch_stable.html
+
+打开anaconda prompt
+列出环境
+conda env list
+
+删除环境
+conda env remove -n （你要删的环境）
+新建环境
+conda create -n pytorch16 </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-19
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">Python Pandas库</a>
 
       <a href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/" class="index-excerpt">
@@ -565,108 +671,6 @@ Series对象</div>
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>&nbsp;2020-07-14
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">Python Numpy库</a>
-
-      <a href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Numpy库
-
- 11.1 为什么要用Numpy
-
- 11.1.1  低效的Python for循环
-【例】 求100万个数的倒数
-def compute_reciprocals(values):
-    res = []
-    for value in values:      # 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数
-        res.append(1/</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-14
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">Python 标准库</a>
-
-      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/" class="index-excerpt">
-        
-        
-          
-        
-        <div> Python标准库
-
-Python自身提供了比较丰富的生态，拿来即用，可极大的提高开发效率
- 10.1 time库
-
-Python处理时间的标准库
-1、获取现在时间
-（1）time.localtime()  本地时间
-（2）time.gmtime()   UTC世界统一时间
-北京时间比时间统一时间UTC早8个小时
-import time
-
-t_local = time.localtime()
-t</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-13
           </div>
         
         
@@ -786,96 +790,6 @@ t</div>
     
   </div>
 </footer>
-
-<p id="hitokoto">:D 获取中...</p>
-<script>
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      const hitokoto = document.getElementById('hitokoto')
-      hitokoto.innerText = data.hitokoto
-      })
-      .catch(console.error)
-</script>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "书山有路勤为径，学海无涯苦作舟&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

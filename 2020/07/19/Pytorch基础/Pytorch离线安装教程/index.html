@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>Global Average Pooling - zihuan&#39;s Space</title>
+  <title>Pytorch离线安装教程 - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -168,8 +168,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-28 14:28">
-      2020年6月28日 下午
+    <time datetime="2020-07-19 10:00">
+      2020年7月19日 上午
     </time>
   </div>
 
@@ -206,25 +206,76 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月30日 晚上
+                  本文最后更新于：2020年8月11日 凌晨
                 
               </p>
             
             <article class="markdown-body">
-              <h1 id="global-average-pooling"><a class="markdownIt-Anchor" href="#global-average-pooling"></a> Global Average Pooling</h1>
-<p>Golbal Average Pooling 第一次出现在论文Network in Network<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Lin M, Chen Q, Yan S. Network in network[J]. arXiv preprint arXiv:1312.4400, 2013.
-">[1]</span></a></sup>中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。</p>
-<p>在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是使用GAP来替代该全连接层(即使用池化层的方式来降维)。相比于全连接层，GAP有以下优点：</p>
-<ol>
-<li>参数量少。以往网络的参数几乎全部集中于全连接层，使用mlpconv搭配GAP可以在不降低性能的同时极大地减少参数量。</li>
-<li>可解释性强。使用GAP可以显式强制最后一个mlpconv输出的feature map成为分类的confidence map。相比于以往在卷积层之后加入全连接层，很难解释最后一层的feature map有什么意义。相比之下，通过可视化可以发现，在真实分类的confidence map内，可以看到最大的激活区域出现在与原物体相同的区域。</li>
-<li>不容易过拟合。全连接层很容易发生过拟合，因此非常依赖于使用dropout进行正则化。而GAP就是简单地把最后一层的feature map做了空域的平均值然后送入softmax分类器。GAP没有参数，不容易使网络发生过拟合。并且通过实验可以证明，GAP本身就是一种结构化的正则器。</li>
-</ol>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200628151037.png" srcset="/img/loading.gif" alt="image-20200628150712960" /></p>
-<p>假设卷积层的最后输出是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>×</mo><mi>w</mi><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">h\times w\times d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的三维特征图，，经过GAP转换后，变成了大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">1\times 1\times d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的输出值，也就是每一层<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>×</mo><mi>w</mi></mrow><annotation encoding="application/x-tex">h\times w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>会被平均化成一个值。实验证明，这种方法是非常有效的。这样做还有另外一个好处：不用在乎网络输入的图像尺寸。同时需要注意的是，使用GAP也有可能造成收敛变慢。</p>
-<h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h1>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Lin M, Chen Q, Yan S. Network in network[J]. arXiv preprint arXiv:1312.4400, 2013.
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+              <h1 id="pytorch离线安装教程"><a class="markdownIt-Anchor" href="#pytorch离线安装教程"></a> Pytorch离线安装教程</h1>
+<p>我们总共需要4个文件：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811033206.png" srcset="/img/loading.gif" alt="image-20200811033205404" /></p>
+<h2 id="步骤一安装两个包"><a class="markdownIt-Anchor" href="#步骤一安装两个包"></a> 步骤一：安装两个包</h2>
+<blockquote>
+<p>下载地址：<a href="http://download.pytorch.org/whl/torch_stable.html" target="_blank" rel="noopener">http://download.pytorch.org/whl/torch_stable.html</a></p>
+</blockquote>
+<p>打开anaconda prompt</p>
+<p>列出环境</p>
+<p><code>conda env list</code></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811012239.png" srcset="/img/loading.gif" alt="image-20200811012228852" /></p>
+<p>删除环境</p>
+<p><code>conda env remove -n （你要删的环境）</code></p>
+<p>新建环境</p>
+<p><code>conda create -n pytorch16 python=3.8</code></p>
+<p>激活环境</p>
+<p><code>conda activate pytorch16</code></p>
+<p>找到安装包存放的路径</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811033312.png" srcset="/img/loading.gif" alt="image-20200811033311259" /></p>
+<p>通过cd命令去到存放包的目录下</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811033811.png" srcset="/img/loading.gif" alt="image-20200811033810405" /></p>
+<p>在安装离线包的时候同时会下载相关的包，我们添加镜像源加快下载速度：</p>
+<pre><code class="hljs vim">pip config <span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span>.<span class="hljs-built_in">index</span>-url http<span class="hljs-variable">s:</span>//mirrors.aliyun.<span class="hljs-keyword">com</span>/pypi/simple</code></pre>
+<p>然后执行下面命令：</p>
+<pre><code class="hljs text">pip install torch-1.6.0+cu101-cp38-cp38-win_amd64.whl</code></pre>
+<p>然后继续安装第二个包：</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">pip</span> <span class="hljs-selector-tag">install</span> <span class="hljs-selector-tag">torchvision-0</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span>+<span class="hljs-selector-tag">cu101-cp38-cp38-win_amd64</span><span class="hljs-selector-class">.whl</span></code></pre>
+<h2 id="步骤二安装显卡驱动"><a class="markdownIt-Anchor" href="#步骤二安装显卡驱动"></a> 步骤二：安装显卡驱动</h2>
+<p>下载地址</p>
+<p><a href="https://developer.nvidia.com/cuda-10.1-download-archive-base" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-10.1-download-archive-base</a></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811021407.png" srcset="/img/loading.gif" alt="image-20200811021406497" /></p>
+<blockquote>
+<p>如果之前安装过cuda要先卸载，卸载方法如下：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811022217.png" srcset="/img/loading.gif" alt="image-20200811022215583" style="zoom: 80%;" />
+<p>然后删除文件夹：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811022326.png" srcset="/img/loading.gif" alt="image-20200811022324493" style="zoom: 80%;" />
+</blockquote>
+<p>下载好之后安装（全部默认下一步）</p>
+<p>下载cudnn：</p>
+<p><a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-download</a></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811023057.png" srcset="/img/loading.gif" alt="image-20200811023056355" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811023151.png" srcset="/img/loading.gif" alt="image-20200811023149910" style="zoom: 67%;" />
+<p>然后解压cudnn，将里面的内容复制到cuda文件夹</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811035203.png" srcset="/img/loading.gif" alt="image-20200811024541974" /></p>
+<h2 id="步骤三验证安装成功"><a class="markdownIt-Anchor" href="#步骤三验证安装成功"></a> 步骤三：验证安装成功</h2>
+<p>右下角<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811035211.png" srcset="/img/loading.gif" alt="image-20200811025015571" /><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811025040.png" srcset="/img/loading.gif" alt="image-20200811025038717" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811025142.png" srcset="/img/loading.gif" alt="image-20200811025141341" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811025155.png" srcset="/img/loading.gif" alt="image-20200811025154604" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811025239.png" srcset="/img/loading.gif" alt="image-20200811025238074" /></p>
+<p>添加你刚刚创建的新环境</p>
+<p>再看右下角<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811025324.png" srcset="/img/loading.gif" alt="image-20200811025323228" /></p>
+<p>已经切换过来了</p>
+<p>然后等一会，等这个蓝条跑完<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200811025432.png" srcset="/img/loading.gif" alt="image-20200811025430054" /></p>
+<p>然后新建py文件运行以下代码</p>
+<pre><code class="hljs stylus">import torch
+
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(torch.__version__)</span></span>
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(torch.cuda.is_available()</span></span>)</code></pre>
+<p>输出</p>
+<pre><code class="hljs awk"><span class="hljs-number">1.6</span>.<span class="hljs-number">0</span>+cu101
+True
+
+Process finished with <span class="hljs-keyword">exit</span> code <span class="hljs-number">0</span></code></pre>
+<p>成功</p>
+
             </article>
             <hr>
             <div>
@@ -233,7 +284,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
                     
                   </div>
                 
@@ -241,7 +292,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/">深度学习模块</a>
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
                     
                   </div>
                 
@@ -254,9 +305,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/28/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Network%20In%20Network/">
+                      <a href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Network In Network</span>
+                        <span class="hidden-mobile">Pytorch的Tensor</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -264,8 +315,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/26/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Adaptive%20Context%20Network%20for%20Scene%20Parsing/">
-                        <span class="hidden-mobile">Adaptive Context Network for Scene Parsing</span>
+                      <a href="/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">
+                        <span class="hidden-mobile">Python Pandas库</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
