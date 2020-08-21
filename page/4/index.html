@@ -1,0 +1,934 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607043000.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">Python 标准库</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
+          
+          
+            
+          
+          Python标准库
+Python自身提供了比较丰富的生态，拿来即用，可极大的提高开发效率
+10.1 time库
+Python处理时间的标准库
+1、获取现在时间
+（1）time.localtime()  本地时间
+（2）time.gmtime()   UTC世界统一时间
+北京时间比时间统一时间UTC早8个小时
+import time
+
+t_local = time.localtime()
+t_UTC
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/">Python 文件、异常和模块</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/">
+          
+          
+            
+          
+          文件、异常和模块
+实际应用中，我们绝大多数的数据都是通过文件的交互完成的
+8.1 文件的读写
+8.1.1 文件的打开
+文件的打开通用格式
+
+with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;操作文件的字符编码&quot;) as f:
+    &quot;对文件进行相应的读写操作&quot;
+使用with 块的好处：执行完
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">Python 函数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">
+          
+          
+            
+          
+          函数
+4.1 函数的定义及调用
+4.1.1 为什么要用函数1、提高代码复用性——抽象出来，封装为函数   
+2、将复杂的大问题分解成一系列小问题，分而治之——模块化设计的思想  
+3、利于代码的维护和管理
+顺序式
+# 5的阶乘
+n = 5
+res = 1
+for i in range(1, n+1):
+    res *= i
+print(res)
+
+# 20的阶乘
+n = 20
+res = 1
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">Python Numpy库</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">
+          
+          
+            
+          
+          Numpy库
+11.1 为什么要用Numpy
+11.1.1 &ensp;低效的Python for循环【例】 求100万个数的倒数
+def compute_reciprocals(values):
+    res = []
+    for value in values:      # 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数
+        res.append(1/v
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">Python Pandas库</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">
+          
+          
+            
+          
+          Pandas库
+引子Numpy 在向量化的数值计算中表现优异
+但是在处理更灵活、复杂的数据任务： 
+如为数据添加标签、处理缺失值、分组和透视表等方面  
+Numpy显得力不从心
+而基于Numpy构建的Pandas库，提供了使得数据分析变得更快更简单的高级数据结构和操作工具
+12.1 对象创建12.1.1 Pandas Series对象Series 是带标签数据的一维数组
+Series对象的创建
+通
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">Python 基本语法元素</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">
+          
+          
+            
+          
+          
+第一部分 数据类型1. 基本类型：数字、字符串、布尔1.1 数字类型
+int     整型       &ensp;  整数
+
+2
+
+
+
+
+float   浮点型    &ensp;  带小数的数
+
+2.0
+
+
+
+
+complex 复数       &ensp;  a+bj
+
+3+4j
+
+
+
+1.2 字符串类型
+str 字符串   &ensp;  视作文本
+组成： 由数字、字母、空格、其他字符等
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">Python 程序控制结构</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">
+          
+          
+            
+          
+          程序控制结构
+非顺序式的程序控制，往往需要根据一定的条件，决定程序运行的路线。因此，我们首先来认识一下什么叫条件测试。
+第一部分 条件测试
+1、比较运算a = 10
+b = 8
+print(a &gt; b)     # 大于
+print(a &lt; b)     # 小于
+print(a &gt;= b)    # 大于等于
+print(a &lt;= b)    # 小于等于
+print(a
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">Python 有益的探索</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">
+          
+          
+            
+          
+          有益的探索
+尝试着潜入水中，往冰山的深处扎一个小小的猛子
+9.1 数据类型的底层实现
+9.1.1 从奇怪的列表说起
+1、错综复杂的复制
+list_1 = [1, [22, 33, 44], (5, 6, 7), &#123;&quot;name&quot;: &quot;Sarah&quot;&#125;]
+
+
+
+浅拷贝
+
+# list_3 = list_1          # 错误！！！
+li
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/CV%20baseline/ResNet/">ResNet</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/CV%20baseline/ResNet/">
+          
+          
+            
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CV-baseline/">CV baseline</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CV-baseline/">CV baseline</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/CV%20baseline/SENet/">SENet</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/CV%20baseline/SENet/">
+          
+          
+            
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CV-baseline/">CV baseline</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CV-baseline/">CV baseline</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "书山有路勤为径，学海无涯苦作舟&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

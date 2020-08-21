@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>神经网络 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">神经网络</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h1><p>1943年，心理学家W.S.McCulloch和数理逻辑学家W.Pitts基于神经元的生理特征，建立了单个神经元的数学模型（MP模型）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015045.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>实际上没啥依据</p>
+</blockquote>
+<br>
+
+<p>1957年，Frank Rosenblatt从纯数学的度重新考察这一模型，指出能够从一些输入输出对     中通过学习算法获得权重$\boldsymbol{w}$和$b$  。（这被认为是第一个机器学习算法，SVM是90年代的算法）</p>
+<p>问题：给定一些输入输出对$(\boldsymbol{x},y)$，其中$y=\pm 1$，求一个函数，使：$f\left( \boldsymbol{x} \right) =y$</p>
+<p>感知机算法：设定$f\left( \boldsymbol{x} \right) =sign\left( \boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b \right)$，从一堆输入输出中自动学习，获得权重$\boldsymbol{w}$和$b$ 。</p>
+<p>感知器算法（Perceptron Algorithm）:</p>
+<p>对于样本数据$(\boldsymbol{x},y)$</p>
+<ol>
+<li>随机选取$\boldsymbol{w}$和$b$ </li>
+<li>取一个训练样本$\left( \boldsymbol{x_i},y_i \right)$，<ul>
+<li>若$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x_i}+b&gt;0$且$y_i=-1$，则：$\boldsymbol{w}=\boldsymbol{w}-\boldsymbol{x_i},b=b-1$</li>
+<li>若$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x_i}+b&lt;0$且$y_i=+1$，则：$\boldsymbol{w}=\boldsymbol{w}+\boldsymbol{x_i},b=b+1$</li>
+</ul>
+</li>
+<li>再取另外一个$\left( \boldsymbol{x_i},y_i \right)$，回到（2）</li>
+<li>终止条件：直到所有输入和输出对都不满足（2）中的任意一条，退出循环</li>
+</ol>
+<blockquote>
+<p>关于调整$\boldsymbol{w}$和$b$ 的一点点直观的解释：（和梯度下降法推导出来的不同，这里是原论文的方法，比较naive）</p>
+<p>若$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b&gt;0$且$y=-1$，则：$\boldsymbol{w}=\boldsymbol{w}-\boldsymbol{x},b=b-1$，于是有：<br>$\boldsymbol{w}<em>{\text{新}}^{T}\boldsymbol{x}+b</em>{\text{新}}=\left( \boldsymbol{w}-\boldsymbol{x} \right) ^T\boldsymbol{x}+b-1=\left( \boldsymbol{w}^T\boldsymbol{x}+b \right) -\left( \lVert \boldsymbol{x} \rVert ^2+1 \right)$<br>$\left( \lVert \boldsymbol{x} \rVert ^2+1 \right)$是大于1的正数，它会把$\boldsymbol{w}^T\boldsymbol{x}+b$往负的方向调整。<br>$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b&lt;0$时同理</p>
+</blockquote>
+<p>Frank Rosenblatt从数学上证明了，若数据集线性可分，那么以上的算法一定会收敛，下图是感知机在二维特征空间画出的一条直线</p>
+<p align="center">
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015050.png" srcset="/img/loading.gif" style="zoom:67%;" />
+</p>
+注意，感知机画出的直线与SVM有很大不同。感知机画出的直线只是做到了划分正负样本，而没有像SVM那样有最大的margin（毕竟SVM是90年代的东西，感知机早了将近半个世纪）
+
+
+
+<h2 id="感知机算法收敛定理"><a href="#感知机算法收敛定理" class="headerlink" title="感知机算法收敛定理"></a>感知机算法收敛定理</h2><p>刚刚我们提到了，Frank Rosenblatt从数学上证明了，若数据集线性可分，那么感知机算法一定会收敛。下面我们加以证明：</p>
+<p>首先，为下面证明过程书写方便，</p>
+<p>定义增广矩阵$\boldsymbol{X}$：</p>
+<ul>
+<li>若$y=+1$，则$\boldsymbol{X}=\left[ \begin{array}{c}<pre><code>\boldsymbol&#123;x&#125;\\
+  1\\</code></pre>
+\end{array} \right]$</li>
+<li>若$y=-1$，则$\boldsymbol{X}=\left[ \begin{array}{c}<pre><code>-\boldsymbol&#123;x&#125;\\
+  -1\\</code></pre>
+\end{array} \right]$</li>
+</ul>
+<p>定义增广矩阵$\boldsymbol{W}=\left[ \begin{array}{c}<br>    \boldsymbol{w}\<br>    b\<br>\end{array} \right]$</p>
+<p>然后我们重写感知机算法：</p>
+<p>对于样本数据$\boldsymbol{X}$</p>
+<ol>
+<li>随机选取$\boldsymbol{W}$</li>
+<li>取一个训练样本$\boldsymbol{X_i}$<ul>
+<li>若$\boldsymbol{W}^{\boldsymbol{T}}\boldsymbol{X_i}&lt;0$且$y_i=-1$，则：$\boldsymbol{W}=\boldsymbol{W}+\boldsymbol{X_i}$</li>
+</ul>
+</li>
+<li>再取另外一个$\boldsymbol{X_i}$，回到（2）</li>
+<li>终止条件：直到所有输入和输出对都不满足（2）中的任意一条，退出循环</li>
+</ol>
+<p>感知机算法收敛定理：</p>
+<p>若样本数据集$\left{ \boldsymbol{X}<em>i \right} <em>{i\sim N}$线性可分，即$\exists \boldsymbol{W}</em>{opt}$，使<br>$$<br>\boldsymbol{W}</em>{opt}^{T}\boldsymbol{X}_i&gt;0   \left( i=1\sim N \right)<br>$$<br>则利用上述感知机算法，经过有限步后，得到一个$\boldsymbol{W}$，使<br>$$<br>\boldsymbol{W}^{T}\boldsymbol{X}_i&gt;0   \left( i=1\sim N \right)<br>$$</p>
+<blockquote>
+<p>proof：不失一般性，设$\lVert \boldsymbol{W}_{opt} \rVert =1$，假设第k步时的$\boldsymbol{W}$是$\boldsymbol{W}(k)$，且有一个$\boldsymbol{X_i}$使得$\boldsymbol{W}(k)^{\boldsymbol{T}}\boldsymbol{X_i}&lt;0$。根据感知机算法可以推导出：<br>$$<br>\begin{aligned}<br>&amp;\boldsymbol{W}\left( k+1 \right) =\boldsymbol{W}\left( k \right) +\boldsymbol{X}_{\boldsymbol{i}}\rightarrow \lVert \boldsymbol{W}\left( k+1 \right) -a\boldsymbol{W}_{opt} \rVert ^2=\lVert \boldsymbol{W}\left( k \right) -a\boldsymbol{W}_{opt}+\boldsymbol{X}_{\boldsymbol{i}} \rVert ^2<br>\<br>&amp;\lVert \boldsymbol{W}\left( k \right) -a\boldsymbol{W}_{opt}+\boldsymbol{X}_{\boldsymbol{i}} \rVert ^2=\lVert \boldsymbol{W}\left( k \right) -a\boldsymbol{W}_{opt} \rVert ^2+\lVert \boldsymbol{X}_{\boldsymbol{i}} \rVert ^2+2\boldsymbol{W}\left( k \right) ^T\boldsymbol{X}_{\boldsymbol{i}}-2a\boldsymbol{W}_{opt}^{T}\boldsymbol{X}_i<br>\end{aligned}<br>$$<br>注意到$\boldsymbol{W}\left( k \right) ^T\boldsymbol{X}_{\boldsymbol{i}}&lt;0$以及$\boldsymbol{W}_{opt}^{T}\boldsymbol{X}_i&gt;0$，则一定可以取很大的$a$，使得</p>
+<p>$\lVert \boldsymbol{W}\left( k+1 \right) -a\boldsymbol{W}<em>{opt} \rVert ^2&lt;\lVert \boldsymbol{W}\left( k \right) -a\boldsymbol{W}</em>{opt} \rVert ^2$</p>
+<p>定义：$\beta =\underset{i=1\sim N}{\max}\left{ \lVert \boldsymbol{X}<em>i \rVert \right} , \gamma =\underset{i=1\sim N}{\min}\left{ \boldsymbol{W}</em>{opt}^{T}\boldsymbol{X}<em>i \right}$，取$a=\frac{\beta ^2+1}{2\gamma}$，则$\lVert \boldsymbol{W}\left( k+1 \right) -a\boldsymbol{W}</em>{opt} \rVert ^2&lt;\lVert \boldsymbol{W}\left( k \right) -a\boldsymbol{W}_{opt} \rVert ^2-1$</p>
+<p>取$D=\lVert \boldsymbol{W}\left( 0 \right) -a\boldsymbol{W}<em>{opt} \rVert$，则至多经过$D^2$步，$\boldsymbol{W}$将会收敛至$a\boldsymbol{W}</em>{opt}$</p>
+<p>注意是在条件$\boldsymbol{W}(k)^{\boldsymbol{T}}\boldsymbol{X_i}&lt;0$下，才有$\boldsymbol{W}$将会收敛至$a\boldsymbol{W}<em>{opt}$，而通常情况下这个条件很快就会消失。这个证明的意思是，若数据线性可分，并且很难线性划分，$\boldsymbol{W}</em>{opt}$几乎是唯一划分的选择，那么感知机最终也会收敛到$\boldsymbol{W}_{opt}$这个决策平面</p>
+</blockquote>
+<h1 id="多层神经网络"><a href="#多层神经网络" class="headerlink" title="多层神经网络"></a>多层神经网络</h1><p>1969年，Minsky指出了感知机没办法处理非线性可分的数据，在日常生活中很多分类问题是非线性的，人工智能进入了第一次冬天。</p>
+<p>在80年代，人们创造了多层神经网络（Multiple Layer Neural Networks），从而可以实现对非线性可分数据集的分类，人工智能从新复苏。</p>
+<p>下面是一个两层神经网络的例子：</p>
+<p align="center"><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015057.png" srcset="/img/loading.gif" alt="1590654191025" style="zoom:80%;"  /><p/>
+
+<blockquote>
+<p>若$\varphi\left( \cdot \right)$为线性函数，则多层神经网络和单层没有区别</p>
+</blockquote>
+<p><strong>定理：当$\varphi\left( x \right)=u(x)$（即阶跃函数）时，三层网络可以模拟任意决策面</strong></p>
+<h2 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h2><p>反向传播算法（Back Propogation Algorithm）：从后往前计算各个参数的偏导数，然后使用梯度下降法对模型进行训练，最终达到收敛。</p>
+<p>以上图为例：</p>
+<p>首先定义误差函数：$E=\frac{1}{2}\left( y-Y \right) ^2$，其中$y$为前向传播计算出的模型输出，$Y$为数据标签，优化目标为最小化$E$</p>
+<p>模型中代求的偏导数为：<br>$$<br>\begin{aligned}<br>&amp;\frac{\partial E}{\partial w_1}=\frac{dE}{dy}\frac{\partial y}{\partial w_1}=\left( y-Y \right) z_1<br>\<br>&amp;\frac{\partial E}{\partial w_2}=\frac{dE}{dy}\frac{\partial y}{\partial w_2}=\left( y-Y \right) z_2<br>\<br>&amp;\frac{\partial E}{\partial w_{11}}=\frac{dE}{dy}\frac{\partial y}{\partial z_1}\frac{dz_1}{da_1}\frac{\partial a_1}{\partial \omega <em>{11}}=\left( y-Y \right) \omega <em>1\varphi ‘\left( a_1 \right) x_1<br>\<br>&amp;\frac{\partial E}{\partial w</em>{12}}=\frac{dE}{dy}\frac{\partial y}{\partial z_1}\frac{dz_1}{da_1}\frac{\partial a_1}{\partial \omega _{12}}=\left( y-Y \right) \omega _1\varphi ‘\left( a_1 \right) x_2<br>\<br>&amp;\frac{\partial E}{\partial w</em>{21}}=\frac{dE}{dy}\frac{\partial y}{\partial z_2}\frac{dz_2}{da_2}\frac{\partial a_2}{\partial \omega _{21}}=\left( y-Y \right) \omega <em>2\varphi ‘\left( a_2 \right) x_1<br>\<br>&amp;\frac{\partial E}{\partial w</em>{22}}=\frac{dE}{dy}\frac{\partial y}{\partial z_2}\frac{dz_2}{da_2}\frac{\partial a_2}{\partial \omega _{22}}=\left( y-Y \right) \omega _2\varphi ‘\left( a_2 \right) x_2<br>\<br>&amp;\frac{\partial E}{\partial b_1}=\frac{dE}{dy}\frac{\partial y}{\partial z_1}\frac{dz_1}{da_1}\frac{\partial a_1}{\partial b_1}=\left( y-Y \right) \omega _1\varphi ‘\left( a_1 \right)<br>\<br>&amp;\frac{\partial E}{\partial b_2}=\frac{dE}{dy}\frac{\partial y}{\partial z_2}\frac{dz_2}{da_2}\frac{\partial a_2}{\partial b_2}=\left( y-Y \right) \omega _2\varphi ‘\left( a_2 \right)<br>\<br>&amp;\frac{\partial E}{\partial b_3}=\frac{dE}{dy}\frac{\partial y}{\partial b_3}=\left( y-Y \right)<br>\end{aligned}<br>$$</p>
+<p>上面是一个小例子以帮助理解。</p>
+<p><strong>下面我们对反向传播算法进行向量化，并得到他的一般形式：</strong></p>
+<p>首先给出神经网络的向量化数学表达式</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015102.png" srcset="/img/loading.gif" alt="1590670753678"></p>
+<p>这是神经网络的第一层，记输入为$\boldsymbol{x}$，$\boldsymbol{x}$是一个$N\times 1$向量，$N$是输入特征的维数。</p>
+<p>$\boldsymbol{w}^{\left( 1 \right)}$为第一层的参数矩阵：<br>$$<br>\boldsymbol{w}^{\left( 1 \right)}=\left[ \begin{matrix}<br>    w_{11}^{\left( 1 \right)}&amp;        w_{12}^{\left( 1 \right)}&amp;        \cdots&amp;        w_{1N}^{\left( 1 \right)}\<br>    w_{21}^{\left( 1 \right)}&amp;        w_{22}^{\left( 1 \right)}&amp;        \cdots&amp;        w_{2N}^{\left( 1 \right)}\<br>    \vdots&amp;        &amp;        &amp;        \vdots\<br>    w_{M1}^{\left( 1 \right)}&amp;        w_{M2}^{\left( 1 \right)}&amp;        \cdots&amp;        w_{MN}^{\left( 1 \right)}\<br>\end{matrix} \right]<br>$$<br>则有：<br>$$<br>\boldsymbol{x}\Rightarrow \boldsymbol{w}^{\left( 1 \right)}\boldsymbol{x}+\boldsymbol{b}^{\left( 1 \right)}=\boldsymbol{z}^{\left( 1 \right)}\xrightarrow{\varphi}\boldsymbol{a}^{\left( 1 \right)}=\varphi \left( \boldsymbol{z}^{\left( 1 \right)} \right)<br>$$</p>
+<blockquote>
+<p>关于维数和上下标的说明：$\boldsymbol{b}$，$\boldsymbol{z}$和$\boldsymbol{a}$都是列向量，维数取决于这一层的行数，比如上图第一层有M个神经元，则$\boldsymbol{b}^{(1)}$，$\boldsymbol{z}^{(1)}$和$\boldsymbol{a}^{(1)}$都是M维列向量；上标表示第几层，下标表示连接关系。例如$\boldsymbol{w}^{\left( k \right)}_{ij}$表示第$(k-1)$层的第$j$个输出到第$(k)$层的第$i$个神经元的参数。</p>
+<p>PS：$\boldsymbol{x}=\boldsymbol{a}^{\left( 0 \right)}$</p>
+</blockquote>
+<p>那么多层神经网络就是上面的重复级联，每一层的行数不一定相等。为方便表示，我们默认一共有$l$层，则：<br>$$<br>\begin{aligned}<br>\boldsymbol{x}&amp;\Rightarrow \boldsymbol{w}^{\left( 1 \right)}\boldsymbol{x}+\boldsymbol{b}^{\left( 1 \right)}=\boldsymbol{z}^{\left( 1 \right)}\xrightarrow{\varphi}\boldsymbol{a}^{\left( 1 \right)}<br>\<br>&amp;\Rightarrow \boldsymbol{w}^{\left( 2 \right)}\boldsymbol{a}^{\left( 1 \right)}+\boldsymbol{b}^{\left( 2 \right)}=\boldsymbol{z}^{\left( 2 \right)}\xrightarrow{\varphi}\boldsymbol{a}^{\left( 2 \right)}<br>\<br>&amp;\Rightarrow \cdots \cdots \cdots \cdots \cdots \cdots\cdots  \xrightarrow{\varphi} \boldsymbol{a}^{\left( l-1 \right)}<br>\<br>&amp;\Rightarrow \boldsymbol{w}^{\left( l \right)}\boldsymbol{a}^{\left( l-1 \right)}+\boldsymbol{b}^{\left( l \right)}=\boldsymbol{z}^{\left( l \right)}\xrightarrow{\varphi}\boldsymbol{a}^{\left( l \right)}=\boldsymbol{y}<br>\end{aligned}<br>$$<br>为方便计算，我们定义：$\delta <em>{i}^{\left( m \right)}=\frac{\partial E}{\partial z</em>{i}^{\left( m \right)}}$</p>
+<ol>
+<li><p>最后一层$(m=l)$<br>$$<br>\begin{aligned}<br>\delta <em>{i}^{\left( l \right)}&amp;=\frac{\partial E}{\partial z</em>{i}^{\left( l \right)}}=\frac{\partial E}{\partial y_i}\frac{\partial y_i}{\partial z_{i}^{\left( l \right)}}<br>\<br>&amp;=\left( y_i-Y_i \right) \varphi ‘\left( z_{i}^{\left( l \right)} \right)<br>\end{aligned}<br>$$</p>
+</li>
+<li><p>非最后一层$(m=1\sim l-1)$<br>$$<br>\begin{aligned}<br>\delta <em>{i}^{\left( m \right)}&amp;=\frac{\partial E}{\partial z</em>{i}^{\left( m \right)}}=\frac{\partial E}{\partial a_{i}^{\left( m \right)}}\frac{\partial a_{i}^{\left( m \right)}}{\partial z_{i}^{\left( m \right)}}<br>\<br>&amp;=\left( \sum_{j=1}^{S_{m+1}}{\frac{\partial E}{\partial a_{i}^{\left( m+1 \right)}}} \right) \varphi ‘\left( z_{i}^{\left( m \right)} \right)<br>\<br>&amp;=\left( \sum_{j=1}^{S_{m+1}}{w_{ji}^{\left( m+1 \right)}\delta <em>{j}^{\left( m+1 \right)}} \right) \varphi ‘\left( z</em>{i}^{\left( m \right)} \right)<br>\end{aligned}<br>$$</p>
+</li>
+</ol>
+<pre><code>&gt; 这就是反向传播算法的名词由来，先计算最后的偏导数，再逐层向前推进
+
+
+
+计算出$\delta _&#123;i&#125;^&#123;\left( m \right)&#125;$后，可以很方便计算出：
+$$
+\begin&#123;aligned&#125;
+&amp;\frac&#123;\partial E&#125;&#123;\partial w_&#123;ij&#125;^&#123;\left( m \right)&#125;&#125;=\frac&#123;\partial E&#125;&#123;\partial z_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;\frac&#123;\partial z_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;&#123;\partial w_&#123;ij&#125;^&#123;\left( m \right)&#125;&#125;=\delta _&#123;i&#125;^&#123;\left( m \right)&#125;a_&#123;j&#125;^&#123;\left( m-1 \right)&#125;
+\\
+&amp;\frac&#123;\partial E&#125;&#123;\partial b_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;=\frac&#123;\partial E&#125;&#123;\partial z_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;\frac&#123;\partial z_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;&#123;\partial b_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;=\frac&#123;\partial E&#125;&#123;\partial z_&#123;i&#125;^&#123;\left( m \right)&#125;&#125;=\delta _&#123;i&#125;^&#123;\left( m \right)&#125;
+\end&#123;aligned&#125;
+$$</code></pre>
+<p><strong>BP算法：</strong></p>
+<ol>
+<li><p>随机初始化$\left( \boldsymbol{w},\boldsymbol{b} \right)$</p>
+</li>
+<li><p>训练样本$\left( \boldsymbol{x},\boldsymbol{Y} \right)$，输入网络前向传播可求出所有的$\left( \boldsymbol{z},\boldsymbol{a},\boldsymbol{y} \right)$</p>
+</li>
+<li><p>通过上述迭代方法计算出$\left( \frac{\partial E}{\partial w_{ij}^{\left( m \right)}},\frac{\partial E}{\partial b_{i}^{\left( m \right)}} \right)$</p>
+</li>
+<li><p>更新：<br> $$<br> \begin{aligned}</p>
+<pre><code> \boldsymbol&#123;w&#125;^&#123;\left( \text&#123;新&#125; \right)&#125;&amp;=\boldsymbol&#123;w&#125;^&#123;\left( \text&#123;旧&#125; \right)&#125;-\alpha \frac&#123;\partial E&#125;&#123;\partial \boldsymbol&#123;w&#125;&#125;\mid _&#123;\boldsymbol&#123;w&#125;^&#123;\left( \text&#123;旧&#125; \right)&#125;&#125;^&#123;&#125;\\
+ \boldsymbol&#123;b&#125;^&#123;\left( \text&#123;新&#125; \right)&#125;&amp;=\boldsymbol&#123;b&#125;^&#123;\left( \text&#123;旧&#125; \right)&#125;-\alpha \frac&#123;\partial E&#125;&#123;\partial \boldsymbol&#123;b&#125;&#125;\mid _&#123;\boldsymbol&#123;b&#125;^&#123;\left( \text&#123;旧&#125; \right)&#125;&#125;\\</code></pre>
+<p> \end{aligned}<br> $$</p>
+</li>
+<li><p>回到(2)，跳出循环条件：$\left( \frac{\partial E}{\partial w_{ij}^{\left( m \right)}},\frac{\partial E}{\partial b_{i}^{\left( m \right)}} \right)$足够小，或者$E$足够小</p>
+<blockquote>
+<p>这是通过反向传播算法（BP算法）训练多层神经网络的基本方法，但是训练多层神经网络特别是深层神经网络是个错综复杂的问题，下面会讨论到。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="激活函数-varphi-cdot-的选择"><a href="#激活函数-varphi-cdot-的选择" class="headerlink" title="激活函数$\varphi(\cdot)$的选择"></a>激活函数$\varphi(\cdot)$的选择</h2><p>若使用感知机的激活函数$\varphi\left( x \right)=u(x)$，则$\varphi ‘\left( x \right) \equiv 0$（不考虑奇异函数，在x=0不可导就当x=0无定义）</p>
+<p>由于$\varphi ‘\left( x \right) \equiv 0$导致使用反向传播算法计算出来的关于各个参数的偏导数为0，则没有办法用梯度下降法优化模型，因此必须更换激活函数$\varphi\left( \cdot \right)$</p>
+<ol>
+<li><p>sigmoid函数</p>
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015108.png" srcset="/img/loading.gif" alt="1590668419063"></p>
+<p> $$<br> \begin{aligned}<br> \varphi \left( x \right) &amp;=\frac{1}{1+e^{-x}}<br> \<br> \varphi ‘\left( x \right) &amp;=\varphi \left( x \right) \left[ 1-\varphi \left( x \right) \right]<br> \end{aligned}<br> $$</p>
+<blockquote>
+<p>sigmoid函数是阶跃函数的模拟，并且做到了处处可导。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="2">
+<li><p>tanh函数</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015111.png" srcset="/img/loading.gif" alt="1590668654666"><br>$$<br> \begin{aligned}<br> \varphi \left( x \right) &amp;=\tanh \left( x \right) =\frac{e^x-e^{-x}}{e^x+e^{-x}}<br> \<br> \varphi ‘\left( x \right) &amp;=1-\varphi ^2\left( x \right)<br> \end{aligned}<br>$$</p>
+<blockquote>
+<p>以上的激活函数都有一个问题，就是在x远离原点处的导数为0，这在深度网络的反向传播中通常会出现梯度消失（弥散）的现象，导致深层网络难以训练的问题。因此在深度学习出现以后，常常采用以下激活函数。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="3">
+<li><p>ReLU函数</p>
+<p>修正线性单元（Rectify Linear Units）</p>
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015113.png" srcset="/img/loading.gif" alt="1590669223861"></p>
+<p>$$</p>
+<pre><code> \begin&#123;aligned&#125;
+ \varphi \left( x \right) &amp;=\begin&#123;cases&#125;
+     x,   x&gt;0\\
+     0,   x\leqslant 0\\
+ \end&#123;cases&#125;=\max \left\&#123; 0,x \right\&#125; 
+ \\
+ \varphi &#39;\left( x \right) &amp;=\begin&#123;cases&#125;
+     1,   x&gt;0\\
+     0,   x&lt; 0\\
+ \end&#123;cases&#125;
+ \end&#123;aligned&#125;</code></pre>
+<p>$$</p>
+<blockquote>
+<p>在x&gt;0时的梯度弥散现象得到解决，但x&lt;0时仍然存在梯度弥散现象</p>
+</blockquote>
+</li>
+</ol>
+<ol start="4">
+<li><p>Leak ReLU函数</p>
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015116.png" srcset="/img/loading.gif" alt="1590669599063"><br> $$<br> \begin{aligned}<br> \varphi \left( x \right) &amp;=\begin{cases}</p>
+<pre><code> x,   x&gt;0\\
+ \beta x,   x\leqslant 0\\</code></pre>
+<p> \end{cases}<br> \<br> \varphi ‘\left( x \right) &amp;=\begin{cases}</p>
+<pre><code> 1,   x&gt;0\\
+ \beta ,   x&lt;0\\</code></pre>
+<p> \end{cases}<br> \end{aligned}<br> $$</p>
+</li>
+</ol>
+<h1 id="神经网络参数设置方法"><a href="#神经网络参数设置方法" class="headerlink" title="神经网络参数设置方法"></a>神经网络参数设置方法</h1><h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><p>随机梯度（Stochastic Gradient Descent, SGD）</p>
+<ol>
+<li>不用每输入一个样本就去变换参数，而是输入一批样本（叫做一个BATCH或MINI-BATCH），求出这些样本的梯度平均值后，根据这个平均值改变参数。(GD是BATCH为1的SGD)</li>
+<li>在神经网络训练中，BATCH的样本数大致设置为50-200不等。</li>
+</ol>
+<h2 id="激活函数选择"><a href="#激活函数选择" class="headerlink" title="激活函数选择"></a>激活函数选择</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015120.png" srcset="/img/loading.gif" alt="1590739683797"></p>
+<h2 id="训练数据初始化"><a href="#训练数据初始化" class="headerlink" title="训练数据初始化"></a>训练数据初始化</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015124.png" srcset="/img/loading.gif" alt="1590739661702"></p>
+<blockquote>
+<p>标准差$std$也可以用$(max-min)$来代替</p>
+</blockquote>
+<h2 id="boldsymbol-w-b-的初始化"><a href="#boldsymbol-w-b-的初始化" class="headerlink" title="$(\boldsymbol{w},b)$的初始化"></a>$(\boldsymbol{w},b)$的初始化</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015127.png" srcset="/img/loading.gif" alt="1590739733567"></p>
+<p>梯度消失现象：如果$\boldsymbol{w}^T\boldsymbol{x}+b$一开始很大或很小，那么梯度将趋近于0，反向传播后前面与之相关的梯度也趋近于0，导致训练缓慢。 因此，我们要使$\boldsymbol{w}^T\boldsymbol{x}+b$一开始在零附近。</p>
+<p>一种比较简单有效的方法是：$(\boldsymbol{w},b)$初始化从区间$\left( -\frac{1}{\sqrt{d}},\frac{1}{\sqrt{d}} \right)$均匀随机取值。其中$d$为$(\boldsymbol{w},b)$所在层的神经元个数。</p>
+<p>可以证明，如果$\boldsymbol{x}$服从正态分布，均值0，方差1，且各个维度无关，而$(\boldsymbol{w},b)$是$\left( -\frac{1}{\sqrt{d}},\frac{1}{\sqrt{d}} \right)$的均匀分布，则$\boldsymbol{w}^T\boldsymbol{x}+b$是均值为0， 方差为1/3的正态分布。</p>
+<blockquote>
+<p>参数初始化是一个研究热点领域</p>
+</blockquote>
+<h2 id="Batch-normalization"><a href="#Batch-normalization" class="headerlink" title="Batch normalization"></a>Batch normalization</h2><blockquote>
+<p>论文：Batch normalization accelerating deep network training by reducing internal covariate shift (2015)</p>
+</blockquote>
+<p>基本思想：既然我们希望每一层获得的值都在0附近，从而避免梯度消失现象，那么我们为什么不直接把每一层的值做基于均值和方差的归一化呢？</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015136.png" srcset="/img/loading.gif" alt="1590741458551"></p>
+<blockquote>
+<p>对$\gamma$和$\beta$的说明：以sigmoid和tanh为例，若归一化后的样本过于聚集在0附近，则激活函数对外表现出几乎的线性，这是我们不希望看到的。因此增加了$\gamma$和$\beta$两个待学习的参数，使归一化在避免梯度消失和失去非线性中权衡。</p>
+</blockquote>
+<h2 id="目标函数选择"><a href="#目标函数选择" class="headerlink" title="目标函数选择"></a>目标函数选择</h2><ol>
+<li>可加正则项 （Regulation Term）<br>$$<br>L\left( w \right) =F\left( w \right) +R\left( w \right) =\frac{1}{2}\left( \sum_{i=1}^{batchsize}{\lVert y_i-Y_i \rVert ^2+\beta \sum_k^{}{\sum_l^{}{w_{k,l}^{2}}}} \right)<br>\<br>$$</li>
+</ol>
+<ol start="2">
+<li><p>如果是分类问题，$F(w)$可以采用Softmax函数和交叉熵的组合</p>
+<p>（a）Softmax函数</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015140.png" srcset="/img/loading.gif"><br>$$<br>q_i=\frac{\exp \left( z_i \right)}{\sum_{j=1}^N{\exp \left( z_j \right)}},\sum_{i=1}^N{q_i}=1<br>$$</p>
+</li>
+</ol>
+<p>   （b）交叉熵（Cross Entropy）<br>$$<br>   E=-\sum_{i=1}^N{Y_i\log \left( y_i \right)}<br>$$</p>
+<blockquote>
+<p>交叉熵可以作为误差函数，上面我们使用的误差函数为<em>MSE</em>，即$E=\frac{1}{2}\sum_{i=1}^N{\lVert y_i-Y_i \rVert ^2}$。对于交叉熵，当$p$和$q$的分布越相近时，$E$的值越小。</p>
+</blockquote>
+<p>   综上，我们可以使用Softmax函数和交叉熵的组合作为目标函数：<br>$$<br>   E=-\sum_{i=1}^N{p_i\log \left( q_i \right)}<br>$$</p>
+<p>   并且它的求导将会有非常简单的形式：$\frac{\partial E}{\partial z_i}=q_i-p_i$</p>
+<h2 id="参数更新策略"><a href="#参数更新策略" class="headerlink" title="参数更新策略"></a>参数更新策略</h2><ol>
+<li><p>常规的更新 （Vanilla Stochastic Gradient Descent）</p>
+<pre><code class="hljs matlab">nn.W&#123;k&#125; = nn.W&#123;k&#125; - nn.learning_rate*nn.W_grad&#123;k&#125;;
+nn.b&#123;k&#125; = nn.b&#123;k&#125; - nn.learning_rate*nn.b_grad&#123;k&#125;;</code></pre>
+
+<p>SGD的问题：</p>
+<p>（1）$(\boldsymbol{w},b)$的每一个分量获得的梯度绝对值有大有小，一些情况下，将会迫使优化路径变成Z字形状</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015144.png" srcset="/img/loading.gif" alt="1590747272690"></p>
+</li>
+</ol>
+<p>   （2）SGD求梯度的策略过于随机，由于上一次和下一次用的是完全不同的BATCH数据，将会出现优化的方向随机的情况。</p>
+<p align="center"><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015147.png" srcset="/img/loading.gif" style="zoom: 67%;" /><p/>
+
+
+
+
+
+<ol start="2">
+<li><p>AdaGrad（解决各个方向梯度不一致问题）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015150.png" srcset="/img/loading.gif" alt="1590747459994"></p>
+<blockquote>
+<p>基本思想是：（1）引入了累计梯度的思想，希望这个梯度可以受过去梯度的影响；（2）对每一个梯度做了均值化，原来梯度大的地方变小一些，原来梯度小的地方放大一些，避免Z字形下降。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="3">
+<li><p>RMSProp（解决各个方向梯度不一致问题）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015153.png" srcset="/img/loading.gif" alt="1590748104083"></p>
+<blockquote>
+<p>与AdaGrad唯一的区别是$\gamma \gets \rho \gamma +\left( 1-\rho \right) g\odot g$，引入了一个新的参数$\rho$用于权衡过去梯度和现在梯度的权值</p>
+</blockquote>
+</li>
+</ol>
+<ol start="4">
+<li><p>Momentum（解决梯度随机性问题）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015157.png" srcset="/img/loading.gif" alt="1590749107594"></p>
+<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs matlab">nn.vW&#123;k&#125; = <span class="hljs-number">0.5</span><em>nn.vW&#123;k&#125; + nn.learning_rate</em>nn.W_grad&#123;k&#125;;</p>
+</li>
+</ol>
+<p>nn.vb&#123;k&#125; = <span class="hljs-number">0.5</span><em>nn.vb&#123;k&#125; + nn.learning_rate</em>nn.b_grad&#123;k&#125;;</p>
+<p>nn.W&#123;k&#125; = nn.W&#123;k&#125; - nn.vW&#123;k&#125;;<br>nn.b&#123;k&#125; = nn.b&#123;k&#125; - nn.vb&#123;k&#125;; <span class="hljs-comment">%rho = 0.5;</span></code></pre>:hexoPostRenderEscape–&gt;</p>
+<blockquote>
+<p>Momentum（动量）考虑了上一个梯度的对当前梯度的影响（AdaGrad和RMSProp考虑的是累计梯度对当前梯度的影响，没有Momentum那么有“冲劲”）</p>
+</blockquote>
+<ol start="5">
+<li><p>Adam（同时解决两个问题）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015205.png" srcset="/img/loading.gif" alt="1590749307479"></p>
+</li>
+</ol>
+<blockquote>
+<p>$r$是累计梯度，作为$\bigtriangleup\varTheta$的分母可以解决各个方向梯度不一致；$s$是动量梯度，作为$\bigtriangleup \varTheta$的分子可以解决梯度随机性问题</p>
+</blockquote>
+<h2 id="训练建议"><a href="#训练建议" class="headerlink" title="训练建议"></a>训练建议</h2><p>（1）一般情况下，在训练集上的目标函数的平均值（cost）会随着训练的深入而不断减小，如果这个指标有增大情况，停下来。有两种情况：第一是采用的模型不够复杂，以致于不能在训练集上完全拟合；第二是已经训练很好了。</p>
+<p>（2）分出一些验证集（Validation Set）,训练的本质目标是在验证集上获取最大的识别率。因此训练一段时间后，必须在验证集上测试识别率，保存使验证集上识别率最大的模型参数，作为最后结果。</p>
+<p>（3）注意调整学习率（Learning Rate）,如果刚训练几步cost就增加，一般来说是学习率太高了；如果每次cost变化很小，说明学习率太低。</p>
+<p>（4） Batch Normalization 比较好用，用了这个后，对学习率、参数更新策略等不敏感。建议如果用Batch Normalization, 更新策略用最简单的SGD即可，我的经验是加上其他反而不好。</p>
+<p>（5）如果不用Batch Normalization, 我的经验是，合理变换其他参数组合，也可以达到目的。</p>
+<p>（6）由于梯度累积效应，AdaGrad, RMSProp, Adam三种更新策略到了训练的后期会很慢，可以采用提高学习率的策略来补偿这一效应。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SVM</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">
+                        <span class="hidden-mobile">计算图与动态图机制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "神经网络&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

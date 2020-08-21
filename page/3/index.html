@@ -1,0 +1,927 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607043000.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/">tensorboard可视化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/">
+          
+          
+            
+          
+          1. TensorBoard简介与安装1.1 安装TensorBoardTensorBoard：TensorFlow中强大的可视化工具
+
+通过pip install future和pip install tensorboard安装tensorboard
+1.2 运行TensorBoard实验代码：
+import numpy as np
+from torch.utils.tensorboard im
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">transforms方法详解</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">
+          
+          
+            
+          
+          
+1. transforms——裁剪实验代码：
+# -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+# @file name  : transforms_methods_1.py
+# @author     : tingsongyu
+# @date       : 2019-09-11 10:08:00
+# @brief      : transforms方法(一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/">Hook函数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/">
+          
+          
+            
+          
+          1. Hook函数概念Hook函数机制：不改变主体，实现额外功能，就是开挂的意思
+大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数
+
+torch.Tensor.register_hook(hook)
+torch.nn.Module.register_forward_hook
+torch.nn.Module.register_
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/">Pytorch的Tensor</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/">
+          
+          
+            
+          
+          1. 张量是什么张量是一个多维数组，它是标量、向量、矩阵的高维拓展
+
+Pytorch0.4.0版开始，Variable并入Tensor
+
+dtype:张量的数据类型，如torch.FloatTensor,torch.cuda.FloatTensor
+
+shape:张量的形状，如(64,3,224,224)
+
+device:张量所在设备，GPU/CPU，是加速的关键
+
+
+
+
+
+
+
+
+
+
+2. 张量的
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">autograd</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">
+          
+          
+            
+          
+          autograd—自动求导系统1.  torch.autograd.backwardtorch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None)
+
+功能：自动求取梯度
+
+tensors: 用于求导的张量，如 loss
+retain_gra
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/">nn网络层-池化-线性-激活函数层</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/">
+          
+          
+            
+          
+          1. 池化层——Pooling Layer池化运算：对信号进行 “收集”并 “总结”。“收集”：多变少 “总结”：最大值/平均值
+
+
+
+
+1.1 nn.MaxPool2dnn.MaxPool2d(kernel_size, 
+             stride=None, 
+             padding=0, 
+             dilation=1, 
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/">nn网络层-卷积层</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/">
+          
+          
+            
+          
+          卷积层1. 1d/2d/3d卷积卷积维度：一般情况下，卷积核在几个维度上滑动，就是几维卷积。
+
+2. 卷积-nn.Conv2dtorch.nn.Conv2d(in_channels,
+                out_channels,
+                kernel_size,
+                stride=1,
+                padding
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Python 组合数据类型</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+          
+          
+            
+          
+          组合数据类型
+4.1 列表
+4.1.1 列表的表达
+序列类型：内部元素有位置关系，能通过位置序号访问其中元素
+列表是一个可以使用多种类型元素，支持元素的增、删、查、改操作的序列类型
+
+ls = [&quot;Python&quot;, 1989, True, &#123;&quot;version&quot;: 3.7&#125;]
+ls
+
+
+[&#39;Python&#39;, 1989, Tr
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">DataLoader与DataSet</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">
+          
+          
+            
+          
+          1. 为什么要DataSet和DataLoader
+
+
+
+
+
+相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。
+使用DataSet和DataLoader可以帮助我们进行小批次训练。
+
+2. D
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">GPU的使用</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">
+          
+          
+            
+          
+          1. 数据迁移至GPU
+to函数：转换数据类型/设备
+
+tensor.to(*args, **kwargs)
+
+module.to(*args, **kwargs)
+
+
+区别：张量不执行inplace，模型执行inplace
+x = torch.ones((3, 3))
+x = x.to(torch.float64)  #转换类型；张量不执行inplace，需要用等号赋值
+
+x = torch.o
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "书山有路勤为径，学海无涯苦作舟&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

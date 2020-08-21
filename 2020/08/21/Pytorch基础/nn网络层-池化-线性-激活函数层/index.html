@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>nn网络层-池化-线性-激活函数层 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">nn网络层-池化-线性-激活函数层</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-池化层——Pooling-Layer"><a href="#1-池化层——Pooling-Layer" class="headerlink" title="1. 池化层——Pooling Layer"></a>1. 池化层——Pooling Layer</h1><p>池化运算：对信号进行 “收集”并 “总结”。<br>“收集”：多变少 “总结”：最大值/平均值</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730210002.png" srcset="/img/loading.gif" alt="image-20200730205958161" style="zoom:67%;" />
+
+
+
+<h2 id="1-1-nn-MaxPool2d"><a href="#1-1-nn-MaxPool2d" class="headerlink" title="1.1 nn.MaxPool2d"></a>1.1 nn.MaxPool2d</h2><pre><code class="hljs python">nn.MaxPool2d(kernel_size, 
+             stride=<span class="hljs-literal">None</span>, 
+             padding=<span class="hljs-number">0</span>, 
+             dilation=<span class="hljs-number">1</span>, 
+             return_indices=<span class="hljs-literal">False</span>, 
+             ceil_mode=<span class="hljs-literal">False</span>)</code></pre>
+
+<p>功能：对二维信号（图像）进行最大值池化<br>主要参数：</p>
+<ul>
+<li>kernel_size：池化核尺寸</li>
+<li>stride：步长</li>
+<li>padding ：填充个数</li>
+<li>dilation：池化核间隔大小</li>
+<li>ceil_mode：尺寸向上取整</li>
+<li>return_indices：记录池化像素索引（用于反池化时选择位置，如下图所示）</li>
+</ul>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730211257.png" srcset="/img/loading.gif" alt="image-20200730211252810" style="zoom:67%;" />
+
+
+
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> transforms
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> transform_invert, set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-comment"># ================================= load img ===================================</span>
+path_img = os.path.join(os.path.dirname(os.path.abspath(__file__)), <span class="hljs-string">&quot;lena.png&quot;</span>)
+img = Image.open(path_img).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)  <span class="hljs-comment"># 0~255</span>
+
+<span class="hljs-comment"># convert to tensor</span>
+img_transform = transforms.Compose([transforms.ToTensor()])
+img_tensor = img_transform(img)
+img_tensor.unsqueeze_(dim=<span class="hljs-number">0</span>)    <span class="hljs-comment"># C*H*W to B*C*H*W</span>
+
+<span class="hljs-comment"># ============================ create convolution layer =========================</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#                                  使用下面代码填充</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># =============================== visualization =================================</span>
+print(<span class="hljs-string">&quot;池化前尺寸:&#123;&#125;\n池化后尺寸:&#123;&#125;&quot;</span>.format(img_tensor.shape, img_pool.shape))
+img_pool = transform_invert(img_pool[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>:<span class="hljs-number">3</span>, ...], img_transform)
+img_raw = transform_invert(img_tensor.squeeze(), img_transform)
+plt.subplot(<span class="hljs-number">122</span>).imshow(img_pool)
+plt.subplot(<span class="hljs-number">121</span>).imshow(img_raw)
+plt.show()</code></pre>
+
+<ol>
+<li><p>观察kernel_size和stride参数。</p>
+<p> 用2x2池化并且步长为2，则不重叠刚好4选1。一般来说，池化都是不重叠的，也就是kernel_size = stride。</p>
+ <pre><code class="hljs python">maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+img_pool = maxpool_layer(img_tensor)</code></pre>
+
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212314.png" srcset="/img/loading.gif" alt="image-20200730212313327"></p>
+ <pre><code class="hljs python">池化前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+池化后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>])</code></pre>
+
+<p> 下图为逐渐增大kernel_size和stride的输出图像。</p>
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212729.png" srcset="/img/loading.gif" alt="image-20200730212723707"></p>
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212836.png" srcset="/img/loading.gif" alt="image-20200730212832909"></p>
+<p> 可见，池化就是一个下采样（抽取）的过程。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>观察padding参数</p>
+<p> padding必须小于kernel_size的一半，否则就会报错。函数不希望产生池化后是0的值。padding在图像外围最多补一圈kernel_size/2的0值。</p>
+ <pre><code class="hljs python">maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+img_pool = maxpool_layer(img_tensor)</code></pre>
+
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730214628.png" srcset="/img/loading.gif" alt="image-20200730214627876"></p>
+ <pre><code class="hljs python">池化前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+池化后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">257</span>, <span class="hljs-number">257</span>])</code></pre>
+
+<p> 可以看到，相比padding=0的情况，输出图像的尺寸大了1。</p>
+</li>
+<li><p>观察dilation参数，dilation的池化不再是连续的方块中取一个最大的了，dilation的池化核和dilation的卷积核是差不多的，卷积核的元素之间有空隙。</p>
+ <pre><code class="hljs python">maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, dilation=<span class="hljs-number">5</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+img_pool = maxpool_layer(img_tensor)</code></pre>
+
+<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730214933.png" srcset="/img/loading.gif" alt="image-20200730214932203"></p>
+ <pre><code class="hljs python">池化前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+池化后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">254</span>, <span class="hljs-number">254</span>])</code></pre>
+
+<p> 可以预见结果，dilation池化也会造成散光的效果。输出特征图的尺寸是不小的，同样输出尺寸下不加dilation肯定不会有一丝模糊。</p>
+</li>
+</ol>
+<h2 id="1-2-nn-AvgPool2d"><a href="#1-2-nn-AvgPool2d" class="headerlink" title="1.2 nn.AvgPool2d"></a>1.2 nn.AvgPool2d</h2><pre><code class="hljs python">nn.AvgPool2d(kernel_size, 
+             stride=<span class="hljs-literal">None</span>, 
+             padding=<span class="hljs-number">0</span>, 
+             ceil_mode=<span class="hljs-literal">False</span>, 
+             count_include_pad=<span class="hljs-literal">True</span>, 
+             divisor_override=<span class="hljs-literal">None</span>)</code></pre>
+
+<p>功能：对二维信号（图像）进行平均值池化<br>主要参数：</p>
+<ul>
+<li>kernel_size：池化核尺寸</li>
+<li>stride：步长</li>
+<li>padding ：填充个数</li>
+<li>ceil_mode：尺寸向上取整</li>
+<li>count_include_pad：填充值用于计算</li>
+<li>divisor_override ：除法因子（默认是卷积核的大小，如果设置了这个参数则用设置的数做平均的分母）</li>
+</ul>
+<pre><code class="hljs python">avgpoollayer = nn.AvgPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+img_pool = avgpoollayer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220410.png" srcset="/img/loading.gif" alt="image-20200730220409296"></p>
+<p>比nn.MaxPool2d(2, stride=2)输出的图像亮度会暗一些，毕竟是取了平均的操作。 如果设置divisor_override =1就会亮很多了，同样如果设置divisor_override =8就会暗很多。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220938.png" srcset="/img/loading.gif" alt="image-20200730220937171"></p>
+<p>当divisor_override 小于kernel_size的时候，求出来的像素值可能会超过量化的最大值，造成类似颜色泄露奇怪的现象（也不知道颜色超过量化最大值PIL包是做削顶还是循环处理）。</p>
+<p>kernel_size=2，divisor_override=3时情况会减轻。</p>
+<pre><code class="hljs python">avgpoollayer = nn.AvgPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, divisor_override=<span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+img_pool = avgpoollayer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730221404.png" srcset="/img/loading.gif" alt="image-20200730221402973"></p>
+<p>kernel_size=3，divisor_override=8时情况会减轻更多。</p>
+<pre><code class="hljs python">avgpoollayer = nn.AvgPool2d(<span class="hljs-number">3</span>, stride=<span class="hljs-number">3</span>, divisor_override=<span class="hljs-number">8</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+img_pool = avgpoollayer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730221716.png" srcset="/img/loading.gif" alt="image-20200730221715731"></p>
+<p>当divisor_override 大于kernel_size的时候，输出图像的确是变暗的</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220849.png" srcset="/img/loading.gif" alt="image-20200730220847089"></p>
+<h2 id="1-3-nn-MaxUnpool2d"><a href="#1-3-nn-MaxUnpool2d" class="headerlink" title="1.3 nn.MaxUnpool2d"></a>1.3 nn.MaxUnpool2d</h2><pre><code class="hljs python">nn.MaxUnpool2d(kernel_size, 
+               stride=<span class="hljs-literal">None</span>, 
+               padding=<span class="hljs-number">0</span>)</code></pre>
+
+<p>功能：对二维信号（图像）进行最大值池化上采样</p>
+<p>主要参数：</p>
+<ul>
+<li>kernel_size：池化核尺寸</li>
+<li>stride：步长</li>
+<li>padding ：填充个数</li>
+</ul>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730222318.png" srcset="/img/loading.gif" alt="image-20200730222313291" style="zoom:67%;" />
+
+
+
+<p>MaxUnpool2d就是把输入的元素放到指定的位置，其他地方填0，如上图所示，需要使用Maxpool2d的indices。</p>
+<p>就需要使用Maxpool2d的indices，</p>
+<pre><code class="hljs python"><span class="hljs-comment"># pooling</span>
+maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, return_indices=<span class="hljs-literal">True</span>)
+img_pool, indices = maxpool_layer(img_tensor)
+
+<span class="hljs-comment"># unpooling</span>
+maxunpool_layer = nn.MaxUnpool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>)
+img_unpool = maxunpool_layer(img_pool, indices)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730223137.png" srcset="/img/loading.gif" alt="image-20200730223136594"></p>
+<p>上面代码截取了原图像RGB通道在2x2池化核中的最大值，并且放回至原来截取的位置得到最右边的图片。（按右图的结果，猜测RGB3个通道的indices是独立的，也就是说在同一块池化核中，三个通道的位置是独立记录的，因此才会造成右图中花花绿绿的情况。）</p>
+<h1 id="2-线性层——Linear-Layer"><a href="#2-线性层——Linear-Layer" class="headerlink" title="2. 线性层——Linear Layer"></a>2. 线性层——Linear Layer</h1><p>线性层又称全连接层，其每个神经元与上一层所有神经元相连<br>实现对前一层的线性组合，线性变换。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730223715.png" srcset="/img/loading.gif" alt="image-20200730223704722" style="zoom: 33%;" />
+
+<h2 id="2-1-nn-Linear"><a href="#2-1-nn-Linear" class="headerlink" title="2.1 nn.Linear"></a>2.1 nn.Linear</h2><pre><code class="hljs python">nn.Linear(in_features, out_features, bias=<span class="hljs-literal">True</span>)</code></pre>
+
+<p>功能：对一维信号（向量）进行线性组合 主要参数：<br>• in_features：输入结点数<br>• out_features：输出结点数<br>• bias ：是否需要偏置<br>计算公式：$y=xW^{T}+bias$</p>
+<pre><code class="hljs python">inputs = torch.tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
+linear_layer = nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+linear_layer.weight.data = torch.tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+                                         [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+                                         [<span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
+                                         [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]])
+
+linear_layer.bias.data.fill_(<span class="hljs-number">0.5</span>)
+output = linear_layer(inputs)
+print(inputs, inputs.shape)
+print(linear_layer.weight.data, linear_layer.weight.data.shape)
+print(output, output.shape)</code></pre>
+
+<pre><code class="hljs python">tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>]]) torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>])
+tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+        [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+        [<span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
+        [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]]) torch.Size([<span class="hljs-number">4</span>, <span class="hljs-number">3</span>])
+tensor([[ <span class="hljs-number">6.5000</span>, <span class="hljs-number">12.5000</span>, <span class="hljs-number">18.5000</span>, <span class="hljs-number">24.5000</span>]], grad_fn=&lt;AddmmBackward&gt;) torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">4</span>])</code></pre>
+
+
+
+
+
+
+
+<h1 id="3-激活函数层——Activation-Layer"><a href="#3-激活函数层——Activation-Layer" class="headerlink" title="3. 激活函数层——Activation Layer"></a>3. 激活函数层——Activation Layer</h1><h2 id="3-1-nn-Sigmoid"><a href="#3-1-nn-Sigmoid" class="headerlink" title="3.1 nn.Sigmoid"></a>3.1 nn.Sigmoid</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224302.png" srcset="/img/loading.gif" alt="image-20200730224301366" style="zoom: 67%;" />
+
+<p>计算公式：$y=\frac{1}{1+e^{-x}}$</p>
+<p>梯度公式：𝒚′ = 𝒚 ∗ (1 − 𝒚)</p>
+<p>特性：</p>
+<ul>
+<li>输出值在(0,1)，符合概率</li>
+<li>导数范围是[0, 0.25],易导致梯度消失 </li>
+<li>输出为非0均值，破坏数据分布</li>
+</ul>
+<h2 id="3-2-nn-tanh"><a href="#3-2-nn-tanh" class="headerlink" title="3.2 nn.tanh"></a>3.2 nn.tanh</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224443.png" srcset="/img/loading.gif" alt="image-20200730224442639" style="zoom: 67%;" />
+
+<p>计算公式：$y=\frac{\sin x}{\cos x}=\frac{e^{x}-e^{-x}}{e^{-}+e^{-x}}=\frac{2}{1+e^{-2 x}}+1$</p>
+<p>梯度公式：$y^{\prime}=1-y^{2}$</p>
+<p>特性：</p>
+<ul>
+<li>输出值在(-1,1)，数据符合0均值</li>
+<li>导数范围是(0, 1),易导致梯度消失</li>
+</ul>
+<h2 id="3-3-nn-ReLU"><a href="#3-3-nn-ReLU" class="headerlink" title="3.3 nn.ReLU"></a>3.3 nn.ReLU</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224630.png" srcset="/img/loading.gif" alt="image-20200730224628936" style="zoom: 67%;" />
+
+<p>计算公式：$\mathbf{y}=\max (\mathbf{0}, x)$</p>
+<p>梯度公式：$y^{\prime}=\left{\begin{array}{ll}1, &amp; x&gt;0 \ u n d e f \text { ine } d, &amp; x=0 \ 0, &amp; x&lt;0\end{array}\right.$</p>
+<p>特性：</p>
+<ul>
+<li>输出值均为正数，负半轴导致死神经元</li>
+<li>导数是1,缓解梯度消失</li>
+</ul>
+<h2 id="3-4-改进型ReLU"><a href="#3-4-改进型ReLU" class="headerlink" title="3.4 改进型ReLU"></a>3.4 改进型ReLU</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730225007.png" srcset="/img/loading.gif" alt="image-20200730225005732" style="zoom: 67%;" />
+
+<h3 id="3-4-1-nn-LeakyReLU"><a href="#3-4-1-nn-LeakyReLU" class="headerlink" title="3.4.1 nn.LeakyReLU"></a>3.4.1 nn.LeakyReLU</h3><ul>
+<li>negative_slope: 负半轴斜率</li>
+</ul>
+<h3 id="3-4-2-nn-PReLU"><a href="#3-4-2-nn-PReLU" class="headerlink" title="3.4.2 nn.PReLU"></a>3.4.2 nn.PReLU</h3><ul>
+<li>init: 可学习斜率</li>
+</ul>
+<h3 id="3-4-3-nn-RReLU"><a href="#3-4-3-nn-RReLU" class="headerlink" title="3.4.3 nn.RReLU"></a>3.4.3 nn.RReLU</h3><ul>
+<li>lower: 均匀分布下限</li>
+<li>upper:均匀分布上限</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">autograd</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/">
+                        <span class="hidden-mobile">nn网络层-卷积层</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "nn网络层-池化-线性-激活函数层&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

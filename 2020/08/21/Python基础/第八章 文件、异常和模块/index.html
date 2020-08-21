@@ -1,0 +1,1249 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Python 文件、异常和模块 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Python 文件、异常和模块</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="文件、异常和模块"><a href="#文件、异常和模块" class="headerlink" title="文件、异常和模块"></a>文件、异常和模块</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713205506.png" srcset="/img/loading.gif" alt="image-20200713205504882"></p>
+<p><strong>实际应用中，我们绝大多数的数据都是通过文件的交互完成的</strong></p>
+<h2 id="8-1-文件的读写"><a href="#8-1-文件的读写" class="headerlink" title="8.1 文件的读写"></a>8.1 文件的读写</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713205537.png" srcset="/img/loading.gif" alt="image-20200713205536199"></p>
+<h3 id="8-1-1-文件的打开"><a href="#8-1-1-文件的打开" class="headerlink" title="8.1.1 文件的打开"></a>8.1.1 文件的打开</h3><ul>
+<li>文件的打开通用格式</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;文件路径&quot;</span>, <span class="hljs-string">&quot;打开模式&quot;</span>, encoding = <span class="hljs-string">&quot;操作文件的字符编码&quot;</span>) <span class="hljs-keyword">as</span> f:
+    <span class="hljs-string">&quot;对文件进行相应的读写操作&quot;</span>
+使用<span class="hljs-keyword">with</span> 块的好处：执行完毕后，自动对文件进行close操作。</code></pre>
+
+<p>【例1】一个简单的文件读取</p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;E:\ipython\测试文件.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding = <span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     <span class="hljs-comment"># 第一步：打开文件</span>
+    text = f.read()                                                   <span class="hljs-comment"># 第二步：读取文件</span>
+    print(text)</code></pre>
+
+<pre><code>我是一个测试文件</code></pre>
+<p><strong>1、文件路径</strong></p>
+<ul>
+<li><p>完整路径，如上例所示</p>
+</li>
+<li><p>程序与文件在同一文件夹，可简化成文件名</p>
+</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;测试文件.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding = <span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     <span class="hljs-comment"># 第一步：打开文件</span>
+    text = f.read()                                        <span class="hljs-comment"># 第二步：读取文件</span>
+    print(text)</code></pre>
+
+<pre><code>我是一个测试文件</code></pre>
+<p><strong>2、打开模式</strong></p>
+<ul>
+<li><p>“r” &ensp;只读模式，如文件不存在，报错</p>
+</li>
+<li><p>“w”&ensp;覆盖写模式，如文件不存在，则创建；如文件存在，则完全覆盖原文件</p>
+</li>
+<li><p>“x”&ensp;创建写模式，如文件不存在，则创建；如文件存在，报错</p>
+</li>
+<li><p>“a” &ensp;追加写模式，如文件不存在，则创建；如文件存在，则在原文件后追加内容</p>
+</li>
+<li><p>“b” 二进制文件模式，不能单独使用，需要配合使用如”rb”，”wb”，”ab”，<strong>该模式不需指定encoding</strong></p>
+</li>
+<li><p>“t” 文本文件模式，默认值，需配合使用 如”rt”，”wt”，”at”，一般省略，简写成如”r”，”w”，”a”</p>
+</li>
+<li><p>“+”，与”r”,”w”,”x”,”a”配合使用，在原功能基础上，增加读写功能</p>
+</li>
+<li><p><strong>打开模式缺省，默认为只读模式</strong></p>
+</li>
+</ul>
+<p><strong>3、字符编码</strong></p>
+<ul>
+<li><strong>万国码 utf-8</strong></li>
+</ul>
+<p>包含全世界所有国家需要用到的字符</p>
+<ul>
+<li><strong>中文编码 gbk</strong></li>
+</ul>
+<p>专门解决中文编码问题</p>
+<ul>
+<li><p><strong>windows系统下，如果缺省，则默认为gbk（所在区域的编码）</strong></p>
+</li>
+<li><p>为清楚起见，除了处理二进制文件，<strong>建议不要缺省encoding</strong></p>
+</li>
+</ul>
+<h3 id="8-1-2-文件的读取"><a href="#8-1-2-文件的读取" class="headerlink" title="8.1.2 文件的读取"></a>8.1.2 文件的读取</h3><p>1、<strong>读取整个内容——f.read()</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_utf.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:       <span class="hljs-comment"># 第一步：打开文件</span>
+    text = f.read()                                                    <span class="hljs-comment"># 第二步：读取文件</span>
+    print(text)</code></pre>
+
+<pre><code>临江仙·滚滚长江东逝水
+滚滚长江东逝水，浪花淘尽英雄。
+是非成败转头空。
+青山依旧在，几度夕阳红。
+白发渔樵江渚上，惯看秋月春风。
+一壶浊酒喜相逢。
+古今多少事，都付笑谈中。</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_utf.txt&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:     <span class="hljs-comment"># &quot;r&quot;，可缺省，为清晰起见，最好写上</span>
+    text = f.read()                                                   
+    print(text)</code></pre>
+
+<pre><code>临江仙·滚滚长江东逝水
+滚滚长江东逝水，浪花淘尽英雄。
+是非成败转头空。
+青山依旧在，几度夕阳红。
+白发渔樵江渚上，惯看秋月春风。
+一壶浊酒喜相逢。
+古今多少事，都付笑谈中。</code></pre>
+<ul>
+<li>解码模式不匹配</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_utf.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     
+    text = f.read()                                                    
+    print(text)</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+UnicodeDecodeError                        Traceback (most recent call last)
+
+&lt;ipython-input-6-8e9ea685585d&gt; in &lt;module&gt;
+      1 with open(&quot;三国演义片头曲_utf.txt&quot;, &quot;r&quot;, encoding=&quot;gbk&quot;) as f:
+----&gt; 2     text = f.read()
+      3     print(text)
+
+
+UnicodeDecodeError: &#39;gbk&#39; codec can&#39;t decode byte 0x80 in position 50: illegal multibyte sequence</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_utf.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> f:     <span class="hljs-comment"># encoding缺省，windows系统默认为&quot;gbk&quot;</span>
+    text = f.read()                                                    
+    print(text)</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+UnicodeDecodeError                        Traceback (most recent call last)
+
+&lt;ipython-input-7-480622bc01aa&gt; in &lt;module&gt;
+      1 with open(&quot;三国演义片头曲_utf.txt&quot;, &quot;r&quot;) as f:     # encoding缺省，windows系统默认为&quot;gbk&quot;
+----&gt; 2     text = f.read()
+      3     print(text)
+
+
+UnicodeDecodeError: &#39;gbk&#39; codec can&#39;t decode byte 0x80 in position 50: illegal multibyte sequence</code></pre>
+<p>2、<strong>逐行进行读取——f.readline()</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>):
+        text = f.readline()                                                   <span class="hljs-comment"># 每次只读取一行</span>
+        print(text)</code></pre>
+
+<pre><code>临江仙·滚滚长江东逝水
+
+滚滚长江东逝水，浪花淘尽英雄。
+
+是非成败转头空。</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        text = f.readline()
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> text:
+            <span class="hljs-comment"># print(text is &quot;&quot;)</span>
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-comment"># print(text == &quot;\n&quot;)</span>
+            print(text, end=<span class="hljs-string">&quot;&quot;</span>)      <span class="hljs-comment"># 保留原文的换行，使print()的换行不起作用</span></code></pre>
+
+<pre><code>临江仙·滚滚长江东逝水
+滚滚长江东逝水，浪花淘尽英雄。
+是非成败转头空。
+
+青山依旧在，几度夕阳红。
+白发渔樵江渚上，惯看秋月春风。
+一壶浊酒喜相逢。
+古今多少事，都付笑谈中。</code></pre>
+<p>3、<strong>读入所有行，以每行为元素形成一个列表——f.readlines()</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+    text = f.readlines()              <span class="hljs-comment"># 注意每行末尾有换行符</span>
+    print(text)</code></pre>
+
+<pre><code>[&#39;临江仙·滚滚长江东逝水\n&#39;, &#39;滚滚长江东逝水，浪花淘尽英雄。\n&#39;, &#39;是非成败转头空。\n&#39;, &#39;\n&#39;, &#39;青山依旧在，几度夕阳红。\n&#39;, &#39;白发渔樵江渚上，惯看秋月春风。\n&#39;, &#39;一壶浊酒喜相逢。\n&#39;, &#39;古今多少事，都付笑谈中。\n&#39;]</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     
+    <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> f.readlines():                                                   
+        print(text)                <span class="hljs-comment"># 不想换行则用print(text, end=&quot;&quot;)         </span></code></pre>
+
+<pre><code>临江仙·滚滚长江东逝水
+
+滚滚长江东逝水，浪花淘尽英雄。
+
+是非成败转头空。
+
+青山依旧在，几度夕阳红。
+
+白发渔樵江渚上，惯看秋月春风。
+
+一壶浊酒喜相逢。
+
+古今多少事，都付笑谈中。</code></pre>
+<p>4、<strong>文本文件读取小结</strong></p>
+<p>文件比较大时，read()和readlines()占用内存过大，不建议使用</p>
+<p>readline用起来又不太方便</p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:     
+    <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> f:         <span class="hljs-comment"># f本身就是一个可迭代对象，每次迭代读取一行内容 </span>
+        print(text)</code></pre>
+
+<pre><code>临江仙·滚滚长江东逝水
+
+滚滚长江东逝水，浪花淘尽英雄。
+
+是非成败转头空。
+
+青山依旧在，几度夕阳红。
+
+白发渔樵江渚上，惯看秋月春风。
+
+一壶浊酒喜相逢。
+
+古今多少事，都付笑谈中。</code></pre>
+<p>5、<strong>二进制文件</strong></p>
+<p>图片：二进制文件</p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;test.jpg&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> f:     
+        print(len(f.readlines()))</code></pre>
+
+<pre><code>69</code></pre>
+<h3 id="8-1-3-文件的写入"><a href="#8-1-3-文件的写入" class="headerlink" title="8.1.3 文件的写入"></a>8.1.3 文件的写入</h3><p>1、<strong>向文件写入一个字符串或字节流（二进制）——f.write()</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;恋曲1980.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:                      
+        f.write(<span class="hljs-string">&quot;你曾经对我说\n&quot;</span>)        <span class="hljs-comment"># 文件不存在则立刻创建一个</span>
+        f.write(<span class="hljs-string">&quot;你永远爱着我\n&quot;</span>)        <span class="hljs-comment"># 如需换行，末尾加换行符\n</span>
+        f.write(<span class="hljs-string">&quot;爱情这东西我明白\n&quot;</span>)
+        f.write(<span class="hljs-string">&quot;但永远是什么\n&quot;</span>)</code></pre>
+
+
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;恋曲1980.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:                      
+        f.write(<span class="hljs-string">&quot;姑娘你别哭泣\n&quot;</span>)        <span class="hljs-comment"># 如果文件存在，新写入内容会覆盖掉原内容，一定要注意！！！</span>
+        f.write(<span class="hljs-string">&quot;我俩还在一起\n&quot;</span>)        
+        f.write(<span class="hljs-string">&quot;今天的欢乐\n&quot;</span>)
+        f.write(<span class="hljs-string">&quot;将是明天创痛的回忆\n&quot;</span>)</code></pre>
+
+<p>2、<strong>追加模式——“a”</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;恋曲1980.txt&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:                      
+        f.write(<span class="hljs-string">&quot;姑娘你别哭泣\n&quot;</span>)        <span class="hljs-comment"># 如果文件存在，新写入内容会覆盖掉原内容，一定要注意！！！</span>
+        f.write(<span class="hljs-string">&quot;我俩还在一起\n&quot;</span>)        
+        f.write(<span class="hljs-string">&quot;今天的欢乐\n&quot;</span>)
+        f.write(<span class="hljs-string">&quot;将是明天创痛的回忆\n&quot;</span>)</code></pre>
+
+<p>3、<strong>将一个元素为字符串的列表整体写入文件——f.writelines()</strong></p>
+<pre><code class="hljs python">ls = [<span class="hljs-string">&quot;春天刮着风&quot;</span>, <span class="hljs-string">&quot;秋天下着雨&quot;</span>, <span class="hljs-string">&quot;春风秋雨多少海誓山盟随风远去&quot;</span>]
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;恋曲1980.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
+    f.writelines(ls)</code></pre>
+
+
+<pre><code class="hljs python">ls = [<span class="hljs-string">&quot;春天刮着风\n&quot;</span>, <span class="hljs-string">&quot;秋天下着雨\n&quot;</span>, <span class="hljs-string">&quot;春风秋雨多少海誓山盟随风远去\n&quot;</span>]
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;恋曲1980.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
+    f.writelines(ls)</code></pre>
+
+<h3 id="8-1-4-既读又写"><a href="#8-1-4-既读又写" class="headerlink" title="8.1.4 既读又写"></a>8.1.4 既读又写</h3><p>1、**”r+”**  </p>
+<ul>
+<li>如果文件名不存在，则报错</li>
+<li>指针在开始</li>
+<li>要把指针移到末尾才能开始写，否则会覆盖前面内容</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+<span class="hljs-comment">#     for line in f:</span>
+<span class="hljs-comment">#         print(line)   # 全部读一遍后，指针到达结尾</span>
+    f.seek(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>)         <span class="hljs-comment"># 或者可以将指针移到末尾f.seek(偏移字节数,位置（0：开始；1：当前位置；2：结尾）)</span>
+    text = [<span class="hljs-string">&quot;萧瑟秋风今又是，\n&quot;</span>, <span class="hljs-string">&quot;换了人间。\n&quot;</span>]
+    f.writelines(text)</code></pre>
+
+<p>2、**”w+”**</p>
+<ul>
+<li>若文件不存在，则创建</li>
+<li>若文件存在，会立刻清空原内容！！！</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="hljs-string">&quot;w+&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+    <span class="hljs-keyword">pass</span></code></pre>
+
+
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="hljs-string">&quot;w+&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+    text = [<span class="hljs-string">&quot;萧瑟秋风今又是，\n&quot;</span>, <span class="hljs-string">&quot;换了人间。\n&quot;</span>]  <span class="hljs-comment"># 清空原内容</span>
+    f.writelines(text)                             <span class="hljs-comment"># 写入新内容，指针在最后</span>
+    f.seek(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)            <span class="hljs-comment"># 指针移到开始</span>
+    print(f.read())        <span class="hljs-comment"># 读取内容</span></code></pre>
+
+<p>3、**”a+”**</p>
+<ul>
+<li>若文件不存在，则创建</li>
+<li>指针在末尾，添加新内容，不会清空原内容</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="hljs-string">&quot;a+&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+    f.seek(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)            <span class="hljs-comment"># 指针移到开始</span>
+    print(f.read())        <span class="hljs-comment"># 读取内容</span></code></pre>
+
+<pre><code>大雨落幽燕，
+白浪滔天。
+秦皇岛外打鱼船。
+一片汪洋都不见，
+知向谁边？
+往事越千年，
+魏武挥鞭，
+东临碣石有遗篇。
+萧瑟秋风今又是，
+换了人间。</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="hljs-string">&quot;a+&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+    text = [<span class="hljs-string">&quot;萧瑟秋风今又是，\n&quot;</span>, <span class="hljs-string">&quot;换了人间。\n&quot;</span>]  
+    f.writelines(text)                             <span class="hljs-comment"># 指针在最后,追加新内容， </span>
+    f.seek(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)            <span class="hljs-comment"># 指针移到开始</span>
+    print(f.read())        <span class="hljs-comment"># 读取内容</span></code></pre>
+
+<pre><code>大雨落幽燕，
+白浪滔天。
+秦皇岛外打鱼船。
+一片汪洋都不见，
+知向谁边？
+往事越千年，
+魏武挥鞭，
+东临碣石有遗篇。
+萧瑟秋风今又是，
+换了人间。
+萧瑟秋风今又是，
+换了人间。</code></pre>
+<h3 id="8-1-5-数据的存储与读取"><a href="#8-1-5-数据的存储与读取" class="headerlink" title="8.1.5 数据的存储与读取"></a>8.1.5 数据的存储与读取</h3><p><strong>通用的数据格式，可以在不同语言中加载和存储</strong>  </p>
+<p><strong>本节简单了解两种数据存储结构csv和json</strong></p>
+<p>1、<strong>csv格式</strong></p>
+<p>由逗号将数据分开的字符序列，可以由excel打开</p>
+<ul>
+<li><strong>读取</strong></li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;成绩.csv&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:
+    ls = [] 
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f:                              <span class="hljs-comment"># 逐行读取</span>
+        ls.append(line.strip(<span class="hljs-string">&quot;\n&quot;</span>).split(<span class="hljs-string">&quot;,&quot;</span>))  <span class="hljs-comment"># 去掉每行的换行符，然后用“,”进行分割</span>
+<span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> ls:
+    print(res)</code></pre>
+
+<pre><code>[&#39;编号&#39;, &#39;数学成绩&#39;, &#39;语文成绩&#39;]
+[&#39;1&#39;, &#39;100&#39;, &#39;98&#39;]
+[&#39;2&#39;, &#39;96&#39;, &#39;99&#39;]
+[&#39;3&#39;, &#39;97&#39;, &#39;95&#39;]</code></pre>
+<ul>
+<li><strong>写入</strong></li>
+</ul>
+<pre><code class="hljs python">ls = [[<span class="hljs-string">&#x27;编号&#x27;</span>, <span class="hljs-string">&#x27;数学成绩&#x27;</span>, <span class="hljs-string">&#x27;语文成绩&#x27;</span>], [<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;100&#x27;</span>, <span class="hljs-string">&#x27;98&#x27;</span>], [<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;96&#x27;</span>, <span class="hljs-string">&#x27;99&#x27;</span>], [<span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;97&#x27;</span>, <span class="hljs-string">&#x27;95&#x27;</span>]]
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;score.csv&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;gbk&quot;</span>) <span class="hljs-keyword">as</span> f:   <span class="hljs-comment"># encoding=&quot;utf-8&quot;中文出现乱码</span>
+    <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> ls:                                  <span class="hljs-comment"># 逐行写入</span>
+        f.write(<span class="hljs-string">&quot;,&quot;</span>.join(row)+<span class="hljs-string">&quot;\n&quot;</span>)                 <span class="hljs-comment"># 用逗号组合成字符串形式，末尾加换行符</span></code></pre>
+
+<p><strong>也可以借助csv模块完成上述操作</strong></p>
+<p>2、<strong>json格式</strong> </p>
+<p>常被用来存储字典类型</p>
+<ul>
+<li><strong>写入——dump()</strong></li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> json
+
+scores = &#123;<span class="hljs-string">&quot;Petter&quot;</span>:&#123;<span class="hljs-string">&quot;math&quot;</span>:<span class="hljs-number">96</span> , <span class="hljs-string">&quot;physics&quot;</span>: <span class="hljs-number">98</span>&#125;,
+        <span class="hljs-string">&quot;Paul&quot;</span>:&#123;<span class="hljs-string">&quot;math&quot;</span>:<span class="hljs-number">92</span> , <span class="hljs-string">&quot;physics&quot;</span>: <span class="hljs-number">99</span>&#125;,
+        <span class="hljs-string">&quot;Mary&quot;</span>:&#123;<span class="hljs-string">&quot;math&quot;</span>:<span class="hljs-number">98</span> , <span class="hljs-string">&quot;physics&quot;</span>: <span class="hljs-number">97</span>&#125;&#125;
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;score.json&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:             <span class="hljs-comment"># 写入整个对象 </span>
+        <span class="hljs-comment"># indent 表示字符串换行+缩进 ensure_ascii=False 显示中文</span>
+        json.dump(scores, f, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>)</code></pre>
+
+<ul>
+<li><strong>读取——load()</strong></li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;score.json&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:                                         
+        scores = json.load(f)           <span class="hljs-comment"># 加载整个对象</span>
+        <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> scores.items():
+            print(k,v)</code></pre>
+
+<pre><code>Petter &#123;&#39;math&#39;: 96, &#39;physics&#39;: 98&#125;
+Paul &#123;&#39;math&#39;: 92, &#39;physics&#39;: 99&#125;
+Mary &#123;&#39;math&#39;: 98, &#39;physics&#39;: 97&#125;</code></pre>
+<h2 id="8-2-异常处理"><a href="#8-2-异常处理" class="headerlink" title="8.2 异常处理"></a>8.2 异常处理</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713205558.png" srcset="/img/loading.gif" alt="image-20200713205556781"></p>
+<h3 id="8-2-1-常见异常的产生"><a href="#8-2-1-常见异常的产生" class="headerlink" title="8.2.1 常见异常的产生"></a>8.2.1 常见异常的产生</h3><p>1、<strong>除0运算——ZeroDivisionError</strong></p>
+<pre><code class="hljs python"><span class="hljs-number">1</span>/<span class="hljs-number">0</span></code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+ZeroDivisionError                         Traceback (most recent call last)
+
+&lt;ipython-input-1-9e1622b385b6&gt; in &lt;module&gt;
+----&gt; 1 1/0
+
+
+ZeroDivisionError: division by zero</code></pre>
+<p>2、<strong>找不到可读文件——FileNotFoundError</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;nobody.csv&quot;</span>) <span class="hljs-keyword">as</span> f:
+    <span class="hljs-keyword">pass</span></code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+FileNotFoundError                         Traceback (most recent call last)
+
+&lt;ipython-input-2-f2e8c7d0ac60&gt; in &lt;module&gt;
+----&gt; 1 with open(&quot;nobody.csv&quot;) as f:
+      2     pass
+
+
+FileNotFoundError: [Errno 2] No such file or directory: &#39;nobody.csv&#39;</code></pre>
+<p>3、<strong>值错误——ValueError</strong></p>
+<p>传入一个调用者不期望的值，即使这个值的类型是正确的</p>
+<pre><code class="hljs python">s = <span class="hljs-string">&quot;1.3&quot;</span>
+n = int(s)</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-8-69942d9db3c0&gt; in &lt;module&gt;
+      1 s = &quot;1.3&quot;
+----&gt; 2 n = int(s)
+
+
+ValueError: invalid literal for int() with base 10: &#39;1.3&#39;</code></pre>
+<p>4、<strong>索引错误——IndexError</strong></p>
+<p>下标超出序列边界</p>
+<pre><code class="hljs python">ls = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+ls[<span class="hljs-number">5</span>]</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-9-acf459124b52&gt; in &lt;module&gt;
+      1 ls = [1, 2, 3]
+----&gt; 2 ls[5]
+
+
+IndexError: list index out of range</code></pre>
+<p>5、<strong>类型错误——TypeError</strong></p>
+<p>传入对象类型与要求不符</p>
+<pre><code class="hljs python"><span class="hljs-number">1</span> + <span class="hljs-string">&quot;3&quot;</span></code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-10-ee505dc42f75&gt; in &lt;module&gt;
+----&gt; 1 1 + &quot;3&quot;
+
+
+TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</code></pre>
+<p>6、<strong>其他常见的异常类型</strong></p>
+<p>NameError 使用一个未被定义的变量<br>KeyError 试图访问字典里不存在的键<br>。。。</p>
+<pre><code class="hljs python">print(a)</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-11-bca0e2660b9f&gt; in &lt;module&gt;
+----&gt; 1 print(a)
+
+
+NameError: name &#39;a&#39; is not defined</code></pre>
+<pre><code class="hljs python">d = &#123;&#125;
+d[<span class="hljs-string">&quot;1&quot;</span>]</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-12-e629d551aca0&gt; in &lt;module&gt;
+      1 d = &#123;&#125;
+----&gt; 2 d[&quot;1&quot;]
+
+
+KeyError: &#39;1&#39;</code></pre>
+<p><strong>当异常发生的时候，如果不预先设定处理方法，程序就会中断</strong></p>
+<h3 id="8-2-2-异常的处理"><a href="#8-2-2-异常的处理" class="headerlink" title="8.2.2 异常的处理"></a>8.2.2 异常的处理</h3><p><strong>提高程序的稳定性和可靠性</strong></p>
+<p>1、<strong>try_except</strong></p>
+<ul>
+<li><p>如果try内代码块顺利执行，except不被触发</p>
+</li>
+<li><p>如果try内代码块发生错误，触发except,执行except内代码块</p>
+</li>
+<li><p>单分支</p>
+</li>
+</ul>
+<pre><code class="hljs python">x = <span class="hljs-number">10</span>
+y = <span class="hljs-number">0</span>
+<span class="hljs-keyword">try</span>:
+    z = x/y
+<span class="hljs-keyword">except</span> ZeroDivisionError:                  <span class="hljs-comment"># 一般来说会预判到出现什么错误</span>
+    <span class="hljs-comment"># z = x/(y+1e-7)</span>
+    <span class="hljs-comment"># print(z)</span>
+    print(<span class="hljs-string">&quot;0不可以被除！&quot;</span>)</code></pre>
+
+<pre><code>0不可以被除！</code></pre>
+<pre><code class="hljs python">x = <span class="hljs-number">10</span>
+y = <span class="hljs-number">0</span>
+<span class="hljs-keyword">try</span>:
+    z = x/y
+<span class="hljs-keyword">except</span> NameError:                  <span class="hljs-comment"># 一般来说会预判到出现什么错误</span>
+    <span class="hljs-comment"># z = x/(y+1e-7)</span>
+    <span class="hljs-comment"># print(z)</span>
+    print(<span class="hljs-string">&quot;0不可以被除！&quot;</span>)</code></pre>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+ZeroDivisionError                         Traceback (most recent call last)
+
+&lt;ipython-input-14-aea58863ad72&gt; in &lt;module&gt;
+      2 y = 0
+      3 try:
+----&gt; 4     z = x/y
+      5 except NameError:                  # 一般来说会预判到出现什么错误
+      6     # z = x/(y+1e-7)
+
+
+ZeroDivisionError: division by zero</code></pre>
+<ul>
+<li>多分支</li>
+</ul>
+<pre><code class="hljs python">ls = []
+d = &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;大杰仔&quot;</span>&#125;
+<span class="hljs-keyword">try</span>:
+    y = m
+    <span class="hljs-comment"># ls[3]</span>
+    <span class="hljs-comment"># d[&quot;age&quot;]</span>
+<span class="hljs-keyword">except</span> NameError:
+    print(<span class="hljs-string">&quot;变量名不存在&quot;</span>)
+<span class="hljs-keyword">except</span> IndexError:
+    print(<span class="hljs-string">&quot;索引超出界限&quot;</span>)
+<span class="hljs-keyword">except</span> KeyError:
+    print(<span class="hljs-string">&quot;键不存在&quot;</span>)</code></pre>
+
+<pre><code>变量名不存在</code></pre>
+<ul>
+<li>万能异常 Exception （所有错误的老祖宗）</li>
+</ul>
+<pre><code class="hljs python">ls = []
+d = &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;大杰仔&quot;</span>&#125;
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-comment"># y = m</span>
+    ls[<span class="hljs-number">3</span>]
+    <span class="hljs-comment"># d[&quot;age&quot;]</span>
+<span class="hljs-keyword">except</span> Exception:
+    print(<span class="hljs-string">&quot;出错啦&quot;</span>)</code></pre>
+
+<pre><code>出错啦</code></pre>
+<ul>
+<li>捕获异常的值 as</li>
+</ul>
+<pre><code class="hljs python">ls = []
+d = &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;大杰仔&quot;</span>&#125;
+<span class="hljs-comment"># y = x</span>
+<span class="hljs-keyword">try</span>:
+    y = m
+    <span class="hljs-comment"># ls[3]</span>
+    <span class="hljs-comment"># d[&quot;age&quot;]</span>
+<span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:    <span class="hljs-comment"># 虽不能获得错误具体类型，但可以获得错误的值</span>
+    print(e)</code></pre>
+
+<pre><code>name &#39;m&#39; is not defined</code></pre>
+<p>2、<strong>try_except_else</strong></p>
+<ul>
+<li>如果try 模块执行，则else模块也执行  </li>
+</ul>
+<p>可以将else 看做try成功的额外奖赏</p>
+<pre><code class="hljs python"><span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">with</span> open(<span class="hljs-string">&quot;浪淘沙_北戴河.txt&quot;</span>) <span class="hljs-keyword">as</span> f:
+        text = f.read()
+<span class="hljs-keyword">except</span> FileNotFoundError:
+    print(<span class="hljs-string">&quot;找不到该文件，ta是不是用了美颜？&quot;</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;，&quot;</span>, <span class="hljs-string">&quot;。&quot;</span>, <span class="hljs-string">&quot;？&quot;</span>]:         <span class="hljs-comment"># 去掉换行符和标点符号</span>
+        text = text.replace(s, <span class="hljs-string">&quot;&quot;</span>)
+    print(<span class="hljs-string">&quot;毛主席的名作《浪淘沙_北戴河》共由&#123;&#125;个字组成。&quot;</span>.format(len(text)))</code></pre>
+
+<pre><code>毛主席的名作《浪淘沙_北戴河》共由65个字组成。</code></pre>
+<p>3、<strong>try_except_finally</strong></p>
+<ul>
+<li>不论try模块是否执行，finally最后都执行</li>
+</ul>
+<pre><code class="hljs python">ls = []
+d = &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;大杰仔&quot;</span>&#125;
+<span class="hljs-comment"># y = x</span>
+<span class="hljs-keyword">try</span>:
+    y = m
+    <span class="hljs-comment"># ls[3]</span>
+    <span class="hljs-comment"># d[&quot;age&quot;]</span>
+<span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:    <span class="hljs-comment"># 虽不能获得错误具体类型，但可以获得错误的值</span>
+    print(e)
+<span class="hljs-keyword">finally</span>:
+    print(<span class="hljs-string">&quot;不论触不触发异常，都将执行&quot;</span>)</code></pre>
+
+<pre><code>name &#39;m&#39; is not defined
+不论触不触发异常，都将执行</code></pre>
+<h2 id="8-3-模块简介"><a href="#8-3-模块简介" class="headerlink" title="8.3 模块简介"></a>8.3 模块简介</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713205610.png" srcset="/img/loading.gif" alt="image-20200713205609455"></p>
+<p>已经被封装好  </p>
+<p>无需自己再“造轮子”  </p>
+<p>声明导入后，拿来即用</p>
+<h3 id="8-3-1-广义模块分类"><a href="#8-3-1-广义模块分类" class="headerlink" title="8.3.1 广义模块分类"></a>8.3.1 广义模块分类</h3><p><strong>1、Python 内置</strong></p>
+<p>&emsp;时间库time\ &ensp;随机库random\ &ensp;容器数据类型collection\ &ensp;迭代器函数itertools</p>
+<p><strong>2、第三方库</strong></p>
+<p>&emsp;数据分析numpy、pandas\ &ensp;数据可视化matplotlib\ &ensp;机器学习scikit-learn\ &ensp;深度学习Tensorflow</p>
+<p><strong>3、自定义文件</strong></p>
+<ul>
+<li><p>单独py文件</p>
+</li>
+<li><p>包——多个py文件</p>
+</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-comment"># 文件夹内多个py文件，再加一个__init__.py文件（内容可为空）</span></code></pre>
+
+<h3 id="8-3-2-模块的导入"><a href="#8-3-2-模块的导入" class="headerlink" title="8.3.2 模块的导入"></a>8.3.2 模块的导入</h3><p><strong>1、导入整个模块——import&emsp;模块名</strong></p>
+<ul>
+<li><strong>调用方式：</strong>模块名.函数名或类名</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> time
+
+start = time.time()      <span class="hljs-comment"># 调用time模块中的time()</span>
+time.sleep(<span class="hljs-number">3</span>)            <span class="hljs-comment"># 调用time模块中的sleep()  休息3秒钟</span>
+end = time.time()       
+print(<span class="hljs-string">&quot;程序运行用时：&#123;:.2f&#125;秒&quot;</span>.format(end-start))</code></pre>
+
+<pre><code>程序运行用时：3.00秒</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> fun1
+
+fun1.f1()</code></pre>
+
+<pre><code>导入fun1成功</code></pre>
+<p><strong>2、从模块中导入类或函数——from 模块 import 类名或函数名</strong></p>
+<ul>
+<li><strong>调用方式：</strong>函数名或类名</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> product   
+
+ls = list(product(<span class="hljs-string">&quot;AB&quot;</span>, <span class="hljs-string">&quot;123&quot;</span>))
+print(ls)</code></pre>
+
+<pre><code>[(&#39;A&#39;, &#39;1&#39;), (&#39;A&#39;, &#39;2&#39;), (&#39;A&#39;, &#39;3&#39;), (&#39;B&#39;, &#39;1&#39;), (&#39;B&#39;, &#39;2&#39;), (&#39;B&#39;, &#39;3&#39;)]</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> function.fun1 <span class="hljs-keyword">import</span> f1         <span class="hljs-comment"># 注意这种用法</span>
+
+f1()</code></pre>
+
+<pre><code>导入fun1成功</code></pre>
+<p><strong>一次导入多个</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> function <span class="hljs-keyword">import</span> fun1, fun2
+
+fun1.f1()
+fun2.f2()</code></pre>
+
+<pre><code>导入fun1成功
+导入fun2成功</code></pre>
+<p><strong>3、导入模块中所有的类和函数</strong>——from 模块 import *</p>
+<ul>
+<li><strong>调用方式：</strong>函数名或类名</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> * 
+
+print(randint(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>))       <span class="hljs-comment"># 产生一个[1,100]之间的随机整数</span>
+print(random())             <span class="hljs-comment"># 产生一个[0,1)之间的随机小数</span></code></pre>
+
+<pre><code>36
+0.6582485822110181</code></pre>
+<h3 id="8-3-3-模块的查找路径"><a href="#8-3-3-模块的查找路径" class="headerlink" title="8.3.3 模块的查找路径"></a>8.3.3 模块的查找路径</h3><p><strong>模块搜索查找顺序：</strong></p>
+<ul>
+<li>1、内存中已经加载的模块</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> fun1
+
+fun1.f1()</code></pre>
+
+<pre><code>导入fun1成功</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 删除硬盘上的fun1 文件</span>
+<span class="hljs-keyword">import</span> fun1
+
+fun1.f1()</code></pre>
+
+<pre><code>导入fun1成功</code></pre>
+<pre><code class="hljs python"><span class="hljs-comment"># 修改硬盘上的fun1 文件</span>
+<span class="hljs-keyword">import</span> fun1
+
+fun1.f1()
+<span class="hljs-comment"># 居然没变，说明是优先从内存中读取的</span></code></pre>
+
+<pre><code>导入fun1成功</code></pre>
+<ul>
+<li>2、内置模块</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-comment"># Python 启动时，解释器会默认加载一些 modules 存放在sys.modules中</span>
+<span class="hljs-comment"># sys.modules 变量包含一个由当前载入(完整且成功导入)到解释器的模块组成的字典, 模块名作为键, 它们的位置作为值</span>
+<span class="hljs-keyword">import</span> sys
+
+print(len(sys.modules))
+print(<span class="hljs-string">&quot;math&quot;</span> <span class="hljs-keyword">in</span> sys.modules)
+print(<span class="hljs-string">&quot;numpy&quot;</span> <span class="hljs-keyword">in</span> sys.modules)
+<span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> list(sys.modules.items())[:<span class="hljs-number">20</span>]:
+    print(k, <span class="hljs-string">&quot;:&quot;</span>, v)</code></pre>
+
+<pre><code>738
+True
+False
+sys : &lt;module &#39;sys&#39; (built-in)&gt;
+builtins : &lt;module &#39;builtins&#39; (built-in)&gt;
+_frozen_importlib : &lt;module &#39;importlib._bootstrap&#39; (frozen)&gt;
+_imp : &lt;module &#39;_imp&#39; (built-in)&gt;
+_thread : &lt;module &#39;_thread&#39; (built-in)&gt;
+_warnings : &lt;module &#39;_warnings&#39; (built-in)&gt;
+_weakref : &lt;module &#39;_weakref&#39; (built-in)&gt;
+zipimport : &lt;module &#39;zipimport&#39; (built-in)&gt;
+_frozen_importlib_external : &lt;module &#39;importlib._bootstrap_external&#39; (frozen)&gt;
+_io : &lt;module &#39;io&#39; (built-in)&gt;
+marshal : &lt;module &#39;marshal&#39; (built-in)&gt;
+nt : &lt;module &#39;nt&#39; (built-in)&gt;
+winreg : &lt;module &#39;winreg&#39; (built-in)&gt;
+encodings : &lt;module &#39;encodings&#39; from &#39;C:\\Users\\ibm\\Anaconda3\\lib\\encodings\\__init__.py&#39;&gt;
+codecs : &lt;module &#39;codecs&#39; from &#39;C:\\Users\\ibm\\Anaconda3\\lib\\codecs.py&#39;&gt;
+_codecs : &lt;module &#39;_codecs&#39; (built-in)&gt;
+encodings.aliases : &lt;module &#39;encodings.aliases&#39; from &#39;C:\\Users\\ibm\\Anaconda3\\lib\\encodings\\aliases.py&#39;&gt;
+encodings.utf_8 : &lt;module &#39;encodings.utf_8&#39; from &#39;C:\\Users\\ibm\\Anaconda3\\lib\\encodings\\utf_8.py&#39;&gt;
+_signal : &lt;module &#39;_signal&#39; (built-in)&gt;
+__main__ : &lt;module &#39;__main__&#39;&gt;</code></pre>
+<ul>
+<li>3、sys.path路径中包含的模块</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> sys
+
+sys.path</code></pre>
+
+
+<pre><code>[&#39;E:\\ipython&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\python37.zip&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\DLLs&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\lib&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3&#39;,
+ &#39;&#39;,
+ &#39;C:\\Users\\ibm\\AppData\\Roaming\\Python\\Python37\\site-packages&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\lib\\site-packages&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\win32&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\win32\\lib&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\Pythonwin&#39;,
+ &#39;C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\IPython\\extensions&#39;,
+ &#39;C:\\Users\\ibm\\.ipython&#39;]</code></pre>
+<ul>
+<li>sys.path的第一个路径是当前执行文件所在的文件夹</li>
+<li>若需将不在该文件夹内的模块导入，需要将模块的路径添加到sys.path</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-comment"># import fun3</span></code></pre>
+
+
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> sys
+
+sys.path.append(<span class="hljs-string">&quot;C:\\Users\\ibm\\Desktop&quot;</span>)    <span class="hljs-comment"># 注意是双斜杠</span>
+
+<span class="hljs-keyword">import</span> fun3
+
+fun3.f3()</code></pre>
+
+<pre><code>导入fun3成功</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python 标准库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">
+                        <span class="hidden-mobile">Python 函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python 文件、异常和模块&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

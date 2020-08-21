@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>DataLoader与DataSet - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">DataLoader与DataSet</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-为什么要DataSet和DataLoader"><a href="#1-为什么要DataSet和DataLoader" class="headerlink" title="1. 为什么要DataSet和DataLoader"></a>1. 为什么要DataSet和DataLoader</h1><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721221053.png" srcset="/img/loading.gif" alt="image-20200721220645760" style="zoom:75%;" />
+
+
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721221103.png" srcset="/img/loading.gif" alt="image-20200721221026985" style="zoom: 67%;" />
+
+<p>相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。</p>
+<p>使用DataSet和DataLoader可以帮助我们进行小批次训练。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200722135902.png" srcset="/img/loading.gif" alt="image-20200722135852959"></p>
+<h1 id="2-DataLoader"><a href="#2-DataLoader" class="headerlink" title="2. DataLoader"></a>2. DataLoader</h1><p>DataLoader位于torch.utils.data.DataLoader。Data loader包括一个Sampler和一个DataSet，它为给定的数据集提供迭代功能。</p>
+<pre><code class="hljs python">torch.utils.data.DataLoader(dataset, batch_size=<span class="hljs-number">1</span>, 
+                            shuffle=<span class="hljs-literal">False</span>, 
+                            sampler=<span class="hljs-literal">None</span>, 
+                            batch_sampler=<span class="hljs-literal">None</span>, 
+                            num_workers=<span class="hljs-number">0</span>, 
+                            collate_fn=<span class="hljs-literal">None</span>,
+                            pin_memory=<span class="hljs-literal">False</span>, 
+                            drop_last=<span class="hljs-literal">False</span>, 
+                            timeout=<span class="hljs-number">0</span>, 
+                            worker_init_fn=<span class="hljs-literal">None</span>, 
+                            multiprocessing_context=<span class="hljs-literal">None</span>)</code></pre>
+
+<p>功能：构建可迭代的数据装载器</p>
+<ul>
+<li>dataset: Dataset类，需要自己自定义一个dataset类，继承于torch.utils.data.Dataset</li>
+<li>batchsize : 批大小</li>
+<li>num_works: 是否多进程读取数据</li>
+<li>shuffle: 每个epoch是否乱序</li>
+<li>drop_last：当样本数不能被batchsize整除时，是否舍弃最后一批数据</li>
+</ul>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200722140221.png" srcset="/img/loading.gif" alt="image-20200722140219507" style="zoom:67%;" />
+
+
+
+<p>DataLoader主要目的是实现一个迭代器，使得可以用for循环获取自动获取数据，并记录Epoch，Iteration和Batch-Size，使得程序不用关心怎么取出小批次的问题。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200722141222.png" srcset="/img/loading.gif" alt="image-20200722141215096" style="zoom: 50%;" />
+
+
+
+
+
+<h1 id="3-DataSet"><a href="#3-DataSet" class="headerlink" title="3. DataSet"></a>3. DataSet</h1><p>Dataset位于torch.utils.data.Dataset。DataSet为一个抽象类，不能实例化，只能通过自定义一个继承DataSet的子类来实现DataSet的方法。</p>
+<p>所有表示索引到数据样本映射的dataset都应该是Dataset的子类。所有的子类都应该重写<code>__getitem__()</code>方法，以获得给出索引相对应的数据样本。还需要重写 <code>__len__()</code>方法，这样就可以通过 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataset#torch.utils.data.Sampler"><code>Sampler</code></a> 的方法以及 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataset#torch.utils.data.DataLoader"><code>DataLoader</code></a>返回dataset的大小，以帮助构建batch。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> Dataset
+
+rmb_label = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;100&quot;</span>: <span class="hljs-number">1</span>&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMBDataset</span>(<span class="hljs-params">Dataset</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, data_dir, transform=None</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        rmb面额分类任务的Dataset</span>
+<span class="hljs-string">        :param data_dir: str, 数据集所在路径</span>
+<span class="hljs-string">        :param transform: torch.transform，数据预处理</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.label_name = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;100&quot;</span>: <span class="hljs-number">1</span>&#125;
+        self.data_info = self.get_img_info(data_dir)  <span class="hljs-comment"># data_info存储所有图片路径和标签，在DataLoader中通过index读取样本</span>
+        self.transform = transform
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getitem__</span>(<span class="hljs-params">self, index</span>):</span>
+        path_img, label = self.data_info[index]
+        img = Image.open(path_img).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)     <span class="hljs-comment"># 0~255</span>
+
+        <span class="hljs-keyword">if</span> self.transform <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+            img = self.transform(img)   <span class="hljs-comment"># 在这里做transform，转为tensor等等</span>
+
+        <span class="hljs-keyword">return</span> img, label
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__len__</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> len(self.data_info)
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_img_info</span>(<span class="hljs-params">data_dir</span>):</span>
+        data_info = list()
+        <span class="hljs-keyword">for</span> root, dirs, _ <span class="hljs-keyword">in</span> os.walk(data_dir):
+            <span class="hljs-comment"># 遍历类别</span>
+            <span class="hljs-keyword">for</span> sub_dir <span class="hljs-keyword">in</span> dirs:
+                img_names = os.listdir(os.path.join(root, sub_dir))
+                img_names = list(filter(<span class="hljs-keyword">lambda</span> x: x.endswith(<span class="hljs-string">&#x27;.jpg&#x27;</span>), img_names))
+
+                <span class="hljs-comment"># 遍历图片</span>
+                <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(img_names)):
+                    img_name = img_names[i]
+                    path_img = os.path.join(root, sub_dir, img_name)
+                    label = rmb_label[sub_dir]
+                    data_info.append((path_img, int(label)))
+
+        <span class="hljs-keyword">return</span> data_info
+</code></pre>
+
+<h1 id="4-深入探索"><a href="#4-深入探索" class="headerlink" title="4. 深入探索"></a>4. 深入探索</h1><p>完成了dataset的继承自定义类RMBDataset，就可以对RMBDataset实例化。将RMBDataset的实例传入参数，创建DataLoader。</p>
+<pre><code class="hljs python"><span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)</code></pre>
+
+<p>然后就可以在训练的for循环中实现小批量训练，每次<code>for i, data in enumerate(train_loader)</code>都可以获得一个bath的数据和label。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    ...
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        ...</code></pre>
+
+
+
+
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200722141751.png" srcset="/img/loading.gif" alt="image-20200722141750525"></p>
+<p>实验：</p>
+<ol>
+<li><p>在训练for循环读数据的地方打断点，进入train_loader。<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210217.png" srcset="/img/loading.gif" alt="image-20200723182320156"></p>
+</li>
+<li><p>跳转到dataloader.py的<code>class DataLoader(object)</code>的<code>def __iter__(self)</code>，选择是单线程还是多线程读取。我们这里配置的是单线程。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210233.png" srcset="/img/loading.gif" alt="image-20200723182605399"></p>
+</li>
+<li><p>设置好读取方式以后，会跳转到dataloader.py的<code>class _BaseDataLoaderIter(object)</code>的<code>def __next__(self)</code>，就开始真正读数据了。返回的是data。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210237.png" srcset="/img/loading.gif" alt="image-20200723191149366"></p>
+</li>
+<li><p>我们进入<code>self._next_data</code>，观察data是如何给出的。会跳转到dataloader.py的<code>class _SingleProcessDataLoaderIter(_BaseDataLoaderIter)</code>的<code>_next_data(self)</code>，这里用<code>self._next_index()</code>获得了index，然后利用 <code> self._dataset_fetcher.fetch(index)</code>获得数据data。我们再看看这个<code>_next_data(self)</code>和<code> self._dataset_fetcher.fetch(index)</code>的工作机制。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210240.png" srcset="/img/loading.gif" alt="image-20200723191437645"></p>
+</li>
+<li><p>进入<code>_next_data(self)</code>，跳转到dataloader.py的<code>class _BaseDataLoaderIter(object)</code>的<code> _next_index(self)</code>。发现这里很简单直接return了<code> self._sampler_iter</code>这个迭代器的next值。再进去看看吧。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210244.png" srcset="/img/loading.gif" alt="image-20200723192056360"></p>
+</li>
+<li><p>进入<code>self._sampler_iter</code>，跳转到sampler.py的<code>class BatchSampler(Sampler)</code>的<code>__iter__(self)</code>，返回一个batch的生成器，用于生成索引的index，具体就不进去看了。我们接下来看看<code> self._dataset_fetcher.fetch(index)</code>，跳出跳出。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210248.png" srcset="/img/loading.gif" alt="image-20200723192447473"></p>
+</li>
+<li><p>退回到dataloader.py的<code>class _SingleProcessDataLoaderIter(_BaseDataLoaderIter)</code>的<code>_next_data(self)</code>，发现index已经给出了。我们的Batch-Size等于16，给出了16个index。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210251.png" srcset="/img/loading.gif" alt="image-20200723193307928"></p>
+</li>
+<li><p>进入<code> self._dataset_fetcher.fetch(index)</code>，跳转到fetch.py的<code>class _MapDatasetFetcher(_BaseDatasetFetcher)</code>的<code>def fetch(self, possibly_batched_index)</code>。可以看到这里用了一个列表推导式，将传入的index列表的每个元素idx在<code>self.dataset[idx]</code>中索引，得到data的列表。我们进入<code>self.dataset[idx]</code>看看。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210253.png" srcset="/img/loading.gif" alt="image-20200723193900452"></p>
+</li>
+<li><p>进入<code>self.dataset[idx]</code>，跳转到my_dataset.py的<code>class RMBDataset(Dataset)</code>的<code>__getitem__(self, index)</code>，这正是我们通过继承dataset自定义的数据集。<code>__getitem__(self, index)</code>真是我们重写的魔术方法，用于从数据集中根据索引index取出数据。（可以看到，第一个要取的index为86，正是我们之前得到的一个batch的第一个index）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210257.png" srcset="/img/loading.gif" alt="image-20200723194632775"></p>
+</li>
+<li><p><code>self.data_info[index]</code>是我们在<code>class RMBDataset(Dataset)</code>的<code> __init__(self, data_dir, transform=None)</code>中定义的一个属性。它通过我们自定义的<code> self.get_img_info(data_dir)</code>的函数来获取。继续看看<code> self.get_img_info(data_dir)</code></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210300.png" srcset="/img/loading.gif" alt="image-20200723195147697"></p>
+</li>
+<li><p>静态方法声明<code> @staticmethod</code>使得可以在类里面的<code> __init__(self, data_dir, transform=None)</code>中直接调用。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210303.png" srcset="/img/loading.gif" alt="image-20200723195613421"></p>
+<p>稍微看一下返回的data_info，就是一个包含了(照片路径，类别)的列表。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210306.png" srcset="/img/loading.gif" alt="image-20200723195759668" style="zoom:67%;" />
+</li>
+<li><p>返回my_dataset.py的<code>class RMBDataset(Dataset)</code>的<code>__getitem__(self, index)</code>。通过index索引<code>self.data_info[index]</code>列表，并对里面的元素（二元组）拆包，得到路径和label。然后通过<code>from PIL import Image</code>导入的模块Image对图片路径进行读取。这里的好处显而易见，每次只读一张图片，并不是直接全部导入的，一个batch完成以后会释放，不然显卡内存会炸的哦。最后经过变换和tensor转换得到img，返回一个图片和相应的label。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210309.png" srcset="/img/loading.gif" alt="image-20200723194632775"></p>
+</li>
+<li><p>退回<code> self._dataset_fetcher.fetch(index)</code>，结束对<code>self.dataset[idx]</code>的调用，得到数据集转成的tensor列表，我们稍微看看这个列表的情况：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210312.png" srcset="/img/loading.gif" alt="image-20200723204250287"></p>
+<p>可以看出，这是一个tensor列表，长度是16，对应batch-size。每一个元素都是一个三维tensor，对应彩色三通道的图像。最后我们再看看<code> self.collate_fn(data)</code></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210316.png" srcset="/img/loading.gif" alt="image-20200723204101111"></p>
+</li>
+<li><p>经过<code> self.collate_fn(data)</code>，可以将data列表打包为一个batch，变成了含有两个元素的列表，第一个元素是4维的tensor列表，是16个三维tensor列表在dim0的拼接，第二个元素是类别，数据类型也是tensor。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210319.png" srcset="/img/loading.gif" alt="image-20200723205807035"></p>
+</li>
+<li><p>最后，我们回到for循环。可以看到，已经完成了batch的操作。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210322.png" srcset="/img/loading.gif" alt="image-20200723210131097"></p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python 组合数据类型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="hidden-mobile">GPU的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "DataLoader与DataSet&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

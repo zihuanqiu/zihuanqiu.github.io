@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>Python 程序控制结构 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Python 程序控制结构</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="程序控制结构"><a href="#程序控制结构" class="headerlink" title="程序控制结构"></a>程序控制结构</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713182648.png" srcset="/img/loading.gif" alt="image-20200713182646068"></p>
+<p>非顺序式的程序控制，往往需要根据一定的条件，决定程序运行的路线。因此，我们首先来认识一下什么叫条件测试。</p>
+<h2 id="第一部分-条件测试"><a href="#第一部分-条件测试" class="headerlink" title="第一部分 条件测试"></a>第一部分 条件测试</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713182733.png" srcset="/img/loading.gif" alt="image-20200713182732217"></p>
+<h3 id="1、比较运算"><a href="#1、比较运算" class="headerlink" title="1、比较运算"></a>1、比较运算</h3><pre><code class="hljs python">a = <span class="hljs-number">10</span>
+b = <span class="hljs-number">8</span>
+print(a &gt; b)     <span class="hljs-comment"># 大于</span>
+print(a &lt; b)     <span class="hljs-comment"># 小于</span>
+print(a &gt;= b)    <span class="hljs-comment"># 大于等于</span>
+print(a &lt;= b)    <span class="hljs-comment"># 小于等于</span>
+print(a == b)    <span class="hljs-comment"># 等于</span>
+print(a != b)    <span class="hljs-comment"># 不等于</span></code></pre>
+
+<pre><code>True
+False
+True
+False
+False
+True</code></pre>
+<ul>
+<li>非空</li>
+</ul>
+<pre><code class="hljs python">ls = [<span class="hljs-number">1</span>]
+<span class="hljs-keyword">if</span> ls:            <span class="hljs-comment"># 数据结构不为空、变量不为0、None、False 则条件成立</span>
+    print(<span class="hljs-string">&quot;非空&quot;</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;空的&quot;</span>)</code></pre>
+
+<pre><code>非空</code></pre>
+<h3 id="2、逻辑运算"><a href="#2、逻辑运算" class="headerlink" title="2、逻辑运算"></a>2、逻辑运算</h3><ul>
+<li>与、或、非</li>
+</ul>
+<pre><code class="hljs python">a = <span class="hljs-number">10</span>
+b = <span class="hljs-number">8</span>
+c = <span class="hljs-number">12</span>
+print((a &gt; b) <span class="hljs-keyword">and</span> (b &gt; c))    <span class="hljs-comment"># 与</span>
+print((a &gt; b) <span class="hljs-keyword">or</span> (b &gt; c))     <span class="hljs-comment"># 或</span>
+print(<span class="hljs-keyword">not</span>(a &gt; b))             <span class="hljs-comment"># 非</span></code></pre>
+
+<pre><code>False
+True
+False</code></pre>
+<ul>
+<li>复合逻辑运算的优先级<br>非 &gt; 与 &gt; 或</li>
+</ul>
+<pre><code class="hljs python">print(<span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">and</span> <span class="hljs-literal">False</span>)</code></pre>
+
+<pre><code>True</code></pre>
+<pre><code class="hljs python">print((<span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">True</span>) <span class="hljs-keyword">and</span> <span class="hljs-literal">False</span>)</code></pre>
+
+<pre><code>False</code></pre>
+<h3 id="3、存在运算"><a href="#3、存在运算" class="headerlink" title="3、存在运算"></a>3、存在运算</h3><p>元素 in 列表/字符串   </p>
+<pre><code class="hljs python">cars = [<span class="hljs-string">&quot;BYD&quot;</span>, <span class="hljs-string">&quot;BMW&quot;</span>, <span class="hljs-string">&quot;AUDI&quot;</span>, <span class="hljs-string">&quot;TOYOTA&quot;</span>]</code></pre>
+
+
+<pre><code class="hljs python">print(<span class="hljs-string">&quot;BMW&quot;</span> <span class="hljs-keyword">in</span> cars)
+print(<span class="hljs-string">&quot;BENZ&quot;</span> <span class="hljs-keyword">in</span> cars)</code></pre>
+
+<pre><code>True
+False</code></pre>
+<p>元素 not in 列表/字符串   </p>
+<pre><code class="hljs python">print(<span class="hljs-string">&quot;BMW&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> cars)
+print(<span class="hljs-string">&quot;BENZ&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> cars)</code></pre>
+
+<pre><code>False
+True</code></pre>
+<h2 id="第二部分-分支结构——if语句"><a href="#第二部分-分支结构——if语句" class="headerlink" title="第二部分 分支结构——if语句"></a>第二部分 分支结构——if语句</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713182748.png" srcset="/img/loading.gif" alt="image-20200713182747188"></p>
+<h3 id="1、单分支"><a href="#1、单分支" class="headerlink" title="1、单分支"></a>1、单分支</h3><p><strong>模板</strong>  </p>
+<p>if 条件：<br>&emsp;&ensp;缩进的代码块</p>
+<pre><code class="hljs python">age = <span class="hljs-number">8</span>
+<span class="hljs-keyword">if</span> age &gt; <span class="hljs-number">7</span>:
+    print(<span class="hljs-string">&quot;孩子，你该上学啦！&quot;</span>)</code></pre>
+
+<pre><code>孩子，你该上学啦！</code></pre>
+<h3 id="2、二分支"><a href="#2、二分支" class="headerlink" title="2、二分支"></a>2、二分支</h3><p><strong>模板</strong>  </p>
+<p>if 条件：<br>&emsp;&ensp;缩进的代码块<br>else：<br>&emsp;&ensp;缩进的代码块  </p>
+<pre><code class="hljs python">age = <span class="hljs-number">6</span>
+<span class="hljs-keyword">if</span> age &gt; <span class="hljs-number">7</span>:
+    print(<span class="hljs-string">&quot;孩子，你该上学啦！&quot;</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;再玩两年泥巴！&quot;</span>)</code></pre>
+
+<pre><code>再玩两年泥巴！</code></pre>
+<h3 id="3、-多分支"><a href="#3、-多分支" class="headerlink" title="3、 多分支"></a>3、 多分支</h3><p><strong>模板</strong>  </p>
+<p>if 条件：<br>&emsp;&ensp;缩进的代码块<br>elif 条件：<br>&emsp;&ensp;缩进的代码块<br>elif 条件：<br>&emsp;&ensp;缩进的代码块<br>…<br>else：<br>&emsp;&ensp;缩进的代码块  </p>
+<pre><code class="hljs python">age = <span class="hljs-number">38</span>
+<span class="hljs-keyword">if</span> age &lt; <span class="hljs-number">7</span>:
+    print(<span class="hljs-string">&quot;再玩两年泥巴&quot;</span>)
+<span class="hljs-keyword">elif</span> age &lt; <span class="hljs-number">13</span>:
+    print(<span class="hljs-string">&quot;孩子，你该上小学啦&quot;</span>)
+<span class="hljs-keyword">elif</span> age &lt; <span class="hljs-number">16</span>:
+    print(<span class="hljs-string">&quot;孩子，你该上初中了&quot;</span>)
+<span class="hljs-keyword">elif</span> age &lt; <span class="hljs-number">19</span>:
+    print(<span class="hljs-string">&quot;孩子，你该上高中了&quot;</span>)
+<span class="hljs-keyword">elif</span> age &lt; <span class="hljs-number">23</span>:
+    print(<span class="hljs-string">&quot;大学生活快乐&quot;</span>)
+<span class="hljs-keyword">elif</span> age &lt; <span class="hljs-number">60</span>:
+    print(<span class="hljs-string">&quot;辛苦了，各行各业的工作者们&quot;</span>)
+<span class="hljs-keyword">else</span>:     <span class="hljs-comment"># 有时为了清楚，也可以写成elif age &gt;= 60:</span>
+    print(<span class="hljs-string">&quot;享受退休生活吧&quot;</span>)</code></pre>
+
+<pre><code>辛苦了，各行各业的工作者们</code></pre>
+<p><strong>不管多少分支，最后只执行一个分支</strong></p>
+<h3 id="4、嵌套语句"><a href="#4、嵌套语句" class="headerlink" title="4、嵌套语句"></a>4、嵌套语句</h3><p><strong>题目：年满18周岁，在非公共场合方可抽烟，判断某种情形下是否可以抽烟</strong></p>
+<pre><code class="hljs python">age = eval(input(<span class="hljs-string">&quot;请输入年龄: &quot;</span>))
+<span class="hljs-keyword">if</span> age &gt; <span class="hljs-number">18</span>:
+    is_public_place = bool(eval(input(<span class="hljs-string">&quot;公共场合请输入1，非公共场合请输入0: &quot;</span>)))
+    print(is_public_place)
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_public_place:
+        print(<span class="hljs-string">&quot;可以抽烟&quot;</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">&quot;禁止抽烟&quot;</span>)        
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;禁止抽烟&quot;</span>)</code></pre>
+
+<pre><code>请输入年龄16
+禁止抽烟</code></pre>
+<h2 id="第三部分-遍历循环——for-循环"><a href="#第三部分-遍历循环——for-循环" class="headerlink" title="第三部分 遍历循环——for 循环"></a>第三部分 遍历循环——for 循环</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713182756.png" srcset="/img/loading.gif" alt="image-20200713182755152"></p>
+<h3 id="主要形式："><a href="#主要形式：" class="headerlink" title="主要形式："></a>主要形式：</h3><ul>
+<li><strong>for</strong> 元素 <strong>in</strong> 可迭代对象：<br>&emsp;&emsp;执行语句</li>
+</ul>
+<h3 id="执行过程："><a href="#执行过程：" class="headerlink" title="执行过程："></a>执行过程：</h3><ul>
+<li>从可迭代对象中，依次取出每一个元素，并进行相应的操作</li>
+</ul>
+<p>1、直接迭代——列表[ ]、元组( )、集合{ }、字符串” “</p>
+<pre><code class="hljs python">graduates = (<span class="hljs-string">&quot;李雷&quot;</span>, <span class="hljs-string">&quot;韩梅梅&quot;</span>, <span class="hljs-string">&quot;Jim&quot;</span>)
+<span class="hljs-keyword">for</span> graduate <span class="hljs-keyword">in</span> graduates:
+    print(<span class="hljs-string">&quot;Congratulations, &quot;</span>+graduate)</code></pre>
+
+<pre><code>Congratulations, 李雷
+Congratulations, 韩梅梅
+Congratulations, Jim</code></pre>
+<p>2、变换迭代——字典</p>
+<pre><code class="hljs python">students = &#123;<span class="hljs-number">201901</span>: <span class="hljs-string">&#x27;小明&#x27;</span>, <span class="hljs-number">201902</span>: <span class="hljs-string">&#x27;小红&#x27;</span>, <span class="hljs-number">201903</span>: <span class="hljs-string">&#x27;小强&#x27;</span>&#125;
+<span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> students.items():
+    print(k, v)
+<span class="hljs-keyword">for</span> student <span class="hljs-keyword">in</span> students.keys():
+    print(student)</code></pre>
+
+<pre><code>201901 小明
+201902 小红
+201903 小强
+201901
+201902
+201903</code></pre>
+<p>3、range()对象</p>
+<pre><code class="hljs python">res=[]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10000</span>):
+    res.append(i**<span class="hljs-number">2</span>)
+print(res[:<span class="hljs-number">5</span>])
+print(res[<span class="hljs-number">-1</span>])</code></pre>
+
+<pre><code>[0, 1, 4, 9, 16]
+99980001</code></pre>
+<pre><code class="hljs python">res=[]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>):
+    res.append(i**<span class="hljs-number">2</span>)
+print(res)</code></pre>
+
+<pre><code>[1, 9, 25, 49, 81]</code></pre>
+<h3 id="循环控制：break-和-continue"><a href="#循环控制：break-和-continue" class="headerlink" title="循环控制：break 和 continue"></a>循环控制：break 和 continue</h3><ul>
+<li>break 结束整个循环</li>
+</ul>
+<pre><code class="hljs python">product_scores = [<span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">99</span>, <span class="hljs-number">70</span>, <span class="hljs-number">67</span>, <span class="hljs-number">78</span>, <span class="hljs-number">85</span>, <span class="hljs-number">92</span>, <span class="hljs-number">77</span>, <span class="hljs-number">82</span>] <span class="hljs-comment"># 1组10个产品的性能评分</span>
+ <span class="hljs-comment"># 如果低于75分的超过1个，则该组产品不合格</span>
+i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> score <span class="hljs-keyword">in</span> product_scores:
+    <span class="hljs-keyword">if</span> score &lt; <span class="hljs-number">75</span>:
+        i += <span class="hljs-number">1</span> 
+    <span class="hljs-keyword">if</span> i == <span class="hljs-number">2</span>:
+        print(<span class="hljs-string">&quot;产品抽检不合格&quot;</span>)
+        <span class="hljs-keyword">break</span></code></pre>
+
+<pre><code>产品抽检不合格</code></pre>
+<ul>
+<li>continue 结束本次循环</li>
+</ul>
+<pre><code class="hljs python">product_scores = [<span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">99</span>, <span class="hljs-number">70</span>, <span class="hljs-number">67</span>, <span class="hljs-number">78</span>, <span class="hljs-number">85</span>, <span class="hljs-number">92</span>, <span class="hljs-number">77</span>, <span class="hljs-number">82</span>] <span class="hljs-comment"># 1组10个产品的性能评分</span>
+ <span class="hljs-comment"># 如果低于75分,输出警示</span>
+print(len(product_scores))
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(product_scores)):
+    <span class="hljs-keyword">if</span> product_scores[i] &gt;= <span class="hljs-number">75</span>:
+        <span class="hljs-keyword">continue</span> 
+    print(<span class="hljs-string">&quot;第&#123;0&#125;个产品，分数为&#123;1&#125;，不合格&quot;</span>.format(i, product_scores[i]))</code></pre>
+
+<pre><code>10
+第3个产品，分数为70，不合格
+第4个产品，分数为67，不合格</code></pre>
+<h3 id="for-与-else的配合"><a href="#for-与-else的配合" class="headerlink" title="for 与 else的配合"></a>for 与 else的配合</h3><p>如果for 循环全部执行完毕，没有被break中止，则运行else块</p>
+<pre><code class="hljs python">product_scores = [<span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">99</span>, <span class="hljs-number">70</span>, <span class="hljs-number">67</span>, <span class="hljs-number">78</span>, <span class="hljs-number">85</span>, <span class="hljs-number">92</span>, <span class="hljs-number">77</span>, <span class="hljs-number">82</span>] <span class="hljs-comment"># 1组10个产品的性能评分</span>
+ <span class="hljs-comment"># 如果低于75分的超过1个，则该组产品不合格</span>
+i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> score <span class="hljs-keyword">in</span> product_scores:
+    <span class="hljs-keyword">if</span> score &lt; <span class="hljs-number">75</span>:
+        i+=<span class="hljs-number">1</span> 
+    <span class="hljs-keyword">if</span> i == <span class="hljs-number">2</span>:
+        print(<span class="hljs-string">&quot;产品抽检不合格&quot;</span>)
+        <span class="hljs-keyword">break</span>
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;产品抽检合格&quot;</span>)</code></pre>
+
+<pre><code>产品抽检不合格</code></pre>
+<h2 id="第四部分-无限循环——while-循环"><a href="#第四部分-无限循环——while-循环" class="headerlink" title="第四部分 无限循环——while 循环"></a>第四部分 无限循环——while 循环</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713182803.png" srcset="/img/loading.gif" alt="image-20200713182802530"></p>
+<h3 id="4-1-为什么要用while-循环"><a href="#4-1-为什么要用while-循环" class="headerlink" title="4.1 为什么要用while 循环"></a>4.1 为什么要用while 循环</h3><ul>
+<li>经典题目：猜数字</li>
+</ul>
+<pre><code class="hljs python">albert_age = <span class="hljs-number">18</span>
+<span class="hljs-comment">#第1次</span>
+guess = int(input(<span class="hljs-string">&quot;&gt;&gt;:&quot;</span>))
+<span class="hljs-keyword">if</span> guess &gt; albert_age :
+    print(<span class="hljs-string">&quot;猜的太大了，往小里试试...&quot;</span>)
+<span class="hljs-keyword">elif</span> guess &lt; albert_age :
+    print(<span class="hljs-string">&quot;猜的太小了，往大里试试...&quot;</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;恭喜你，猜对了...&quot;</span>)
+<span class="hljs-comment">#第2次</span>
+guess = int(input(<span class="hljs-string">&quot;&gt;&gt;:&quot;</span>))
+<span class="hljs-keyword">if</span> guess &gt; albert_age :
+    print(<span class="hljs-string">&quot;猜的太大了，往小里试试...&quot;</span>)
+<span class="hljs-keyword">elif</span> guess &lt; albert_age :
+    print(<span class="hljs-string">&quot;猜的太小了，往大里试试...&quot;</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;恭喜你，猜对了...&quot;</span>)</code></pre>
+
+<p><strong>代码可能需要重复执行，可是又不知道具体要执行多少次</strong></p>
+<h3 id="4-2-while循环的一般形式"><a href="#4-2-while循环的一般形式" class="headerlink" title="4.2 while循环的一般形式"></a>4.2 while循环的一般形式</h3><h3 id="主要形式：-1"><a href="#主要形式：-1" class="headerlink" title="主要形式："></a>主要形式：</h3><ul>
+<li><strong>while</strong> 判断条件：<br>&emsp;&emsp;执行语句   </li>
+<li>*条件为真，执行语句**   </li>
+<li>*条件为假，while 循环结束**</li>
+</ul>
+<pre><code class="hljs python">albert_age = <span class="hljs-number">18</span> 
+guess = int(input(<span class="hljs-string">&quot;&gt;&gt;:&quot;</span>))
+<span class="hljs-keyword">while</span> guess != albert_age: 
+    <span class="hljs-keyword">if</span> guess &gt; albert_age :
+        print(<span class="hljs-string">&quot;猜的太大了，往小里试试...&quot;</span>)
+    <span class="hljs-keyword">elif</span> guess &lt; albert_age :
+        print(<span class="hljs-string">&quot;猜的太小了，往大里试试...&quot;</span>)
+    guess = int(input(<span class="hljs-string">&quot;&gt;&gt;:&quot;</span>))
+print(<span class="hljs-string">&quot;恭喜你，猜对了...&quot;</span>)</code></pre>
+
+<h3 id="4-3-while与风向标"><a href="#4-3-while与风向标" class="headerlink" title="4.3 while与风向标"></a>4.3 while与风向标</h3><pre><code class="hljs python">albert_age = <span class="hljs-number">18</span> 
+flag = <span class="hljs-literal">True</span>     <span class="hljs-comment"># 布尔类型</span>
+<span class="hljs-keyword">while</span> flag:
+    guess = int(input(<span class="hljs-string">&quot;&gt;&gt;:&quot;</span>))
+    <span class="hljs-keyword">if</span> guess &gt; albert_age :
+        print(<span class="hljs-string">&quot;猜的太大了，往小里试试...&quot;</span>)
+    <span class="hljs-keyword">elif</span> guess &lt; albert_age :
+        print(<span class="hljs-string">&quot;猜的太小了，往大里试试...&quot;</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">&quot;恭喜你，猜对了...&quot;</span>)
+        flag = <span class="hljs-literal">False</span>    <span class="hljs-comment"># 当诉求得到满足，就让风向变一下</span></code></pre>
+
+
+<pre><code class="hljs python">flag=<span class="hljs-literal">True</span>  
+<span class="hljs-keyword">while</span> flag:  
+    <span class="hljs-keyword">pass</span>  
+    <span class="hljs-keyword">while</span> flag:  
+        <span class="hljs-keyword">pass</span>  
+        <span class="hljs-keyword">while</span> flag:     
+            flag=<span class="hljs-literal">False</span>     <span class="hljs-comment"># 循环逐层判断，当flag为false时，循环会逐层退出</span></code></pre>
+
+<h3 id="4-4-while-与循环控制-break、continue"><a href="#4-4-while-与循环控制-break、continue" class="headerlink" title="4.4 while 与循环控制 break、continue"></a>4.4 while 与循环控制 break、continue</h3><pre><code class="hljs python">albert_age = <span class="hljs-number">18</span> 
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    guess = int(input(<span class="hljs-string">&quot;&gt;&gt;:&quot;</span>))
+    <span class="hljs-keyword">if</span> guess &gt; albert_age :
+        print(<span class="hljs-string">&quot;猜的太大了，往小里试试...&quot;</span>)
+    <span class="hljs-keyword">elif</span> guess &lt; albert_age :
+        print(<span class="hljs-string">&quot;猜的太小了，往大里试试...&quot;</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">&quot;恭喜你，猜对了...&quot;</span>)
+        <span class="hljs-keyword">break</span>    <span class="hljs-comment"># 当诉求得到满足，就跳出循环</span></code></pre>
+
+<p>输出10以内的奇数</p>
+<pre><code class="hljs python">i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">10</span>:
+    i += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">continue</span>       <span class="hljs-comment"># 跳出本次循环，进入下一次循环</span>
+    print(i)</code></pre>
+
+<pre><code>1
+3
+5
+7
+9</code></pre>
+<h3 id="4-5-while与else"><a href="#4-5-while与else" class="headerlink" title="4.5 while与else"></a>4.5 while与else</h3><p>如果while 循环全部执行完毕，没有被break中止，则运行else块</p>
+<pre><code class="hljs python">count = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> count &lt;= <span class="hljs-number">5</span> :
+    count += <span class="hljs-number">1</span>
+    print(<span class="hljs-string">&quot;Loop&quot;</span>,count)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;循环正常执行完啦&quot;</span>)</code></pre>
+
+<pre><code>Loop 1
+Loop 2
+Loop 3
+Loop 4
+Loop 5
+Loop 6
+循环正常执行完啦</code></pre>
+<h3 id="4-6-再看两个例子"><a href="#4-6-再看两个例子" class="headerlink" title="4.6 再看两个例子"></a>4.6 再看两个例子</h3><p>【小例子】删除列表中的特定值</p>
+<pre><code class="hljs python">pets = [<span class="hljs-string">&quot;dog&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span>, <span class="hljs-string">&quot;pig&quot;</span>, <span class="hljs-string">&quot;goldfish&quot;</span>, <span class="hljs-string">&quot;rabbit&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span>]</code></pre>
+
+
+<pre><code class="hljs python"><span class="hljs-keyword">while</span> <span class="hljs-string">&quot;cat&quot;</span> <span class="hljs-keyword">in</span> pets:
+    pets.remove(<span class="hljs-string">&quot;cat&quot;</span>)
+pets</code></pre>
+
+
+
+
+<pre><code>[&#39;dog&#39;, &#39;dog&#39;, &#39;pig&#39;, &#39;goldfish&#39;, &#39;rabbit&#39;]</code></pre>
+<p>【小例子】将未读书籍列表中书名分别输出后，存入已读书籍列表</p>
+<pre><code class="hljs python">not_read = [<span class="hljs-string">&quot;红楼梦&quot;</span>, <span class="hljs-string">&quot;水浒传&quot;</span>, <span class="hljs-string">&quot;三国演义&quot;</span>, <span class="hljs-string">&quot;西游记&quot;</span>]
+have_read = []
+<span class="hljs-keyword">while</span> not_read:     <span class="hljs-comment"># not_read非空，循环继续，否则中止</span>
+    book = not_read.pop()
+    have_read.append(book)
+    print(<span class="hljs-string">&quot;我已经读过《&#123;&#125;》了&quot;</span>.format(book))
+print(not_read)
+print(have_read)</code></pre>
+
+<pre><code>我已经读过《西游记》了
+我已经读过《三国演义》了
+我已经读过《水浒传》了
+我已经读过《红楼梦》了
+[]
+[&#39;西游记&#39;, &#39;三国演义&#39;, &#39;水浒传&#39;, &#39;红楼梦&#39;]</code></pre>
+<h1 id="第五部分-控制语句注意问题"><a href="#第五部分-控制语句注意问题" class="headerlink" title="第五部分 控制语句注意问题"></a>第五部分 控制语句注意问题</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713182812.png" srcset="/img/loading.gif" alt="image-20200713182810634"></p>
+<h3 id="5-1-尽可能减少多层嵌套"><a href="#5-1-尽可能减少多层嵌套" class="headerlink" title="5.1 尽可能减少多层嵌套"></a>5.1 尽可能减少多层嵌套</h3><ul>
+<li>可读性差，容易把人搞疯掉</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">if</span> 条件:
+    执行语句
+    <span class="hljs-keyword">if</span> 条件：
+        执行语句
+        <span class="hljs-keyword">if</span>...</code></pre>
+
+<h3 id="5-2-避免死循环"><a href="#5-2-避免死循环" class="headerlink" title="5.2 避免死循环"></a>5.2 避免死循环</h3><p>条件一直成立，循环永无止境</p>
+<pre><code class="hljs python"><span class="hljs-comment"># while True:</span>
+    <span class="hljs-comment"># print(&quot;天地之渺渺，时间之无限&quot;)</span></code></pre>
+
+<h3 id="5-3-封装过于复杂的判断条件"><a href="#5-3-封装过于复杂的判断条件" class="headerlink" title="5.3 封装过于复杂的判断条件"></a>5.3 封装过于复杂的判断条件</h3><p>如果条件判断里的表达式过于复杂   </p>
+<p>出现了太多的 not/and/or等   </p>
+<p>导致可读性大打折扣</p>
+<p><strong>考虑将条件封装为函数</strong></p>
+<pre><code class="hljs python">a, b, c, d, e = <span class="hljs-number">10</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>
+<span class="hljs-keyword">if</span> (a &gt; b) <span class="hljs-keyword">and</span> (c &gt;d) <span class="hljs-keyword">and</span> (<span class="hljs-keyword">not</span> e):
+    print(<span class="hljs-string">&quot;我已经晕鸟&quot;</span>)</code></pre>
+
+
+<pre><code class="hljs python">numbers = (<span class="hljs-number">10</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">judge</span>(<span class="hljs-params">num</span>):</span>
+    a, b, c, d, e = num
+    x = a &gt; b
+    y = c &gt; d
+    z = <span class="hljs-keyword">not</span> e
+    <span class="hljs-keyword">return</span> x <span class="hljs-keyword">and</span> y <span class="hljs-keyword">and</span> z
+
+
+<span class="hljs-keyword">if</span> judge(numbers):
+    print(<span class="hljs-string">&quot;就是这个feel，biu倍儿爽&quot;</span>)</code></pre>
+
+<pre><code>就是这个feel，biu倍儿爽</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python 基本语法元素</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">
+                        <span class="hidden-mobile">Python 有益的探索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python 程序控制结构&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

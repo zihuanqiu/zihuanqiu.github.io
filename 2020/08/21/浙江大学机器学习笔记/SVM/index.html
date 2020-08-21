@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>SVM - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">SVM</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="SVM（线性模型）数学推导"><a href="#SVM（线性模型）数学推导" class="headerlink" title="SVM（线性模型）数学推导"></a>SVM（线性模型）数学推导</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014601.png" srcset="/img/loading.gif" alt="1590504502746"></p>
+<p>学习路线：先线性二分类解释清楚，再加入核方法扩展至非线性二分类</p>
+<h2 id="几个重要的概念"><a href="#几个重要的概念" class="headerlink" title="几个重要的概念"></a>几个重要的概念</h2><ol>
+<li><p>训练样本集</p>
+<p>$(\boldsymbol{x}_i,y_i)$，其中$\boldsymbol{x_i}$为$n$维列向量，表示$n$维特征；$y_i$为标签，当$y_i=+1$时为正样本，$y_i=-1$时为负样本。</p>
+<p>则训练样本集为：$D={( \boldsymbol{x}_{\boldsymbol{1}},y_1 ) ,( \boldsymbol{x}_2,y_2 ) ,\cdots ,( \boldsymbol{x}_m,y_m ) } , y\in {-1,+1 }$</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>什么叫超平面</p>
+<p>如上图，若在二维空间内（两个特征），若数据为线性可分，则可以用一条直线将正负样本区分开来（2分类问题）；若在三维空间则为一个平面；三维空间以上无法想象统称为超平面。</p>
+<p>但上图中区分正负样本肯定又不止一种划分方法，何者为最优？最优者才叫做SVM的超平面。</p>
+<p>最优的判断标准则是，若对数据样本加以扰动（可以理解为采样样本总有误差），那么SVM超平面具有最佳的鲁棒性。从几何上来看，在上图中，若将超平面左右平移，直至触碰到最近的样本，那么这个被界定的范围记为$d$，则SVM的超平面是有最大$d$的那个超平面。</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>什么叫支持向量</p>
+<p>SVM超平面左右平移最先触碰到的为支持向量</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>超平面的方程<br>$$<br>\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b=0<br>$$<br>其中：$\boldsymbol{w}$和$\boldsymbol{x}$都是$n\times 1$的列向量，$n$是特征维数。$b$为标量；$\boldsymbol{w}$还是超平面的法向量，$b$控制了超平面到原点的距离。确定了$\boldsymbol{w}$和$b$，超平面就被完全确定了。</p>
+<p>那么在超平面上方数据$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b&gt;0$；在超平面下方数据$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b&lt;0$；</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b=0$与$\zeta\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+\zeta b=0$表示的是同一个超平面</p>
+<blockquote>
+<p>如：$4x+4y=0$ 和 $x+y=0$是同一个平面，$4x+4y=4$和$x+y=1$也是同一个平面</p>
+</blockquote>
+</li>
+</ol>
+<ol start="6">
+<li><p>线性可分数据集的定义</p>
+<p>在数据集${( \boldsymbol{x}_i,y_i ) } _{i=1\sim m}$中，$\exists ( \boldsymbol{w},b )$，使得对于$\forall i=1 \sim m$，有：<br>$$<br>\begin{cases}</p>
+<pre><code>\text&#123;若&#125;y_i=+1, \text&#123;则&#125;\boldsymbol&#123;w&#125;^&#123;\boldsymbol&#123;T&#125;&#125;\boldsymbol&#123;x&#125;_&#123;\boldsymbol&#123;i&#125;&#125;+b&gt; 0\\
+\text&#123;若&#125;y_i=-1, \text&#123;则&#125;\boldsymbol&#123;w&#125;^&#123;\boldsymbol&#123;T&#125;&#125;\boldsymbol&#123;x&#125;_&#123;\boldsymbol&#123;i&#125;&#125;+b&lt; 0\\</code></pre>
+<p>\end{cases}<br>$$<br>即正样本全部分到上方，负样本全部分到下方</p>
+<p>等价于 $y_i(\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}_{\boldsymbol{i}}+b)&gt; 0$</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>点到平面距离公式</p>
+<p>点$(x_0,y_0)$到平面$w_1x+w_2y+b=0$的距离表示为：<br>$$<br>d=\frac{\left| w_1x_0+w_2y_0+b \right|}{\sqrt{w_{1}^{2}+w_{2}^{2}}}<br>$$<br>则样本点到超平面的距离表示为：<br>$$<br>d=\frac{\left| \boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}_{\boldsymbol{i}}+b \right|}{\lVert \boldsymbol{w} \rVert}<br>$$</p>
+</li>
+<li><p>若假设支持向量过超平面的平行线为$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b=1$和$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b=-1$（如上图所示），那么可求得</p>
+<p>支持向量到超平面的距离为:<br>$$<br>d=\frac{1}{\lVert \boldsymbol{w} \rVert}<br>$$<br>那么超平面左右平移被限制的范围（即两个异类支持向量到超平面的距离之和）为：<br>$$<br>\varUpsilon =\frac{2}{\lVert \boldsymbol{w} \rVert}<br>$$<br>$\varUpsilon$被称为SVM的“间隔”（margin）</p>
+</li>
+</ol>
+<blockquote>
+<p>为什么可以假设支持向量过超平面的平行线为$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b=1$和$\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b=-1$呢？正如上面第5点所述，由于$\boldsymbol{W}$和$b$可以整体缩放倍数，超平面不变。那么总可以通过$\zeta \cdot ( \boldsymbol{w},b ) \rightarrow ( \boldsymbol{w’},b’ )$，使$\left| \boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}+b \right|=1$。归一化的操作为我们带来便利</p>
+</blockquote>
+<h2 id="求解超平面转化为下列优化问题"><a href="#求解超平面转化为下列优化问题" class="headerlink" title="求解超平面转化为下列优化问题"></a>求解超平面转化为下列优化问题</h2><p>在限制条件 $y_i(w^Tx_i+b)\geqslant 1,i=1\sim m$ 下，最小化 $\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2$ 的问题</p>
+<p>即：<br>$$<br>\begin{aligned}<br>&amp;\underset{\boldsymbol{w},b}{\min},,\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2<br>\<br>&amp;s.t.\quad y_i(\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}_{\boldsymbol{i}}+b)\geqslant 1,i=1\sim m<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p>最大化$\varUpsilon =\frac{2}{\lVert \boldsymbol{w} \rVert}$等价于最小化$\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2$，而限制条件$y_i(w^Tx_i+b)\geqslant 1,i=1\sim m$表示求解超平面的前提条件是所有样本都被正确分类的情况下</p>
+</blockquote>
+<p>这样就把支持向量机的求解转化为凸优化问题中的二次规划问题</p>
+<blockquote>
+<p>二次规划（Quadratic Programming）</p>
+<ol>
+<li>目标函数（Objective Function）为二次项</li>
+<li>限制条件为一次项</li>
+</ol>
+<p>要么无解，要么只有一个极值</p>
+</blockquote>
+<h1 id="SVM（非线性模型）数学推导"><a href="#SVM（非线性模型）数学推导" class="headerlink" title="SVM（非线性模型）数学推导"></a>SVM（非线性模型）数学推导</h1><p>若数据集非线性可分，那么线性SVM的优化问题会变得无解。通过加入正则项，可以使SVM应用于非线性可分的数据集。</p>
+<h2 id="改写优化目标函数和限制条件"><a href="#改写优化目标函数和限制条件" class="headerlink" title="改写优化目标函数和限制条件"></a>改写优化目标函数和限制条件</h2><p>$$<br>\begin{aligned}<br>    &amp;\underset{\boldsymbol{w},b}{\min},,\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2+C\sum_{i=1}^m{\xi _i}\<br>    &amp;s.t.\quad \begin{cases}<br>    y_i( \boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}_{\boldsymbol{i}}+b ) \geqslant 1-\xi _i\<br>    \xi _i\geqslant 0\<br>\end{cases},i=1\sim m\<br>\end{aligned}<br>\tag{1}<br>$$</p>
+<p>其中：$\xi_i$称为松弛变量（Slack  Variable），$\sum_{i=1}^m{\xi _i}$称为正则项</p>
+<blockquote>
+<p>若$\xi_i$足够大，则限制条件可以被轻易满足（即为限制条件加入了容忍度）。但$\xi_i$又不能太大，那么限制条件就失去了意义。因此在优化目标函数里需要添加$\xi_i$，并用一个超参数$C$来权衡最小化$\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2$与最小化$\sum_{i=1}^m{\xi _i}$之间的关系</p>
+</blockquote>
+<h2 id="低维到高维的映射"><a href="#低维到高维的映射" class="headerlink" title="低维到高维的映射"></a>低维到高维的映射</h2><p>改写优化目标函数和限制条件后的SVM可以应用于非线性可分的数据集中。但是这样的SVM仍然是在试图寻找一条直线将正负样本划分，在某些情况下这仍然不够好，例如：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014617.png" srcset="/img/loading.gif"></p>
+<p>不同于其他机器学习算法，SVM试图通过高维映射，使低维空间的线性不可分问题变成高维空间中的线性可分问题，从而在高维空间中画出超平面对数据集进行划分。</p>
+<p>我们定义高维映射$\varphi (\boldsymbol{x})$：<br>$$<br>\boldsymbol{x}\xrightarrow{\varphi }\varphi  ( \boldsymbol{x} )<br>$$</p>
+<blockquote>
+<p>其中$\boldsymbol{x}$是低维向量，而$\varphi (\boldsymbol{x})$为高维向量</p>
+</blockquote>
+<p>那么SVM的优化条件变为：<br>$$<br>\begin{aligned}<br>&amp;\underset{\boldsymbol{w},b}{\min},,\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2 +C\sum_{i=1}^m{\xi _i}</p>
+<p>\<br>&amp;s.t.\quad \begin{cases}<br>    y_i(\boldsymbol{w}^{\boldsymbol{T}}\varphi  (\boldsymbol{x}_{\boldsymbol{i}})+b) \geqslant 1-\xi _i\<br>    \xi _i\geqslant 0\<br>\end{cases},i=1\sim m<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p>此时$\boldsymbol{w}$的维度也升高了，与$\varphi (\boldsymbol{x})$的维度相同</p>
+</blockquote>
+<p>例子：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014628.png" srcset="/img/loading.gif" alt="1590498357677"></p>
+<p>对于这么一个异或问题，我们有：<br>$$<br>\begin{aligned}<br>&amp;\boldsymbol{x}_{\boldsymbol{1}}=\left[ \begin{array}{c}<br>    0\<br>    0\<br>\end{array} \right] \in C_1,\quad \boldsymbol{x}_{\boldsymbol{2}}=\left[ \begin{array}{c}<br>    1\<br>    1\<br>\end{array} \right] \in C_1,\quad<br>\<br>&amp;\boldsymbol{x}_{\boldsymbol{3}}=\left[ \begin{array}{c}<br>    1\<br>    0\<br>\end{array} \right] \in C_2,\quad \boldsymbol{x}_{\boldsymbol{4}}=\left[ \begin{array}{c}<br>    0\<br>    1\<br>\end{array} \right] \in C_2<br>\end{aligned}<br>$$<br>定义映射关系：<br>$$<br>\boldsymbol{x}=\left[ \begin{array}{c}<br>    a\<br>    b\<br>\end{array} \right] \xrightarrow{\varphi }\varphi  ( \boldsymbol{x} ) =\left[ \begin{array}{c}<br>    a^2\<br>    b^2\<br>    a\<br>    \begin{array}{c}<br>    b\<br>    ab\<br>\end{array}\<br>\end{array} \right]<br>$$<br>则升维后的样本为</p>
+<p>$$<br>\begin{aligned}<br>&amp;\varphi ( \boldsymbol{x}_{\boldsymbol{1}} ) =\left[ \begin{array}{c}<br>    \begin{array}{c}<br>    0\<br>    0\<br>\end{array}\<br>    \begin{array}{c}<br>    0\<br>    0\<br>    0\<br>\end{array}\<br>\end{array} \right] \in C_1,\quad \varphi ( \boldsymbol{x}_{\boldsymbol{2}} ) =\left[ \begin{array}{c}<br>    \begin{array}{c}<br>    1\<br>    1\<br>\end{array}\<br>    \begin{array}{c}<br>    1\<br>    1\<br>    1\<br>\end{array}\<br>\end{array} \right] \in C_1,\quad<br>\<br>&amp;\varphi ( \boldsymbol{x}_{\boldsymbol{3}} ) =\left[ \begin{array}{c}<br>    \begin{array}{c}<br>    1\<br>    0\<br>\end{array}\<br>    \begin{array}{c}<br>    1\<br>    0\<br>    0\<br>\end{array}\<br>\end{array} \right] \in C_2,\quad \varphi ( \boldsymbol{x}_{\boldsymbol{4}} ) =\left[ \begin{array}{c}<br>    \begin{array}{c}<br>    0\<br>    1\<br>\end{array}\<br>    \begin{array}{c}<br>    0\<br>    1\<br>    0\<br>\end{array}\<br>\end{array} \right] \in C_2<br>\end{aligned}<br>$$</p>
+<p>求得$\boldsymbol{w}$为：<br>$$<br>\boldsymbol{w}=\left[ \begin{array}{c}<br>    \begin{array}{c}<br>    -1\<br>    -1\<br>\end{array}\<br>    \begin{array}{c}<br>    -1\<br>    -1\<br>    6\<br>\end{array}\<br>\end{array} \right] ,\quad b=1<br>$$<br>则<br>$$<br>\begin{aligned}<br>\widehat{y}<em>1&amp;=\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}</em>{\boldsymbol{1}}+b,,=,,1&gt;0\\widehat{y}<em>2&amp;=\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}</em>{\boldsymbol{2}}+b,,=,,3&gt;0\\widehat{y}<em>3&amp;=\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}</em>{\boldsymbol{3}}+b,,=,,-1&lt;0\\widehat{y}<em>4&amp;=\boldsymbol{w}^{\boldsymbol{T}}\boldsymbol{x}</em>{\boldsymbol{4}}+b,,=,,-1&lt;0<br>\end{aligned}<br>$$<br>可见的确通过升维，在高维空间划分了超平面，实现了非线性可分数据的分类问题。</p>
+<h2 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h2><p>可以证明：若升的维度越高，则数据集越有可能在高维空间被线性划分。可以猜想，若$\varphi (\boldsymbol{x})$为无限维度，则必定可以在无限高维空间划分任意数据集。但这样，会使得$\boldsymbol{w}$也变为无限维度，使优化问题$(1)$变得不可解（因为$\boldsymbol{w}$是代求参数）。</p>
+<p><strong>定理：我们可以不知道无限维映射$\varphi (\boldsymbol{x})$的显式表达，我们只要知道一个核函数（Kernel Function）</strong><br>$$<br>K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} ) ,,=,,\varphi ( \boldsymbol{x}<em>{\boldsymbol{1}} ) ^T\cdot \varphi ( \boldsymbol{x}</em>{\boldsymbol{2}} )<br>$$<br><strong>则$(1)$这个优化式仍然可解。</strong></p>
+<p>常用核函数：</p>
+<ol>
+<li>高斯核<br>$$<br>K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} ) ,,=,,e^{-\frac{\lVert x_1-x_2 \rVert ^2}{2\sigma ^2}}<br>$$</li>
+</ol>
+<ol start="2">
+<li>多项式核</li>
+</ol>
+<p>$$<br>K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} ) ,,=,,( \boldsymbol{x}<em>{\boldsymbol{1}}^{\boldsymbol{T}}\boldsymbol{x}</em>{\boldsymbol{2}}+1 ) ^d<br>$$</p>
+<blockquote>
+<p>我们知道核$K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} )$的表达式，且知道$K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} )$可以表示为$\varphi ( \boldsymbol{x}<em>{\boldsymbol{1}} ) ^T \varphi ( \boldsymbol{x}</em>{\boldsymbol{2}} )$，并且$\varphi (\boldsymbol{x})$是无限维的（不需要知道$\varphi (\boldsymbol{x})$的显示表达）。</p>
+</blockquote>
+<blockquote>
+<p>$K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} )$能写成$\varphi ( \boldsymbol{x}<em>{\boldsymbol{1}} ) ^T \varphi ( \boldsymbol{x}</em>{\boldsymbol{2}} )$的充要条件为（Mercer’s Theorem）：</p>
+<ol>
+<li>$K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} ) = K( \boldsymbol{x}<em>{\boldsymbol{2}},\boldsymbol{x}</em>{\boldsymbol{1}} )$（交换性）</li>
+<li>$\forall C_i, ,, \boldsymbol{x_i}(i=1\sim N)$，有$\sum_{i=1}^N{\sum_{j=1}^N{C_iC_jK( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} ) \geqslant 0}},,$成立（半正定性）</li>
+</ol>
+</blockquote>
+<h2 id="原问题和对偶问题"><a href="#原问题和对偶问题" class="headerlink" title="原问题和对偶问题"></a>原问题和对偶问题</h2><p>现在我们要在只知道$K( \boldsymbol{x}<em>{\boldsymbol{1}},\boldsymbol{x}</em>{\boldsymbol{2}} )$不知道$\varphi (\boldsymbol{x})$的情况下，解优化问题$(1)$，因此我们需要一些理论知识铺垫。</p>
+<blockquote>
+<p>这是优化理论的内容，用到就学一下吧</p>
+</blockquote>
+<p>原问题（Prime Problem）：</p>
+<p>最小化：<br>$$<br>f(\boldsymbol{\omega})<br>$$<br>限制条件：<br>$$<br>g_i( \boldsymbol{\omega} ) \leqslant 0  ( i=1\sim K )<br>\<br>h_i( \boldsymbol{\omega} ) =0  ( i=1\sim M )<br>$$<br>则其对偶问题（Dual Problem）为：</p>
+<p>最大化：<br>$$<br>\varTheta ( \boldsymbol{\alpha} ,\boldsymbol{\beta}) ,,=,,\underset{for,,all,,\boldsymbol{\omega}}{inf}{L( \boldsymbol{\omega} ,\boldsymbol{\alpha} ,\boldsymbol{\beta} ) }<br>$$</p>
+<p>限制条件：</p>
+<p>$$<br>\boldsymbol{\alpha }\geqslant 0<br>$$</p>
+<blockquote>
+<p>其中$L( \boldsymbol{\omega} ,\boldsymbol{\alpha },\boldsymbol{\beta } )$为：<br>$$<br>\begin{aligned}<br>L( \boldsymbol{\omega} ,\boldsymbol{\alpha },\boldsymbol{\beta } ) ,,&amp;=,,f( \boldsymbol{\omega} ) +\sum_{i=1}^K{\alpha _ig_i( \boldsymbol{\omega} )}+\sum_{i=1}^M{\beta _ih_i( \boldsymbol{\boldsymbol{\omega}} )},,<br>\<br>&amp;=,,f( \boldsymbol{\omega} ) +\boldsymbol{\alpha }^{\boldsymbol{T}}g( \boldsymbol{\omega} ) +\boldsymbol{\beta }^{\boldsymbol{T}}h( \boldsymbol{\omega} )<br>\end{aligned}<br>$$</p>
+</blockquote>
+<blockquote>
+<p>$\underset{for,,all,,\boldsymbol{\omega}}{inf}$的意思是，在所有$\boldsymbol{\omega}$取值上取得的最小值</p>
+</blockquote>
+<p> 原问题和对偶问题的关系：如果$\boldsymbol{\omega}^*$是原问题的解，而$\boldsymbol{\alpha}^*,\boldsymbol{\beta}^*$是对偶问题的解，则有：<br>$$<br>f( \boldsymbol{\omega} ^* ) \geqslant \theta ( \boldsymbol{\alpha} ^*,\boldsymbol{\beta} ^* )<br>$$</p>
+<blockquote>
+<p>proof:<br>$$<br>\begin{aligned}<br>\theta ( \boldsymbol{\alpha }^*,\boldsymbol{\beta }^* ) ,,&amp;=,,\underset{for,,all,,\omega}{inf}{L( \boldsymbol{\omega },\boldsymbol{\alpha }^*,\boldsymbol{\beta }^* ) } \leqslant L( \boldsymbol{\omega }^*,\boldsymbol{\alpha }^*,\boldsymbol{\beta }^* )<br>\<br> &amp;=,,f( \boldsymbol{\omega }^* ) +\sum_{i=1}^K{\boldsymbol{\alpha }<em>{i}^{<em>}g_i( \boldsymbol{\omega }^</em> )}+\sum_{i=1}^M{\boldsymbol{\beta }</em>{i}^{<em>}h_i( \boldsymbol{\omega }^</em> )}\leqslant ,,f( \boldsymbol{\omega }^* )<br>\end{aligned}<br>$$<br>因为其中$\boldsymbol{\alpha^* }\geqslant 0$,  $g_i( \boldsymbol{\omega ^*} ) \leqslant 0$，$h_i( \boldsymbol{\omega^* } ) =0$</p>
+</blockquote>
+<h2 id="强对偶定理"><a href="#强对偶定理" class="headerlink" title="强对偶定理"></a>强对偶定理</h2><p>若$f(\boldsymbol{\omega})$为凸函数，且$g(\boldsymbol{\omega}) = \boldsymbol{A\omega} + b$，$h(\boldsymbol{\omega}) = \boldsymbol{C\omega} + d$，则优化问题的原问题与对偶问题间距为0，即：<br>$$<br>f( \boldsymbol{\omega} ^* ) = \theta ( \boldsymbol{\alpha} ^*,\boldsymbol{\beta} ^* )<br>$$<br>再观察上面的proof过程，可以立即得出：</p>
+<p>对 $\forall i=1 \sim K$，有$\boldsymbol{\alpha^<em>_i }=0$ 或者 $g_i( \boldsymbol{\omega ^</em>} ) =0$</p>
+<p>以上称为<strong>KKT条件</strong></p>
+<h2 id="将SVM原问题转化为对偶问题"><a href="#将SVM原问题转化为对偶问题" class="headerlink" title="将SVM原问题转化为对偶问题"></a>将SVM原问题转化为对偶问题</h2><p>核函数SVM优化目标可以改写为（为了使形式上靠近优化理论，将$\xi _i\geqslant 0\rightarrow \xi _i\leqslant 0$）</p>
+<p>最小化：<br>$$<br>\underset{\boldsymbol{w},b}{\min},,\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2+C\sum_{i=1}^m{\xi <em>i}\rightarrow \underset{\boldsymbol{w},b}{\min},,\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2-C\sum</em>{i=1}^m{\xi _i}<br>$$</p>
+<p>限制条件：<br>$$<br>\begin{aligned}<br>y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}<em>{\boldsymbol{i}}\text{)}+b ) \geqslant 1-\xi _i,,&amp;\rightarrow ,,y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}</em>{\boldsymbol{i}}\text{)}+b ) \geqslant 1+\xi <em>i,,<br>\<br>&amp;\rightarrow ,,1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}</em>{\boldsymbol{i}}\text{)}+b ) \leqslant 0<br>\<br>\xi _i\geqslant 0&amp;\rightarrow \xi _i\leqslant 0<br>\end{aligned}<br>$$</p>
+<table>
+<thead>
+<tr>
+<th align="left">1. 原问题</th>
+<th align="left">1.核函数SVM原问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">最小化：<br />$f(\boldsymbol{\omega})$</td>
+<td align="left">最小化：<br />$\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2-C\sum_{i=1}^m{\xi _i}$</td>
+</tr>
+<tr>
+<td align="left">限制条件：<br />$g_i( \boldsymbol{\omega} ) \leqslant 0  ( i=1\sim K ) \h_i( \boldsymbol{\omega} ) =0  ( i=1\sim M )$</td>
+<td align="left">限制条件：<br />$,1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}_{\boldsymbol{i}}\text{)}+b ) \leqslant 0 \ \xi _i\leqslant 0$</td>
+</tr>
+</tbody></table>
+<p>从限制条件可知，左边的不等式限制条件$g_i( \boldsymbol{\omega} ) \leqslant 0$对应右边的$1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}_{\boldsymbol{i}})+b ) \leqslant 0$和$\xi _i\leqslant 0$；而没有等式限制条。</p>
+<p>优化目标函数$f(\boldsymbol{\omega})$对应$\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2+C\sum_{i=1}^m{\xi _i}$</p>
+<p>左边只有一个变量$\boldsymbol{\omega}$，而右边对应有三个变量$\boldsymbol{\omega}，\xi _i， b$</p>
+<p>因此可以推导出核函数SVM的对偶问题：</p>
+<table>
+<thead>
+<tr>
+<th><strong>2. 对偶问题</strong></th>
+<th>2. 核函数SVM对偶问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最大化：<br />$\varTheta ( \boldsymbol{\alpha} ,\boldsymbol{\beta}) ,=,\underset{for,,all,,\boldsymbol{\omega}}{inf}{L( \boldsymbol{\omega} ,\boldsymbol{\alpha} ,\boldsymbol{\beta} ) }$</td>
+<td>最大化：<br />$\begin{aligned}\varTheta ( \boldsymbol{\alpha },\boldsymbol{\beta } ) ,=,\underset{for,,all,( ,\boldsymbol{\omega },\xi <em>i,b )}{inf}{\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2-C\sum</em>{i=1}^m{\xi <em>i}+\sum</em>{i=1}^m{\alpha <em>i},( 1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}</em>{\boldsymbol{i}}\text{)}+b ) ) +\sum_{i=1}^m{\beta _i\xi _i} }\end{aligned}$</td>
+</tr>
+<tr>
+<td>限制条件：<br />$\alpha_i\geqslant 0 \quad    (i=1 \sim K)$</td>
+<td>限制条件：<br />$\alpha_i\geqslant 0 , \beta_i \geqslant 0     \quad(i=1 \sim m)$</td>
+</tr>
+<tr>
+<td>$L( \boldsymbol{\omega },\boldsymbol{\alpha },\boldsymbol{\beta } ) ,,=,,f( \boldsymbol{\omega } ) +\sum_{i=1}^K{\alpha _ig_i( \boldsymbol{\omega } )}+\sum_{i=1}^M{\beta _ih_i( \boldsymbol{\omega } )},,$</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意，由于SVM中的不等式限制条件有$\alpha_i$和$\beta_i$两个，因此实际上左边的$\alpha_i$对应右边的$\alpha_i$和$\beta_i$</p>
+</blockquote>
+<p>现在我们来求解下式的具体表达式<br>$$<br>\begin{aligned}<br>\varTheta ( \boldsymbol{\alpha },\boldsymbol{\beta } ) ,&amp;=\underset{for,,all,( ,\boldsymbol{\omega },\xi <em>i,b )}{inf}{L( \boldsymbol{\omega },\boldsymbol{\xi },b ) } ,<br>\<br>&amp;=\underset{for,,all,( ,\boldsymbol{\omega },\boldsymbol{\xi },b )}{inf}{\frac{1}{2}\lVert \boldsymbol{w} \rVert ^2-C\sum</em>{i=1}^m{\xi <em>i}+\sum</em>{i=1}^m{\alpha <em>i},( 1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}</em>{\boldsymbol{i}}\text{)}+b ) ) +\sum_{i=1}^m{\beta <em>i\xi _i} }<br>\end{aligned}<br>$$<br>$\underset{for,,all,( ,\boldsymbol{\omega },\xi _i,b )}{inf}$表示求关于$( ,\boldsymbol{\omega },\xi _i,b )$的最小值，即求$\frac{\partial}{\partial \boldsymbol{\omega }}L( \boldsymbol{\omega },\xi _i,b )$，$\frac{\partial}{\partial \xi _i}L( \boldsymbol{\omega },\xi _i,b )$，$\frac{\partial}{\partial b}L( \boldsymbol{\omega },\xi _i,b )$，并使他们等于零：<br>$$<br>\begin{aligned}<br>    &amp;\frac{\partial}{\partial \boldsymbol{\omega }}L( \boldsymbol{\omega },\xi _i,b ) =0\rightarrow \boldsymbol{\omega }=\sum</em>{i=1}^m{\alpha _iy_i\varphi ( x_i )}\<br>    &amp;\frac{\partial}{\partial \xi <em>i}L( \boldsymbol{\omega },\xi _i,b ) =0\rightarrow \alpha _i+\beta _i=C\<br>    &amp;\frac{\partial}{\partial b}L( \boldsymbol{\omega },\xi _i,b ) =0\rightarrow \sum</em>{i=1}^m{\alpha _iy_i=0}\<br>\end{aligned}<br>\tag2<br>$$</p>
+<blockquote>
+<p>其中用到矩阵求导参考矩阵论，这里给出结果</p>
+<p>若$f( \boldsymbol{\omega } ) =\frac{1}{2}\lVert \boldsymbol{\omega } \rVert ^2$，则$\frac{\partial}{\partial \boldsymbol{\omega }}f( \boldsymbol{\omega } ) =\boldsymbol{\omega }$</p>
+<p>若$f( \boldsymbol{\omega } ) =\boldsymbol{\omega }^{\text{T}}x$，则$\frac{\partial}{\partial \boldsymbol{\omega }}f( \boldsymbol{\omega } ) =x$</p>
+</blockquote>
+<p>将$(2)$带入$\varTheta ( \boldsymbol{\alpha },\boldsymbol{\beta } )$，得到：<br>$$<br>\varTheta ( \boldsymbol{\alpha }) =\sum_{i=1}^m{\alpha <em>i-\frac{1}{2}\sum</em>{i=1}^m{\sum_{j=1}^m{\alpha _i\alpha _jy_iy_j}}}K( x_i,x_j )<br>$$</p>
+<blockquote>
+<p>这时，通过把原问题转换为对偶问题，得到了核函数的表示形式！</p>
+</blockquote>
+<p>将$(2)$带入限制条件$\alpha_i\geqslant 0 , \beta_i \geqslant 0 (i=1 \sim m)$得到：<br>$$<br>0\leqslant \alpha <em>i\leqslant C<br>\<br>\sum</em>{i=1}^m{\alpha _iy_i=0}<br>$$</p>
+<p>于是我们求得了核函数SVM的优化对偶问题</p>
+<table>
+<thead>
+<tr>
+<th>核函数SVM对偶问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最大化：$\varTheta ( \boldsymbol{\alpha }) =\sum_{i=1}^m{\alpha <em>i-\frac{1}{2}\sum</em>{i=1}^m{\sum_{j=1}^m{\alpha _i\alpha _jy_iy_j}}}K( x_i,x_j )$</td>
+</tr>
+<tr>
+<td>限制条件：$0\leqslant \alpha <em>i\leqslant C \quad\quad \sum</em>{i=1}^m{\alpha _iy_i=0}$</td>
+</tr>
+</tbody></table>
+<p>于是只有一个参数待求解：$\boldsymbol{\alpha}$，通常可以使用SMO算法</p>
+<p>在测试流程中，我们可以有如下判断：<br>$$<br>\begin{cases}<br>    \text{若}\boldsymbol{w}^{\boldsymbol{T}}\varphi ( \boldsymbol{x}<em>{\text{i}} ) +b&gt;0,\text{则}y</em>{\text{i}}=+1\<br>    \text{若}\boldsymbol{w}^{\boldsymbol{T}}\varphi ( \boldsymbol{x}<em>{\text{i}} ) +b&lt;0,\text{则}y</em>{\text{i}}=-1\<br>\end{cases}<br>$$<br>在$(2)$中，我们知道有$\boldsymbol{\omega }=\sum_{i=1}^m{\alpha <em>iy_i\varphi ( \boldsymbol{x_i} )}$，则：<br>$$<br>\begin{aligned}<br>\boldsymbol{w}^{\boldsymbol{T}}\varphi ( \boldsymbol{x}</em>{\boldsymbol{i}} ) &amp;=\sum_{j=1}^m{\left[ \alpha <em>iy_i\varphi ( \boldsymbol{x}_j ) \right] ^{\text{T}}}\varphi ( \boldsymbol{x}</em>{\boldsymbol{i}} ) \&amp;=\sum_{j=1}^m{\alpha <em>iy_i\varphi ( \boldsymbol{x}_{\boldsymbol{j}} ) ^{\text{T}}\varphi ( \boldsymbol{x}</em>{\boldsymbol{i}} )}\&amp;=\sum_{j=1}^m{\alpha <em>iy_iK( \boldsymbol{x}_{\boldsymbol{i}},\boldsymbol{x}</em>{\boldsymbol{j}} )}<br>\end{aligned}<br>\tag{3}<br>$$<br>只剩下$b$待求解。确定了$b$，则核函数SVM训练完成</p>
+<p>$b$的求解需要用到KKT条件，</p>
+<table>
+<thead>
+<tr>
+<th><strong>3. KKT条件</strong></th>
+<th>3. SVM的KKT条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$\forall i=1 \sim K$，<br />$\boldsymbol{\alpha^<em>_i }=0$ 或者 $g_i( \boldsymbol{\omega ^</em>} ) =0$</td>
+<td>$\forall i=1 \sim  m$，<br />1. $\boldsymbol{\alpha_i }=0$ 或者 $,1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}_{\boldsymbol{i}}\text{)}+b ) = 0$<br />2. $\boldsymbol{\beta_i }=0$或者$\xi_i=0$</td>
+</tr>
+</tbody></table>
+<p>取一个$0&lt;\boldsymbol{\alpha }_{\boldsymbol{i}}&lt;C\Rightarrow \boldsymbol{\beta }_{\boldsymbol{i}}=C-\boldsymbol{\alpha }_{\boldsymbol{i}}&gt;0$，此时有：<br>$$<br>\begin{aligned}<br>\boldsymbol{\beta }<em>{\boldsymbol{i}}\ne 0&amp;\Rightarrow \xi <em>i=0<br>\<br>\boldsymbol{\alpha }</em>{\boldsymbol{i}}\ne 0&amp;\Rightarrow 1+\xi _i-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}</em>{\boldsymbol{i}}\text{)}+b ) =0<br>\<br>&amp;\Rightarrow 1-y_i( \boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}<em>{\boldsymbol{i}}\text{)}+b ) =0<br>\end{aligned}<br>$$<br>带入$(3)$，得到：<br>$$<br>\begin{aligned}<br>b&amp;=\frac{1}{y_i}-\boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}_{\boldsymbol{i}}\text{)}=\frac{1-y_i\boldsymbol{w}^{\boldsymbol{T}}\varphi \boldsymbol{(x}_{\boldsymbol{i}}\text{)}}{y_i}<br>\<br>&amp;=\frac{1-y_i\sum</em>{j=1}^m{\alpha <em>iy_iK( \boldsymbol{x}_{\boldsymbol{i}},\boldsymbol{x}</em>{\boldsymbol{j}} )}}{y_i}<br>\end{aligned}<br>$$</p>
+<p>以上就是核函数SVM原问题转换为对偶问题，并用对偶问题训练SVM（求出$\boldsymbol{\alpha_i}$和$b$的过程）的推导过程</p>
+<h2 id="核函数SVM算法总结"><a href="#核函数SVM算法总结" class="headerlink" title="核函数SVM算法总结"></a>核函数SVM算法总结</h2><p>SVM算法</p>
+<ol>
+<li><p>训练流程：</p>
+<ul>
+<li><p>输入${(\boldsymbol{x_i},y_i)}_{i=1 \sim m}$</p>
+</li>
+<li><p>解优化问题：</p>
+<p>​    最大化：$\varTheta ( \boldsymbol{\alpha }) =\sum_{i=1}^m{\alpha <em>i-\frac{1}{2}\sum</em>{i=1}^m{\sum_{j=1}^m{\alpha _i\alpha _jy_iy_j}}}K( x_i,x_j )$</p>
+<p>​    限制条件：$0\leqslant \alpha <em>i\leqslant C, \quad\sum</em>{i=1}^m{\alpha _iy_i=0}$</p>
+<p>​    求解$b$：找一个$0&lt;\boldsymbol{\alpha }<em>{\boldsymbol{i}}&lt;C$，可以算得$b=\frac{1-y_i\sum_{j=1}^m{\alpha _iy_iK( \boldsymbol{x}</em>{\boldsymbol{i}},\boldsymbol{x}_{\boldsymbol{j}} )}}{y_i}$</p>
+</li>
+</ul>
+</li>
+<li><p>测试流程</p>
+<ul>
+<li>输入测试样本$\boldsymbol{x}$<br>$$<br>\begin{cases}<pre><code>\text&#123;若&#125;\sum_&#123;j=1&#125;^m\alpha _iy_iK( \boldsymbol&#123;x&#125;_&#123;\boldsymbol&#123;i&#125;&#125;,\boldsymbol&#123;x&#125;_&#123;\boldsymbol&#123;j&#125;&#125; ) +b&gt;0,\text&#123;则&#125;y_&#123;\text&#123;i&#125;&#125;=+1\\
+\text&#123;若&#125;\sum_&#123;j=1&#125;^m\alpha _iy_iK( \boldsymbol&#123;x&#125;_&#123;\boldsymbol&#123;i&#125;&#125;,\boldsymbol&#123;x&#125;_&#123;\boldsymbol&#123;j&#125;&#125; ) +b&lt;0,\text&#123;则&#125;y_&#123;\text&#123;i&#125;&#125;=-1\\</code></pre>
+\end{cases}<br>$$</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>通过转换为对偶问题，我们可以看到上面没有出现$\varphi (\boldsymbol{x})$，而待求解的参数只有$\boldsymbol{\alpha_i}$和$b$</p>
+</blockquote>
+<h1 id="SVM处理多分类问题"><a href="#SVM处理多分类问题" class="headerlink" title="SVM处理多分类问题"></a>SVM处理多分类问题</h1><p>上面都在说如何用SVM处理二分类问题，那么怎么样用SVM处理多分类问题呢？</p>
+<p>我们有一下三种方法：</p>
+<ol>
+<li><p>改造优化的目标函数和限制条件，使之能处理多分类问题。</p>
+<blockquote>
+<p>这种方法通常效果一般，SVM专为二分类而生</p>
+</blockquote>
+</li>
+<li><p>一类VS其他类</p>
+<blockquote>
+<p>例子：</p>
+<p>若有$C_1 ,C_2 ,C_3$三类，则可以设计三个SVM</p>
+<p>SVM1：$(C_1 ,C_2)VS(C_3)$</p>
+<p>SVM2：$(C_1 ,C_3)VS(C_2)$</p>
+<p>SVM3：$(C_2 ,C_3)VS(C_1)$</p>
+<p>若$y_1=+1,y_2=+1,y_3=-1$，则 显然为第一类</p>
+<p>若$y_1=+1,y_2=-1,y_3=-1$，在看看SVM1和SVM2的$\boldsymbol{w}^{\boldsymbol{T}}\varphi ( \boldsymbol{x}_{\text{i}} ) +b$哪一个负的比较多就判断为哪一个</p>
+</blockquote>
+</li>
+<li><p>一类VS另一类</p>
+<blockquote>
+<p>例子：</p>
+<p>若有$C_1 ,C_2 ,C_3$三类，则可以设计三个SVM</p>
+<p>SVM1：$(C_1 )VS(C_2)$</p>
+<p>SVM2：$(C_1 )VS(C_3)$</p>
+<p>SVM3：$(C_2)VS(C_3)$</p>
+<p>若$y_1=+1,y_2=+1,y_3=-1$，则 显然为第一类（$C_1$被投了两票，$C_3$被投了一票）</p>
+</blockquote>
+</li>
+</ol>
+<p>对于n分类问题：</p>
+<p>用一类VS其他类我们需要用n个SVM；</p>
+<p>用一类VS另一类我们需要用$\frac{n( n-1 )}{2}$个SVM。</p>
+<p>根据经验，用一类VS另一类的效果最佳，但同时也是最复杂的。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Global Average Pooling</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+                        <span class="hidden-mobile">神经网络</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "SVM&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
