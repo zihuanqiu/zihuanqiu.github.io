@@ -1,0 +1,908 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>模型finetune - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-16 10:00" pubdate>
+      2020年8月16日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">模型finetune</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-迁移学习"><a href="#1-迁移学习" class="headerlink" title="1. 迁移学习"></a>1. 迁移学习</h1><p>Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816091629.png" srcset="/img/loading.gif" alt="image-20200816091617288" style="zoom: 50%;" />
+
+<p>模型微调是属于迁移学习的，但迁移学习更多是研究目标域无标注的情况</p>
+<h1 id="2-模型微调"><a href="#2-模型微调" class="headerlink" title="2. 模型微调"></a>2. 模型微调</h1><p>模型微调步骤：</p>
+<ol>
+<li>获取预训练模型参数</li>
+<li>加载模型（load_state_dict）</li>
+<li>修改输出层</li>
+</ol>
+<p>模型微调训练方法：</p>
+<ol>
+<li>固定预训练的参数(令requires_grad =False或lr=0)</li>
+<li>浅层网络使用较小的学习率（params_group）</li>
+</ol>
+<p><strong>实验：</strong></p>
+<p>Finetune Resnet-18 用于二分类<br>蚂蚁蜜蜂二分类数据<br>训练集：各120～张 验证集：各70～张</p>
+<blockquote>
+<p>这是一个很小的训练集样本，我们只能在预训练参数上做finetune实现蚂蚁蜜蜂二分类</p>
+<p> Resnet-18数据下载</p>
+<p>数据：<a target="_blank" rel="noopener" href="https://download.pytorch.org/tutorial/hymenoptera_data.zip">https://download.pytorch.org/tutorial/hymenoptera_data.zip</a> </p>
+<p>模型： <a target="_blank" rel="noopener" href="https://download.pytorch.org/models/resnet18-5c106cde.pth">https://download.pytorch.org/models/resnet18-5c106cde.pth</a></p>
+</blockquote>
+<ol>
+<li><p>首先构建数据集：</p>
+<p> &lt;!–hexoPostRenderEscape:<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AntsDataset</span>(<span class="hljs-params">Dataset</span>):</span><br> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title"><strong>init</strong></span>(<span class="hljs-params">self, data_dir, transform=None</span>):</span></p>
+<pre><code> self.label_name = &amp;#123;&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;ants&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;bees&amp;quot;&lt;/span&gt;: &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;&amp;#125;
+ self.data_info = self.get_img_info(data_dir)  &lt;span class=&quot;hljs-comment&quot;&gt;# data_info存储所有图片路径和标签，在DataLoader中通过index读取样本&lt;/span&gt;
+ self.transform = transform</code></pre>
+<p> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title"><strong>getitem</strong></span>(<span class="hljs-params">self, index</span>):</span></p>
+<pre><code> path_img, label = self.data_info[index]
+ img = Image.open(path_img).convert(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;RGB&amp;#x27;&lt;/span&gt;)  &lt;span class=&quot;hljs-comment&quot;&gt;# 给一个index打开一张图片，打开图片在这里完成，避免显存爆炸&lt;/span&gt;
+
+ &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; self.transform &lt;span class=&quot;hljs-keyword&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;hljs-literal&quot;&gt;None&lt;/span&gt;:
+     img = self.transform(img)  &lt;span class=&quot;hljs-comment&quot;&gt;# 在这里做transform，转为tensor等等&lt;/span&gt;
+
+ &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; img, label</code></pre>
+<p> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title"><strong>len</strong></span>(<span class="hljs-params">self</span>):</span></p>
+<pre><code> &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; len(self.data_info)</code></pre>
+</li>
+</ol>
+<p><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_img_info</span>(<span class="hljs-params">data_dir</span>):</span><br>        data_info = list()<br>        <span class="hljs-keyword">for</span> root, dirs, _ <span class="hljs-keyword">in</span> os.walk(data_dir):  <span class="hljs-comment"># os.walk返回(当前文件夹路径,子文件夹路径,当前文件夹文件名)</span><br>            <span class="hljs-comment"># 遍历类别</span><br>            <span class="hljs-keyword">for</span> sub_dir <span class="hljs-keyword">in</span> dirs:<br>                img_names = os.listdir(os.path.join(root, sub_dir))  <span class="hljs-comment"># 获得路径下的所有文件名</span><br>                img_names = list(filter(<span class="hljs-keyword">lambda</span> x: x.endswith(<span class="hljs-string">&#x27;.jpg&#x27;</span>), img_names))  <span class="hljs-comment"># 只要JPG文件</span></p>
+<pre><code>            &lt;span class=&quot;hljs-comment&quot;&gt;# 遍历图片&lt;/span&gt;
+            &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; range(len(img_names)):
+                img_name = img_names[i]
+                path_img = os.path.join(root, sub_dir, img_name)  &lt;span class=&quot;hljs-comment&quot;&gt;# 获得JPG文件的完整路径&lt;/span&gt;
+                label = ants_label[sub_dir]
+                data_info.append((path_img, int(label)))
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; data_info  &lt;span class=&quot;hljs-comment&quot;&gt;# 返回的是所有图片的路径还有对应的类别&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
+<ol start="2">
+<li><p>观察resnet18网络结构：</p>
+<p>通过<code>summary(resnet18_ft, (3, 224, 224), device=&#39;cpu&#39;)</code>可以打印出网络结构：</p>
+<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">----------------------------------------------------------------</p>
+<pre><code> Layer (type)               Output Shape         Param &lt;span class=&quot;hljs-comment&quot;&gt;#&lt;/span&gt;</code></pre>
+<p>================================================================</p>
+<pre><code>     Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;         [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;112&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;112&lt;/span&gt;]           &lt;span class=&quot;hljs-number&quot;&gt;9&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;408&lt;/span&gt;
+BatchNorm2d&lt;span class=&quot;hljs-number&quot;&gt;-2&lt;/span&gt;         [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;112&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;112&lt;/span&gt;]             &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;
+       ReLU&lt;span class=&quot;hljs-number&quot;&gt;-3&lt;/span&gt;         [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;112&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;112&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+  MaxPool2d&lt;span class=&quot;hljs-number&quot;&gt;-4&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+     Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-5&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]          &lt;span class=&quot;hljs-number&quot;&gt;36&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;864&lt;/span&gt;
+BatchNorm2d&lt;span class=&quot;hljs-number&quot;&gt;-6&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]             &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;
+       ReLU&lt;span class=&quot;hljs-number&quot;&gt;-7&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+     Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-8&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]          &lt;span class=&quot;hljs-number&quot;&gt;36&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;864&lt;/span&gt;
+BatchNorm2d&lt;span class=&quot;hljs-number&quot;&gt;-9&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]             &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;
+      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-10&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-11&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-12&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]          &lt;span class=&quot;hljs-number&quot;&gt;36&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;864&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-13</span>           [<span class="hljs-number">-1</span>, <span class="hljs-number">64</span>, <span class="hljs-number">56</span>, <span class="hljs-number">56</span>]             <span class="hljs-number">128</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-14&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-15&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]          &lt;span class=&quot;hljs-number&quot;&gt;36&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;864&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-16</span>           [<span class="hljs-number">-1</span>, <span class="hljs-number">64</span>, <span class="hljs-number">56</span>, <span class="hljs-number">56</span>]             <span class="hljs-number">128</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-17&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-18&lt;/span&gt;           [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;64&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;56&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-19&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]          &lt;span class=&quot;hljs-number&quot;&gt;73&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;728&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-20</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">128</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>]             <span class="hljs-number">256</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-21&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-22&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;147&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;456&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-23</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">128</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>]             <span class="hljs-number">256</span></p>
+<pre><code>    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-24&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]           &lt;span class=&quot;hljs-number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;192&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-25</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">128</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>]             <span class="hljs-number">256</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-26&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-27&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-28&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;147&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;456&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-29</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">128</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>]             <span class="hljs-number">256</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-30&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-31&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;147&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;456&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-32</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">128</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>]             <span class="hljs-number">256</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-33&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-34&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-35&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;294&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;912&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-36</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">256</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>]             <span class="hljs-number">512</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-37&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-38&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;589&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;824&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-39</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">256</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>]             <span class="hljs-number">512</span></p>
+<pre><code>    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-40&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]          &lt;span class=&quot;hljs-number&quot;&gt;32&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;768&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-41</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">256</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>]             <span class="hljs-number">512</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-42&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-43&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-44&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;589&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;824&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-45</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">256</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>]             <span class="hljs-number">512</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-46&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-47&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;589&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;824&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-48</span>          [<span class="hljs-number">-1</span>, <span class="hljs-number">256</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>]             <span class="hljs-number">512</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-49&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-50&lt;/span&gt;          [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;256&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-51&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]       &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;179&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;648&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-52</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>]           <span class="hljs-number">1</span>,<span class="hljs-number">024</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-53&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-54&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]       &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;359&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;296&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-55</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>]           <span class="hljs-number">1</span>,<span class="hljs-number">024</span></p>
+<pre><code>    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-56&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;131&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;072&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-57</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>]           <span class="hljs-number">1</span>,<span class="hljs-number">024</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-58&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-59&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-60&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]       &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;359&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;296&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-61</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>]           <span class="hljs-number">1</span>,<span class="hljs-number">024</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-62&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    Conv2d&lt;span class=&quot;hljs-number&quot;&gt;-63&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]       &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;359&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;296&lt;/span&gt;</code></pre>
+<p>   BatchNorm2d<span class="hljs-number">-64</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>]           <span class="hljs-number">1</span>,<span class="hljs-number">024</span></p>
+<pre><code>      ReLU&lt;span class=&quot;hljs-number&quot;&gt;-65&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+BasicBlock&lt;span class=&quot;hljs-number&quot;&gt;-66&lt;/span&gt;            [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;512&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;]               &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;</code></pre>
+<p>AdaptiveAvgPool2d<span class="hljs-number">-67</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]               <span class="hljs-number">0</span></p>
+<pre><code>    Linear&lt;span class=&quot;hljs-number&quot;&gt;-68&lt;/span&gt;                 [&lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;]         &lt;span class=&quot;hljs-number&quot;&gt;513&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;000&lt;/span&gt;</code></pre>
+<p>================================================================<br>Total params: <span class="hljs-number">11</span>,<span class="hljs-number">689</span>,<span class="hljs-number">512</span><br>Trainable params: <span class="hljs-number">11</span>,<span class="hljs-number">689</span>,<span class="hljs-number">512</span><br>Non-trainable params: <span class="hljs-number">0</span></p>
+</li>
+</ol>
+<hr>
+<p>Input size (MB): <span class="hljs-number">0.57</span><br>Forward/backward <span class="hljs-keyword">pass</span> size (MB): <span class="hljs-number">62.79</span><br>Params size (MB): <span class="hljs-number">44.59</span><br>Estimated Total Size (MB): <span class="hljs-number">107.96</span><br>—————————————————————-</code></pre>:hexoPostRenderEscape–&gt;</p>
+<p>   最后一层是1000类的，对应imagenet的1000类任务。很显然我们需要修改最后一个全连接层使其适应我们的二分类任务（如果更优良的finetune我们可以从更早的部分开始改造，比如最后两个卷积层可以缩减特征图数量）</p>
+<ol start="3">
+<li><p>实验代码：</p>
+<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> AntsDataset<br><span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed<br><span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models<br><span class="hljs-keyword">from</span> torchsummary <span class="hljs-keyword">import</span> summary<br>BASEDIR = os.path.dirname(os.path.abspath(<strong>file</strong>))<br>device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)<br>print(<span class="hljs-string">&quot;use device :&#123;&#125;&quot;</span>.format(device))</p>
+</li>
+</ol>
+<p>set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span><br>label_name = &#123;<span class="hljs-string">&quot;ants&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;bees&quot;</span>: <span class="hljs-number">1</span>&#125;</p>
+<p><span class="hljs-comment"># 参数设置</span><br>MAX_EPOCH = <span class="hljs-number">25</span><br>BATCH_SIZE = <span class="hljs-number">16</span><br>LR = <span class="hljs-number">0.001</span><br>log_interval = <span class="hljs-number">10</span><br>val_interval = <span class="hljs-number">1</span><br>classes = <span class="hljs-number">2</span><br>start_epoch = <span class="hljs-number">-1</span><br>lr_decay_step = <span class="hljs-number">7</span></p>
+<p><span class="hljs-comment"># ============================ step 1/5 数据 ============================</span><br>data_dir = os.path.join(BASEDIR, <span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;hymenoptera_data&quot;</span>)<br>train_dir = os.path.join(data_dir, <span class="hljs-string">&quot;train&quot;</span>)<br>valid_dir = os.path.join(data_dir, <span class="hljs-string">&quot;val&quot;</span>)</p>
+<p>norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]<br>norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]</p>
+<p>train_transform = transforms.Compose([<br>    transforms.RandomResizedCrop(<span class="hljs-number">224</span>),<br>    transforms.RandomHorizontalFlip(),<br>    transforms.ToTensor(),<br>    transforms.Normalize(norm_mean, norm_std),<br>])</p>
+<p>valid_transform = transforms.Compose([<br>    transforms.Resize(<span class="hljs-number">256</span>),<br>    transforms.CenterCrop(<span class="hljs-number">224</span>),<br>    transforms.ToTensor(),<br>    transforms.Normalize(norm_mean, norm_std),<br>])</p>
+<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = AntsDataset(data_dir=train_dir, transform=train_transform)<br>valid_data = AntsDataset(data_dir=valid_dir, transform=valid_transform)</p>
+<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)<br>valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)</p>
+<p><span class="hljs-comment"># ============================ step 2/5 模型 ============================</span></p>
+<p><span class="hljs-comment"># 1/3 构建模型</span><br>resnet18_ft = models.resnet18()</p>
+<p><span class="hljs-comment"># 2/3 加载参数</span><br>path_pretrained_model = os.path.join(BASEDIR, <span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;resnet18-5c106cde.pth&quot;</span>)<br>state_dict_load = torch.load(path_pretrained_model)<br>resnet18_ft.load_state_dict(state_dict_load)</p>
+<p><span class="hljs-comment"># 法1 : 冻结卷积层</span><br>flag_1 = <span class="hljs-number">0</span><br><span class="hljs-comment"># flag_1 = 1</span></p>
+<p><span class="hljs-keyword">if</span> flag_1:<br>    <span class="hljs-keyword">for</span> param <span class="hljs-keyword">in</span> resnet18_ft.parameters():<br>        param.requires_grad = <span class="hljs-literal">False</span></p>
+<p><span class="hljs-comment"># 3/3 替换fc层</span><br>num_ftrs = resnet18_ft.fc.in_features<br>resnet18_ft.fc = nn.Linear(num_ftrs, classes)</p>
+<p>resnet18_ft.to(device)<br><span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span><br>criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span></p>
+<p><span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span><br><span class="hljs-comment"># 法2 : conv 小学习率</span></p>
+<p>flag_2 = <span class="hljs-number">0</span><br><span class="hljs-comment"># flag_2 = 1</span></p>
+<p><span class="hljs-keyword">if</span> flag_2:<br>    fc_params_id = list(map(id, resnet18_ft.fc.parameters()))     <span class="hljs-comment"># 返回的是全连接层parameters的内存地址</span><br>    base_params = filter(<span class="hljs-keyword">lambda</span> p: id(p) <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> fc_params_id, resnet18_ft.parameters())  <span class="hljs-comment"># 非全连接层parameters的parameters记为base_params</span><br>    optimizer = optim.SGD([<br>        &#123;<span class="hljs-string">&#x27;params&#x27;</span>: base_params, <span class="hljs-string">&#x27;lr&#x27;</span>: LR*<span class="hljs-number">0.5</span>&#125;,   <span class="hljs-comment"># 非最后一层fc的参数设置为小学习率</span><br>        &#123;<span class="hljs-string">&#x27;params&#x27;</span>: resnet18_ft.fc.parameters(), <span class="hljs-string">&#x27;lr&#x27;</span>: LR&#125;], momentum=<span class="hljs-number">0.9</span>)  <span class="hljs-comment"># 最后一层fc的参数设置为大学习率</span></p>
+<p><span class="hljs-keyword">else</span>:<br>    optimizer = optim.SGD(resnet18_ft.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)               <span class="hljs-comment"># 选择优化器</span></p>
+<p>scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=lr_decay_step, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span></p>
+<p><span class="hljs-comment"># ============================ step 5/5 训练 ============================</span><br>train_curve = list()<br>valid_curve = list()</p>
+<p><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(start_epoch + <span class="hljs-number">1</span>, MAX_EPOCH):</p>
+<pre><code>loss_mean = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+correct = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+total = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+
+resnet18_ft.train()
+&lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; i, data &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; enumerate(train_loader):
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;# forward&lt;/span&gt;
+    inputs, labels = data
+    inputs, labels = inputs.to(device), labels.to(device)
+    outputs = resnet18_ft(inputs)
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;# backward&lt;/span&gt;
+    optimizer.zero_grad()
+    loss = criterion(outputs, labels)
+    loss.backward()
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;# update weights&lt;/span&gt;
+    optimizer.step()
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;# 统计分类情况&lt;/span&gt;
+    _, predicted = torch.max(outputs.data, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)
+    total += labels.size(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;)
+    correct += (predicted == labels).squeeze().cpu().sum().numpy()
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;# 打印训练信息&lt;/span&gt;
+    loss_mean += loss.item()
+    train_curve.append(loss.item())
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (i+&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) % log_interval == &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;:
+        loss_mean = loss_mean / log_interval
+        print(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Training:Epoch[&amp;#123;:0&amp;gt;3&amp;#125;/&amp;#123;:0&amp;gt;3&amp;#125;] Iteration[&amp;#123;:0&amp;gt;3&amp;#125;/&amp;#123;:0&amp;gt;3&amp;#125;] Loss: &amp;#123;:.4f&amp;#125; Acc:&amp;#123;:.2%&amp;#125;&amp;quot;&lt;/span&gt;.format(
+            epoch, MAX_EPOCH, i+&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, len(train_loader), loss_mean, correct / total))
+        loss_mean = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+
+scheduler.step()  &lt;span class=&quot;hljs-comment&quot;&gt;# 更新学习率&lt;/span&gt;
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# validate the model&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (epoch+&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) % val_interval == &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;:
+
+    correct_val = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+    total_val = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+    loss_val = &lt;span class=&quot;hljs-number&quot;&gt;0.&lt;/span&gt;
+    resnet18_ft.eval()
+    &lt;span class=&quot;hljs-keyword&quot;&gt;with&lt;/span&gt; torch.no_grad():
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; j, data &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; enumerate(valid_loader):
+            inputs, labels = data
+            inputs, labels = inputs.to(device), labels.to(device)
+
+            outputs = resnet18_ft(inputs)
+            loss = criterion(outputs, labels)
+
+            _, predicted = torch.max(outputs.data, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)
+            total_val += labels.size(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;)
+            correct_val += (predicted == labels).squeeze().cpu().sum().numpy()
+
+            loss_val += loss.item()
+
+        loss_val_mean = loss_val/len(valid_loader)
+        valid_curve.append(loss_val_mean)
+        print(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Valid:\t Epoch[&amp;#123;:0&amp;gt;3&amp;#125;/&amp;#123;:0&amp;gt;3&amp;#125;] Iteration[&amp;#123;:0&amp;gt;3&amp;#125;/&amp;#123;:0&amp;gt;3&amp;#125;] Loss: &amp;#123;:.4f&amp;#125; Acc:&amp;#123;:.2%&amp;#125;&amp;quot;&lt;/span&gt;.format(
+            epoch, MAX_EPOCH, j+&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, len(valid_loader), loss_val_mean, correct_val / total_val))
+    resnet18_ft.train()</code></pre>
+<p>train_x = range(len(train_curve))<br>train_y = train_curve</p>
+<p>train_iters = len(train_loader)<br>valid_x = np.arange(<span class="hljs-number">1</span>, len(valid_curve)+<span class="hljs-number">1</span>) * train_iters*val_interval <span class="hljs-comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span><br>valid_y = valid_curve</p>
+<p>plt.plot(train_x, train_y, label=<span class="hljs-string">&#x27;Train&#x27;</span>)<br>plt.plot(valid_x, valid_y, label=<span class="hljs-string">&#x27;Valid&#x27;</span>)</p>
+<p>plt.legend(loc=<span class="hljs-string">&#x27;upper right&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;loss value&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;Iteration&#x27;</span>)<br>plt.show()</code></pre>:hexoPostRenderEscape–&gt;</p>
+<ol start="4">
+<li><p>选择flag_1 = 0，flag_2 = 0，所有参数都用同一个学习率训练：</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">use</span> device :cuda
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">6680</span> Acc:<span class="hljs-number">56</span>.<span class="hljs-number">25</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">3331</span> Acc:<span class="hljs-number">89</span>.<span class="hljs-number">54</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">3402</span> Acc:<span class="hljs-number">84</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">2071</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">42</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">2358</span> Acc:<span class="hljs-number">89</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1689</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">42</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1704</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1962</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">42</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1556</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">2022</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">77</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1680</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1848</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">77</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1485</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1658</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">77</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1599</span> Acc:<span class="hljs-number">92</span>.<span class="hljs-number">50</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1643</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">42</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1546</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1692</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">77</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1429</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1681</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">77</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">010</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0998</span> Acc:<span class="hljs-number">96</span>.<span class="hljs-number">88</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">010</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1713</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">77</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">011</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0908</span> Acc:<span class="hljs-number">96</span>.<span class="hljs-number">25</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">011</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1784</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">012</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1525</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">012</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1941</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">013</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1350</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">013</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1828</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">014</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1251</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">014</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1909</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">015</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1638</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">015</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1912</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">016</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1168</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">016</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1838</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">017</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1101</span> Acc:<span class="hljs-number">96</span>.<span class="hljs-number">25</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">017</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1819</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">018</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1109</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">018</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1800</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">019</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1456</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">019</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1761</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">020</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1267</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">020</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1952</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">021</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1585</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">38</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">021</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1818</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">022</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1281</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">022</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1940</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1199</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1803</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
+<span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1197</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1991</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%</code></pre>
+
+<p>25个epoch之后，在验证集上的准确率达到了93.46%</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816101616.png" srcset="/img/loading.gif" alt="image-20200816101614963"></p>
+</li>
+<li><p>选择flag_1 = 1，flag_2 = 0，冻结网络参数，只训练最后一个(in=512, out=2)的全连接层：</p>
+<pre><code class="hljs python">use device :cuda
+Training:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.6931</span> Acc:<span class="hljs-number">55.00</span>%
+Valid:     Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.4438</span> Acc:<span class="hljs-number">86.93</span>%
+Training:Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.4306</span> Acc:<span class="hljs-number">82.50</span>%
+Valid:     Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.3010</span> Acc:<span class="hljs-number">92.16</span>%
+Training:Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.3172</span> Acc:<span class="hljs-number">85.62</span>%
+Valid:     Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2253</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2561</span> Acc:<span class="hljs-number">90.00</span>%
+Valid:     Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2087</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2222</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2067</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2443</span> Acc:<span class="hljs-number">91.88</span>%
+Valid:     Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2174</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2268</span> Acc:<span class="hljs-number">90.00</span>%
+Valid:     Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1987</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.3340</span> Acc:<span class="hljs-number">85.00</span>%
+Valid:     Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1996</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2242</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1912</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2115</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1897</span> Acc:<span class="hljs-number">96.08</span>%
+Training:Epoch[<span class="hljs-number">010</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1615</span> Acc:<span class="hljs-number">95.00</span>%
+Valid:     Epoch[<span class="hljs-number">010</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1909</span> Acc:<span class="hljs-number">96.08</span>%
+Training:Epoch[<span class="hljs-number">011</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1864</span> Acc:<span class="hljs-number">91.25</span>%
+Valid:     Epoch[<span class="hljs-number">011</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2055</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">012</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2330</span> Acc:<span class="hljs-number">90.62</span>%
+Valid:     Epoch[<span class="hljs-number">012</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2097</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">013</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2370</span> Acc:<span class="hljs-number">91.25</span>%
+Valid:     Epoch[<span class="hljs-number">013</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1953</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">014</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2184</span> Acc:<span class="hljs-number">91.88</span>%
+Valid:     Epoch[<span class="hljs-number">014</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1949</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">015</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2500</span> Acc:<span class="hljs-number">90.62</span>%
+Valid:     Epoch[<span class="hljs-number">015</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1992</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">016</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2139</span> Acc:<span class="hljs-number">91.25</span>%
+Valid:     Epoch[<span class="hljs-number">016</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1972</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">017</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1920</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">017</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2002</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">018</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2147</span> Acc:<span class="hljs-number">91.88</span>%
+Valid:     Epoch[<span class="hljs-number">018</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1950</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">019</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2294</span> Acc:<span class="hljs-number">90.00</span>%
+Valid:     Epoch[<span class="hljs-number">019</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1903</span> Acc:<span class="hljs-number">96.08</span>%
+Training:Epoch[<span class="hljs-number">020</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2222</span> Acc:<span class="hljs-number">90.62</span>%
+Valid:     Epoch[<span class="hljs-number">020</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2015</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">021</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2145</span> Acc:<span class="hljs-number">90.62</span>%
+Valid:     Epoch[<span class="hljs-number">021</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1953</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">022</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2266</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">022</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2029</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2191</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1955</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2133</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2063</span> Acc:<span class="hljs-number">94.77</span>%</code></pre>
+
+<p>25个epoch之后，在验证集上的准确率达到了94.77%</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816102144.png" srcset="/img/loading.gif" alt="image-20200816102142913"></p>
+</li>
+<li><p>选择flag_1 = 0，flag_2 =1，对非最后一层fc的参数使用小学习率，对最后一层fc的参数使用大学习率</p>
+<pre><code class="hljs python">use device :cuda
+Training:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.6802</span> Acc:<span class="hljs-number">55.62</span>%
+Valid:     Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.3802</span> Acc:<span class="hljs-number">89.54</span>%
+Training:Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.3788</span> Acc:<span class="hljs-number">83.75</span>%
+Valid:     Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2376</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2667</span> Acc:<span class="hljs-number">88.12</span>%
+Valid:     Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1872</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1985</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1869</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1730</span> Acc:<span class="hljs-number">95.00</span>%
+Valid:     Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1952</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1882</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2003</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1756</span> Acc:<span class="hljs-number">91.25</span>%
+Valid:     Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1705</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2252</span> Acc:<span class="hljs-number">90.62</span>%
+Valid:     Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1780</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1844</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1735</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1627</span> Acc:<span class="hljs-number">94.38</span>%
+Valid:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1729</span> Acc:<span class="hljs-number">95.42</span>%
+Training:Epoch[<span class="hljs-number">010</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1139</span> Acc:<span class="hljs-number">95.62</span>%
+Valid:     Epoch[<span class="hljs-number">010</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1764</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">011</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1217</span> Acc:<span class="hljs-number">95.00</span>%
+Valid:     Epoch[<span class="hljs-number">011</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1861</span> Acc:<span class="hljs-number">93.46</span>%
+Training:Epoch[<span class="hljs-number">012</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1791</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">012</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1995</span> Acc:<span class="hljs-number">93.46</span>%
+Training:Epoch[<span class="hljs-number">013</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1668</span> Acc:<span class="hljs-number">93.75</span>%
+Valid:     Epoch[<span class="hljs-number">013</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1837</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">014</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1576</span> Acc:<span class="hljs-number">93.75</span>%
+Valid:     Epoch[<span class="hljs-number">014</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1888</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">015</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1972</span> Acc:<span class="hljs-number">91.88</span>%
+Valid:     Epoch[<span class="hljs-number">015</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1905</span> Acc:<span class="hljs-number">93.46</span>%
+Training:Epoch[<span class="hljs-number">016</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1500</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">016</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1848</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">017</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1329</span> Acc:<span class="hljs-number">95.00</span>%
+Valid:     Epoch[<span class="hljs-number">017</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1872</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">018</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1408</span> Acc:<span class="hljs-number">94.38</span>%
+Valid:     Epoch[<span class="hljs-number">018</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1842</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">019</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1764</span> Acc:<span class="hljs-number">92.50</span>%
+Valid:     Epoch[<span class="hljs-number">019</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1772</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">020</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1561</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">020</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1940</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">021</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1719</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">021</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1826</span> Acc:<span class="hljs-number">94.77</span>%
+Training:Epoch[<span class="hljs-number">022</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1609</span> Acc:<span class="hljs-number">93.75</span>%
+Valid:     Epoch[<span class="hljs-number">022</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1937</span> Acc:<span class="hljs-number">93.46</span>%
+Training:Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1482</span> Acc:<span class="hljs-number">94.38</span>%
+Valid:     Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1825</span> Acc:<span class="hljs-number">94.12</span>%
+Training:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1505</span> Acc:<span class="hljs-number">95.00</span>%
+Valid:     Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1963</span> Acc:<span class="hljs-number">95.42</span>%</code></pre>
+
+<p>25个epoch之后，在验证集上的准确率达到了95.42%</p>
+</li>
+</ol>
+<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816105210.png" srcset="/img/loading.gif" alt="image-20200816105209289"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GPU的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/15/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD/">
+                        <span class="hidden-mobile">模型保存与加载</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "模型finetune&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

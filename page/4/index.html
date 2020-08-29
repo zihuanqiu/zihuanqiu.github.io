@@ -192,27 +192,22 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">Python 标准库</a>
+        <a href="/2020/07/29/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/">nn网络层-卷积层</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
+        <a href="/2020/07/29/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/">
           
           
             
           
-          Python标准库
-Python自身提供了比较丰富的生态，拿来即用，可极大的提高开发效率
-10.1 time库
-Python处理时间的标准库
-1、获取现在时间
-（1）time.localtime()  本地时间
-（2）time.gmtime()   UTC世界统一时间
-北京时间比时间统一时间UTC早8个小时
-import time
+          卷积层1. 1d/2d/3d卷积卷积维度：一般情况下，卷积核在几个维度上滑动，就是几维卷积。
 
-t_local = time.localtime()
-t_UTC
+2. 卷积-nn.Conv2dtorch.nn.Conv2d(in_channels,
+                out_channels,
+                kernel_size,
+                stride=1,
+                padding
         </a>
       </p>
 
@@ -220,8 +215,8 @@ t_UTC
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
+            <time datetime="2020-07-29 10:00" pubdate>
+              2020-07-29
             </time>
           </div>
         
@@ -229,7 +224,7 @@ t_UTC
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Python/">Python</a>
+              <a href="/categories/Pytorch/">Pytorch</a>
             
           </div>
         
@@ -237,7 +232,7 @@ t_UTC
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
             
           </div>
         
@@ -250,24 +245,24 @@ t_UTC
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/">Python 文件、异常和模块</a>
+        <a href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/">模型容器与AlexNet构建</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/">
+        <a href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/">
           
           
             
           
-          文件、异常和模块
-实际应用中，我们绝大多数的数据都是通过文件的交互完成的
-8.1 文件的读写
-8.1.1 文件的打开
-文件的打开通用格式
+          1. 网络层容器(Containers)上一节我们学习了如何构建一个LeNet，回顾代码如下：
+import torch
+import torchvision
+import torch.nn as nn
+from collections import OrderedDict
 
-with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;操作文件的字符编码&quot;) as f:
-    &quot;对文件进行相应的读写操作&quot;
-使用with 块的好处：执行完
+class LeNet(nn.Module):
+    def __init__(self, classes):
+    
         </a>
       </p>
 
@@ -275,8 +270,8 @@ with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;�
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
+            <time datetime="2020-07-28 10:00" pubdate>
+              2020-07-28
             </time>
           </div>
         
@@ -284,7 +279,7 @@ with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;�
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Python/">Python</a>
+              <a href="/categories/Pytorch/">Pytorch</a>
             
           </div>
         
@@ -292,7 +287,7 @@ with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;�
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
             
           </div>
         
@@ -305,32 +300,27 @@ with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;�
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">Python 函数</a>
+        <a href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/">模型创建与nn.Module</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">
+        <a href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/">
           
           
             
           
-          函数
-4.1 函数的定义及调用
-4.1.1 为什么要用函数1、提高代码复用性——抽象出来，封装为函数   
-2、将复杂的大问题分解成一系列小问题，分而治之——模块化设计的思想  
-3、利于代码的维护和管理
-顺序式
-# 5的阶乘
-n = 5
-res = 1
-for i in range(1, n+1):
-    res *= i
-print(res)
+          1. 网络模型创建步骤前几次已经学完了数据部分，现在开始学习模型部分。
 
-# 20的阶乘
-n = 20
-res = 1
+模型又分为模型创建和权值初始化。其中，模型创建还可以进一步分为构建网络层和拼接网络层。这些工作都可以用nn.Module来完成。
 
+本节我们用7层结构的LeNet来学习模型创建和nn.Module。
+
+实验：
+import os
+import random
+import numpy as np
+import torch
+im
         </a>
       </p>
 
@@ -338,8 +328,8 @@ res = 1
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
+            <time datetime="2020-07-27 10:00" pubdate>
+              2020-07-27
             </time>
           </div>
         
@@ -347,7 +337,7 @@ res = 1
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Python/">Python</a>
+              <a href="/categories/Pytorch/">Pytorch</a>
             
           </div>
         
@@ -355,7 +345,7 @@ res = 1
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
             
           </div>
         
@@ -368,22 +358,23 @@ res = 1
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">Python Numpy库</a>
+        <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">transforms方法详解</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">
+        <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">
           
           
             
           
-          Numpy库
-11.1 为什么要用Numpy
-11.1.1 &ensp;低效的Python for循环【例】 求100万个数的倒数
-def compute_reciprocals(values):
-    res = []
-    for value in values:      # 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数
-        res.append(1/v
+          
+1. transforms——裁剪实验代码：
+# -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+# @file name  : transforms_methods_1.py
+# @author     : tingsongyu
+# @date       : 2019-09-11 10:08:00
+# @brief      : transforms方法(一
         </a>
       </p>
 
@@ -391,8 +382,8 @@ def compute_reciprocals(values):
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
+            <time datetime="2020-07-24 11:00" pubdate>
+              2020-07-24
             </time>
           </div>
         
@@ -400,7 +391,7 @@ def compute_reciprocals(values):
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Python/">Python</a>
+              <a href="/categories/Pytorch/">Pytorch</a>
             
           </div>
         
@@ -408,7 +399,7 @@ def compute_reciprocals(values):
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
             
           </div>
         
@@ -421,11 +412,70 @@ def compute_reciprocals(values):
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">Python Pandas库</a>
+        <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/">transforms运行机制</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">
+        <a href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/">
+          
+          
+            
+          
+          通过import torchvision.transforms as transforms导入pytorch的计算机视觉包torchvision中的transforms模块。
+torchvision 包由流行的数据集、模型体系结构和用于计算机视觉的常见图像转换组成
+
+torchvision.transforms : 常用的图像预处理方法 
+
+数据中心化
+数据标准化
+缩放
+裁剪
+旋转
+翻转
+填充
+噪
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-24 10:00" pubdate>
+              2020-07-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/22/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">Python Pandas库</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/22/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">
           
           
             
@@ -446,8 +496,8 @@ Series对象的创建
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
+            <time datetime="2020-07-22 10:00" pubdate>
+              2020-07-22
             </time>
           </div>
         
@@ -476,40 +526,25 @@ Series对象的创建
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">Python 基本语法元素</a>
+        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">DataLoader与DataSet</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">
+        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">
           
           
             
           
-          
-第一部分 数据类型1. 基本类型：数字、字符串、布尔1.1 数字类型
-int     整型       &ensp;  整数
-
-2
+          1. 为什么要DataSet和DataLoader
 
 
 
 
-float   浮点型    &ensp;  带小数的数
 
-2.0
+相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。
+使用DataSet和DataLoader可以帮助我们进行小批次训练。
 
-
-
-
-complex 复数       &ensp;  a+bj
-
-3+4j
-
-
-
-1.2 字符串类型
-str 字符串   &ensp;  视作文本
-组成： 由数字、字母、空格、其他字符等
+2. D
         </a>
       </p>
 
@@ -517,8 +552,170 @@ str 字符串   &ensp;  视作文本
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
+            <time datetime="2020-07-21 12:00" pubdate>
+              2020-07-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">autograd</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">
+          
+          
+            
+          
+          autograd—自动求导系统1.  torch.autograd.backwardtorch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None)
+
+功能：自动求取梯度
+
+tensors: 用于求导的张量，如 loss
+retain_gra
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-21 11:00" pubdate>
+              2020-07-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">计算图与动态图机制</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">
+          
+          
+            
+          
+          1. 计算图1.1 用计算图表示：
+
+计算图是用来描述运算的有向无环图，计算图有两个主要元素：结点（Node）和边（Edge）
+结点表示数据，如向量，矩阵，张量，边表示运算，如加减乘除卷积等$$y = (x+ w) * (w+1)\
+a = x + w \
+b = w + 1\
+y = a * b$$
+1.2 计算图与梯度求导
+
+
+$$\begin{aligned}\frac{\partial y
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-21 10:00" pubdate>
+              2020-07-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">Python Numpy库</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">
+          
+          
+            
+          
+          Numpy库
+11.1 为什么要用Numpy
+11.1.1 &ensp;低效的Python for循环【例】 求100万个数的倒数
+def compute_reciprocals(values):
+    res = []
+    for value in values:      # 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数
+        res.append(1/v
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-21 10:00" pubdate>
+              2020-07-21
             </time>
           </div>
         
@@ -535,215 +732,6 @@ str 字符串   &ensp;  视作文本
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">Python 程序控制结构</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">
-          
-          
-            
-          
-          程序控制结构
-非顺序式的程序控制，往往需要根据一定的条件，决定程序运行的路线。因此，我们首先来认识一下什么叫条件测试。
-第一部分 条件测试
-1、比较运算a = 10
-b = 8
-print(a &gt; b)     # 大于
-print(a &lt; b)     # 小于
-print(a &gt;= b)    # 大于等于
-print(a &lt;= b)    # 小于等于
-print(a
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">Python 有益的探索</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/">
-          
-          
-            
-          
-          有益的探索
-尝试着潜入水中，往冰山的深处扎一个小小的猛子
-9.1 数据类型的底层实现
-9.1.1 从奇怪的列表说起
-1、错综复杂的复制
-list_1 = [1, [22, 33, 44], (5, 6, 7), &#123;&quot;name&quot;: &quot;Sarah&quot;&#125;]
-
-
-
-浅拷贝
-
-# list_3 = list_1          # 错误！！！
-li
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/CV%20baseline/ResNet/">ResNet</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/CV%20baseline/ResNet/">
-          
-          
-            
-          
-          
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CV-baseline/">CV baseline</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/CV-baseline/">CV baseline</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/CV%20baseline/SENet/">SENet</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/CV%20baseline/SENet/">
-          
-          
-            
-          
-          
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CV-baseline/">CV baseline</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/CV-baseline/">CV baseline</a>
             
           </div>
         

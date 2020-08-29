@@ -1,0 +1,1831 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>正则化方法 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-10 10:00" pubdate>
+      2020年8月10日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">正则化方法</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-正则化与偏差-方差分解"><a href="#1-正则化与偏差-方差分解" class="headerlink" title="1. 正则化与偏差-方差分解"></a>1. 正则化与偏差-方差分解</h1><p>Regularization：减小方差的策略</p>
+<p>误差可分解为：偏差，方差与噪声之和。即误差 = 偏差 + 方差 + 噪声之和</p>
+<p>偏差度量了学习算法的期望预测与真实结果的偏离程度，即刻画了<strong>学习算法本身的拟合能力</strong></p>
+<p>方差度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了<strong>数据扰动所造成的影响</strong></p>
+<p>噪声则表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812165405.png" srcset="/img/loading.gif" alt="image-20200812165355822"></p>
+<p>高偏差：模型不够复杂，拟合能力不足（欠拟合）</p>
+<p>高方差：泛化能力不足（过拟合）</p>
+<p><strong>正则化就是增强模型泛化能力的方法</strong></p>
+<p>目标函数(Objective Function)：<br>𝑶𝒃𝒋 = 𝑪𝒐𝒔𝒕 + <em>Regularization Term</em></p>
+<ul>
+<li>L1 Regularization Term:  $\sum_{i}^{N}\left|\boldsymbol{w}_{i}\right|$</li>
+<li>L2 Regularization Term:  $\sum_{i}^{N} w_{i}^{2}$</li>
+</ul>
+<blockquote>
+<p>正则化项就是约束参数尽量小，这样对于输入数据的扰动，模型有着较大的容限，即提高了泛化能力。</p>
+</blockquote>
+<p>除此之外，还有许多其他的正则化方法，不一定是在目标函数上做文章。</p>
+<h1 id="2-weight-decay正则化"><a href="#2-weight-decay正则化" class="headerlink" title="2. weight decay正则化"></a>2. weight decay正则化</h1><p>L2 Regularization = weight decay（权值衰减）</p>
+<p>其实L2正则项的别名就是weight decay</p>
+<p>不带L2正则项的目标函数：$\boldsymbol{O} \boldsymbol{b} \boldsymbol{j}=\boldsymbol{L} \boldsymbol{o} \boldsymbol{s} \boldsymbol{s}$</p>
+<p>带L2正则项的目标函数：$\boldsymbol{O} \boldsymbol{b} \boldsymbol{j}=\boldsymbol{L} \boldsymbol{o} \boldsymbol{s} \boldsymbol{s}+\frac{\lambda}{2} * \sum_{i}^{N} \boldsymbol{w}_{i}^{2}$</p>
+<p>不带L2正则项的参数更新：</p>
+<p>$w_{i+1}=w_{i}-\frac{\partial o b j}{\partial w_{i}}=w_{i}-\frac{\partial L o s s}{\partial w_{i}}$</p>
+<p>带L2正则项的参数更新：</p>
+<p>$\begin{aligned} w_{i+1}=w_{i}-\frac{\partial o b j}{\partial w_{i}} &amp;=w_{i}-\left(\frac{\partial L o s s}{\partial w_{i}}+\lambda * w_{i}\right) \ &amp;=w_{i}(1-\lambda)-\frac{\partial L o s s}{\partial w_{i}} \end{aligned}$</p>
+<p>可以看到，L2正则项的作用就是在每次参数更新的时候对参数先做一个衰减再减去偏导数，这样参数就会随着更新迭代不断变小。</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+n_hidden = <span class="hljs-number">200</span>
+max_iter = <span class="hljs-number">2000</span>
+disp_interval = <span class="hljs-number">200</span>
+lr_init = <span class="hljs-number">0.01</span>
+
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen_data</span>(<span class="hljs-params">num_data=<span class="hljs-number">10</span>, x_range=(<span class="hljs-params"><span class="hljs-number">-1</span>, <span class="hljs-number">1</span></span>)</span>):</span>
+
+    w = <span class="hljs-number">1.5</span>
+    train_x = torch.linspace(*x_range, num_data).unsqueeze_(<span class="hljs-number">1</span>)
+    train_y = w*train_x + torch.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>, size=train_x.size())
+    test_x = torch.linspace(*x_range, num_data).unsqueeze_(<span class="hljs-number">1</span>)
+    test_y = w*test_x + torch.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>, size=test_x.size())
+
+    <span class="hljs-keyword">return</span> train_x, train_y, test_x, test_y
+
+
+train_x, train_y, test_x, test_y = gen_data(x_range=(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>))
+
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.Sequential(
+            nn.Linear(<span class="hljs-number">1</span>, neural_num),
+            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+            nn.Linear(neural_num, <span class="hljs-number">1</span>),
+        )
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">return</span> self.linears(x)
+
+
+net_normal = MLP(neural_num=n_hidden)
+net_weight_decay = MLP(neural_num=n_hidden)
+
+<span class="hljs-comment"># ============================ step 3/5 优化器 ============================</span>
+optim_normal = torch.optim.SGD(net_normal.parameters(), lr=lr_init, momentum=<span class="hljs-number">0.9</span>)
+optim_wdecay = torch.optim.SGD(net_weight_decay.parameters(), lr=lr_init, momentum=<span class="hljs-number">0.9</span>, weight_decay=<span class="hljs-number">1e-2</span>)
+
+<span class="hljs-comment"># ============================ step 4/5 损失函数 ============================</span>
+loss_func = torch.nn.MSELoss()
+
+<span class="hljs-comment"># ============================ step 5/5 迭代训练 ============================</span>
+
+writer = SummaryWriter(comment=<span class="hljs-string">&#x27;_test_tensorboard&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;12345678&quot;</span>)
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_iter):
+
+    <span class="hljs-comment"># forward</span>
+    pred_normal, pred_wdecay = net_normal(train_x), net_weight_decay(train_x)
+    loss_normal, loss_wdecay = loss_func(pred_normal, train_y), loss_func(pred_wdecay, train_y)
+
+    optim_normal.zero_grad()
+    optim_wdecay.zero_grad()
+
+    loss_normal.backward()
+    loss_wdecay.backward()
+
+    optim_normal.step()
+    optim_wdecay.step()
+
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % disp_interval == <span class="hljs-number">0</span>:
+
+        <span class="hljs-comment"># 可视化</span>
+        <span class="hljs-keyword">for</span> name, layer <span class="hljs-keyword">in</span> net_normal.named_parameters():  <span class="hljs-comment"># named_parameters()返回参数的名称以及参数本身</span>
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_grad_normal&#x27;</span>, layer.grad, epoch)
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_data_normal&#x27;</span>, layer, epoch)
+
+        <span class="hljs-keyword">for</span> name, layer <span class="hljs-keyword">in</span> net_weight_decay.named_parameters():
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_grad_weight_decay&#x27;</span>, layer.grad, epoch)
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_data_weight_decay&#x27;</span>, layer, epoch)
+
+        test_pred_normal, test_pred_wdecay = net_normal(test_x), net_weight_decay(test_x)
+
+        <span class="hljs-comment"># 绘图</span>
+        plt.scatter(train_x.data.numpy(), train_y.data.numpy(), c=<span class="hljs-string">&#x27;blue&#x27;</span>, s=<span class="hljs-number">50</span>, alpha=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">&#x27;train&#x27;</span>)
+        plt.scatter(test_x.data.numpy(), test_y.data.numpy(), c=<span class="hljs-string">&#x27;red&#x27;</span>, s=<span class="hljs-number">50</span>, alpha=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">&#x27;test&#x27;</span>)
+        plt.plot(test_x.data.numpy(), test_pred_normal.data.numpy(), <span class="hljs-string">&#x27;r-&#x27;</span>, lw=<span class="hljs-number">3</span>, label=<span class="hljs-string">&#x27;no weight decay&#x27;</span>)
+        plt.plot(test_x.data.numpy(), test_pred_wdecay.data.numpy(), <span class="hljs-string">&#x27;b--&#x27;</span>, lw=<span class="hljs-number">3</span>, label=<span class="hljs-string">&#x27;weight decay&#x27;</span>)
+        plt.text(<span class="hljs-number">-0.25</span>, <span class="hljs-number">-1.5</span>, <span class="hljs-string">&#x27;no weight decay loss=&#123;:.6f&#125;&#x27;</span>.format(loss_normal.item()), fontdict=&#123;<span class="hljs-string">&#x27;size&#x27;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&#x27;color&#x27;</span>: <span class="hljs-string">&#x27;red&#x27;</span>&#125;)
+        plt.text(<span class="hljs-number">-0.25</span>, <span class="hljs-number">-2</span>, <span class="hljs-string">&#x27;weight decay loss=&#123;:.6f&#125;&#x27;</span>.format(loss_wdecay.item()), fontdict=&#123;<span class="hljs-string">&#x27;size&#x27;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&#x27;color&#x27;</span>: <span class="hljs-string">&#x27;red&#x27;</span>&#125;)
+
+        plt.ylim((<span class="hljs-number">-2.5</span>, <span class="hljs-number">2.5</span>))
+        plt.legend(loc=<span class="hljs-string">&#x27;upper left&#x27;</span>)
+        plt.title(<span class="hljs-string">&quot;Epoch: &#123;&#125;&quot;</span>.format(epoch+<span class="hljs-number">1</span>))
+        plt.show()
+        plt.close()</code></pre>
+
+<p>matplotlib输出结果：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173515.png" srcset="/img/loading.gif" alt="image-20200812173513043" style="zoom: 67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173532.png" srcset="/img/loading.gif" alt="image-20200812173530726" style="zoom: 67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173545.png" srcset="/img/loading.gif" alt="image-20200812173544115" style="zoom: 67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173559.png" srcset="/img/loading.gif" alt="image-20200812173557852" style="zoom: 67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173613.png" srcset="/img/loading.gif" alt="image-20200812173612676" style="zoom: 67%;" />
+
+<p>可以看到，L2正则化有效防止了过拟合的发生，提高了模型的泛化能力。</p>
+<p>下面是tensorboard的可视化结果：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812174958.png" srcset="/img/loading.gif" alt="image-20200812174956565" style="zoom:80%;" />
+
+<p>上面是不带weight decay的参数可视化，可见随着迭代增加，参数还是分布在[-1, 1]的范围中。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812175111.png" srcset="/img/loading.gif" alt="image-20200812175110363" style="zoom:80%;" />
+
+<p>上面是带weight decay的参数可视化，可见随着迭代增加，参数的尺度逐渐缩小，最终分布在很小的范围内，符合weight decay的含义。</p>
+<h1 id="2-Dropout正则化"><a href="#2-Dropout正则化" class="headerlink" title="2. Dropout正则化"></a>2. Dropout正则化</h1><pre><code class="hljs python">torch.nn.Dropout(p=<span class="hljs-number">0.5</span>, inplace=<span class="hljs-literal">False</span>)</code></pre>
+
+<p>功能：Dropout层</p>
+<p>参数：</p>
+<ul>
+<li><strong>p</strong> – probability of an element to be zeroed. Default: 0.5</li>
+<li><strong>inplace</strong> – If set to <code>True</code>, will do this operation in-place. Default: <code>False</code></li>
+</ul>
+<p>实现细节：训练时权重均乘以$\frac{1}{1-p}$ ，即除以1-p</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812181246.png" srcset="/img/loading.gif" alt="image-20200812181242198"></p>
+<p>Dropout方法通过对神经网络的神经元按一定概率失活（每一次训练迭代，即前向传播和反向传播都按一定概率抛弃一些神经元），这样就可以减轻模型对某一个神经元的依赖性，也可以防止神经网络训练不充分的问题（即接收梯度更新的总是那几个，而其他神经元几乎没有变化）。</p>
+<p>随机：dropout probability<br>失活：weight = 0</p>
+<p>数据尺度变化：训练时，所有权重需要除以1-drop_prob。<br>比如：drop_prob = 0.3 ， 1-drop_prob = 0.7；训练时有30%的神经元不参与，那么训练的时候前向传播的结果尺度只有测试情况下的70%（测试时全部神经元参与前向传播，drop_prob = 0），所以训练时所有参数要除以1-drop_prob，这样才能抵消dropout使部分神经元不参加训练造成的尺度变小的问题。</p>
+<p>参考文献：《Dropout: A simple way to prevent neural networks from overfitting》</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+n_hidden = <span class="hljs-number">200</span>
+max_iter = <span class="hljs-number">2000</span>
+disp_interval = <span class="hljs-number">400</span>
+lr_init = <span class="hljs-number">0.01</span>
+
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen_data</span>(<span class="hljs-params">num_data=<span class="hljs-number">10</span>, x_range=(<span class="hljs-params"><span class="hljs-number">-1</span>, <span class="hljs-number">1</span></span>)</span>):</span>
+
+    w = <span class="hljs-number">1.5</span>
+    train_x = torch.linspace(*x_range, num_data).unsqueeze_(<span class="hljs-number">1</span>)
+    train_y = w*train_x + torch.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>, size=train_x.size())
+    test_x = torch.linspace(*x_range, num_data).unsqueeze_(<span class="hljs-number">1</span>)
+    test_y = w*test_x + torch.normal(<span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>, size=test_x.size())
+
+    <span class="hljs-keyword">return</span> train_x, train_y, test_x, test_y
+
+
+train_x, train_y, test_x, test_y = gen_data(x_range=(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>))
+
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, d_prob=<span class="hljs-number">0.5</span></span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.Sequential(
+
+            nn.Linear(<span class="hljs-number">1</span>, neural_num),
+            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+
+            nn.Dropout(d_prob),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+
+            nn.Dropout(d_prob),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+
+            nn.Dropout(d_prob),
+            nn.Linear(neural_num, <span class="hljs-number">1</span>),
+        )
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">return</span> self.linears(x)
+
+
+net_prob_0 = MLP(neural_num=n_hidden, d_prob=<span class="hljs-number">0.</span>)
+net_prob_05 = MLP(neural_num=n_hidden, d_prob=<span class="hljs-number">0.5</span>)
+
+<span class="hljs-comment"># ============================ step 3/5 优化器 ============================</span>
+optim_normal = torch.optim.SGD(net_prob_0.parameters(), lr=lr_init, momentum=<span class="hljs-number">0.9</span>)
+optim_reglar = torch.optim.SGD(net_prob_05.parameters(), lr=lr_init, momentum=<span class="hljs-number">0.9</span>)
+
+<span class="hljs-comment"># ============================ step 4/5 损失函数 ============================</span>
+loss_func = torch.nn.MSELoss()
+
+<span class="hljs-comment"># ============================ step 5/5 迭代训练 ============================</span>
+
+writer = SummaryWriter(comment=<span class="hljs-string">&#x27;_test_tensorboard&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;12345678&quot;</span>)
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_iter):
+
+    pred_normal, pred_wdecay = net_prob_0(train_x), net_prob_05(train_x)
+    loss_normal, loss_wdecay = loss_func(pred_normal, train_y), loss_func(pred_wdecay, train_y)
+
+    optim_normal.zero_grad()
+    optim_reglar.zero_grad()
+
+    loss_normal.backward()
+    loss_wdecay.backward()
+
+    optim_normal.step()
+    optim_reglar.step()
+
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % disp_interval == <span class="hljs-number">0</span>:
+
+        net_prob_0.eval()  <span class="hljs-comment"># 在测试时需要打开eval，这样可以使所有神经元参与前向传播，并且所有权重会取消除以1-p</span>
+        net_prob_05.eval()
+
+        <span class="hljs-comment"># 可视化</span>
+        <span class="hljs-keyword">for</span> name, layer <span class="hljs-keyword">in</span> net_prob_0.named_parameters():
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_grad_normal&#x27;</span>, layer.grad, epoch)
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_data_normal&#x27;</span>, layer, epoch)
+
+        <span class="hljs-keyword">for</span> name, layer <span class="hljs-keyword">in</span> net_prob_05.named_parameters():
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_grad_regularization&#x27;</span>, layer.grad, epoch)
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_data_regularization&#x27;</span>, layer, epoch)
+
+        test_pred_prob_0, test_pred_prob_05 = net_prob_0(test_x), net_prob_05(test_x)
+
+        <span class="hljs-comment"># 绘图</span>
+        plt.scatter(train_x.data.numpy(), train_y.data.numpy(), c=<span class="hljs-string">&#x27;blue&#x27;</span>, s=<span class="hljs-number">50</span>, alpha=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">&#x27;train&#x27;</span>)
+        plt.scatter(test_x.data.numpy(), test_y.data.numpy(), c=<span class="hljs-string">&#x27;red&#x27;</span>, s=<span class="hljs-number">50</span>, alpha=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">&#x27;test&#x27;</span>)
+        plt.plot(test_x.data.numpy(), test_pred_prob_0.data.numpy(), <span class="hljs-string">&#x27;r-&#x27;</span>, lw=<span class="hljs-number">3</span>, label=<span class="hljs-string">&#x27;d_prob_0&#x27;</span>)
+        plt.plot(test_x.data.numpy(), test_pred_prob_05.data.numpy(), <span class="hljs-string">&#x27;b--&#x27;</span>, lw=<span class="hljs-number">3</span>, label=<span class="hljs-string">&#x27;d_prob_05&#x27;</span>)
+        plt.text(<span class="hljs-number">-0.25</span>, <span class="hljs-number">-1.5</span>, <span class="hljs-string">&#x27;d_prob_0 loss=&#123;:.8f&#125;&#x27;</span>.format(loss_normal.item()), fontdict=&#123;<span class="hljs-string">&#x27;size&#x27;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&#x27;color&#x27;</span>: <span class="hljs-string">&#x27;red&#x27;</span>&#125;)
+        plt.text(<span class="hljs-number">-0.25</span>, <span class="hljs-number">-2</span>, <span class="hljs-string">&#x27;d_prob_05 loss=&#123;:.6f&#125;&#x27;</span>.format(loss_wdecay.item()), fontdict=&#123;<span class="hljs-string">&#x27;size&#x27;</span>: <span class="hljs-number">15</span>, <span class="hljs-string">&#x27;color&#x27;</span>: <span class="hljs-string">&#x27;red&#x27;</span>&#125;)
+
+        plt.ylim((<span class="hljs-number">-2.5</span>, <span class="hljs-number">2.5</span>))
+        plt.legend(loc=<span class="hljs-string">&#x27;upper left&#x27;</span>)
+        plt.title(<span class="hljs-string">&quot;Epoch: &#123;&#125;&quot;</span>.format(epoch+<span class="hljs-number">1</span>))
+        plt.show()
+        plt.close()
+
+        net_prob_0.train()  <span class="hljs-comment"># 测试结束，即将进入下一轮训练，得打开train，这样所有神经元会按概率失活，并且权值会除以1-p</span>
+        net_prob_05.train()  <span class="hljs-comment"># 总的来说，测试时，计算正确率和loss需要打开eval，测试结束回到训练需要打开train</span></code></pre>
+
+
+
+<p>matplotlib输出：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184041.png" srcset="/img/loading.gif" alt="image-20200812184039695" style="zoom:67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184106.png" srcset="/img/loading.gif" alt="image-20200812184103864" style="zoom:67%;" />
+
+
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184122.png" srcset="/img/loading.gif" alt="image-20200812184120682" style="zoom:67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184137.png" srcset="/img/loading.gif" alt="image-20200812184136408" style="zoom:67%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184159.png" srcset="/img/loading.gif" alt="image-20200812184158353" style="zoom:67%;" />
+
+<p>以下是tensorboard可视化结果：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812185115.png" srcset="/img/loading.gif" alt="image-20200812185111496" style="zoom:80%;" />
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812185129.png" srcset="/img/loading.gif" alt="image-20200812185128759" style="zoom:80%;" />
+
+<p>可以看到，用了dropout之后参数的尺度会比较小，分布比较集中，这也是泛化能力强的特征。</p>
+<h1 id="3-Batch-Normalization正则化"><a href="#3-Batch-Normalization正则化" class="headerlink" title="3. Batch Normalization正则化"></a>3. Batch Normalization正则化</h1><p>Batch Normalization：批标准化<br>批：一批数据，通常为mini-batch<br>标准化：0均值，1方差</p>
+<p>优点：</p>
+<ol>
+<li>可以用更大学习率，加速模型收敛</li>
+<li>可以不用精心设计权值初始化</li>
+<li>可以不用dropout或较小的dropout</li>
+<li>可以不用L2或者较小的weight decay</li>
+<li>可以不用LRN(local response normalization)</li>
+</ol>
+<p>参考文献：《 Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》</p>
+<p>计算方式：</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812191638.png" srcset="/img/loading.gif" alt="image-20200812191621492" style="zoom: 33%;" />
+
+<p>这个算法非常简单，对于迭代输入的mini-batch数据$\mathcal{B}$（也就是dataloader一次迭代产生的数据）计算它们的样本均值$\mu_{\mathcal{B}}$和样本方差$\sigma_{\mathcal{B}}^{2}$，然后对输入数据$\mathcal{B}$做标准化得到标准化的$\widehat{x}<em>{i}$（分母的$\epsilon$是为了防止分母为0的一个无穷小量），最后对$\widehat{x}</em>{i}$做一个affine transform得到$y_{i}$（参数$\gamma, \beta$也是需要反向传播学习的）。其实这个affine transform可以给标准化后的$\widehat{x}_{i}$重新引入合适的期望和方差（由于参数$\gamma, \beta$是通过反向传播学习的，甚至可以有$\gamma =\sigma _{\mathcal{B}},,, \beta =\mu _{\mathcal{B}}$，那么这一层的BN就相当于无效，即这一层使用BN对训练收敛没有帮助）。多了这两个参数，给BN层带来了比较大的自由度。</p>
+<h2 id="3-1-BatchNorm"><a href="#3-1-BatchNorm" class="headerlink" title="3.1 _BatchNorm"></a>3.1 _BatchNorm</h2><p>_BatchNorm是BatchNorm1d/BatchNorm2d/BatchNorm3d的基类</p>
+<pre><code class="hljs routeros">__init__(self, num_features, 
+<span class="hljs-attribute">eps</span>=1e-5, 
+<span class="hljs-attribute">momentum</span>=0.1, 
+<span class="hljs-attribute">affine</span>=<span class="hljs-literal">True</span>,
+<span class="hljs-attribute">track_running_stats</span>=<span class="hljs-literal">True</span>)</code></pre>
+
+<p>主要属性：</p>
+<ul>
+<li>running_mean：均值</li>
+<li>running_var：方差</li>
+<li>weight：affine transform中的gamma</li>
+<li>bias： affine transform中的beta</li>
+<li>trainning：是否位于训练状态</li>
+</ul>
+<p>一般来说pytorch中的模型都是继承<code>nn.Module</code>类的，都有一个属性<code>trainning</code>指定是否是训练状态，训练状态与否将会影响到某些层的参数是否是固定的，比如BN层或者Dropout层。通常用<code>model.train()</code>指定当前模型<code>model</code>为训练状态,<code>model.eval()</code>指定当前模型为测试状态。</p>
+<p>参数：</p>
+<ul>
+<li>num_features：一个样本特征数量</li>
+<li>eps：分母修正项</li>
+<li>momentum：使用指数加权平均估计当前mean/var</li>
+<li>affine：是否需要affine transform，如果<code>affine=False</code>，则<em>γ</em>=1, <em>β</em>=0，并且不能学习被更新。一般都会设置成<code>affine=True</code></li>
+<li>track_running_stats：是训练状态，还是测试状态。</li>
+</ul>
+<p>同时，BN的API中有几个参数需要比较关心的，一个是<code>affine</code>指定是否需要仿射，还有个是<code>track_running_stats</code>指定是否跟踪当前batch的统计特性。</p>
+<p><code>track_running_stats=True</code>表示跟踪整个训练过程中的batch的统计特性，得到方差和均值，而不只是仅仅依赖与当前输入的batch的统计特性。相反的，如果<code>track_running_stats=False</code>那么就只是计算当前输入的batch的统计特性中的均值和方差了。</p>
+<p>当在推理阶段的时候，如果<code>track_running_stats=False</code>，此时如果<code>batch_size</code>比较小，那么其统计特性就会和全局统计特性有着较大偏差，可能导致糟糕的效果。</p>
+<p>并且<code>track_running_stats=True</code>且<code>trainning=True</code>时，计算出来的running_mean和running_var只是纸面上的数据（即<code>trainning=True</code>时的输出并不会用到running_mean和running_var，而是当前batch的mean和var），只有当<code>trainning=False</code>时，训练得到的running_mean和running_var才会派上用场。</p>
+<p>一般来说，<code>trainning</code>和<code>track_running_stats</code>有四种组合</p>
+<ol>
+<li><code>trainning=True</code>, <code>track_running_stats=True</code>。这个是期望中的训练阶段的设置，此时BN将会跟踪整个训练过程中batch的统计特性。但是输出并不会用上running_mean和running_var，而只是根据当前输入的batch的mean和var进行标准化。</li>
+<li><code>trainning=True</code>, <code>track_running_stats=False</code>。此时BN只会计算当前输入的训练batch的统计特性，可能没法很好地描述全局的数据统计特性。</li>
+<li><code>trainning=False</code>, <code>track_running_stats=True</code>。这个是期望中的测试阶段的设置，此时BN会用之前训练好的模型中的running_mean和running_var并且不会对其进行更新。一般来说，只需要设置<code>model.eval()</code>其中<code>model</code>中含有BN层，即可实现这个功能。</li>
+<li><code>trainning=False</code>, <code>track_running_stats=False</code> 效果同(2)，只不过是位于测试状态，这个一般不采用，这个只是用测试输入的batch的统计特性，容易造成统计特性的偏移，导致糟糕效果。</li>
+</ol>
+<p><strong>我们要注意到</strong>，BN层中的<code>running_mean</code>和<code>running_var</code>的更新是在<code>forward()</code>操作中进行的，而不是<code>optimizer.step()</code>中进行的，因此如果处于训练状态，就算你不进行手动<code>step()</code>，BN的统计特性也会变化的。</p>
+<p>当<code>track_running_stats=True</code>时，running_mean和running_var的更新的方法如下：</p>
+<p>running_mean = (1 - momentum) * pre_running_mean + momentum * mean_t<br>running_var = (1 - momentum) * pre_running_var + momentum * var_t</p>
+<h2 id="3-2-BatchNorm1d"><a href="#3-2-BatchNorm1d" class="headerlink" title="3.2 BatchNorm1d"></a>3.2 BatchNorm1d</h2><pre><code class="hljs python">torch.nn.BatchNorm1d(num_features, eps=<span class="hljs-number">1e-05</span>, momentum=<span class="hljs-number">0.1</span>, affine=<span class="hljs-literal">True</span>, track_running_stats=<span class="hljs-literal">True</span>)</code></pre>
+
+<p>参数：</p>
+<ul>
+<li><strong>num_features</strong> – C from an expected input of size (N, C, L) or L from input of size (N, L)</li>
+<li><strong>eps</strong> – a value added to the denominator for numerical stability. Default: 1e-5</li>
+<li><strong>momentum</strong> – the value used for the running_mean and running_var computation. Can be set to <code>None</code> for cumulative moving average (i.e. simple average). Default: 0.1</li>
+<li><strong>affine</strong> – a boolean value that when set to <code>True</code>, this module has learnable affine parameters. Default: <code>True</code></li>
+<li><strong>track_running_stats</strong> – a boolean value that when set to <code>True</code>, this module tracks the running mean and variance, and when set to <code>False</code>, this module does not track such statistics and uses batch statistics instead in both training and eval modes if the running mean and variance are <code>None</code>. Default: <code>True</code></li>
+</ul>
+<p>输入数据尺寸：</p>
+<p>nn.BatchNorm1d input= B$<em>$特征数$</em>$1d特征（比如一个神经元的输出就是1d特征）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812230651.png" srcset="/img/loading.gif" alt="image-20200812230643623" style="zoom: 50%;" />
+
+
+
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+batch_size = <span class="hljs-number">3</span>
+num_features = <span class="hljs-number">5</span>
+momentum = <span class="hljs-number">0.3</span>
+features_shape = (<span class="hljs-number">1</span>)
+
+feature_map = torch.ones(features_shape)                                                    <span class="hljs-comment"># 1D</span>
+feature_maps = torch.stack([feature_map*(i+<span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num_features)], dim=<span class="hljs-number">0</span>)         <span class="hljs-comment"># 2D</span>
+feature_maps_bs = torch.stack([feature_maps <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(batch_size)], dim=<span class="hljs-number">0</span>)             <span class="hljs-comment"># 3D</span>
+print(<span class="hljs-string">&quot;input data:\n&#123;&#125; shape is &#123;&#125;&quot;</span>.format(feature_maps_bs, feature_maps_bs.shape))
+
+bn = nn.BatchNorm1d(num_features=num_features, momentum=momentum)
+
+running_mean, running_var = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>):
+    bn.train()
+    outputs = bn(feature_maps_bs)
+
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, running mean: &#123;&#125; &quot;</span>.format(i, bn.running_mean))
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, running var:&#123;&#125; &quot;</span>.format(i, bn.running_var))
+    bn.eval()
+    outputs = bn(feature_maps_bs)
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, outputs:\n&#123;&#125; &quot;</span>.format(i, outputs))
+
+    mean_t, var_t = feature_maps_bs.mean(dim=<span class="hljs-number">0</span>), feature_maps_bs.var(dim=<span class="hljs-number">0</span>)
+
+    running_mean = (<span class="hljs-number">1</span> - momentum) * running_mean + momentum * mean_t
+    running_var = (<span class="hljs-number">1</span> - momentum) * running_var + momentum * var_t
+
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, 我们计算的running mean: &#123;&#125; &quot;</span>.format(i, running_mean.mean(dim=<span class="hljs-number">-1</span>)))
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, 我们计算的的running var:&#123;&#125;&quot;</span>.format(i, running_var.mean(dim=<span class="hljs-number">-1</span>)))
+    print(<span class="hljs-string">&#x27;norm_out=\n&#123;&#125;&#x27;</span>.format((feature_maps_bs - running_mean.unsqueeze(dim=<span class="hljs-number">0</span>)) / np.sqrt(running_var.unsqueeze(dim=<span class="hljs-number">0</span>))))</code></pre>
+
+<p><strong>输出：</strong></p>
+<pre><code class="hljs python">input data:
+tensor([[[<span class="hljs-number">1.</span>],
+         [<span class="hljs-number">2.</span>],
+         [<span class="hljs-number">3.</span>],
+         [<span class="hljs-number">4.</span>],
+         [<span class="hljs-number">5.</span>]],
+
+        [[<span class="hljs-number">1.</span>],
+         [<span class="hljs-number">2.</span>],
+         [<span class="hljs-number">3.</span>],
+         [<span class="hljs-number">4.</span>],
+         [<span class="hljs-number">5.</span>]],
+
+        [[<span class="hljs-number">1.</span>],
+         [<span class="hljs-number">2.</span>],
+         [<span class="hljs-number">3.</span>],
+         [<span class="hljs-number">4.</span>],
+         [<span class="hljs-number">5.</span>]]]) shape <span class="hljs-keyword">is</span> torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>])
+iteration:<span class="hljs-number">0</span>, running mean: tensor([<span class="hljs-number">0.3000</span>, <span class="hljs-number">0.6000</span>, <span class="hljs-number">0.9000</span>, <span class="hljs-number">1.2000</span>, <span class="hljs-number">1.5000</span>]) 
+iteration:<span class="hljs-number">0</span>, running var:tensor([<span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>]) 
+iteration:<span class="hljs-number">0</span>, outputs:
+tensor([[[<span class="hljs-number">0.8367</span>],
+         [<span class="hljs-number">1.6733</span>],
+         [<span class="hljs-number">2.5100</span>],
+         [<span class="hljs-number">3.3466</span>],
+         [<span class="hljs-number">4.1833</span>]],
+
+        [[<span class="hljs-number">0.8367</span>],
+         [<span class="hljs-number">1.6733</span>],
+         [<span class="hljs-number">2.5100</span>],
+         [<span class="hljs-number">3.3466</span>],
+         [<span class="hljs-number">4.1833</span>]],
+
+        [[<span class="hljs-number">0.8367</span>],
+         [<span class="hljs-number">1.6733</span>],
+         [<span class="hljs-number">2.5100</span>],
+         [<span class="hljs-number">3.3466</span>],
+         [<span class="hljs-number">4.1833</span>]]]) 
+iteration:<span class="hljs-number">0</span>, 我们计算的running mean: tensor([<span class="hljs-number">0.3000</span>, <span class="hljs-number">0.6000</span>, <span class="hljs-number">0.9000</span>, <span class="hljs-number">1.2000</span>, <span class="hljs-number">1.5000</span>]) 
+iteration:<span class="hljs-number">0</span>, 我们计算的的running var:tensor([<span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>, <span class="hljs-number">0.7000</span>])
+norm_out=
+tensor([[[<span class="hljs-number">0.8367</span>],
+         [<span class="hljs-number">1.6733</span>],
+         [<span class="hljs-number">2.5100</span>],
+         [<span class="hljs-number">3.3466</span>],
+         [<span class="hljs-number">4.1833</span>]],
+
+        [[<span class="hljs-number">0.8367</span>],
+         [<span class="hljs-number">1.6733</span>],
+         [<span class="hljs-number">2.5100</span>],
+         [<span class="hljs-number">3.3466</span>],
+         [<span class="hljs-number">4.1833</span>]],
+
+        [[<span class="hljs-number">0.8367</span>],
+         [<span class="hljs-number">1.6733</span>],
+         [<span class="hljs-number">2.5100</span>],
+         [<span class="hljs-number">3.3466</span>],
+         [<span class="hljs-number">4.1833</span>]]])
+iteration:<span class="hljs-number">1</span>, running mean: tensor([<span class="hljs-number">0.5100</span>, <span class="hljs-number">1.0200</span>, <span class="hljs-number">1.5300</span>, <span class="hljs-number">2.0400</span>, <span class="hljs-number">2.5500</span>]) 
+iteration:<span class="hljs-number">1</span>, running var:tensor([<span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>]) 
+iteration:<span class="hljs-number">1</span>, outputs:
+tensor([[[<span class="hljs-number">0.7000</span>],
+         [<span class="hljs-number">1.4000</span>],
+         [<span class="hljs-number">2.1000</span>],
+         [<span class="hljs-number">2.8000</span>],
+         [<span class="hljs-number">3.5000</span>]],
+
+        [[<span class="hljs-number">0.7000</span>],
+         [<span class="hljs-number">1.4000</span>],
+         [<span class="hljs-number">2.1000</span>],
+         [<span class="hljs-number">2.8000</span>],
+         [<span class="hljs-number">3.5000</span>]],
+
+        [[<span class="hljs-number">0.7000</span>],
+         [<span class="hljs-number">1.4000</span>],
+         [<span class="hljs-number">2.1000</span>],
+         [<span class="hljs-number">2.8000</span>],
+         [<span class="hljs-number">3.5000</span>]]]) 
+iteration:<span class="hljs-number">1</span>, 我们计算的running mean: tensor([<span class="hljs-number">0.5100</span>, <span class="hljs-number">1.0200</span>, <span class="hljs-number">1.5300</span>, <span class="hljs-number">2.0400</span>, <span class="hljs-number">2.5500</span>]) 
+iteration:<span class="hljs-number">1</span>, 我们计算的的running var:tensor([<span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>, <span class="hljs-number">0.4900</span>])
+norm_out=
+tensor([[[<span class="hljs-number">0.7000</span>],
+         [<span class="hljs-number">1.4000</span>],
+         [<span class="hljs-number">2.1000</span>],
+         [<span class="hljs-number">2.8000</span>],
+         [<span class="hljs-number">3.5000</span>]],
+
+        [[<span class="hljs-number">0.7000</span>],
+         [<span class="hljs-number">1.4000</span>],
+         [<span class="hljs-number">2.1000</span>],
+         [<span class="hljs-number">2.8000</span>],
+         [<span class="hljs-number">3.5000</span>]],
+
+        [[<span class="hljs-number">0.7000</span>],
+         [<span class="hljs-number">1.4000</span>],
+         [<span class="hljs-number">2.1000</span>],
+         [<span class="hljs-number">2.8000</span>],
+         [<span class="hljs-number">3.5000</span>]]])</code></pre>
+
+
+
+<h2 id="3-3-BatchNorm2d"><a href="#3-3-BatchNorm2d" class="headerlink" title="3.3 BatchNorm2d"></a>3.3 BatchNorm2d</h2><pre><code class="hljs python">torch.nn.BatchNorm2d(num_features, eps=<span class="hljs-number">1e-05</span>, momentum=<span class="hljs-number">0.1</span>, affine=<span class="hljs-literal">True</span>, track_running_stats=<span class="hljs-literal">True</span>)</code></pre>
+
+<p>参数：</p>
+<ul>
+<li><strong>num_features</strong> – C from an expected input of size (N, C, H, W)</li>
+<li><strong>eps</strong> – a value added to the denominator for numerical stability. Default: 1e-5</li>
+<li><strong>momentum</strong> – the value used for the running_mean and running_var computation. Can be set to <code>None</code> for cumulative moving average (i.e. simple average). Default: 0.1</li>
+<li><strong>affine</strong> – a boolean value that when set to <code>True</code>, this module has learnable affine parameters. Default: <code>True</code></li>
+<li><strong>track_running_stats</strong> – a boolean value that when set to <code>True</code>, this module tracks the running mean and variance, and when set to <code>False</code>, this module does not track such statistics and uses batch statistics instead in both training and eval modes if the running mean and variance are <code>None</code>. Default: <code>True</code></li>
+</ul>
+<p>输入数据尺寸：</p>
+<p>nn.BatchNorm2d input= B$<em>$特征数$</em>$2d特征（比如卷积输出的特征图就是2d特征）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812230754.png" srcset="/img/loading.gif" alt="image-20200812230752297" style="zoom: 50%;" />
+
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+batch_size = <span class="hljs-number">3</span>
+num_features = <span class="hljs-number">5</span>
+momentum = <span class="hljs-number">0.3</span>
+features_shape = (<span class="hljs-number">1</span>)
+
+feature_maps_bs = torch.randn(batch_size, num_features, features_shape)
+print(<span class="hljs-string">&quot;input data:\n&#123;&#125; shape is &#123;&#125;&quot;</span>.format(feature_maps_bs, feature_maps_bs.shape))
+
+bn = nn.BatchNorm1d(num_features=num_features, momentum=momentum)
+
+running_mean, running_var = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>):
+    bn.train()
+    outputs = bn(feature_maps_bs)
+
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, running mean: &#123;&#125; &quot;</span>.format(i, bn.running_mean))
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, running var:&#123;&#125; &quot;</span>.format(i, bn.running_var))
+    bn.eval()
+    outputs = bn(feature_maps_bs)
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, outputs:\n&#123;&#125; &quot;</span>.format(i, outputs))
+
+    feature_maps_bs_1 = torch.transpose(feature_maps_bs, dim0=<span class="hljs-number">0</span>, dim1=<span class="hljs-number">1</span>)  <span class="hljs-comment"># 由BCH变成CBH方便我们对BH求均值方差</span>
+    feature_maps_bs_1 = feature_maps_bs_1.reshape((num_features, <span class="hljs-number">-1</span>))
+
+    mean_t, var_t = feature_maps_bs_1.mean(dim=<span class="hljs-number">1</span>), feature_maps_bs_1.var(dim=<span class="hljs-number">1</span>)
+
+    running_mean = (<span class="hljs-number">1</span> - momentum) * running_mean + momentum * mean_t
+    running_var = (<span class="hljs-number">1</span> - momentum) * running_var + momentum * var_t
+
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, 我们计算的running mean: &#123;&#125; &quot;</span>.format(i, running_mean))
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, 我们计算的running var:&#123;&#125;&quot;</span>.format(i, running_var))
+
+    feature_maps_mean = running_mean.unsqueeze(<span class="hljs-number">0</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCH的shape，并使用广播机制（自动复制维度为1的dim）</span>
+    feature_maps_var = running_var.unsqueeze(<span class="hljs-number">0</span>).unsqueeze(<span class="hljs-number">-1</span>)
+
+    print(<span class="hljs-string">&quot;iteration:&#123;&#125;, 我们计算的out:\n&#123;&#125;&quot;</span>.format(i, ((feature_maps_bs - feature_maps_mean) / np.sqrt(feature_maps_var + <span class="hljs-number">1e-05</span>))))</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">input data:
+tensor([[[ <span class="hljs-number">0.6614</span>],
+         [ <span class="hljs-number">0.2669</span>],
+         [ <span class="hljs-number">0.0617</span>],
+         [ <span class="hljs-number">0.6213</span>],
+         [<span class="hljs-number">-0.4519</span>]],
+
+        [[<span class="hljs-number">-0.1661</span>],
+         [<span class="hljs-number">-1.5228</span>],
+         [ <span class="hljs-number">0.3817</span>],
+         [<span class="hljs-number">-1.0276</span>],
+         [<span class="hljs-number">-0.5631</span>]],
+
+        [[<span class="hljs-number">-0.8923</span>],
+         [<span class="hljs-number">-0.0583</span>],
+         [<span class="hljs-number">-0.1955</span>],
+         [<span class="hljs-number">-0.9656</span>],
+         [ <span class="hljs-number">0.4224</span>]]]) shape <span class="hljs-keyword">is</span> torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>])
+iteration:<span class="hljs-number">0</span>, running mean: tensor([<span class="hljs-number">-0.0397</span>, <span class="hljs-number">-0.1314</span>,  <span class="hljs-number">0.0248</span>, <span class="hljs-number">-0.1372</span>, <span class="hljs-number">-0.0593</span>]) 
+iteration:<span class="hljs-number">0</span>, running var:tensor([<span class="hljs-number">0.8813</span>, <span class="hljs-number">0.9727</span>, <span class="hljs-number">0.7251</span>, <span class="hljs-number">0.9621</span>, <span class="hljs-number">0.7874</span>]) 
+iteration:<span class="hljs-number">0</span>, outputs:
+tensor([[[ <span class="hljs-number">0.7468</span>],
+         [ <span class="hljs-number">0.4039</span>],
+         [ <span class="hljs-number">0.0433</span>],
+         [ <span class="hljs-number">0.7733</span>],
+         [<span class="hljs-number">-0.4425</span>]],
+
+        [[<span class="hljs-number">-0.1347</span>],
+         [<span class="hljs-number">-1.4108</span>],
+         [ <span class="hljs-number">0.4191</span>],
+         [<span class="hljs-number">-0.9078</span>],
+         [<span class="hljs-number">-0.5678</span>]],
+
+        [[<span class="hljs-number">-0.9082</span>],
+         [ <span class="hljs-number">0.0742</span>],
+         [<span class="hljs-number">-0.2587</span>],
+         [<span class="hljs-number">-0.8446</span>],
+         [ <span class="hljs-number">0.5428</span>]]], grad_fn=&lt;NativeBatchNormBackward&gt;) 
+iteration:<span class="hljs-number">0</span>, 我们计算的running mean: tensor([<span class="hljs-number">-0.0397</span>, <span class="hljs-number">-0.1314</span>,  <span class="hljs-number">0.0248</span>, <span class="hljs-number">-0.1372</span>, <span class="hljs-number">-0.0593</span>]) 
+iteration:<span class="hljs-number">0</span>, 我们计算的running var:tensor([<span class="hljs-number">0.8813</span>, <span class="hljs-number">0.9727</span>, <span class="hljs-number">0.7251</span>, <span class="hljs-number">0.9621</span>, <span class="hljs-number">0.7874</span>])
+iteration:<span class="hljs-number">0</span>, 我们计算的out:
+tensor([[[ <span class="hljs-number">0.7468</span>],
+         [ <span class="hljs-number">0.4039</span>],
+         [ <span class="hljs-number">0.0433</span>],
+         [ <span class="hljs-number">0.7733</span>],
+         [<span class="hljs-number">-0.4425</span>]],
+
+        [[<span class="hljs-number">-0.1347</span>],
+         [<span class="hljs-number">-1.4108</span>],
+         [ <span class="hljs-number">0.4191</span>],
+         [<span class="hljs-number">-0.9078</span>],
+         [<span class="hljs-number">-0.5678</span>]],
+
+        [[<span class="hljs-number">-0.9082</span>],
+         [ <span class="hljs-number">0.0742</span>],
+         [<span class="hljs-number">-0.2587</span>],
+         [<span class="hljs-number">-0.8446</span>],
+         [ <span class="hljs-number">0.5428</span>]]])
+iteration:<span class="hljs-number">1</span>, running mean: tensor([<span class="hljs-number">-0.0675</span>, <span class="hljs-number">-0.2234</span>,  <span class="hljs-number">0.0421</span>, <span class="hljs-number">-0.2332</span>, <span class="hljs-number">-0.1007</span>]) 
+iteration:<span class="hljs-number">1</span>, running var:tensor([<span class="hljs-number">0.7982</span>, <span class="hljs-number">0.9536</span>, <span class="hljs-number">0.5326</span>, <span class="hljs-number">0.9355</span>, <span class="hljs-number">0.6386</span>]) 
+iteration:<span class="hljs-number">1</span>, outputs:
+tensor([[[ <span class="hljs-number">0.8158</span>],
+         [ <span class="hljs-number">0.5021</span>],
+         [ <span class="hljs-number">0.0268</span>],
+         [ <span class="hljs-number">0.8835</span>],
+         [<span class="hljs-number">-0.4395</span>]],
+
+        [[<span class="hljs-number">-0.1104</span>],
+         [<span class="hljs-number">-1.3306</span>],
+         [ <span class="hljs-number">0.4652</span>],
+         [<span class="hljs-number">-0.8213</span>],
+         [<span class="hljs-number">-0.5785</span>]],
+
+        [[<span class="hljs-number">-0.9232</span>],
+         [ <span class="hljs-number">0.1691</span>],
+         [<span class="hljs-number">-0.3256</span>],
+         [<span class="hljs-number">-0.7572</span>],
+         [ <span class="hljs-number">0.6547</span>]]], grad_fn=&lt;NativeBatchNormBackward&gt;) 
+iteration:<span class="hljs-number">1</span>, 我们计算的running mean: tensor([<span class="hljs-number">-0.0675</span>, <span class="hljs-number">-0.2234</span>,  <span class="hljs-number">0.0421</span>, <span class="hljs-number">-0.2332</span>, <span class="hljs-number">-0.1007</span>]) 
+iteration:<span class="hljs-number">1</span>, 我们计算的running var:tensor([<span class="hljs-number">0.7982</span>, <span class="hljs-number">0.9536</span>, <span class="hljs-number">0.5326</span>, <span class="hljs-number">0.9355</span>, <span class="hljs-number">0.6386</span>])
+iteration:<span class="hljs-number">1</span>, 我们计算的out:
+tensor([[[ <span class="hljs-number">0.8158</span>],
+         [ <span class="hljs-number">0.5021</span>],
+         [ <span class="hljs-number">0.0268</span>],
+         [ <span class="hljs-number">0.8835</span>],
+         [<span class="hljs-number">-0.4395</span>]],
+
+        [[<span class="hljs-number">-0.1104</span>],
+         [<span class="hljs-number">-1.3306</span>],
+         [ <span class="hljs-number">0.4652</span>],
+         [<span class="hljs-number">-0.8213</span>],
+         [<span class="hljs-number">-0.5785</span>]],
+
+        [[<span class="hljs-number">-0.9232</span>],
+         [ <span class="hljs-number">0.1691</span>],
+         [<span class="hljs-number">-0.3256</span>],
+         [<span class="hljs-number">-0.7572</span>],
+         [ <span class="hljs-number">0.6547</span>]]])</code></pre>
+
+
+
+<h2 id="3-4-BN算法实现总结"><a href="#3-4-BN算法实现总结" class="headerlink" title="3.4 BN算法实现总结"></a>3.4 BN算法实现总结</h2><p>总的来说，不管是BatchNorm1d还是BatchNorm2d，都是对一个batch数据中除了通道（或者说特征数num_features）以外的dim求取均值和方差，然后对一个batch的数据做标准化。</p>
+<p>此外关于$\gamma$和$\beta$是每一个通道配置一对，通过反向传播在optimizer.step()中学习</p>
+<h2 id="3-5-BN应用的一例"><a href="#3-5-BN应用的一例" class="headerlink" title="3.5 BN应用的一例"></a>3.5 BN应用的一例</h2><p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNet_bn</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, classes</span>):</span>
+        super(LeNet_bn, self).__init__()
+        self.conv1 = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>)
+        self.bn1 = nn.BatchNorm2d(num_features=<span class="hljs-number">6</span>)
+
+        self.conv2 = nn.Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, <span class="hljs-number">5</span>)
+        self.bn2 = nn.BatchNorm2d(num_features=<span class="hljs-number">16</span>)
+
+        self.fc1 = nn.Linear(<span class="hljs-number">16</span> * <span class="hljs-number">5</span> * <span class="hljs-number">5</span>, <span class="hljs-number">120</span>)
+        self.bn3 = nn.BatchNorm1d(num_features=<span class="hljs-number">120</span>)
+
+        self.fc2 = nn.Linear(<span class="hljs-number">120</span>, <span class="hljs-number">84</span>)
+        self.fc3 = nn.Linear(<span class="hljs-number">84</span>, classes)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        out = self.conv1(x)
+        out = self.bn1(out)
+        out = F.relu(out)
+
+        out = F.max_pool2d(out, <span class="hljs-number">2</span>)
+
+        out = self.conv2(out)
+        out = self.bn2(out)
+        out = F.relu(out)
+
+        out = F.max_pool2d(out, <span class="hljs-number">2</span>)
+
+        out = out.view(out.size(<span class="hljs-number">0</span>), <span class="hljs-number">-1</span>)
+
+        out = self.fc1(out)
+        out = self.bn3(out)
+        out = F.relu(out)
+
+        out = F.relu(self.fc2(out))
+        out = self.fc3(out)
+        <span class="hljs-keyword">return</span> out
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize_weights</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Conv2d):
+                nn.init.normal_(m.weight.data, mean=<span class="hljs-number">0</span>, std=<span class="hljs-number">0.5</span>)
+                <span class="hljs-keyword">if</span> m.bias <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+                    m.bias.data.zero_()
+            <span class="hljs-keyword">elif</span> isinstance(m, nn.BatchNorm2d):
+                m.weight.data.fill_(<span class="hljs-number">1</span>)
+                m.bias.data.zero_()
+            <span class="hljs-keyword">elif</span> isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight.data, mean=<span class="hljs-number">0</span>, std=<span class="hljs-number">0.5</span>)
+                m.bias.data.zero_()
+
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+rmb_label = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;100&quot;</span>: <span class="hljs-number">1</span>&#125;
+
+<span class="hljs-comment"># 参数设置</span>
+MAX_EPOCH = <span class="hljs-number">10</span>
+BATCH_SIZE = <span class="hljs-number">16</span>
+LR = <span class="hljs-number">0.01</span>
+log_interval = <span class="hljs-number">10</span>
+val_interval = <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+
+split_dir = os.path.join(<span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-string">&quot;rmb_split&quot;</span>)
+train_dir = os.path.join(split_dir, <span class="hljs-string">&quot;train&quot;</span>)
+valid_dir = os.path.join(split_dir, <span class="hljs-string">&quot;valid&quot;</span>)
+
+norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
+norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
+
+train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.RandomCrop(<span class="hljs-number">32</span>, padding=<span class="hljs-number">4</span>),
+    transforms.RandomGrayscale(p=<span class="hljs-number">0.8</span>),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+valid_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+
+net = LeNet(classes=<span class="hljs-number">2</span>)
+<span class="hljs-comment"># net = LeNet_bn(classes=2)</span>
+net.initialize_weights()
+
+<span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span>
+criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span>
+
+<span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span>
+optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)                        <span class="hljs-comment"># 选择优化器</span>
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">10</span>, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span>
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+train_curve = list()
+valid_curve = list()
+
+iter_count = <span class="hljs-number">0</span>
+<span class="hljs-comment"># 构建 SummaryWriter</span>
+writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
+
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+
+    loss_mean = <span class="hljs-number">0.</span>
+    correct = <span class="hljs-number">0.</span>
+    total = <span class="hljs-number">0.</span>
+
+    net.train()
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        iter_count += <span class="hljs-number">1</span>
+
+        <span class="hljs-comment"># forward</span>
+        inputs, labels = data
+        outputs = net(inputs)
+
+        <span class="hljs-comment"># backward</span>
+        optimizer.zero_grad()
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        <span class="hljs-comment"># update weights</span>
+        optimizer.step()
+
+        <span class="hljs-comment"># 统计分类情况</span>
+        _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+        total += labels.size(<span class="hljs-number">0</span>)
+        correct += (predicted == labels).squeeze().sum().numpy()
+
+        <span class="hljs-comment"># 打印训练信息</span>
+        loss_mean += loss.item()
+        train_curve.append(loss.item())
+        <span class="hljs-keyword">if</span> (i+<span class="hljs-number">1</span>) % log_interval == <span class="hljs-number">0</span>:
+            loss_mean = loss_mean / log_interval
+            print(<span class="hljs-string">&quot;Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
+                epoch, MAX_EPOCH, i+<span class="hljs-number">1</span>, len(train_loader), loss_mean, correct / total))
+            loss_mean = <span class="hljs-number">0.</span>
+
+        <span class="hljs-comment"># 记录数据，保存于event file</span>
+        writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: loss.item()&#125;, iter_count)
+        writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: correct / total&#125;, iter_count)
+
+    scheduler.step()  <span class="hljs-comment"># 更新学习率</span>
+
+    <span class="hljs-comment"># validate the model</span>
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % val_interval == <span class="hljs-number">0</span>:
+
+        correct_val = <span class="hljs-number">0.</span>
+        total_val = <span class="hljs-number">0.</span>
+        loss_val = <span class="hljs-number">0.</span>
+        net.eval()
+        <span class="hljs-keyword">with</span> torch.no_grad():
+            <span class="hljs-keyword">for</span> j, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
+                inputs, labels = data
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+
+                _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+                total_val += labels.size(<span class="hljs-number">0</span>)
+                correct_val += (predicted == labels).squeeze().sum().numpy()
+
+                loss_val += loss.item()
+
+            valid_curve.append(loss.item())
+            print(<span class="hljs-string">&quot;Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
+                epoch, MAX_EPOCH, j+<span class="hljs-number">1</span>, len(valid_loader), loss_val, correct / total))
+
+            <span class="hljs-comment"># 记录数据，保存于event file</span>
+            writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Valid&quot;</span>: loss.item()&#125;, iter_count)
+            writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Valid&quot;</span>: correct / total&#125;, iter_count)</code></pre>
+
+<p>这里我们对权值初始化用的是mean=0，std=0.5的正态分布，这不是一个很好的参数初始化，如果我们不用BN层，会得到下面的结果：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213706.png" srcset="/img/loading.gif" alt="image-20200812213500478"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213705.png" srcset="/img/loading.gif" alt="image-20200812213645735"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213702.png" srcset="/img/loading.gif" alt="image-20200812213535791"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213700.png" srcset="/img/loading.gif" alt="image-20200812213658787"></p>
+<pre><code class="hljs apache"><span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">6934</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">1</span>.<span class="hljs-number">3892</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%</code></pre>
+
+<p>到第9个epoch，loss还是很大，acc=50%，对于一个二分类问题基本就是瞎猜的概率，这个模型根本没有训练到。</p>
+<p>下面我们使用BN层</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213911.png" srcset="/img/loading.gif" alt="image-20200812213909788"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213934.png" srcset="/img/loading.gif" alt="image-20200812213933179"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213922.png" srcset="/img/loading.gif" alt="image-20200812213921147"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213951.png" srcset="/img/loading.gif" alt="image-20200812213950548"></p>
+<pre><code class="hljs apache"><span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0019</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%
+<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0000</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%</code></pre>
+
+<p>可以看到，这改变是非常大的，使用BN层使得模型对参数初始化不那么敏感</p>
+<h1 id="4-LN-IN-GN正则化"><a href="#4-LN-IN-GN正则化" class="headerlink" title="4. LN/IN/GN正则化"></a>4. LN/IN/GN正则化</h1><p>常见的Normalization：</p>
+<ol>
+<li>Batch Normalization（BN）</li>
+<li>Layer Normalization（LN）</li>
+<li>Instance Normalization（IN）</li>
+<li>Group Normalization（GN）</li>
+</ol>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200813214834.png" srcset="/img/loading.gif" alt="image-20200813214826326"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200814160107.png" srcset="/img/loading.gif" alt="image-20200814160059681"></p>
+<p>加入输入数据一个batch的尺寸是BCHW</p>
+<ul>
+<li>BN是对BHW计算均值方差，每一个C有一个均值和方差</li>
+<li>LN是对CHW计算均值和方差，每一个B有一个均值和方差</li>
+<li>IN是对HW计算均值和方差，每一个B和C都有一个均值和方差</li>
+<li>GN首先将C分为若干组Ci，然后对CiHW计算均值和方差，每一个B和Ci都有一个均值和方差</li>
+</ul>
+<h2 id="4-1-Layer-Normalization正则化"><a href="#4-1-Layer-Normalization正则化" class="headerlink" title="4.1 Layer Normalization正则化"></a>4.1 Layer Normalization正则化</h2><p>起因：BN并不适用于RNN等动态网络；batchsize较小的时候效果不好</p>
+<p>思路：对每一个输出计算均值和方差（BCHW中对CHW计算均值和方差）</p>
+<p>注意事项：</p>
+<ol>
+<li>不再有running_mean和running_var</li>
+<li>gamma和beta为逐元素的</li>
+</ol>
+<p>参考文献：《Layer Normalization》</p>
+<pre><code class="hljs python">nn.LayerNorm(normalized_shape, 
+             eps=<span class="hljs-number">1e-05</span>, 
+             elementwise_affine=<span class="hljs-literal">True</span>)</code></pre>
+
+<p>主要参数：</p>
+<ul>
+<li>normalized_shape：该层特征形状</li>
+<li>eps：分母修正项</li>
+<li>elementwise_affine：是否需要affine transform</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+batch_size = <span class="hljs-number">2</span>
+num_features = <span class="hljs-number">3</span>
+
+features_shape = (<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+
+feature_maps_bs = torch.randn(batch_size, num_features, features_shape[<span class="hljs-number">0</span>], features_shape[<span class="hljs-number">1</span>])
+
+<span class="hljs-comment"># feature_maps_bs shape is B * C * H * W</span>
+ln = nn.LayerNorm(feature_maps_bs.size()[<span class="hljs-number">1</span>:])
+
+output = ln(feature_maps_bs)
+
+print(<span class="hljs-string">&quot;input data:\n&#123;&#125; shape is &#123;&#125;&quot;</span>.format(feature_maps_bs, feature_maps_bs.shape))
+print(<span class="hljs-string">&quot;weight shape:&#123;&#125;&quot;</span>.format(ln.weight.shape))
+print(<span class="hljs-string">&quot;outputs:\n&#123;&#125;&quot;</span>.format(output))
+
+feature_maps_bs_1 = feature_maps_bs.reshape(batch_size, <span class="hljs-number">-1</span>)  <span class="hljs-comment"># BCHW变成BX</span>
+
+mean_t, var_t = feature_maps_bs_1.mean(dim=<span class="hljs-number">1</span>), feature_maps_bs_1.var(dim=<span class="hljs-number">1</span>, unbiased=<span class="hljs-literal">False</span>)
+
+print(<span class="hljs-string">&#x27;mean_t=&#123;&#125;, var_t=&#123;&#125;&#x27;</span>.format(mean_t, var_t))
+
+feature_maps_mean = mean_t.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCHW的shape，并使用广播机制（自动复制维度为1的dim）</span>
+feature_maps_var = var_t.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)
+
+print(<span class="hljs-string">&quot;我们计算的out:\n&#123;&#125;&quot;</span>.format(((feature_maps_bs - feature_maps_mean) / np.sqrt(feature_maps_var + <span class="hljs-number">1e-05</span>))))</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">input data:
+tensor([[[[<span class="hljs-number">-1.5256</span>, <span class="hljs-number">-0.7502</span>],
+          [<span class="hljs-number">-0.6540</span>, <span class="hljs-number">-1.6095</span>]],
+
+         [[<span class="hljs-number">-0.1002</span>, <span class="hljs-number">-0.6092</span>],
+          [<span class="hljs-number">-0.9798</span>, <span class="hljs-number">-1.6091</span>]],
+
+         [[ <span class="hljs-number">0.4391</span>,  <span class="hljs-number">1.1712</span>],
+          [ <span class="hljs-number">1.7674</span>, <span class="hljs-number">-0.0954</span>]]],
+
+
+        [[[ <span class="hljs-number">0.1394</span>, <span class="hljs-number">-1.5785</span>],
+          [<span class="hljs-number">-0.3206</span>, <span class="hljs-number">-0.2993</span>]],
+
+         [[<span class="hljs-number">-0.7984</span>,  <span class="hljs-number">0.3357</span>],
+          [ <span class="hljs-number">0.2753</span>,  <span class="hljs-number">1.7163</span>]],
+
+         [[<span class="hljs-number">-0.0561</span>,  <span class="hljs-number">0.9107</span>],
+          [<span class="hljs-number">-1.3924</span>,  <span class="hljs-number">2.6891</span>]]]]) shape <span class="hljs-keyword">is</span> torch.Size([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])
+weight shape:torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])
+outputs:
+tensor([[[[<span class="hljs-number">-1.1093</span>, <span class="hljs-number">-0.3588</span>],
+          [<span class="hljs-number">-0.2656</span>, <span class="hljs-number">-1.1905</span>]],
+
+         [[ <span class="hljs-number">0.2705</span>, <span class="hljs-number">-0.2222</span>],
+          [<span class="hljs-number">-0.5810</span>, <span class="hljs-number">-1.1901</span>]],
+
+         [[ <span class="hljs-number">0.7925</span>,  <span class="hljs-number">1.5011</span>],
+          [ <span class="hljs-number">2.0783</span>,  <span class="hljs-number">0.2751</span>]]],
+
+
+        [[[ <span class="hljs-number">0.0037</span>, <span class="hljs-number">-1.4722</span>],
+          [<span class="hljs-number">-0.3915</span>, <span class="hljs-number">-0.3732</span>]],
+
+         [[<span class="hljs-number">-0.8020</span>,  <span class="hljs-number">0.1724</span>],
+          [ <span class="hljs-number">0.1205</span>,  <span class="hljs-number">1.3584</span>]],
+
+         [[<span class="hljs-number">-0.1643</span>,  <span class="hljs-number">0.6663</span>],
+          [<span class="hljs-number">-1.3123</span>,  <span class="hljs-number">2.1942</span>]]]], grad_fn=&lt;NativeLayerNormBackward&gt;)
+mean_t=tensor([<span class="hljs-number">-0.3796</span>,  <span class="hljs-number">0.1351</span>]), var_t=tensor([<span class="hljs-number">1.0673</span>, <span class="hljs-number">1.3549</span>])
+我们计算的out:
+tensor([[[[<span class="hljs-number">-1.1093</span>, <span class="hljs-number">-0.3588</span>],
+          [<span class="hljs-number">-0.2656</span>, <span class="hljs-number">-1.1905</span>]],
+
+         [[ <span class="hljs-number">0.2705</span>, <span class="hljs-number">-0.2222</span>],
+          [<span class="hljs-number">-0.5810</span>, <span class="hljs-number">-1.1901</span>]],
+
+         [[ <span class="hljs-number">0.7925</span>,  <span class="hljs-number">1.5011</span>],
+          [ <span class="hljs-number">2.0783</span>,  <span class="hljs-number">0.2751</span>]]],
+
+
+        [[[ <span class="hljs-number">0.0037</span>, <span class="hljs-number">-1.4722</span>],
+          [<span class="hljs-number">-0.3915</span>, <span class="hljs-number">-0.3732</span>]],
+
+         [[<span class="hljs-number">-0.8020</span>,  <span class="hljs-number">0.1724</span>],
+          [ <span class="hljs-number">0.1205</span>,  <span class="hljs-number">1.3584</span>]],
+
+         [[<span class="hljs-number">-0.1643</span>,  <span class="hljs-number">0.6663</span>],
+          [<span class="hljs-number">-1.3123</span>,  <span class="hljs-number">2.1942</span>]]]])</code></pre>
+
+<p>LN的权值尺寸为(3, 2, 2)，说明affine transform的gamma和beta是逐元素的（BN则是每一个通道有一个gamma和beta）</p>
+<p>此外，LN其实就算对输入数据的后面连续几个维度做标准化；比如输入数据尺寸为[2, 3, 2, 2]，那么<code>ln = nn.LayerNorm((2))</code>, <code>ln = nn.LayerNorm((2, 2))</code>或者<code>ln = nn.LayerNorm((3, 2, 2))</code>都是可以的。</p>
+<h2 id="4-2-Instance-Normalization正则化"><a href="#4-2-Instance-Normalization正则化" class="headerlink" title="4.2 Instance Normalization正则化"></a>4.2 Instance Normalization正则化</h2><p>起因：BN在图像生成（Image Generation）中不适用</p>
+<p>思路：对每一个特征图计算均值和方差（BCHW中对HW计算均值和方差）</p>
+<p>参考文献：</p>
+<ul>
+<li>《Instance Normalization: The Missing Ingredient for Fast Stylization》</li>
+<li>《Image Style Transfer Using Convolutional Neural Networks》</li>
+</ul>
+<pre><code class="hljs python">nn.InstanceNorm2d(num_features, 
+                  eps=<span class="hljs-number">1e-05</span>, 
+                  momentum=<span class="hljs-number">0.1</span>, 
+                  affine=<span class="hljs-literal">False</span>, 
+                  track_running_stats=<span class="hljs-literal">False</span>)</code></pre>
+
+<p>主要参数：</p>
+<ul>
+<li>num_features：一个样本特征数量（最重要）</li>
+<li>eps：分母修正项</li>
+<li>momentum：指数加权平均估计当前mean/var</li>
+<li>affine：是否需要affine transform</li>
+<li>track_running_stats：是训练状态，还是测试状态</li>
+</ul>
+<p>参数和属性与BN是一模一样的</p>
+<p>但是这里track_running_stats和affine默认是False的，说明不怎么使用这两个功能。</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+batch_size = <span class="hljs-number">3</span>
+num_features = <span class="hljs-number">3</span>
+features_shape = (<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+
+feature_maps_bs = torch.randn(batch_size, num_features, features_shape[<span class="hljs-number">0</span>], features_shape[<span class="hljs-number">1</span>])
+
+print(<span class="hljs-string">&quot;input data:\n&#123;&#125; shape is &#123;&#125;&quot;</span>.format(feature_maps_bs, feature_maps_bs.shape))
+
+instance_n = nn.InstanceNorm2d(num_features=num_features)
+running_mean, running_var = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+
+outputs = instance_n(feature_maps_bs)
+
+print(<span class="hljs-string">&quot;outputs:\n&#123;&#125; &quot;</span>.format(outputs))
+
+feature_maps_bs_1 = feature_maps_bs.reshape((batch_size, num_features, <span class="hljs-number">-1</span>))  <span class="hljs-comment"># 由BCHW变成BCX方便我们对HW求均值方差</span>
+
+mean_t, var_t = feature_maps_bs_1.mean(dim=<span class="hljs-number">-1</span>), feature_maps_bs_1.var(dim=<span class="hljs-number">-1</span>, unbiased=<span class="hljs-literal">False</span>)
+
+feature_maps_mean = mean_t.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCHW的shape，并使用广播机制（自动复制维度为1的dim）</span>
+feature_maps_var = var_t.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)
+
+print(<span class="hljs-string">&quot;我们计算的out:\n&#123;&#125;&quot;</span>.format(((feature_maps_bs - feature_maps_mean) / np.sqrt(feature_maps_var + <span class="hljs-number">1e-05</span>))))</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">input data:
+tensor([[[[<span class="hljs-number">-1.5256</span>, <span class="hljs-number">-0.7502</span>],
+          [<span class="hljs-number">-0.6540</span>, <span class="hljs-number">-1.6095</span>]],
+
+         [[<span class="hljs-number">-0.1002</span>, <span class="hljs-number">-0.6092</span>],
+          [<span class="hljs-number">-0.9798</span>, <span class="hljs-number">-1.6091</span>]],
+
+         [[<span class="hljs-number">-0.7121</span>,  <span class="hljs-number">0.3037</span>],
+          [<span class="hljs-number">-0.7773</span>, <span class="hljs-number">-0.2515</span>]]],
+
+
+        [[[<span class="hljs-number">-0.2223</span>,  <span class="hljs-number">1.6871</span>],
+          [ <span class="hljs-number">0.2284</span>,  <span class="hljs-number">0.4676</span>]],
+
+         [[<span class="hljs-number">-0.6970</span>, <span class="hljs-number">-1.1608</span>],
+          [ <span class="hljs-number">0.6995</span>,  <span class="hljs-number">0.1991</span>]],
+
+         [[ <span class="hljs-number">0.1991</span>,  <span class="hljs-number">0.0457</span>],
+          [ <span class="hljs-number">0.1530</span>, <span class="hljs-number">-0.4757</span>]]],
+
+
+        [[[<span class="hljs-number">-1.8821</span>, <span class="hljs-number">-0.7765</span>],
+          [ <span class="hljs-number">2.0242</span>, <span class="hljs-number">-0.0865</span>]],
+
+         [[ <span class="hljs-number">2.3571</span>, <span class="hljs-number">-1.0373</span>],
+          [ <span class="hljs-number">1.5748</span>, <span class="hljs-number">-0.6298</span>]],
+
+         [[ <span class="hljs-number">2.4070</span>,  <span class="hljs-number">0.2786</span>],
+          [ <span class="hljs-number">0.2468</span>,  <span class="hljs-number">1.1843</span>]]]]) shape <span class="hljs-keyword">is</span> torch.Size([<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])
+outputs:
+tensor([[[[<span class="hljs-number">-0.8982</span>,  <span class="hljs-number">0.8840</span>],
+          [ <span class="hljs-number">1.1052</span>, <span class="hljs-number">-1.0910</span>]],
+
+         [[ <span class="hljs-number">1.3167</span>,  <span class="hljs-number">0.3915</span>],
+          [<span class="hljs-number">-0.2821</span>, <span class="hljs-number">-1.4260</span>]],
+
+         [[<span class="hljs-number">-0.8146</span>,  <span class="hljs-number">1.5307</span>],
+          [<span class="hljs-number">-0.9650</span>,  <span class="hljs-number">0.2490</span>]]],
+
+
+        [[[<span class="hljs-number">-1.0785</span>,  <span class="hljs-number">1.6222</span>],
+          [<span class="hljs-number">-0.4410</span>, <span class="hljs-number">-0.1027</span>]],
+
+         [[<span class="hljs-number">-0.6262</span>, <span class="hljs-number">-1.2614</span>],
+          [ <span class="hljs-number">1.2866</span>,  <span class="hljs-number">0.6011</span>]],
+
+         [[ <span class="hljs-number">0.8118</span>,  <span class="hljs-number">0.2422</span>],
+          [ <span class="hljs-number">0.6406</span>, <span class="hljs-number">-1.6945</span>]]],
+
+
+        [[[<span class="hljs-number">-1.1945</span>, <span class="hljs-number">-0.4185</span>],
+          [ <span class="hljs-number">1.5472</span>,  <span class="hljs-number">0.0658</span>]],
+
+         [[ <span class="hljs-number">1.2488</span>, <span class="hljs-number">-1.1181</span>],
+          [ <span class="hljs-number">0.7033</span>, <span class="hljs-number">-0.8340</span>]],
+
+         [[ <span class="hljs-number">1.5656</span>, <span class="hljs-number">-0.8529</span>],
+          [<span class="hljs-number">-0.8890</span>,  <span class="hljs-number">0.1763</span>]]]]) 
+我们计算的out:
+tensor([[[[<span class="hljs-number">-0.8982</span>,  <span class="hljs-number">0.8840</span>],
+          [ <span class="hljs-number">1.1052</span>, <span class="hljs-number">-1.0910</span>]],
+
+         [[ <span class="hljs-number">1.3167</span>,  <span class="hljs-number">0.3915</span>],
+          [<span class="hljs-number">-0.2821</span>, <span class="hljs-number">-1.4260</span>]],
+
+         [[<span class="hljs-number">-0.8146</span>,  <span class="hljs-number">1.5307</span>],
+          [<span class="hljs-number">-0.9650</span>,  <span class="hljs-number">0.2490</span>]]],
+
+
+        [[[<span class="hljs-number">-1.0785</span>,  <span class="hljs-number">1.6222</span>],
+          [<span class="hljs-number">-0.4410</span>, <span class="hljs-number">-0.1027</span>]],
+
+         [[<span class="hljs-number">-0.6262</span>, <span class="hljs-number">-1.2614</span>],
+          [ <span class="hljs-number">1.2866</span>,  <span class="hljs-number">0.6011</span>]],
+
+         [[ <span class="hljs-number">0.8118</span>,  <span class="hljs-number">0.2422</span>],
+          [ <span class="hljs-number">0.6406</span>, <span class="hljs-number">-1.6945</span>]]],
+
+
+        [[[<span class="hljs-number">-1.1945</span>, <span class="hljs-number">-0.4185</span>],
+          [ <span class="hljs-number">1.5472</span>,  <span class="hljs-number">0.0658</span>]],
+
+         [[ <span class="hljs-number">1.2488</span>, <span class="hljs-number">-1.1181</span>],
+          [ <span class="hljs-number">0.7033</span>, <span class="hljs-number">-0.8340</span>]],
+
+         [[ <span class="hljs-number">1.5656</span>, <span class="hljs-number">-0.8529</span>],
+          [<span class="hljs-number">-0.8890</span>,  <span class="hljs-number">0.1763</span>]]]])</code></pre>
+
+
+
+<h2 id="4-3-Group-Normalization正则化"><a href="#4-3-Group-Normalization正则化" class="headerlink" title="4.3 Group Normalization正则化"></a>4.3 Group Normalization正则化</h2><p>起因：小batch样本中，BN估计的值不准<br>思路：数据不够，通道来凑</p>
+<p>注意事项：</p>
+<ol>
+<li>不再有running_mean和running_var</li>
+<li>gamma和beta为逐通道（channel）的</li>
+</ol>
+<p>应用场景：大模型（小batch size）任务</p>
+<p>参考文献：《Group Normalization》</p>
+<pre><code class="hljs python">nn.GroupNorm(num_groups, 
+             num_channels, 
+             eps=<span class="hljs-number">1e-05</span>, 
+             affine=<span class="hljs-literal">True</span>)</code></pre>
+
+<p>主要参数：</p>
+<ul>
+<li>num_groups：分组数</li>
+<li>num_channels：通道数（特征数）</li>
+<li>eps：分母修正项</li>
+<li>affine：是否需要affine transform</li>
+</ul>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+batch_size = <span class="hljs-number">2</span>
+num_features = <span class="hljs-number">4</span>
+num_groups = <span class="hljs-number">2</span>   <span class="hljs-comment"># 3 Expected number of channels in input to be divisible by num_groups</span>
+
+features_shape = (<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+
+<span class="hljs-comment"># feature_map = torch.ones(features_shape)    # 2D</span>
+<span class="hljs-comment"># feature_maps = torch.stack([feature_map * (i + 1) for i in range(num_features)], dim=0)  # 3D</span>
+<span class="hljs-comment"># feature_maps_bs = torch.stack([feature_maps * (i + 1) for i in range(batch_size)], dim=0)  # 4D</span>
+
+feature_maps_bs = torch.randn(batch_size, num_features, features_shape[<span class="hljs-number">0</span>], features_shape[<span class="hljs-number">1</span>])
+
+gn = nn.GroupNorm(num_groups, num_features)
+outputs = gn(feature_maps_bs)
+
+print(<span class="hljs-string">&quot;input data:\n&#123;&#125; shape is &#123;&#125;&quot;</span>.format(feature_maps_bs, feature_maps_bs.shape))
+
+print(<span class="hljs-string">&quot;outputs:\n&#123;&#125; &quot;</span>.format(outputs))
+
+print(gn.weight.shape)
+
+feature_maps_bs_c1 = feature_maps_bs[:, :int(num_features/num_groups), :, :]  <span class="hljs-comment"># 获得BC1HW</span>
+feature_maps_bs_c2 = feature_maps_bs[:, int(num_features/num_groups):, :, :]  <span class="hljs-comment"># 获得BC2HW</span>
+
+feature_maps_bs_1 = feature_maps_bs_c1.reshape(batch_size, <span class="hljs-number">-1</span>)  <span class="hljs-comment"># BC1HW变成BX，方便计算C1HW的均值方差</span>
+feature_maps_bs_2 = feature_maps_bs_c2.reshape(batch_size, <span class="hljs-number">-1</span>)  <span class="hljs-comment"># BC2HW变成BX，方便计算C1HW的均值方差</span>
+
+mean_1, var_1 = feature_maps_bs_1.mean(dim=<span class="hljs-number">-1</span>), feature_maps_bs_1.var(dim=<span class="hljs-number">-1</span>, unbiased=<span class="hljs-literal">False</span>)
+mean_2, var_2 = feature_maps_bs_2.mean(dim=<span class="hljs-number">-1</span>), feature_maps_bs_2.var(dim=<span class="hljs-number">-1</span>, unbiased=<span class="hljs-literal">False</span>)
+
+feature_maps_mean_1 = mean_1.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCHW的shape，并使用广播机制（自动复制维度为1的dim）</span>
+feature_maps_var_1 = var_1.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCHW的shape，并使用广播机制（自动复制维度为1的dim）</span>
+feature_maps_mean_2 = mean_2.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCHW的shape，并使用广播机制（自动复制维度为1的dim）</span>
+feature_maps_var_2 = var_2.unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>).unsqueeze(<span class="hljs-number">-1</span>)  <span class="hljs-comment"># 扩展至BCHW的shape，并使用广播机制（自动复制维度为1的dim）</span>
+
+output1 = (feature_maps_bs_c1 - feature_maps_mean_1) / np.sqrt(feature_maps_var_1 + <span class="hljs-number">1e-05</span>)
+output2 = (feature_maps_bs_c2 - feature_maps_mean_2) / np.sqrt(feature_maps_var_2 + <span class="hljs-number">1e-05</span>)
+
+output = torch.cat([output1, output2], dim=<span class="hljs-number">1</span>)
+
+print(<span class="hljs-string">&quot;我们计算的out:\n&#123;&#125;&quot;</span>.format(output))</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">input data:
+tensor([[[[<span class="hljs-number">-1.5256</span>, <span class="hljs-number">-0.7502</span>],
+          [<span class="hljs-number">-0.6540</span>, <span class="hljs-number">-1.6095</span>]],
+
+         [[<span class="hljs-number">-0.1002</span>, <span class="hljs-number">-0.6092</span>],
+          [<span class="hljs-number">-0.9798</span>, <span class="hljs-number">-1.6091</span>]],
+
+         [[<span class="hljs-number">-0.7121</span>,  <span class="hljs-number">0.3037</span>],
+          [<span class="hljs-number">-0.7773</span>, <span class="hljs-number">-0.2515</span>]],
+
+         [[<span class="hljs-number">-0.2223</span>,  <span class="hljs-number">1.6871</span>],
+          [ <span class="hljs-number">0.2284</span>,  <span class="hljs-number">0.4676</span>]]],
+
+
+        [[[<span class="hljs-number">-0.6970</span>, <span class="hljs-number">-1.1608</span>],
+          [ <span class="hljs-number">0.6995</span>,  <span class="hljs-number">0.1991</span>]],
+
+         [[ <span class="hljs-number">0.8657</span>,  <span class="hljs-number">0.2444</span>],
+          [<span class="hljs-number">-0.6629</span>,  <span class="hljs-number">0.8073</span>]],
+
+         [[ <span class="hljs-number">1.1017</span>, <span class="hljs-number">-0.1759</span>],
+          [<span class="hljs-number">-2.2456</span>, <span class="hljs-number">-1.4465</span>]],
+
+         [[ <span class="hljs-number">0.0612</span>, <span class="hljs-number">-0.6177</span>],
+          [<span class="hljs-number">-0.7981</span>, <span class="hljs-number">-0.1316</span>]]]]) shape <span class="hljs-keyword">is</span> torch.Size([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])
+outputs:
+tensor([[[[<span class="hljs-number">-1.0505e+00</span>,  <span class="hljs-number">4.4155e-01</span>],
+          [ <span class="hljs-number">6.2676e-01</span>, <span class="hljs-number">-1.2119e+00</span>]],
+
+         [[ <span class="hljs-number">1.6925e+00</span>,  <span class="hljs-number">7.1295e-01</span>],
+          [<span class="hljs-number">-1.5879e-04</span>, <span class="hljs-number">-1.2112e+00</span>]],
+
+         [[<span class="hljs-number">-1.0862e+00</span>,  <span class="hljs-number">2.8861e-01</span>],
+          [<span class="hljs-number">-1.1744e+00</span>, <span class="hljs-number">-4.6273e-01</span>]],
+
+         [[<span class="hljs-number">-4.2323e-01</span>,  <span class="hljs-number">2.1608e+00</span>],
+          [ <span class="hljs-number">1.8671e-01</span>,  <span class="hljs-number">5.1043e-01</span>]]],
+
+
+        [[[<span class="hljs-number">-1.0067e+00</span>, <span class="hljs-number">-1.6429e+00</span>],
+          [ <span class="hljs-number">9.0893e-01</span>,  <span class="hljs-number">2.2244e-01</span>]],
+
+         [[ <span class="hljs-number">1.1368e+00</span>,  <span class="hljs-number">2.8461e-01</span>],
+          [<span class="hljs-number">-9.5998e-01</span>,  <span class="hljs-number">1.0568e+00</span>]],
+
+         [[ <span class="hljs-number">1.7266e+00</span>,  <span class="hljs-number">3.7595e-01</span>],
+          [<span class="hljs-number">-1.8119e+00</span>, <span class="hljs-number">-9.6716e-01</span>]],
+
+         [[ <span class="hljs-number">6.2659e-01</span>, <span class="hljs-number">-9.1099e-02</span>],
+          [<span class="hljs-number">-2.8173e-01</span>,  <span class="hljs-number">4.2280e-01</span>]]]], grad_fn=&lt;NativeGroupNormBackward&gt;) 
+torch.Size([<span class="hljs-number">4</span>])
+我们计算的out:
+tensor([[[[<span class="hljs-number">-1.0505e+00</span>,  <span class="hljs-number">4.4155e-01</span>],
+          [ <span class="hljs-number">6.2676e-01</span>, <span class="hljs-number">-1.2119e+00</span>]],
+
+         [[ <span class="hljs-number">1.6925e+00</span>,  <span class="hljs-number">7.1295e-01</span>],
+          [<span class="hljs-number">-1.5886e-04</span>, <span class="hljs-number">-1.2112e+00</span>]],
+
+         [[<span class="hljs-number">-1.0862e+00</span>,  <span class="hljs-number">2.8861e-01</span>],
+          [<span class="hljs-number">-1.1744e+00</span>, <span class="hljs-number">-4.6273e-01</span>]],
+
+         [[<span class="hljs-number">-4.2323e-01</span>,  <span class="hljs-number">2.1608e+00</span>],
+          [ <span class="hljs-number">1.8671e-01</span>,  <span class="hljs-number">5.1043e-01</span>]]],
+
+
+        [[[<span class="hljs-number">-1.0067e+00</span>, <span class="hljs-number">-1.6429e+00</span>],
+          [ <span class="hljs-number">9.0893e-01</span>,  <span class="hljs-number">2.2244e-01</span>]],
+
+         [[ <span class="hljs-number">1.1368e+00</span>,  <span class="hljs-number">2.8461e-01</span>],
+          [<span class="hljs-number">-9.5998e-01</span>,  <span class="hljs-number">1.0568e+00</span>]],
+
+         [[ <span class="hljs-number">1.7266e+00</span>,  <span class="hljs-number">3.7595e-01</span>],
+          [<span class="hljs-number">-1.8119e+00</span>, <span class="hljs-number">-9.6716e-01</span>]],
+
+         [[ <span class="hljs-number">6.2659e-01</span>, <span class="hljs-number">-9.1099e-02</span>],
+          [<span class="hljs-number">-2.8173e-01</span>,  <span class="hljs-number">4.2280e-01</span>]]]])</code></pre>
+
+<p>GN的权值尺寸为[4]，说明affine transform的gamma和beta是每一个BCi有一对</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/15/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模型保存与加载</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/">
+                        <span class="hidden-mobile">Hook函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "正则化方法&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

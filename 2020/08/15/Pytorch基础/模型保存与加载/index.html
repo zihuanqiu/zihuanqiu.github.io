@@ -1,0 +1,1122 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>模型保存与加载 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-15 10:00" pubdate>
+      2020年8月15日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">模型保存与加载</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-PyTorch中对象的保存与加载"><a href="#1-PyTorch中对象的保存与加载" class="headerlink" title="1. PyTorch中对象的保存与加载"></a>1. PyTorch中对象的保存与加载</h1><h2 id="1-1-torch-save"><a href="#1-1-torch-save" class="headerlink" title="1.1 torch.save"></a>1.1 torch.save</h2><pre><code class="hljs python">torch.save(obj, f)</code></pre>
+
+<p>主要参数：</p>
+<ul>
+<li>obj：对象</li>
+<li>f：输出路径</li>
+</ul>
+<h2 id="1-2-torch-load"><a href="#1-2-torch-load" class="headerlink" title="1.2 torch.load"></a>1.2 torch.load</h2><pre><code class="hljs python">torch.load(f, map_location=<span class="hljs-literal">None</span>)</code></pre>
+
+<p>主要参数</p>
+<ul>
+<li>f：文件路径</li>
+<li>map_location：指定存放位置, cpu or gpu</li>
+</ul>
+<h1 id="2-PyTorch中模型的保存"><a href="#2-PyTorch中模型的保存" class="headerlink" title="2. PyTorch中模型的保存"></a>2. PyTorch中模型的保存</h1><p>以下实验要保存的网络为：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNet2</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, classes</span>):</span>
+        super(LeNet2, self).__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>),
+            nn.ReLU(),
+            nn.MaxPool2d(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+            nn.Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, <span class="hljs-number">5</span>),
+            nn.ReLU(),
+            nn.MaxPool2d(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(<span class="hljs-number">16</span>*<span class="hljs-number">5</span>*<span class="hljs-number">5</span>, <span class="hljs-number">120</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="hljs-number">120</span>, <span class="hljs-number">84</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="hljs-number">84</span>, classes)
+        )
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        x = self.features(x)
+        x = x.view(x.size()[<span class="hljs-number">0</span>], <span class="hljs-number">-1</span>)
+        x = self.classifier(x)
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> self.parameters():
+            p.data.fill_(<span class="hljs-number">20191104</span>)</code></pre>
+
+
+
+<h2 id="2-1-方法一：保存整个Module"><a href="#2-1-方法一：保存整个Module" class="headerlink" title="2.1 方法一：保存整个Module"></a>2.1 方法一：保存整个Module</h2><pre><code class="hljs python">torch.save(net, path)</code></pre>
+
+<p>将整个网络打包保存下来，比较省事但是比较耗时耗内存。</p>
+<h2 id="2-2-方法二：保存模型参数"><a href="#2-2-方法二：保存模型参数" class="headerlink" title="2.2 方法二：保存模型参数"></a>2.2 方法二：保存模型参数</h2><pre><code class="hljs python">state_dict = net.state_dict()
+torch.save(state_dict , path)</code></pre>
+
+<p>把网络的所有权值（用state_dict()获取）保存下来</p>
+<p>我们看看state_dict函数</p>
+<pre><code class="hljs python">state_dict(destination=<span class="hljs-literal">None</span>, prefix=<span class="hljs-string">&#x27;&#x27;</span>, keep_vars=<span class="hljs-literal">False</span>)</code></pre>
+
+<p>功能：返回包含模块整个状态的字典。包括参数和持久缓冲区（例如运行平均值）。键是相应的参数和缓冲区名称。</p>
+<p>加载模型时需要重新构建网络然后加载state_dict。比较省内存，保存的速度也比较快。推荐这种方法。</p>
+<h2 id="2-3-保存模型实验"><a href="#2-3-保存模型实验" class="headerlink" title="2.3 保存模型实验"></a>2.3 保存模型实验</h2><pre><code class="hljs python">net = LeNet2(classes=<span class="hljs-number">2019</span>)
+
+<span class="hljs-comment"># &quot;训练&quot;</span>
+print(<span class="hljs-string">&quot;训练前: &quot;</span>, net.features[<span class="hljs-number">0</span>].weight[<span class="hljs-number">0</span>, ...])
+net.initialize()
+print(<span class="hljs-string">&quot;训练后: &quot;</span>, net.features[<span class="hljs-number">0</span>].weight[<span class="hljs-number">0</span>, ...])
+
+path_model = <span class="hljs-string">&quot;./model.pkl&quot;</span>
+path_state_dict = <span class="hljs-string">&quot;./model_state_dict.pkl&quot;</span>
+
+<span class="hljs-comment"># 保存整个模型</span>
+torch.save(net, path_model)
+
+<span class="hljs-comment"># 保存模型参数</span>
+net_state_dict = net.state_dict()
+torch.save(net_state_dict, path_state_dict)</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">训练前:  tensor([[[ <span class="hljs-number">0.0840</span>,  <span class="hljs-number">0.1148</span>,  <span class="hljs-number">0.0477</span>,  <span class="hljs-number">0.0700</span>, <span class="hljs-number">-0.0106</span>],
+         [ <span class="hljs-number">0.1000</span>, <span class="hljs-number">-0.0980</span>, <span class="hljs-number">-0.0225</span>, <span class="hljs-number">-0.0794</span>, <span class="hljs-number">-0.0793</span>],
+         [ <span class="hljs-number">0.0915</span>, <span class="hljs-number">-0.0229</span>, <span class="hljs-number">-0.0222</span>, <span class="hljs-number">-0.0409</span>,  <span class="hljs-number">0.0894</span>],
+         [ <span class="hljs-number">0.0444</span>,  <span class="hljs-number">0.0796</span>,  <span class="hljs-number">0.0176</span>, <span class="hljs-number">-0.0989</span>,  <span class="hljs-number">0.0571</span>],
+         [ <span class="hljs-number">0.0642</span>,  <span class="hljs-number">0.0691</span>,  <span class="hljs-number">0.0382</span>, <span class="hljs-number">-0.0549</span>,  <span class="hljs-number">0.0555</span>]],
+
+        [[<span class="hljs-number">-0.1023</span>,  <span class="hljs-number">0.0449</span>, <span class="hljs-number">-0.0966</span>, <span class="hljs-number">-0.0305</span>, <span class="hljs-number">-0.0489</span>],
+         [<span class="hljs-number">-0.0781</span>,  <span class="hljs-number">0.0534</span>,  <span class="hljs-number">0.0486</span>,  <span class="hljs-number">0.0315</span>,  <span class="hljs-number">0.0260</span>],
+         [ <span class="hljs-number">0.0583</span>, <span class="hljs-number">-0.0244</span>,  <span class="hljs-number">0.0346</span>, <span class="hljs-number">-0.0623</span>, <span class="hljs-number">-0.1030</span>],
+         [ <span class="hljs-number">0.1148</span>, <span class="hljs-number">-0.1038</span>, <span class="hljs-number">-0.0653</span>,  <span class="hljs-number">0.0300</span>,  <span class="hljs-number">0.0351</span>],
+         [<span class="hljs-number">-0.1022</span>, <span class="hljs-number">-0.0612</span>, <span class="hljs-number">-0.0225</span>,  <span class="hljs-number">0.0810</span>, <span class="hljs-number">-0.0252</span>]],
+
+        [[ <span class="hljs-number">0.0222</span>, <span class="hljs-number">-0.0831</span>, <span class="hljs-number">-0.0930</span>, <span class="hljs-number">-0.1112</span>,  <span class="hljs-number">0.0207</span>],
+         [ <span class="hljs-number">0.0246</span>, <span class="hljs-number">-0.0831</span>, <span class="hljs-number">-0.0317</span>, <span class="hljs-number">-0.0591</span>, <span class="hljs-number">-0.0993</span>],
+         [ <span class="hljs-number">0.0870</span>, <span class="hljs-number">-0.0170</span>,  <span class="hljs-number">0.0817</span>,  <span class="hljs-number">0.1024</span>, <span class="hljs-number">-0.0824</span>],
+         [<span class="hljs-number">-0.0761</span>,  <span class="hljs-number">0.0392</span>,  <span class="hljs-number">0.0600</span>, <span class="hljs-number">-0.0597</span>,  <span class="hljs-number">0.0248</span>],
+         [ <span class="hljs-number">0.0553</span>, <span class="hljs-number">-0.0301</span>, <span class="hljs-number">-0.0230</span>, <span class="hljs-number">-0.0375</span>,  <span class="hljs-number">0.0828</span>]]],
+       grad_fn=&lt;SelectBackward&gt;)
+训练后:  tensor([[[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]],
+
+        [[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]],
+
+        [[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]]],
+       grad_fn=&lt;SelectBackward&gt;)</code></pre>
+
+<p>保存为如下两个文件：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816001131.png" srcset="/img/loading.gif" alt="image-20200816001104430"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816001128.png" srcset="/img/loading.gif" alt="image-20200816001120505"></p>
+<h1 id="3-PyTorch中模型的加载"><a href="#3-PyTorch中模型的加载" class="headerlink" title="3. PyTorch中模型的加载"></a>3. PyTorch中模型的加载</h1><h2 id="3-1-方法一：加载整个Module"><a href="#3-1-方法一：加载整个Module" class="headerlink" title="3.1 方法一：加载整个Module"></a>3.1 方法一：加载整个Module</h2><p><strong>实验：</strong></p>
+<pre><code class="hljs python">path_model = <span class="hljs-string">&quot;./model.pkl&quot;</span>
+net_load = torch.load(path_model)
+
+print(net_load.features[<span class="hljs-number">0</span>].weight[<span class="hljs-number">0</span>, ...])</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">tensor([[[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]],
+
+        [[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]],
+
+        [[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]]],
+       grad_fn=&lt;SelectBackward&gt;)</code></pre>
+
+
+
+<h2 id="3-2-方法二：加载模型参数"><a href="#3-2-方法二：加载模型参数" class="headerlink" title="3.2 方法二：加载模型参数"></a>3.2 方法二：加载模型参数</h2><p>使用load_state_dict函数加载模型参数</p>
+<pre><code class="hljs reasonml">load<span class="hljs-constructor">_state_dict(<span class="hljs-params">state_dict</span>: Dict[<span class="hljs-params">str</span>, <span class="hljs-params">torch</span>.Tensor], <span class="hljs-params">strict</span>: <span class="hljs-params">bool</span> = True)</span></code></pre>
+
+<p>功能：将参数和缓冲区从state_dict复制到此模块及其子模块中。如果strict为True，则state_dict的键必须与此模块的state_dict()函数返回的键完全匹配。</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python">net_new = LeNet2(classes=<span class="hljs-number">2019</span>)
+path_state_dict = <span class="hljs-string">&quot;./model_state_dict.pkl&quot;</span>
+state_dict_load = torch.load(path_state_dict)
+
+print(<span class="hljs-string">&quot;加载前: &quot;</span>, net_new.features[<span class="hljs-number">0</span>].weight[<span class="hljs-number">0</span>, ...])
+net_new.load_state_dict(state_dict_load)
+print(<span class="hljs-string">&quot;加载后: &quot;</span>, net_new.features[<span class="hljs-number">0</span>].weight[<span class="hljs-number">0</span>, ...])
+print(<span class="hljs-string">&quot;state_dict的key: &quot;</span>, state_dict_load.keys())</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">加载前:  tensor([[[ <span class="hljs-number">0.0452</span>, <span class="hljs-number">-0.0556</span>,  <span class="hljs-number">0.0299</span>,  <span class="hljs-number">0.1078</span>,  <span class="hljs-number">0.0888</span>],
+         [ <span class="hljs-number">0.0699</span>, <span class="hljs-number">-0.0578</span>,  <span class="hljs-number">0.0267</span>,  <span class="hljs-number">0.1028</span>,  <span class="hljs-number">0.0795</span>],
+         [ <span class="hljs-number">0.0793</span>,  <span class="hljs-number">0.0856</span>,  <span class="hljs-number">0.0328</span>, <span class="hljs-number">-0.0826</span>,  <span class="hljs-number">0.0112</span>],
+         [<span class="hljs-number">-0.0618</span>,  <span class="hljs-number">0.1154</span>, <span class="hljs-number">-0.0941</span>, <span class="hljs-number">-0.0513</span>, <span class="hljs-number">-0.0798</span>],
+         [ <span class="hljs-number">0.0535</span>,  <span class="hljs-number">0.0547</span>, <span class="hljs-number">-0.0327</span>, <span class="hljs-number">-0.0607</span>,  <span class="hljs-number">0.0165</span>]],
+
+        [[<span class="hljs-number">-0.0204</span>, <span class="hljs-number">-0.0709</span>,  <span class="hljs-number">0.0989</span>, <span class="hljs-number">-0.1087</span>, <span class="hljs-number">-0.0880</span>],
+         [<span class="hljs-number">-0.0235</span>, <span class="hljs-number">-0.1067</span>, <span class="hljs-number">-0.0354</span>, <span class="hljs-number">-0.1050</span>, <span class="hljs-number">-0.0106</span>],
+         [ <span class="hljs-number">0.0425</span>, <span class="hljs-number">-0.0373</span>,  <span class="hljs-number">0.0458</span>,  <span class="hljs-number">0.1115</span>,  <span class="hljs-number">0.0366</span>],
+         [ <span class="hljs-number">0.0450</span>, <span class="hljs-number">-0.0708</span>, <span class="hljs-number">-0.1020</span>,  <span class="hljs-number">0.0442</span>,  <span class="hljs-number">0.0183</span>],
+         [ <span class="hljs-number">0.0998</span>,  <span class="hljs-number">0.0840</span>,  <span class="hljs-number">0.0096</span>, <span class="hljs-number">-0.0083</span>,  <span class="hljs-number">0.0167</span>]],
+
+        [[ <span class="hljs-number">0.0956</span>,  <span class="hljs-number">0.0375</span>, <span class="hljs-number">-0.1030</span>, <span class="hljs-number">-0.0864</span>, <span class="hljs-number">-0.0391</span>],
+         [<span class="hljs-number">-0.0204</span>,  <span class="hljs-number">0.0717</span>,  <span class="hljs-number">0.1090</span>, <span class="hljs-number">-0.1011</span>,  <span class="hljs-number">0.0208</span>],
+         [<span class="hljs-number">-0.0459</span>,  <span class="hljs-number">0.0744</span>,  <span class="hljs-number">0.0349</span>, <span class="hljs-number">-0.1036</span>,  <span class="hljs-number">0.0664</span>],
+         [ <span class="hljs-number">0.1001</span>,  <span class="hljs-number">0.0722</span>, <span class="hljs-number">-0.0013</span>, <span class="hljs-number">-0.0883</span>, <span class="hljs-number">-0.1062</span>],
+         [ <span class="hljs-number">0.0272</span>,  <span class="hljs-number">0.0279</span>, <span class="hljs-number">-0.0223</span>, <span class="hljs-number">-0.1040</span>,  <span class="hljs-number">0.0453</span>]]],
+       grad_fn=&lt;SelectBackward&gt;)
+加载后:  tensor([[[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]],
+
+        [[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]],
+
+        [[<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>],
+         [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]]],
+       grad_fn=&lt;SelectBackward&gt;)
+state_dict的key:  odict_keys([<span class="hljs-string">&#x27;features.0.weight&#x27;</span>, <span class="hljs-string">&#x27;features.0.bias&#x27;</span>, <span class="hljs-string">&#x27;features.3.weight&#x27;</span>, <span class="hljs-string">&#x27;features.3.bias&#x27;</span>, <span class="hljs-string">&#x27;classifier.0.weight&#x27;</span>, <span class="hljs-string">&#x27;classifier.0.bias&#x27;</span>, <span class="hljs-string">&#x27;classifier.2.weight&#x27;</span>, <span class="hljs-string">&#x27;classifier.2.bias&#x27;</span>, <span class="hljs-string">&#x27;classifier.4.weight&#x27;</span>, <span class="hljs-string">&#x27;classifier.4.bias&#x27;</span>])</code></pre>
+
+<p>可以看到把所有的权值都加载进网络里了</p>
+<h1 id="4-断点续训练"><a href="#4-断点续训练" class="headerlink" title="4. 断点续训练"></a>4. 断点续训练</h1><p>为了防止训练过程由于意外情况退出而丢失训练数据，可以设置周期checkpoints，保存当前训练进度，以便于下一次直接从checkpoints开始训练。</p>
+<p>checkpoint应该包括下面信息（但不限于）：</p>
+<pre><code class="hljs python">checkpoint = &#123;
+    <span class="hljs-string">&quot;model_state_dict&quot;</span>: net.state_dict(),
+    <span class="hljs-string">&quot;optimizer_state_dict&quot;</span>: optimizer.state_dict(),
+    <span class="hljs-string">&quot;epoch&quot;</span>: epoch&#125;</code></pre>
+
+
+
+<h2 id="4-1-断点保存"><a href="#4-1-断点保存" class="headerlink" title="4.1 断点保存"></a>4.1 断点保存</h2><p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+rmb_label = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;100&quot;</span>: <span class="hljs-number">1</span>&#125;
+
+<span class="hljs-comment"># 参数设置</span>
+checkpoint_interval = <span class="hljs-number">5</span>
+MAX_EPOCH = <span class="hljs-number">10</span>
+BATCH_SIZE = <span class="hljs-number">16</span>
+LR = <span class="hljs-number">0.01</span>
+log_interval = <span class="hljs-number">10</span>
+val_interval = <span class="hljs-number">1</span>
+
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+
+split_dir = os.path.join(<span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-string">&quot;rmb_split&quot;</span>)
+train_dir = os.path.join(split_dir, <span class="hljs-string">&quot;train&quot;</span>)
+valid_dir = os.path.join(split_dir, <span class="hljs-string">&quot;valid&quot;</span>)
+
+norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
+norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
+
+train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.RandomCrop(<span class="hljs-number">32</span>, padding=<span class="hljs-number">4</span>),
+    transforms.RandomGrayscale(p=<span class="hljs-number">0.8</span>),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+valid_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+net = LeNet(classes=<span class="hljs-number">2</span>)
+net.initialize_weights()
+
+<span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span>
+criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span>
+
+<span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span>
+optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)                        <span class="hljs-comment"># 选择优化器</span>
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">6</span>, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span>
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+train_curve = list()
+valid_curve = list()
+
+start_epoch = <span class="hljs-number">-1</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(start_epoch+<span class="hljs-number">1</span>, MAX_EPOCH):
+
+    loss_mean = <span class="hljs-number">0.</span>
+    correct = <span class="hljs-number">0.</span>
+    total = <span class="hljs-number">0.</span>
+
+    net.train()
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        <span class="hljs-comment"># forward</span>
+        inputs, labels = data
+        outputs = net(inputs)
+
+        <span class="hljs-comment"># backward</span>
+        optimizer.zero_grad()
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        <span class="hljs-comment"># update weights</span>
+        optimizer.step()
+
+        <span class="hljs-comment"># 统计分类情况</span>
+        _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+        total += labels.size(<span class="hljs-number">0</span>)
+        correct += (predicted == labels).squeeze().sum().numpy()
+
+        <span class="hljs-comment"># 打印训练信息</span>
+        loss_mean += loss.item()
+        train_curve.append(loss.item())
+        <span class="hljs-keyword">if</span> (i+<span class="hljs-number">1</span>) % log_interval == <span class="hljs-number">0</span>:
+            loss_mean = loss_mean / log_interval
+            print(<span class="hljs-string">&quot;Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
+                epoch, MAX_EPOCH, i+<span class="hljs-number">1</span>, len(train_loader), loss_mean, correct / total))
+            loss_mean = <span class="hljs-number">0.</span>
+
+    scheduler.step()  <span class="hljs-comment"># 更新学习率</span>
+
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % checkpoint_interval == <span class="hljs-number">0</span>:
+
+        checkpoint = &#123;<span class="hljs-string">&quot;model_state_dict&quot;</span>: net.state_dict(),
+                      <span class="hljs-string">&quot;optimizer_state_dict&quot;</span>: optimizer.state_dict(),
+                      <span class="hljs-string">&quot;epoch&quot;</span>: epoch&#125;
+        path_checkpoint = <span class="hljs-string">&quot;./checkpoint_&#123;&#125;_epoch.pkl&quot;</span>.format(epoch)
+        torch.save(checkpoint, path_checkpoint)
+
+    <span class="hljs-keyword">if</span> epoch &gt; <span class="hljs-number">5</span>:
+        print(<span class="hljs-string">&quot;训练意外中断...&quot;</span>)
+        <span class="hljs-keyword">break</span>
+
+    <span class="hljs-comment"># validate the model</span>
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % val_interval == <span class="hljs-number">0</span>:
+
+        correct_val = <span class="hljs-number">0.</span>
+        total_val = <span class="hljs-number">0.</span>
+        loss_val = <span class="hljs-number">0.</span>
+        net.eval()
+        <span class="hljs-keyword">with</span> torch.no_grad():
+            <span class="hljs-keyword">for</span> j, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
+                inputs, labels = data
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+
+                _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+                total_val += labels.size(<span class="hljs-number">0</span>)
+                correct_val += (predicted == labels).squeeze().sum().numpy()
+
+                loss_val += loss.item()
+
+            valid_curve.append(loss.item())
+            print(<span class="hljs-string">&quot;Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
+                epoch, MAX_EPOCH, j+<span class="hljs-number">1</span>, len(valid_loader), loss_val/len(valid_loader), correct / total))
+
+
+train_x = range(len(train_curve))
+train_y = train_curve
+
+train_iters = len(train_loader)
+valid_x = np.arange(<span class="hljs-number">1</span>, len(valid_curve)+<span class="hljs-number">1</span>) * train_iters*val_interval <span class="hljs-comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span>
+valid_y = valid_curve
+
+plt.plot(train_x, train_y, label=<span class="hljs-string">&#x27;Train&#x27;</span>)
+plt.plot(valid_x, valid_y, label=<span class="hljs-string">&#x27;Valid&#x27;</span>)
+
+plt.legend(loc=<span class="hljs-string">&#x27;upper right&#x27;</span>)
+plt.ylabel(<span class="hljs-string">&#x27;loss value&#x27;</span>)
+plt.xlabel(<span class="hljs-string">&#x27;Iteration&#x27;</span>)
+plt.show()</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">Training:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.6852</span> Acc:<span class="hljs-number">54.37</span>%
+Valid:     Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.4895</span> Acc:<span class="hljs-number">54.37</span>%
+Training:Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.4095</span> Acc:<span class="hljs-number">85.00</span>%
+Valid:     Epoch[<span class="hljs-number">001</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0386</span> Acc:<span class="hljs-number">85.00</span>%
+Training:Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1624</span> Acc:<span class="hljs-number">93.12</span>%
+Valid:     Epoch[<span class="hljs-number">002</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0018</span> Acc:<span class="hljs-number">93.12</span>%
+Training:Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2654</span> Acc:<span class="hljs-number">91.25</span>%
+Valid:     Epoch[<span class="hljs-number">003</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0009</span> Acc:<span class="hljs-number">91.25</span>%
+Training:Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1090</span> Acc:<span class="hljs-number">96.25</span>%
+Valid:     Epoch[<span class="hljs-number">004</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0108</span> Acc:<span class="hljs-number">96.25</span>%
+Training:Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0920</span> Acc:<span class="hljs-number">95.62</span>%
+Valid:     Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">95.62</span>%
+Training:Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0102</span> Acc:<span class="hljs-number">100.00</span>%
+训练意外中断...</code></pre>
+
+
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816005402.png" srcset="/img/loading.gif" alt="image-20200816005401148" style="zoom:67%;" />
+
+
+
+<p>checkpoints的设计如下，checkpoint_interval = 5，所以我们保存了Epoch=5的数据</p>
+<pre><code class="hljs pgsql"><span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % checkpoint_interval == <span class="hljs-number">0</span>:
+
+        <span class="hljs-keyword">checkpoint</span> = &#123;&quot;model_state_dict&quot;: net.state_dict(),
+                      &quot;optimizer_state_dict&quot;: optimizer.state_dict(),
+                      &quot;epoch&quot;: epoch&#125;
+        path_checkpoint = &quot;./checkpoint_&#123;&#125;_epoch.pkl&quot;.format(epoch)
+        torch.save(<span class="hljs-keyword">checkpoint</span>, path_checkpoint)</code></pre>
+
+
+
+
+
+<h2 id="4-2-断点加载"><a href="#4-2-断点加载" class="headerlink" title="4.2 断点加载"></a>4.2 断点加载</h2><p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
+<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+rmb_label = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;100&quot;</span>: <span class="hljs-number">1</span>&#125;
+
+<span class="hljs-comment"># 参数设置</span>
+checkpoint_interval = <span class="hljs-number">5</span>
+MAX_EPOCH = <span class="hljs-number">10</span>
+BATCH_SIZE = <span class="hljs-number">16</span>
+LR = <span class="hljs-number">0.01</span>
+log_interval = <span class="hljs-number">10</span>
+val_interval = <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
+
+split_dir = os.path.join(<span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-string">&quot;rmb_split&quot;</span>)
+train_dir = os.path.join(split_dir, <span class="hljs-string">&quot;train&quot;</span>)
+valid_dir = os.path.join(split_dir, <span class="hljs-string">&quot;valid&quot;</span>)
+
+norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
+norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
+
+train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.RandomCrop(<span class="hljs-number">32</span>, padding=<span class="hljs-number">4</span>),
+    transforms.RandomGrayscale(p=<span class="hljs-number">0.8</span>),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+valid_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
+
+<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
+
+net = LeNet(classes=<span class="hljs-number">2</span>)
+net.initialize_weights()
+
+<span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span>
+criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span>
+
+<span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span>
+optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)                        <span class="hljs-comment"># 选择优化器</span>
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">6</span>, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span>
+
+
+<span class="hljs-comment"># ============================ step 5+/5 断点恢复 ============================</span>
+
+path_checkpoint = <span class="hljs-string">&quot;./checkpoint_4_epoch.pkl&quot;</span>
+checkpoint = torch.load(path_checkpoint)
+
+net.load_state_dict(checkpoint[<span class="hljs-string">&#x27;model_state_dict&#x27;</span>])
+
+optimizer.load_state_dict(checkpoint[<span class="hljs-string">&#x27;optimizer_state_dict&#x27;</span>])
+
+start_epoch = checkpoint[<span class="hljs-string">&#x27;epoch&#x27;</span>]
+
+scheduler.last_epoch = start_epoch
+
+<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
+train_curve = list()
+valid_curve = list()
+
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(start_epoch + <span class="hljs-number">1</span>, MAX_EPOCH):
+
+    loss_mean = <span class="hljs-number">0.</span>
+    correct = <span class="hljs-number">0.</span>
+    total = <span class="hljs-number">0.</span>
+
+    net.train()
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        <span class="hljs-comment"># forward</span>
+        inputs, labels = data
+        outputs = net(inputs)
+
+        <span class="hljs-comment"># backward</span>
+        optimizer.zero_grad()
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        <span class="hljs-comment"># update weights</span>
+        optimizer.step()
+
+        <span class="hljs-comment"># 统计分类情况</span>
+        _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+        total += labels.size(<span class="hljs-number">0</span>)
+        correct += (predicted == labels).squeeze().sum().numpy()
+
+        <span class="hljs-comment"># 打印训练信息</span>
+        loss_mean += loss.item()
+        train_curve.append(loss.item())
+        <span class="hljs-keyword">if</span> (i+<span class="hljs-number">1</span>) % log_interval == <span class="hljs-number">0</span>:
+            loss_mean = loss_mean / log_interval
+            print(<span class="hljs-string">&quot;Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
+                epoch, MAX_EPOCH, i+<span class="hljs-number">1</span>, len(train_loader), loss_mean, correct / total))
+            loss_mean = <span class="hljs-number">0.</span>
+
+    scheduler.step()  <span class="hljs-comment"># 更新学习率</span>
+
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % checkpoint_interval == <span class="hljs-number">0</span>:
+
+        checkpoint = &#123;<span class="hljs-string">&quot;model_state_dict&quot;</span>: net.state_dict(),
+                      <span class="hljs-string">&quot;optimizer_state_dic&quot;</span>: optimizer.state_dict(),
+                      <span class="hljs-string">&quot;loss&quot;</span>: loss,
+                      <span class="hljs-string">&quot;epoch&quot;</span>: epoch&#125;
+        path_checkpoint = <span class="hljs-string">&quot;./checkpint_&#123;&#125;_epoch.pkl&quot;</span>.format(epoch)
+        torch.save(checkpoint, path_checkpoint)
+
+    <span class="hljs-comment"># validate the model</span>
+    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % val_interval == <span class="hljs-number">0</span>:
+
+        correct_val = <span class="hljs-number">0.</span>
+        total_val = <span class="hljs-number">0.</span>
+        loss_val = <span class="hljs-number">0.</span>
+        net.eval()
+        <span class="hljs-keyword">with</span> torch.no_grad():
+            <span class="hljs-keyword">for</span> j, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
+                inputs, labels = data
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+
+                _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
+                total_val += labels.size(<span class="hljs-number">0</span>)
+                correct_val += (predicted == labels).squeeze().sum().numpy()
+
+                loss_val += loss.item()
+
+            valid_curve.append(loss.item())
+            print(<span class="hljs-string">&quot;Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
+                epoch, MAX_EPOCH, j+<span class="hljs-number">1</span>, len(valid_loader), loss_val/len(valid_loader), correct / total))
+
+
+train_x = range(len(train_curve))
+train_y = train_curve
+
+train_iters = len(train_loader)
+valid_x = np.arange(<span class="hljs-number">1</span>, len(valid_curve)+<span class="hljs-number">1</span>) * train_iters*val_interval <span class="hljs-comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span>
+valid_y = valid_curve
+
+plt.plot(train_x, train_y, label=<span class="hljs-string">&#x27;Train&#x27;</span>)
+plt.plot(valid_x, valid_y, label=<span class="hljs-string">&#x27;Valid&#x27;</span>)
+
+plt.legend(loc=<span class="hljs-string">&#x27;upper right&#x27;</span>)
+plt.ylabel(<span class="hljs-string">&#x27;loss value&#x27;</span>)
+plt.xlabel(<span class="hljs-string">&#x27;Iteration&#x27;</span>)
+plt.show()</code></pre>
+
+<p>输出：</p>
+<pre><code class="hljs python">Training:Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0406</span> Acc:<span class="hljs-number">99.38</span>%
+Valid:     Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">99.38</span>%
+Training:Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0276</span> Acc:<span class="hljs-number">98.75</span>%
+Valid:     Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">98.75</span>%
+Training:Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0074</span> Acc:<span class="hljs-number">100.00</span>%
+Valid:     Epoch[<span class="hljs-number">007</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">100.00</span>%
+Training:Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0029</span> Acc:<span class="hljs-number">100.00</span>%
+Valid:     Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">100.00</span>%
+Training:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0004</span> Acc:<span class="hljs-number">100.00</span>%
+Valid:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">100.00</span>%</code></pre>
+
+
+
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816010441.png" srcset="/img/loading.gif" alt="image-20200816010440776" style="zoom:67%;" />
+
+
+
+<p>断点加载设置如下</p>
+<pre><code class="hljs python">path_checkpoint = <span class="hljs-string">&quot;./checkpoint_4_epoch.pkl&quot;</span>
+checkpoint = torch.load(path_checkpoint)
+
+net.load_state_dict(checkpoint[<span class="hljs-string">&#x27;model_state_dict&#x27;</span>])
+
+optimizer.load_state_dict(checkpoint[<span class="hljs-string">&#x27;optimizer_state_dict&#x27;</span>])
+
+start_epoch = checkpoint[<span class="hljs-string">&#x27;epoch&#x27;</span>]
+
+scheduler.last_epoch = start_epoch  <span class="hljs-comment"># 这个别忘了</span></code></pre>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/16/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8Bfinetune/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模型finetune</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/10/Pytorch%E5%9F%BA%E7%A1%80/%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95/">
+                        <span class="hidden-mobile">正则化方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "模型保存与加载&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,911 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>学习率调整策略 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-05 10:00" pubdate>
+      2020年8月5日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">学习率调整策略</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-为什么要调整学习率？"><a href="#1-为什么要调整学习率？" class="headerlink" title="1. 为什么要调整学习率？"></a>1. 为什么要调整学习率？</h1><p>可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。</p>
+<p>学习率调整策略的函数都继承于_LRScheduler这个基类。</p>
+<p>主要属性：</p>
+<ul>
+<li>optimizer：关联的优化器</li>
+<li>last_epoch：记录epoch数</li>
+<li>base_lrs：记录初始学习率</li>
+</ul>
+<p>主要方法：</p>
+<ul>
+<li>step()：更新下一个epoch的学习率（一次epoch运行一次step函数以更新学习率；在一次epoch以内，学习率不应该改变）</li>
+<li>get_lr()：虚函数（需要子类重写），计算下一个epoch的学习率</li>
+</ul>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806130749.png" srcset="/img/loading.gif" alt="image-20200806130748043"></p>
+<h1 id="2-pytorch的六种学习率调整策略"><a href="#2-pytorch的六种学习率调整策略" class="headerlink" title="2. pytorch的六种学习率调整策略"></a>2. pytorch的六种学习率调整策略</h1><h2 id="2-1-StepLR"><a href="#2-1-StepLR" class="headerlink" title="2.1 StepLR"></a>2.1 StepLR</h2><pre><code class="hljs python">lr_scheduler.StepLR(optimizer, 
+                    step_size, 
+                    gamma=<span class="hljs-number">0.1</span>, 
+                    last_epoch=<span class="hljs-number">-1</span>)</code></pre>
+
+<p>功能：等间隔调整学习率；在每个step_size步长的时间段内，用gamma衰减每个参数组的学习速率。请注意，这种衰减可能与来自此lr_scheduler外部的学习速率的其他更改同时发生。当last_epoch=-1时，将初始lr设置为lr。</p>
+<p>主要参数：</p>
+<ul>
+<li>step_size：调整间隔数</li>
+<li>gamma：调整系数</li>
+</ul>
+<p>调整方式：lr = lr * gamma</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+<span class="hljs-comment"># ---------------------- fake data and optimizer  -------------------</span>
+
+weights = torch.randn((<span class="hljs-number">1</span>), requires_grad=<span class="hljs-literal">True</span>)
+target = torch.zeros((<span class="hljs-number">1</span>))
+
+optimizer = optim.SGD([weights], lr=LR, momentum=<span class="hljs-number">0.9</span>)
+
+------------------------------  Step LR ------------------------------
+scheduler_lr = optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">50</span>, gamma=<span class="hljs-number">0.1</span>)  <span class="hljs-comment"># 设置学习率下降策略</span>
+
+lr_list, epoch_list = list(), list()
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_epoch):
+
+    lr_list.append(scheduler_lr.get_lr())
+    epoch_list.append(epoch)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iteration):
+
+        loss = torch.pow((weights - target), <span class="hljs-number">2</span>)
+        loss.backward()
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+    scheduler_lr.step()
+
+plt.plot(epoch_list, lr_list, label=<span class="hljs-string">&quot;Step LR Scheduler&quot;</span>)
+plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
+plt.legend()
+plt.show()</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806125546.png" srcset="/img/loading.gif" alt="image-20200806125537626"></p>
+<p>每隔step_size=50个epoch，学习率会将为原来的gamma=0.1倍。</p>
+<blockquote>
+<p>关于lr曲线在lr变化时的发生的下冲，通过观察猜想的解释是当lr变化的第一个epoch用一个$gamma^2$倍的lr来缓冲一下，然后再恢复为gamma倍的lr。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214140.png" srcset="/img/loading.gif" alt="image-20200806130356143"></p>
+</blockquote>
+<h2 id="2-2-MultiStepLR"><a href="#2-2-MultiStepLR" class="headerlink" title="2.2 MultiStepLR"></a>2.2 MultiStepLR</h2><pre><code class="hljs python">lr_scheduler.MultiStepLR(optimizer, 
+                         milestones, 
+                         gamma=<span class="hljs-number">0.1</span>, 
+                         last_epoch=<span class="hljs-number">-1</span>)</code></pre>
+
+<p>功能：按给定间隔调整学习率；当epoch达到其中一个milestones时，用gamma衰减每个参数组的学习速率。请注意，这种衰减可能与来自此lr_scheduler外部的学习速率的其他更改同时发生。当last_epoch=-1时，将初始lr设置为lr。</p>
+<p>主要参数：</p>
+<ul>
+<li>milestones：设定调整时刻数</li>
+<li>gamma：调整系数</li>
+</ul>
+<p>调整方式：lr = lr * gamma</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+milestones = [<span class="hljs-number">50</span>, <span class="hljs-number">125</span>, <span class="hljs-number">160</span>]
+scheduler_lr = optim.lr_scheduler.MultiStepLR(optimizer, milestones=milestones, gamma=<span class="hljs-number">0.1</span>)
+
+lr_list, epoch_list = list(), list()
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_epoch):
+
+    lr_list.append(scheduler_lr.get_lr())
+    epoch_list.append(epoch)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iteration):
+
+        loss = torch.pow((weights - target), <span class="hljs-number">2</span>)
+        loss.backward()
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+    scheduler_lr.step()
+
+plt.plot(epoch_list, lr_list, label=<span class="hljs-string">&quot;Multi Step LR Scheduler\nmilestones:&#123;&#125;&quot;</span>.format(milestones))
+plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
+plt.legend()
+plt.show()</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806132943.png" srcset="/img/loading.gif" alt="image-20200806132942520"></p>
+<p>每当epoch达到milestones时，学习率会将为原来的gamma=0.1倍。</p>
+<h2 id="2-3-ExponentialLR"><a href="#2-3-ExponentialLR" class="headerlink" title="2.3 ExponentialLR"></a>2.3 ExponentialLR</h2><pre><code class="hljs python">lr_scheduler.ExponentialLR(optimizer, 
+                           gamma, 
+                           last_epoch=<span class="hljs-number">-1</span>)</code></pre>
+
+<p>功能：按指数衰减调整学习率</p>
+<p>主要参数：</p>
+<ul>
+<li>gamma：指数的底</li>
+</ul>
+<p>调整方式：$lr = lr * gamma ^ {epoch}$</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+gamma = <span class="hljs-number">0.95</span>
+scheduler_lr = optim.lr_scheduler.ExponentialLR(optimizer, gamma=gamma)
+
+lr_list, epoch_list = list(), list()
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_epoch):
+
+    lr_list.append(scheduler_lr.get_lr())
+    epoch_list.append(epoch)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iteration):
+
+        loss = torch.pow((weights - target), <span class="hljs-number">2</span>)
+        loss.backward()
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+    scheduler_lr.step()
+
+plt.plot(epoch_list, lr_list, label=<span class="hljs-string">&quot;Exponential LR Scheduler\ngamma:&#123;&#125;&quot;</span>.format(gamma))
+plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
+plt.legend()
+plt.show()</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214219.png" srcset="/img/loading.gif" alt="image-20200806141832412"></p>
+<p>每次epoch都会调整学习率</p>
+<h2 id="2-4-CosineAnnealingLR"><a href="#2-4-CosineAnnealingLR" class="headerlink" title="2.4 CosineAnnealingLR"></a>2.4 CosineAnnealingLR</h2><pre><code class="hljs python">lr_scheduler.CosineAnnealingLR(optimizer, 
+                               T_max, eta_min=<span class="hljs-number">0</span>, 
+                               last_epoch=<span class="hljs-number">-1</span>)</code></pre>
+
+<p>功能：余弦周期调整学习率</p>
+<p>主要参数：</p>
+<ul>
+<li>T_max：下降周期</li>
+<li>eta_min：学习率下限</li>
+</ul>
+<p>调整方式：$\eta_{t}=\eta_{\min }+\frac{1}{2}\left(\eta_{\max }-\eta_{\min }\right)\left(1+\cos \left(\frac{T_{c u r}}{T_{\max }} \pi\right)\right)$</p>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+t_max = <span class="hljs-number">50</span>
+scheduler_lr = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=t_max, eta_min=<span class="hljs-number">0.</span>)
+
+lr_list, epoch_list = list(), list()
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_epoch):
+
+    lr_list.append(scheduler_lr.get_lr())
+    epoch_list.append(epoch)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iteration):
+
+        loss = torch.pow((weights - target), <span class="hljs-number">2</span>)
+        loss.backward()
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+    scheduler_lr.step()
+
+plt.plot(epoch_list, lr_list, label=<span class="hljs-string">&quot;CosineAnnealingLR Scheduler\nT_max:&#123;&#125;&quot;</span>.format(t_max))
+plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
+plt.legend()
+plt.show()</code></pre>
+
+
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806142455.png" srcset="/img/loading.gif" alt="image-20200806142454666"></p>
+<h2 id="2-5-ReduceLRonPlateau"><a href="#2-5-ReduceLRonPlateau" class="headerlink" title="2.5 ReduceLRonPlateau"></a>2.5 ReduceLRonPlateau</h2><pre><code class="hljs python">lr_scheduler.ReduceLROnPlateau(optimizer, 
+                               mode=<span class="hljs-string">&#x27;min&#x27;</span>, 
+                               factor=<span class="hljs-number">0.1</span>, 
+                               patience=<span class="hljs-number">10</span>, 
+                               verbose=<span class="hljs-literal">False</span>, 
+                               threshold=<span class="hljs-number">0.0001</span>, 
+                               threshold_mode=<span class="hljs-string">&#x27;rel&#x27;</span>, 
+                               cooldown=<span class="hljs-number">0</span>, 
+                               min_lr=<span class="hljs-number">0</span>, 
+                               eps=<span class="hljs-number">1e-08</span>)</code></pre>
+
+<p>功能：监控指标，当指标（比如loss或者accuracy）不再变化则调整</p>
+<p>主要参数：</p>
+<ul>
+<li>mode：min/max 两种模式；在min模式下，当监测到的量停止减少时，lr将减小；在max模式下，当监测的量停止增加时，lr将减小。默认值：“min”。</li>
+<li>factor：调整系数</li>
+<li>patience：“耐心”，接受几轮epoch指标不变化；</li>
+<li>cooldown：“冷却时间”，调整之后停止监控几轮epoch</li>
+<li>verbose：是否打印日志</li>
+<li>min_lr：学习率下限</li>
+<li>eps：学习率衰减最小值，如果更新后的lr与原来的lr的差不大于eps，则此次更新会被忽视。</li>
+</ul>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+loss_value = <span class="hljs-number">0.5</span>
+accuray = <span class="hljs-number">0.9</span>
+
+factor = <span class="hljs-number">0.1</span>
+mode = <span class="hljs-string">&quot;min&quot;</span>
+patience = <span class="hljs-number">10</span>
+cooldown = <span class="hljs-number">10</span>
+min_lr = <span class="hljs-number">1e-4</span>
+verbose = <span class="hljs-literal">True</span>
+
+scheduler_lr = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 
+                                                    actor=factor, 
+                                                    mode=mode, 
+                                                    patience=patience,
+                                                    cooldown=cooldown, 
+                                                    min_lr=min_lr,
+                                                    verbose=verbose)
+
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_epoch):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iteration):
+
+        <span class="hljs-comment"># train(...)</span>
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+    <span class="hljs-keyword">if</span> epoch == <span class="hljs-number">5</span>:
+        loss_value = <span class="hljs-number">0.4</span>
+
+    scheduler_lr.step(loss_value) <span class="hljs-comment"># 监控指标为loss_value</span></code></pre>
+
+<p>输出为：</p>
+<pre><code class="hljs routeros">Epoch    17: reducing learning rate of<span class="hljs-built_in"> group </span>0 <span class="hljs-keyword">to</span> 1.0000e-02.
+Epoch    38: reducing learning rate of<span class="hljs-built_in"> group </span>0 <span class="hljs-keyword">to</span> 1.0000e-03.
+Epoch    59: reducing learning rate of<span class="hljs-built_in"> group </span>0 <span class="hljs-keyword">to</span> 1.0000e-04.</code></pre>
+
+<p>从EPOCH== 6开始（scheduler_lr打印的日志EPOCH是从1开始的，代码中我们的epoch是从0开始的，所以在epoch=5时改变学习率，就算在EPOCH=6时改变学习率），loss_value = 0.4，并且由于patience = 10，于是在第7，8，9，10，11，12，13，14，15，16 个EPOCH之后，在第17个EPOCH改变了lr = 0.1*0.1；然后EPOCH从17开始也没改变了，但是cooldown=10，实际上cooldown+patience=20，所以下一次更新lr要等20个EPOCH，也就是在18，19，…，37个EPOCH之后的第38个EPOCH再次改变lr。</p>
+<h2 id="2-6-LambdaLR"><a href="#2-6-LambdaLR" class="headerlink" title="2.6 LambdaLR"></a>2.6 LambdaLR</h2><pre><code class="hljs python">lr_scheduler.LambdaLR(optimizer, 
+                      lr_lambda, 
+                      last_epoch=<span class="hljs-number">-1</span>)</code></pre>
+
+<p>功能：自定义调整策略；将每个参数组的学习率设置为初始lr乘以给定函数。当last_epoch=-1时，将lr设置为初始lr。</p>
+<p>主要参数：</p>
+<ul>
+<li>lr_lambda：function or list ，学习率调整函数</li>
+</ul>
+<p><strong>实验：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+torch.manual_seed(<span class="hljs-number">1</span>)
+
+LR = <span class="hljs-number">0.1</span>
+iteration = <span class="hljs-number">10</span>
+max_epoch = <span class="hljs-number">200</span>
+
+lr_init = <span class="hljs-number">0.1</span>
+
+weights_1 = torch.randn((<span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>))
+weights_2 = torch.ones((<span class="hljs-number">5</span>, <span class="hljs-number">5</span>))
+
+optimizer = optim.SGD([
+    &#123;<span class="hljs-string">&#x27;params&#x27;</span>: [weights_1]&#125;,
+    &#123;<span class="hljs-string">&#x27;params&#x27;</span>: [weights_2]&#125;], lr=lr_init)
+
+lambda1 = <span class="hljs-keyword">lambda</span> epoch: <span class="hljs-number">0.1</span> ** (epoch // <span class="hljs-number">20</span>)
+lambda2 = <span class="hljs-keyword">lambda</span> epoch: <span class="hljs-number">0.95</span> ** epoch
+
+scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=[lambda1, lambda2])
+
+lr_list, epoch_list = list(), list()
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(max_epoch):
+    lr_list.append(scheduler.get_lr())
+    epoch_list.append(epoch)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(iteration):
+
+        <span class="hljs-comment"># train(...)</span>
+
+        optimizer.step()
+        optimizer.zero_grad()
+
+    scheduler.step()
+
+    print(<span class="hljs-string">&#x27;epoch:&#123;:5d&#125;, lr:&#123;&#125;&#x27;</span>.format(epoch, scheduler.get_lr()))
+
+plt.plot(epoch_list, [i[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> lr_list], label=<span class="hljs-string">&quot;lambda 1&quot;</span>)
+plt.plot(epoch_list, [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> lr_list], label=<span class="hljs-string">&quot;lambda 2&quot;</span>)
+plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;Learning Rate&quot;</span>)
+plt.title(<span class="hljs-string">&quot;LambdaLR&quot;</span>)
+plt.legend()
+plt.show()</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806213540.png" srcset="/img/loading.gif" alt="image-20200806213531952"></p>
+<p>可以看到两组参数的学习率遵循了不同的更新方法。</p>
+<h1 id="3-学习率调整小结"><a href="#3-学习率调整小结" class="headerlink" title="3. 学习率调整小结"></a>3. 学习率调整小结</h1><p>学习率调整小结</p>
+<ol>
+<li><p>有序调整：Step、MultiStep、Exponential 和 CosineAnnealing</p>
+</li>
+<li><p>自适应调整：ReduceLROnPleateau</p>
+</li>
+<li><p>自定义调整：Lambda</p>
+</li>
+</ol>
+<p>学习率初始化：</p>
+<ol>
+<li>设置较小数：0.01、0.001、0.0001</li>
+<li>搜索最大学习率： 《Cyclical Learning Rates for Training Neural<br>Networks》</li>
+</ol>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171209.png" srcset="/img/loading.gif" alt="image-20200805171206930"></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171212.png" srcset="/img/loading.gif" alt="image-20200805171210988" style="zoom:80%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/06/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">tensorboard可视化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/">
+                        <span class="hidden-mobile">优化器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "学习率调整策略&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

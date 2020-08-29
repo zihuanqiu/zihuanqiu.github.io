@@ -1,0 +1,1661 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>权值初始化 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-31 10:00" pubdate>
+      2020年7月31日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">权值初始化</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月21日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="1-梯度消失与爆炸"><a href="#1-梯度消失与爆炸" class="headerlink" title="1. 梯度消失与爆炸"></a>1. 梯度消失与爆炸</h1><p>对于一个没有激活函数（先不考虑激活函数）的多层神经网络，参数的导数可以计算如下</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200801210738.png" srcset="/img/loading.gif" alt="image-20200801210729523" style="zoom: 50%;" />
+
+
+<p>$$<br>\begin{aligned}<br>\text{H}_2&amp;=\text{H}_1*\text{W}_2<br>\<br>    \Delta \text{W}_2&amp;=\frac{\partial \text{Loss}}{\partial \text{W}_2}=\frac{\partial \text{Loss}}{\partial \text{out}}*\frac{\partial \text{out}}{\partial \text{H}_2}*\frac{\partial \text{H}_2}{\partial \text{w}_2}\<br>    &amp;=\frac{\partial \text{Loss}}{\partial \text{out}}*\frac{\partial \text{out}}{\partial \text{H}_2}*\text{H}_1\<br>\end{aligned}<br>$$<br>因此参数的导数与隐藏层H1的输出值有关：</p>
+<p>梯度消失：$\mathrm{H}<em>{1} \rightarrow \mathbf{0} \Rightarrow \Delta \mathrm{W}</em>{2} \rightarrow \mathbf{0}$</p>
+<p>梯度爆炸：$\mathrm{H}<em>{1} \rightarrow \infty \Rightarrow \Delta \mathrm{W}</em>{2} \rightarrow \infty$</p>
+<p>实验代码：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight.data)  <span class="hljs-comment"># normal: mean=0, std=1</span>
+
+
+layer_nums = <span class="hljs-number">100</span>
+neural_nums = <span class="hljs-number">256</span>
+batch_size = <span class="hljs-number">16</span>
+
+net = MLP(neural_nums, layer_nums)
+net.initialize()
+
+inputs = torch.randn((batch_size, neural_nums))  <span class="hljs-comment"># normal: mean=0, std=1</span>
+
+output = net(inputs)
+print(output)</code></pre>
+
+<p>这里我们构造了一个100层，每一层有256个神经元的全连接线性网络，参数初始化用的是标准正态分布的方法。在随机生成了一个batch_size=16的，满足标准正态分布的输入，观察模型输出。</p>
+<pre><code class="hljs python">tensor([[nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        ...,
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan]], grad_fn=&lt;MmBackward&gt;)</code></pre>
+
+<p>发现输出变成了nan（过大或者过小，超出当前精度范围）。我们改一下代码，判断在前向传播中什么时候参数变成了nan（观察每一层参数的标准差）。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight.data)  <span class="hljs-comment"># normal: mean=0, std=1</span></code></pre>
+
+<p>代码运行结果如下：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">15.959932327270508</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">256.6237487792969</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">4107.24560546875</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">65576.8125</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">1045011.875</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">17110408.0</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">275461408.0</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">4402537984.0</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">71323615232.0</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">1148104736768.0</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">17911758454784.0</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">283574846619648.0</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">4480599809064960.0</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">7.196814275405414e+16</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">1.1507761512626258e+18</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">1.853110740188555e+19</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">2.9677725826641455e+20</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">4.780376223769898e+21</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">7.613223480799065e+22</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">1.2092652108825478e+24</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">1.923257075956356e+25</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">3.134467063655912e+26</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">5.014437766285408e+27</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">8.066615144249704e+28</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">1.2392661553516338e+30</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">1.9455688099759845e+31</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">3.0238180658999113e+32</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">4.950357571077011e+33</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">8.150925520353362e+34</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">1.322983152787379e+36</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">2.0786820453988485e+37</span>
+layer:<span class="hljs-number">31</span>, std:nan
+output <span class="hljs-keyword">is</span> nan <span class="hljs-keyword">in</span> <span class="hljs-number">31</span> layers
+tensor([[        inf, <span class="hljs-number">-2.6817e+38</span>,         inf,  ...,         inf,
+                 inf,         inf],
+        [       -inf,        -inf,  <span class="hljs-number">1.4387e+38</span>,  ..., <span class="hljs-number">-1.3409e+38</span>,
+         <span class="hljs-number">-1.9659e+38</span>,        -inf],
+        [<span class="hljs-number">-1.5873e+37</span>,         inf,        -inf,  ...,         inf,
+                -inf,  <span class="hljs-number">1.1484e+38</span>],
+        ...,
+        [ <span class="hljs-number">2.7754e+38</span>, <span class="hljs-number">-1.6783e+38</span>, <span class="hljs-number">-1.5531e+38</span>,  ...,         inf,
+         <span class="hljs-number">-9.9440e+37</span>, <span class="hljs-number">-2.5132e+38</span>],
+        [<span class="hljs-number">-7.7184e+37</span>,        -inf,         inf,  ..., <span class="hljs-number">-2.6505e+38</span>,
+                 inf,         inf],
+        [        inf,         inf,        -inf,  ...,        -inf,
+                 inf,  <span class="hljs-number">1.7432e+38</span>]], grad_fn=&lt;MmBackward&gt;)</code></pre>
+
+<p>我们发现第31层的参数的标准差变成了无穷。每一层的标准差都在逐渐变大，直到第31层达到了nan。</p>
+<p>我们来研究一下，为什么用标准正态分布设置的输入和参数会在前向传播过程中逐渐变大，最终爆炸。</p>
+<p>下面是一些数学基础：</p>
+<p>若$\boldsymbol{X}$与$\boldsymbol{Y}$独立，则有以下结论：</p>
+<ol>
+<li><p>$\mathrm{E}(\boldsymbol{X} * \boldsymbol{Y})=\boldsymbol{E}(\boldsymbol{X}) * \boldsymbol{E}(\boldsymbol{Y})$</p>
+</li>
+<li><p>$\mathrm{D}(\boldsymbol{X})=\boldsymbol{E}\left(\mathrm{X}^{2}\right)-[\boldsymbol{E}(\boldsymbol{X})]^{2}$</p>
+</li>
+<li><p>$\mathrm{D}(\boldsymbol{X}+\boldsymbol{Y})=\boldsymbol{D}(\boldsymbol{X})+\boldsymbol{D}(\boldsymbol{Y})$</p>
+</li>
+<li><p>$\mathrm{D}(\mathrm{X} * \mathrm{Y})=\mathrm{D}(\mathrm{X}) * \mathrm{D}(\mathrm{Y})+\mathrm{D}(\mathrm{X}) *[E(\boldsymbol{Y})]^{2}+\mathrm{D}(\mathrm{Y}) *[E(X)]^{2}$</p>
+<p>若 $\mathrm{E}(\mathrm{X})=0, \mathrm{E}(\mathrm{Y})=0$，则$\mathrm{D}(\mathrm{X} * \mathrm{Y})=\mathrm{D}(\mathrm{X}) * \mathrm{D}(\mathrm{Y})$</p>
+</li>
+</ol>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200801214437.png" srcset="/img/loading.gif" alt="image-20200801214436134" style="zoom: 80%;" />
+
+
+
+<p>$\mathrm{H}<em>{11}=\sum</em>{i=0}^{n} X_{i} * W_{1 i}$</p>
+<p>$\begin{aligned} \mathbf{D}\left(\mathrm{H}<em>{11}\right) &amp;=\sum</em>{i=0}^{n} \boldsymbol{D}\left(\boldsymbol{X}<em>{i}\right) * \boldsymbol{D}\left(\boldsymbol{W}</em>{1 i}\right) \ &amp;=\mathrm{n} *(1 * 1) \ &amp;=\mathrm{n} \end{aligned}$</p>
+<blockquote>
+<p>X和W都是零均值，标准差为1的标准正态分布，且X和W相互独立。</p>
+</blockquote>
+<p>$\operatorname{std}\left(\mathrm{H}<em>{11}\right)=\sqrt{\mathbf{D}\left(\mathrm{H}</em>{11}\right)}=\sqrt{n}$</p>
+<blockquote>
+<p>于是，我们就发现了每经过一层传播，数据的标准差就扩大$\sqrt{n}$倍，也就是数据之间开始扩散。上面我们的实验中，n=256，从各层参数的标准差打印信息来看，确实是每一层的标准差扩大15倍的关系。</p>
+</blockquote>
+<p>为了防止各层的标准差在前向传播的过程中逐渐变大，一个好的方法是将每一层的参数的标准差设为1/n，则每一层输出的标准差都能位置在1附近，解决了参数爆炸的问题。</p>
+<p>$D(W)=\frac{1}{n} \Rightarrow \operatorname{std}(W)=\sqrt{\frac{1}{n}}$</p>
+<p>我们重新改一下代码如下：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">1</span>/self.neural_num))</code></pre>
+
+<p>运行结果如下：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.9974957704544067</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">1.0024365186691284</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">1.002745509147644</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">1.0006227493286133</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">0.9966009855270386</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">1.019859790802002</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">1.026173710823059</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">1.0250457525253296</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">1.0378952026367188</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">1.0441951751708984</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">1.0181655883789062</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">1.0074602365493774</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">0.9948930144309998</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">0.9987586140632629</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">0.9981392025947571</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">1.0045733451843262</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">1.0055204629898071</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">1.0122840404510498</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">1.0076017379760742</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">1.000280737876892</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">0.9943006038665771</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">1.012800931930542</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">1.012657642364502</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">1.018149971961975</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">0.9776086211204529</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">0.9592394828796387</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">0.9317858815193176</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">0.9534041881561279</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">0.9811319708824158</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">0.9953019022941589</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">0.9773916006088257</span>
+layer:<span class="hljs-number">31</span>, std:<span class="hljs-number">0.9655940532684326</span>
+layer:<span class="hljs-number">32</span>, std:<span class="hljs-number">0.9270440936088562</span>
+layer:<span class="hljs-number">33</span>, std:<span class="hljs-number">0.9329946637153625</span>
+layer:<span class="hljs-number">34</span>, std:<span class="hljs-number">0.9311841726303101</span>
+layer:<span class="hljs-number">35</span>, std:<span class="hljs-number">0.9354336261749268</span>
+layer:<span class="hljs-number">36</span>, std:<span class="hljs-number">0.9492132067680359</span>
+layer:<span class="hljs-number">37</span>, std:<span class="hljs-number">0.9679954648017883</span>
+layer:<span class="hljs-number">38</span>, std:<span class="hljs-number">0.9849981665611267</span>
+layer:<span class="hljs-number">39</span>, std:<span class="hljs-number">0.9982335567474365</span>
+layer:<span class="hljs-number">40</span>, std:<span class="hljs-number">0.9616852402687073</span>
+layer:<span class="hljs-number">41</span>, std:<span class="hljs-number">0.9439758658409119</span>
+layer:<span class="hljs-number">42</span>, std:<span class="hljs-number">0.9631161093711853</span>
+layer:<span class="hljs-number">43</span>, std:<span class="hljs-number">0.958673894405365</span>
+layer:<span class="hljs-number">44</span>, std:<span class="hljs-number">0.9675614237785339</span>
+layer:<span class="hljs-number">45</span>, std:<span class="hljs-number">0.9837557077407837</span>
+layer:<span class="hljs-number">46</span>, std:<span class="hljs-number">0.9867278337478638</span>
+layer:<span class="hljs-number">47</span>, std:<span class="hljs-number">0.9920817017555237</span>
+layer:<span class="hljs-number">48</span>, std:<span class="hljs-number">0.9650403261184692</span>
+layer:<span class="hljs-number">49</span>, std:<span class="hljs-number">0.9991624355316162</span>
+layer:<span class="hljs-number">50</span>, std:<span class="hljs-number">0.9946174025535583</span>
+layer:<span class="hljs-number">51</span>, std:<span class="hljs-number">0.9662044048309326</span>
+layer:<span class="hljs-number">52</span>, std:<span class="hljs-number">0.9827387928962708</span>
+layer:<span class="hljs-number">53</span>, std:<span class="hljs-number">0.9887880086898804</span>
+layer:<span class="hljs-number">54</span>, std:<span class="hljs-number">0.9932605624198914</span>
+layer:<span class="hljs-number">55</span>, std:<span class="hljs-number">1.0237400531768799</span>
+layer:<span class="hljs-number">56</span>, std:<span class="hljs-number">0.9702046513557434</span>
+layer:<span class="hljs-number">57</span>, std:<span class="hljs-number">1.0045380592346191</span>
+layer:<span class="hljs-number">58</span>, std:<span class="hljs-number">0.9943899512290955</span>
+layer:<span class="hljs-number">59</span>, std:<span class="hljs-number">0.9900636076927185</span>
+layer:<span class="hljs-number">60</span>, std:<span class="hljs-number">0.99446702003479</span>
+layer:<span class="hljs-number">61</span>, std:<span class="hljs-number">0.9768352508544922</span>
+layer:<span class="hljs-number">62</span>, std:<span class="hljs-number">0.9797843098640442</span>
+layer:<span class="hljs-number">63</span>, std:<span class="hljs-number">0.9951220750808716</span>
+layer:<span class="hljs-number">64</span>, std:<span class="hljs-number">0.9980446696281433</span>
+layer:<span class="hljs-number">65</span>, std:<span class="hljs-number">1.0086933374404907</span>
+layer:<span class="hljs-number">66</span>, std:<span class="hljs-number">1.0276142358779907</span>
+layer:<span class="hljs-number">67</span>, std:<span class="hljs-number">1.0429234504699707</span>
+layer:<span class="hljs-number">68</span>, std:<span class="hljs-number">1.0197855234146118</span>
+layer:<span class="hljs-number">69</span>, std:<span class="hljs-number">1.0319130420684814</span>
+layer:<span class="hljs-number">70</span>, std:<span class="hljs-number">1.0540012121200562</span>
+layer:<span class="hljs-number">71</span>, std:<span class="hljs-number">1.026781439781189</span>
+layer:<span class="hljs-number">72</span>, std:<span class="hljs-number">1.0331352949142456</span>
+layer:<span class="hljs-number">73</span>, std:<span class="hljs-number">1.0666675567626953</span>
+layer:<span class="hljs-number">74</span>, std:<span class="hljs-number">1.0413838624954224</span>
+layer:<span class="hljs-number">75</span>, std:<span class="hljs-number">1.0733673572540283</span>
+layer:<span class="hljs-number">76</span>, std:<span class="hljs-number">1.0404183864593506</span>
+layer:<span class="hljs-number">77</span>, std:<span class="hljs-number">1.0344083309173584</span>
+layer:<span class="hljs-number">78</span>, std:<span class="hljs-number">1.0022705793380737</span>
+layer:<span class="hljs-number">79</span>, std:<span class="hljs-number">0.99835205078125</span>
+layer:<span class="hljs-number">80</span>, std:<span class="hljs-number">0.9732587337493896</span>
+layer:<span class="hljs-number">81</span>, std:<span class="hljs-number">0.9777462482452393</span>
+layer:<span class="hljs-number">82</span>, std:<span class="hljs-number">0.9753198623657227</span>
+layer:<span class="hljs-number">83</span>, std:<span class="hljs-number">0.9938382506370544</span>
+layer:<span class="hljs-number">84</span>, std:<span class="hljs-number">0.9472599029541016</span>
+layer:<span class="hljs-number">85</span>, std:<span class="hljs-number">0.9511011242866516</span>
+layer:<span class="hljs-number">86</span>, std:<span class="hljs-number">0.9737769961357117</span>
+layer:<span class="hljs-number">87</span>, std:<span class="hljs-number">1.005651831626892</span>
+layer:<span class="hljs-number">88</span>, std:<span class="hljs-number">1.0043526887893677</span>
+layer:<span class="hljs-number">89</span>, std:<span class="hljs-number">0.9889539480209351</span>
+layer:<span class="hljs-number">90</span>, std:<span class="hljs-number">1.0130352973937988</span>
+layer:<span class="hljs-number">91</span>, std:<span class="hljs-number">1.0030947923660278</span>
+layer:<span class="hljs-number">92</span>, std:<span class="hljs-number">0.9993206262588501</span>
+layer:<span class="hljs-number">93</span>, std:<span class="hljs-number">1.0342745780944824</span>
+layer:<span class="hljs-number">94</span>, std:<span class="hljs-number">1.031973123550415</span>
+layer:<span class="hljs-number">95</span>, std:<span class="hljs-number">1.0413124561309814</span>
+layer:<span class="hljs-number">96</span>, std:<span class="hljs-number">1.0817031860351562</span>
+layer:<span class="hljs-number">97</span>, std:<span class="hljs-number">1.128799557685852</span>
+layer:<span class="hljs-number">98</span>, std:<span class="hljs-number">1.1617802381515503</span>
+layer:<span class="hljs-number">99</span>, std:<span class="hljs-number">1.2215303182601929</span>
+tensor([[<span class="hljs-number">-1.0696</span>, <span class="hljs-number">-1.1373</span>,  <span class="hljs-number">0.5047</span>,  ..., <span class="hljs-number">-0.4766</span>,  <span class="hljs-number">1.5904</span>, <span class="hljs-number">-0.1076</span>],
+        [ <span class="hljs-number">0.4572</span>,  <span class="hljs-number">1.6211</span>,  <span class="hljs-number">1.9659</span>,  ..., <span class="hljs-number">-0.3558</span>, <span class="hljs-number">-1.1235</span>,  <span class="hljs-number">0.0979</span>],
+        [ <span class="hljs-number">0.3908</span>, <span class="hljs-number">-0.9998</span>, <span class="hljs-number">-0.8680</span>,  ..., <span class="hljs-number">-2.4161</span>,  <span class="hljs-number">0.5035</span>,  <span class="hljs-number">0.2814</span>],
+        ...,
+        [ <span class="hljs-number">0.1876</span>,  <span class="hljs-number">0.7971</span>, <span class="hljs-number">-0.5918</span>,  ...,  <span class="hljs-number">0.5395</span>, <span class="hljs-number">-0.8932</span>,  <span class="hljs-number">0.1211</span>],
+        [<span class="hljs-number">-0.0102</span>, <span class="hljs-number">-1.5027</span>, <span class="hljs-number">-2.6860</span>,  ...,  <span class="hljs-number">0.6954</span>, <span class="hljs-number">-0.1858</span>, <span class="hljs-number">-0.8027</span>],
+        [<span class="hljs-number">-0.5871</span>, <span class="hljs-number">-1.3739</span>, <span class="hljs-number">-2.9027</span>,  ...,  <span class="hljs-number">1.6734</span>,  <span class="hljs-number">0.5094</span>, <span class="hljs-number">-0.9986</span>]],
+       grad_fn=&lt;MmBackward&gt;)</code></pre>
+
+<p>我们看到，已经解决了参数爆炸的问题。我们以上实现都是基于没有激活函数的情况考虑的，现在我们加上激活函数（选择为tanh），再观察输出。</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            x = torch.tanh(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">1</span>/self.neural_num))</code></pre>
+
+<p>运行结果如下：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.6273701786994934</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">0.48910173773765564</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">0.4099564850330353</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">0.35637012124061584</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">0.32117360830307007</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">0.2981105148792267</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">0.27730831503868103</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">0.2589356303215027</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">0.2468511462211609</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">0.23721906542778015</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">0.22171513736248016</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">0.21079954504966736</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">0.19820132851600647</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">0.19069305062294006</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">0.18555502593517303</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">0.17953835427761078</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">0.17485804855823517</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">0.1702701896429062</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">0.16508983075618744</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">0.1591130942106247</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">0.15480302274227142</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">0.15263864398002625</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">0.148549422621727</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">0.14617665112018585</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">0.13876433670520782</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">0.13316625356674194</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">0.12660598754882812</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">0.12537944316864014</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">0.12535445392131805</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">0.1258980631828308</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">0.11994212120771408</span>
+layer:<span class="hljs-number">31</span>, std:<span class="hljs-number">0.11700888723134995</span>
+layer:<span class="hljs-number">32</span>, std:<span class="hljs-number">0.11137298494577408</span>
+layer:<span class="hljs-number">33</span>, std:<span class="hljs-number">0.11154613643884659</span>
+layer:<span class="hljs-number">34</span>, std:<span class="hljs-number">0.10991233587265015</span>
+layer:<span class="hljs-number">35</span>, std:<span class="hljs-number">0.10996390879154205</span>
+layer:<span class="hljs-number">36</span>, std:<span class="hljs-number">0.10969001054763794</span>
+layer:<span class="hljs-number">37</span>, std:<span class="hljs-number">0.10975217074155807</span>
+layer:<span class="hljs-number">38</span>, std:<span class="hljs-number">0.11063199490308762</span>
+layer:<span class="hljs-number">39</span>, std:<span class="hljs-number">0.11021336913108826</span>
+layer:<span class="hljs-number">40</span>, std:<span class="hljs-number">0.10465587675571442</span>
+layer:<span class="hljs-number">41</span>, std:<span class="hljs-number">0.10141163319349289</span>
+layer:<span class="hljs-number">42</span>, std:<span class="hljs-number">0.1026025339961052</span>
+layer:<span class="hljs-number">43</span>, std:<span class="hljs-number">0.10079070925712585</span>
+layer:<span class="hljs-number">44</span>, std:<span class="hljs-number">0.10096712410449982</span>
+layer:<span class="hljs-number">45</span>, std:<span class="hljs-number">0.10117629915475845</span>
+layer:<span class="hljs-number">46</span>, std:<span class="hljs-number">0.10145658254623413</span>
+layer:<span class="hljs-number">47</span>, std:<span class="hljs-number">0.09987485408782959</span>
+layer:<span class="hljs-number">48</span>, std:<span class="hljs-number">0.09677786380052567</span>
+layer:<span class="hljs-number">49</span>, std:<span class="hljs-number">0.099615179002285</span>
+layer:<span class="hljs-number">50</span>, std:<span class="hljs-number">0.09867013245820999</span>
+layer:<span class="hljs-number">51</span>, std:<span class="hljs-number">0.09398546814918518</span>
+layer:<span class="hljs-number">52</span>, std:<span class="hljs-number">0.09388342499732971</span>
+layer:<span class="hljs-number">53</span>, std:<span class="hljs-number">0.09352942556142807</span>
+layer:<span class="hljs-number">54</span>, std:<span class="hljs-number">0.09336657077074051</span>
+layer:<span class="hljs-number">55</span>, std:<span class="hljs-number">0.094817616045475</span>
+layer:<span class="hljs-number">56</span>, std:<span class="hljs-number">0.08856320381164551</span>
+layer:<span class="hljs-number">57</span>, std:<span class="hljs-number">0.09024856984615326</span>
+layer:<span class="hljs-number">58</span>, std:<span class="hljs-number">0.0886448472738266</span>
+layer:<span class="hljs-number">59</span>, std:<span class="hljs-number">0.08766943961381912</span>
+layer:<span class="hljs-number">60</span>, std:<span class="hljs-number">0.08726290613412857</span>
+layer:<span class="hljs-number">61</span>, std:<span class="hljs-number">0.08623497188091278</span>
+layer:<span class="hljs-number">62</span>, std:<span class="hljs-number">0.08549781143665314</span>
+layer:<span class="hljs-number">63</span>, std:<span class="hljs-number">0.08555219322443008</span>
+layer:<span class="hljs-number">64</span>, std:<span class="hljs-number">0.08536665141582489</span>
+layer:<span class="hljs-number">65</span>, std:<span class="hljs-number">0.08462796360254288</span>
+layer:<span class="hljs-number">66</span>, std:<span class="hljs-number">0.08521939814090729</span>
+layer:<span class="hljs-number">67</span>, std:<span class="hljs-number">0.08562128990888596</span>
+layer:<span class="hljs-number">68</span>, std:<span class="hljs-number">0.08368432521820068</span>
+layer:<span class="hljs-number">69</span>, std:<span class="hljs-number">0.08476376533508301</span>
+layer:<span class="hljs-number">70</span>, std:<span class="hljs-number">0.08536301553249359</span>
+layer:<span class="hljs-number">71</span>, std:<span class="hljs-number">0.08237562328577042</span>
+layer:<span class="hljs-number">72</span>, std:<span class="hljs-number">0.08133520931005478</span>
+layer:<span class="hljs-number">73</span>, std:<span class="hljs-number">0.08416961133480072</span>
+layer:<span class="hljs-number">74</span>, std:<span class="hljs-number">0.08226993680000305</span>
+layer:<span class="hljs-number">75</span>, std:<span class="hljs-number">0.08379077166318893</span>
+layer:<span class="hljs-number">76</span>, std:<span class="hljs-number">0.08003699779510498</span>
+layer:<span class="hljs-number">77</span>, std:<span class="hljs-number">0.07888863980770111</span>
+layer:<span class="hljs-number">78</span>, std:<span class="hljs-number">0.07618381083011627</span>
+layer:<span class="hljs-number">79</span>, std:<span class="hljs-number">0.07458438724279404</span>
+layer:<span class="hljs-number">80</span>, std:<span class="hljs-number">0.07207277417182922</span>
+layer:<span class="hljs-number">81</span>, std:<span class="hljs-number">0.07079191505908966</span>
+layer:<span class="hljs-number">82</span>, std:<span class="hljs-number">0.0712786540389061</span>
+layer:<span class="hljs-number">83</span>, std:<span class="hljs-number">0.07165778428316116</span>
+layer:<span class="hljs-number">84</span>, std:<span class="hljs-number">0.06893911212682724</span>
+layer:<span class="hljs-number">85</span>, std:<span class="hljs-number">0.06902473419904709</span>
+layer:<span class="hljs-number">86</span>, std:<span class="hljs-number">0.07030880451202393</span>
+layer:<span class="hljs-number">87</span>, std:<span class="hljs-number">0.07283663004636765</span>
+layer:<span class="hljs-number">88</span>, std:<span class="hljs-number">0.07280216366052628</span>
+layer:<span class="hljs-number">89</span>, std:<span class="hljs-number">0.07130247354507446</span>
+layer:<span class="hljs-number">90</span>, std:<span class="hljs-number">0.07225216180086136</span>
+layer:<span class="hljs-number">91</span>, std:<span class="hljs-number">0.0712454691529274</span>
+layer:<span class="hljs-number">92</span>, std:<span class="hljs-number">0.07088855654001236</span>
+layer:<span class="hljs-number">93</span>, std:<span class="hljs-number">0.0730612725019455</span>
+layer:<span class="hljs-number">94</span>, std:<span class="hljs-number">0.07276969403028488</span>
+layer:<span class="hljs-number">95</span>, std:<span class="hljs-number">0.07259569317102432</span>
+layer:<span class="hljs-number">96</span>, std:<span class="hljs-number">0.0758652538061142</span>
+layer:<span class="hljs-number">97</span>, std:<span class="hljs-number">0.07769152522087097</span>
+layer:<span class="hljs-number">98</span>, std:<span class="hljs-number">0.07842093706130981</span>
+layer:<span class="hljs-number">99</span>, std:<span class="hljs-number">0.08206242322921753</span>
+tensor([[<span class="hljs-number">-0.1103</span>, <span class="hljs-number">-0.0739</span>,  <span class="hljs-number">0.1278</span>,  ..., <span class="hljs-number">-0.0508</span>,  <span class="hljs-number">0.1544</span>, <span class="hljs-number">-0.0107</span>],
+        [ <span class="hljs-number">0.0807</span>,  <span class="hljs-number">0.1208</span>,  <span class="hljs-number">0.0030</span>,  ..., <span class="hljs-number">-0.0385</span>, <span class="hljs-number">-0.1887</span>, <span class="hljs-number">-0.0294</span>],
+        [ <span class="hljs-number">0.0321</span>, <span class="hljs-number">-0.0833</span>, <span class="hljs-number">-0.1482</span>,  ..., <span class="hljs-number">-0.1133</span>,  <span class="hljs-number">0.0206</span>,  <span class="hljs-number">0.0155</span>],
+        ...,
+        [ <span class="hljs-number">0.0108</span>,  <span class="hljs-number">0.0560</span>, <span class="hljs-number">-0.1099</span>,  ...,  <span class="hljs-number">0.0459</span>, <span class="hljs-number">-0.0961</span>, <span class="hljs-number">-0.0124</span>],
+        [ <span class="hljs-number">0.0398</span>, <span class="hljs-number">-0.0874</span>, <span class="hljs-number">-0.2312</span>,  ...,  <span class="hljs-number">0.0294</span>, <span class="hljs-number">-0.0562</span>, <span class="hljs-number">-0.0556</span>],
+        [<span class="hljs-number">-0.0234</span>, <span class="hljs-number">-0.0297</span>, <span class="hljs-number">-0.1155</span>,  ...,  <span class="hljs-number">0.1143</span>,  <span class="hljs-number">0.0083</span>, <span class="hljs-number">-0.0675</span>]],
+       grad_fn=&lt;TanhBackward&gt;)</code></pre>
+
+<p>可以发现，添加了激活函数以后，每一层数据的标准差逐渐减小，这是我们不希望看到的。</p>
+<h1 id="2-Xavier方法与Kaiming方法"><a href="#2-Xavier方法与Kaiming方法" class="headerlink" title="2. Xavier方法与Kaiming方法"></a>2. Xavier方法与Kaiming方法</h1><h2 id="2-1-Xavier方法"><a href="#2-1-Xavier方法" class="headerlink" title="2.1  Xavier方法"></a>2.1  Xavier方法</h2><p>在论文<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Glorot X, Bengio Y. Understanding the difficulty of training deep feedforward neural networks[C]//Proceedings of the thirteenth international conference on artificial intelligence and statistics. 2010: 249-256.
+">[1]</span></a></sup>中，提出了一种参数初始化的方法，<strong>适用于饱和激活函数，如Sigmoid，Tanh</strong></p>
+<p>$\boldsymbol{D}(\boldsymbol{W})=\frac{2}{\boldsymbol{n}<em>{i}+\boldsymbol{n}</em>{i+1}}$</p>
+<blockquote>
+<p>$n_i$是第$i$层的神经元个数，$n_{i+1}$是第$i+1$层的神经元个数</p>
+</blockquote>
+<p>并且$W \sim U[-a, a]$，即$W$是服从对称均匀分布的，可以反解出$a$的值，得到：</p>
+<p>$W \sim U\left[-\frac{\sqrt{6}}{\sqrt{n_{i}+n_{i+1}}}, \frac{\sqrt{6}}{\sqrt{n_{i}+n_{i+1}}}\right]$</p>
+<p>其实可以发现，当$\boldsymbol{n}<em>{i}=\boldsymbol{n}</em>{i+1}$时，和上面的方法是一样的，Xavier方法只是考虑了前后层神经元不等的情况，取了一个平均值。</p>
+<p>另外，加上激活函数后，由于数据在通过激活函数之前和通过激活函数之后的标准差会有变化：</p>
+<pre><code class="hljs python">x = torch.randn(<span class="hljs-number">10000</span>)
+out = torch.tanh(x)
+
+gain = x.std() / out.std()
+print(<span class="hljs-string">&#x27;gain:&#123;&#125;&#x27;</span>.format(gain))</code></pre>
+
+<pre><code class="hljs python">gain:<span class="hljs-number">1.5982500314712524</span></code></pre>
+
+<p>通过实验，可以发现tanh输入和输出标准差的比值是gain = 1.6左右，即输出比输入应该是1/gain。</p>
+<p>所以说，经过激活函数，数据的标准差会被乘上一个增益(1/gain)，这个增益会造成数据标准差一致性被破坏，因此在初始化参数时，应该把激活函数的影响考虑进去。</p>
+<p>在考虑了激活函数之后，参数的分布应该为：</p>
+<p>$\boldsymbol{D}\left( \boldsymbol{W} \right) =\frac{2gain^2}{\left( \boldsymbol{n}<em>i+\boldsymbol{n}</em>{i+1} \right)}$，则$W\sim U\left[ -gain\cdot \frac{\sqrt{6}}{\sqrt{n_i+n_{i+1}}},, ,  gain\cdot \frac{\sqrt{6}}{\sqrt{n_i+n_{i+1}}} \right]$</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            x = torch.tanh(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                a = np.sqrt(<span class="hljs-number">6</span> / (self.neural_num + self.neural_num))
+
+                a *= <span class="hljs-number">1.6</span>                                
+
+                nn.init.uniform_(m.weight.data, -a, a)</code></pre>
+
+<p>输出结果如下：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.7478928565979004</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">0.6779849529266357</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">0.6506703495979309</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">0.6364355087280273</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">0.6358171701431274</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">0.6329374313354492</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">0.6291818022727966</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">0.6261899471282959</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">0.6248595118522644</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">0.6203226447105408</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">0.6218484044075012</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">0.6311259865760803</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">0.6389117240905762</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">0.6308977603912354</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">0.6316721439361572</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">0.6307259202003479</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">0.6327394247055054</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">0.6350437998771667</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">0.6291753053665161</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">0.6264926195144653</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">0.6255913972854614</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">0.6265914440155029</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">0.629246711730957</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">0.6324419379234314</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">0.63409423828125</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">0.625957190990448</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">0.6308732628822327</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">0.6323292255401611</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">0.631292998790741</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">0.6316223740577698</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">0.6341015100479126</span>
+layer:<span class="hljs-number">31</span>, std:<span class="hljs-number">0.6347006559371948</span>
+layer:<span class="hljs-number">32</span>, std:<span class="hljs-number">0.6258944869041443</span>
+layer:<span class="hljs-number">33</span>, std:<span class="hljs-number">0.6284964084625244</span>
+layer:<span class="hljs-number">34</span>, std:<span class="hljs-number">0.6349349617958069</span>
+layer:<span class="hljs-number">35</span>, std:<span class="hljs-number">0.6348815560340881</span>
+layer:<span class="hljs-number">36</span>, std:<span class="hljs-number">0.632404088973999</span>
+layer:<span class="hljs-number">37</span>, std:<span class="hljs-number">0.6271371245384216</span>
+layer:<span class="hljs-number">38</span>, std:<span class="hljs-number">0.6303150653839111</span>
+layer:<span class="hljs-number">39</span>, std:<span class="hljs-number">0.6290847659111023</span>
+layer:<span class="hljs-number">40</span>, std:<span class="hljs-number">0.6289985775947571</span>
+layer:<span class="hljs-number">41</span>, std:<span class="hljs-number">0.621789813041687</span>
+layer:<span class="hljs-number">42</span>, std:<span class="hljs-number">0.625396192073822</span>
+layer:<span class="hljs-number">43</span>, std:<span class="hljs-number">0.6222016215324402</span>
+layer:<span class="hljs-number">44</span>, std:<span class="hljs-number">0.6240432262420654</span>
+layer:<span class="hljs-number">45</span>, std:<span class="hljs-number">0.6275975108146667</span>
+layer:<span class="hljs-number">46</span>, std:<span class="hljs-number">0.6364040374755859</span>
+layer:<span class="hljs-number">47</span>, std:<span class="hljs-number">0.6336819529533386</span>
+layer:<span class="hljs-number">48</span>, std:<span class="hljs-number">0.6304349303245544</span>
+layer:<span class="hljs-number">49</span>, std:<span class="hljs-number">0.6382676959037781</span>
+layer:<span class="hljs-number">50</span>, std:<span class="hljs-number">0.6274499893188477</span>
+layer:<span class="hljs-number">51</span>, std:<span class="hljs-number">0.6260620355606079</span>
+layer:<span class="hljs-number">52</span>, std:<span class="hljs-number">0.6253968477249146</span>
+layer:<span class="hljs-number">53</span>, std:<span class="hljs-number">0.6330998539924622</span>
+layer:<span class="hljs-number">54</span>, std:<span class="hljs-number">0.6337630748748779</span>
+layer:<span class="hljs-number">55</span>, std:<span class="hljs-number">0.6381629705429077</span>
+layer:<span class="hljs-number">56</span>, std:<span class="hljs-number">0.6372403502464294</span>
+layer:<span class="hljs-number">57</span>, std:<span class="hljs-number">0.6365635991096497</span>
+layer:<span class="hljs-number">58</span>, std:<span class="hljs-number">0.6321311593055725</span>
+layer:<span class="hljs-number">59</span>, std:<span class="hljs-number">0.6351718902587891</span>
+layer:<span class="hljs-number">60</span>, std:<span class="hljs-number">0.6261962056159973</span>
+layer:<span class="hljs-number">61</span>, std:<span class="hljs-number">0.6266316771507263</span>
+layer:<span class="hljs-number">62</span>, std:<span class="hljs-number">0.6396113038063049</span>
+layer:<span class="hljs-number">63</span>, std:<span class="hljs-number">0.6292709112167358</span>
+layer:<span class="hljs-number">64</span>, std:<span class="hljs-number">0.6222012042999268</span>
+layer:<span class="hljs-number">65</span>, std:<span class="hljs-number">0.6303234696388245</span>
+layer:<span class="hljs-number">66</span>, std:<span class="hljs-number">0.6274740099906921</span>
+layer:<span class="hljs-number">67</span>, std:<span class="hljs-number">0.6251446604728699</span>
+layer:<span class="hljs-number">68</span>, std:<span class="hljs-number">0.6264793872833252</span>
+layer:<span class="hljs-number">69</span>, std:<span class="hljs-number">0.6295577883720398</span>
+layer:<span class="hljs-number">70</span>, std:<span class="hljs-number">0.6249094009399414</span>
+layer:<span class="hljs-number">71</span>, std:<span class="hljs-number">0.6287401914596558</span>
+layer:<span class="hljs-number">72</span>, std:<span class="hljs-number">0.6286113858222961</span>
+layer:<span class="hljs-number">73</span>, std:<span class="hljs-number">0.6284091472625732</span>
+layer:<span class="hljs-number">74</span>, std:<span class="hljs-number">0.6318932771682739</span>
+layer:<span class="hljs-number">75</span>, std:<span class="hljs-number">0.6292228102684021</span>
+layer:<span class="hljs-number">76</span>, std:<span class="hljs-number">0.6299203038215637</span>
+layer:<span class="hljs-number">77</span>, std:<span class="hljs-number">0.6335345506668091</span>
+layer:<span class="hljs-number">78</span>, std:<span class="hljs-number">0.6286757588386536</span>
+layer:<span class="hljs-number">79</span>, std:<span class="hljs-number">0.6277093291282654</span>
+layer:<span class="hljs-number">80</span>, std:<span class="hljs-number">0.620465099811554</span>
+layer:<span class="hljs-number">81</span>, std:<span class="hljs-number">0.6265316009521484</span>
+layer:<span class="hljs-number">82</span>, std:<span class="hljs-number">0.6293043494224548</span>
+layer:<span class="hljs-number">83</span>, std:<span class="hljs-number">0.6340993046760559</span>
+layer:<span class="hljs-number">84</span>, std:<span class="hljs-number">0.630544900894165</span>
+layer:<span class="hljs-number">85</span>, std:<span class="hljs-number">0.6326507925987244</span>
+layer:<span class="hljs-number">86</span>, std:<span class="hljs-number">0.631687343120575</span>
+layer:<span class="hljs-number">87</span>, std:<span class="hljs-number">0.6303809285163879</span>
+layer:<span class="hljs-number">88</span>, std:<span class="hljs-number">0.6315408945083618</span>
+layer:<span class="hljs-number">89</span>, std:<span class="hljs-number">0.635422945022583</span>
+layer:<span class="hljs-number">90</span>, std:<span class="hljs-number">0.6308826208114624</span>
+layer:<span class="hljs-number">91</span>, std:<span class="hljs-number">0.6228996515274048</span>
+layer:<span class="hljs-number">92</span>, std:<span class="hljs-number">0.6288461089134216</span>
+layer:<span class="hljs-number">93</span>, std:<span class="hljs-number">0.6291288733482361</span>
+layer:<span class="hljs-number">94</span>, std:<span class="hljs-number">0.6311470866203308</span>
+layer:<span class="hljs-number">95</span>, std:<span class="hljs-number">0.6264474987983704</span>
+layer:<span class="hljs-number">96</span>, std:<span class="hljs-number">0.6221898198127747</span>
+layer:<span class="hljs-number">97</span>, std:<span class="hljs-number">0.6308965682983398</span>
+layer:<span class="hljs-number">98</span>, std:<span class="hljs-number">0.6236720681190491</span>
+layer:<span class="hljs-number">99</span>, std:<span class="hljs-number">0.6268938779830933</span>
+tensor([[<span class="hljs-number">-0.8767</span>, <span class="hljs-number">-0.6150</span>, <span class="hljs-number">-0.8017</span>,  ...,  <span class="hljs-number">0.7821</span>,  <span class="hljs-number">0.0101</span>,  <span class="hljs-number">0.0245</span>],
+        [ <span class="hljs-number">0.3151</span>, <span class="hljs-number">-0.0019</span>,  <span class="hljs-number">0.5734</span>,  ...,  <span class="hljs-number">0.2360</span>, <span class="hljs-number">-0.9475</span>, <span class="hljs-number">-0.7526</span>],
+        [ <span class="hljs-number">0.9089</span>,  <span class="hljs-number">0.9743</span>, <span class="hljs-number">-0.6852</span>,  ...,  <span class="hljs-number">0.4285</span>,  <span class="hljs-number">0.8907</span>, <span class="hljs-number">-0.5447</span>],
+        ...,
+        [<span class="hljs-number">-0.2722</span>,  <span class="hljs-number">0.7697</span>,  <span class="hljs-number">0.8062</span>,  ..., <span class="hljs-number">-0.7473</span>, <span class="hljs-number">-0.4889</span>,  <span class="hljs-number">0.9546</span>],
+        [<span class="hljs-number">-0.9516</span>,  <span class="hljs-number">0.5446</span>,  <span class="hljs-number">0.9693</span>,  ...,  <span class="hljs-number">0.0297</span>, <span class="hljs-number">-0.3304</span>, <span class="hljs-number">-0.6309</span>],
+        [<span class="hljs-number">-0.8406</span>, <span class="hljs-number">-0.2497</span>,  <span class="hljs-number">0.2483</span>,  ..., <span class="hljs-number">-0.0112</span>, <span class="hljs-number">-0.9767</span>, <span class="hljs-number">-0.5765</span>]],
+       grad_fn=&lt;TanhBackward&gt;)</code></pre>
+
+<p>可以看到，采用Xavier参数初始化方法后，采用tanh激活函数的神经网络每一层参数的标准差都维持在了0.6左右。</p>
+<p>通常，我们还可以使用pytorch提供的函数自动为我们提供gain值。</p>
+<pre><code class="hljs python">nn.init.calculate_gain(nonlinearity, param=<span class="hljs-literal">None</span>)</code></pre>
+
+<p>主要功能：返回给定非线性函数的建议增益值。数值如下：</p>
+<table>
+<thead>
+<tr>
+<th>nonlinearity</th>
+<th>gain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Linear / Identity</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Conv{1,2,3}D</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Sigmoid</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Tanh</td>
+<td>$\frac{5}{3}$</td>
+</tr>
+<tr>
+<td>ReLU</td>
+<td>$\sqrt{2}$</td>
+</tr>
+<tr>
+<td>Leaky Relu</td>
+<td>$\sqrt{\frac{2}{1+\text{negative}_s\text{lope}^2}}$</td>
+</tr>
+</tbody></table>
+<p>主要参数</p>
+<ul>
+<li>nonlinearity: 激活函数名称</li>
+<li>param: 激活函数的参数，如Leaky ReLU的negative_slop</li>
+</ul>
+<p>使用如下：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            x = torch.tanh(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                a = np.sqrt(<span class="hljs-number">6</span> / (self.neural_num + self.neural_num))
+                tanh_gain = nn.init.calculate_gain(<span class="hljs-string">&#x27;tanh&#x27;</span>) <span class="hljs-comment"># tanh_gain=1.66</span>
+                a *= tanh_gain                
+                nn.init.uniform_(m.weight.data, -a, a)</code></pre>
+
+<p>或者我们也可以直接使用Pytorch提供的方法进行Xavier参数初始化：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            x = torch.tanh(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                tanh_gain = nn.init.calculate_gain(<span class="hljs-string">&#x27;tanh&#x27;</span>)
+                nn.init.xavier_uniform_(m.weight.data, gain=tanh_gain)</code></pre>
+
+<p>输出结果如下：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.7571136355400085</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">0.6924336552619934</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">0.6677976846694946</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">0.6551960110664368</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">0.655646800994873</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">0.6536089777946472</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">0.6500504612922668</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">0.6465446949005127</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">0.645668625831604</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">0.6414617896080017</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">0.6423627734184265</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">0.6509683728218079</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">0.6584846377372742</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">0.6530249118804932</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">0.6528729796409607</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">0.6523412466049194</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">0.6534922122955322</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">0.6540238261222839</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">0.6477402448654175</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">0.6469652652740479</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">0.6441705822944641</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">0.6484488248825073</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">0.6512865424156189</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">0.6525684595108032</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">0.6531476378440857</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">0.6488809585571289</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">0.6533839702606201</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">0.6482064723968506</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">0.6471589803695679</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">0.6553042531013489</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">0.6560811400413513</span>
+layer:<span class="hljs-number">31</span>, std:<span class="hljs-number">0.6522760987281799</span>
+layer:<span class="hljs-number">32</span>, std:<span class="hljs-number">0.6499099135398865</span>
+layer:<span class="hljs-number">33</span>, std:<span class="hljs-number">0.6568747162818909</span>
+layer:<span class="hljs-number">34</span>, std:<span class="hljs-number">0.6544532775878906</span>
+layer:<span class="hljs-number">35</span>, std:<span class="hljs-number">0.6535675525665283</span>
+layer:<span class="hljs-number">36</span>, std:<span class="hljs-number">0.6508696675300598</span>
+layer:<span class="hljs-number">37</span>, std:<span class="hljs-number">0.6428772807121277</span>
+layer:<span class="hljs-number">38</span>, std:<span class="hljs-number">0.6495102047920227</span>
+layer:<span class="hljs-number">39</span>, std:<span class="hljs-number">0.6479291319847107</span>
+layer:<span class="hljs-number">40</span>, std:<span class="hljs-number">0.6470605731010437</span>
+layer:<span class="hljs-number">41</span>, std:<span class="hljs-number">0.6513484120368958</span>
+layer:<span class="hljs-number">42</span>, std:<span class="hljs-number">0.6503545045852661</span>
+layer:<span class="hljs-number">43</span>, std:<span class="hljs-number">0.6458993554115295</span>
+layer:<span class="hljs-number">44</span>, std:<span class="hljs-number">0.6517390012741089</span>
+layer:<span class="hljs-number">45</span>, std:<span class="hljs-number">0.6520008444786072</span>
+layer:<span class="hljs-number">46</span>, std:<span class="hljs-number">0.6539941430091858</span>
+layer:<span class="hljs-number">47</span>, std:<span class="hljs-number">0.6537034511566162</span>
+layer:<span class="hljs-number">48</span>, std:<span class="hljs-number">0.651664137840271</span>
+layer:<span class="hljs-number">49</span>, std:<span class="hljs-number">0.6535553932189941</span>
+layer:<span class="hljs-number">50</span>, std:<span class="hljs-number">0.6464875936508179</span>
+layer:<span class="hljs-number">51</span>, std:<span class="hljs-number">0.6491114497184753</span>
+layer:<span class="hljs-number">52</span>, std:<span class="hljs-number">0.6455201506614685</span>
+layer:<span class="hljs-number">53</span>, std:<span class="hljs-number">0.65202397108078</span>
+layer:<span class="hljs-number">54</span>, std:<span class="hljs-number">0.6531858444213867</span>
+layer:<span class="hljs-number">55</span>, std:<span class="hljs-number">0.6627185344696045</span>
+layer:<span class="hljs-number">56</span>, std:<span class="hljs-number">0.6544178128242493</span>
+layer:<span class="hljs-number">57</span>, std:<span class="hljs-number">0.6501754522323608</span>
+layer:<span class="hljs-number">58</span>, std:<span class="hljs-number">0.6510435938835144</span>
+layer:<span class="hljs-number">59</span>, std:<span class="hljs-number">0.6549468040466309</span>
+layer:<span class="hljs-number">60</span>, std:<span class="hljs-number">0.6529961824417114</span>
+layer:<span class="hljs-number">61</span>, std:<span class="hljs-number">0.6515753865242004</span>
+layer:<span class="hljs-number">62</span>, std:<span class="hljs-number">0.6453633308410645</span>
+layer:<span class="hljs-number">63</span>, std:<span class="hljs-number">0.6447920799255371</span>
+layer:<span class="hljs-number">64</span>, std:<span class="hljs-number">0.6489525437355042</span>
+layer:<span class="hljs-number">65</span>, std:<span class="hljs-number">0.6553934216499329</span>
+layer:<span class="hljs-number">66</span>, std:<span class="hljs-number">0.6535244584083557</span>
+layer:<span class="hljs-number">67</span>, std:<span class="hljs-number">0.6528763771057129</span>
+layer:<span class="hljs-number">68</span>, std:<span class="hljs-number">0.6492756605148315</span>
+layer:<span class="hljs-number">69</span>, std:<span class="hljs-number">0.6596540808677673</span>
+layer:<span class="hljs-number">70</span>, std:<span class="hljs-number">0.6536692380905151</span>
+layer:<span class="hljs-number">71</span>, std:<span class="hljs-number">0.6498777270317078</span>
+layer:<span class="hljs-number">72</span>, std:<span class="hljs-number">0.6538715362548828</span>
+layer:<span class="hljs-number">73</span>, std:<span class="hljs-number">0.6459632515907288</span>
+layer:<span class="hljs-number">74</span>, std:<span class="hljs-number">0.6543327569961548</span>
+layer:<span class="hljs-number">75</span>, std:<span class="hljs-number">0.6525865197181702</span>
+layer:<span class="hljs-number">76</span>, std:<span class="hljs-number">0.6462062001228333</span>
+layer:<span class="hljs-number">77</span>, std:<span class="hljs-number">0.6534916758537292</span>
+layer:<span class="hljs-number">78</span>, std:<span class="hljs-number">0.6461915969848633</span>
+layer:<span class="hljs-number">79</span>, std:<span class="hljs-number">0.6457912921905518</span>
+layer:<span class="hljs-number">80</span>, std:<span class="hljs-number">0.6481336355209351</span>
+layer:<span class="hljs-number">81</span>, std:<span class="hljs-number">0.649639904499054</span>
+layer:<span class="hljs-number">82</span>, std:<span class="hljs-number">0.6517052054405212</span>
+layer:<span class="hljs-number">83</span>, std:<span class="hljs-number">0.6485037207603455</span>
+layer:<span class="hljs-number">84</span>, std:<span class="hljs-number">0.6395189762115479</span>
+layer:<span class="hljs-number">85</span>, std:<span class="hljs-number">0.6498353481292725</span>
+layer:<span class="hljs-number">86</span>, std:<span class="hljs-number">0.651058554649353</span>
+layer:<span class="hljs-number">87</span>, std:<span class="hljs-number">0.6505323052406311</span>
+layer:<span class="hljs-number">88</span>, std:<span class="hljs-number">0.6573923230171204</span>
+layer:<span class="hljs-number">89</span>, std:<span class="hljs-number">0.6529804468154907</span>
+layer:<span class="hljs-number">90</span>, std:<span class="hljs-number">0.6536460518836975</span>
+layer:<span class="hljs-number">91</span>, std:<span class="hljs-number">0.6497945785522461</span>
+layer:<span class="hljs-number">92</span>, std:<span class="hljs-number">0.6458892226219177</span>
+layer:<span class="hljs-number">93</span>, std:<span class="hljs-number">0.6458885669708252</span>
+layer:<span class="hljs-number">94</span>, std:<span class="hljs-number">0.6530362963676453</span>
+layer:<span class="hljs-number">95</span>, std:<span class="hljs-number">0.6515855193138123</span>
+layer:<span class="hljs-number">96</span>, std:<span class="hljs-number">0.643466055393219</span>
+layer:<span class="hljs-number">97</span>, std:<span class="hljs-number">0.6426210403442383</span>
+layer:<span class="hljs-number">98</span>, std:<span class="hljs-number">0.6407480835914612</span>
+layer:<span class="hljs-number">99</span>, std:<span class="hljs-number">0.6442216038703918</span>
+tensor([[ <span class="hljs-number">0.1159</span>,  <span class="hljs-number">0.1230</span>,  <span class="hljs-number">0.8216</span>,  ...,  <span class="hljs-number">0.9417</span>, <span class="hljs-number">-0.6332</span>,  <span class="hljs-number">0.5106</span>],
+        [<span class="hljs-number">-0.9586</span>, <span class="hljs-number">-0.2355</span>,  <span class="hljs-number">0.8550</span>,  ..., <span class="hljs-number">-0.2347</span>,  <span class="hljs-number">0.9330</span>,  <span class="hljs-number">0.0114</span>],
+        [ <span class="hljs-number">0.9488</span>, <span class="hljs-number">-0.2261</span>,  <span class="hljs-number">0.8736</span>,  ..., <span class="hljs-number">-0.9594</span>,  <span class="hljs-number">0.7923</span>,  <span class="hljs-number">0.6266</span>],
+        ...,
+        [ <span class="hljs-number">0.7160</span>,  <span class="hljs-number">0.0916</span>, <span class="hljs-number">-0.4326</span>,  ..., <span class="hljs-number">-0.9586</span>,  <span class="hljs-number">0.2504</span>,  <span class="hljs-number">0.5406</span>],
+        [<span class="hljs-number">-0.9539</span>,  <span class="hljs-number">0.5055</span>, <span class="hljs-number">-0.8024</span>,  ..., <span class="hljs-number">-0.4472</span>, <span class="hljs-number">-0.6167</span>,  <span class="hljs-number">0.9665</span>],
+        [ <span class="hljs-number">0.6117</span>,  <span class="hljs-number">0.3952</span>,  <span class="hljs-number">0.1042</span>,  ...,  <span class="hljs-number">0.3919</span>, <span class="hljs-number">-0.5273</span>,  <span class="hljs-number">0.0751</span>]],
+       grad_fn=&lt;TanhBackward&gt;)</code></pre>
+
+
+
+
+
+<h2 id="2-2-Kaiming方法"><a href="#2-2-Kaiming方法" class="headerlink" title="2.2  Kaiming方法"></a>2.2  Kaiming方法</h2><p>在论文<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="He K, Zhang X, Ren S, et al. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification[C]//Proceedings of the IEEE international conference on computer vision. 2015: 1026-1034.
+">[2]</span></a></sup>中，提出了一种参数初始化的方法，<strong>适用于非饱和激活函数：ReLU及其变种（如Leaky ReLU，PReLU，RReLU）</strong></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200801225746.png" srcset="/img/loading.gif" alt="image-20200801225739149" style="zoom:67%;" />
+
+<p>对于ReLU：$\mathbf{D}(W)=\frac{2}{n_{i}}$，$\operatorname{std}(W)=\sqrt{\frac{2}{n_{i}}}$</p>
+<blockquote>
+<p>发现了吗？由于ReLU这种函数只有正半轴，相比于tanh这种饱和对称函数，方差就要减半。</p>
+</blockquote>
+<p>对于ReLU的变种：$\mathrm{D}(W)=\frac{2}{\left(1+\mathrm{a}^{2}\right) \cdot n_{i}}$，$\operatorname{std}(W)=\sqrt{\frac{2}{\left(1+a^{2}\right) * n_{i}}}$</p>
+<blockquote>
+<p>其中a为负半轴的斜率</p>
+</blockquote>
+<p>并且采用0均值的正态分布（均匀分布也行）</p>
+<p>使用Kaiming方法初始化的代码如下所示：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            x = torch.relu(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">2</span> / self.neural_num))</code></pre>
+
+<p>输出结果如下：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.826629638671875</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">0.8786815404891968</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">0.9134422540664673</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">0.8892471194267273</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">0.834428071975708</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">0.874537467956543</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">0.7926971316337585</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">0.7806458473205566</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">0.8684563636779785</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">0.9434137344360352</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">0.964215874671936</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">0.8896796107292175</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">0.8287257552146912</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">0.8519769906997681</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">0.8354345560073853</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">0.802306056022644</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">0.8613607287406921</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">0.7583686709403992</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">0.8120225071907043</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">0.791111171245575</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">0.7164372801780701</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">0.778393030166626</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">0.8672043085098267</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">0.874812662601471</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">0.9020991325378418</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">0.8585715889930725</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">0.7824353575706482</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">0.7968912720680237</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">0.8984369039535522</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">0.8704465627670288</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">0.9860473275184631</span>
+layer:<span class="hljs-number">31</span>, std:<span class="hljs-number">0.9080777168273926</span>
+layer:<span class="hljs-number">32</span>, std:<span class="hljs-number">0.9140636920928955</span>
+layer:<span class="hljs-number">33</span>, std:<span class="hljs-number">1.009956955909729</span>
+layer:<span class="hljs-number">34</span>, std:<span class="hljs-number">0.9909380674362183</span>
+layer:<span class="hljs-number">35</span>, std:<span class="hljs-number">1.0253208875656128</span>
+layer:<span class="hljs-number">36</span>, std:<span class="hljs-number">0.849043607711792</span>
+layer:<span class="hljs-number">37</span>, std:<span class="hljs-number">0.703953742980957</span>
+layer:<span class="hljs-number">38</span>, std:<span class="hljs-number">0.7186155319213867</span>
+layer:<span class="hljs-number">39</span>, std:<span class="hljs-number">0.7250635027885437</span>
+layer:<span class="hljs-number">40</span>, std:<span class="hljs-number">0.7030817270278931</span>
+layer:<span class="hljs-number">41</span>, std:<span class="hljs-number">0.6325559020042419</span>
+layer:<span class="hljs-number">42</span>, std:<span class="hljs-number">0.6623690724372864</span>
+layer:<span class="hljs-number">43</span>, std:<span class="hljs-number">0.6960875988006592</span>
+layer:<span class="hljs-number">44</span>, std:<span class="hljs-number">0.7140733003616333</span>
+layer:<span class="hljs-number">45</span>, std:<span class="hljs-number">0.632905125617981</span>
+layer:<span class="hljs-number">46</span>, std:<span class="hljs-number">0.6458898186683655</span>
+layer:<span class="hljs-number">47</span>, std:<span class="hljs-number">0.7354375720024109</span>
+layer:<span class="hljs-number">48</span>, std:<span class="hljs-number">0.6710687279701233</span>
+layer:<span class="hljs-number">49</span>, std:<span class="hljs-number">0.6939153671264648</span>
+layer:<span class="hljs-number">50</span>, std:<span class="hljs-number">0.6889258027076721</span>
+layer:<span class="hljs-number">51</span>, std:<span class="hljs-number">0.6331773996353149</span>
+layer:<span class="hljs-number">52</span>, std:<span class="hljs-number">0.6029313206672668</span>
+layer:<span class="hljs-number">53</span>, std:<span class="hljs-number">0.6145528554916382</span>
+layer:<span class="hljs-number">54</span>, std:<span class="hljs-number">0.6636686325073242</span>
+layer:<span class="hljs-number">55</span>, std:<span class="hljs-number">0.7440094947814941</span>
+layer:<span class="hljs-number">56</span>, std:<span class="hljs-number">0.7972175478935242</span>
+layer:<span class="hljs-number">57</span>, std:<span class="hljs-number">0.7606149911880493</span>
+layer:<span class="hljs-number">58</span>, std:<span class="hljs-number">0.696868360042572</span>
+layer:<span class="hljs-number">59</span>, std:<span class="hljs-number">0.7306802272796631</span>
+layer:<span class="hljs-number">60</span>, std:<span class="hljs-number">0.6875627636909485</span>
+layer:<span class="hljs-number">61</span>, std:<span class="hljs-number">0.7171440720558167</span>
+layer:<span class="hljs-number">62</span>, std:<span class="hljs-number">0.7646605372428894</span>
+layer:<span class="hljs-number">63</span>, std:<span class="hljs-number">0.7965086698532104</span>
+layer:<span class="hljs-number">64</span>, std:<span class="hljs-number">0.8833740949630737</span>
+layer:<span class="hljs-number">65</span>, std:<span class="hljs-number">0.8592952489852905</span>
+layer:<span class="hljs-number">66</span>, std:<span class="hljs-number">0.8092936873435974</span>
+layer:<span class="hljs-number">67</span>, std:<span class="hljs-number">0.806481122970581</span>
+layer:<span class="hljs-number">68</span>, std:<span class="hljs-number">0.6792410612106323</span>
+layer:<span class="hljs-number">69</span>, std:<span class="hljs-number">0.6583346128463745</span>
+layer:<span class="hljs-number">70</span>, std:<span class="hljs-number">0.5702278017997742</span>
+layer:<span class="hljs-number">71</span>, std:<span class="hljs-number">0.5084435939788818</span>
+layer:<span class="hljs-number">72</span>, std:<span class="hljs-number">0.4869326055049896</span>
+layer:<span class="hljs-number">73</span>, std:<span class="hljs-number">0.46350404620170593</span>
+layer:<span class="hljs-number">74</span>, std:<span class="hljs-number">0.4796811640262604</span>
+layer:<span class="hljs-number">75</span>, std:<span class="hljs-number">0.47372108697891235</span>
+layer:<span class="hljs-number">76</span>, std:<span class="hljs-number">0.45414549112319946</span>
+layer:<span class="hljs-number">77</span>, std:<span class="hljs-number">0.4971912205219269</span>
+layer:<span class="hljs-number">78</span>, std:<span class="hljs-number">0.492794930934906</span>
+layer:<span class="hljs-number">79</span>, std:<span class="hljs-number">0.4422350823879242</span>
+layer:<span class="hljs-number">80</span>, std:<span class="hljs-number">0.4802998900413513</span>
+layer:<span class="hljs-number">81</span>, std:<span class="hljs-number">0.5579248666763306</span>
+layer:<span class="hljs-number">82</span>, std:<span class="hljs-number">0.5283755660057068</span>
+layer:<span class="hljs-number">83</span>, std:<span class="hljs-number">0.5451980829238892</span>
+layer:<span class="hljs-number">84</span>, std:<span class="hljs-number">0.6203726530075073</span>
+layer:<span class="hljs-number">85</span>, std:<span class="hljs-number">0.6571893095970154</span>
+layer:<span class="hljs-number">86</span>, std:<span class="hljs-number">0.703682005405426</span>
+layer:<span class="hljs-number">87</span>, std:<span class="hljs-number">0.7321067452430725</span>
+layer:<span class="hljs-number">88</span>, std:<span class="hljs-number">0.6924356818199158</span>
+layer:<span class="hljs-number">89</span>, std:<span class="hljs-number">0.6652532815933228</span>
+layer:<span class="hljs-number">90</span>, std:<span class="hljs-number">0.6728308796882629</span>
+layer:<span class="hljs-number">91</span>, std:<span class="hljs-number">0.6606621742248535</span>
+layer:<span class="hljs-number">92</span>, std:<span class="hljs-number">0.6094604730606079</span>
+layer:<span class="hljs-number">93</span>, std:<span class="hljs-number">0.6019102334976196</span>
+layer:<span class="hljs-number">94</span>, std:<span class="hljs-number">0.595421552658081</span>
+layer:<span class="hljs-number">95</span>, std:<span class="hljs-number">0.6624555587768555</span>
+layer:<span class="hljs-number">96</span>, std:<span class="hljs-number">0.6377885341644287</span>
+layer:<span class="hljs-number">97</span>, std:<span class="hljs-number">0.6079285740852356</span>
+layer:<span class="hljs-number">98</span>, std:<span class="hljs-number">0.6579315066337585</span>
+layer:<span class="hljs-number">99</span>, std:<span class="hljs-number">0.6668476462364197</span>
+tensor([[<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.3437</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.6444</span>, <span class="hljs-number">1.1867</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">0.9757</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.4645</span>, <span class="hljs-number">0.8594</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.0023</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.5148</span>, <span class="hljs-number">0.9196</span>],
+        ...,
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.2873</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.6454</span>, <span class="hljs-number">1.1411</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.3589</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.6749</span>, <span class="hljs-number">1.2438</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.1807</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.5668</span>, <span class="hljs-number">1.0600</span>]],
+       grad_fn=&lt;ReluBackward0&gt;)</code></pre>
+
+<p>同样我们可以使用Pytorch提供的Kaiming初始化方法：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
+
+set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, neural_num, layers</span>):</span>
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(layers)])
+        self.neural_num = neural_num
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        <span class="hljs-keyword">for</span> (i, linear) <span class="hljs-keyword">in</span> enumerate(self.linears):
+            x = linear(x)
+            x = torch.relu(x)
+            print(<span class="hljs-string">&quot;layer:&#123;&#125;, std:&#123;&#125;&quot;</span>.format(i, x.std()))
+            <span class="hljs-keyword">if</span> torch.isnan(x.std()):
+                print(<span class="hljs-string">&quot;output is nan in &#123;&#125; layers&quot;</span>.format(i))
+                <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">return</span> x
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
+            <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight.data)</code></pre>
+
+<p>输出结果也是相同的：</p>
+<pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.826629638671875</span>
+layer:<span class="hljs-number">1</span>, std:<span class="hljs-number">0.8786815404891968</span>
+layer:<span class="hljs-number">2</span>, std:<span class="hljs-number">0.9134422540664673</span>
+layer:<span class="hljs-number">3</span>, std:<span class="hljs-number">0.8892471194267273</span>
+layer:<span class="hljs-number">4</span>, std:<span class="hljs-number">0.834428071975708</span>
+layer:<span class="hljs-number">5</span>, std:<span class="hljs-number">0.874537467956543</span>
+layer:<span class="hljs-number">6</span>, std:<span class="hljs-number">0.7926971316337585</span>
+layer:<span class="hljs-number">7</span>, std:<span class="hljs-number">0.7806458473205566</span>
+layer:<span class="hljs-number">8</span>, std:<span class="hljs-number">0.8684563636779785</span>
+layer:<span class="hljs-number">9</span>, std:<span class="hljs-number">0.9434137344360352</span>
+layer:<span class="hljs-number">10</span>, std:<span class="hljs-number">0.964215874671936</span>
+layer:<span class="hljs-number">11</span>, std:<span class="hljs-number">0.8896796107292175</span>
+layer:<span class="hljs-number">12</span>, std:<span class="hljs-number">0.8287257552146912</span>
+layer:<span class="hljs-number">13</span>, std:<span class="hljs-number">0.8519769906997681</span>
+layer:<span class="hljs-number">14</span>, std:<span class="hljs-number">0.8354345560073853</span>
+layer:<span class="hljs-number">15</span>, std:<span class="hljs-number">0.802306056022644</span>
+layer:<span class="hljs-number">16</span>, std:<span class="hljs-number">0.8613607287406921</span>
+layer:<span class="hljs-number">17</span>, std:<span class="hljs-number">0.7583686709403992</span>
+layer:<span class="hljs-number">18</span>, std:<span class="hljs-number">0.8120225071907043</span>
+layer:<span class="hljs-number">19</span>, std:<span class="hljs-number">0.791111171245575</span>
+layer:<span class="hljs-number">20</span>, std:<span class="hljs-number">0.7164372801780701</span>
+layer:<span class="hljs-number">21</span>, std:<span class="hljs-number">0.778393030166626</span>
+layer:<span class="hljs-number">22</span>, std:<span class="hljs-number">0.8672043085098267</span>
+layer:<span class="hljs-number">23</span>, std:<span class="hljs-number">0.874812662601471</span>
+layer:<span class="hljs-number">24</span>, std:<span class="hljs-number">0.9020991325378418</span>
+layer:<span class="hljs-number">25</span>, std:<span class="hljs-number">0.8585715889930725</span>
+layer:<span class="hljs-number">26</span>, std:<span class="hljs-number">0.7824353575706482</span>
+layer:<span class="hljs-number">27</span>, std:<span class="hljs-number">0.7968912720680237</span>
+layer:<span class="hljs-number">28</span>, std:<span class="hljs-number">0.8984369039535522</span>
+layer:<span class="hljs-number">29</span>, std:<span class="hljs-number">0.8704465627670288</span>
+layer:<span class="hljs-number">30</span>, std:<span class="hljs-number">0.9860473275184631</span>
+layer:<span class="hljs-number">31</span>, std:<span class="hljs-number">0.9080777168273926</span>
+layer:<span class="hljs-number">32</span>, std:<span class="hljs-number">0.9140636920928955</span>
+layer:<span class="hljs-number">33</span>, std:<span class="hljs-number">1.009956955909729</span>
+layer:<span class="hljs-number">34</span>, std:<span class="hljs-number">0.9909380674362183</span>
+layer:<span class="hljs-number">35</span>, std:<span class="hljs-number">1.0253208875656128</span>
+layer:<span class="hljs-number">36</span>, std:<span class="hljs-number">0.849043607711792</span>
+layer:<span class="hljs-number">37</span>, std:<span class="hljs-number">0.703953742980957</span>
+layer:<span class="hljs-number">38</span>, std:<span class="hljs-number">0.7186155319213867</span>
+layer:<span class="hljs-number">39</span>, std:<span class="hljs-number">0.7250635027885437</span>
+layer:<span class="hljs-number">40</span>, std:<span class="hljs-number">0.7030817270278931</span>
+layer:<span class="hljs-number">41</span>, std:<span class="hljs-number">0.6325559020042419</span>
+layer:<span class="hljs-number">42</span>, std:<span class="hljs-number">0.6623690724372864</span>
+layer:<span class="hljs-number">43</span>, std:<span class="hljs-number">0.6960875988006592</span>
+layer:<span class="hljs-number">44</span>, std:<span class="hljs-number">0.7140733003616333</span>
+layer:<span class="hljs-number">45</span>, std:<span class="hljs-number">0.632905125617981</span>
+layer:<span class="hljs-number">46</span>, std:<span class="hljs-number">0.6458898186683655</span>
+layer:<span class="hljs-number">47</span>, std:<span class="hljs-number">0.7354375720024109</span>
+layer:<span class="hljs-number">48</span>, std:<span class="hljs-number">0.6710687279701233</span>
+layer:<span class="hljs-number">49</span>, std:<span class="hljs-number">0.6939153671264648</span>
+layer:<span class="hljs-number">50</span>, std:<span class="hljs-number">0.6889258027076721</span>
+layer:<span class="hljs-number">51</span>, std:<span class="hljs-number">0.6331773996353149</span>
+layer:<span class="hljs-number">52</span>, std:<span class="hljs-number">0.6029313206672668</span>
+layer:<span class="hljs-number">53</span>, std:<span class="hljs-number">0.6145528554916382</span>
+layer:<span class="hljs-number">54</span>, std:<span class="hljs-number">0.6636686325073242</span>
+layer:<span class="hljs-number">55</span>, std:<span class="hljs-number">0.7440094947814941</span>
+layer:<span class="hljs-number">56</span>, std:<span class="hljs-number">0.7972175478935242</span>
+layer:<span class="hljs-number">57</span>, std:<span class="hljs-number">0.7606149911880493</span>
+layer:<span class="hljs-number">58</span>, std:<span class="hljs-number">0.696868360042572</span>
+layer:<span class="hljs-number">59</span>, std:<span class="hljs-number">0.7306802272796631</span>
+layer:<span class="hljs-number">60</span>, std:<span class="hljs-number">0.6875627636909485</span>
+layer:<span class="hljs-number">61</span>, std:<span class="hljs-number">0.7171440720558167</span>
+layer:<span class="hljs-number">62</span>, std:<span class="hljs-number">0.7646605372428894</span>
+layer:<span class="hljs-number">63</span>, std:<span class="hljs-number">0.7965086698532104</span>
+layer:<span class="hljs-number">64</span>, std:<span class="hljs-number">0.8833740949630737</span>
+layer:<span class="hljs-number">65</span>, std:<span class="hljs-number">0.8592952489852905</span>
+layer:<span class="hljs-number">66</span>, std:<span class="hljs-number">0.8092936873435974</span>
+layer:<span class="hljs-number">67</span>, std:<span class="hljs-number">0.806481122970581</span>
+layer:<span class="hljs-number">68</span>, std:<span class="hljs-number">0.6792410612106323</span>
+layer:<span class="hljs-number">69</span>, std:<span class="hljs-number">0.6583346128463745</span>
+layer:<span class="hljs-number">70</span>, std:<span class="hljs-number">0.5702278017997742</span>
+layer:<span class="hljs-number">71</span>, std:<span class="hljs-number">0.5084435939788818</span>
+layer:<span class="hljs-number">72</span>, std:<span class="hljs-number">0.4869326055049896</span>
+layer:<span class="hljs-number">73</span>, std:<span class="hljs-number">0.46350404620170593</span>
+layer:<span class="hljs-number">74</span>, std:<span class="hljs-number">0.4796811640262604</span>
+layer:<span class="hljs-number">75</span>, std:<span class="hljs-number">0.47372108697891235</span>
+layer:<span class="hljs-number">76</span>, std:<span class="hljs-number">0.45414549112319946</span>
+layer:<span class="hljs-number">77</span>, std:<span class="hljs-number">0.4971912205219269</span>
+layer:<span class="hljs-number">78</span>, std:<span class="hljs-number">0.492794930934906</span>
+layer:<span class="hljs-number">79</span>, std:<span class="hljs-number">0.4422350823879242</span>
+layer:<span class="hljs-number">80</span>, std:<span class="hljs-number">0.4802998900413513</span>
+layer:<span class="hljs-number">81</span>, std:<span class="hljs-number">0.5579248666763306</span>
+layer:<span class="hljs-number">82</span>, std:<span class="hljs-number">0.5283755660057068</span>
+layer:<span class="hljs-number">83</span>, std:<span class="hljs-number">0.5451980829238892</span>
+layer:<span class="hljs-number">84</span>, std:<span class="hljs-number">0.6203726530075073</span>
+layer:<span class="hljs-number">85</span>, std:<span class="hljs-number">0.6571893095970154</span>
+layer:<span class="hljs-number">86</span>, std:<span class="hljs-number">0.703682005405426</span>
+layer:<span class="hljs-number">87</span>, std:<span class="hljs-number">0.7321067452430725</span>
+layer:<span class="hljs-number">88</span>, std:<span class="hljs-number">0.6924356818199158</span>
+layer:<span class="hljs-number">89</span>, std:<span class="hljs-number">0.6652532815933228</span>
+layer:<span class="hljs-number">90</span>, std:<span class="hljs-number">0.6728308796882629</span>
+layer:<span class="hljs-number">91</span>, std:<span class="hljs-number">0.6606621742248535</span>
+layer:<span class="hljs-number">92</span>, std:<span class="hljs-number">0.6094604730606079</span>
+layer:<span class="hljs-number">93</span>, std:<span class="hljs-number">0.6019102334976196</span>
+layer:<span class="hljs-number">94</span>, std:<span class="hljs-number">0.595421552658081</span>
+layer:<span class="hljs-number">95</span>, std:<span class="hljs-number">0.6624555587768555</span>
+layer:<span class="hljs-number">96</span>, std:<span class="hljs-number">0.6377885341644287</span>
+layer:<span class="hljs-number">97</span>, std:<span class="hljs-number">0.6079285740852356</span>
+layer:<span class="hljs-number">98</span>, std:<span class="hljs-number">0.6579315066337585</span>
+layer:<span class="hljs-number">99</span>, std:<span class="hljs-number">0.6668476462364197</span>
+tensor([[<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.3437</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.6444</span>, <span class="hljs-number">1.1867</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">0.9757</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.4645</span>, <span class="hljs-number">0.8594</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.0023</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.5148</span>, <span class="hljs-number">0.9196</span>],
+        ...,
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.2873</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.6454</span>, <span class="hljs-number">1.1411</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.3589</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.6749</span>, <span class="hljs-number">1.2438</span>],
+        [<span class="hljs-number">0.0000</span>, <span class="hljs-number">1.1807</span>, <span class="hljs-number">0.0000</span>,  ..., <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.5668</span>, <span class="hljs-number">1.0600</span>]],
+       grad_fn=&lt;ReluBackward0&gt;)</code></pre>
+
+
+
+<h1 id="3-常用初始化方法"><a href="#3-常用初始化方法" class="headerlink" title="3. 常用初始化方法"></a>3. 常用初始化方法</h1><p>十种初始化方法</p>
+<ol>
+<li>Xavier均匀分布</li>
+<li>Xavier正态分布</li>
+<li>Kaiming均匀分布</li>
+<li>Kaiming正态分布</li>
+<li>均匀分布</li>
+<li>正态分布</li>
+<li>常数分布</li>
+<li>正交矩阵初始化</li>
+<li>单位矩阵初始化</li>
+<li>稀疏矩阵初始化</li>
+</ol>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Glorot X, Bengio Y. Understanding the difficulty of training deep feedforward neural networks[C]//Proceedings of the thirteenth international conference on artificial intelligence and statistics. 2010: 249-256.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>He K, Zhang X, Ren S, et al. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification[C]//Proceedings of the IEEE international conference on computer vision. 2015: 1026-1034.
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">损失函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/">
+                        <span class="hidden-mobile">nn网络层-池化-线性-激活函数层</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "权值初始化&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
