@@ -216,16 +216,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2020年8月30日 凌晨
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-为什么要DataSet和DataLoader"><a href="#1-为什么要DataSet和DataLoader" class="headerlink" title="1. 为什么要DataSet和DataLoader"></a>1. 为什么要DataSet和DataLoader</h1><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721221053.png" srcset="/img/loading.gif" alt="image-20200721220645760" style="zoom:75%;" />
-
-
-
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721221103.png" srcset="/img/loading.gif" alt="image-20200721221026985" style="zoom: 67%;" />
+              <h1 id="1-为什么要DataSet和DataLoader"><a href="#1-为什么要DataSet和DataLoader" class="headerlink" title="1. 为什么要DataSet和DataLoader"></a>1. 为什么要DataSet和DataLoader</h1><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200721221103.png" srcset="/img/loading.gif" alt="image-20200721221026985" style="zoom: 67%;" />
 
 <p>相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。</p>
 <p>使用DataSet和DataLoader可以帮助我们进行小批次训练。</p>
@@ -257,8 +253,6 @@
 
 <p>DataLoader主要目的是实现一个迭代器，使得可以用for循环获取自动获取数据，并记录Epoch，Iteration和Batch-Size，使得程序不用关心怎么取出小批次的问题。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200722141222.png" srcset="/img/loading.gif" alt="image-20200722141215096" style="zoom: 50%;" />
-
-
 
 
 
@@ -312,8 +306,9 @@ rmb_label = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="h
                     label = rmb_label[sub_dir]
                     data_info.append((path_img, int(label)))
 
-        <span class="hljs-keyword">return</span> data_info
-</code></pre>
+        <span class="hljs-keyword">return</span> data_info</code></pre>
+
+
 
 <h1 id="4-深入探索"><a href="#4-深入探索" class="headerlink" title="4. 深入探索"></a>4. 深入探索</h1><p>完成了dataset的继承自定义类RMBDataset，就可以对RMBDataset实例化。将RMBDataset的实例传入参数，创建DataLoader。</p>
 <pre><code class="hljs python"><span class="hljs-comment"># 构建MyDataset实例</span>
@@ -329,8 +324,6 @@ valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)</code></pre
     ...
     <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         ...</code></pre>
-
-
 
 
 
@@ -376,7 +369,7 @@ valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)</code></pre
 </li>
 <li><p>退回<code> self._dataset_fetcher.fetch(index)</code>，结束对<code>self.dataset[idx]</code>的调用，得到数据集转成的tensor列表，我们稍微看看这个列表的情况：</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210312.png" srcset="/img/loading.gif" alt="image-20200723204250287"></p>
-<p>可以看出，这是一个tensor列表，长度是16，对应batch-size。每一个元素都是一个三维tensor，对应彩色三通道的图像。最后我们再看看<code> self.collate_fn(data)</code></p>
+<p>可以看出，这是一个tensor列表，长度是16，对应batch-size。每一个元素都是二元组，对应彩色三通道的图像和标签。最后我们再看看<code> self.collate_fn(data)</code></p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200723210316.png" srcset="/img/loading.gif" alt="image-20200723204101111"></p>
 </li>
 <li><p>经过<code> self.collate_fn(data)</code>，可以将data列表打包为一个batch，变成了含有两个元素的列表，第一个元素是4维的tensor列表，是16个三维tensor列表在dim0的拼接，第二个元素是类别，数据类型也是tensor。</p>

@@ -369,12 +369,13 @@ im
           
           
 1. transforms——裁剪实验代码：
-# -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-# @file name  : transforms_methods_1.py
-# @author     : tingsongyu
-# @date       : 2019-09-11 10:08:00
-# @brief      : transforms方法(一
+import os
+import numpy as np
+import torch
+import random
+from torch.utils.data import DataLoader
+import torchvision.transforms as transforms
+from tools.my_dataset import RMBData
         </a>
       </p>
 
@@ -537,14 +538,10 @@ Series对象的创建
           
           1. 为什么要DataSet和DataLoader
 
-
-
-
-
 相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。
 使用DataSet和DataLoader可以帮助我们进行小批次训练。
 
-2. D
+2. DataL
         </a>
       </p>
 
@@ -591,12 +588,10 @@ Series对象的创建
           
             
           
-          autograd—自动求导系统1.  torch.autograd.backwardtorch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None)
-
-功能：自动求取梯度
-
-tensors: 用于求导的张量，如 loss
-retain_gra
+          autograd—自动求导系统1.  torch.autograd.backwardtorch.autograd.backward(tensors, 
+                        grad_tensors=None, 
+                        retain_graph=None, 
+                        create_graph
         </a>
       </p>
 

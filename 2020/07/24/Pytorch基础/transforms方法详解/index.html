@@ -216,21 +216,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2020年8月30日 凌晨
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727145834.png" srcset="/img/loading.gif" alt="transforms方法"></p>
 <h1 id="1-transforms——裁剪"><a href="#1-transforms——裁剪" class="headerlink" title="1. transforms——裁剪"></a>1. transforms——裁剪</h1><p><strong>实验代码：</strong></p>
-<pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
-<span class="hljs-string">&quot;&quot;&quot;</span>
-<span class="hljs-string"># @file name  : transforms_methods_1.py</span>
-<span class="hljs-string"># @author     : tingsongyu</span>
-<span class="hljs-string"># @date       : 2019-09-11 10:08:00</span>
-<span class="hljs-string"># @brief      : transforms方法(一)</span>
-<span class="hljs-string">&quot;&quot;&quot;</span>
-<span class="hljs-keyword">import</span> os
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> random
@@ -317,8 +310,8 @@ norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.
 
 <span class="hljs-comment"># =======================================================================</span>
 <span class="hljs-comment">#                            填充下面代码</span>
-<span class="hljs-comment"># train_transform = transforms.Compose([.....</span>
-<span class="hljs-comment">#</span></code></pre>
+train_transform = transforms.Compose([.....
+</code></pre>
 
 
 
@@ -360,7 +353,11 @@ norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.
 
 </li>
 </ol>
-<h2 id="1-2-transforms-RandomCrop"><a href="#1-2-transforms-RandomCrop" class="headerlink" title="1.2 transforms.RandomCrop"></a>1.2 transforms.RandomCrop</h2><pre><code class="hljs python">torchvision.transforms.RandomCrop(size, padding=<span class="hljs-literal">None</span>, pad_if_needed=<span class="hljs-literal">False</span>, fill=<span class="hljs-number">0</span>, padding_mode=<span class="hljs-string">&#x27;constant&#x27;</span>)</code></pre>
+<h2 id="1-2-transforms-RandomCrop"><a href="#1-2-transforms-RandomCrop" class="headerlink" title="1.2 transforms.RandomCrop"></a>1.2 transforms.RandomCrop</h2><pre><code class="hljs python">torchvision.transforms.RandomCrop(size, 
+                                  padding=<span class="hljs-literal">None</span>, 
+                                  pad_if_needed=<span class="hljs-literal">False</span>, 
+                                  fill=<span class="hljs-number">0</span>, 
+                                  padding_mode=<span class="hljs-string">&#x27;constant&#x27;</span>)</code></pre>
 
 <p>功能：从图片中随机裁剪出尺寸为size的图片 </p>
 <ul>
@@ -400,7 +397,7 @@ norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.
 <li><p>选择<code>transforms.RandomCrop(224+16*2, padding=16)</code>会发现，得到的就是原图片上下左右zero padding 16的结果，因为没得选了哈哈。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184332.png" srcset="/img/loading.gif" alt="image-20200724140804559" style="zoom:67%;" />
 </li>
-<li><p>选择<code>transforms.RandomCrop(224, padding=(16, 64))</code>，发现填充的区域上下变宽，左右变窄。padding=一个int时，就是左右上下等宽，此外还可以接受一个二元组控制左右和上下，甚至可以接受一个四元组控制左、上、右、下。</p>
+<li><p>选择<code>transforms.RandomCrop(224, padding=(16, 64))</code>，先做了上下16、左右64的zero padding，然后再随机裁剪224x224的区域。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184328.png" srcset="/img/loading.gif" alt="image-20200724141354570" style="zoom:67%;" />
 </li>
 <li><p>选择<code>transforms.RandomCrop(224, padding=16, fill=(255, 0, 0))</code>，发现填充的像素变成了红色。实际上fill=(R, G, B)是一个RGB三元组，控制填充颜色。此外，如果fill=一个int，那么不是RGB三个通道都等于这个int哦，只是R通道等于这个int，GB通道是0。但是默认fill=0是确实又是RGB都为0，比较奇怪。使用时还是写三元组避免问题。</p>
