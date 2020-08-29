@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -224,14 +224,14 @@
               <h1 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h1><h2 id="1-1d-2d-3d卷积"><a href="#1-1d-2d-3d卷积" class="headerlink" title="1. 1d/2d/3d卷积"></a>1. 1d/2d/3d卷积</h2><p>卷积维度：一般情况下，卷积核在几个维度上滑动，<br>就是几维卷积。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729191750.png" srcset="/img/loading.gif" alt="image-20200729191742201"></p>
 <h2 id="2-卷积-nn-Conv2d"><a href="#2-卷积-nn-Conv2d" class="headerlink" title="2. 卷积-nn.Conv2d"></a>2. 卷积-nn.Conv2d</h2><pre><code class="hljs python">torch.nn.Conv2d(in_channels,
-                out_channels,
-                kernel_size,
-                stride=<span class="hljs-number">1</span>,
+				out_channels,
+				kernel_size,
+				stride=<span class="hljs-number">1</span>,
                 padding=<span class="hljs-number">0</span>,
                 dilation=<span class="hljs-number">1</span>,
                 groups=<span class="hljs-number">1</span>,
                 bias=<span class="hljs-literal">True</span>,
-                padding_mode=<span class="hljs-string">&#x27;zeros&#x27;</span>)</code></pre>
+				padding_mode=<span class="hljs-string">&#x27;zeros&#x27;</span>)</code></pre>
 
 <p>功能：对多个二维信号进行二维卷积</p>
 <p>主要参数：</p>
@@ -320,15 +320,19 @@ plt.show()</code></pre>
 <ol>
 <li><p>观察stride的影响。</p>
 <p>输入通道为3，输出通道为1（即只有一个卷积核），卷积核尺寸为3x3。</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span><br>nn.init.xavier_normal_(conv_layer.weight.data)</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># calculation</span><br>img_conv = conv_layer(img_tensor)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729205404.png" srcset="/img/loading.gif" alt="image-20200729205403160"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+nn.init.xavier_normal_(conv_layer.weight.data)
+
+<span class="hljs-comment"># calculation</span>
+img_conv = conv_layer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729205404.png" srcset="/img/loading.gif" alt="image-20200729205403160"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">510</span>, <span class="hljs-number">510</span>])</code></pre>
 
-<p>   按公式计算：输出的尺寸为(512-3)/1+1 = 510，与实际情况符合。</p>
+<p>按公式计算：输出的尺寸为(512-3)/1+1 = 510，与实际情况符合。</p>
+</li>
+</ol>
 <p>   将stride改为2，输出特征图尺寸减小。</p>
    <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
@@ -361,64 +365,70 @@ img_conv = conv<span class="hljs-constructor">_layer(<span class="hljs-params">i
 <ol start="2">
 <li><p>观察padding的影响。</p>
 <p>kernel_size=3，padding=1时，输出特征图的尺寸与输入相同。</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span><br>nn.init.xavier_normal_(conv_layer.weight.data)</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># calculation</span><br>img_conv = conv_layer(img_tensor)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729214929.png" srcset="/img/loading.gif" alt="image-20200729214928974"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+nn.init.xavier_normal_(conv_layer.weight.data)
+
+<span class="hljs-comment"># calculation</span>
+img_conv = conv_layer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729214929.png" srcset="/img/loading.gif" alt="image-20200729214928974"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])</code></pre>
 
-<p>   将padding改成100，由于padding_mode=”zeros”，所以在图像周围填充了宽度为100的一圈0值，卷积以后这些0值还是0，造成输出特征图周围一圈0值。</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215636.png" srcset="/img/loading.gif" alt="image-20200729215635307"></p>
-<p>   将padding_mode改成reflect，可以看到周围一圈进行了镜像对称。</p>
-   <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;reflect&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+<p>将padding改成100，由于padding_mode=”zeros”，所以在图像周围填充了宽度为100的一圈0值，卷积以后这些0值还是0，造成输出特征图周围一圈0值。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215636.png" srcset="/img/loading.gif" alt="image-20200729215635307"></p>
+<p>将padding_mode改成reflect，可以看到周围一圈进行了镜像对称。</p>
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;reflect&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
 
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215846.png" srcset="/img/loading.gif" alt="image-20200729215845123"></p>
-<p>   将padding_mode改成replicate，可以看到周围一圈复制边缘值填充。</p>
-   <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;replicate&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215846.png" srcset="/img/loading.gif" alt="image-20200729215845123"></p>
+<p>将padding_mode改成replicate，可以看到周围一圈复制边缘值填充。</p>
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;replicate&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
 
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220521.png" srcset="/img/loading.gif" alt="image-20200729220507733"></p>
-<p>   将padding_mode改成circular，可以看到周围一圈进行了周期对称。</p>
-   <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;circular&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220521.png" srcset="/img/loading.gif" alt="image-20200729220507733"></p>
+<p>将padding_mode改成circular，可以看到周围一圈进行了周期对称。</p>
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;circular&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
 
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220907.png" srcset="/img/loading.gif" alt="image-20200729220906775"></p>
-<p>   将padding改为512，还是用padding_mode=’circular’，</p>
-   <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;circular&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220907.png" srcset="/img/loading.gif" alt="image-20200729220906775"></p>
+<p>将padding改为512，还是用padding_mode=’circular’，</p>
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;circular&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
 
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221132.png" srcset="/img/loading.gif" alt="image-20200729221131206"></p>
-<ol start="3">
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221132.png" srcset="/img/loading.gif" alt="image-20200729221131206"></p>
+</li>
 <li><p>观察dilation的影响。</p>
 <p>dilation=1就是原图像。</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, dilation=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span><br>nn.init.xavier_normal_(conv_layer.weight.data)</p>
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, dilation=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+nn.init.xavier_normal_(conv_layer.weight.data)
+
+<span class="hljs-comment"># calculation</span>
+img_conv = conv_layer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221704.png" srcset="/img/loading.gif" alt="image-20200729221703471"></p>
+<p>设置dilation逐步增加，观察dilation增加对特征图的影响。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222113.png" srcset="/img/loading.gif" alt="image-20200729222112682"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222726.png" srcset="/img/loading.gif" alt="image-20200729222724956"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222802.png" srcset="/img/loading.gif" alt="image-20200729222801504"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222857.png" srcset="/img/loading.gif" alt="image-20200729222854585"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223103.png" srcset="/img/loading.gif" alt="image-20200729223102227"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223222.png" srcset="/img/loading.gif" alt="image-20200729223216906"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223322.png" srcset="/img/loading.gif" alt="image-20200729223320923"></p>
 </li>
 </ol>
-<p><span class="hljs-comment"># calculation</span><br>img_conv = conv_layer(img_tensor)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221704.png" srcset="/img/loading.gif" alt="image-20200729221703471"></p>
-<p>   设置dilation逐步增加，观察dilation增加对特征图的影响。</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222113.png" srcset="/img/loading.gif" alt="image-20200729222112682"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222726.png" srcset="/img/loading.gif" alt="image-20200729222724956"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222802.png" srcset="/img/loading.gif" alt="image-20200729222801504"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222857.png" srcset="/img/loading.gif" alt="image-20200729222854585"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223103.png" srcset="/img/loading.gif" alt="image-20200729223102227"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223222.png" srcset="/img/loading.gif" alt="image-20200729223216906"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223322.png" srcset="/img/loading.gif" alt="image-20200729223320923"></p>
 <p>随着dilation的增加，出现了散光的感觉，这是可以预见的。因为dilation增加会扩大感受野，那么特征图的每一点都会从更大的范围去计算，造成了散光现象。</p>
 <h2 id="3-转置卷积-nn-ConvTranspose"><a href="#3-转置卷积-nn-ConvTranspose" class="headerlink" title="3. 转置卷积-nn.ConvTranspose"></a>3. 转置卷积-nn.ConvTranspose</h2><p>转置卷积又称为反卷积(Deconvolution)和部分跨越卷积(Fractionally-strided Convolution) ，用于对图像进行上采样(UpSample) 。</p>
 <pre><code class="hljs python">nn.ConvTranspose2d(in_channels, 
@@ -445,30 +455,34 @@ img_conv = conv_layer(img_tensor)</code></pre>
 <ol>
 <li><p>观察stride的影响。</p>
 <p>输入通道为3，输出通道为1（即只有一个卷积核），卷积核尺寸为3x3。</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size)</span><br>nn.init.xavier_normal_(conv_layer.weight.data)</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># calculation</span><br>img_conv = conv_layer(img_tensor)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122343.png" srcset="/img/loading.gif" alt="image-20200730122335305"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size)</span>
+nn.init.xavier_normal_(conv_layer.weight.data)
+
+<span class="hljs-comment"># calculation</span>
+img_conv = conv_layer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122343.png" srcset="/img/loading.gif" alt="image-20200730122335305"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">514</span>, <span class="hljs-number">514</span>])</code></pre>
 
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122446.gif" srcset="/img/loading.gif" alt="no_padding_no_strides_transposed" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122446.gif" srcset="/img/loading.gif" alt="no_padding_no_strides_transposed" style="zoom:67%;" />
 
-<p>   可以看到，转置卷积会自动在输入图像周围补零，即使stride=1，输出特征图也会比输入图像要大。</p>
+<p>可以看到，转置卷积会自动在输入图像周围补零，即使stride=1，输出特征图也会比输入图像要大。</p>
 <blockquote>
 <p>若在输入图像周围补上kernel_size-1的一圈0，并把卷积核上下左右翻转，那么nn.Conv2d和nn.ConvTranspose的输出是相同的</p>
 </blockquote>
-<p>   对比stride=1的Conv2d，可以看到他们从“形式上”互为逆运算（其实卷积是不可逆的，因为真正的逆运算必须使用IIR的滤波器，那么就变得不可实现了）</p>
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730140625.gif" srcset="/img/loading.gif" alt="no_padding_no_strides" style="zoom:67%;" />
+<p>对比stride=1的Conv2d，可以看到他们从“形式上”互为逆运算（其实卷积是不可逆的，因为真正的逆运算必须使用IIR的滤波器，那么就变得不可实现了）</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730140625.gif" srcset="/img/loading.gif" alt="no_padding_no_strides" style="zoom:67%;" />
 
-<p>   下图是先使用<code>nn.Conv2d(3, 1, 3, stride=1)</code>再使用<code>nn.ConvTranspose2d(1, 1, 3, stride=1)</code>的结果。(由于卷积核的参数为随机值，所以重建图像是没有什么具体意义的)</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730141312.png" srcset="/img/loading.gif" alt="image-20200730141311447"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<p>下图是先使用<code>nn.Conv2d(3, 1, 3, stride=1)</code>再使用<code>nn.ConvTranspose2d(1, 1, 3, stride=1)</code>的结果。(由于卷积核的参数为随机值，所以重建图像是没有什么具体意义的)</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730141312.png" srcset="/img/loading.gif" alt="image-20200730141311447"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])</code></pre>
 
 
 
+</li>
+</ol>
 <p>   令stride=2，反卷积的stride其实是在控制输入图像的dilation。下图是stride=2的示意图。</p>
    <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730131814.gif" srcset="/img/loading.gif" alt="no_padding_strides_transposed" style="zoom:67%;" />
 
@@ -499,52 +513,60 @@ img_conv = conv_layer(img_tensor)</code></pre>
 <p>   当stride大于kernel_size时，可以预见会有很多卷积核在全0的图像上卷积。并且当stride越大时，重建的质量是变差的。所以在FCN等需要用转置卷积上采样的模型时，应该通过多次的小stride的转置卷积重建图像，这样往往也带来了更大的参数量。</p>
 <ol start="2">
 <li><p>观察padding的影响。</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">10</span>)   <span class="hljs-comment"># input:(i, o, size)</span><br>nn.init.xavier_normal_(conv_layer.weight.data)</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># calculation</span><br>img_conv = conv_layer(img_tensor)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164141.png" srcset="/img/loading.gif" alt="image-20200730164140536"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">10</span>)   <span class="hljs-comment"># input:(i, o, size)</span>
+nn.init.xavier_normal_(conv_layer.weight.data)
+
+<span class="hljs-comment"># calculation</span>
+img_conv = conv_layer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164141.png" srcset="/img/loading.gif" alt="image-20200730164140536"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">494</span>, <span class="hljs-number">494</span>])</code></pre>
 
-<p>   继续增大padding，输出如下所示：</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164254.png" srcset="/img/loading.gif" alt="image-20200730164252835"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<p>继续增大padding，输出如下所示：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164254.png" srcset="/img/loading.gif" alt="image-20200730164252835"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">414</span>, <span class="hljs-number">414</span>])</code></pre>
 
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164331.png" srcset="/img/loading.gif" alt="image-20200730164330162"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164331.png" srcset="/img/loading.gif" alt="image-20200730164330162"></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">314</span>, <span class="hljs-number">314</span>])</code></pre>
 
-<p>   可以发现，当padding增大时，对原图像的感受区域是在减小的，有放大图片的感觉。这是因为在Conv2d中padding会在输入图像周围扩充一圈0值，ConvTranspose为了抵消这种影响当然是对图像的中间的区域感兴趣，而不关注外面一圈0值（转置卷积的只能应对Conv2d当padding_mode=’zeros’的情况。换言之，转置卷积的padding_mode参数只能等于’zeros’）</p>
-<p>   下图是padding=2的Conv2d，输入图像size为5x5，输出特征图size为6x6.</p>
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730191108.gif" srcset="/img/loading.gif" alt="arbitrary_padding_no_strides" style="zoom:50%;" />
+<p>可以发现，当padding增大时，对原图像的感受区域是在减小的，有放大图片的感觉。这是因为在Conv2d中padding会在输入图像周围扩充一圈0值，ConvTranspose为了抵消这种影响当然是对图像的中间的区域感兴趣，而不关注外面一圈0值（转置卷积的只能应对Conv2d当padding_mode=’zeros’的情况。换言之，转置卷积的padding_mode参数只能等于’zeros’）</p>
+<p>下图是padding=2的Conv2d，输入图像size为5x5，输出特征图size为6x6.</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730191108.gif" srcset="/img/loading.gif" alt="arbitrary_padding_no_strides" style="zoom:50%;" />
 
-<p>   下图是padding=2的ConvTranspose，输入图像size为6x6，输出特征图size为5x5.</p>
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730191117.gif" srcset="/img/loading.gif" alt="arbitrary_padding_no_strides_transposed" style="zoom: 50%;" />
+<p>下图是padding=2的ConvTranspose，输入图像size为6x6，输出特征图size为5x5.</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730191117.gif" srcset="/img/loading.gif" alt="arbitrary_padding_no_strides_transposed" style="zoom: 50%;" />
 
-<p>   可见，ConvTranspose的padding是根据Conv2d的padding自动计算出的，上图为了使输出恢复到5x5的大小，ConvTranspose在输入周围加了一圈0值。如果恢复的尺寸更小（也就是ConvTranspose的padding参数越大），那么就不是补0了，是截取。</p>
-<p>   以下是用不同的padding参数先做Conv2d，再做ConvTranspose的结果：</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192123.png" srcset="/img/loading.gif" alt="image-20200730192122152"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192156.png" srcset="/img/loading.gif" alt="image-20200730192155630"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192238.png" srcset="/img/loading.gif" alt="image-20200730192237099"></p>
-<p>   可以发现，上面三张图没啥区别，说明了padding的恢复应该是无损的。</p>
-<ol start="3">
-<li><p>观察dilation的影响</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, dilation=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size)</span><br>nn.init.xavier_normal_(conv_layer.weight.data)</p>
+<p>可见，ConvTranspose的padding是根据Conv2d的padding自动计算出的，上图为了使输出恢复到5x5的大小，ConvTranspose在输入周围加了一圈0值。如果恢复的尺寸更小（也就是ConvTranspose的padding参数越大），那么就不是补0了，是截取。</p>
+<p>以下是用不同的padding参数先做Conv2d，再做ConvTranspose的结果：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192123.png" srcset="/img/loading.gif" alt="image-20200730192122152"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192156.png" srcset="/img/loading.gif" alt="image-20200730192155630"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192238.png" srcset="/img/loading.gif" alt="image-20200730192237099"></p>
+<p>可以发现，上面三张图没啥区别，说明了padding的恢复应该是无损的。</p>
 </li>
 </ol>
-<p><span class="hljs-comment"># calculation</span><br>img_conv = conv_layer(img_tensor)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200744.png" srcset="/img/loading.gif" alt="image-20200730200743037"></p>
-<p>   上图是对左边的图像直接做<code>ConvTranspose2d(3, 1, 3, stride=1, dilation=2)</code>的结果，下图是先做<code>Conv2d(3, 1, 3, stride=1, dilation=2)</code>再做<code>ConvTranspose2d(1, 1, 3, stride=1, dilation=2)</code>的结果。</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202107.png" srcset="/img/loading.gif" alt="image-20200730202106747"></p>
-<p>   下面依次是<code>Conv2d</code>，和先做<code>Conv2d</code>再做<code>ConvTranspose2d</code>重建的结果</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200923.png" srcset="/img/loading.gif" alt="image-20200730200921897"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202354.png" srcset="/img/loading.gif" alt="image-20200730202352933"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730201006.png" srcset="/img/loading.gif" alt="image-20200730201004554"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202429.png" srcset="/img/loading.gif" alt="image-20200730202428417"></p>
-<p>   可以发现<code>ConvTranspose2d</code>对dilation的恢复不是那么好（卷积核权值是随机的，所以可能也说明不了这个问题）</p>
-<p>   关于<code>ConvTranspose2d</code>的dilation是怎么实现的没查到资料</p>
+<ol start="3">
+<li><p>观察dilation的影响</p>
+<pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, dilation=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size)</span>
+nn.init.xavier_normal_(conv_layer.weight.data)
+
+<span class="hljs-comment"># calculation</span>
+img_conv = conv_layer(img_tensor)</code></pre>
+
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200744.png" srcset="/img/loading.gif" alt="image-20200730200743037"></p>
+<p>上图是对左边的图像直接做<code>ConvTranspose2d(3, 1, 3, stride=1, dilation=2)</code>的结果，下图是先做<code>Conv2d(3, 1, 3, stride=1, dilation=2)</code>再做<code>ConvTranspose2d(1, 1, 3, stride=1, dilation=2)</code>的结果。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202107.png" srcset="/img/loading.gif" alt="image-20200730202106747"></p>
+<p>下面依次是<code>Conv2d</code>，和先做<code>Conv2d</code>再做<code>ConvTranspose2d</code>重建的结果</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200923.png" srcset="/img/loading.gif" alt="image-20200730200921897"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202354.png" srcset="/img/loading.gif" alt="image-20200730202352933"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730201006.png" srcset="/img/loading.gif" alt="image-20200730201004554"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202429.png" srcset="/img/loading.gif" alt="image-20200730202428417"></p>
+<p>可以发现<code>ConvTranspose2d</code>对dilation的恢复不是那么好（卷积核权值是随机的，所以可能也说明不了这个问题）</p>
+<p>关于<code>ConvTranspose2d</code>的dilation是怎么实现的没查到资料</p>
+</li>
+</ol>
 
             </div>
             <hr>

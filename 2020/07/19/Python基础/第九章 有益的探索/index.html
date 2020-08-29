@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -740,7 +740,7 @@ fib(<span class="hljs-number">10</span>)</code></pre>
         <span class="hljs-keyword">yield</span> a
         a, b = b, a + b
         n = n + <span class="hljs-number">1</span>
-
+        
 
 fib(<span class="hljs-number">10</span>)</code></pre>
 
@@ -845,7 +845,7 @@ zip(x, y)</code></pre>
 <pre><code>&lt;zip at 0x1be11b13c48&gt;</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> zip(x, y):
     print(i)
-
+    
 isinstance(zip(x, y), Iterator)</code></pre>
 
 <pre><code>(1, &#39;a&#39;)
@@ -859,7 +859,7 @@ enumerate(numbers)</code></pre>
 <pre><code>&lt;enumerate at 0x1be11b39990&gt;</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> enumerate(numbers):
     print(i)
-
+    
 isinstance(enumerate(numbers), Iterator)</code></pre>
 
 <pre><code>(0, 1)
@@ -1010,10 +1010,10 @@ f(<span class="hljs-number">8</span>)</code></pre>
 <p><strong>在函数内部定义一个函数</strong></p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span>():</span>
     print(<span class="hljs-string">&quot;outer is running&quot;</span>)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>():</span>
         print(<span class="hljs-string">&quot;inner is running&quot;</span>)
-
+        
     inner()
 
 
@@ -1025,11 +1025,11 @@ inner is running</code></pre>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span>():</span>
     x = <span class="hljs-number">1</span>
     z = <span class="hljs-number">10</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>():</span>
         y = x+<span class="hljs-number">100</span>
         <span class="hljs-keyword">return</span> y, z
-
+        
     <span class="hljs-keyword">return</span> inner
 
 
@@ -1056,11 +1056,11 @@ print(res)</code></pre>
 </ul>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span>():</span>
     x = <span class="hljs-number">1</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>():</span>
         x = x+<span class="hljs-number">100</span>
         <span class="hljs-keyword">return</span> x
-
+        
     <span class="hljs-keyword">return</span> inner
 
 
@@ -1090,7 +1090,7 @@ UnboundLocalError: local variable &#39;x&#39; referenced before assignment</code
 <p>nonlocal允许内嵌的函数来修改闭包变量</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span>():</span>
     x = <span class="hljs-number">1</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>():</span>
         <span class="hljs-keyword">nonlocal</span> x
         x = x+<span class="hljs-number">100</span>
@@ -1109,14 +1109,14 @@ f()</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> time
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span>(<span class="hljs-params">func</span>):</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>():</span>
         print(<span class="hljs-string">&quot;inner run&quot;</span>)
         start = time.time()
         func()
         end = time.time()
         print(<span class="hljs-string">&quot;&#123;&#125; 函数运行用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, (end-start)))
-
+    
     <span class="hljs-keyword">return</span> inner
 
 
@@ -1136,22 +1136,22 @@ f1 函数运行用时1.00秒</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> time
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span>(<span class="hljs-params">func</span>):</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>():</span>
         print(<span class="hljs-string">&quot;inner run&quot;</span>)
         start = time.time()
         func()
         end = time.time()
         print(<span class="hljs-string">&quot;&#123;&#125; 函数运行用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, (end-start)))
-
+    
     <span class="hljs-keyword">return</span> inner
 
 <span class="hljs-meta">@timer                      # 相当于实现了f1 = timer(f1)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span>():</span>
     print(<span class="hljs-string">&quot;f1 run&quot;</span>)
     time.sleep(<span class="hljs-number">1</span>)
-
-
+    
+    
 f1()</code></pre>
 
 <pre><code>inner run
@@ -1162,14 +1162,14 @@ f1 函数运行用时1.00秒</code></pre>
 
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span>(<span class="hljs-params">func</span>):</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>(<span class="hljs-params">*args, **kwargs</span>):</span>
         print(<span class="hljs-string">&quot;inner run&quot;</span>)
         start = time.time()
         func(*args, **kwargs)
         end = time.time()
         print(<span class="hljs-string">&quot;&#123;&#125; 函数运行用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, (end-start)))
-
+    
     <span class="hljs-keyword">return</span> inner
 
 
@@ -1178,7 +1178,7 @@ f1 函数运行用时1.00秒</code></pre>
     print(<span class="hljs-string">&quot;f1 run&quot;</span>)
     time.sleep(n)
 
-
+    
 f1(<span class="hljs-number">2</span>)</code></pre>
 
 <pre><code>inner run
@@ -1189,7 +1189,7 @@ f1 函数运行用时2.00秒</code></pre>
 
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span>(<span class="hljs-params">func</span>):</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>(<span class="hljs-params">*args, **kwargs</span>):</span>
         print(<span class="hljs-string">&quot;inner run&quot;</span>)
         start = time.time()
@@ -1197,7 +1197,7 @@ f1 函数运行用时2.00秒</code></pre>
         end = time.time()
         print(<span class="hljs-string">&quot;&#123;&#125; 函数运行用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, (end-start)))
         <span class="hljs-keyword">return</span> res
-
+    
     <span class="hljs-keyword">return</span> inner
 
 
@@ -1206,7 +1206,7 @@ f1 函数运行用时2.00秒</code></pre>
     print(<span class="hljs-string">&quot;f1 run&quot;</span>)
     time.sleep(n)
     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;wake up&quot;</span>
-
+    
 res = f1(<span class="hljs-number">2</span>)
 print(res)</code></pre>
 
@@ -1220,9 +1220,9 @@ wake up</code></pre>
 <li>需求：有时需要统计绝对时间，有时需要统计绝对时间的2倍</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">timer</span>(<span class="hljs-params">method</span>):</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span>(<span class="hljs-params">func</span>):</span>
-
+    
         <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span>(<span class="hljs-params">*args, **kwargs</span>):</span>
             print(<span class="hljs-string">&quot;inner run&quot;</span>)
             <span class="hljs-keyword">if</span> method == <span class="hljs-string">&quot;origin&quot;</span>:
@@ -1238,9 +1238,9 @@ wake up</code></pre>
                 end = time.time()
                 print(<span class="hljs-string">&quot;&#123;&#125; 函数运行双倍用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, <span class="hljs-number">2</span>*(end-start)))
             <span class="hljs-keyword">return</span> res
-
+    
         <span class="hljs-keyword">return</span> inner
-
+    
     <span class="hljs-keyword">return</span> outer
 
 
@@ -1248,8 +1248,8 @@ wake up</code></pre>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span>():</span>
     print(<span class="hljs-string">&quot;f1 run&quot;</span>)
     time.sleep(<span class="hljs-number">1</span>)
-
-
+    
+    
 <span class="hljs-meta">@timer(method=&quot;double&quot;)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f2</span>():</span>
     print(<span class="hljs-string">&quot;f2 run&quot;</span>)
@@ -1284,17 +1284,17 @@ f2 函数运行双倍用时2.00秒</code></pre>
 <span class="hljs-meta">@find_function</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span>():</span>
     print(<span class="hljs-string">&quot;f1 run&quot;</span>)
-
+    
 
 <span class="hljs-meta">@find_function</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f2</span>():</span>
     print(<span class="hljs-string">&quot;f2 run&quot;</span>)
-
+    
 
 <span class="hljs-meta">@find_function</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f3</span>():</span>
     print(<span class="hljs-string">&quot;f3 run&quot;</span>)
-
+    
 </code></pre>
 
 <pre><code>run
@@ -1326,7 +1326,7 @@ f3 run</code></pre>
         func()
         end = time.time()
         print(<span class="hljs-string">&quot;&#123;&#125; 函数运行用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, (end-start)))
-
+    
     <span class="hljs-keyword">return</span> inner
 
 <span class="hljs-meta">@timer                # 相当于实现了f1 = timer(f1)</span>
@@ -1351,7 +1351,7 @@ print(f1.__name__)</code></pre>
         func()
         end = time.time()
         print(<span class="hljs-string">&quot;&#123;&#125; 函数运行用时&#123;:.2f&#125;秒&quot;</span>.format(func.__name__, (end-start)))
-
+    
     <span class="hljs-keyword">return</span> inner
 
 <span class="hljs-meta">@timer                # 相当于实现了f1 = timer(f1)</span>

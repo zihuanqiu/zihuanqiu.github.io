@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -223,7 +223,14 @@
             <div class="markdown-body" id="post-body">
               <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727145834.png" srcset="/img/loading.gif" alt="transforms方法"></p>
 <h1 id="1-transforms——裁剪"><a href="#1-transforms——裁剪" class="headerlink" title="1. transforms——裁剪"></a>1. transforms——裁剪</h1><p><strong>实验代码：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string"># @file name  : transforms_methods_1.py</span>
+<span class="hljs-string"># @author     : tingsongyu</span>
+<span class="hljs-string"># @date       : 2019-09-11 10:08:00</span>
+<span class="hljs-string"># @brief      : transforms方法(一)</span>
+<span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> random
@@ -309,9 +316,9 @@ norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0
 norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
 
 <span class="hljs-comment"># =======================================================================</span>
-<span class="hljs-comment">#                            填充下面代码</span>
-train_transform = transforms.Compose([.....
-</code></pre>
+<span class="hljs-comment">#							填充下面代码</span>
+<span class="hljs-comment"># train_transform = transforms.Compose([.....</span>
+<span class="hljs-comment">#</span></code></pre>
 
 
 
@@ -323,21 +330,34 @@ train_transform = transforms.Compose([.....
 </ul>
 <p><strong>实验</strong></p>
 <ol>
-<li><p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 1 CenterCrop</span><br> transforms.CenterCrop(<span class="hljs-number">196</span>),     </p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
+<li><pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 1 CenterCrop</span>
+    transforms.CenterCrop(<span class="hljs-number">196</span>),     
+    
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data  <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]  <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
 </li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):<br>        inputs, labels = data  <span class="hljs-comment"># B C H W</span></p>
-<pre><code>    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]  &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="3">
 <li><p>可以看到，图片已经从224x224剪裁为196x196了</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724134848.png" srcset="/img/loading.gif" alt="image-20200724134458082" style="zoom: 67%;" />
 </li>
@@ -353,11 +373,7 @@ train_transform = transforms.Compose([.....
 
 </li>
 </ol>
-<h2 id="1-2-transforms-RandomCrop"><a href="#1-2-transforms-RandomCrop" class="headerlink" title="1.2 transforms.RandomCrop"></a>1.2 transforms.RandomCrop</h2><pre><code class="hljs python">torchvision.transforms.RandomCrop(size, 
-                                  padding=<span class="hljs-literal">None</span>, 
-                                  pad_if_needed=<span class="hljs-literal">False</span>, 
-                                  fill=<span class="hljs-number">0</span>, 
-                                  padding_mode=<span class="hljs-string">&#x27;constant&#x27;</span>)</code></pre>
+<h2 id="1-2-transforms-RandomCrop"><a href="#1-2-transforms-RandomCrop" class="headerlink" title="1.2 transforms.RandomCrop"></a>1.2 transforms.RandomCrop</h2><pre><code class="hljs python">torchvision.transforms.RandomCrop(size, padding=<span class="hljs-literal">None</span>, pad_if_needed=<span class="hljs-literal">False</span>, fill=<span class="hljs-number">0</span>, padding_mode=<span class="hljs-string">&#x27;constant&#x27;</span>)</code></pre>
 
 <p>功能：从图片中随机裁剪出尺寸为size的图片 </p>
 <ul>
@@ -376,20 +392,45 @@ train_transform = transforms.Compose([.....
 <p><strong>实验</strong></p>
 <ol>
 <li><p>程序如下，本实验分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 2 RandomCrop</span><br> transforms.RandomCrop(<span class="hljs-number">224</span>, padding=<span class="hljs-number">16</span>),<br> <span class="hljs-comment"># transforms.RandomCrop(224+16*2, padding=16),</span><br> <span class="hljs-comment"># transforms.RandomCrop(224, padding=(16, 64)),</span><br> <span class="hljs-comment"># transforms.RandomCrop(224, padding=16, fill=(255, 0, 0)),</span><br> <span class="hljs-comment"># transforms.RandomCrop(512, pad_if_needed=True),   # pad_if_needed=True</span><br> <span class="hljs-comment"># transforms.RandomCrop(224, padding=64, padding_mode=&#x27;edge&#x27;),</span><br> <span class="hljs-comment"># transforms.RandomCrop(224, padding=64, padding_mode=&#x27;reflect&#x27;),</span><br> <span class="hljs-comment"># transforms.RandomCrop(1024, padding=1024, padding_mode=&#x27;symmetric&#x27;),    </span></p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 2 RandomCrop</span>
+    transforms.RandomCrop(<span class="hljs-number">224</span>, padding=<span class="hljs-number">16</span>),
+    <span class="hljs-comment"># transforms.RandomCrop(224+16*2, padding=16),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=(16, 64)),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=16, fill=(255, 0, 0)),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(512, pad_if_needed=True),   # pad_if_needed=True</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=64, padding_mode=&#x27;edge&#x27;),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(224, padding=64, padding_mode=&#x27;reflect&#x27;),</span>
+    <span class="hljs-comment"># transforms.RandomCrop(1024, padding=1024, padding_mode=&#x27;symmetric&#x27;),    </span>
+    
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data  <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]  <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+
+
+
 </li>
 </ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):<br>        inputs, labels = data  <span class="hljs-comment"># B C H W</span></p>
-<pre><code>    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]  &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
 <ol start="2">
 <li><p>选择<code>transforms.RandomCrop(224, padding=16)</code>，可以发现先做了上下左右16的zero padding，然后再随机裁剪224x224的区域。若执行<code>transforms.RandomCrop(512, padding=16)</code>则会报错，因为已经超过了原尺寸+padding的大小。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184335.png" srcset="/img/loading.gif" alt="image-20200724140246505" style="zoom:67%;" />
@@ -397,7 +438,7 @@ train_transform = transforms.Compose([.....
 <li><p>选择<code>transforms.RandomCrop(224+16*2, padding=16)</code>会发现，得到的就是原图片上下左右zero padding 16的结果，因为没得选了哈哈。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184332.png" srcset="/img/loading.gif" alt="image-20200724140804559" style="zoom:67%;" />
 </li>
-<li><p>选择<code>transforms.RandomCrop(224, padding=(16, 64))</code>，先做了上下16、左右64的zero padding，然后再随机裁剪224x224的区域。</p>
+<li><p>选择<code>transforms.RandomCrop(224, padding=(16, 64))</code>，发现填充的区域上下变宽，左右变窄。padding=一个int时，就是左右上下等宽，此外还可以接受一个二元组控制左右和上下，甚至可以接受一个四元组控制左、上、右、下。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184328.png" srcset="/img/loading.gif" alt="image-20200724141354570" style="zoom:67%;" />
 </li>
 <li><p>选择<code>transforms.RandomCrop(224, padding=16, fill=(255, 0, 0))</code>，发现填充的像素变成了红色。实际上fill=(R, G, B)是一个RGB三元组，控制填充颜色。此外，如果fill=一个int，那么不是RGB三个通道都等于这个int哦，只是R通道等于这个int，GB通道是0。但是默认fill=0是确实又是RGB都为0，比较奇怪。使用时还是写三元组避免问题。</p>
@@ -423,9 +464,9 @@ train_transform = transforms.Compose([.....
 <ul>
 <li><p>size：所需裁剪图片尺寸</p>
 </li>
-<li><p>scale：随机裁剪面积比例, 默认(0.08, 1)</p>
+<li><p>scale：随机裁剪面积比例范围, 默认(0.08, 1)</p>
 </li>
-<li><p>ratio：随机长宽比，默认(3/4, 4/3)</p>
+<li><p>ratio：随机长宽比范围，默认(3/4, 4/3)</p>
 </li>
 <li><p>interpolation：插值方法<br>PIL.Image.NEAREST   (0)<br>PIL.Image.BILINEAR   (2)<br>PIL.Image.BICUBIC     (3)</p>
 <blockquote>
@@ -436,20 +477,38 @@ train_transform = transforms.Compose([.....
 <p><strong>实验</strong></p>
 <ol>
 <li><p>程序如下</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 3 RandomResizedCrop</span><br> transforms.RandomResizedCrop(size=<span class="hljs-number">224</span>, scale=(<span class="hljs-number">0.08</span>, <span class="hljs-number">1</span>), ratio=(<span class="hljs-number">1.</span> / <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span> / <span class="hljs-number">1.</span>)),  </p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+	<span class="hljs-comment"># 3 RandomResizedCrop</span>
+    transforms.RandomResizedCrop(size=<span class="hljs-number">224</span>, scale=(<span class="hljs-number">0.08</span>, <span class="hljs-number">1</span>), ratio=(<span class="hljs-number">1.</span> / <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span> / <span class="hljs-number">1.</span>)),  
+    
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data  <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]  <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+
+
+
 </li>
 </ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):<br>        inputs, labels = data  <span class="hljs-comment"># B C H W</span></p>
-<pre><code>    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]  &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
 <ol start="2">
 <li><p>输出结果</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184057.png" srcset="/img/loading.gif" alt="image-20200724183908753" style="zoom:67%;" />
@@ -459,10 +518,6 @@ train_transform = transforms.Compose([.....
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184103.png" srcset="/img/loading.gif" alt="image-20200724183938326" style="zoom:67%;" />
 
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724184301.png" srcset="/img/loading.gif" alt="image-20200724183948494" style="zoom:67%;" />
-
-
-
-
 
 
 
@@ -495,14 +550,39 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 4 FiveCrop</span><br> transforms.FiveCrop(<span class="hljs-number">112</span>),<br> transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([(transforms.ToTensor()(crop)) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])),</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+    
+    <span class="hljs-comment"># 4 FiveCrop</span>
+    transforms.FiveCrop(<span class="hljs-number">112</span>),
+    transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([(transforms.ToTensor()(crop)) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])),
+
+])
+
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+        bs, ncrops, c, h, w = inputs.shape
+        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(ncrops):
+            img_tensor = inputs[<span class="hljs-number">0</span>, n, ...]  <span class="hljs-comment"># C H W</span>
+            img = transform_invert(img_tensor, train_transform)
+            plt.imshow(img)
+            plt.show()
+            plt.pause(<span class="hljs-number">1</span>)</code></pre>
+
+
+
 </li>
 </ol>
-<p>])</p>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):<br>        inputs, labels = data   <span class="hljs-comment"># B C H W</span><br>        bs, ncrops, c, h, w = inputs.shape<br>        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(ncrops):<br>            img_tensor = inputs[<span class="hljs-number">0</span>, n, …]  <span class="hljs-comment"># C H W</span><br>            img = transform_invert(img_tensor, train_transform)<br>            plt.imshow(img)<br>            plt.show()<br>            plt.pause(<span class="hljs-number">1</span>)</code></pre>:hexoPostRenderEscape–&gt;</p>
 <ol start="2">
 <li><p>通过调试可以看到，inputs是一个shape为(1，5，3，112，112)的五维tensor。由于我们设置的batch-size=1，所以第一个维度的维数为1。这里我们通过<code>img_tensor = inputs[0, n, ...]</code>将5张照片依次检索出来，并转成PIL图片显示。<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203242.png" srcset="/img/loading.gif" alt="image-20200724202242205"></p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724203112.png" srcset="/img/loading.gif" alt="image-20200724202815577" style="zoom:67%;" />
@@ -530,15 +610,35 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 5 TenCrop</span><br> transforms.TenCrop(<span class="hljs-number">112</span>, vertical_flip=<span class="hljs-literal">False</span>),<br> transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([(transforms.ToTensor()(crop)) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])),<br>])</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+    
+	<span class="hljs-comment"># 5 TenCrop</span>
+	transforms.TenCrop(<span class="hljs-number">112</span>, vertical_flip=<span class="hljs-literal">False</span>),
+	transforms.Lambda(<span class="hljs-keyword">lambda</span> crops: torch.stack([(transforms.ToTensor()(crop)) <span class="hljs-keyword">for</span> crop <span class="hljs-keyword">in</span> crops])),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+        bs, ncrops, c, h, w = inputs.shape
+        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(ncrops):
+            img_tensor = inputs[<span class="hljs-number">0</span>, n, ...]  <span class="hljs-comment"># C H W</span>
+            img = transform_invert(img_tensor, train_transform)
+            plt.imshow(img)
+            plt.show()
+            plt.pause(<span class="hljs-number">1</span>)</code></pre>
 </li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):<br>        inputs, labels = data   <span class="hljs-comment"># B C H W</span><br>        bs, ncrops, c, h, w = inputs.shape<br>        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(ncrops):<br>            img_tensor = inputs[<span class="hljs-number">0</span>, n, …]  <span class="hljs-comment"># C H W</span><br>            img = transform_invert(img_tensor, train_transform)<br>            plt.imshow(img)<br>            plt.show()<br>            plt.pause(<span class="hljs-number">1</span>)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<ol start="2">
-<li>输出照片</li>
+<li><p>输出照片</p>
+</li>
 </ol>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724204708.png" srcset="/img/loading.gif" alt="image-20200724204705488" style="zoom:67%;" />
 
@@ -575,23 +675,35 @@ train_transform = transforms.Compose([.....
 <p><strong>实验</strong>：</p>
 <ol>
 <li><p>主程序：</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 1 Horizontal Flip</span><br> transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),</p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 1 Horizontal Flip</span>
+    transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>输出图像以0.5的概率水平翻转</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724211925.png" srcset="/img/loading.gif" alt="image-20200724211919150" style="zoom:67%;" />
 
@@ -631,23 +743,39 @@ train_transform = transforms.Compose([.....
 <p><strong>实验</strong>：</p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 3 RandomRotation</span><br> transforms.RandomRotation(<span class="hljs-number">90</span>),<br> <span class="hljs-comment"># transforms.RandomRotation((90), expand=True),</span><br> <span class="hljs-comment"># transforms.RandomRotation(30, center=(0, 0)),</span><br> <span class="hljs-comment"># transforms.RandomRotation(30, center=(0, 0), expand=True),   # expand only for center rotation</span></p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+	<span class="hljs-comment"># 3 RandomRotation</span>
+    transforms.RandomRotation(<span class="hljs-number">90</span>),
+    <span class="hljs-comment"># transforms.RandomRotation((90), expand=True),</span>
+    <span class="hljs-comment"># transforms.RandomRotation(30, center=(0, 0)),</span>
+    <span class="hljs-comment"># transforms.RandomRotation(30, center=(0, 0), expand=True),   # expand only for center rotation</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>选择<code> transforms.RandomRotation(90)</code>，图片以0.5的概率随机旋转(-90, 90)</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200724213812.png" srcset="/img/loading.gif" alt="image-20200724213627390" style="zoom:67%;" />
 </li>
@@ -675,23 +803,39 @@ train_transform = transforms.Compose([.....
 <p><strong>实验</strong>：</p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 1 Pad</span><br> transforms.Pad(padding=<span class="hljs-number">32</span>, fill=(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), padding_mode=<span class="hljs-string">&#x27;constant&#x27;</span>),<br> <span class="hljs-comment"># transforms.Pad(padding=(8, 64), fill=(255, 0, 0), padding_mode=&#x27;constant&#x27;),</span><br> <span class="hljs-comment"># transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode=&#x27;constant&#x27;),</span><br> <span class="hljs-comment"># transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode=&#x27;symmetric&#x27;),</span></p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+	<span class="hljs-comment"># 1 Pad</span>
+    transforms.Pad(padding=<span class="hljs-number">32</span>, fill=(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), padding_mode=<span class="hljs-string">&#x27;constant&#x27;</span>),
+    <span class="hljs-comment"># transforms.Pad(padding=(8, 64), fill=(255, 0, 0), padding_mode=&#x27;constant&#x27;),</span>
+    <span class="hljs-comment"># transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode=&#x27;constant&#x27;),</span>
+    <span class="hljs-comment"># transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode=&#x27;symmetric&#x27;),</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>选择<code>transforms.Pad(padding=32, fill=(255, 0, 0), padding_mode=&#39;constant&#39;)</code>，发现上下左右都填充了宽度32的红色像素。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725113559.png" srcset="/img/loading.gif" alt="image-20200724230737668" style="zoom:67%;" />
 </li>
@@ -734,23 +878,39 @@ train_transform = transforms.Compose([.....
 </ul>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 2 ColorJitter</span><br> transforms.ColorJitter(brightness=<span class="hljs-number">0.5</span>),<br> <span class="hljs-comment"># transforms.ColorJitter(contrast=0.5),</span><br> <span class="hljs-comment"># transforms.ColorJitter(saturation=0.5),</span><br> <span class="hljs-comment"># transforms.ColorJitter(hue=0.5),</span></p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 2 ColorJitter</span>
+    transforms.ColorJitter(brightness=<span class="hljs-number">0.5</span>),
+    <span class="hljs-comment"># transforms.ColorJitter(contrast=0.5),</span>
+    <span class="hljs-comment"># transforms.ColorJitter(saturation=0.5),</span>
+    <span class="hljs-comment"># transforms.ColorJitter(hue=0.5),</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>原图</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725114055.png" srcset="/img/loading.gif" alt="image-20200725114053978" style="zoom:67%;" />
 </li>
@@ -782,23 +942,36 @@ train_transform = transforms.Compose([.....
 </ul>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 3 transforms.Grayscale</span><br> transforms.Grayscale(num_output_channels=<span class="hljs-number">3</span>),</p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 3 transforms.Grayscale</span>
+    transforms.Grayscale(num_output_channels=<span class="hljs-number">3</span>),
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>输出图像</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725144044.png" srcset="/img/loading.gif" alt="image-20200725144037942" style="zoom:67%;" />
 
@@ -827,23 +1000,40 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 4 Affine</span><br> transforms.RandomAffine(degrees=<span class="hljs-number">30</span>),<br> <span class="hljs-comment"># transforms.RandomAffine(degrees=0, translate=(0.2, 0.2), fillcolor=(255, 0, 0)),</span><br> <span class="hljs-comment"># transforms.RandomAffine(degrees=0, scale=(0.7, 0.7)),</span><br> <span class="hljs-comment"># transforms.RandomAffine(degrees=0, shear=(0, 0, 0, 45)),</span><br> <span class="hljs-comment"># transforms.RandomAffine(degrees=0, shear=90, fillcolor=(255, 0, 0)),</span></p>
-<p> transforms.ToTensor(),<br> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 4 Affine</span>
+    transforms.RandomAffine(degrees=<span class="hljs-number">30</span>),
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, translate=(0.2, 0.2), fillcolor=(255, 0, 0)),</span>
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, scale=(0.7, 0.7)),</span>
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, shear=(0, 0, 0, 45)),</span>
+    <span class="hljs-comment"># transforms.RandomAffine(degrees=0, shear=90, fillcolor=(255, 0, 0)),</span>
+
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>选择<code> transforms.RandomAffine(degrees=30)</code>，图像随机旋转(-30, 30)</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725145213.png" srcset="/img/loading.gif" alt="image-20200725145211665" style="zoom:67%;" />
 
@@ -910,24 +1100,38 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 5 Erasing</span><br> transforms.ToTensor(),<br> transforms.RandomErasing(p=<span class="hljs-number">1</span>, scale=(<span class="hljs-number">0.02</span>, <span class="hljs-number">0.33</span>), ratio=(<span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>), value=(<span class="hljs-number">245</span>/<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)),<br> <span class="hljs-comment"># transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.5, 1), value=&#x27;random&#x27;),</span></p>
-</li>
-</ol>
-<pre><code>transforms.Normalize(norm_mean, norm_std),</code></pre>
-<p>])</p>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 5 Erasing</span>
+    transforms.ToTensor(),
+    transforms.RandomErasing(p=<span class="hljs-number">1</span>, scale=(<span class="hljs-number">0.02</span>, <span class="hljs-number">0.33</span>), ratio=(<span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>), value=(<span class="hljs-number">245</span>/<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)),
+    <span class="hljs-comment"># transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.5, 1), value=&#x27;random&#x27;),</span>
+
+
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>选择<code> transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.5, 1), value=(245/255, 0, 0))</code> ，随机选择(0.02, 0.33)倍的原图像面积区域进行遮挡，遮挡区域长宽比随机范围为(0.5, 1)，填充的颜色RGB=(245/255, 0, 0)。注意，由于已经是tensor了，所以应该用(0, 1)的tensor浮点数来表示RGB各通道的值。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200725153032.png" srcset="/img/loading.gif" alt="image-20200725153031251" style="zoom:67%;" />
 
@@ -970,24 +1174,37 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 1 RandomChoice</span><br> transforms.RandomChoice([transforms.RandomVerticalFlip(p=<span class="hljs-number">1</span>), transforms.RandomHorizontalFlip(p=<span class="hljs-number">1</span>)]),</p>
-<p> transforms.ToTensor(),</p>
-<p> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 1 RandomChoice</span>
+    transforms.RandomChoice([transforms.RandomVerticalFlip(p=<span class="hljs-number">1</span>), transforms.RandomHorizontalFlip(p=<span class="hljs-number">1</span>)]),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>输出图像（顺序选取前三张）</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134028.png" srcset="/img/loading.gif" alt="image-20200727133941261" style="zoom:67%;" />
 
@@ -1005,24 +1222,37 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 2 RandomApply</span><br> transforms.RandomApply([transforms.RandomAffine(degrees=<span class="hljs-number">0</span>, shear=<span class="hljs-number">45</span>, fillcolor=(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)), transforms.Grayscale(num_output_channels=<span class="hljs-number">3</span>)], p=<span class="hljs-number">0.5</span>),</p>
-<p> transforms.ToTensor(),</p>
-<p> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+    <span class="hljs-comment"># 2 RandomApply</span>
+    transforms.RandomApply([transforms.RandomAffine(degrees=<span class="hljs-number">0</span>, shear=<span class="hljs-number">45</span>, fillcolor=(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)), transforms.Grayscale(num_output_channels=<span class="hljs-number">3</span>)], p=<span class="hljs-number">0.5</span>),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>输出图像（顺序选取前三张）</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727134647.png" srcset="/img/loading.gif" alt="image-20200727134645204" style="zoom:67%;" />
 
@@ -1040,25 +1270,37 @@ train_transform = transforms.Compose([.....
 <p><strong>实验：</strong></p>
 <ol>
 <li><p>主程序：分别打开注释</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<pre><code>&lt;span class=&quot;hljs-comment&quot;&gt;# 3 RandomOrder&lt;/span&gt;</code></pre>
-<p> transforms.RandomOrder([transforms.RandomRotation(<span class="hljs-number">5</span>), transforms.Pad(padding=<span class="hljs-number">32</span>), transforms.RandomAffine(degrees=<span class="hljs-number">0</span>, translate=(<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>), scale=(<span class="hljs-number">0.9</span>, <span class="hljs-number">1.1</span>))]),</p>
-<p> transforms.ToTensor(),</p>
-<p> transforms.Normalize(norm_mean, norm_std),<br>])</p>
-</li>
-</ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
 
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
-<ol start="2">
+       <span class="hljs-comment"># 3 RandomOrder</span>
+    transforms.RandomOrder([transforms.RandomRotation(<span class="hljs-number">5</span>), transforms.Pad(padding=<span class="hljs-number">32</span>), transforms.RandomAffine(degrees=<span class="hljs-number">0</span>, translate=(<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>), scale=(<span class="hljs-number">0.9</span>, <span class="hljs-number">1.1</span>))]),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+</li>
 <li><p>输出图像（顺序选取前三张）</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727135216.png" srcset="/img/loading.gif" alt="image-20200727135214233" style="zoom:67%;" />
 
@@ -1078,10 +1320,10 @@ train_transform = transforms.Compose([.....
 </li>
 <li><p>注意上下游的输出与输入</p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Compose</span>(<span class="hljs-params">object</span>):</span>
- <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span>(<span class="hljs-params">self, img</span>):</span>
-     <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> self.transforms:
-         img = t(img)
-     <span class="hljs-keyword">return</span> img</code></pre>
+	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span>(<span class="hljs-params">self, img</span>):</span>
+        <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> self.transforms:
+        	img = t(img)
+        <span class="hljs-keyword">return</span> img</code></pre>
 
 <p>由于transforms是在<code>class Compose</code>的<code> __call__(self, img)</code>中通过一个for循环实现的，因此需要注意上一个transform的输出是现在的transform的输入，前后数据类型需要匹配。</p>
 </li>
@@ -1102,25 +1344,25 @@ train_transform = transforms.Compose([.....
 <ol>
 <li><p>自定义transform的代码：</p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddPepperNoise</span>(<span class="hljs-params">object</span>):</span>
- <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, snr, p=<span class="hljs-number">0.9</span></span>):</span>
-     <span class="hljs-keyword">assert</span> isinstance(snr, float) <span class="hljs-keyword">or</span> (isinstance(p, float))
-     self.snr = snr
-     self.p = p
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, snr, p=<span class="hljs-number">0.9</span></span>):</span>
+        <span class="hljs-keyword">assert</span> isinstance(snr, float) <span class="hljs-keyword">or</span> (isinstance(p, float))
+        self.snr = snr
+        self.p = p
 
- <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span>(<span class="hljs-params">self, img</span>):</span>
-     <span class="hljs-keyword">if</span> random.uniform(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) &lt; self.p:
-         img_ = np.array(img).copy()
-         h, w, c = img_.shape
-         signal_pct = self.snr
-         noise_pct = <span class="hljs-number">1</span> - self.snr
-         mask = np.random.choice((<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), size=(h, w, <span class="hljs-number">1</span>), p=[signal_pct, noise_pct/<span class="hljs-number">2</span>, noise_pct/<span class="hljs-number">2</span>])  <span class="hljs-comment"># 从0，1，2</span>
-         <span class="hljs-comment"># 中按概率选取，形成size形状的ndarray</span>
-         mask = np.repeat(mask, c, axis=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 按第三个维度，也就是通道数重复2</span>
-         img_[mask == <span class="hljs-number">1</span>] = <span class="hljs-number">255</span>  <span class="hljs-comment"># 椒噪声</span>
-         img_[mask == <span class="hljs-number">2</span>] = <span class="hljs-number">0</span>  <span class="hljs-comment"># 盐噪声</span>
-         <span class="hljs-keyword">return</span> Image.fromarray(img_.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>)).convert(<span class="hljs-string">&quot;RGB&quot;</span>)
-     <span class="hljs-keyword">else</span>:
-         <span class="hljs-keyword">return</span> img</code></pre>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span>(<span class="hljs-params">self, img</span>):</span>
+        <span class="hljs-keyword">if</span> random.uniform(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) &lt; self.p:
+            img_ = np.array(img).copy()
+            h, w, c = img_.shape
+            signal_pct = self.snr
+            noise_pct = <span class="hljs-number">1</span> - self.snr
+            mask = np.random.choice((<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), size=(h, w, <span class="hljs-number">1</span>), p=[signal_pct, noise_pct/<span class="hljs-number">2</span>, noise_pct/<span class="hljs-number">2</span>])  <span class="hljs-comment"># 从0，1，2</span>
+            <span class="hljs-comment"># 中按概率选取，形成size形状的ndarray</span>
+            mask = np.repeat(mask, c, axis=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 按第三个维度，也就是通道数重复2</span>
+            img_[mask == <span class="hljs-number">1</span>] = <span class="hljs-number">255</span>  <span class="hljs-comment"># 椒噪声</span>
+            img_[mask == <span class="hljs-number">2</span>] = <span class="hljs-number">0</span>  <span class="hljs-comment"># 盐噪声</span>
+            <span class="hljs-keyword">return</span> Image.fromarray(img_.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>)).convert(<span class="hljs-string">&quot;RGB&quot;</span>)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> img</code></pre>
 
 
 
@@ -1128,23 +1370,41 @@ train_transform = transforms.Compose([.....
 </ol>
 <ol start="2">
 <li><p>主程序：</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python">train_transform = transforms.Compose([<br> transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),</p>
-<p> <span class="hljs-comment"># 4 自定义transforms</span><br> AddPepperNoise(<span class="hljs-number">0.8</span>, p=<span class="hljs-number">0.8</span>),</p>
-<p> transforms.ToTensor(),</p>
-<p> transforms.Normalize(norm_mean, norm_std),<br>])</p>
+<pre><code class="hljs python">train_transform = transforms.Compose([
+    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
+
+    <span class="hljs-comment"># 4 自定义transforms</span>
+    AddPepperNoise(<span class="hljs-number">0.8</span>, p=<span class="hljs-number">0.8</span>),
+
+    transforms.ToTensor(),
+    
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+
+<span class="hljs-comment"># 构建MyDataset实例</span>
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+
+<span class="hljs-comment"># 构建DataLoder</span>
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
+    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+
+        inputs, labels = data   <span class="hljs-comment"># B C H W</span>
+
+        img_tensor = inputs[<span class="hljs-number">0</span>, ...]     <span class="hljs-comment"># C H W</span>
+        img = transform_invert(img_tensor, train_transform)
+        plt.imshow(img)
+        plt.show()
+        plt.pause(<span class="hljs-number">0.5</span>)
+        plt.close()</code></pre>
+
+
+
 </li>
 </ol>
-<p><span class="hljs-comment"># 构建MyDataset实例</span><br>train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</p>
-<p><span class="hljs-comment"># 构建DataLoder</span><br>train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)</p>
-<p><span class="hljs-comment"># ============================ step 2/2 训练 ============================</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):<br>    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):</p>
-<pre><code>    inputs, labels = data   &lt;span class=&quot;hljs-comment&quot;&gt;# B C H W&lt;/span&gt;
-
-    img_tensor = inputs[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, ...]     &lt;span class=&quot;hljs-comment&quot;&gt;# C H W&lt;/span&gt;
-    img = transform_invert(img_tensor, train_transform)
-    plt.imshow(img)
-    plt.show()
-    plt.pause(&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;)
-    plt.close()&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape--&gt;</code></pre>
 <ol start="3">
 <li><p>输出图像（顺序选取前三张）：</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200727144320.png" srcset="/img/loading.gif" alt="image-20200727144319495" style="zoom:67%;" />

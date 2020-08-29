@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -1099,7 +1099,7 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213702.png" srcset="/img/loading.gif" alt="image-20200812213535791"></p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213700.png" srcset="/img/loading.gif" alt="image-20200812213658787"></p>
 <pre><code class="hljs apache"><span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">6934</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%
-<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">1</span>.<span class="hljs-number">3892</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%</code></pre>
+<span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">1</span>.<span class="hljs-number">3892</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%</code></pre>
 
 <p>到第9个epoch，loss还是很大，acc=50%，对于一个二分类问题基本就是瞎猜的概率，这个模型根本没有训练到。</p>
 <p>下面我们使用BN层</p>
@@ -1108,7 +1108,7 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213922.png" srcset="/img/loading.gif" alt="image-20200812213921147"></p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213951.png" srcset="/img/loading.gif" alt="image-20200812213950548"></p>
 <pre><code class="hljs apache"><span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0019</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%
-<span class="hljs-attribute">Valid</span>:     Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0000</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%</code></pre>
+<span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0000</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%</code></pre>
 
 <p>可以看到，这改变是非常大的，使用BN层使得模型对参数初始化不那么敏感</p>
 <h1 id="4-LN-IN-GN正则化"><a href="#4-LN-IN-GN正则化" class="headerlink" title="4. LN/IN/GN正则化"></a>4. LN/IN/GN正则化</h1><p>常见的Normalization：</p>

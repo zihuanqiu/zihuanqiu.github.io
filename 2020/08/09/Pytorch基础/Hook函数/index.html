@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -417,7 +417,7 @@ net.conv1.bias.data.detach().zero_()
 <span class="hljs-comment"># 注册hook</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward_pre_hook</span>(<span class="hljs-params">module, data_input</span>):</span>
     print(<span class="hljs-string">&quot;forward_pre_hook input:&#123;&#125;&quot;</span>.format(data_input))
-
+    
 net.conv1.register_forward_pre_hook(forward_pre_hook)
 
 <span class="hljs-comment"># inference</span>
@@ -553,8 +553,8 @@ fmap_dict = dict()
             fmap_dict[key_name].append(o)
 
         alexnet._modules[n1]._modules[n2].register_forward_hook(hook_func)  <span class="hljs-comment"># 由于alexnet是用Sequential容器装载网络层的，</span>
-                                                                            <span class="hljs-comment"># 所以先索引容器名，再索引容器內部的网络层。</span>
-                                                                            <span class="hljs-comment"># 这样就为每个Conv2d网络层都注册了hook函数</span>
+        																	<span class="hljs-comment"># 所以先索引容器名，再索引容器內部的网络层。</span>
+            																<span class="hljs-comment"># 这样就为每个Conv2d网络层都注册了hook函数</span>
 
 <span class="hljs-comment"># forward</span>
 output = alexnet(img_tensor)
@@ -563,7 +563,7 @@ output = alexnet(img_tensor)
 <span class="hljs-keyword">for</span> layer_name, fmap_list <span class="hljs-keyword">in</span> fmap_dict.items():
     fmap = fmap_list[<span class="hljs-number">0</span>]
     fmap.transpose_(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># bchw→cbhw，这是因为我们的batch=1，但是通道数c由于在不同的卷积层，通道数不一样，</span>
-                           <span class="hljs-comment"># 对于一个超过3通道的卷积核我们只能把每个通道用灰度显示</span>
+    					   <span class="hljs-comment"># 对于一个超过3通道的卷积核我们只能把每个通道用灰度显示</span>
 
     nrow = int(np.sqrt(fmap.shape[<span class="hljs-number">0</span>]))
     fmap_grid = vutils.make_grid(fmap, normalize=<span class="hljs-literal">True</span>, scale_each=<span class="hljs-literal">True</span>, nrow=nrow)

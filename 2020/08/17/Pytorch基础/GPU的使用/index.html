@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -247,44 +247,59 @@ linear.to(gpu1)  <span class="hljs-comment"># 模型执行inplace</span></code><
 <p><strong>实验：</strong></p>
 <ol>
 <li><p><strong>tensor to cuda</strong></p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn</p>
-</li>
-</ol>
-<p>x_cpu = torch.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br>print(<span class="hljs-string">&quot;x_cpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.format(x_cpu.device, x_cpu.is_cuda, id(x_cpu)))</p>
-<p>x_gpu = x_cpu.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)<br>print(<span class="hljs-string">&quot;x_gpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.format(x_gpu.device, x_gpu.is_cuda, id(x_gpu)))</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   输出</p>
-   <pre><code class="hljs python">x_cpu:
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+
+x_cpu = torch.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+print(<span class="hljs-string">&quot;x_cpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.format(x_cpu.device, x_cpu.is_cuda, id(x_cpu)))
+
+x_gpu = x_cpu.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)
+print(<span class="hljs-string">&quot;x_gpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.format(x_gpu.device, x_gpu.is_cuda, id(x_gpu)))</code></pre>
+
+<p>输出</p>
+<pre><code class="hljs python">x_cpu:
 device: cpu is_cuda: <span class="hljs-literal">False</span> id: <span class="hljs-number">2141032222976</span>
 x_gpu:
 device: cuda:<span class="hljs-number">0</span> is_cuda: <span class="hljs-literal">True</span> id: <span class="hljs-number">2138929688384</span></code></pre>
 
-<p>   转换前后id不同，说明不是inplace操作，划分了新的内存地址</p>
-<ol start="2">
-<li><p><strong>module to cuda</strong></p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn</p>
+<p>转换前后id不同，说明不是inplace操作，划分了新的内存地址</p>
 </li>
-</ol>
-<p>net = nn.Sequential(nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))</p>
-<p>print(<span class="hljs-string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.format(id(net), next(net.parameters()).is_cuda))</p>
-<p>net.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)<br>print(<span class="hljs-string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.format(id(net), next(net.parameters()).is_cuda))</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   输出</p>
-   <pre><code class="hljs python">id:<span class="hljs-number">2455688847568</span> is_cuda: <span class="hljs-literal">False</span>
+<li><p><strong>module to cuda</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+
+net = nn.Sequential(nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+
+print(<span class="hljs-string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.format(id(net), next(net.parameters()).is_cuda))
+
+net.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)
+print(<span class="hljs-string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.format(id(net), next(net.parameters()).is_cuda))</code></pre>
+
+<p>输出</p>
+<pre><code class="hljs python">id:<span class="hljs-number">2455688847568</span> is_cuda: <span class="hljs-literal">False</span>
 
 id:<span class="hljs-number">2455688847568</span> is_cuda: <span class="hljs-literal">True</span></code></pre>
 
-<p>   模型转换是inplace操作</p>
-<ol start="3">
+<p>模型转换是inplace操作</p>
+</li>
 <li><p><strong>forward in cuda</strong></p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+
+x_cpu = torch.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+x_gpu = x_cpu.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)
+net = nn.Sequential(nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
+
+output = net(x_gpu)
+print(<span class="hljs-string">&quot;output is_cuda: &#123;&#125;&quot;</span>.format(output.is_cuda))</code></pre>
+
+<p>输出</p>
+<pre><code class="hljs python">output is_cuda: <span class="hljs-literal">True</span></code></pre>
+
+
+
 </li>
 </ol>
-<p>x_cpu = torch.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br>x_gpu = x_cpu.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)<br>net = nn.Sequential(nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))</p>
-<p>output = net(x_gpu)<br>print(<span class="hljs-string">&quot;output is_cuda: &#123;&#125;&quot;</span>.format(output.is_cuda))</code></pre>:hexoPostRenderEscape–&gt;</p>
-<p>   输出</p>
-   <pre><code class="hljs python">output is_cuda: <span class="hljs-literal">True</span></code></pre>
-
-
-
 <h1 id="2-torch-cuda常用方法"><a href="#2-torch-cuda常用方法" class="headerlink" title="2. torch.cuda常用方法"></a>2. torch.cuda常用方法</h1><ol>
 <li><p>torch.cuda.device_count()：计算当前可见可用gpu数</p>
 </li>
@@ -407,7 +422,7 @@ new_state_dict = OrderedDict()
 <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> state_dict_load.items():
     namekey = k[<span class="hljs-number">7</span>:] <span class="hljs-keyword">if</span> k.startswith(<span class="hljs-string">&#x27;module.&#x27;</span>) <span class="hljs-keyword">else</span> k
     new_state_dict[namekey] = v
-
+    
 net.load_state_dict(new_state_dict)</code></pre>
 
 

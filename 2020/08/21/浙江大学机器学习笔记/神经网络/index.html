@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -476,14 +476,18 @@ nn.b&#123;k&#125; = nn.b&#123;k&#125; - nn.learning_rate*nn.b_grad&#123;k&#125;;
 <ol start="4">
 <li><p>Momentum（解决梯度随机性问题）</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015157.png" srcset="/img/loading.gif" alt="1590749107594"></p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs matlab">nn.vW&#123;k&#125; = <span class="hljs-number">0.5</span><em>nn.vW&#123;k&#125; + nn.learning_rate</em>nn.W_grad&#123;k&#125;;</p>
-</li>
-</ol>
-<p>nn.vb&#123;k&#125; = <span class="hljs-number">0.5</span><em>nn.vb&#123;k&#125; + nn.learning_rate</em>nn.b_grad&#123;k&#125;;</p>
-<p>nn.W&#123;k&#125; = nn.W&#123;k&#125; - nn.vW&#123;k&#125;;<br>nn.b&#123;k&#125; = nn.b&#123;k&#125; - nn.vb&#123;k&#125;; <span class="hljs-comment">%rho = 0.5;</span></code></pre>:hexoPostRenderEscape–&gt;</p>
+<pre><code class="hljs matlab">nn.vW&#123;k&#125; = <span class="hljs-number">0.5</span>*nn.vW&#123;k&#125; + nn.learning_rate*nn.W_grad&#123;k&#125;;
+ 
+nn.vb&#123;k&#125; = <span class="hljs-number">0.5</span>*nn.vb&#123;k&#125; + nn.learning_rate*nn.b_grad&#123;k&#125;;
+            
+nn.W&#123;k&#125; = nn.W&#123;k&#125; - nn.vW&#123;k&#125;;
+nn.b&#123;k&#125; = nn.b&#123;k&#125; - nn.vb&#123;k&#125;; <span class="hljs-comment">%rho = 0.5;</span></code></pre>
+
 <blockquote>
 <p>Momentum（动量）考虑了上一个梯度的对当前梯度的影响（AdaGrad和RMSProp考虑的是累计梯度对当前梯度的影响，没有Momentum那么有“冲劲”）</p>
 </blockquote>
+</li>
+</ol>
 <ol start="5">
 <li><p>Adam（同时解决两个问题）</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015205.png" srcset="/img/loading.gif" alt="1590749307479"></p>

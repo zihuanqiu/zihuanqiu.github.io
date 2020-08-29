@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -253,9 +253,9 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight.data)  <span class="hljs-comment"># normal: mean=0, std=1</span>
-
-
+				nn.init.normal_(m.weight.data)  <span class="hljs-comment"># normal: mean=0, std=1</span>
+                
+                
 layer_nums = <span class="hljs-number">100</span>
 neural_nums = <span class="hljs-number">256</span>
 batch_size = <span class="hljs-number">16</span>
@@ -305,7 +305,7 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight.data)  <span class="hljs-comment"># normal: mean=0, std=1</span></code></pre>
+				nn.init.normal_(m.weight.data)  <span class="hljs-comment"># normal: mean=0, std=1</span></code></pre>
 
 <p>代码运行结果如下：</p>
 <pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">15.959932327270508</span>
@@ -413,7 +413,7 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">1</span>/self.neural_num))</code></pre>
+				nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">1</span>/self.neural_num))</code></pre>
 
 <p>运行结果如下：</p>
 <pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.9974957704544067</span>
@@ -554,7 +554,7 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">1</span>/self.neural_num))</code></pre>
+				nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">1</span>/self.neural_num))</code></pre>
 
 <p>运行结果如下：</p>
 <pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.6273701786994934</span>
@@ -718,9 +718,9 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
                 a = np.sqrt(<span class="hljs-number">6</span> / (self.neural_num + self.neural_num))
-
-                a *= <span class="hljs-number">1.6</span>                                
-
+                
+                a *= <span class="hljs-number">1.6</span>								
+                
                 nn.init.uniform_(m.weight.data, -a, a)</code></pre>
 
 <p>输出结果如下：</p>
@@ -939,7 +939,7 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
                 tanh_gain = nn.init.calculate_gain(<span class="hljs-string">&#x27;tanh&#x27;</span>)
-                nn.init.xavier_uniform_(m.weight.data, gain=tanh_gain)</code></pre>
+				nn.init.xavier_uniform_(m.weight.data, gain=tanh_gain)</code></pre>
 
 <p>输出结果如下：</p>
 <pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.7571136355400085</span>
@@ -1097,7 +1097,7 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">2</span> / self.neural_num))</code></pre>
+				nn.init.normal_(m.weight.data, std=np.sqrt(<span class="hljs-number">2</span> / self.neural_num))</code></pre>
 
 <p>输出结果如下：</p>
 <pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.826629638671875</span>
@@ -1238,7 +1238,7 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
             <span class="hljs-keyword">if</span> isinstance(m, nn.Linear):
-                nn.init.kaiming_normal_(m.weight.data)</code></pre>
+				nn.init.kaiming_normal_(m.weight.data)</code></pre>
 
 <p>输出结果也是相同的：</p>
 <pre><code class="hljs python">layer:<span class="hljs-number">0</span>, std:<span class="hljs-number">0.826629638671875</span>

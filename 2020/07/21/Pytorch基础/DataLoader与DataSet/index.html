@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -322,7 +322,7 @@ valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)</code></pre
 <p>然后就可以在训练的for循环中实现小批量训练，每次<code>for i, data in enumerate(train_loader)</code>都可以获得一个bath的数据和label。</p>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
     ...
-    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
+	<span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
         ...</code></pre>
 
 

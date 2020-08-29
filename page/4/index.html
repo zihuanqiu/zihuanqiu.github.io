@@ -43,7 +43,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -204,10 +204,12 @@
           卷积层1. 1d/2d/3d卷积卷积维度：一般情况下，卷积核在几个维度上滑动，就是几维卷积。
 
 2. 卷积-nn.Conv2dtorch.nn.Conv2d(in_channels,
-                out_channels,
-                kernel_size,
-                stride=1,
-                padding
+				out_channels,
+				kernel_size,
+				stride=1,
+                padding=0,
+                dilation=1,
+    
         </a>
       </p>
 
@@ -369,13 +371,12 @@ im
           
           
 1. transforms——裁剪实验代码：
-import os
-import numpy as np
-import torch
-import random
-from torch.utils.data import DataLoader
-import torchvision.transforms as transforms
-from tools.my_dataset import RMBData
+# -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+# @file name  : transforms_methods_1.py
+# @author     : tingsongyu
+# @date       : 2019-09-11 10:08:00
+# @brief      : transforms方法(一
         </a>
       </p>
 

@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -235,7 +235,7 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_tensorboard&
 
     writer.add_scalar(<span class="hljs-string">&#x27;y=2x&#x27;</span>, x * <span class="hljs-number">2</span>, x)
     writer.add_scalar(<span class="hljs-string">&#x27;y=pow(2, x)&#x27;</span>,  <span class="hljs-number">2</span> ** x, x)
-
+    
     writer.add_scalars(<span class="hljs-string">&#x27;data/scalar_group&#x27;</span>, &#123;<span class="hljs-string">&quot;xsinx&quot;</span>: x * np.sin(x),
                                              <span class="hljs-string">&quot;xcosx&quot;</span>: x * np.cos(x),
                                              <span class="hljs-string">&quot;arctanx&quot;</span>: np.arctan(x)&#125;, x)

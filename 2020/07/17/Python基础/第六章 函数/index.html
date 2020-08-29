@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -292,8 +292,8 @@ area</code></pre>
 </ul>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function</span>(<span class="hljs-params">x, y, z</span>):</span>
     print(x, y, z)
-
-
+    
+    
 function(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)    <span class="hljs-comment"># x = 1; y = 2; z = 3</span></code></pre>
 
 <pre><code>1 2 3</code></pre>
@@ -335,8 +335,8 @@ TypeError: function() takes 3 positional arguments but 4 were given</code></pre>
 </ul>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function</span>(<span class="hljs-params">x, y, z</span>):</span>
     print(x, y, z)
-
-
+    
+    
 function(y=<span class="hljs-number">1</span>, z=<span class="hljs-number">2</span>, x=<span class="hljs-number">3</span>)    <span class="hljs-comment"># x = 1; y = 2; z = 3</span></code></pre>
 
 <pre><code>3 1 2</code></pre>
@@ -429,8 +429,8 @@ function()</code></pre>
     ls += <span class="hljs-string">&quot;3.7&quot;</span>
     print(id(ls))
     print(ls)
-
-
+    
+    
 function()</code></pre>
 
 <pre><code>1759701700656
@@ -454,8 +454,8 @@ Python3.7</code></pre>
         <span class="hljs-keyword">return</span> first_name+middle_name+last_name
     <span class="hljs-keyword">else</span>:
         <span class="hljs-keyword">return</span> first_name+last_name
-
-
+    
+    
 print(name(<span class="hljs-string">&quot;大&quot;</span>,<span class="hljs-string">&quot;仔&quot;</span>))
 print(name(<span class="hljs-string">&quot;大&quot;</span>, <span class="hljs-string">&quot;仔&quot;</span>, <span class="hljs-string">&quot;杰&quot;</span>))</code></pre>
 
@@ -471,8 +471,8 @@ print(name(<span class="hljs-string">&quot;大&quot;</span>, <span class="hljs-s
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>(<span class="hljs-params">x, y, z, *args</span>):</span>
     print(x, y ,z)
     print(args)
-
-
+    
+    
 foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>)    <span class="hljs-comment"># 多余的参数，打包传递给args</span></code></pre>
 
 <pre><code>1 2 3
@@ -484,7 +484,7 @@ foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <spa
     print(x, y ,z)
     print(args)
 
-
+    
 foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])</code></pre>
 
 <pre><code>1 2 3
@@ -497,8 +497,8 @@ foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <spa
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>(<span class="hljs-params">x, y, z, **kwargs</span>):</span>
     print(x, y ,z)
     print(kwargs)
-
-
+    
+    
 foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, a=<span class="hljs-number">4</span>, b=<span class="hljs-number">5</span>, c=<span class="hljs-number">6</span>)    <span class="hljs-comment">#  多余的参数，以字典的形式打包传递给kwargs</span></code></pre>
 
 <pre><code>1 2 3
@@ -510,7 +510,7 @@ foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <spa
     print(x, y ,z)
     print(kwargs)
 
-
+    
 foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, **&#123;<span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">4</span>, <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">5</span>, <span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">6</span>&#125;)</code></pre>
 
 <pre><code>1 2 3
@@ -521,8 +521,8 @@ foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <spa
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>(<span class="hljs-params">*args, **kwargs</span>):</span>
     print(args)
     print(kwargs)
-
-
+    
+    
 foo(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, a=<span class="hljs-number">4</span>, b=<span class="hljs-number">5</span>, c=<span class="hljs-number">6</span>)</code></pre>
 
 <pre><code>(1, 2, 3)
@@ -624,8 +624,8 @@ print(d)</code></pre>
     <span class="hljs-keyword">else</span>:
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Not holiday&quot;</span>
     print(<span class="hljs-string">&quot;啦啦啦德玛西亚，啦啦啦啦&quot;</span>)       <span class="hljs-comment"># 你丫根本没机会运行。。。</span>
-
-
+    
+    
 print(is_holiday(<span class="hljs-string">&quot;Sunday&quot;</span>))
 print(is_holiday(<span class="hljs-string">&quot;Monday&quot;</span>))</code></pre>
 
@@ -836,7 +836,7 @@ print(sim_one_game(<span class="hljs-number">0.2</span>, <span class="hljs-numbe
     print(<span class="hljs-string">&quot;共模拟了&#123;&#125;场比赛&quot;</span>.format(number_of_games))
     print(<span class="hljs-string">&quot;\033[31m选手A获胜&#123;0&#125;场，占比&#123;1:.1%&#125;&quot;</span>.format(win_A, win_A/number_of_games))
     print(<span class="hljs-string">&quot;选手B获胜&#123;0&#125;场，占比&#123;1:.1%&#125;&quot;</span>.format(win_B, win_B/number_of_games))
-
+    
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
     <span class="hljs-comment"># 主要逻辑</span>

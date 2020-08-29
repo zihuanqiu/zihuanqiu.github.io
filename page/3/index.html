@@ -43,7 +43,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -537,13 +537,13 @@ step()：更新下一个epoch的学习率（一次epoch运行一次step
             
           
           1. optimizer的属性class Optimizer(object):
-    def __init__(self, params, defaults):
-        self.defaults = defaults
+	def __init__(self, params, defaults):
+		self.defaults = defaults
         self.state = defaultdict(dict)
         self.param_groups = []
 
 
-defaults：优化器超
+defaults：优化器超参数（字典：包含’
         </a>
       </p>
 

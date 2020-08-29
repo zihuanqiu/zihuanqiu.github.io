@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -239,11 +239,11 @@
 <pre><code class="hljs python"><span class="hljs-comment"># 创建类</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟猫&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, name</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化属性&quot;&quot;&quot;</span>
         self.name = name
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">jump</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;模拟猫跳跃&quot;&quot;&quot;</span>
         print(self.name + <span class="hljs-string">&quot; is jumping&quot;</span>)</code></pre>
@@ -289,7 +289,7 @@ Lucky is jumping</code></pre>
 
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="hljs-comment"># 相当于类内部的变量</span>
         self.brand = brand                 <span class="hljs-comment"># 汽车的品牌</span>
@@ -302,18 +302,18 @@ Lucky is jumping</code></pre>
 
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="hljs-comment"># 相当于类内部的变量</span>
         self.brand = brand                 <span class="hljs-comment"># 汽车的品牌</span>
         self.model = model                 <span class="hljs-comment"># 汽车的型号</span>
         self.year = year                   <span class="hljs-comment"># 汽车出厂年份</span>
         self.mileage = <span class="hljs-number">0</span>                   <span class="hljs-comment"># 新车总里程初始化为0  </span>
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># self不能省</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.format(self.brand, self.model, self.year))
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_mileage</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;获取总里程&quot;&quot;&quot;</span>
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.format(self.mileage)</code></pre>
@@ -332,18 +332,18 @@ A6
 2018</code></pre>
 <h3 id="7-2-3-调用方法"><a href="#7-2-3-调用方法" class="headerlink" title="7.2.3 调用方法"></a>7.2.3 调用方法</h3><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="hljs-comment"># 相当于类内部的变量</span>
         self.brand = brand                 <span class="hljs-comment"># 汽车的品牌</span>
         self.model = model                 <span class="hljs-comment"># 汽车的型号</span>
         self.year = year                   <span class="hljs-comment"># 汽车出厂年份</span>
         self.mileage = <span class="hljs-number">0</span>                   <span class="hljs-comment"># 新车总里程初始化为0  </span>
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># self不能省</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.format(self.brand, self.model, self.year))
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_mileage</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span>
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.format(self.mileage)</code></pre>
@@ -373,22 +373,22 @@ print(my_old_car.mileage)</code></pre>
 <p><strong>2、通过方法修改属性</strong></p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="hljs-comment"># 相当于类内部的变量</span>
         self.brand = brand                 <span class="hljs-comment"># 汽车的品牌</span>
         self.model = model                 <span class="hljs-comment"># 汽车的型号</span>
         self.year = year                   <span class="hljs-comment"># 汽车出厂年份</span>
         self.mileage = <span class="hljs-number">0</span>                   <span class="hljs-comment"># 新车总里程初始化为0  </span>
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># self不能省</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.format(self.brand, self.model, self.year))
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_mileage</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span>
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.format(self.mileage)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_mileage</span>(<span class="hljs-params">self, distance</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;设置总里程数&quot;&quot;&quot;</span>
         self.mileage = distance</code></pre>
@@ -407,29 +407,29 @@ print(my_old_car.get_mileage())</code></pre>
 </ul>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="hljs-comment"># 相当于类内部的变量</span>
         self.brand = brand                 <span class="hljs-comment"># 汽车的品牌</span>
         self.model = model                 <span class="hljs-comment"># 汽车的型号</span>
         self.year = year                   <span class="hljs-comment"># 汽车出厂年份</span>
         self.mileage = <span class="hljs-number">0</span>                   <span class="hljs-comment"># 新车总里程初始化为0  </span>
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># self不能省</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.format(self.brand, self.model, self.year))
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_mileage</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.format(self.mileage)) 
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_mileage</span>(<span class="hljs-params">self, distance</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;设置总里程数&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> distance &gt;= <span class="hljs-number">0</span>:
             self.mileage = distance
         <span class="hljs-keyword">else</span>:
             print(<span class="hljs-string">&quot;里程数不能为负！&quot;</span>)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment_mileage</span>(<span class="hljs-params">self, distance</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;总里程数累计&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> distance &gt;= <span class="hljs-number">0</span>:
@@ -478,30 +478,30 @@ my_cars = [my_new_car, my_old_car]</code></pre>
 <h3 id="7-3-1-简单的继承"><a href="#7-3-1-简单的继承" class="headerlink" title="7.3.1 简单的继承"></a>7.3.1 简单的继承</h3><p><strong>父类</strong></p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="hljs-comment"># 相当于类内部的变量</span>
         self.brand = brand                 <span class="hljs-comment"># 汽车的品牌</span>
         self.model = model                 <span class="hljs-comment"># 汽车的型号</span>
         self.year = year                   <span class="hljs-comment"># 汽车出厂年份</span>
         self.mileage = <span class="hljs-number">0</span>                   <span class="hljs-comment"># 新车总里程初始化为0</span>
-
-
+        
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># self不能省</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.format(self.brand, self.model, self.year))
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_mileage</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.format(self.mileage)) 
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_mileage</span>(<span class="hljs-params">self, distance</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;设置总里程数&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> distance &gt;= <span class="hljs-number">0</span>:
             self.mileage = distance
         <span class="hljs-keyword">else</span>:
             print(<span class="hljs-string">&quot;里程数不能为负！&quot;</span>)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment_mileage</span>(<span class="hljs-params">self, distance</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;总里程数累计&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> distance &gt;= <span class="hljs-number">0</span>:
@@ -516,7 +516,7 @@ my_cars = [my_new_car, my_old_car]</code></pre>
 </ul>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ElectricCar</span>(<span class="hljs-params">Car</span>):</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span>
         super().__init__(brand, model, year)  <span class="hljs-comment"># 声明继承父类的属性</span></code></pre>
@@ -530,7 +530,7 @@ my_electric_car.get_main_information()</code></pre>
 <pre><code>品牌：NextWeek   型号：FF91   出厂年份：2046</code></pre>
 <h3 id="7-3-2-给子类添加属性和方法"><a href="#7-3-2-给子类添加属性和方法" class="headerlink" title="7.3.2 给子类添加属性和方法"></a>7.3.2 给子类添加属性和方法</h3><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ElectricCar</span>(<span class="hljs-params">Car</span>):</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year, bettery_size</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span>
         super().__init__(brand, model, year)    <span class="hljs-comment"># 声明继承父类的属性</span>
@@ -538,11 +538,11 @@ my_electric_car.get_main_information()</code></pre>
         self.electric_quantity = bettery_size   <span class="hljs-comment"># 电池剩余电量</span>
         self.electric2distance_ratio = <span class="hljs-number">5</span>        <span class="hljs-comment"># 电量距离换算系数 5公里/kW.h</span>
         self.remainder_range = self.electric_quantity*self.electric2distance_ratio <span class="hljs-comment"># 剩余可行驶里程</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_electric_quantit</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;查看当前电池电量&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;当前电池剩余电量：&#123;&#125; kW.h&quot;</span>.format(self.electric_quantity))
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_electric_quantity</span>(<span class="hljs-params">self, electric_quantity</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;设置电池剩余电量，重新计算电量可支撑行驶里程&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> electric_quantity &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> electric_quantity &lt;= self.bettery_size:
@@ -550,7 +550,7 @@ my_electric_car.get_main_information()</code></pre>
             self.remainder_range = self.electric_quantity*self.electric2distance_ratio
         <span class="hljs-keyword">else</span>:
             print(<span class="hljs-string">&quot;电量未设置在合理范围！&quot;</span>)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_remainder_range</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;查看剩余可行驶里程&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;当前电量还可以继续驾驶 &#123;&#125; 公里&quot;</span>.format(self.remainder_range))</code></pre>
@@ -570,7 +570,7 @@ my_electric_car.get_remainder_range()             <span class="hljs-comment"># �
 当前电量还可以继续驾驶 250 公里</code></pre>
 <h3 id="7-3-3-重写父类的方法——多态"><a href="#7-3-3-重写父类的方法——多态" class="headerlink" title="7.3.3 重写父类的方法——多态"></a>7.3.3 重写父类的方法——多态</h3><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ElectricCar</span>(<span class="hljs-params">Car</span>):</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year, bettery_size</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span>
         super().__init__(brand, model, year)    <span class="hljs-comment"># 声明继承父类的属性</span>
@@ -578,16 +578,16 @@ my_electric_car.get_remainder_range()             <span class="hljs-comment"># �
         self.electric_quantity = bettery_size   <span class="hljs-comment"># 电池剩余电量</span>
         self.electric2distance_ratio = <span class="hljs-number">5</span>        <span class="hljs-comment"># 电量距离换算系数 5公里/kW.h</span>
         self.remainder_range = self.electric_quantity*self.electric2distance_ratio <span class="hljs-comment"># 剩余可行驶里程</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># 重写父类方法</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;   续航里程：&#123;&#125; 公里&quot;</span>
               .format(self.brand, self.model, self.year, self.bettery_size*self.electric2distance_ratio))
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_electric_quantit</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;查看当前电池电量，重新计算电量可支撑行驶里程&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;当前电池剩余电量：&#123;&#125; kW.h&quot;</span>.format(self.electric_quantity))
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_electric_quantity</span>(<span class="hljs-params">self, electric_quantity</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;设置电池剩余电量&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> electric_quantity &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> electric_quantity &lt;= self.bettery_size:
@@ -595,7 +595,7 @@ my_electric_car.get_remainder_range()             <span class="hljs-comment"># �
             self.remainder_range = self.electric_quantity*self.electric2distance_ratio
         <span class="hljs-keyword">else</span>:
             print(<span class="hljs-string">&quot;电量未设置在合理范围！&quot;</span>)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_remainder_range</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;查看剩余可行驶里程&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;当前电量还可以继续驾驶 &#123;&#125; 公里&quot;</span>.format(self.remainder_range))</code></pre>
@@ -608,7 +608,7 @@ my_electric_car.get_main_information()</code></pre>
 <h3 id="7-3-4-用在类中的实例"><a href="#7-3-4-用在类中的实例" class="headerlink" title="7.3.4 用在类中的实例"></a>7.3.4 用在类中的实例</h3><p>把电池抽象成一个对象<br>逻辑更加清晰</p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bettery</span>():</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟电动汽车的电池&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, bettery_size = <span class="hljs-number">70</span></span>):</span>
         self.bettery_size = bettery_size        <span class="hljs-comment"># 电池容量</span>
         self.electric_quantity = bettery_size   <span class="hljs-comment"># 电池剩余电量</span>
@@ -618,7 +618,7 @@ my_electric_car.get_main_information()</code></pre>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_electric_quantit</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;查看当前电池电量&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;当前电池剩余电量：&#123;&#125; kW.h&quot;</span>.format(self.electric_quantity))
-
+        
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_electric_quantity</span>(<span class="hljs-params">self, electric_quantity</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;设置电池剩余电量，计重新算电量可支撑行驶里程&quot;&quot;&quot;</span>
         <span class="hljs-keyword">if</span> electric_quantity &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> electric_quantity &lt;= self.bettery_size:
@@ -626,7 +626,7 @@ my_electric_car.get_main_information()</code></pre>
             self.remainder_range = self.electric_quantity*self.electric2distance_ratio
         <span class="hljs-keyword">else</span>:
             print(<span class="hljs-string">&quot;电量未设置在合理范围！&quot;</span>)
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_remainder_range</span>(<span class="hljs-params">self</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;查看剩余可行驶里程&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;当前电量还可以继续驾驶 &#123;&#125; 公里&quot;</span>.format(self.remainder_range))</code></pre>
@@ -634,12 +634,12 @@ my_electric_car.get_main_information()</code></pre>
 
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ElectricCar</span>(<span class="hljs-params">Car</span>):</span>
     <span class="hljs-string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, brand, model, year, bettery_size</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span>
         super().__init__(brand, model, year)    <span class="hljs-comment"># 声明继承父类的属性</span>
         self.bettery = Bettery(bettery_size)    <span class="hljs-comment"># 电池</span>
-
+    
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_main_information</span>(<span class="hljs-params">self</span>):</span>        <span class="hljs-comment"># 重写父类方法</span>
         <span class="hljs-string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span>
         print(<span class="hljs-string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;   续航里程：&#123;&#125; 公里&quot;</span>

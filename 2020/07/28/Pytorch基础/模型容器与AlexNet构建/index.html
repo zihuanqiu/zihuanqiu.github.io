@@ -53,7 +53,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.0.2"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <body>
@@ -282,7 +282,7 @@
         x = x.view(x.size()[<span class="hljs-number">0</span>], <span class="hljs-number">-1</span>)
         x = self.classifier(x)
         <span class="hljs-keyword">return</span> x
-
+    
 net = LeNetSequential(classes=<span class="hljs-number">2</span>)
 
 fake_img = torch.randn((<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>), dtype=torch.float32)
@@ -340,87 +340,97 @@ print(output)</code></pre>
 </li>
 <li><p>我们还可以运行<code> print(net)</code>，打印出我们模型的各层信息：</p>
 <pre><code class="hljs python">LeNetSequential(
-(features): Sequential(
-(<span class="hljs-number">0</span>): Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-(<span class="hljs-number">1</span>): ReLU()
-(<span class="hljs-number">2</span>): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
-(<span class="hljs-number">3</span>): Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-(<span class="hljs-number">4</span>): ReLU()
-(<span class="hljs-number">5</span>): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
-)
-(classifier): Sequential(
-(<span class="hljs-number">0</span>): Linear(in_features=<span class="hljs-number">400</span>, out_features=<span class="hljs-number">120</span>, bias=<span class="hljs-literal">True</span>)
-(<span class="hljs-number">1</span>): ReLU()
-(<span class="hljs-number">2</span>): Linear(in_features=<span class="hljs-number">120</span>, out_features=<span class="hljs-number">84</span>, bias=<span class="hljs-literal">True</span>)
-(<span class="hljs-number">3</span>): ReLU()
-(<span class="hljs-number">4</span>): Linear(in_features=<span class="hljs-number">84</span>, out_features=<span class="hljs-number">2</span>, bias=<span class="hljs-literal">True</span>)
-)
+  (features): Sequential(
+    (<span class="hljs-number">0</span>): Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
+    (<span class="hljs-number">1</span>): ReLU()
+    (<span class="hljs-number">2</span>): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
+    (<span class="hljs-number">3</span>): Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
+    (<span class="hljs-number">4</span>): ReLU()
+    (<span class="hljs-number">5</span>): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
+  )
+  (classifier): Sequential(
+    (<span class="hljs-number">0</span>): Linear(in_features=<span class="hljs-number">400</span>, out_features=<span class="hljs-number">120</span>, bias=<span class="hljs-literal">True</span>)
+    (<span class="hljs-number">1</span>): ReLU()
+    (<span class="hljs-number">2</span>): Linear(in_features=<span class="hljs-number">120</span>, out_features=<span class="hljs-number">84</span>, bias=<span class="hljs-literal">True</span>)
+    (<span class="hljs-number">3</span>): ReLU()
+    (<span class="hljs-number">4</span>): Linear(in_features=<span class="hljs-number">84</span>, out_features=<span class="hljs-number">2</span>, bias=<span class="hljs-literal">True</span>)
+  )
 )</code></pre>
 </li>
 <li><p>可以发现，在Sequential内部的网络层还是用序号索引的（因为最外层的名字已经给features和classifier用掉了）。在上一节中，如果我们打印net信息，是可以用名称索引的。对于大型网络，用序号索引可能不方便，所以我们还有一种Sequential的方法。</p>
 <pre><code class="hljs lisp">LeNet(
-(<span class="hljs-name">conv1</span>): Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-(<span class="hljs-name">conv2</span>): Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-(<span class="hljs-name">fc1</span>): Linear(<span class="hljs-name">in_features=400</span>, out_features=120, bias=True)
-(<span class="hljs-name">fc2</span>): Linear(<span class="hljs-name">in_features=120</span>, out_features=84, bias=True)
-(<span class="hljs-name">fc3</span>): Linear(<span class="hljs-name">in_features=84</span>, out_features=2, bias=True)
+  (<span class="hljs-name">conv1</span>): Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
+  (<span class="hljs-name">conv2</span>): Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
+  (<span class="hljs-name">fc1</span>): Linear(<span class="hljs-name">in_features=400</span>, out_features=120, bias=True)
+  (<span class="hljs-name">fc2</span>): Linear(<span class="hljs-name">in_features=120</span>, out_features=84, bias=True)
+  (<span class="hljs-name">fc3</span>): Linear(<span class="hljs-name">in_features=84</span>, out_features=2, bias=True)
 )</code></pre>
 </li>
 <li><p>解决的方法很简单，之前我们在Sequential中传入的是元组。如果我们传入一个有序字典OrderedDict就能解决这个问题。</p>
-<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torchvision<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNetSequential</span>(<span class="hljs-params">nn.Module</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, classes</span>):</span>
+        super(LeNetSequentialOrderDict, self).__init__()
+
+        self.features = nn.Sequential(OrderedDict(&#123;
+            <span class="hljs-string">&#x27;conv1&#x27;</span>: nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>),
+            <span class="hljs-string">&#x27;relu1&#x27;</span>: nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+            <span class="hljs-string">&#x27;pool1&#x27;</span>: nn.MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>),
+
+            <span class="hljs-string">&#x27;conv2&#x27;</span>: nn.Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, <span class="hljs-number">5</span>),
+            <span class="hljs-string">&#x27;relu2&#x27;</span>: nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+            <span class="hljs-string">&#x27;pool2&#x27;</span>: nn.MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>),
+        &#125;))
+
+        self.classifier = nn.Sequential(OrderedDict(&#123;
+            <span class="hljs-string">&#x27;fc1&#x27;</span>: nn.Linear(<span class="hljs-number">16</span>*<span class="hljs-number">5</span>*<span class="hljs-number">5</span>, <span class="hljs-number">120</span>),
+            <span class="hljs-string">&#x27;relu3&#x27;</span>: nn.ReLU(),
+
+            <span class="hljs-string">&#x27;fc2&#x27;</span>: nn.Linear(<span class="hljs-number">120</span>, <span class="hljs-number">84</span>),
+            <span class="hljs-string">&#x27;relu4&#x27;</span>: nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+
+            <span class="hljs-string">&#x27;fc3&#x27;</span>: nn.Linear(<span class="hljs-number">84</span>, classes),
+        &#125;))
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
+        x = self.features(x)
+        x = x.view(x.size()[<span class="hljs-number">0</span>], <span class="hljs-number">-1</span>)
+        x = self.classifier(x)
+        <span class="hljs-keyword">return</span> x
+    
+net = LeNetSequential(classes=<span class="hljs-number">2</span>)
+
+fake_img = torch.randn((<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>), dtype=torch.float32)
+
+output = net(fake_img)
+
+print(net)
+print(output)</code></pre>
 </li>
-</ol>
-<p><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeNetSequential</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title"><strong>init</strong></span>(<span class="hljs-params">self, classes</span>):</span><br>        super(LeNetSequentialOrderDict, self).<strong>init</strong>()</p>
-<pre><code>    self.features = nn.Sequential(OrderedDict(&amp;#123;
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;conv1&amp;#x27;&lt;/span&gt;: nn.Conv2d(&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;),
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;relu1&amp;#x27;&lt;/span&gt;: nn.ReLU(inplace=&lt;span class=&quot;hljs-literal&quot;&gt;True&lt;/span&gt;),
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;pool1&amp;#x27;&lt;/span&gt;: nn.MaxPool2d(kernel_size=&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;, stride=&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;),
-
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;conv2&amp;#x27;&lt;/span&gt;: nn.Conv2d(&lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;),
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;relu2&amp;#x27;&lt;/span&gt;: nn.ReLU(inplace=&lt;span class=&quot;hljs-literal&quot;&gt;True&lt;/span&gt;),
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;pool2&amp;#x27;&lt;/span&gt;: nn.MaxPool2d(kernel_size=&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;, stride=&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;),
-    &amp;#125;))
-
-    self.classifier = nn.Sequential(OrderedDict(&amp;#123;
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;fc1&amp;#x27;&lt;/span&gt;: nn.Linear(&lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;*&lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;*&lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;120&lt;/span&gt;),
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;relu3&amp;#x27;&lt;/span&gt;: nn.ReLU(),
-
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;fc2&amp;#x27;&lt;/span&gt;: nn.Linear(&lt;span class=&quot;hljs-number&quot;&gt;120&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;84&lt;/span&gt;),
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;relu4&amp;#x27;&lt;/span&gt;: nn.ReLU(inplace=&lt;span class=&quot;hljs-literal&quot;&gt;True&lt;/span&gt;),
-
-        &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;fc3&amp;#x27;&lt;/span&gt;: nn.Linear(&lt;span class=&quot;hljs-number&quot;&gt;84&lt;/span&gt;, classes),
-    &amp;#125;))
-
-&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;forward&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;self, x&lt;/span&gt;):&lt;/span&gt;
-    x = self.features(x)
-    x = x.view(x.size()[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;], &lt;span class=&quot;hljs-number&quot;&gt;-1&lt;/span&gt;)
-    x = self.classifier(x)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; x</code></pre>
-<p>net = LeNetSequential(classes=<span class="hljs-number">2</span>)</p>
-<p>fake_img = torch.randn((<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>), dtype=torch.float32)</p>
-<p>output = net(fake_img)</p>
-<p>print(net)<br>print(output)</code></pre>:hexoPostRenderEscape–&gt;</p>
-<ol start="18">
 <li><p>我们用同样的方法调试代码，这里就不赘述了。在进入Sequential的构建，即进入container.py的<code> class Sequential(Module)</code>的<code> __init__(self, *args)</code>函数，又面临了和上面第三步一样的条件判断。这次我们当然进入的是if而不是else。对比if和else里面的语句，很容易就能发现刚刚为什么传入元组网络层的索引是序号，而传入有序字典网络层的索引就是名字了。</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200728183811.png" srcset="/img/loading.gif" alt="image-20200728183810343"></p>
 </li>
 <li><p>同样通过<code> print(net)</code>可以打印网络的结构，现在所有的网络层都是名字索引了。</p>
 <pre><code class="hljs python">LeNetSequentialOrderDict(
-(features): Sequential(
-(conv1): Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-(relu1): ReLU(inplace=<span class="hljs-literal">True</span>)
-(pool1): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
-(conv2): Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-(relu2): ReLU(inplace=<span class="hljs-literal">True</span>)
-(pool2): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
-)
-(classifier): Sequential(
-(fc1): Linear(in_features=<span class="hljs-number">400</span>, out_features=<span class="hljs-number">120</span>, bias=<span class="hljs-literal">True</span>)
-(relu3): ReLU()
-(fc2): Linear(in_features=<span class="hljs-number">120</span>, out_features=<span class="hljs-number">84</span>, bias=<span class="hljs-literal">True</span>)
-(relu4): ReLU(inplace=<span class="hljs-literal">True</span>)
-(fc3): Linear(in_features=<span class="hljs-number">84</span>, out_features=<span class="hljs-number">2</span>, bias=<span class="hljs-literal">True</span>)
-)
+  (features): Sequential(
+    (conv1): Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
+    (relu1): ReLU(inplace=<span class="hljs-literal">True</span>)
+    (pool1): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
+    (conv2): Conv2d(<span class="hljs-number">6</span>, <span class="hljs-number">16</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
+    (relu2): ReLU(inplace=<span class="hljs-literal">True</span>)
+    (pool2): MaxPool2d(kernel_size=<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">0</span>, dilation=<span class="hljs-number">1</span>, ceil_mode=<span class="hljs-literal">False</span>)
+  )
+  (classifier): Sequential(
+    (fc1): Linear(in_features=<span class="hljs-number">400</span>, out_features=<span class="hljs-number">120</span>, bias=<span class="hljs-literal">True</span>)
+    (relu3): ReLU()
+    (fc2): Linear(in_features=<span class="hljs-number">120</span>, out_features=<span class="hljs-number">84</span>, bias=<span class="hljs-literal">True</span>)
+    (relu4): ReLU(inplace=<span class="hljs-literal">True</span>)
+    (fc3): Linear(in_features=<span class="hljs-number">84</span>, out_features=<span class="hljs-number">2</span>, bias=<span class="hljs-literal">True</span>)
+  )
 )</code></pre>
 
 
@@ -486,28 +496,28 @@ print(output)</code></pre>
 </li>
 <li><p>运行<code>print(net)</code>可以打印出模型结构。</p>
 <pre><code class="hljs routeros">oduleList(
-(linears): ModuleList(
- (0): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (1): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (2): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (3): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (4): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (5): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (6): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (7): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (8): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (9): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (10): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (11): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (12): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (13): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (14): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (15): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (16): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (17): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (18): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
- (19): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
-)
+  (linears): ModuleList(
+    (0): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (1): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (2): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (3): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (4): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (5): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (6): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (7): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (8): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (9): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (10): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (11): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (12): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (13): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (14): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (15): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (16): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (17): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (18): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+    (19): Linear(<span class="hljs-attribute">in_features</span>=10, <span class="hljs-attribute">out_features</span>=10, <span class="hljs-attribute">bias</span>=<span class="hljs-literal">True</span>)
+  )
 )</code></pre>
 </li>
 <li><p>运行到<code> output = net(fake_data)</code>，进入，观察前向传播过程。方法和之前一样，不再赘述。前向传播是在<code> class ModuleList(nn.Module)</code>的<code>forward</code>中实现的。</p>
