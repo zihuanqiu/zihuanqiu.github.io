@@ -216,71 +216,81 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2020年8月30日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h1><h2 id="1-1d-2d-3d卷积"><a href="#1-1d-2d-3d卷积" class="headerlink" title="1. 1d/2d/3d卷积"></a>1. 1d/2d/3d卷积</h2><p>卷积维度：一般情况下，卷积核在几个维度上滑动，<br>就是几维卷积。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729191750.png" srcset="/img/loading.gif" alt="image-20200729191742201"></p>
-<h2 id="2-卷积-nn-Conv2d"><a href="#2-卷积-nn-Conv2d" class="headerlink" title="2. 卷积-nn.Conv2d"></a>2. 卷积-nn.Conv2d</h2><pre><code class="hljs python">torch.nn.Conv2d(in_channels,
-				out_channels,
-				kernel_size,
-				stride=<span class="hljs-number">1</span>,
+              <h1 id="卷积层"><a class="markdownIt-Anchor" href="#卷积层"></a> 卷积层</h1>
+<h2 id="1-1d2d3d卷积"><a class="markdownIt-Anchor" href="#1-1d2d3d卷积"></a> 1. 1d/2d/3d卷积</h2>
+<p>卷积维度：一般情况下，卷积核在几个维度上滑动，<br />
+就是几维卷积。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729191750.png" srcset="/img/loading.gif" alt="image-20200729191742201" /></p>
+<h2 id="2-卷积-nnconv2d"><a class="markdownIt-Anchor" href="#2-卷积-nnconv2d"></a> 2. 卷积-nn.Conv2d</h2>
+<pre><code class="hljs python">torch.nn.Conv2d(in_channels,
+                out_channels,
+                kernel_size,
+                stride=<span class="hljs-number">1</span>,
                 padding=<span class="hljs-number">0</span>,
                 dilation=<span class="hljs-number">1</span>,
                 groups=<span class="hljs-number">1</span>,
                 bias=<span class="hljs-literal">True</span>,
-				padding_mode=<span class="hljs-string">&#x27;zeros&#x27;</span>)</code></pre>
-
+                padding_mode=<span class="hljs-string">&#x27;zeros&#x27;</span>)</code></pre>
 <p>功能：对多个二维信号进行二维卷积</p>
 <p>主要参数：</p>
 <ul>
-<li><p><strong>in_channels</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – Number of channels in the input image</p>
+<li>
+<p><strong>in_channels</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – Number of channels in the input image</p>
 </li>
-<li><p><strong>out_channels</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – Number of channels produced by the convolution（也即卷积核的数量）</p>
+<li>
+<p><strong>out_channels</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – Number of channels produced by the convolution（也即卷积核的数量）</p>
 </li>
-<li><p><strong>kernel_size</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a>) – Size of the convolving kernel</p>
+<li>
+<p><strong>kernel_size</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a>) – Size of the convolving kernel</p>
 </li>
-<li><p><strong>stride</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a><em>,</em> <em>optional</em>) – Stride of the convolution. Default: 1</p>
+<li>
+<p><strong>stride</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a><em>,</em> <em>optional</em>) – Stride of the convolution. Default: 1</p>
 </li>
-<li><p><strong>padding</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a><em>,</em> <em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</p>
+<li>
+<p><strong>padding</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a><em>,</em> <em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</p>
 </li>
-<li><p><strong>padding_mode</strong> (<em>string**,</em> <em>optional</em>) – <code>&#39;zeros&#39;</code>, <code>&#39;reflect&#39;</code>, <code>&#39;replicate&#39;</code> or <code>&#39;circular&#39;</code>. Default: <code>&#39;zeros&#39;</code></p>
+<li>
+<p><strong>padding_mode</strong> (<em>string</em>*,* <em>optional</em>) – <code>'zeros'</code>, <code>'reflect'</code>, <code>'replicate'</code> or <code>'circular'</code>. Default: <code>'zeros'</code></p>
 </li>
-<li><p><strong>dilation</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a><em>,</em> <em>optional</em>) – Spacing between kernel elements. Default: 1</p>
+<li>
+<p><strong>dilation</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a> <em>or</em> <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html#tuple"><em>tuple</em></a><em>,</em> <em>optional</em>) – Spacing between kernel elements. Default: 1</p>
 </li>
-<li><p><strong>groups</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a><em>,</em> <em>optional</em>) – Number of blocked connections from input channels to output channels. Default: 1</p>
+<li>
+<p><strong>groups</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a><em>,</em> <em>optional</em>) – Number of blocked connections from input channels to output channels. Default: 1</p>
 </li>
-<li><p><strong>bias</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em> <em>optional</em>) – If <code>True</code>, adds a learnable bias to the output. Default: <code>True</code></p>
+<li>
+<p><strong>bias</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em> <em>optional</em>) – If <code>True</code>, adds a learnable bias to the output. Default: <code>True</code></p>
 </li>
 </ul>
 <p>kernel_size表示卷积核的尺寸，卷积核越大感受野越大，但是相应计算带复杂度和参数量就会增多。</p>
 <p>stride就是卷积的步长，表示每次移动卷积核的长度。步长越大，提取特征越少；反之，提取特征越多。从特征图考虑，stride增大将降低特征图的分辨率。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730203710.gif" srcset="/img/loading.gif" alt="no_padding_no_strides" style="zoom: 80%;" />
-
 <blockquote>
-<p> stride = 1</p>
+<p>stride = 1</p>
 </blockquote>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122638.gif" srcset="/img/loading.gif" alt="no_padding_strides" style="zoom: 67%;" />
-
 <blockquote>
-<p> stride = 2</p>
+<p>stride = 2</p>
 </blockquote>
 <p>padding就是在原图像周围补上一些像素，默认padding=0，即不补值。通过在原图像周围补值可以改变输出的特征图尺寸。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122726.gif" srcset="/img/loading.gif" alt="same_padding_no_strides" style="zoom:67%;" />
-
-
-
-
-
+<blockquote>
+<p>padding = 1</p>
+</blockquote>
 <p>dilation就是控制卷积核元素之间的距离，默认dilation=1（即普通卷积）。下图是一个3x3的卷积核，dilation=2。较大的dilation可以提高卷积核的感受野。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122808.gif" srcset="/img/loading.gif" alt="dilation" style="zoom:67%;" />
-
-
-
-<p>​    </p>
-<p>输出特征图尺寸计算：<br>简化版：<br>$$<br>\boldsymbol{o} u t_{s i z e}=\frac{I n_{s i z e}-k e r n e l_{s i z e}}{s t r i d e}+1<br>$$<br>完整版：<br>$$<br>H_{\text {out}}=\left\lfloor\frac{H_{\text {in}}+2 \times \text { padding }[0]-\text { dilation }[0] \times\left(\text { kernel }_{\text {Size }}[0]-1\right)-1}{\text { stride }[0]}+1\right]<br>$$</p>
+<p>输出特征图尺寸计算：<br />
+简化版：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold-italic">o</mi><mi>u</mi><msub><mi>t</mi><mrow><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>I</mi><msub><mi>n</mi><mrow><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow></msub><mo>−</mo><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><msub><mi>l</mi><mrow><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow></msub></mrow><mrow><mi>s</mi><mi>t</mi><mi>r</mi><mi>i</mi><mi>d</mi><mi>e</mi></mrow></mfrac><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\boldsymbol{o} u t_{s i z e}=\frac{I n_{s i z e}-k e r n e l_{s i z e}}{s t r i d e}+1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">o</span></span></span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p>完整版：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>H</mi><mtext>out</mtext></msub><mo>=</mo><mrow><mo fence="true">⌊</mo><mfrac><mrow><msub><mi>H</mi><mtext>in</mtext></msub><mo>+</mo><mn>2</mn><mo>×</mo><mtext> padding </mtext><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo>−</mo><mtext> dilation </mtext><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo>×</mo><mrow><mo fence="true">(</mo><msub><mtext> kernel </mtext><mtext>Size </mtext></msub><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo>−</mo><mn>1</mn><mo fence="true">)</mo></mrow><mo>−</mo><mn>1</mn></mrow><mrow><mtext> stride </mtext><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo></mrow></mfrac><mo>+</mo><mn>1</mn><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">H_{\text {out}}=\left\lfloor\frac{H_{\text {in}}+2 \times \text { padding }[0]-\text { dilation }[0] \times\left(\text { kernel }_{\text {Size }}[0]-1\right)-1}{\text { stride }[0]}+1\right]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">out</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">⌊</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> stride </span></span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">in</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord"> padding </span></span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord"> dilation </span></span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord text"><span class="mord"> kernel </span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Size </span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span></span></p>
 <p><strong>实验：</strong></p>
 <p>主程序：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> os
@@ -312,125 +322,109 @@ img_raw = transform_invert(img_tensor.squeeze(), img_transform)
 plt.subplot(<span class="hljs-number">122</span>).imshow(img_conv, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)
 plt.subplot(<span class="hljs-number">121</span>).imshow(img_raw)
 plt.show()</code></pre>
-
-
-
-
-
 <ol>
-<li><p>观察stride的影响。</p>
+<li>
+<p>观察stride的影响。</p>
 <p>输入通道为3，输出通道为1（即只有一个卷积核），卷积核尺寸为3x3。</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729205404.png" srcset="/img/loading.gif" alt="image-20200729205403160"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729205404.png" srcset="/img/loading.gif" alt="image-20200729205403160" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">510</span>, <span class="hljs-number">510</span>])</code></pre>
-
 <p>按公式计算：输出的尺寸为(512-3)/1+1 = 510，与实际情况符合。</p>
-</li>
-</ol>
-<p>   将stride改为2，输出特征图尺寸减小。</p>
-   <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
+<p>将stride改为2，输出特征图尺寸减小。</p>
+<pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211224.png" srcset="/img/loading.gif" alt="image-20200729210929699"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211224.png" srcset="/img/loading.gif" alt="image-20200729210929699" /></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>])</code></pre>
-
-<p>   将stride改为3，输出特征图尺寸进一步减小。由于卷积核大小为3x3，所以现在是刚好无重叠也无空隙。</p>
-   <pre><code class="hljs reasonml">conv_layer = nn.<span class="hljs-constructor">Conv2d(3, 1, 3, <span class="hljs-params">stride</span>=3)</span>   # input:(i, o, size) weights:(o, i , h, w)
+<p>将stride改为3，输出特征图尺寸进一步减小。由于卷积核大小为3x3，所以现在是刚好无重叠也无空隙。</p>
+<pre><code class="hljs reasonml">conv_layer = nn.<span class="hljs-constructor">Conv2d(3, 1, 3, <span class="hljs-params">stride</span>=3)</span>   # input:(i, o, size) weights:(o, i , h, w)
 nn.init.xavier<span class="hljs-constructor">_normal_(<span class="hljs-params">conv_layer</span>.<span class="hljs-params">weight</span>.<span class="hljs-params">data</span>)</span>
 
 # calculation
 img_conv = conv<span class="hljs-constructor">_layer(<span class="hljs-params">img_tensor</span>)</span></code></pre>
-
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211220.png" srcset="/img/loading.gif" alt="image-20200729211219125"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211220.png" srcset="/img/loading.gif" alt="image-20200729211219125" /></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">170</span>, <span class="hljs-number">170</span>])</code></pre>
-
-<p>   进一步增大stride，如下图所示。可以看到，随着stride的加大，特征图的分辨率降低。</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211520.png" srcset="/img/loading.gif" alt="image-20200729211519019"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211718.png" srcset="/img/loading.gif" alt="image-20200729211716550"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211757.png" srcset="/img/loading.gif" alt="image-20200729211755307"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211840.png" srcset="/img/loading.gif" alt="image-20200729211838602"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211911.png" srcset="/img/loading.gif" alt="image-20200729211910516"></p>
-<p>   stride=20时，特征图分辨率降低到人畜不分了，可爱的lena小姐姐没了。</p>
-<ol start="2">
-<li><p>观察padding的影响。</p>
+<p>进一步增大stride，如下图所示。可以看到，随着stride的加大，特征图的分辨率降低。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211520.png" srcset="/img/loading.gif" alt="image-20200729211519019" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211718.png" srcset="/img/loading.gif" alt="image-20200729211716550" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211757.png" srcset="/img/loading.gif" alt="image-20200729211755307" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211840.png" srcset="/img/loading.gif" alt="image-20200729211838602" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729211911.png" srcset="/img/loading.gif" alt="image-20200729211910516" /></p>
+<p>stride=20时，特征图分辨率降低到人畜不分了，可爱的lena小姐姐没了。</p>
+</li>
+<li>
+<p>观察padding的影响。</p>
 <p>kernel_size=3，padding=1时，输出特征图的尺寸与输入相同。</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729214929.png" srcset="/img/loading.gif" alt="image-20200729214928974"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729214929.png" srcset="/img/loading.gif" alt="image-20200729214928974" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])</code></pre>
-
-<p>将padding改成100，由于padding_mode=”zeros”，所以在图像周围填充了宽度为100的一圈0值，卷积以后这些0值还是0，造成输出特征图周围一圈0值。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215636.png" srcset="/img/loading.gif" alt="image-20200729215635307"></p>
+<p>将padding改成100，由于padding_mode=“zeros”，所以在图像周围填充了宽度为100的一圈0值，卷积以后这些0值还是0，造成输出特征图周围一圈0值。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215636.png" srcset="/img/loading.gif" alt="image-20200729215635307" /></p>
 <p>将padding_mode改成reflect，可以看到周围一圈进行了镜像对称。</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;reflect&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215846.png" srcset="/img/loading.gif" alt="image-20200729215845123"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729215846.png" srcset="/img/loading.gif" alt="image-20200729215845123" /></p>
 <p>将padding_mode改成replicate，可以看到周围一圈复制边缘值填充。</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;replicate&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220521.png" srcset="/img/loading.gif" alt="image-20200729220507733"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220521.png" srcset="/img/loading.gif" alt="image-20200729220507733" /></p>
 <p>将padding_mode改成circular，可以看到周围一圈进行了周期对称。</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;circular&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220907.png" srcset="/img/loading.gif" alt="image-20200729220906775"></p>
-<p>将padding改为512，还是用padding_mode=’circular’，</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729220907.png" srcset="/img/loading.gif" alt="image-20200729220906775" /></p>
+<p>将padding改为512，还是用padding_mode=‘circular’，</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">100</span>, padding_mode=<span class="hljs-string">&#x27;circular&#x27;</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221132.png" srcset="/img/loading.gif" alt="image-20200729221131206"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221132.png" srcset="/img/loading.gif" alt="image-20200729221131206" /></p>
 </li>
-<li><p>观察dilation的影响。</p>
+<li>
+<p>观察dilation的影响。</p>
 <p>dilation=1就是原图像。</p>
 <pre><code class="hljs python">conv_layer = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, dilation=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221704.png" srcset="/img/loading.gif" alt="image-20200729221703471"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729221704.png" srcset="/img/loading.gif" alt="image-20200729221703471" /></p>
 <p>设置dilation逐步增加，观察dilation增加对特征图的影响。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222113.png" srcset="/img/loading.gif" alt="image-20200729222112682"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222726.png" srcset="/img/loading.gif" alt="image-20200729222724956"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222802.png" srcset="/img/loading.gif" alt="image-20200729222801504"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222857.png" srcset="/img/loading.gif" alt="image-20200729222854585"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223103.png" srcset="/img/loading.gif" alt="image-20200729223102227"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223222.png" srcset="/img/loading.gif" alt="image-20200729223216906"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223322.png" srcset="/img/loading.gif" alt="image-20200729223320923"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222113.png" srcset="/img/loading.gif" alt="image-20200729222112682" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222726.png" srcset="/img/loading.gif" alt="image-20200729222724956" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222802.png" srcset="/img/loading.gif" alt="image-20200729222801504" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729222857.png" srcset="/img/loading.gif" alt="image-20200729222854585" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223103.png" srcset="/img/loading.gif" alt="image-20200729223102227" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223222.png" srcset="/img/loading.gif" alt="image-20200729223216906" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200729223322.png" srcset="/img/loading.gif" alt="image-20200729223320923" /></p>
 </li>
 </ol>
 <p>随着dilation的增加，出现了散光的感觉，这是可以预见的。因为dilation增加会扩大感受野，那么特征图的每一点都会从更大的范围去计算，造成了散光现象。</p>
-<h2 id="3-转置卷积-nn-ConvTranspose"><a href="#3-转置卷积-nn-ConvTranspose" class="headerlink" title="3. 转置卷积-nn.ConvTranspose"></a>3. 转置卷积-nn.ConvTranspose</h2><p>转置卷积又称为反卷积(Deconvolution)和部分跨越卷积(Fractionally-strided Convolution) ，用于对图像进行上采样(UpSample) 。</p>
+<h2 id="3-转置卷积-nnconvtranspose"><a class="markdownIt-Anchor" href="#3-转置卷积-nnconvtranspose"></a> 3. 转置卷积-nn.ConvTranspose</h2>
+<p>转置卷积又称为反卷积(Deconvolution)和部分跨越卷积(Fractionally-strided Convolution) ，用于对图像进行上采样(UpSample) 。</p>
 <pre><code class="hljs python">nn.ConvTranspose2d(in_channels, 
                    out_channels,
                    kernel_size, 
@@ -441,128 +435,104 @@ img_conv = conv_layer(img_tensor)</code></pre>
                    bias=<span class="hljs-literal">True</span>, 
                    dilation=<span class="hljs-number">1</span>, 
                    padding_mode=<span class="hljs-string">&#x27;zeros&#x27;</span>)</code></pre>
-
 <p>主要参数：</p>
 <ul>
 <li><code>stride</code> controls the stride for the cross-correlation.</li>
 <li><code>padding</code> controls the amount of implicit zero-paddings on both sides for <code>dilation * (kernel_size - 1) - padding</code> number of points. See note below for details.</li>
 <li><code>output_padding</code> controls the additional size added to one side of the output shape. See note below for details.</li>
 <li><code>dilation</code> controls the spacing between the kernel points; also known as the à trous algorithm. It is harder to describe, but this <a target="_blank" rel="noopener" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code>dilation</code> does.</li>
-<li><code>groups</code> controls the connections between inputs and outputs. <code>in_channels</code> and <code>out_channels</code> must both be divisible by <code>groups</code>. </li>
+<li><code>groups</code> controls the connections between inputs and outputs. <code>in_channels</code> and <code>out_channels</code> must both be divisible by <code>groups</code>.</li>
 </ul>
 <p>ConvTranspose2d的参数设置是为了去抵消Conv2d造成的影响，所以这里的stride不是正常意义的步长，而是为了抵消在Conv2d中stride参数造成的影响，其他参数同理。</p>
 <p><strong>实验：</strong></p>
 <ol>
-<li><p>观察stride的影响。</p>
+<li>
+<p>观察stride的影响。</p>
 <p>输入通道为3，输出通道为1（即只有一个卷积核），卷积核尺寸为3x3。</p>
 <pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122343.png" srcset="/img/loading.gif" alt="image-20200730122335305"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122343.png" srcset="/img/loading.gif" alt="image-20200730122335305" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">514</span>, <span class="hljs-number">514</span>])</code></pre>
-
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730122446.gif" srcset="/img/loading.gif" alt="no_padding_no_strides_transposed" style="zoom:67%;" />
-
 <p>可以看到，转置卷积会自动在输入图像周围补零，即使stride=1，输出特征图也会比输入图像要大。</p>
 <blockquote>
 <p>若在输入图像周围补上kernel_size-1的一圈0，并把卷积核上下左右翻转，那么nn.Conv2d和nn.ConvTranspose的输出是相同的</p>
 </blockquote>
 <p>对比stride=1的Conv2d，可以看到他们从“形式上”互为逆运算（其实卷积是不可逆的，因为真正的逆运算必须使用IIR的滤波器，那么就变得不可实现了）</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730140625.gif" srcset="/img/loading.gif" alt="no_padding_no_strides" style="zoom:67%;" />
-
 <p>下图是先使用<code>nn.Conv2d(3, 1, 3, stride=1)</code>再使用<code>nn.ConvTranspose2d(1, 1, 3, stride=1)</code>的结果。(由于卷积核的参数为随机值，所以重建图像是没有什么具体意义的)</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730141312.png" srcset="/img/loading.gif" alt="image-20200730141311447"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730141312.png" srcset="/img/loading.gif" alt="image-20200730141311447" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])</code></pre>
-
-
-
-</li>
-</ol>
-<p>   令stride=2，反卷积的stride其实是在控制输入图像的dilation。下图是stride=2的示意图。</p>
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730131814.gif" srcset="/img/loading.gif" alt="no_padding_strides_transposed" style="zoom:67%;" />
-
-<p>   输出图像为：</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730131948.png" srcset="/img/loading.gif" alt="image-20200730131947701"></p>
-<p>   对比stride=2的Conv2d，输出特征图一个点和输入的9个点相关。</p>
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161049.gif" srcset="/img/loading.gif" alt="no_padding_strides" style="zoom:67%;" />
-
-<p>   对比一下，他们在形式上相逆。</p>
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161547.png" srcset="/img/loading.gif" alt="image-20200730161546882" style="zoom:67%;" />
-
-   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161753.png" srcset="/img/loading.gif" alt="image-20200730161752746" style="zoom: 80%;" />
-
-<p>   下图是先使用<code>nn.Conv2d(3, 1, 3, stride=1)</code>再使用<code>nn.ConvTranspose2d(1, 1, 3, stride=1)</code>的结果。</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161955.png" srcset="/img/loading.gif" alt="image-20200730161949921"></p>
-   <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
+<p>令stride=2，反卷积的stride其实是在控制输入图像的dilation。下图是stride=2的示意图。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730131814.gif" srcset="/img/loading.gif" alt="no_padding_strides_transposed" style="zoom:67%;" />
+<p>输出图像为：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730131948.png" srcset="/img/loading.gif" alt="image-20200730131947701" /></p>
+<p>对比stride=2的Conv2d，输出特征图一个点和输入的9个点相关。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161049.gif" srcset="/img/loading.gif" alt="no_padding_strides" style="zoom:67%;" />
+<p>对比一下，他们在形式上相逆。</p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161547.png" srcset="/img/loading.gif" alt="image-20200730161546882" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161753.png" srcset="/img/loading.gif" alt="image-20200730161752746" style="zoom: 80%;" />
+<p>下图是先使用<code>nn.Conv2d(3, 1, 3, stride=1)</code>再使用<code>nn.ConvTranspose2d(1, 1, 3, stride=1)</code>的结果。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730161955.png" srcset="/img/loading.gif" alt="image-20200730161949921" /></p>
+<pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">511</span>, <span class="hljs-number">511</span>])</code></pre>
-
-
-
-<p>   进一步增大stride值，输出图像如下所示：</p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730132037.png" srcset="/img/loading.gif" alt="image-20200730132037029"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730162428.png" srcset="/img/loading.gif" alt="image-20200730162427091"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730132114.png" srcset="/img/loading.gif" alt="image-20200730132113360"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730162356.png" srcset="/img/loading.gif" alt="image-20200730162354832"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730132422.png" srcset="/img/loading.gif" alt="image-20200730132421032"></p>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730162307.png" srcset="/img/loading.gif" alt="image-20200730162306015"></p>
-<p>   当stride大于kernel_size时，可以预见会有很多卷积核在全0的图像上卷积。并且当stride越大时，重建的质量是变差的。所以在FCN等需要用转置卷积上采样的模型时，应该通过多次的小stride的转置卷积重建图像，这样往往也带来了更大的参数量。</p>
-<ol start="2">
-<li><p>观察padding的影响。</p>
+<p>进一步增大stride值，先Conv2d再ConvTranspose2d，输出图像如下所示：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730132037.png" srcset="/img/loading.gif" alt="image-20200730132037029" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730162428.png" srcset="/img/loading.gif" alt="image-20200730162427091" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730132114.png" srcset="/img/loading.gif" alt="image-20200730132113360" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730162356.png" srcset="/img/loading.gif" alt="image-20200730162354832" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730132422.png" srcset="/img/loading.gif" alt="image-20200730132421032" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730162307.png" srcset="/img/loading.gif" alt="image-20200730162306015" /></p>
+<p>当stride大于kernel_size时，可以预见会有很多卷积核在全0的图像上卷积。并且当stride越大时，重建的质量是变差的。所以在FCN等需要用转置卷积上采样的模型时，应该通过多次的小stride的转置卷积重建图像，这样往往也带来了更大的参数量。</p>
+</li>
+<li>
+<p>观察padding的影响。</p>
 <pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">10</span>)   <span class="hljs-comment"># input:(i, o, size)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164141.png" srcset="/img/loading.gif" alt="image-20200730164140536"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164141.png" srcset="/img/loading.gif" alt="image-20200730164140536" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">494</span>, <span class="hljs-number">494</span>])</code></pre>
-
 <p>继续增大padding，输出如下所示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164254.png" srcset="/img/loading.gif" alt="image-20200730164252835"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164254.png" srcset="/img/loading.gif" alt="image-20200730164252835" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">414</span>, <span class="hljs-number">414</span>])</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164331.png" srcset="/img/loading.gif" alt="image-20200730164330162"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730164331.png" srcset="/img/loading.gif" alt="image-20200730164330162" /></p>
 <pre><code class="hljs python">卷积前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 卷积后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">314</span>, <span class="hljs-number">314</span>])</code></pre>
-
-<p>可以发现，当padding增大时，对原图像的感受区域是在减小的，有放大图片的感觉。这是因为在Conv2d中padding会在输入图像周围扩充一圈0值，ConvTranspose为了抵消这种影响当然是对图像的中间的区域感兴趣，而不关注外面一圈0值（转置卷积的只能应对Conv2d当padding_mode=’zeros’的情况。换言之，转置卷积的padding_mode参数只能等于’zeros’）</p>
+<p>可以发现，当padding增大时，对原图像的感受区域是在减小的，有放大图片的感觉。这是因为在Conv2d中padding会在输入图像周围扩充一圈0值，ConvTranspose为了抵消这种影响当然是对图像的中间的区域感兴趣，而不关注外面一圈0值（转置卷积的只能应对Conv2d当padding_mode=‘zeros’的情况。换言之，转置卷积的padding_mode参数只能等于’zeros’）</p>
 <p>下图是padding=2的Conv2d，输入图像size为5x5，输出特征图size为6x6.</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730191108.gif" srcset="/img/loading.gif" alt="arbitrary_padding_no_strides" style="zoom:50%;" />
-
 <p>下图是padding=2的ConvTranspose，输入图像size为6x6，输出特征图size为5x5.</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730191117.gif" srcset="/img/loading.gif" alt="arbitrary_padding_no_strides_transposed" style="zoom: 50%;" />
-
-<p>可见，ConvTranspose的padding是根据Conv2d的padding自动计算出的，上图为了使输出恢复到5x5的大小，ConvTranspose在输入周围加了一圈0值。如果恢复的尺寸更小（也就是ConvTranspose的padding参数越大），那么就不是补0了，是截取。</p>
-<p>以下是用不同的padding参数先做Conv2d，再做ConvTranspose的结果：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192123.png" srcset="/img/loading.gif" alt="image-20200730192122152"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192156.png" srcset="/img/loading.gif" alt="image-20200730192155630"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192238.png" srcset="/img/loading.gif" alt="image-20200730192237099"></p>
+<p>可见，ConvTranspose的padding是根据Conv2d的padding自动计算出的，上图为了使输出恢复到5x5的大小，ConvTranspose在输入周围加了一圈0值。以下是用不同的padding参数先做Conv2d，再做ConvTranspose的结果：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192123.png" srcset="/img/loading.gif" alt="image-20200730192122152" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192156.png" srcset="/img/loading.gif" alt="image-20200730192155630" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730192238.png" srcset="/img/loading.gif" alt="image-20200730192237099" /></p>
 <p>可以发现，上面三张图没啥区别，说明了padding的恢复应该是无损的。</p>
 </li>
-</ol>
-<ol start="3">
-<li><p>观察dilation的影响</p>
+<li>
+<p>观察dilation的影响</p>
 <pre><code class="hljs python">conv_layer = nn.ConvTranspose2d(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>, dilation=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size)</span>
 nn.init.xavier_normal_(conv_layer.weight.data)
 
 <span class="hljs-comment"># calculation</span>
 img_conv = conv_layer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200744.png" srcset="/img/loading.gif" alt="image-20200730200743037"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200744.png" srcset="/img/loading.gif" alt="image-20200730200743037" /></p>
 <p>上图是对左边的图像直接做<code>ConvTranspose2d(3, 1, 3, stride=1, dilation=2)</code>的结果，下图是先做<code>Conv2d(3, 1, 3, stride=1, dilation=2)</code>再做<code>ConvTranspose2d(1, 1, 3, stride=1, dilation=2)</code>的结果。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202107.png" srcset="/img/loading.gif" alt="image-20200730202106747"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202107.png" srcset="/img/loading.gif" alt="image-20200730202106747" /></p>
 <p>下面依次是<code>Conv2d</code>，和先做<code>Conv2d</code>再做<code>ConvTranspose2d</code>重建的结果</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200923.png" srcset="/img/loading.gif" alt="image-20200730200921897"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202354.png" srcset="/img/loading.gif" alt="image-20200730202352933"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730201006.png" srcset="/img/loading.gif" alt="image-20200730201004554"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202429.png" srcset="/img/loading.gif" alt="image-20200730202428417"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730200923.png" srcset="/img/loading.gif" alt="image-20200730200921897" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202354.png" srcset="/img/loading.gif" alt="image-20200730202352933" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730201006.png" srcset="/img/loading.gif" alt="image-20200730201004554" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730202429.png" srcset="/img/loading.gif" alt="image-20200730202428417" /></p>
 <p>可以发现<code>ConvTranspose2d</code>对dilation的恢复不是那么好（卷积核权值是随机的，所以可能也说明不了这个问题）</p>
 <p>关于<code>ConvTranspose2d</code>的dilation是怎么实现的没查到资料</p>
 </li>

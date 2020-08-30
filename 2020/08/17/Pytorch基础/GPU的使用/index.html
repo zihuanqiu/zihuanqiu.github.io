@@ -221,12 +221,15 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-数据迁移至GPU"><a href="#1-数据迁移至GPU" class="headerlink" title="1. 数据迁移至GPU"></a>1. 数据迁移至GPU</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200817185341.png" srcset="/img/loading.gif" alt="image-20200817160011137"></p>
+              <h1 id="1-数据迁移至gpu"><a class="markdownIt-Anchor" href="#1-数据迁移至gpu"></a> 1. 数据迁移至GPU</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200817185341.png" srcset="/img/loading.gif" alt="image-20200817160011137" /></p>
 <p>to函数：转换数据类型/设备</p>
 <ol>
-<li><p>tensor.to(*args, **kwargs)</p>
+<li>
+<p><a target="_blank" rel="noopener" href="http://tensor.to">tensor.to</a>(*args, **kwargs)</p>
 </li>
-<li><p>module.to(*args, **kwargs)</p>
+<li>
+<p><a target="_blank" rel="noopener" href="http://module.to">module.to</a>(*args, **kwargs)</p>
 </li>
 </ol>
 <p>区别：张量不执行inplace，模型执行inplace</p>
@@ -241,12 +244,10 @@ linear.to(torch.double)
 
 gpu1 = torch.device(<span class="hljs-string">&quot;cuda&quot;</span>)
 linear.to(gpu1)  <span class="hljs-comment"># 模型执行inplace</span></code></pre>
-
-
-
 <p><strong>实验：</strong></p>
 <ol>
-<li><p><strong>tensor to cuda</strong></p>
+<li>
+<p><strong>tensor to cuda</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 
@@ -255,16 +256,15 @@ print(<span class="hljs-string">&quot;x_cpu:\ndevice: &#123;&#125; is_cuda: &#12
 
 x_gpu = x_cpu.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)
 print(<span class="hljs-string">&quot;x_gpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.format(x_gpu.device, x_gpu.is_cuda, id(x_gpu)))</code></pre>
-
 <p>输出</p>
 <pre><code class="hljs python">x_cpu:
 device: cpu is_cuda: <span class="hljs-literal">False</span> id: <span class="hljs-number">2141032222976</span>
 x_gpu:
 device: cuda:<span class="hljs-number">0</span> is_cuda: <span class="hljs-literal">True</span> id: <span class="hljs-number">2138929688384</span></code></pre>
-
 <p>转换前后id不同，说明不是inplace操作，划分了新的内存地址</p>
 </li>
-<li><p><strong>module to cuda</strong></p>
+<li>
+<p><strong>module to cuda</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 
@@ -274,15 +274,14 @@ print(<span class="hljs-string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&qu
 
 net.to(<span class="hljs-string">&#x27;cuda&#x27;</span>)
 print(<span class="hljs-string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.format(id(net), next(net.parameters()).is_cuda))</code></pre>
-
 <p>输出</p>
 <pre><code class="hljs python">id:<span class="hljs-number">2455688847568</span> is_cuda: <span class="hljs-literal">False</span>
 
 id:<span class="hljs-number">2455688847568</span> is_cuda: <span class="hljs-literal">True</span></code></pre>
-
 <p>模型转换是inplace操作</p>
 </li>
-<li><p><strong>forward in cuda</strong></p>
+<li>
+<p><strong>forward in cuda</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 
@@ -292,38 +291,41 @@ net = nn.Sequential(nn.Linear(<span class="hljs-number">3</span>, <span class="h
 
 output = net(x_gpu)
 print(<span class="hljs-string">&quot;output is_cuda: &#123;&#125;&quot;</span>.format(output.is_cuda))</code></pre>
-
 <p>输出</p>
 <pre><code class="hljs python">output is_cuda: <span class="hljs-literal">True</span></code></pre>
-
-
-
 </li>
 </ol>
-<h1 id="2-torch-cuda常用方法"><a href="#2-torch-cuda常用方法" class="headerlink" title="2. torch.cuda常用方法"></a>2. torch.cuda常用方法</h1><ol>
-<li><p>torch.cuda.device_count()：计算当前可见可用gpu数</p>
+<h1 id="2-torchcuda常用方法"><a class="markdownIt-Anchor" href="#2-torchcuda常用方法"></a> 2. torch.cuda常用方法</h1>
+<ol>
+<li>
+<p>torch.cuda.device_count()：计算当前可见可用gpu数</p>
 </li>
-<li><p>torch.cuda.get_device_name()：获取gpu名称</p>
+<li>
+<p>torch.cuda.get_device_name()：获取gpu名称</p>
 </li>
-<li><p>torch.cuda.is_available()：返回True则说明cuda可用（安装的是cuda版的pytorch）</p>
+<li>
+<p>torch.cuda.is_available()：返回True则说明cuda可用（安装的是cuda版的pytorch）</p>
 </li>
-<li><p>torch.cuda.manual_seed()：为当前gpu设置随机种子</p>
+<li>
+<p>torch.cuda.manual_seed()：为当前gpu设置随机种子</p>
 </li>
-<li><p>torch.cuda.manual_seed_all()：为所有可见可用gpu设置随机种子</p>
+<li>
+<p>torch.cuda.manual_seed_all()：为所有可见可用gpu设置随机种子</p>
 </li>
-<li><p>torch.cuda.set_device()：设置主gpu为哪一个物理gpu（不推荐）</p>
+<li>
+<p>torch.cuda.set_device()：设置主gpu为哪一个物理gpu（不推荐）</p>
+</li>
+</ol>
 <blockquote>
-<p>推荐： os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”) </p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200817175040.png" srcset="/img/loading.gif" alt="image-20200817175036479"></p>
+<p>推荐： os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”)</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200817175040.png" srcset="/img/loading.gif" alt="image-20200817175036479" /></p>
 <p>通过设置环境将逻辑gpu映射为物理gpu；os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”)这句话的意思就是设置逻辑gpu0、逻辑gpu1为物理gpu2，物理gpu3。</p>
 </blockquote>
-</li>
-</ol>
-<h1 id="3-多GPU并行运算"><a href="#3-多GPU并行运算" class="headerlink" title="3. 多GPU并行运算"></a>3. 多GPU并行运算</h1><pre><code class="hljs python">torch.nn.DataParallel(module, 
+<h1 id="3-多gpu并行运算"><a class="markdownIt-Anchor" href="#3-多gpu并行运算"></a> 3. 多GPU并行运算</h1>
+<pre><code class="hljs python">torch.nn.DataParallel(module, 
                       device_ids=<span class="hljs-literal">None</span>, 
                       output_device=<span class="hljs-literal">None</span>, 
                       dim=<span class="hljs-number">0</span>)</code></pre>
-
 <p>功能：包装模型，实现分发并行机制</p>
 <p>主要参数：</p>
 <ul>
@@ -381,20 +383,17 @@ net.to(device)
 
 print(<span class="hljs-string">&quot;CUDA_VISIBLE_DEVICES :&#123;&#125;&quot;</span>.format(os.environ[<span class="hljs-string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>]))
 print(<span class="hljs-string">&quot;device_count :&#123;&#125;&quot;</span>.format(torch.cuda.device_count()))</code></pre>
-
 <p>输出：</p>
 <pre><code class="hljs python">batch size <span class="hljs-keyword">in</span> forward: <span class="hljs-number">16</span>
 model outputs.size: torch.Size([<span class="hljs-number">16</span>, <span class="hljs-number">3</span>])
 CUDA_VISIBLE_DEVICES :<span class="hljs-number">0</span>
 device_count :<span class="hljs-number">1</span></code></pre>
-
 <p>我的电脑只有一个GPU，因此batch size in forward = 16</p>
 <p>如果我们在选择GPU时设置为<code>gpu_list = [1]</code>，将逻辑GPU0映射为物理GPU1，那么运行代码后的结果如下所示：</p>
 <pre><code class="hljs python">batch size <span class="hljs-keyword">in</span> forward: <span class="hljs-number">16</span>
 model outputs.size: torch.Size([<span class="hljs-number">16</span>, <span class="hljs-number">3</span>])
 CUDA_VISIBLE_DEVICES :<span class="hljs-number">1</span>
 device_count :<span class="hljs-number">0</span></code></pre>
-
 <p>显然我们是没有物理GPU1的，因此device_count=0</p>
 <p>下面是一台有四个GPU（选择了2、3号GPU）的电脑运行上面程序的结果：</p>
 <pre><code class="hljs python">batch size <span class="hljs-keyword">in</span> forward: <span class="hljs-number">8</span>
@@ -402,19 +401,14 @@ batch size <span class="hljs-keyword">in</span> forward: <span class="hljs-numbe
 model outputs.size: torch.Size([<span class="hljs-number">16</span>, <span class="hljs-number">3</span>])
 CUDA_VISIBLE_DEVICES :<span class="hljs-number">2</span>,<span class="hljs-number">3</span>
 device_count :<span class="hljs-number">2</span></code></pre>
-
-
-
-<h1 id="4-GPU加载常见报错"><a href="#4-GPU加载常见报错" class="headerlink" title="4. GPU加载常见报错"></a>4. GPU加载常见报错</h1><p>报错1：</p>
+<h1 id="4-gpu加载常见报错"><a class="markdownIt-Anchor" href="#4-gpu加载常见报错"></a> 4. GPU加载常见报错</h1>
+<p>报错1：</p>
 <p>RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU -only machine, please use torch.load with map_location=torch.device(‘cpu’) to map your storages to the CPU.</p>
 <p>这个错误是因为保存模型是保存在了cuda上，而加载的电脑并不能使用cuda时，就会有这个错误。</p>
-<p>解决： </p>
+<p>解决：</p>
 <pre><code class="hljs python">torch.load(path_state_dict, map_location=<span class="hljs-string">&quot;cpu&quot;</span>)</code></pre>
-
-
-
 <p>报错2：</p>
-<p>RuntimeError: Error(s) in loading state_dict for FooNet:Missing key(s) in state_dict: “linears.0.weight”, “linears.1.weight”, “linears.2.weight”. Unexpected key(s) in state_dict: “module.linears.0.weight”, “module.linears.1.weight”, “module.linears.2.weight”. </p>
+<p>RuntimeError: Error(s) in loading state_dict for FooNet:Missing key(s) in state_dict: “linears.0.weight”, “linears.1.weight”, “linears.2.weight”. Unexpected key(s) in state_dict: “module.linears.0.weight”, “module.linears.1.weight”, “module.linears.2.weight”.</p>
 <p>这个错误是因为当使用了<code>torch.nn.DataParallel</code>进行多GPU运算时，这个函数会把state_dict的键的名称前面加上一个module.的前缀（共7个字符）</p>
 <p>解决：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
@@ -424,9 +418,6 @@ new_state_dict = OrderedDict()
     new_state_dict[namekey] = v
     
 net.load_state_dict(new_state_dict)</code></pre>
-
-
-
 
             </div>
             <hr>

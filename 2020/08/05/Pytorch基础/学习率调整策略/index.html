@@ -221,7 +221,8 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-为什么要调整学习率？"><a href="#1-为什么要调整学习率？" class="headerlink" title="1. 为什么要调整学习率？"></a>1. 为什么要调整学习率？</h1><p>可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。</p>
+              <h1 id="1-为什么要调整学习率"><a class="markdownIt-Anchor" href="#1-为什么要调整学习率"></a> 1. 为什么要调整学习率？</h1>
+<p>可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。</p>
 <p>学习率调整策略的函数都继承于_LRScheduler这个基类。</p>
 <p>主要属性：</p>
 <ul>
@@ -234,12 +235,13 @@
 <li>step()：更新下一个epoch的学习率（一次epoch运行一次step函数以更新学习率；在一次epoch以内，学习率不应该改变）</li>
 <li>get_lr()：虚函数（需要子类重写），计算下一个epoch的学习率</li>
 </ul>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806130749.png" srcset="/img/loading.gif" alt="image-20200806130748043"></p>
-<h1 id="2-pytorch的六种学习率调整策略"><a href="#2-pytorch的六种学习率调整策略" class="headerlink" title="2. pytorch的六种学习率调整策略"></a>2. pytorch的六种学习率调整策略</h1><h2 id="2-1-StepLR"><a href="#2-1-StepLR" class="headerlink" title="2.1 StepLR"></a>2.1 StepLR</h2><pre><code class="hljs python">lr_scheduler.StepLR(optimizer, 
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806130749.png" srcset="/img/loading.gif" alt="image-20200806130748043" /></p>
+<h1 id="2-pytorch的六种学习率调整策略"><a class="markdownIt-Anchor" href="#2-pytorch的六种学习率调整策略"></a> 2. pytorch的六种学习率调整策略</h1>
+<h2 id="21-steplr"><a class="markdownIt-Anchor" href="#21-steplr"></a> 2.1 StepLR</h2>
+<pre><code class="hljs python">lr_scheduler.StepLR(optimizer, 
                     step_size, 
                     gamma=<span class="hljs-number">0.1</span>, 
                     last_epoch=<span class="hljs-number">-1</span>)</code></pre>
-
 <p>功能：等间隔调整学习率；在每个step_size步长的时间段内，用gamma衰减每个参数组的学习速率。请注意，这种衰减可能与来自此lr_scheduler外部的学习速率的其他更改同时发生。当last_epoch=-1时，将初始lr设置为lr。</p>
 <p>主要参数：</p>
 <ul>
@@ -289,18 +291,17 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806125546.png" srcset="/img/loading.gif" alt="image-20200806125537626"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806125546.png" srcset="/img/loading.gif" alt="image-20200806125537626" /></p>
 <p>每隔step_size=50个epoch，学习率会将为原来的gamma=0.1倍。</p>
 <blockquote>
-<p>关于lr曲线在lr变化时的发生的下冲，通过观察猜想的解释是当lr变化的第一个epoch用一个$gamma^2$倍的lr来缓冲一下，然后再恢复为gamma倍的lr。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214140.png" srcset="/img/loading.gif" alt="image-20200806130356143"></p>
+<p>关于lr曲线在lr变化时的发生的下冲，通过观察猜想的解释是当lr变化的第一个epoch用一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mi>a</mi><mi>m</mi><mi>m</mi><msup><mi>a</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">gamma^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>倍的lr来缓冲一下，然后再恢复为gamma倍的lr。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214140.png" srcset="/img/loading.gif" alt="image-20200806130356143" /></p>
 </blockquote>
-<h2 id="2-2-MultiStepLR"><a href="#2-2-MultiStepLR" class="headerlink" title="2.2 MultiStepLR"></a>2.2 MultiStepLR</h2><pre><code class="hljs python">lr_scheduler.MultiStepLR(optimizer, 
+<h2 id="22-multisteplr"><a class="markdownIt-Anchor" href="#22-multisteplr"></a> 2.2 MultiStepLR</h2>
+<pre><code class="hljs python">lr_scheduler.MultiStepLR(optimizer, 
                          milestones, 
                          gamma=<span class="hljs-number">0.1</span>, 
                          last_epoch=<span class="hljs-number">-1</span>)</code></pre>
-
 <p>功能：按给定间隔调整学习率；当epoch达到其中一个milestones时，用gamma衰减每个参数组的学习速率。请注意，这种衰减可能与来自此lr_scheduler外部的学习速率的其他更改同时发生。当last_epoch=-1时，将初始lr设置为lr。</p>
 <p>主要参数：</p>
 <ul>
@@ -343,19 +344,18 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806132943.png" srcset="/img/loading.gif" alt="image-20200806132942520"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806132943.png" srcset="/img/loading.gif" alt="image-20200806132942520" /></p>
 <p>每当epoch达到milestones时，学习率会将为原来的gamma=0.1倍。</p>
-<h2 id="2-3-ExponentialLR"><a href="#2-3-ExponentialLR" class="headerlink" title="2.3 ExponentialLR"></a>2.3 ExponentialLR</h2><pre><code class="hljs python">lr_scheduler.ExponentialLR(optimizer, 
+<h2 id="23-exponentiallr"><a class="markdownIt-Anchor" href="#23-exponentiallr"></a> 2.3 ExponentialLR</h2>
+<pre><code class="hljs python">lr_scheduler.ExponentialLR(optimizer, 
                            gamma, 
                            last_epoch=<span class="hljs-number">-1</span>)</code></pre>
-
 <p>功能：按指数衰减调整学习率</p>
 <p>主要参数：</p>
 <ul>
 <li>gamma：指数的底</li>
 </ul>
-<p>调整方式：$lr = lr * gamma ^ {epoch}$</p>
+<p>调整方式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>r</mi><mo>=</mo><mi>l</mi><mi>r</mi><mo>∗</mo><mi>g</mi><mi>a</mi><mi>m</mi><mi>m</mi><msup><mi>a</mi><mrow><mi>e</mi><mi>p</mi><mi>o</mi><mi>c</mi><mi>h</mi></mrow></msup></mrow><annotation encoding="application/x-tex">lr = lr * gamma ^ {epoch}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p><strong>实验：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
@@ -391,20 +391,19 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214219.png" srcset="/img/loading.gif" alt="image-20200806141832412"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214219.png" srcset="/img/loading.gif" alt="image-20200806141832412" /></p>
 <p>每次epoch都会调整学习率</p>
-<h2 id="2-4-CosineAnnealingLR"><a href="#2-4-CosineAnnealingLR" class="headerlink" title="2.4 CosineAnnealingLR"></a>2.4 CosineAnnealingLR</h2><pre><code class="hljs python">lr_scheduler.CosineAnnealingLR(optimizer, 
+<h2 id="24-cosineannealinglr"><a class="markdownIt-Anchor" href="#24-cosineannealinglr"></a> 2.4 CosineAnnealingLR</h2>
+<pre><code class="hljs python">lr_scheduler.CosineAnnealingLR(optimizer, 
                                T_max, eta_min=<span class="hljs-number">0</span>, 
                                last_epoch=<span class="hljs-number">-1</span>)</code></pre>
-
 <p>功能：余弦周期调整学习率</p>
 <p>主要参数：</p>
 <ul>
 <li>T_max：下降周期</li>
 <li>eta_min：学习率下限</li>
 </ul>
-<p>调整方式：$\eta_{t}=\eta_{\min }+\frac{1}{2}\left(\eta_{\max }-\eta_{\min }\right)\left(1+\cos \left(\frac{T_{c u r}}{T_{\max }} \pi\right)\right)$</p>
+<p>调整方式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>η</mi><mi>t</mi></msub><mo>=</mo><msub><mi>η</mi><mi>min</mi><mo>⁡</mo></msub><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo fence="true">(</mo><msub><mi>η</mi><mi>max</mi><mo>⁡</mo></msub><mo>−</mo><msub><mi>η</mi><mi>min</mi><mo>⁡</mo></msub><mo fence="true">)</mo></mrow><mrow><mo fence="true">(</mo><mn>1</mn><mo>+</mo><mi>cos</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><msub><mi>T</mi><mrow><mi>c</mi><mi>u</mi><mi>r</mi></mrow></msub><msub><mi>T</mi><mi>max</mi><mo>⁡</mo></msub></mfrac><mi>π</mi><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\eta_{t}=\eta_{\min }+\frac{1}{2}\left(\eta_{\max }-\eta_{\min }\right)\left(1+\cos \left(\frac{T_{c u r}}{T_{\max }} \pi\right)\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.317502em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.467502em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.151392em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.301392em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">max</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.317502em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.467502em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884309999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.1645428571428575em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.3075428571428573em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mop mtight">max</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></p>
 <p><strong>实验：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
@@ -440,11 +439,9 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-
-
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806142455.png" srcset="/img/loading.gif" alt="image-20200806142454666"></p>
-<h2 id="2-5-ReduceLRonPlateau"><a href="#2-5-ReduceLRonPlateau" class="headerlink" title="2.5 ReduceLRonPlateau"></a>2.5 ReduceLRonPlateau</h2><pre><code class="hljs python">lr_scheduler.ReduceLROnPlateau(optimizer, 
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806142455.png" srcset="/img/loading.gif" alt="image-20200806142454666" /></p>
+<h2 id="25-reducelronplateau"><a class="markdownIt-Anchor" href="#25-reducelronplateau"></a> 2.5 ReduceLRonPlateau</h2>
+<pre><code class="hljs python">lr_scheduler.ReduceLROnPlateau(optimizer, 
                                mode=<span class="hljs-string">&#x27;min&#x27;</span>, 
                                factor=<span class="hljs-number">0.1</span>, 
                                patience=<span class="hljs-number">10</span>, 
@@ -454,7 +451,6 @@ plt.show()</code></pre>
                                cooldown=<span class="hljs-number">0</span>, 
                                min_lr=<span class="hljs-number">0</span>, 
                                eps=<span class="hljs-number">1e-08</span>)</code></pre>
-
 <p>功能：监控指标，当指标（比如loss或者accuracy）不再变化则调整</p>
 <p>主要参数：</p>
 <ul>
@@ -507,17 +503,15 @@ scheduler_lr = optim.lr_scheduler.ReduceLROnPlateau(optimizer,
         loss_value = <span class="hljs-number">0.4</span>
 
     scheduler_lr.step(loss_value) <span class="hljs-comment"># 监控指标为loss_value</span></code></pre>
-
 <p>输出为：</p>
 <pre><code class="hljs routeros">Epoch    17: reducing learning rate of<span class="hljs-built_in"> group </span>0 <span class="hljs-keyword">to</span> 1.0000e-02.
 Epoch    38: reducing learning rate of<span class="hljs-built_in"> group </span>0 <span class="hljs-keyword">to</span> 1.0000e-03.
 Epoch    59: reducing learning rate of<span class="hljs-built_in"> group </span>0 <span class="hljs-keyword">to</span> 1.0000e-04.</code></pre>
-
 <p>从EPOCH== 6开始（scheduler_lr打印的日志EPOCH是从1开始的，代码中我们的epoch是从0开始的，所以在epoch=5时改变学习率，就算在EPOCH=6时改变学习率），loss_value = 0.4，并且由于patience = 10，于是在第7，8，9，10，11，12，13，14，15，16 个EPOCH之后，在第17个EPOCH改变了lr = 0.1*0.1；然后EPOCH从17开始也没改变了，但是cooldown=10，实际上cooldown+patience=20，所以下一次更新lr要等20个EPOCH，也就是在18，19，…，37个EPOCH之后的第38个EPOCH再次改变lr。</p>
-<h2 id="2-6-LambdaLR"><a href="#2-6-LambdaLR" class="headerlink" title="2.6 LambdaLR"></a>2.6 LambdaLR</h2><pre><code class="hljs python">lr_scheduler.LambdaLR(optimizer, 
+<h2 id="26-lambdalr"><a class="markdownIt-Anchor" href="#26-lambdalr"></a> 2.6 LambdaLR</h2>
+<pre><code class="hljs python">lr_scheduler.LambdaLR(optimizer, 
                       lr_lambda, 
                       last_epoch=<span class="hljs-number">-1</span>)</code></pre>
-
 <p>功能：自定义调整策略；将每个参数组的学习率设置为初始lr乘以给定函数。当last_epoch=-1时，将lr设置为初始lr。</p>
 <p>主要参数：</p>
 <ul>
@@ -571,52 +565,29 @@ plt.ylabel(<span class="hljs-string">&quot;Learning Rate&quot;</span>)
 plt.title(<span class="hljs-string">&quot;LambdaLR&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806213540.png" srcset="/img/loading.gif" alt="image-20200806213531952"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806213540.png" srcset="/img/loading.gif" alt="image-20200806213531952" /></p>
 <p>可以看到两组参数的学习率遵循了不同的更新方法。</p>
-<h1 id="3-学习率调整小结"><a href="#3-学习率调整小结" class="headerlink" title="3. 学习率调整小结"></a>3. 学习率调整小结</h1><p>学习率调整小结</p>
+<h1 id="3-学习率调整小结"><a class="markdownIt-Anchor" href="#3-学习率调整小结"></a> 3. 学习率调整小结</h1>
+<p>学习率调整小结</p>
 <ol>
-<li><p>有序调整：Step、MultiStep、Exponential 和 CosineAnnealing</p>
+<li>
+<p>有序调整：Step、MultiStep、Exponential 和 CosineAnnealing</p>
 </li>
-<li><p>自适应调整：ReduceLROnPleateau</p>
+<li>
+<p>自适应调整：ReduceLROnPleateau</p>
 </li>
-<li><p>自定义调整：Lambda</p>
+<li>
+<p>自定义调整：Lambda</p>
 </li>
 </ol>
 <p>学习率初始化：</p>
 <ol>
 <li>设置较小数：0.01、0.001、0.0001</li>
-<li>搜索最大学习率： 《Cyclical Learning Rates for Training Neural<br>Networks》</li>
+<li>搜索最大学习率： 《Cyclical Learning Rates for Training Neural<br />
+Networks》</li>
 </ol>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171209.png" srcset="/img/loading.gif" alt="image-20200805171206930"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171209.png" srcset="/img/loading.gif" alt="image-20200805171206930" /></p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171212.png" srcset="/img/loading.gif" alt="image-20200805171210988" style="zoom:80%;" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             </div>
             <hr>

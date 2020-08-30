@@ -221,12 +221,13 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="autograd—自动求导系统"><a href="#autograd—自动求导系统" class="headerlink" title="autograd—自动求导系统"></a>autograd—自动求导系统</h1><h2 id="1-torch-autograd-backward"><a href="#1-torch-autograd-backward" class="headerlink" title="1.  torch.autograd.backward"></a>1.  torch.autograd.backward</h2><pre><code class="hljs python">torch.autograd.backward(tensors, 
+              <h1 id="autograd自动求导系统"><a class="markdownIt-Anchor" href="#autograd自动求导系统"></a> autograd—自动求导系统</h1>
+<h2 id="1-torchautogradbackward"><a class="markdownIt-Anchor" href="#1-torchautogradbackward"></a> 1.  torch.autograd.backward</h2>
+<pre><code class="hljs python">torch.autograd.backward(tensors, 
                         grad_tensors=<span class="hljs-literal">None</span>, 
                         retain_graph=<span class="hljs-literal">None</span>, 
                         create_graph=<span class="hljs-literal">False</span>, 
                         grad_variables=<span class="hljs-literal">None</span>)</code></pre>
-
 <p>功能：自动求取梯度</p>
 <ul>
 <li>tensors: 用于求导的张量，如 loss</li>
@@ -245,9 +246,7 @@ y = torch.mul(a, b)
 
 y.backward()
 print(w.grad)</code></pre>
-
 <pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">5</span>.])</span></span></code></pre>
-
 <blockquote>
 <p>注意：使用自动求导，必须在建立变量时声明requires_grad=True</p>
 <p>y这个tensor的类里面的方法backward只有一个函数，就是torch.autograd.backward。</p>
@@ -271,20 +270,18 @@ grad_tensors = torch.tensor([<span class="hljs-number">1.</span>, <span class="h
 loss.backward(gradient=grad_tensors)    <span class="hljs-comment"># gradient 传入 torch.autograd.backward()中的grad_tensors</span>
 
 print(w.grad)</code></pre>
-
 <pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">9</span>.])</span></span></code></pre>
-
 <blockquote>
 <p>这里loss是两个数的拼接，那么使用grad_tensors可以给这两数求加权和，再计算总的梯度。上面代码中，dy1/dw总是等于2，所以总的梯度就是y0的梯度5x1 加上y1的梯度2x2，结果就是9</p>
 </blockquote>
-<h2 id="2-torch-autograd-grad"><a href="#2-torch-autograd-grad" class="headerlink" title="2. torch.autograd.grad"></a>2. torch.autograd.grad</h2><pre><code class="hljs python">torch.autograd.grad(outputs, 
+<h2 id="2-torchautogradgrad"><a class="markdownIt-Anchor" href="#2-torchautogradgrad"></a> 2. torch.autograd.grad</h2>
+<pre><code class="hljs python">torch.autograd.grad(outputs, 
                     inputs, 
                     grad_outputs=<span class="hljs-literal">None</span>, 
                     retain_graph=<span class="hljs-literal">None</span>, 
                     create_graph=<span class="hljs-literal">False</span>, 
                     only_inputs=<span class="hljs-literal">True</span>, 
                     allow_unused=<span class="hljs-literal">False</span>)</code></pre>
-
 <p>功能：求取梯度</p>
 <ul>
 <li>outputs: 用于求导的张量，如 loss（dy/dx的y）</li>
@@ -304,14 +301,14 @@ print(grad_1)
 
 grad_2 = torch.autograd.grad(grad_1[<span class="hljs-number">0</span>], x)              <span class="hljs-comment"># grad_2 = d(dy/dx)/dx = d(2x)/dx = 2</span>
 print(grad_2)</code></pre>
-
 <pre><code class="hljs scheme">(<span class="hljs-name">tensor</span>([<span class="hljs-name">6.</span>], grad_fn=&lt;MulBackward0&gt;),)
 (<span class="hljs-name">tensor</span>([<span class="hljs-name">2.</span>]),)</code></pre>
-
 <blockquote>
 <p>grad_1中create_graph=True创建了计算图，使得可以继续计算grad_1相对于x的导数，实现二阶求导</p>
 </blockquote>
-<h2 id="3-autograd的注意事项"><a href="#3-autograd的注意事项" class="headerlink" title="3. autograd的注意事项"></a>3. autograd的注意事项</h2><h3 id="3-1-梯度不自动清零"><a href="#3-1-梯度不自动清零" class="headerlink" title="3.1 梯度不自动清零"></a>3.1 梯度不自动清零</h3><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<h2 id="3-autograd的注意事项"><a class="markdownIt-Anchor" href="#3-autograd的注意事项"></a> 3. autograd的注意事项</h2>
+<h3 id="31-梯度不自动清零"><a class="markdownIt-Anchor" href="#31-梯度不自动清零"></a> 3.1 梯度不自动清零</h3>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 
 w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
 x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span class="hljs-literal">True</span>)
@@ -325,16 +322,15 @@ x = torch.tensor([<span class="hljs-number">2.</span>], requires_grad=<span clas
     print(w.grad)
 
     <span class="hljs-comment"># w.grad.zero_()</span></code></pre>
-
 <pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">5</span>.])</span></span>
 <span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">10</span>.])</span></span>
 <span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">15</span>.])</span></span>
 <span class="hljs-function"><span class="hljs-title">tensor</span><span class="hljs-params">([<span class="hljs-number">20</span>.])</span></span></code></pre>
-
 <blockquote>
 <p>只有开启了w.grad.zero_()以后，梯度才会清零</p>
 </blockquote>
-<h3 id="3-2-依赖于叶子结点的结点，requires-grad默认为True"><a href="#3-2-依赖于叶子结点的结点，requires-grad默认为True" class="headerlink" title="3.2 依赖于叶子结点的结点，requires_grad默认为True"></a>3.2 依赖于叶子结点的结点，requires_grad默认为True</h3><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<h3 id="32-依赖于叶子结点的结点requires_grad默认为true"><a class="markdownIt-Anchor" href="#32-依赖于叶子结点的结点requires_grad默认为true"></a> 3.2 依赖于叶子结点的结点，requires_grad默认为True</h3>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 torch.manual_seed(<span class="hljs-number">10</span>)
 
 w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
@@ -345,15 +341,15 @@ b = torch.add(w, <span class="hljs-number">1</span>)
 y = torch.mul(a, b)
 
 print(a.requires_grad, b.requires_grad, y.requires_grad)</code></pre>
-
 <pre><code class="hljs yaml"><span class="hljs-literal">True</span> <span class="hljs-literal">True</span> <span class="hljs-literal">True</span></code></pre>
-
 <blockquote>
 <p>w和x是叶子节点，则a和b直接与叶子节点相连，requires_grad=True；y与a和b相连，间接依赖于叶子节点的requires_grad=True。</p>
 <p>其实，在计算图中所有的节点，估计都是requires_grad=True的，因为都需要他们的导数进行反向传播</p>
 <p>所以只需要设置叶子节点requires_grad=True即可</p>
 </blockquote>
-<h3 id="3-3-叶子结点不可执行in-place"><a href="#3-3-叶子结点不可执行in-place" class="headerlink" title="3.3 叶子结点不可执行in-place"></a>3.3 叶子结点不可执行in-place</h3><h4 id="3-3-1-in-place运算"><a href="#3-3-1-in-place运算" class="headerlink" title="3.3.1 in-place运算"></a>3.3.1 in-place运算</h4><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<h3 id="33-叶子结点不可执行in-place"><a class="markdownIt-Anchor" href="#33-叶子结点不可执行in-place"></a> 3.3 叶子结点不可执行in-place</h3>
+<h4 id="331-in-place运算"><a class="markdownIt-Anchor" href="#331-in-place运算"></a> 3.3.1 in-place运算</h4>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 torch.manual_seed(<span class="hljs-number">10</span>)
 
 a = torch.ones((<span class="hljs-number">1</span>, ))
@@ -361,10 +357,8 @@ print(id(a), a)
 
 a += torch.ones((<span class="hljs-number">1</span>, ))
 print(id(a), a)</code></pre>
-
 <pre><code class="hljs basic"><span class="hljs-symbol">2627959083480 </span>tensor([<span class="hljs-number">1.</span>])
 <span class="hljs-symbol">2627959083480 </span>tensor([<span class="hljs-number">2.</span>])</code></pre>
-
 <blockquote>
 <p>自加运算是原位运算，不改变地址</p>
 </blockquote>
@@ -376,10 +370,8 @@ print(id(a), a)
 
 a.add_(<span class="hljs-number">1</span>)
 print(id(a), a)</code></pre>
-
 <pre><code class="hljs basic"><span class="hljs-symbol">3110703681928 </span>tensor([<span class="hljs-number">1.</span>])
 <span class="hljs-symbol">3110703681928 </span>tensor([<span class="hljs-number">2.</span>])</code></pre>
-
 <blockquote>
 <p>add_()也是原位运算哦，通常函数后带下划线的都是原位运算。add()就不是原位运算。</p>
 </blockquote>
@@ -391,14 +383,13 @@ print(id(a), a)
 
 a = a + torch.ones((<span class="hljs-number">1</span>, ))
 print(id(a), a)</code></pre>
-
 <pre><code class="hljs basic"><span class="hljs-symbol">2088678674824 </span>tensor([<span class="hljs-number">1.</span>])
 <span class="hljs-symbol">2088680712216 </span>tensor([<span class="hljs-number">2.</span>])</code></pre>
-
 <blockquote>
 <p>这样就不是原位运算了，地址被改变</p>
 </blockquote>
-<h4 id="3-3-2-叶子节点不能做in-place运算"><a href="#3-3-2-叶子节点不能做in-place运算" class="headerlink" title="3.3.2 叶子节点不能做in-place运算"></a>3.3.2 叶子节点不能做in-place运算</h4><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<h4 id="332-叶子节点不能做in-place运算"><a class="markdownIt-Anchor" href="#332-叶子节点不能做in-place运算"></a> 3.3.2 叶子节点不能做in-place运算</h4>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 torch.manual_seed(<span class="hljs-number">10</span>)
 
 w = torch.tensor([<span class="hljs-number">1.</span>], requires_grad=<span class="hljs-literal">True</span>)
@@ -411,12 +402,10 @@ y = torch.mul(a, b)
 w.add_(<span class="hljs-number">1</span>)
 
 y.backward()</code></pre>
-
 <pre><code class="hljs sql">Traceback (most recent <span class="hljs-keyword">call</span> <span class="hljs-keyword">last</span>):
  &lt;<span class="hljs-keyword">module</span>&gt;
     w.add_(<span class="hljs-number">1</span>)
 RuntimeError: a leaf <span class="hljs-keyword">Variable</span> that requires grad <span class="hljs-keyword">is</span> being used <span class="hljs-keyword">in</span> an <span class="hljs-keyword">in</span>-place operation.</code></pre>
-
 <blockquote>
 <p>报错了，w.add_(1)是原位运算。在计算图中，各个节点的导数计算都依赖于叶子节点的值。因此不能在计算图中对叶子节点做原位运算。</p>
 </blockquote>

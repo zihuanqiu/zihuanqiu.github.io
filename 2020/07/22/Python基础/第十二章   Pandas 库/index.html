@@ -221,13 +221,17 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Pandas库"><a href="#Pandas库" class="headerlink" title="Pandas库"></a>Pandas库</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714235053.png" srcset="/img/loading.gif" alt="image-20200714235042682"></p>
-<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Numpy 在向量化的数值计算中表现优异</p>
-<p>但是在处理更灵活、复杂的数据任务： </p>
-<p>如为数据添加标签、处理缺失值、分组和透视表等方面  </p>
+              <h1 id="pandas库"><a class="markdownIt-Anchor" href="#pandas库"></a> Pandas库</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714235053.png" srcset="/img/loading.gif" alt="image-20200714235042682" /></p>
+<h2 id="引子"><a class="markdownIt-Anchor" href="#引子"></a> 引子</h2>
+<p>Numpy 在向量化的数值计算中表现优异</p>
+<p>但是在处理更灵活、复杂的数据任务：</p>
+<p>如为数据添加标签、处理缺失值、分组和透视表等方面</p>
 <p>Numpy显得力不从心</p>
 <p><strong>而基于Numpy构建的Pandas库，提供了使得数据分析变得更快更简单的高级数据结构和操作工具</strong></p>
-<h2 id="12-1-对象创建"><a href="#12-1-对象创建" class="headerlink" title="12.1 对象创建"></a>12.1 对象创建</h2><h3 id="12-1-1-Pandas-Series对象"><a href="#12-1-1-Pandas-Series对象" class="headerlink" title="12.1.1 Pandas Series对象"></a>12.1.1 Pandas Series对象</h3><p>Series 是带标签数据的一维数组</p>
+<h2 id="121-对象创建"><a class="markdownIt-Anchor" href="#121-对象创建"></a> 12.1 对象创建</h2>
+<h3 id="1211-pandas-series对象"><a class="markdownIt-Anchor" href="#1211-pandas-series对象"></a> 12.1.1 Pandas Series对象</h3>
+<p>Series 是带标签数据的一维数组</p>
 <p><strong>Series对象的创建</strong></p>
 <p>通用结构: pd.Series(data, index=index, dtype=dtype)</p>
 <p>data：数据，可以是列表，字典或Numpy数组</p>
@@ -241,99 +245,86 @@
 
 data = pd.Series([<span class="hljs-number">1.5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4.5</span>, <span class="hljs-number">6</span>])
 data</code></pre>
-
-
 <pre><code>0    1.5
 1    3.0
 2    4.5
 3    6.0
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <ul>
 <li>增加index</li>
 </ul>
 <pre><code class="hljs python">data = pd.Series([<span class="hljs-number">1.5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4.5</span>, <span class="hljs-number">6</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>])
 data</code></pre>
-
-
 <pre><code>a    1.5
 b    3.0
 c    4.5
 d    6.0
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <ul>
 <li>增加数据类型</li>
 </ul>
 <pre><code class="hljs plain">缺省则从传入的数据自动判断</code></pre>
-
-
 <pre><code class="hljs python">data = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>])    
 data</code></pre>
-
-
 <pre><code>a    1
 b    2
 c    3
 d    4
-dtype: int64</code></pre>
+dtype: int64
+</code></pre>
 <pre><code class="hljs python">data = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>], dtype=<span class="hljs-string">&quot;float&quot;</span>)
 data</code></pre>
-
-
 <pre><code>a    1.0
 b    2.0
 c    3.0
 d    4.0
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p><strong>注意：数据支持多种类型</strong></p>
 <pre><code class="hljs python">data = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-number">4</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>])
 data</code></pre>
-
-
 <pre><code>a    1
 b    2
 c    3
 d    4
-dtype: object</code></pre>
+dtype: object
+</code></pre>
 <pre><code class="hljs python">data[<span class="hljs-string">&quot;a&quot;</span>]</code></pre>
-
-
-<pre><code>1</code></pre>
+<pre><code>1
+</code></pre>
 <pre><code class="hljs python">data[<span class="hljs-string">&quot;c&quot;</span>]</code></pre>
-
-
-<pre><code>&#39;3&#39;</code></pre>
+<pre><code>'3'
+</code></pre>
 <p><strong>数据类型可被强制改变</strong></p>
 <pre><code class="hljs python">data = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-number">4</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>], dtype=float)
 data</code></pre>
-
-
 <pre><code>a    1.0
 b    2.0
 c    3.0
 d    4.0
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">data[<span class="hljs-string">&quot;c&quot;</span>]</code></pre>
-
-
-<pre><code>3.0</code></pre>
+<pre><code>3.0
+</code></pre>
 <pre><code class="hljs python">data = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">4</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>], dtype=float)
 data</code></pre>
-
-
-<pre><code>ValueError: could not convert string to float: &#39;a&#39;</code></pre>
+<pre><code>ValueError: could not convert string to float: 'a'
+</code></pre>
 <p><strong>2、用一维numpy数组创建</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
 x = np.arange(<span class="hljs-number">5</span>)
 pd.Series(x)</code></pre>
-
-
 <pre><code>0    0
 1    1
 2    2
 3    3
 4    4
-dtype: int32</code></pre>
+dtype: int32
+</code></pre>
 <p><strong>3、用字典创建</strong></p>
 <ul>
 <li>默认以键为index 值为data</li>
@@ -344,34 +335,32 @@ dtype: int32</code></pre>
                    <span class="hljs-string">&quot;HangZhou&quot;</span>: <span class="hljs-number">981</span> &#125;
 population = pd.Series(population_dict)    
 population</code></pre>
-
-
 <pre><code>BeiJing     2154
 ShangHai    2424
 ShenZhen    1303
 HangZhou     981
-dtype: int64</code></pre>
+dtype: int64
+</code></pre>
 <ul>
 <li>字典创建，如果指定index，则会到字典的键中筛选，找不到的，值设为NaN</li>
 </ul>
 <pre><code class="hljs python">population = pd.Series(population_dict, index=[<span class="hljs-string">&quot;BeiJing&quot;</span>, <span class="hljs-string">&quot;HangZhou&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>])    
 population</code></pre>
-
-
 <pre><code>BeiJing     2154.0
 HangZhou     981.0
 c              NaN
 d              NaN
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p><strong>4、data为标量的情况</strong></p>
 <pre><code class="hljs python">pd.Series(<span class="hljs-number">5</span>, index=[<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>])</code></pre>
-
-
 <pre><code>100    5
 200    5
 300    5
-dtype: int64</code></pre>
-<h3 id="12-1-2-Pandas-DataFrame对象"><a href="#12-1-2-Pandas-DataFrame对象" class="headerlink" title="12.1.2 Pandas DataFrame对象"></a>12.1.2 Pandas DataFrame对象</h3><p>DataFrame 是带标签数据的多维数组</p>
+dtype: int64
+</code></pre>
+<h3 id="1212-pandas-dataframe对象"><a class="markdownIt-Anchor" href="#1212-pandas-dataframe对象"></a> 12.1.2 Pandas DataFrame对象</h3>
+<p>DataFrame 是带标签数据的多维数组</p>
 <p><strong>DataFrame对象的创建</strong></p>
 <p>通用结构: pd.DataFrame(data, index=index, columns=columns)</p>
 <p>data：数据，可以是列表，字典或Numpy数组</p>
@@ -385,24 +374,20 @@ dtype: int64</code></pre>
 
 population = pd.Series(population_dict)    
 pd.DataFrame(population)</code></pre>
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -430,29 +415,21 @@ pd.DataFrame(population)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">pd.DataFrame(population, columns=[<span class="hljs-string">&quot;population&quot;</span>])</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -480,9 +457,6 @@ pd.DataFrame(population)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>2、通过Series对象字典创建</strong></p>
 <pre><code class="hljs python">GDP_dict = &#123;<span class="hljs-string">&quot;BeiJing&quot;</span>: <span class="hljs-number">30320</span>,
             <span class="hljs-string">&quot;ShangHai&quot;</span>: <span class="hljs-number">32680</span>,
@@ -491,35 +465,28 @@ pd.DataFrame(population)</code></pre>
 
 GDP = pd.Series(GDP_dict)
 GDP</code></pre>
-
-
-
-
 <pre><code>BeiJing     30320
 ShangHai    32680
 ShenZhen    24222
 HangZhou    13468
-dtype: int64</code></pre>
+dtype: int64
+</code></pre>
 <pre><code class="hljs python">pd.DataFrame(&#123;<span class="hljs-string">&quot;population&quot;</span>: population,
               <span class="hljs-string">&quot;GDP&quot;</span>: GDP&#125;)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -552,31 +519,24 @@ dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>注意：数量不够的会自动补齐</strong></p>
 <pre><code class="hljs python">pd.DataFrame(&#123;<span class="hljs-string">&quot;population&quot;</span>: population,
               <span class="hljs-string">&quot;GDP&quot;</span>: GDP,
               <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;China&quot;</span>&#125;)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -614,9 +574,6 @@ dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>3、通过字典列表对象创建</strong></p>
 <ul>
 <li>字典索引作为index，字典键作为columns</li>
@@ -626,31 +583,24 @@ dtype: int64</code></pre>
 
 data = [&#123;<span class="hljs-string">&quot;a&quot;</span>: i, <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">2</span>*i&#125; <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)]
 data</code></pre>
-
-
-
-
-<pre><code>[&#123;&#39;a&#39;: 0, &#39;b&#39;: 0&#125;, &#123;&#39;a&#39;: 1, &#39;b&#39;: 2&#125;, &#123;&#39;a&#39;: 2, &#39;b&#39;: 4&#125;]</code></pre>
+<pre><code>[&#123;'a': 0, 'b': 0&#125;, &#123;'a': 1, 'b': 2&#125;, &#123;'a': 2, 'b': 4&#125;]
+</code></pre>
 <pre><code class="hljs python">data = pd.DataFrame(data)
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -678,49 +628,35 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data1 = data[<span class="hljs-string">&quot;a&quot;</span>].copy()
 data1</code></pre>
-
-
-
-
 <pre><code>0    0
 1    1
 2    2
-Name: a, dtype: int64</code></pre>
+Name: a, dtype: int64
+</code></pre>
 <pre><code class="hljs python">data1[<span class="hljs-number">0</span>] = <span class="hljs-number">10</span>
 data1</code></pre>
-
-
-
-
 <pre><code>0    10
 1     1
 2     2
-Name: a, dtype: int64</code></pre>
+Name: a, dtype: int64
+</code></pre>
 <pre><code class="hljs python">data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -748,38 +684,28 @@ Name: a, dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>不存在的键，会默认值为NaN</li>
 </ul>
 <pre><code class="hljs python">data = [&#123;<span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&quot;b&quot;</span>:<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">3</span>, <span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">4</span>&#125;]
 data</code></pre>
-
-
-
-
-<pre><code>[&#123;&#39;a&#39;: 1, &#39;b&#39;: 1&#125;, &#123;&#39;b&#39;: 3, &#39;c&#39;: 4&#125;]</code></pre>
+<pre><code>[&#123;'a': 1, 'b': 1&#125;, &#123;'b': 3, 'c': 4&#125;]
+</code></pre>
 <pre><code class="hljs python">pd.DataFrame(data)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -805,38 +731,28 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>4、通过Numpy二维数组创建</strong></p>
 <pre><code class="hljs python">data = np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
 data</code></pre>
-
-
-
-
 <pre><code>array([[3, 0],
        [9, 6],
-       [7, 7]])</code></pre>
+       [7, 7]])
+</code></pre>
 <pre><code class="hljs python">pd.DataFrame(data, columns=[<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>], index=[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>])</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -864,30 +780,24 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-<h2 id="12-2-DataFrame性质"><a href="#12-2-DataFrame性质" class="headerlink" title="12.2   DataFrame性质"></a>12.2   DataFrame性质</h2><p><strong>1、属性</strong></p>
+<h2 id="122-dataframe性质"><a class="markdownIt-Anchor" href="#122-dataframe性质"></a> 12.2   DataFrame性质</h2>
+<p><strong>1、属性</strong></p>
 <pre><code class="hljs python">data = pd.DataFrame(&#123;<span class="hljs-string">&quot;pop&quot;</span>: population, <span class="hljs-string">&quot;GDP&quot;</span>: GDP&#125;)
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -920,60 +830,40 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（1）df.values  返回numpy数组表示的数据</strong></p>
 <pre><code class="hljs python">data.values</code></pre>
-
-
-
-
 <pre><code>array([[ 2154, 30320],
        [ 2424, 32680],
        [ 1303, 24222],
-       [  981, 13468]], dtype=int64)</code></pre>
+       [  981, 13468]], dtype=int64)
+</code></pre>
 <p><strong>（2）df.index 返回行索引</strong></p>
 <pre><code class="hljs python">data.index</code></pre>
-
-
-
-
-<pre><code>Index([&#39;BeiJing&#39;, &#39;ShangHai&#39;, &#39;ShenZhen&#39;, &#39;HangZhou&#39;], dtype=&#39;object&#39;)</code></pre>
+<pre><code>Index(['BeiJing', 'ShangHai', 'ShenZhen', 'HangZhou'], dtype='object')
+</code></pre>
 <p><strong>（3）df.columns 返回列索引</strong></p>
 <pre><code class="hljs python">data.columns</code></pre>
-
-
-
-
-<pre><code>Index([&#39;pop&#39;, &#39;GDP&#39;], dtype=&#39;object&#39;)</code></pre>
+<pre><code>Index(['pop', 'GDP'], dtype='object')
+</code></pre>
 <p><strong>（4）df.shape  形状</strong></p>
 <pre><code class="hljs python">data.shape</code></pre>
-
-
-
-
-<pre><code>(4, 2)</code></pre>
+<pre><code>(4, 2)
+</code></pre>
 <p><strong>（5） pd.size 大小</strong></p>
 <pre><code class="hljs python">data.size</code></pre>
-
-
-
-
-<pre><code>8</code></pre>
+<pre><code>8
+</code></pre>
 <p><strong>（6）pd.dtypes 返回每列数据类型</strong></p>
 <pre><code class="hljs python">data.dtypes</code></pre>
-
-
-
-
 <pre><code>pop    int64
 GDP    int64
-dtype: object</code></pre>
+dtype: object
+</code></pre>
 <p><strong>2、索引</strong></p>
 <p>方法太多脑子容易懵，我总结一下loc和iloc的方法（推荐使用这两种方法来索引）：</p>
 <ol>
-<li>选择行<ul>
+<li>选择行
+<ul>
 <li>data.loc[‘名称’]，返回Series对象</li>
 <li>data.loc[[‘名称’]]，返回dataframe对象</li>
 <li>data.loc[[‘名称1’, ‘名称2’]]，选择多行，返回dataframe对象</li>
@@ -985,7 +875,8 @@ dtype: object</code></pre>
 <li>注：其实上面可以全部写成(i)loc[行索引信息 , : ]，不写第二个冒号也可以默认选择的是行</li>
 </ul>
 </li>
-<li>选择列<ul>
+<li>选择列
+<ul>
 <li>data.loc[ : , ‘名称’]，返回Series对象</li>
 <li>data.loc[ : , [‘名称’]]，返回dataframe对象</li>
 <li>data.loc[ : , [‘名称1’, ‘名称2’]]，选择多列，返回dataframe对象</li>
@@ -996,7 +887,8 @@ dtype: object</code></pre>
 <li>data.iloc[ : , 0:3]，选择列0到列2，返回dataframe对象</li>
 </ul>
 </li>
-<li>选择元素<ul>
+<li>选择元素
+<ul>
 <li>data.loc[ ‘行名称’ , ‘列名称’]，返回元素</li>
 <li>data.loc[[‘行名称’], [‘列名称’]]，返回dataframe对象</li>
 <li>data.loc[[‘行名称1’ , ‘行名称2’], [‘列名称1’ , ‘列名称2’]]，返回dataframe对象</li>
@@ -1009,24 +901,20 @@ dtype: object</code></pre>
 </li>
 </ol>
 <pre><code class="hljs python">data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1059,43 +947,32 @@ dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（1）获取列</strong></p>
 <ul>
 <li>字典式</li>
 </ul>
 <pre><code class="hljs python">data[<span class="hljs-string">&quot;pop&quot;</span>]</code></pre>
-
-
-
-
 <pre><code>BeiJing     2154
 ShangHai    2424
 ShenZhen    1303
 HangZhou     981
-Name: pop, dtype: int64</code></pre>
+Name: pop, dtype: int64
+</code></pre>
 <pre><code class="hljs python">data[[<span class="hljs-string">&quot;pop&quot;</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1122,31 +999,22 @@ Name: pop, dtype: int64</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">data[[<span class="hljs-string">&quot;GDP&quot;</span>, <span class="hljs-string">&quot;pop&quot;</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1179,54 +1047,40 @@ Name: pop, dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>对象属性式</li>
 </ul>
 <pre><code class="hljs python">data.GDP</code></pre>
-
-
-
-
 <pre><code>BeiJing     30320
 ShangHai    32680
 ShenZhen    24222
 HangZhou    13468
-Name: GDP, dtype: int64</code></pre>
+Name: GDP, dtype: int64
+</code></pre>
 <p><strong>（2）获取行</strong></p>
 <ul>
 <li>绝对索引 df.loc</li>
 </ul>
 <pre><code class="hljs python">data.loc[<span class="hljs-string">&quot;BeiJing&quot;</span>]</code></pre>
-
-
-
-
 <pre><code>pop     2154
 GDP    30320
-Name: BeiJing, dtype: int64</code></pre>
+Name: BeiJing, dtype: int64
+</code></pre>
 <pre><code class="hljs python">data.loc[[<span class="hljs-string">&quot;BeiJing&quot;</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1243,31 +1097,22 @@ Name: BeiJing, dtype: int64</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">data.loc[[<span class="hljs-string">&quot;BeiJing&quot;</span>, <span class="hljs-string">&quot;HangZhou&quot;</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1290,31 +1135,24 @@ Name: BeiJing, dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>相对索引 df.iloc</li>
 </ul>
 <pre><code class="hljs python">data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1347,38 +1185,26 @@ Name: BeiJing, dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.iloc[<span class="hljs-number">0</span>]</code></pre>
-
-
-
-
 <pre><code>pop     2154
 GDP    30320
-Name: BeiJing, dtype: int64</code></pre>
+Name: BeiJing, dtype: int64
+</code></pre>
 <pre><code class="hljs python">data.iloc[[<span class="hljs-number">0</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1395,29 +1221,22 @@ Name: BeiJing, dtype: int64</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
 <pre><code class="hljs python">data.iloc[[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1440,29 +1259,22 @@ Name: BeiJing, dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（3）获取标量</strong></p>
 <pre><code class="hljs python">data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1495,73 +1307,46 @@ Name: BeiJing, dtype: int64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.loc[<span class="hljs-string">&quot;BeiJing&quot;</span>, <span class="hljs-string">&quot;GDP&quot;</span>]</code></pre>
-
-
-
-
-<pre><code>30320</code></pre>
+<pre><code>30320
+</code></pre>
 <pre><code class="hljs python">data.iloc[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]</code></pre>
-
-
-
-
-<pre><code>30320</code></pre>
+<pre><code>30320
+</code></pre>
 <pre><code class="hljs python">data.values[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]</code></pre>
-
-
-
-
-<pre><code>30320</code></pre>
+<pre><code>30320
+</code></pre>
 <p><strong>（4）Series对象的索引</strong></p>
 <pre><code class="hljs python">type(data.GDP)</code></pre>
-
-
-
-
-<pre><code>pandas.core.series.Series</code></pre>
+<pre><code>pandas.core.series.Series
+</code></pre>
 <pre><code class="hljs python">GDP</code></pre>
-
-
-
-
 <pre><code>BeiJing     30320
 ShangHai    32680
 ShenZhen    24222
 HangZhou    13468
-dtype: int64</code></pre>
+dtype: int64
+</code></pre>
 <pre><code class="hljs python">GDP[<span class="hljs-string">&quot;BeiJing&quot;</span>]</code></pre>
-
-
-
-
-<pre><code>30320</code></pre>
+<pre><code>30320
+</code></pre>
 <p><strong>3、切片</strong></p>
 <pre><code class="hljs python">df = pd.DataFrame(np.random.randn(<span class="hljs-number">6</span>,<span class="hljs-number">4</span>), index=[<span class="hljs-string">&#x27;2019-01-01&#x27;</span>, <span class="hljs-string">&#x27;2019-01-02&#x27;</span>, <span class="hljs-string">&#x27;2019-01-03&#x27;</span>, <span class="hljs-string">&#x27;2019-01-04&#x27;</span>, <span class="hljs-string">&#x27;2019-01-05&#x27;</span>, <span class="hljs-string">&#x27;2019-01-06&#x27;</span>], columns=[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>])
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1617,32 +1402,23 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <p><strong>（1）行切片</strong></p>
 <pre><code class="hljs python">df[<span class="hljs-string">&quot;2019-01-01&quot;</span>: <span class="hljs-string">&quot;2019-01-03&quot;</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1677,32 +1453,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.loc[<span class="hljs-string">&quot;2019-01-01&quot;</span>: <span class="hljs-string">&quot;2019-01-03&quot;</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1737,32 +1503,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[<span class="hljs-number">0</span>: <span class="hljs-number">3</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1797,32 +1553,23 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <p><strong>（2）列切片</strong></p>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1878,32 +1625,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.loc[:, <span class="hljs-string">&quot;A&quot;</span>: <span class="hljs-string">&quot;C&quot;</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1952,32 +1689,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[:, <span class="hljs-number">0</span>: <span class="hljs-number">3</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2026,32 +1753,23 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <p><strong>（3）多种多样的取值</strong></p>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2107,34 +1825,25 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <ul>
 <li>行、列同时切片</li>
 </ul>
 <pre><code class="hljs python">df.loc[<span class="hljs-string">&quot;2019-01-02&quot;</span>: <span class="hljs-string">&quot;2019-01-03&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>:<span class="hljs-string">&quot;D&quot;</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2156,32 +1865,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[<span class="hljs-number">1</span>: <span class="hljs-number">3</span>, <span class="hljs-number">2</span>:]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2203,34 +1902,25 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <ul>
 <li>行切片，列分散取值</li>
 </ul>
 <pre><code class="hljs python">df.loc[<span class="hljs-string">&quot;2019-01-04&quot;</span>: <span class="hljs-string">&quot;2019-01-06&quot;</span>, [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2257,32 +1947,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[<span class="hljs-number">3</span>:, [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2309,34 +1989,25 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <ul>
 <li>行分散取值，列切片</li>
 </ul>
 <pre><code class="hljs python">df.loc[[<span class="hljs-string">&quot;2019-01-02&quot;</span>, <span class="hljs-string">&quot;2019-01-06&quot;</span>], <span class="hljs-string">&quot;C&quot;</span>: <span class="hljs-string">&quot;D&quot;</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2358,32 +2029,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[[<span class="hljs-number">1</span>, <span class="hljs-number">5</span>], <span class="hljs-number">0</span>: <span class="hljs-number">3</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2408,34 +2069,25 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
 <ul>
 <li>行、列均分散取值</li>
 </ul>
 <pre><code class="hljs python">df.loc[[<span class="hljs-string">&quot;2019-01-04&quot;</span>, <span class="hljs-string">&quot;2019-01-06&quot;</span>], [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2457,32 +2109,22 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[[<span class="hljs-number">1</span>, <span class="hljs-number">5</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">3</span>]]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2504,33 +2146,23 @@ df</code></pre>
     </tr>
   </tbody>
 </table>
-
 </div>
-
-
-
-
-
 <p><strong>4、布尔索引</strong></p>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2587,29 +2219,21 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df &gt; <span class="hljs-number">0</span></code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2666,29 +2290,21 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df[df &gt; <span class="hljs-number">0</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2745,41 +2361,30 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.A &gt; <span class="hljs-number">0</span></code></pre>
-
-
-
-
 <pre><code>2019-01-01    False
 2019-01-02    False
 2019-01-03    False
 2019-01-04     True
 2019-01-05     True
 2019-01-06    False
-Freq: D, Name: A, dtype: bool</code></pre>
+Freq: D, Name: A, dtype: bool
+</code></pre>
 <pre><code class="hljs python">df[df.A &gt; <span class="hljs-number">0</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2808,33 +2413,26 @@ Freq: D, Name: A, dtype: bool</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>isin（）方法</li>
 </ul>
 <pre><code class="hljs python">df2 = df.copy()
 df2[<span class="hljs-string">&#x27;E&#x27;</span>] = [<span class="hljs-string">&#x27;one&#x27;</span>, <span class="hljs-string">&#x27;one&#x27;</span>, <span class="hljs-string">&#x27;two&#x27;</span>, <span class="hljs-string">&#x27;three&#x27;</span>, <span class="hljs-string">&#x27;four&#x27;</span>, <span class="hljs-string">&#x27;three&#x27;</span>]
 df2</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2898,42 +2496,31 @@ df2</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">ind = df2[<span class="hljs-string">&quot;E&quot;</span>].isin([<span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;four&quot;</span>])
 ind</code></pre>
-
-
-
-
 <pre><code>2019-01-01    False
 2019-01-02    False
 2019-01-03     True
 2019-01-04    False
 2019-01-05     True
 2019-01-06    False
-Freq: D, Name: E, dtype: bool</code></pre>
+Freq: D, Name: E, dtype: bool
+</code></pre>
 <pre><code class="hljs python">df2[ind]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2965,29 +2552,22 @@ Freq: D, Name: E, dtype: bool</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（5）赋值</strong></p>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3044,45 +2624,35 @@ Freq: D, Name: E, dtype: bool</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>DataFrame 增加新列</li>
 </ul>
 <pre><code class="hljs python">s1 = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], index=pd.date_range(<span class="hljs-string">&#x27;20190101&#x27;</span>, periods=<span class="hljs-number">6</span>))
 s1</code></pre>
-
-
-
-
 <pre><code>2019-01-01    1
 2019-01-02    2
 2019-01-03    3
 2019-01-04    4
 2019-01-05    5
 2019-01-06    6
-Freq: D, dtype: int64</code></pre>
+Freq: D, dtype: int64
+</code></pre>
 <pre><code class="hljs python">df[<span class="hljs-string">&quot;E&quot;</span>] = s1
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3146,32 +2716,25 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>修改赋值</li>
 </ul>
 <pre><code class="hljs python">df.loc[<span class="hljs-string">&quot;2019-01-01&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>] = <span class="hljs-number">0</span>
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3235,30 +2798,22 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.iloc[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3322,30 +2877,22 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df[<span class="hljs-string">&quot;D&quot;</span>] = np.array([<span class="hljs-number">5</span>]*len(df))   <span class="hljs-comment"># 可简化成df[&quot;D&quot;] = 5</span>
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3409,32 +2956,25 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>修改index和columns</li>
 </ul>
 <pre><code class="hljs python">df.index = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(df))]
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3498,30 +3038,22 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.columns = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(df.shape[<span class="hljs-number">1</span>])]
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3585,10 +3117,8 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-<h2 id="12-3-数值运算及统计分析"><a href="#12-3-数值运算及统计分析" class="headerlink" title="12.3 数值运算及统计分析"></a>12.3 数值运算及统计分析</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714235119.png" srcset="/img/loading.gif" alt="image-20200714235116402"></p>
+<h2 id="123-数值运算及统计分析"><a class="markdownIt-Anchor" href="#123-数值运算及统计分析"></a> 12.3 数值运算及统计分析</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714235119.png" srcset="/img/loading.gif" alt="image-20200714235116402" /></p>
 <p><strong>1、数据的查看</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
@@ -3596,24 +3126,20 @@ df</code></pre>
 dates = pd.date_range(start=<span class="hljs-string">&#x27;2019-01-01&#x27;</span>, periods=<span class="hljs-number">6</span>)
 df = pd.DataFrame(np.random.randn(<span class="hljs-number">6</span>,<span class="hljs-number">4</span>), index=dates, columns=[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>])
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3670,29 +3196,22 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（1）查看前面的行</strong></p>
 <pre><code class="hljs python">df.head()    <span class="hljs-comment"># 默认5行</span></code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3742,29 +3261,21 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.head(<span class="hljs-number">2</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3793,29 +3304,22 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（2）查看后面的行</strong></p>
 <pre><code class="hljs python">df.tail()    <span class="hljs-comment"># 默认5行</span></code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3865,29 +3369,21 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.tail(<span class="hljs-number">3</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3923,30 +3419,23 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（3）查看总体信息</strong></p>
 <pre><code class="hljs python">df.iloc[<span class="hljs-number">0</span>, <span class="hljs-number">3</span>] = np.nan
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4003,13 +3492,8 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.info()</code></pre>
-
-<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 DatetimeIndex: 6 entries, 2019-01-01 to 2019-01-06
 Freq: D
 Data columns (total 4 columns):
@@ -4018,29 +3502,26 @@ B    6 non-null float64
 C    6 non-null float64
 D    5 non-null float64
 dtypes: float64(4)
-memory usage: 240.0 bytes</code></pre>
+memory usage: 240.0 bytes
+</code></pre>
 <p><strong>2、Numpy通用函数同样适用于Pandas</strong></p>
 <p><strong>（1）向量化运算</strong></p>
 <pre><code class="hljs python">x = pd.DataFrame(np.arange(<span class="hljs-number">4</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>))
 x</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4062,29 +3543,21 @@ x</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">x+<span class="hljs-number">5</span></code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4106,29 +3579,21 @@ x</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">np.exp(x)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4150,30 +3615,22 @@ x</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">y = pd.DataFrame(np.arange(<span class="hljs-number">4</span>,<span class="hljs-number">8</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>))
 y</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4195,29 +3652,21 @@ y</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">x*y</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4239,31 +3688,24 @@ y</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（2）矩阵化运算</strong></p>
 <pre><code class="hljs python">np.random.seed(<span class="hljs-number">42</span>)
 x = pd.DataFrame(np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">30</span>, <span class="hljs-number">30</span>)))
 x</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -5016,32 +4458,25 @@ x</code></pre>
 </table>
 <p>30 rows × 30 columns</p>
 </div>
-
-
-
 <ul>
 <li>转置</li>
 </ul>
 <pre><code class="hljs python">z = x.T
 z</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -5794,31 +5229,23 @@ z</code></pre>
 </table>
 <p>30 rows × 30 columns</p>
 </div>
-
-
-
-
 <pre><code class="hljs python">np.random.seed(<span class="hljs-number">1</span>)
 y = pd.DataFrame(np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">30</span>, <span class="hljs-number">30</span>)))
 y</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -6571,29 +5998,21 @@ y</code></pre>
 </table>
 <p>30 rows × 30 columns</p>
 </div>
-
-
-
-
 <pre><code class="hljs python">x.dot(y)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7346,25 +6765,17 @@ y</code></pre>
 </table>
 <p>30 rows × 30 columns</p>
 </div>
-
-
-
-
 <pre><code class="hljs python">%timeit x.dot(y)</code></pre>
-
-<pre><code>264 µs ± 12.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)</code></pre>
+<pre><code>264 µs ± 12.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</code></pre>
 <pre><code class="hljs python">%timeit np.dot(x, y)</code></pre>
-
-<pre><code>103 µs ± 8.07 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)</code></pre>
+<pre><code>103 µs ± 8.07 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+</code></pre>
 <ul>
 <li>执行相同运算，Numpy与Pandas的对比</li>
 </ul>
 <pre><code class="hljs python">x1 = np.array(x)
 x1</code></pre>
-
-
-
-
 <pre><code>array([[6, 3, 7, 4, 6, 9, 2, 6, 7, 4, 3, 7, 7, 2, 5, 4, 1, 7, 5, 1, 4, 0,
         9, 5, 8, 0, 9, 2, 6, 3],
        [8, 2, 4, 2, 6, 4, 8, 6, 1, 3, 8, 1, 9, 8, 9, 4, 1, 3, 6, 7, 2, 0,
@@ -7424,13 +6835,10 @@ x1</code></pre>
        [6, 8, 6, 2, 2, 7, 4, 3, 7, 5, 1, 3, 3, 5, 5, 0, 7, 5, 2, 8, 1, 7,
         9, 2, 4, 5, 9, 5, 3, 2],
        [3, 0, 3, 0, 0, 9, 5, 4, 3, 2, 0, 5, 1, 7, 9, 4, 6, 9, 1, 7, 1, 3,
-        0, 4, 8, 0, 8, 7, 5, 6]])</code></pre>
+        0, 4, 8, 0, 8, 7, 5, 6]])
+</code></pre>
 <pre><code class="hljs python">y1 = np.array(y)
 y1</code></pre>
-
-
-
-
 <pre><code>array([[5, 8, 9, 5, 0, 0, 1, 7, 6, 9, 2, 4, 5, 2, 4, 2, 4, 7, 7, 9, 1, 7,
         0, 6, 9, 9, 7, 6, 9, 1],
        [0, 1, 8, 8, 3, 9, 8, 7, 3, 6, 5, 1, 9, 3, 4, 8, 1, 4, 0, 3, 9, 2,
@@ -7490,16 +6898,17 @@ y1</code></pre>
        [0, 7, 7, 4, 3, 2, 7, 8, 5, 2, 4, 9, 2, 2, 3, 5, 9, 6, 4, 9, 0, 2,
         8, 3, 7, 3, 9, 2, 3, 8],
        [8, 0, 2, 6, 8, 3, 6, 4, 9, 7, 6, 3, 2, 9, 1, 5, 5, 6, 9, 4, 6, 7,
-        8, 5, 7, 2, 5, 3, 4, 5]])</code></pre>
+        8, 5, 7, 2, 5, 3, 4, 5]])
+</code></pre>
 <pre><code class="hljs python">%timeit x1.dot(y1)</code></pre>
-
-<pre><code>24.7 µs ± 3.2 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)</code></pre>
+<pre><code>24.7 µs ± 3.2 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+</code></pre>
 <pre><code class="hljs python">%timeit np.dot(x1, y1)</code></pre>
-
-<pre><code>22 µs ± 344 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)</code></pre>
+<pre><code>22 µs ± 344 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+</code></pre>
 <pre><code class="hljs python">%timeit np.dot(x.values, y.values)</code></pre>
-
-<pre><code>43.4 µs ± 2.55 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)</code></pre>
+<pre><code>43.4 µs ± 2.55 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+</code></pre>
 <pre><code class="hljs python">x2 = list(x1)
 y2 = list(y1)
 x3 = []
@@ -7514,8 +6923,6 @@ y3 = []
     <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> i:
         res.append(int(j))
     y3.append(res)</code></pre>
-
-
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>):</span>
     res = []
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(x)):
@@ -7527,35 +6934,29 @@ y3 = []
             row.append(sum_row)
         res.append(row)
     <span class="hljs-keyword">return</span> res</code></pre>
-
-
 <pre><code class="hljs python">%timeit f(x3, y3)</code></pre>
-
-<pre><code>5.86 ms ± 599 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+<pre><code>5.86 ms ± 599 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
 <p><strong>一般来说，纯粹的计算在Numpy里执行的更快</strong></p>
 <p>Numpy更侧重于计算，Pandas更侧重于数据处理</p>
 <p><strong>（3）广播运算</strong></p>
 <pre><code class="hljs python">np.random.seed(<span class="hljs-number">42</span>)
 x = pd.DataFrame(np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)), columns=list(<span class="hljs-string">&quot;ABC&quot;</span>))
 x</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7587,40 +6988,30 @@ x</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>按行广播</li>
 </ul>
 <pre><code class="hljs python">x.iloc[<span class="hljs-number">0</span>]</code></pre>
-
-
-
-
 <pre><code>A    6
 B    3
 C    7
-Name: 0, dtype: int32</code></pre>
+Name: 0, dtype: int32
+</code></pre>
 <pre><code class="hljs python">x/x.iloc[<span class="hljs-number">0</span>]</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7652,40 +7043,30 @@ Name: 0, dtype: int32</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>按列广播</li>
 </ul>
 <pre><code class="hljs python">x.A</code></pre>
-
-
-
-
 <pre><code>0    6
 1    4
 2    2
-Name: A, dtype: int32</code></pre>
+Name: A, dtype: int32
+</code></pre>
 <pre><code class="hljs python">x.div(x.A, axis=<span class="hljs-number">0</span>)             <span class="hljs-comment"># add sub div mul</span></code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7717,29 +7098,21 @@ Name: A, dtype: int32</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">x.div(x.iloc[<span class="hljs-number">0</span>], axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7771,31 +7144,24 @@ Name: A, dtype: int32</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>3、新的用法</strong></p>
 <p><strong>（1）索引对齐</strong></p>
 <pre><code class="hljs python">A = pd.DataFrame(np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">20</span>, size=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)), columns=list(<span class="hljs-string">&quot;AB&quot;</span>))
 A</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7818,30 +7184,22 @@ A</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">B = pd.DataFrame(np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)), columns=list(<span class="hljs-string">&quot;ABC&quot;</span>))
 B</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7873,31 +7231,24 @@ B</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>pandas会自动对齐两个对象的索引，没有的值用np.nan表示</li>
 </ul>
 <pre><code class="hljs python">A+B</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7929,31 +7280,24 @@ B</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>缺省值也可用fill_value来填充</li>
 </ul>
 <pre><code class="hljs python">A.add(B, fill_value=<span class="hljs-number">0</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -7985,29 +7329,21 @@ B</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">A*B</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8039,53 +7375,37 @@ B</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（2）统计相关</strong></p>
 <ul>
 <li>数据种类统计</li>
 </ul>
 <pre><code class="hljs python">y = np.random.randint(<span class="hljs-number">3</span>, size=<span class="hljs-number">20</span>)
 y</code></pre>
-
-
-
-
-<pre><code>array([2, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 0, 2, 0, 2, 2, 0, 0, 2, 1])</code></pre>
+<pre><code>array([2, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 0, 2, 0, 2, 2, 0, 0, 2, 1])
+</code></pre>
 <pre><code class="hljs python">np.unique(y)</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2])</code></pre>
+<pre><code>array([0, 1, 2])
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter
 Counter(y)</code></pre>
-
-
-
-
-<pre><code>Counter(&#123;2: 11, 1: 5, 0: 4&#125;)</code></pre>
+<pre><code>Counter(&#123;2: 11, 1: 5, 0: 4&#125;)
+</code></pre>
 <pre><code class="hljs python">y1 = pd.DataFrame(y, columns=[<span class="hljs-string">&quot;A&quot;</span>])
 y1</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8177,25 +7497,15 @@ y1</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">np.unique(y1)</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2])</code></pre>
+<pre><code>array([0, 1, 2])
+</code></pre>
 <pre><code class="hljs python">y1[<span class="hljs-string">&quot;A&quot;</span>].value_counts()</code></pre>
-
-
-
-
 <pre><code>2    11
 1     5
 0     4
-Name: A, dtype: int64</code></pre>
+Name: A, dtype: int64
+</code></pre>
 <ul>
 <li>产生新的结果，并进行排序</li>
 </ul>
@@ -8213,24 +7523,20 @@ GDP = pd.Series(GDP_dict)
 
 city_info = pd.DataFrame(&#123;<span class="hljs-string">&quot;population&quot;</span>: population,<span class="hljs-string">&quot;GDP&quot;</span>: GDP&#125;)
 city_info</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8263,30 +7569,22 @@ city_info</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">city_info[<span class="hljs-string">&quot;per_GDP&quot;</span>] = city_info[<span class="hljs-string">&quot;GDP&quot;</span>]/city_info[<span class="hljs-string">&quot;population&quot;</span>]
 city_info</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8324,29 +7622,22 @@ city_info</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>递增排序</p>
 <pre><code class="hljs python">city_info.sort_values(by=<span class="hljs-string">&quot;per_GDP&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8384,29 +7675,22 @@ city_info</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>递减排序</p>
 <pre><code class="hljs python">city_info.sort_values(by=<span class="hljs-string">&quot;per_GDP&quot;</span>, ascending=<span class="hljs-literal">False</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8444,30 +7728,23 @@ city_info</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>按轴进行排序</strong></p>
 <pre><code class="hljs python">data = pd.DataFrame(np.random.randint(<span class="hljs-number">20</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)), index=[<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>], columns=list(<span class="hljs-string">&quot;CBAD&quot;</span>))
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8503,29 +7780,22 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>行排序</p>
 <pre><code class="hljs python">data.sort_index()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8561,29 +7831,22 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>列排序</p>
 <pre><code class="hljs python">data.sort_index(axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8619,29 +7882,21 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.sort_index(axis=<span class="hljs-number">1</span>, ascending=<span class="hljs-literal">False</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8677,32 +7932,25 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>统计方法</li>
 </ul>
 <pre><code class="hljs python">df = pd.DataFrame(np.random.normal(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, size=(<span class="hljs-number">6</span>, <span class="hljs-number">4</span>)),columns=list(<span class="hljs-string">&quot;ABCD&quot;</span>))
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8759,85 +8007,63 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>非空个数</p>
 <pre><code class="hljs python">df.count()</code></pre>
-
-
-
-
 <pre><code>A    6
 B    6
 C    6
 D    6
-dtype: int64</code></pre>
+dtype: int64
+</code></pre>
 <p>求和</p>
 <pre><code class="hljs python">df.sum()</code></pre>
-
-
-
-
 <pre><code>A    14.272224
 B     9.533497
 C     3.931385
 D    25.698741
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">df.sum(axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <pre><code>0     7.947086
 1    28.289408
 2    -1.427283
 3    -4.893571
 4    20.476806
 5     3.043402
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p>最大值 最小值</p>
 <pre><code class="hljs python">df.min()</code></pre>
-
-
-
-
 <pre><code>A   -3.386712
 B   -4.333177
 C   -4.032613
 D   -0.152567
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">df.max(axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <pre><code>0     6.367969
 1    13.113252
 2     5.094802
 3     2.537716
 4     5.577329
 5     6.398588
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8894,85 +8120,62 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.idxmax()</code></pre>
-
-
-
-
 <pre><code>A    1
 B    1
 C    4
 D    5
-dtype: int64</code></pre>
+dtype: int64
+</code></pre>
 <p>均值</p>
 <pre><code class="hljs python">df.mean()</code></pre>
-
-
-
-
 <pre><code>A    2.378704
 B    1.588916
 C    0.655231
 D    4.283124
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p>方差</p>
 <pre><code class="hljs python">df.var()</code></pre>
-
-
-
-
 <pre><code>A    34.980702
 B    19.110656
 C    18.948144
 D     6.726776
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p>标准差</p>
 <pre><code class="hljs python">df.std()</code></pre>
-
-
-
-
 <pre><code>A    5.914449
 B    4.371574
 C    4.352947
 D    2.593603
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p>中位数</p>
 <pre><code class="hljs python">df.median()</code></pre>
-
-
-
-
 <pre><code>A    1.126767
 B    1.531743
 C    0.176172
 D    5.273518
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p>众数</p>
 <pre><code class="hljs python">data = pd.DataFrame(np.random.randint(<span class="hljs-number">5</span>, size=(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)), columns=list(<span class="hljs-string">&quot;AB&quot;</span>))
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9035,29 +8238,21 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.mode()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9075,40 +8270,30 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>75%分位数</p>
 <pre><code class="hljs python">df.quantile(<span class="hljs-number">0.75</span>)</code></pre>
-
-
-
-
 <pre><code>A    3.539202
 B    5.052594
 C    4.539740
 D    6.157738
-Name: 0.75, dtype: float64</code></pre>
+Name: 0.75, dtype: float64
+</code></pre>
 <p>一网打尽</p>
 <pre><code class="hljs python">df.describe()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9179,32 +8364,24 @@ Name: 0.75, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data_2 = pd.DataFrame([[<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>],
                        [<span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>],
                        [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]], columns=list(<span class="hljs-string">&quot;ABCD&quot;</span>))
 data_2</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9240,29 +8417,21 @@ data_2</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data_2.describe()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9305,29 +8474,22 @@ data_2</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>相关性系数和协方差</p>
 <pre><code class="hljs python">df.corr()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9370,41 +8532,30 @@ data_2</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.corrwith(df[<span class="hljs-string">&quot;A&quot;</span>])</code></pre>
-
-
-
-
 <pre><code>A    1.000000
 B    0.831063
 C    0.331060
 D    0.510821
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p>自定义输出</p>
 <p>apply（method）的用法：使用method方法默认对每一列进行相应的操作</p>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9461,29 +8612,21 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.apply(np.cumsum)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9540,29 +8683,21 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.apply(np.cumsum, axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9619,62 +8754,45 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.apply(sum)</code></pre>
-
-
-
-
 <pre><code>A    14.272224
 B     9.533497
 C     3.931385
 D    25.698741
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">df.sum()</code></pre>
-
-
-
-
 <pre><code>A    14.272224
 B     9.533497
 C     3.931385
 D    25.698741
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">df.apply(<span class="hljs-keyword">lambda</span> x: x.max()-x.min())</code></pre>
-
-
-
-
 <pre><code>A    16.499965
 B    11.107736
 C     9.609942
 D     6.551155
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_describe</span>(<span class="hljs-params">x</span>):</span>
     <span class="hljs-keyword">return</span> pd.Series([x.count(), x.mean(), x.max(), x.idxmin(), x.std()], \
                      index=[<span class="hljs-string">&quot;Count&quot;</span>, <span class="hljs-string">&quot;mean&quot;</span>, <span class="hljs-string">&quot;max&quot;</span>, <span class="hljs-string">&quot;idxmin&quot;</span>, <span class="hljs-string">&quot;std&quot;</span>])
 df.apply(my_describe)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9724,10 +8842,8 @@ df.apply(my_describe)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-<h2 id="12-4-缺失值处理"><a href="#12-4-缺失值处理" class="headerlink" title="12.4 缺失值处理"></a>12.4 缺失值处理</h2><p><strong>1、发现缺失值</strong></p>
+<h2 id="124-缺失值处理"><a class="markdownIt-Anchor" href="#124-缺失值处理"></a> 12.4 缺失值处理</h2>
+<p><strong>1、发现缺失值</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
@@ -9735,24 +8851,20 @@ data = pd.DataFrame(np.array([[<span class="hljs-number">1</span>, np.nan, <span
                               [np.nan, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
                               [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-literal">None</span>]]), columns=[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>])
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9784,38 +8896,28 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>注意：有None、字符串等，数据类型全部变为object，它比int和float更消耗资源</strong></p>
 <pre><code class="hljs python">data.dtypes</code></pre>
-
-
-
-
 <pre><code>A    object
 B    object
 C    object
-dtype: object</code></pre>
+dtype: object
+</code></pre>
 <pre><code class="hljs python">data.isnull()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9847,29 +8949,21 @@ dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.notnull()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9901,33 +8995,26 @@ dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>2、删除缺失值</strong></p>
 <pre><code class="hljs python">data = pd.DataFrame(np.array([[<span class="hljs-number">1</span>, np.nan, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
                               [np.nan, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
                               [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, np.nan, <span class="hljs-number">9</span>],
                               [<span class="hljs-number">10</span>, <span class="hljs-number">11</span> , <span class="hljs-number">12</span>, <span class="hljs-number">13</span>]]), columns=[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>])
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9970,40 +9057,30 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>注意：np.nan是一种特殊的浮点数</strong></p>
 <pre><code class="hljs python">data.dtypes</code></pre>
-
-
-
-
 <pre><code>A    float64
 B    float64
 C    float64
 D    float64
-dtype: object</code></pre>
+dtype: object
+</code></pre>
 <p><strong>（1）删除整行</strong></p>
 <pre><code class="hljs python">data.dropna()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10025,29 +9102,22 @@ dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（2）删除整列</strong></p>
 <pre><code class="hljs python">data.dropna(axis=<span class="hljs-string">&quot;columns&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10075,30 +9145,22 @@ dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data[<span class="hljs-string">&quot;D&quot;</span>] = np.nan
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10141,29 +9203,21 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.dropna(axis=<span class="hljs-string">&quot;columns&quot;</span>, how=<span class="hljs-string">&quot;all&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10201,29 +9255,21 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.dropna(axis=<span class="hljs-string">&quot;columns&quot;</span>, how=<span class="hljs-string">&quot;any&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10246,30 +9292,22 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.loc[<span class="hljs-number">3</span>] = np.nan
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10312,29 +9350,21 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.dropna(how=<span class="hljs-string">&quot;all&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10370,33 +9400,26 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>3、填充缺失值</strong></p>
 <pre><code class="hljs python">data = pd.DataFrame(np.array([[<span class="hljs-number">1</span>, np.nan, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
                               [np.nan, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
                               [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, np.nan, <span class="hljs-number">9</span>],
                               [<span class="hljs-number">10</span>, <span class="hljs-number">11</span> , <span class="hljs-number">12</span>, <span class="hljs-number">13</span>]]), columns=[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>])
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10439,29 +9462,21 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.fillna(value=<span class="hljs-number">5</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10504,42 +9519,32 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>用均值进行替换</li>
 </ul>
 <pre><code class="hljs python">fill = data.mean()
 fill</code></pre>
-
-
-
-
 <pre><code>A    6.000000
 B    7.666667
 C    6.333333
 D    7.750000
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <pre><code class="hljs python">data.fillna(value=fill)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10582,36 +9587,25 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">fill = data.stack().mean()
 fill</code></pre>
-
-
-
-
-<pre><code>7.0</code></pre>
+<pre><code>7.0
+</code></pre>
 <pre><code class="hljs python">data.fillna(value=fill)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10654,10 +9648,8 @@ fill</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-<h2 id="12-5-合并数据"><a href="#12-5-合并数据" class="headerlink" title="12.5 合并数据"></a>12.5 合并数据</h2><ul>
+<h2 id="125-合并数据"><a class="markdownIt-Anchor" href="#125-合并数据"></a> 12.5 合并数据</h2>
+<ul>
 <li>构造一个生产DataFrame的函数</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
@@ -10669,24 +9661,20 @@ fill</code></pre>
     <span class="hljs-keyword">return</span> pd.DataFrame(data, ind)
 
 make_df(<span class="hljs-string">&quot;ABC&quot;</span>, range(<span class="hljs-number">3</span>))</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10718,9 +9706,6 @@ make_df(<span class="hljs-string">&quot;ABC&quot;</span>, range(<span class="hlj
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>垂直合并</li>
 </ul>
@@ -10728,32 +9713,28 @@ make_df(<span class="hljs-string">&quot;ABC&quot;</span>, range(<span class="hlj
 df_2 = make_df(<span class="hljs-string">&quot;AB&quot;</span>, [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
 print(df_1)
 print(df_2)</code></pre>
-
 <pre><code>    A   B
 1  A1  B1
 2  A2  B2
     A   B
 3  A3  B3
-4  A4  B4</code></pre>
+4  A4  B4
+</code></pre>
 <pre><code class="hljs python">pd.concat([df_1, df_2])</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10786,9 +9767,6 @@ print(df_2)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>水平合并</li>
 </ul>
@@ -10796,32 +9774,28 @@ print(df_2)</code></pre>
 df_4 = make_df(<span class="hljs-string">&quot;CD&quot;</span>, [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>])
 print(df_3)
 print(df_4)</code></pre>
-
 <pre><code>    A   B
 0  A0  B0
 1  A1  B1
     C   D
 0  C0  D0
-1  C1  D1</code></pre>
+1  C1  D1
+</code></pre>
 <pre><code class="hljs python">pd.concat([df_3, df_4], axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10850,9 +9824,6 @@ print(df_4)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>索引重叠</li>
 </ul>
@@ -10861,32 +9832,28 @@ print(df_4)</code></pre>
 df_6 = make_df(<span class="hljs-string">&quot;AB&quot;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 print(df_5)
 print(df_6)</code></pre>
-
 <pre><code>    A   B
 1  A1  B1
 2  A2  B2
     A   B
 1  A1  B1
-2  A2  B2</code></pre>
+2  A2  B2
+</code></pre>
 <pre><code class="hljs python">pd.concat([df_5, df_6])</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10919,29 +9886,21 @@ print(df_6)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">pd.concat([df_5, df_6],ignore_index=<span class="hljs-literal">True</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -10974,40 +9933,33 @@ print(df_6)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>列重叠</p>
 <pre><code class="hljs python">df_7 = make_df(<span class="hljs-string">&quot;ABC&quot;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 df_8 = make_df(<span class="hljs-string">&quot;BCD&quot;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 print(df_7)
 print(df_8)</code></pre>
-
 <pre><code>    A   B   C
 1  A1  B1  C1
 2  A2  B2  C2
     B   C   D
 1  B1  C1  D1
-2  B2  C2  D2</code></pre>
+2  B2  C2  D2
+</code></pre>
 <pre><code class="hljs python">pd.concat([df_7, df_8], axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11042,29 +9994,21 @@ print(df_8)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">pd.concat([df_7, df_8],axis=<span class="hljs-number">1</span>, ignore_index=<span class="hljs-literal">True</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11099,9 +10043,6 @@ print(df_8)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>对齐合并merge()</li>
 </ul>
@@ -11109,32 +10050,28 @@ print(df_8)</code></pre>
 df_10 = make_df(<span class="hljs-string">&quot;BC&quot;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 print(df_9)
 print(df_10)</code></pre>
-
 <pre><code>    A   B
 1  A1  B1
 2  A2  B2
     B   C
 1  B1  C1
-2  B2  C2</code></pre>
+2  B2  C2
+</code></pre>
 <pre><code class="hljs python">pd.merge(df_9, df_10)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11160,40 +10097,32 @@ print(df_10)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df_9 = make_df(<span class="hljs-string">&quot;AB&quot;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 df_10 = make_df(<span class="hljs-string">&quot;CB&quot;</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>])
 print(df_9)
 print(df_10)</code></pre>
-
 <pre><code>    A   B
 1  A1  B1
 2  A2  B2
     C   B
 2  C2  B2
-1  C1  B1</code></pre>
+1  C1  B1
+</code></pre>
 <pre><code class="hljs python">pd.merge(df_9, df_10)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11219,32 +10148,25 @@ print(df_10)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>【例】 合并城市信息</p>
 <pre><code class="hljs python">population_dict = &#123;<span class="hljs-string">&quot;city&quot;</span>: (<span class="hljs-string">&quot;BeiJing&quot;</span>, <span class="hljs-string">&quot;HangZhou&quot;</span>, <span class="hljs-string">&quot;ShenZhen&quot;</span>),
                    <span class="hljs-string">&quot;pop&quot;</span>: (<span class="hljs-number">2154</span>, <span class="hljs-number">981</span>, <span class="hljs-number">1303</span>)&#125;
 population = pd.DataFrame(population_dict)
 population</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11272,32 +10194,24 @@ population</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">GDP_dict = &#123;<span class="hljs-string">&quot;city&quot;</span>: (<span class="hljs-string">&quot;BeiJing&quot;</span>, <span class="hljs-string">&quot;ShangHai&quot;</span>, <span class="hljs-string">&quot;HangZhou&quot;</span>),
             <span class="hljs-string">&quot;GDP&quot;</span>: (<span class="hljs-number">30320</span>, <span class="hljs-number">32680</span>, <span class="hljs-number">13468</span>)&#125;
 GDP = pd.DataFrame(GDP_dict)
 GDP</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11325,30 +10239,22 @@ GDP</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">city_info = pd.merge(population, GDP)
 city_info</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11374,30 +10280,22 @@ city_info</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">city_info = pd.merge(population, GDP, how=<span class="hljs-string">&quot;outer&quot;</span>)
 city_info</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11435,32 +10333,26 @@ city_info</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-<h2 id="12-6-分组和数据透视表"><a href="#12-6-分组和数据透视表" class="headerlink" title="12.6 分组和数据透视表"></a>12.6 分组和数据透视表</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714235139.png" srcset="/img/loading.gif" alt="image-20200714235136524"></p>
+<h2 id="126-分组和数据透视表"><a class="markdownIt-Anchor" href="#126-分组和数据透视表"></a> 12.6 分组和数据透视表</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714235139.png" srcset="/img/loading.gif" alt="image-20200714235136524" /></p>
 <pre><code class="hljs python">df = pd.DataFrame(&#123;<span class="hljs-string">&quot;key&quot;</span>:[<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>],
                   <span class="hljs-string">&quot;data1&quot;</span>: range(<span class="hljs-number">6</span>),
                   <span class="hljs-string">&quot;data2&quot;</span>: np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, size=<span class="hljs-number">6</span>)&#125;)
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11510,38 +10402,28 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（1）分组</strong></p>
 <ul>
 <li>延迟计算</li>
 </ul>
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>)</code></pre>
-
-
-
-
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x0000018DD1697308&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x0000018DD1697308&gt;
+</code></pre>
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).sum()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11574,29 +10456,21 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).mean()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11629,66 +10503,55 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> df.groupby(<span class="hljs-string">&quot;key&quot;</span>):
     print(str(i))</code></pre>
-
-<pre><code>(&#39;A&#39;,   key  data1  data2
+<pre><code>('A',   key  data1  data2
 0   A      0      3
 5   A      5      3)
-(&#39;B&#39;,   key  data1  data2
+('B',   key  data1  data2
 1   B      1      3
 4   B      4      6)
-(&#39;C&#39;,   key  data1  data2
+('C',   key  data1  data2
 2   C      2      4
-3   C      3      6)</code></pre>
+3   C      3      6)
+</code></pre>
 <ul>
 <li>按列取值</li>
 </ul>
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>)[<span class="hljs-string">&quot;data2&quot;</span>].sum()</code></pre>
-
-
-
-
 <pre><code>key
 A     6
 B     9
 C    10
-Name: data2, dtype: int32</code></pre>
+Name: data2, dtype: int32
+</code></pre>
 <ul>
 <li>按组迭代</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> data, group <span class="hljs-keyword">in</span> df.groupby(<span class="hljs-string">&quot;key&quot;</span>):
     print(<span class="hljs-string">&quot;&#123;0:5&#125; shape=&#123;1&#125;&quot;</span>.format(data, group.shape))</code></pre>
-
 <pre><code>A     shape=(2, 3)
 B     shape=(2, 3)
-C     shape=(2, 3)</code></pre>
+C     shape=(2, 3)
+</code></pre>
 <ul>
 <li>调用方法</li>
 </ul>
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>)[<span class="hljs-string">&quot;data1&quot;</span>].describe()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11751,23 +10614,15 @@ C     shape=(2, 3)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>支持更复杂的操作</li>
 </ul>
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).aggregate([<span class="hljs-string">&quot;min&quot;</span>, <span class="hljs-string">&quot;median&quot;</span>, <span class="hljs-string">&quot;max&quot;</span>])</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
@@ -11778,8 +10633,9 @@ C     shape=(2, 3)</code></pre>
 
 .dataframe thead tr:last-of-type th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -11837,43 +10693,33 @@ C     shape=(2, 3)</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>过滤</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">filter_func</span>(<span class="hljs-params">x</span>):</span>
     <span class="hljs-keyword">return</span> x[<span class="hljs-string">&quot;data2&quot;</span>].std() &gt; <span class="hljs-number">3</span>
 df.groupby(<span class="hljs-string">&quot;key&quot;</span>)[<span class="hljs-string">&quot;data2&quot;</span>].std()</code></pre>
-
-
-
-
 <pre><code>key
 A    0.000000
 B    2.121320
 C    1.414214
-Name: data2, dtype: float64</code></pre>
+Name: data2, dtype: float64
+</code></pre>
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).filter(filter_func)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11887,31 +10733,24 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>转换</li>
 </ul>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -11961,29 +10800,21 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).transform(<span class="hljs-keyword">lambda</span> x: x-x.mean())</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12026,29 +10857,21 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12098,29 +10921,21 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).apply(<span class="hljs-keyword">lambda</span> x: x-x.mean())</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12163,31 +10978,24 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>apply（）方法</li>
 </ul>
 <pre><code class="hljs python">df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12237,34 +11045,24 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">norm_by_data2</span>(<span class="hljs-params">x</span>):</span>
     x[<span class="hljs-string">&quot;data1&quot;</span>] /= x[<span class="hljs-string">&quot;data2&quot;</span>].sum()
     <span class="hljs-keyword">return</span> x</code></pre>
-
-
 <pre><code class="hljs python">df.groupby(<span class="hljs-string">&quot;key&quot;</span>).apply(norm_by_data2)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12314,32 +11112,25 @@ Name: data2, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>将列表、数组设为分组键</li>
 </ul>
 <pre><code class="hljs python">L = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>]
 df</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12389,29 +11180,21 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.groupby(L).sum()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12439,32 +11222,25 @@ df</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>用字典将索引映射到分组</li>
 </ul>
 <pre><code class="hljs python">df2 = df.set_index(<span class="hljs-string">&quot;key&quot;</span>)
 df2</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12512,30 +11288,22 @@ df2</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">mapping = &#123;<span class="hljs-string">&quot;A&quot;</span>: <span class="hljs-string">&quot;first&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>: <span class="hljs-string">&quot;constant&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>: <span class="hljs-string">&quot;constant&quot;</span>&#125;
 df2.groupby(mapping).sum()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12558,31 +11326,24 @@ df2.groupby(mapping).sum()</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>任意Python函数</li>
 </ul>
 <pre><code class="hljs python">df2.groupby(str.lower).mean()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12610,31 +11371,24 @@ df2.groupby(mapping).sum()</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>多个有效值组成的列表</li>
 </ul>
 <pre><code class="hljs python">df2.groupby([str.lower, mapping]).mean()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12666,40 +11420,28 @@ df2.groupby(mapping).sum()</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p>【例1】 行星观测数据处理</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 
 planets = sns.load_dataset(<span class="hljs-string">&quot;planets&quot;</span>)</code></pre>
-
-
 <pre><code class="hljs python">planets.shape</code></pre>
-
-
-
-
-<pre><code>(1035, 6)</code></pre>
+<pre><code>(1035, 6)
+</code></pre>
 <pre><code class="hljs python">planets.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12761,29 +11503,21 @@ planets = sns.load_dataset(<span class="hljs-string">&quot;planets&quot;</span>)
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">planets.describe()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12863,29 +11597,21 @@ planets = sns.load_dataset(<span class="hljs-string">&quot;planets&quot;</span>)
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">planets.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -12947,54 +11673,40 @@ planets = sns.load_dataset(<span class="hljs-string">&quot;planets&quot;</span>)
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">decade = <span class="hljs-number">10</span> * (planets[<span class="hljs-string">&quot;year&quot;</span>] // <span class="hljs-number">10</span>)
 decade.head()</code></pre>
-
-
-
-
 <pre><code>0    2000
 1    2000
 2    2010
 3    2000
 4    2000
-Name: year, dtype: int64</code></pre>
+Name: year, dtype: int64
+</code></pre>
 <pre><code class="hljs python">decade = decade.astype(str) + <span class="hljs-string">&quot;s&quot;</span>
 decade.name = <span class="hljs-string">&quot;decade&quot;</span>
 decade.head()</code></pre>
-
-
-
-
 <pre><code>0    2000s
 1    2000s
 2    2010s
 3    2000s
 4    2000s
-Name: decade, dtype: object</code></pre>
+Name: decade, dtype: object
+</code></pre>
 <pre><code class="hljs python">planets.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13056,29 +11768,21 @@ Name: decade, dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">planets.groupby([<span class="hljs-string">&quot;method&quot;</span>, decade]).sum()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13266,21 +11970,12 @@ Name: decade, dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">planets.groupby([<span class="hljs-string">&quot;method&quot;</span>, decade])[[<span class="hljs-string">&quot;number&quot;</span>]].sum().unstack().fillna(<span class="hljs-number">0</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
@@ -13291,8 +11986,9 @@ Name: decade, dtype: object</code></pre>
 
 .dataframe thead tr:last-of-type th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -13388,35 +12084,26 @@ Name: decade, dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <p><strong>（2）数据透视表</strong></p>
 <p>【例2】泰坦尼克号乘客数据分析</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
 
 titanic = sns.load_dataset(<span class="hljs-string">&quot;titanic&quot;</span>)</code></pre>
-
-
 <pre><code class="hljs python">titanic.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13532,19 +12219,9 @@ titanic = sns.load_dataset(<span class="hljs-string">&quot;titanic&quot;</span>)
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">T = titanic[titanic.age.notnull()].copy()</code></pre>
-
-
 <pre><code class="hljs python">T.age.apply(<span class="hljs-keyword">lambda</span> x: <span class="hljs-number">60</span> <span class="hljs-keyword">if</span> x&gt;=<span class="hljs-number">60</span> <span class="hljs-keyword">else</span> x)
 T.age.value_counts()</code></pre>
-
-
-
-
 <pre><code>0      22.0
 1      38.0
 2      26.0
@@ -13574,15 +12251,12 @@ Name: age, Length: 714, dtype: float64
 66.00     1
 23.50     1
 0.42      1
-Name: age, Length: 88, dtype: int64</code></pre>
+Name: age, Length: 88, dtype: int64
+</code></pre>
 <pre><code class="hljs python">Age = <span class="hljs-number">10</span>*(T[<span class="hljs-string">&quot;age&quot;</span>]//<span class="hljs-number">10</span>)
 Age = Age.astype(int)
 Age.head()
 Age.value_counts()</code></pre>
-
-
-
-
 <pre><code>0    20
 1    30
 2    20
@@ -13604,12 +12278,9 @@ Name: age, dtype: int32
 60     19
 70      6
 80      1
-Name: age, dtype: int64</code></pre>
+Name: age, dtype: int64
+</code></pre>
 <pre><code class="hljs python">Age.astype(str)+<span class="hljs-string">&quot;s&quot;</span></code></pre>
-
-
-
-
 <pre><code>0      20s
 1      30s
 2      20s
@@ -13621,26 +12292,23 @@ Name: age, dtype: int64</code></pre>
 887    10s
 889    20s
 890    30s
-Name: age, Length: 714, dtype: object</code></pre>
+Name: age, Length: 714, dtype: object
+</code></pre>
 <pre><code class="hljs python">T.groupby([<span class="hljs-string">&quot;sex&quot;</span>, Age])[<span class="hljs-string">&quot;survived&quot;</span>].mean().unstack()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13696,30 +12364,22 @@ Name: age, Length: 714, dtype: object</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">T.age = Age
 T.pivot_table(<span class="hljs-string">&quot;survived&quot;</span>, index=<span class="hljs-string">&quot;sex&quot;</span>, columns=<span class="hljs-string">&quot;age&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13775,29 +12435,21 @@ T.pivot_table(<span class="hljs-string">&quot;survived&quot;</span>, index=<span
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">titanic.describe()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13886,29 +12538,21 @@ T.pivot_table(<span class="hljs-string">&quot;survived&quot;</span>, index=<span
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">titanic.groupby(<span class="hljs-string">&quot;sex&quot;</span>)[[<span class="hljs-string">&quot;survived&quot;</span>]].mean()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13932,38 +12576,27 @@ T.pivot_table(<span class="hljs-string">&quot;survived&quot;</span>, index=<span
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">titanic.groupby(<span class="hljs-string">&quot;sex&quot;</span>)[<span class="hljs-string">&quot;survived&quot;</span>].mean()</code></pre>
-
-
-
-
 <pre><code>sex
 female    0.742038
 male      0.188908
-Name: survived, dtype: float64</code></pre>
+Name: survived, dtype: float64
+</code></pre>
 <pre><code class="hljs python">titanic.groupby([<span class="hljs-string">&quot;sex&quot;</span>, <span class="hljs-string">&quot;class&quot;</span>])[<span class="hljs-string">&quot;survived&quot;</span>].aggregate(<span class="hljs-string">&quot;mean&quot;</span>).unstack()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -13995,31 +12628,24 @@ Name: survived, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>数据透视表</li>
 </ul>
 <pre><code class="hljs python">titanic.pivot_table(<span class="hljs-string">&quot;survived&quot;</span>, index=<span class="hljs-string">&quot;sex&quot;</span>, columns=<span class="hljs-string">&quot;class&quot;</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14051,29 +12677,21 @@ Name: survived, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">titanic.pivot_table(<span class="hljs-string">&quot;survived&quot;</span>, index=<span class="hljs-string">&quot;sex&quot;</span>, columns=<span class="hljs-string">&quot;class&quot;</span>, aggfunc=<span class="hljs-string">&quot;mean&quot;</span>, margins=<span class="hljs-literal">True</span>)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14116,21 +12734,12 @@ Name: survived, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">titanic.pivot_table(index=<span class="hljs-string">&quot;sex&quot;</span>, columns=<span class="hljs-string">&quot;class&quot;</span>, aggfunc=&#123;<span class="hljs-string">&quot;survived&quot;</span>: <span class="hljs-string">&quot;sum&quot;</span>, <span class="hljs-string">&quot;fare&quot;</span>: <span class="hljs-string">&quot;mean&quot;</span>&#125;)</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
@@ -14141,8 +12750,9 @@ Name: survived, dtype: float64</code></pre>
 
 .dataframe thead tr:last-of-type th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -14191,10 +12801,8 @@ Name: survived, dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-<h2 id="12-7-其他"><a href="#12-7-其他" class="headerlink" title="12.7 其他"></a>12.7 其他</h2><p><strong>（1）向量化字符串操作</strong></p>
+<h2 id="127-其他"><a class="markdownIt-Anchor" href="#127-其他"></a> 12.7 其他</h2>
+<p><strong>（1）向量化字符串操作</strong></p>
 <p><strong>（2） 处理时间序列</strong></p>
 <p><strong>（3） 多级索引：用于多维数据</strong></p>
 <pre><code class="hljs python">base_data = np.array([[<span class="hljs-number">1771</span>, <span class="hljs-number">11115</span> ],
@@ -14208,24 +12816,20 @@ Name: survived, dtype: float64</code></pre>
 data = pd.DataFrame(base_data, index=[[<span class="hljs-string">&quot;BeiJing&quot;</span>,<span class="hljs-string">&quot;BeiJing&quot;</span>,<span class="hljs-string">&quot;ShangHai&quot;</span>,<span class="hljs-string">&quot;ShangHai&quot;</span>,<span class="hljs-string">&quot;ShenZhen&quot;</span>,<span class="hljs-string">&quot;ShenZhen&quot;</span>,<span class="hljs-string">&quot;HangZhou&quot;</span>,<span class="hljs-string">&quot;HangZhou&quot;</span>]\
                                      , [<span class="hljs-number">2008</span>, <span class="hljs-number">2018</span>]*<span class="hljs-number">4</span>], columns=[<span class="hljs-string">&quot;population&quot;</span>, <span class="hljs-string">&quot;GDP&quot;</span>])
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14283,30 +12887,22 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data.index.names = [<span class="hljs-string">&quot;city&quot;</span>, <span class="hljs-string">&quot;year&quot;</span>]
 data</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14370,15 +12966,7 @@ data</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">data[<span class="hljs-string">&quot;GDP&quot;</span>]</code></pre>
-
-
-
-
 <pre><code>city      year
 BeiJing   2008    11115
           2018    30320
@@ -14388,64 +12976,50 @@ ShenZhen  2008     7806
           2018    24222
 HangZhou  2008     4789
           2018    13468
-Name: GDP, dtype: int32</code></pre>
+Name: GDP, dtype: int32
+</code></pre>
 <pre><code class="hljs python">data.loc[<span class="hljs-string">&quot;ShangHai&quot;</span>, <span class="hljs-string">&quot;GDP&quot;</span>]</code></pre>
-
-
-
-
 <pre><code>year
 2008    14070
 2018    32680
-Name: GDP, dtype: int32</code></pre>
+Name: GDP, dtype: int32
+</code></pre>
 <pre><code class="hljs python">data.loc[<span class="hljs-string">&quot;ShangHai&quot;</span>, <span class="hljs-number">2018</span>][<span class="hljs-string">&quot;GDP&quot;</span>]</code></pre>
-
-
-
-
-<pre><code>32680</code></pre>
+<pre><code>32680
+</code></pre>
 <p><strong>（4） 高性能的Pandas：eval（）</strong></p>
 <pre><code class="hljs python">df1, df2, df3, df4 = (pd.DataFrame(np.random.random((<span class="hljs-number">10000</span>,<span class="hljs-number">100</span>))) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>))</code></pre>
-
-
 <pre><code class="hljs python">%timeit (df1+df2)/(df3+df4)</code></pre>
-
-<pre><code>19.1 ms ± 784 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+<pre><code>19.1 ms ± 784 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
 <ul>
 <li>减少了复合代数式计算中间过程的内存分配</li>
 </ul>
 <pre><code class="hljs python">%timeit pd.eval(<span class="hljs-string">&quot;(df1+df2)/(df3+df4)&quot;</span>)</code></pre>
-
-<pre><code>14 ms ± 1.05 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+<pre><code>14 ms ± 1.05 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
 <pre><code class="hljs python">np.allclose((df1+df2)/(df3+df4), pd.eval(<span class="hljs-string">&quot;(df1+df2)/(df3+df4)&quot;</span>))</code></pre>
-
-
-
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <ul>
 <li>实现列间运算</li>
 </ul>
 <pre><code class="hljs python">df = pd.DataFrame(np.random.random((<span class="hljs-number">1000</span>, <span class="hljs-number">3</span>)), columns=list(<span class="hljs-string">&quot;ABC&quot;</span>))
 df.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14489,42 +13063,27 @@ df.head()</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">res_1 = pd.eval(<span class="hljs-string">&quot;(df.A+df.B)/(df.C-1)&quot;</span>)</code></pre>
-
-
 <pre><code class="hljs python">res_2 = df.eval(<span class="hljs-string">&quot;(A+B)/(C-1)&quot;</span>)</code></pre>
-
-
 <pre><code class="hljs python">np.allclose(res_1, res_2)</code></pre>
-
-
-
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <pre><code class="hljs python">df[<span class="hljs-string">&quot;D&quot;</span>] = pd.eval(<span class="hljs-string">&quot;(df.A+df.B)/(df.C-1)&quot;</span>)
 df.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14574,30 +13133,22 @@ df.head()</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">df.eval(<span class="hljs-string">&quot;D=(A+B)/(C-1)&quot;</span>, inplace=<span class="hljs-literal">True</span>)
 df.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14647,45 +13198,35 @@ df.head()</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
 <ul>
 <li>使用局部变量</li>
 </ul>
 <pre><code class="hljs python">column_mean = df.mean(axis=<span class="hljs-number">1</span>)
 res = df.eval(<span class="hljs-string">&quot;A+@column_mean&quot;</span>)
 res.head()</code></pre>
-
-
-
-
 <pre><code>0   -0.706958
 1    0.295687
 2    0.318299
 3    0.136251
 4    0.809020
-dtype: float64</code></pre>
+dtype: float64
+</code></pre>
 <p><strong>（4） 高性能的Pandas：query（）</strong></p>
 <pre><code class="hljs python">df.head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14735,35 +13276,27 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">%timeit df[(df.A &lt; <span class="hljs-number">0.5</span>) &amp; (df.B &gt; <span class="hljs-number">0.5</span>)]</code></pre>
-
-<pre><code>1.97 ms ± 307 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+<pre><code>1.97 ms ± 307 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
 <pre><code class="hljs python">%timeit df.query(<span class="hljs-string">&quot;(A &lt; 0.5)&amp;(B &gt; 0.5)&quot;</span>)</code></pre>
-
-<pre><code>3.35 ms ± 440 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+<pre><code>3.35 ms ± 440 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
 <pre><code class="hljs python">df.query(<span class="hljs-string">&quot;(A &lt; 0.5)&amp;(B &gt; 0.5)&quot;</span>).head()</code></pre>
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
 <pre><code>.dataframe tbody tr th &#123;
     vertical-align: top;
 &#125;
 
 .dataframe thead th &#123;
     text-align: right;
-&#125;</code></pre>
-<p></style></p>
+&#125;
+</code></pre>
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -14813,30 +13346,17 @@ dtype: float64</code></pre>
   </tbody>
 </table>
 </div>
-
-
-
-
 <pre><code class="hljs python">np.allclose(df[(df.A &lt; <span class="hljs-number">0.5</span>) &amp; (df.B &gt; <span class="hljs-number">0.5</span>)], df.query(<span class="hljs-string">&quot;(A &lt; 0.5)&amp;(B &gt; 0.5)&quot;</span>))</code></pre>
-
-
-
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <p><strong>（5）eval（）和query（）的使用时机</strong></p>
 <p>小数组时，普通方法反而更快</p>
 <pre><code class="hljs python">df.values.nbytes</code></pre>
-
-
-
-
-<pre><code>32000</code></pre>
+<pre><code>32000
+</code></pre>
 <pre><code class="hljs python">df1.values.nbytes</code></pre>
-
-
-
-
-<pre><code>8000000</code></pre>
+<pre><code>8000000
+</code></pre>
 
             </div>
             <hr>

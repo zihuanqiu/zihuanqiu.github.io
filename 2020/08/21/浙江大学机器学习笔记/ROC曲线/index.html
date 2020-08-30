@@ -221,31 +221,40 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="四个概率"><a href="#四个概率" class="headerlink" title="四个概率"></a>四个概率</h1><p>$TP$——将正样本预测为正（的概率）</p>
-<p>$FN$——将正样本预测为负（的概率）</p>
-<p>$FP$——将负样本预测为正（的概率）</p>
-<p>$TN$——将负样本预测为负（的概率）</p>
-<p>精确度定义为：<br>$$<br>P=\frac{TP}{TP+FP}<br>$$</p>
+              <h1 id="四个概率"><a class="markdownIt-Anchor" href="#四个概率"></a> 四个概率</h1>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">TP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>——将正样本预测为正（的概率）</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">FN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>——将正样本预测为负（的概率）</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">FP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>——将负样本预测为正（的概率）</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">TN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>——将负样本预测为负（的概率）</p>
+<p>精确度定义为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">P=\frac{TP}{TP+FP}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <blockquote>
-<p>分母为所有判断为正的样本，$P$表示在所有被判断为正的样本中真正的正样本的概率</p>
+<p>分母为所有判断为正的样本，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>表示在所有被判断为正的样本中真正的正样本的概率</p>
 </blockquote>
-<p>召回率定义为：<br>$$<br>R=\frac{TP}{TP+FN}<br>$$</p>
+<p>召回率定义为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">R=\frac{TP}{TP+FN}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <blockquote>
-<p>分母为所有真正的正样本，$R$表示在所有真正的正样本中被判断为正样本的概率</p>
+<p>分母为所有真正的正样本，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span>表示在所有真正的正样本中被判断为正样本的概率</p>
 </blockquote>
 <ol>
-<li><p>$TP+FN=1$</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">TP+FN=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
 </li>
-<li><p>$FP+TN=1$</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">FP+TN=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
 </li>
-<li><p>对于同一个系统来说，若TP增加，则FP也增加</p>
+<li>
+<p>对于同一个系统来说，若TP增加，则FP也增加</p>
 <blockquote>
 <p>若系统性能不提高（即同一个系统），允许更多FN变为TP的同时，也会使更多TN变为FP</p>
 <p>（好东西进来了，苍蝇蚊子也会进来）</p>
 </blockquote>
 </li>
 </ol>
-<h1 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014759.png" srcset="/img/loading.gif" alt="1590570545803"></p>
+<h1 id="roc曲线"><a class="markdownIt-Anchor" href="#roc曲线"></a> ROC曲线</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606014759.png" srcset="/img/loading.gif" alt="1590570545803" /></p>
 <p>ROC（Receiver Operating Character）曲线，是一条横坐标FP，纵坐标TP的曲线</p>
 <blockquote>
 <p>通过改变判断阈值，可以得到ROC曲线。上图画出了4个系统的ROC曲线</p>
@@ -257,15 +266,15 @@
 <p>若上述模型是人脸识别门禁系统，则FP=0时的TP值表示在不错误放入一个未登记的用户的情况下，已登记用户能被正确识别的概率，在这种情况下蓝色曲线表现最好。可以预见，当放低系统准确性的要求时（即FP增大），已登记用户能被正确识别的概率将会增大（ROC曲线为增函数）。那么蓝色曲线完全在其他曲线之上，说明蓝色曲线的性能毫无疑问大于其他曲线。</p>
 </blockquote>
 <p>但是如果ROC曲线如下图所示，则不能得出红色曲线就一定比白色曲线要好的结论，这需要一个取舍（看能接受的最大FP为多少，若FP的要求不高，则白色曲线可以认为比红色曲线好）</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015018.png" srcset="/img/loading.gif" alt="1590584798526"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015018.png" srcset="/img/loading.gif" alt="1590584798526" /></p>
 <blockquote>
 <p>综合评定这个系统的性能也可以看ROC曲线下面积的大小，ROC曲线下面积越大，则系统性能越优良。</p>
 </blockquote>
 <p><strong>等错误率（Equal Error Rate，EER）是两类错误FP和FN相等时候的错误了，可以直观地表示系统性能。</strong></p>
 <blockquote>
-<p>$FN=1-TP=FP\Rightarrow TP+FP=1$</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>N</mi><mo>=</mo><mn>1</mn><mo>−</mo><mi>T</mi><mi>P</mi><mo>=</mo><mi>F</mi><mi>P</mi><mo>⇒</mo><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">FN=1-TP=FP\Rightarrow TP+FP=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
 </blockquote>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015025.png" srcset="/img/loading.gif" alt="1590571167054"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200606015025.png" srcset="/img/loading.gif" alt="1590571167054" /></p>
 <p>上图中，ROC曲线和EER直线的交点的纵坐标表示在FP=FN条件下的TP的值（即两类错误等概时的正确度），交点的TP值越大则系统性能越优良。</p>
 <blockquote>
 <p>单纯看TP值来判断系统的性能是不科学的，因为TP值高的情况下，可能系统发生两类错误的概率也很大，那么如何评判在这么大错误率情况下的TP值有什么意义呢？</p>
@@ -311,8 +320,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/21/CV%20baseline/VGG/">
-                        <span class="hidden-mobile">VGG</span>
+                      <a href="/2020/08/21/CV%20baseline/ResNet/">
+                        <span class="hidden-mobile">ResNet</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

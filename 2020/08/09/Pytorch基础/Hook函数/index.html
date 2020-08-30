@@ -221,7 +221,8 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-Hook函数概念"><a href="#1-Hook函数概念" class="headerlink" title="1. Hook函数概念"></a>1. Hook函数概念</h1><p>Hook函数机制：不改变主体，实现额外功能，就是开挂的意思</p>
+              <h1 id="1-hook函数概念"><a class="markdownIt-Anchor" href="#1-hook函数概念"></a> 1. Hook函数概念</h1>
+<p>Hook函数机制：不改变主体，实现额外功能，就是开挂的意思</p>
 <p>大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数</p>
 <ol>
 <li>torch.Tensor.register_hook(hook)</li>
@@ -231,18 +232,16 @@
 </ol>
 <p>关于torch.nn.Module的hook函数，我们可以在module.py看到是怎么执行的。对于一个nn.module类，在调用时都会进入<code>__call__</code>函数</p>
 <p>可以看到，<code>__call__</code>函数是分为四个部分的，依次执行顺序是register_forward_pre_hook，forward，forward_hook，backward_hook。根据需要hook函数执行的位置，我们可以选择不同位置进行hook注册。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809225314.png" srcset="/img/loading.gif" alt="image-20200809225312341"></p>
-<h2 id="1-1-torch-Tensor-register-hook"><a href="#1-1-torch-Tensor-register-hook" class="headerlink" title="1.1 torch.Tensor.register_hook"></a>1.1 torch.Tensor.register_hook</h2><pre><code class="hljs python">torch.Tensor.register_hook(hook)</code></pre>
-
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809225314.png" srcset="/img/loading.gif" alt="image-20200809225312341" /></p>
+<h2 id="11-torchtensorregister_hook"><a class="markdownIt-Anchor" href="#11-torchtensorregister_hook"></a> 1.1 torch.Tensor.register_hook</h2>
+<pre><code class="hljs python">torch.Tensor.register_hook(hook)</code></pre>
 <p>功能：注册一个Tensor反向传播的hook函数</p>
 <p>参数：hook是一个函数</p>
 <pre><code class="hljs python">hook(grad) -&gt; Tensor or None</code></pre>
-
 <p>hook函数仅一个输入参数（张量的梯度），可以定义一些对参数梯度的操作。</p>
 <p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
 <p><strong>实验：</strong></p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809202430.png" srcset="/img/loading.gif" alt="image-20200809202429113" style="zoom:67%;" />
-
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 <span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
@@ -268,10 +267,8 @@ y.backward()
 print(<span class="hljs-string">&quot;gradient:&quot;</span>, w.grad, x.grad, a.grad, b.grad, y.grad)
 print(<span class="hljs-string">&quot;a_grad[0]: &quot;</span>, a_grad[<span class="hljs-number">0</span>])
 handle.remove()</code></pre>
-
 <pre><code class="hljs python">gradient: tensor([<span class="hljs-number">5.</span>]) tensor([<span class="hljs-number">2.</span>]) <span class="hljs-literal">None</span> <span class="hljs-literal">None</span> <span class="hljs-literal">None</span>
 a_grad[<span class="hljs-number">0</span>]:  tensor([<span class="hljs-number">2.</span>])</code></pre>
-
 <p>可以看到非叶子节点的梯度都已经被系统自动释放了；我们用hook函数把参数a的梯度保留了下来。</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
@@ -299,17 +296,14 @@ y.backward()
 <span class="hljs-comment"># 查看梯度</span>
 print(<span class="hljs-string">&quot;w.grad: &quot;</span>, w.grad)
 handle.remove()</code></pre>
-
 <pre><code class="hljs python">w.grad:  tensor([<span class="hljs-number">10.</span>])</code></pre>
-
 <p>hook函数不仅可以获取grad，甚至可以修改grad（像外挂一样）</p>
-<h2 id="1-2-torch-nn-Module-register-forward-hook"><a href="#1-2-torch-nn-Module-register-forward-hook" class="headerlink" title="1.2 torch.nn.Module.register_forward_hook"></a>1.2 torch.nn.Module.register_forward_hook</h2><pre><code class="hljs python">Module.register_forward_hook(hook)</code></pre>
-
+<h2 id="12-torchnnmoduleregister_forward_hook"><a class="markdownIt-Anchor" href="#12-torchnnmoduleregister_forward_hook"></a> 1.2 torch.nn.Module.register_forward_hook</h2>
+<pre><code class="hljs python">Module.register_forward_hook(hook)</code></pre>
 <p>功能：注册module的前向传播hook函数</p>
 <p>参数：hook函数</p>
 <p>模型的每次forward()计算出一个输出后，都会调用hook函数。hook函数应该有如下形式：</p>
 <pre><code class="hljs python">hook(module, input, output) -&gt; None or modified output</code></pre>
-
 <p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
 <p>参数：</p>
 <ul>
@@ -358,9 +352,8 @@ output = net(fake_img)
 <span class="hljs-comment"># 观察</span>
 print(<span class="hljs-string">&quot;feature maps shape: &#123;&#125;\noutput value: &#123;&#125;\n&quot;</span>.format(fmap_block[<span class="hljs-number">0</span>].shape, fmap_block[<span class="hljs-number">0</span>]))
 print(<span class="hljs-string">&quot;input shape: &#123;&#125;\ninput value: &#123;&#125;&quot;</span>.format(input_block[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape, input_block[<span class="hljs-number">0</span>]))</code></pre>
-
 <p>可视化这个网络的输入和卷积核参数如下所示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809215221.png" srcset="/img/loading.gif" alt="image-20200809215220453"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809215221.png" srcset="/img/loading.gif" alt="image-20200809215220453" /></p>
 <p>由于我们是对net.conv1注册的hook函数（<code>net.conv1.register_forward_hook(forward_hook)</code>），因此在运行到net.conv1的forward()函数时，会自动调用hook函数</p>
 <p>print输出conv1的输入和输出如下所示：</p>
 <pre><code class="hljs python">feature maps shape: torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])
@@ -375,16 +368,12 @@ input value: (tensor([[[[<span class="hljs-number">1.</span>, <span class="hljs-
           [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
           [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
           [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]]]]),)</code></pre>
-
-
-
-<h2 id="1-3-torch-nn-Module-register-forward-pre-hook"><a href="#1-3-torch-nn-Module-register-forward-pre-hook" class="headerlink" title="1.3 torch.nn.Module.register_forward_pre_hook"></a>1.3 torch.nn.Module.register_forward_pre_hook</h2><pre><code class="hljs python">Module.register_forward_pre_hook(hook)</code></pre>
-
+<h2 id="13-torchnnmoduleregister_forward_pre_hook"><a class="markdownIt-Anchor" href="#13-torchnnmoduleregister_forward_pre_hook"></a> 1.3 torch.nn.Module.register_forward_pre_hook</h2>
+<pre><code class="hljs python">Module.register_forward_pre_hook(hook)</code></pre>
 <p>功能：注册module前向传播前的hook函数</p>
 <p>参数：hook函数</p>
 <p>模型在forward()之前调用hook函数。hook函数应该有如下形式：</p>
 <pre><code class="hljs python">hook(module, input) -&gt; None or modified output</code></pre>
-
 <p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
 <p>参数：</p>
 <ul>
@@ -423,21 +412,18 @@ net.conv1.register_forward_pre_hook(forward_pre_hook)
 <span class="hljs-comment"># inference</span>
 fake_img = torch.ones((<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>))   <span class="hljs-comment"># batch size * channel * H * W</span>
 output = net(fake_img)</code></pre>
-
 <p>输出：</p>
 <pre><code class="hljs python">forward_pre_hook input:(tensor([[[[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
           [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
           [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
           [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]]]]),)</code></pre>
-
 <p>可以看到hook函数将conv1的输入打印出来了</p>
-<h2 id="1-4-torch-nn-Module-register-backward-hook"><a href="#1-4-torch-nn-Module-register-backward-hook" class="headerlink" title="1.4 torch.nn.Module.register_backward_hook"></a>1.4 torch.nn.Module.register_backward_hook</h2><pre><code class="hljs python">Module.register_backward_hook(hook)</code></pre>
-
+<h2 id="14-torchnnmoduleregister_backward_hook"><a class="markdownIt-Anchor" href="#14-torchnnmoduleregister_backward_hook"></a> 1.4 torch.nn.Module.register_backward_hook</h2>
+<pre><code class="hljs python">Module.register_backward_hook(hook)</code></pre>
 <p>功能：注册module反向传播的hook函数</p>
 <p>参数：hook函数</p>
 <p>模型在反向传播之后调用hook函数。hook函数应该有如下形式：</p>
 <pre><code class="hljs python">hook(module, grad_input, grad_output) -&gt; None or modified output</code></pre>
-
 <p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
 <p>参数：</p>
 <ul>
@@ -483,7 +469,6 @@ loss_fnc = nn.L1Loss()
 target = torch.randn_like(output)
 loss = loss_fnc(target, output)
 loss.backward()</code></pre>
-
 <p>输出：</p>
 <pre><code class="hljs python">backward hook input:(<span class="hljs-literal">None</span>, tensor([[[[<span class="hljs-number">0.5000</span>, <span class="hljs-number">0.5000</span>, <span class="hljs-number">0.5000</span>],
           [<span class="hljs-number">0.5000</span>, <span class="hljs-number">0.5000</span>, <span class="hljs-number">0.5000</span>],
@@ -498,10 +483,8 @@ backward hook output:(tensor([[[[<span class="hljs-number">0.5000</span>, <span 
 
          [[<span class="hljs-number">0.5000</span>, <span class="hljs-number">0.0000</span>],
           [<span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>]]]]),)</code></pre>
-
-
-
-<h1 id="2-Hook函数与特征图提取"><a href="#2-Hook函数与特征图提取" class="headerlink" title="2. Hook函数与特征图提取"></a>2. Hook函数与特征图提取</h1><p><strong>代码：</strong></p>
+<h1 id="2-hook函数与特征图提取"><a class="markdownIt-Anchor" href="#2-hook函数与特征图提取"></a> 2. Hook函数与特征图提取</h1>
+<p><strong>代码：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
@@ -568,12 +551,11 @@ output = alexnet(img_tensor)
     nrow = int(np.sqrt(fmap.shape[<span class="hljs-number">0</span>]))
     fmap_grid = vutils.make_grid(fmap, normalize=<span class="hljs-literal">True</span>, scale_each=<span class="hljs-literal">True</span>, nrow=nrow)
     writer.add_image(<span class="hljs-string">&#x27;feature map in &#123;&#125;&#x27;</span>.format(layer_name), fmap_grid, global_step=<span class="hljs-number">322</span>)</code></pre>
-
 <p>tensorboard可视化特征图的效果如下：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013157.png" srcset="/img/loading.gif" alt="image-20200810013148726"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013200.png" srcset="/img/loading.gif" alt="image-20200810013158604"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013211.png" srcset="/img/loading.gif" alt="image-20200810013210146"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013222.png" srcset="/img/loading.gif" alt="image-20200810013220562"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013157.png" srcset="/img/loading.gif" alt="image-20200810013148726" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013200.png" srcset="/img/loading.gif" alt="image-20200810013158604" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013211.png" srcset="/img/loading.gif" alt="image-20200810013210146" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013222.png" srcset="/img/loading.gif" alt="image-20200810013220562" /></p>
 
             </div>
             <hr>

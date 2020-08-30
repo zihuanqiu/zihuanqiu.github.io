@@ -221,11 +221,12 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-迁移学习"><a href="#1-迁移学习" class="headerlink" title="1. 迁移学习"></a>1. 迁移学习</h1><p>Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)</p>
+              <h1 id="1-迁移学习"><a class="markdownIt-Anchor" href="#1-迁移学习"></a> 1. 迁移学习</h1>
+<p>Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816091629.png" srcset="/img/loading.gif" alt="image-20200816091617288" style="zoom: 50%;" />
-
 <p>模型微调是属于迁移学习的，但迁移学习更多是研究目标域无标注的情况</p>
-<h1 id="2-模型微调"><a href="#2-模型微调" class="headerlink" title="2. 模型微调"></a>2. 模型微调</h1><p>模型微调步骤：</p>
+<h1 id="2-模型微调"><a class="markdownIt-Anchor" href="#2-模型微调"></a> 2. 模型微调</h1>
+<p>模型微调步骤：</p>
 <ol>
 <li>获取预训练模型参数</li>
 <li>加载模型（load_state_dict）</li>
@@ -237,15 +238,18 @@
 <li>浅层网络使用较小的学习率（params_group）</li>
 </ol>
 <p><strong>实验：</strong></p>
-<p>Finetune Resnet-18 用于二分类<br>蚂蚁蜜蜂二分类数据<br>训练集：各120～张 验证集：各70～张</p>
+<p>Finetune Resnet-18 用于二分类<br />
+蚂蚁蜜蜂二分类数据<br />
+训练集：各120～张 验证集：各70～张</p>
 <blockquote>
 <p>这是一个很小的训练集样本，我们只能在预训练参数上做finetune实现蚂蚁蜜蜂二分类</p>
-<p> Resnet-18数据下载</p>
-<p>数据：<a target="_blank" rel="noopener" href="https://download.pytorch.org/tutorial/hymenoptera_data.zip">https://download.pytorch.org/tutorial/hymenoptera_data.zip</a> </p>
+<p>Resnet-18数据下载</p>
+<p>数据：<a target="_blank" rel="noopener" href="https://download.pytorch.org/tutorial/hymenoptera_data.zip">https://download.pytorch.org/tutorial/hymenoptera_data.zip</a></p>
 <p>模型： <a target="_blank" rel="noopener" href="https://download.pytorch.org/models/resnet18-5c106cde.pth">https://download.pytorch.org/models/resnet18-5c106cde.pth</a></p>
 </blockquote>
 <ol>
-<li><p>首先构建数据集：</p>
+<li>
+<p>首先构建数据集：</p>
  <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AntsDataset</span>(<span class="hljs-params">Dataset</span>):</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, data_dir, transform=None</span>):</span>
         self.label_name = &#123;<span class="hljs-string">&quot;ants&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;bees&quot;</span>: <span class="hljs-number">1</span>&#125;
@@ -281,14 +285,10 @@
                     data_info.append((path_img, int(label)))
 
         <span class="hljs-keyword">return</span> data_info  <span class="hljs-comment"># 返回的是所有图片的路径还有对应的类别</span></code></pre>
-
-
-
 </li>
-</ol>
-<ol start="2">
-<li><p>观察resnet18网络结构：</p>
-<p>通过<code>summary(resnet18_ft, (3, 224, 224), device=&#39;cpu&#39;)</code>可以打印出网络结构：</p>
+<li>
+<p>观察resnet18网络结构：</p>
+<p>通过<code>summary(resnet18_ft, (3, 224, 224), device='cpu')</code>可以打印出网络结构：</p>
 <pre><code class="hljs python">----------------------------------------------------------------
         Layer (type)               Output Shape         Param <span class="hljs-comment">#</span>
 ================================================================
@@ -370,10 +370,10 @@ Forward/backward <span class="hljs-keyword">pass</span> size (MB): <span class="
 Params size (MB): <span class="hljs-number">44.59</span>
 Estimated Total Size (MB): <span class="hljs-number">107.96</span>
 ----------------------------------------------------------------</code></pre>
-
 <p>最后一层是1000类的，对应imagenet的1000类任务。很显然我们需要修改最后一个全连接层使其适应我们的二分类任务（如果更优良的finetune我们可以从更早的部分开始改造，比如最后两个卷积层可以缩减特征图数量）</p>
 </li>
-<li><p>实验代码：</p>
+<li>
+<p>实验代码：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> torch
@@ -563,7 +563,8 @@ plt.ylabel(<span class="hljs-string">&#x27;loss value&#x27;</span>)
 plt.xlabel(<span class="hljs-string">&#x27;Iteration&#x27;</span>)
 plt.show()</code></pre>
 </li>
-<li><p>选择flag_1 = 0，flag_2 = 0，所有参数都用同一个学习率训练：</p>
+<li>
+<p>选择flag_1 = 0，flag_2 = 0，所有参数都用同一个学习率训练：</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">use</span> device :cuda
 <span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">6680</span> Acc:<span class="hljs-number">56</span>.<span class="hljs-number">25</span>%
 <span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">3331</span> Acc:<span class="hljs-number">89</span>.<span class="hljs-number">54</span>%
@@ -615,11 +616,11 @@ plt.show()</code></pre>
 <span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1803</span> Acc:<span class="hljs-number">94</span>.<span class="hljs-number">12</span>%
 <span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1197</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
 <span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1991</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%</code></pre>
-
 <p>25个epoch之后，在验证集上的准确率达到了93.46%</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816101616.png" srcset="/img/loading.gif" alt="image-20200816101614963"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816101616.png" srcset="/img/loading.gif" alt="image-20200816101614963" /></p>
 </li>
-<li><p>选择flag_1 = 1，flag_2 = 0，冻结网络参数，只训练最后一个(in=512, out=2)的全连接层：</p>
+<li>
+<p>选择flag_1 = 1，flag_2 = 0，冻结网络参数，只训练最后一个(in=512, out=2)的全连接层：</p>
 <pre><code class="hljs python">use device :cuda
 Training:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.6931</span> Acc:<span class="hljs-number">55.00</span>%
 Valid:	 Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.4438</span> Acc:<span class="hljs-number">86.93</span>%
@@ -671,11 +672,11 @@ Training:Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">02
 Valid:	 Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1955</span> Acc:<span class="hljs-number">95.42</span>%
 Training:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2133</span> Acc:<span class="hljs-number">92.50</span>%
 Valid:	 Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2063</span> Acc:<span class="hljs-number">94.77</span>%</code></pre>
-
 <p>25个epoch之后，在验证集上的准确率达到了94.77%</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816102144.png" srcset="/img/loading.gif" alt="image-20200816102142913"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816102144.png" srcset="/img/loading.gif" alt="image-20200816102142913" /></p>
 </li>
-<li><p>选择flag_1 = 0，flag_2 =1，对非最后一层fc的参数使用小学习率，对最后一层fc的参数使用大学习率</p>
+<li>
+<p>选择flag_1 = 0，flag_2 =1，对非最后一层fc的参数使用小学习率，对最后一层fc的参数使用大学习率</p>
 <pre><code class="hljs python">use device :cuda
 Training:Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.6802</span> Acc:<span class="hljs-number">55.62</span>%
 Valid:	 Epoch[<span class="hljs-number">000</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.3802</span> Acc:<span class="hljs-number">89.54</span>%
@@ -727,11 +728,10 @@ Training:Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">02
 Valid:	 Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1825</span> Acc:<span class="hljs-number">94.12</span>%
 Training:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1505</span> Acc:<span class="hljs-number">95.00</span>%
 Valid:	 Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1963</span> Acc:<span class="hljs-number">95.42</span>%</code></pre>
-
 <p>25个epoch之后，在验证集上的准确率达到了95.42%</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816105210.png" srcset="/img/loading.gif" alt="image-20200816105209289" /></p>
 </li>
 </ol>
-<p>   <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816105210.png" srcset="/img/loading.gif" alt="image-20200816105209289"></p>
 
             </div>
             <hr>

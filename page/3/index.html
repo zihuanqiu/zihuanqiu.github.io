@@ -201,11 +201,12 @@
           
             
           
-          1. 迁移学习Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)
-
+           1. 迁移学习
+Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)
 
 模型微调是属于迁移学习的，但迁移学习更多是研究目标域无标注的情况
-2. 模型微调模型微调步骤：
+ 2. 模型微调
+模型微调步骤：
 
 获取预训练模型参数
 加载模型（load_state_dict）
@@ -213,7 +214,7 @@
 
 模型微调训练方法：
 
-固定预训练的参数(令requires_gr
+固定预训练的参数(令requires
         </a>
       </p>
 
@@ -260,22 +261,23 @@
           
             
           
-          1. PyTorch中对象的保存与加载1.1 torch.savetorch.save(obj, f)
-
+           1. PyTorch中对象的保存与加载
+ 1.1 torch.save
+torch.save(obj, f)
 主要参数：
 
 obj：对象
 f：输出路径
 
-1.2 torch.loadtorch.load(f, map_location=None)
-
+ 1.2 torch.load
+torch.load(f, map_location=None)
 主要参数
 
 f：文件路径
 map_location：指定存放位置, cpu or gpu
 
-2. PyTorch中模型的保存以下实验要保存的网络为：
-im
+ 2. PyTorch中模型的保存
+以下实验要保存的网
         </a>
       </p>
 
@@ -322,13 +324,14 @@ im
           
             
           
-          1. 正则化与偏差-方差分解Regularization：减小方差的策略
+           1. 正则化与偏差-方差分解
+Regularization：减小方差的策略
 误差可分解为：偏差，方差与噪声之和。即误差 = 偏差 + 方差 + 噪声之和
 偏差度量了学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力
 方差度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了数据扰动所造成的影响
 噪声则表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界
 
-高偏差：模型
+高偏差：
         </a>
       </p>
 
@@ -375,12 +378,13 @@ im
           
             
           
-          1. Hook函数概念Hook函数机制：不改变主体，实现额外功能，就是开挂的意思
+           1. Hook函数概念
+Hook函数机制：不改变主体，实现额外功能，就是开挂的意思
 大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数
 
 torch.Tensor.register_hook(hook)
 torch.nn.Module.register_forward_hook
-torch.nn.Module.register_
+torch.nn.Module.registe
         </a>
       </p>
 
@@ -427,12 +431,15 @@ torch.nn.Module.register_
           
             
           
-          1. TensorBoard简介与安装1.1 安装TensorBoardTensorBoard：TensorFlow中强大的可视化工具
+           1. TensorBoard简介与安装
+ 1.1 安装TensorBoard
+TensorBoard：TensorFlow中强大的可视化工具
 
 通过pip install future和pip install tensorboard安装tensorboard
-1.2 运行TensorBoard实验代码：
+ 1.2 运行TensorBoard
+实验代码：
 import numpy as np
-from torch.utils.tensorboard im
+from torch.utils.tensorbo
         </a>
       </p>
 
@@ -479,7 +486,8 @@ from torch.utils.tensorboard im
           
             
           
-          1. 为什么要调整学习率？可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。
+           1. 为什么要调整学习率？
+可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。
 学习率调整策略的函数都继承于_LRScheduler这个基类。
 主要属性：
 
@@ -489,7 +497,7 @@ base_lrs：记录初始学习率
 
 主要方法：
 
-step()：更新下一个epoch的学习率（一次epoch运行一次step
+step()：更新下一个epoch的学习率（一次epoch运行一次st
         </a>
       </p>
 
@@ -536,14 +544,14 @@ step()：更新下一个epoch的学习率（一次epoch运行一次step
           
             
           
-          1. optimizer的属性class Optimizer(object):
+           1. optimizer的属性
+class Optimizer(object):
 	def __init__(self, params, defaults):
 		self.defaults = defaults
         self.state = defaultdict(dict)
         self.param_groups = []
 
-
-defaults：优化器超参数（字典：包含’
+defaults：优化器超参数（字典：包含
         </a>
       </p>
 
@@ -590,17 +598,13 @@ defaults：优化器超参数（字典：包含’
           
             
           
-          1. 损失函数概念损失函数：衡量模型输出与真实标签的差异
+           1. 损失函数概念
+损失函数：衡量模型输出与真实标签的差异
 
-
-
-
-损失函数(Loss Function)： 
-$Loss=f\left( \hat{y},y \right)$
+损失函数(Loss Function)：
+Loss=f(y^,y)Loss=f\left( \hat{y},y \right)Loss=f(y^​,y)
 代价函数(Cost Function)：
-$Cost=\frac{1}{N}\sum_{i=1}^N{f\left( \hat{y}_i,y \right)}$
-目标函数(Objective Function)：
-$Obj,
+Cost=1N∑i=1Nf(y^i,y)Cost=\frac{1}{N}\sum_{i=1}^N{f\left( \hat{y}_i,y \
         </a>
       </p>
 
@@ -647,11 +651,13 @@ $Obj,
           
             
           
-          1. 梯度消失与爆炸对于一个没有激活函数（先不考虑激活函数）的多层神经网络，参数的导数可以计算如下
+           1. 梯度消失与爆炸
+对于一个没有激活函数（先不考虑激活函数）的多层神经网络，参数的导数可以计算如下
 
-
-
-$$\begin{aligned}\text{H}_2&amp;=\text{H}_1*\text{W}_2\    \Delta \text{W}_2&amp;=\frac{\partial \text{Loss}}{\partial \text{W}_2}=\frac{\partial \
+H2=H1∗W2ΔW2=∂Loss∂W2=∂Loss∂out∗∂out∂H2∗∂H2∂w2=∂Loss∂out∗∂out∂H2∗H1\begin{aligned}
+\text{H}_2&amp;=\text{H}_1*\text{W}_2
+\\
+	\Delta \text{W}_2&amp;=
         </a>
       </p>
 
@@ -698,16 +704,17 @@ $$\begin{aligned}\text{H}_2&amp;=\text{H}_1*\text{W}_2\    \Delta \text{W}_2&amp
           
             
           
-          1. 池化层——Pooling Layer池化运算：对信号进行 “收集”并 “总结”。“收集”：多变少 “总结”：最大值/平均值
+           1. 池化层——Pooling Layer
+池化运算：对信号进行 “收集”并 “总结”。
+“收集”：多变少
+“总结”：最大值/平均值
 
-
-
-
-1.1 nn.MaxPool2dnn.MaxPool2d(kernel_size, 
+ 1.1 nn.MaxPool2d
+nn.MaxPool2d(kernel_size, 
              stride=None, 
              padding=0, 
              dilation=1, 
-          
+        
         </a>
       </p>
 

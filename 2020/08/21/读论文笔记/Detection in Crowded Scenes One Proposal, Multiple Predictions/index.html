@@ -221,18 +221,21 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Detection-in-Crowded-Scenes-One-Proposal-Multiple-Predictions"><a href="#Detection-in-Crowded-Scenes-One-Proposal-Multiple-Predictions" class="headerlink" title="Detection in Crowded Scenes: One Proposal, Multiple Predictions"></a>Detection in Crowded Scenes: One Proposal, Multiple Predictions</h1><div class="note note-info">
+              <h1 id="detection-in-crowded-scenes-one-proposal-multiple-predictions"><a class="markdownIt-Anchor" href="#detection-in-crowded-scenes-one-proposal-multiple-predictions"></a> Detection in Crowded Scenes: One Proposal, Multiple Predictions</h1>
+<div class="note note-info">
             <p>参考文献<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Chu X, Zheng A, Zhang X, et al. Detection in Crowded Scenes: One Proposal, Multiple Predictions[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 12214-12223.">[1]</span></a></sup></p>
           </div>
-
-<h2 id="Common-detection-methods"><a href="#Common-detection-methods" class="headerlink" title="Common detection methods"></a>Common detection methods</h2><ol>
-<li>Two Stage Methods<ul>
+<h2 id="common-detection-methods"><a class="markdownIt-Anchor" href="#common-detection-methods"></a> Common detection methods</h2>
+<ol>
+<li>Two Stage Methods
+<ul>
 <li>Fast R-CNN</li>
 <li>Faster R-CNN</li>
 <li>Cascade R-CNN</li>
 </ul>
 </li>
-<li>One  Stage Methods<ul>
+<li>One  Stage Methods
+<ul>
 <li>YOLO series</li>
 <li>SSD</li>
 <li>RetinaNet</li>
@@ -242,39 +245,53 @@
 <blockquote>
 <p>More and More accurate, faster and faster, but it still difficult to solve the detection of crowded scenes.</p>
 </blockquote>
-<h3 id="R-CNN-Pipeline"><a href="#R-CNN-Pipeline" class="headerlink" title="R-CNN Pipeline"></a>R-CNN Pipeline</h3><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200625174145.png" srcset="/img/loading.gif" alt="image-20200625174143246"></p>
-<h3 id="RetinaNet-Pipeline"><a href="#RetinaNet-Pipeline" class="headerlink" title="RetinaNet Pipeline"></a>RetinaNet Pipeline</h3><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200625174523.png" srcset="/img/loading.gif" alt="image-20200625174518553"></p>
-<h3 id="Post-Processing-Non-Maximum-Suppression"><a href="#Post-Processing-Non-Maximum-Suppression" class="headerlink" title="Post Processing: Non-Maximum Suppression"></a>Post Processing: Non-Maximum Suppression</h3><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200625174712.png" srcset="/img/loading.gif" alt="image-20200625174709302"></p>
-<h2 id="Detection-in-Crowded-Scenes-More-Challenging"><a href="#Detection-in-Crowded-Scenes-More-Challenging" class="headerlink" title="Detection in Crowded Scenes: More Challenging"></a>Detection in Crowded Scenes: More Challenging</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145744.png" srcset="/img/loading.gif" alt="image-20200625174828820"></p>
+<h3 id="r-cnn-pipeline"><a class="markdownIt-Anchor" href="#r-cnn-pipeline"></a> R-CNN Pipeline</h3>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200625174145.png" srcset="/img/loading.gif" alt="image-20200625174143246" /></p>
+<h3 id="retinanet-pipeline"><a class="markdownIt-Anchor" href="#retinanet-pipeline"></a> RetinaNet Pipeline</h3>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200625174523.png" srcset="/img/loading.gif" alt="image-20200625174518553" /></p>
+<h3 id="post-processing-non-maximum-suppression"><a class="markdownIt-Anchor" href="#post-processing-non-maximum-suppression"></a> Post Processing: Non-Maximum Suppression</h3>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200625174712.png" srcset="/img/loading.gif" alt="image-20200625174709302" /></p>
+<h2 id="detection-in-crowded-scenes-more-challenging"><a class="markdownIt-Anchor" href="#detection-in-crowded-scenes-more-challenging"></a> Detection in Crowded Scenes: More Challenging</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145744.png" srcset="/img/loading.gif" alt="image-20200625174828820" /></p>
 <ul>
 <li>Highly overlapped instances are likely to have very similar features, it is difficult for a detector to generate distinguishing prediction for each proposal respectively.</li>
 <li>Instances may heavily overlap each other, the predictions are very likely to be mistakenly suppressed by NMS.</li>
 </ul>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145745.png" srcset="/img/loading.gif" alt="image-20200625175608161"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145745.png" srcset="/img/loading.gif" alt="image-20200625175608161" /></p>
 <p>Take this picture as an example. It is difficult to say which bounded-box is better because each B-box contains some area of the target. So, it becomes a big problem for crowded scenes detection. Past, we use IOU as a score for the NMS. However, in the crowded scenes detection, it does not always work, because the better B-box is not the one who has the highest IOU score.</p>
-<h3 id="Previous-Methods"><a href="#Previous-Methods" class="headerlink" title="Previous Methods"></a>Previous Methods</h3><ul>
-<li><p>Sophisticated NMS</p>
+<h3 id="previous-methods"><a class="markdownIt-Anchor" href="#previous-methods"></a> Previous Methods</h3>
+<ul>
+<li>
+<p>Sophisticated NMS</p>
 <p>Soft-NMS, Learning NMS, Adaptive NMS, Sequential context encoding…</p>
 </li>
-<li><p>Re-scoring</p>
+<li>
+<p>Re-scoring</p>
 <p>Relation Net…</p>
 </li>
-<li><p>New loss function</p>
+<li>
+<p>New loss function</p>
 <p>Repulsion Loss, Aggregation Loss…</p>
 </li>
-<li><p>Part-based detectors</p>
+<li>
+<p>Part-based detectors</p>
 <p>PedHunter, Bi-box regression, DeepParts, Guided attention…</p>
 </li>
 </ul>
-<h3 id="Our-Approach-Multiple-Detection"><a href="#Our-Approach-Multiple-Detection" class="headerlink" title="Our Approach: Multiple Detection"></a>Our Approach: Multiple Detection</h3><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145746.png" srcset="/img/loading.gif" alt="image-20200626142909323"></p>
+<h3 id="our-approach-multiple-detection"><a class="markdownIt-Anchor" href="#our-approach-multiple-detection"></a> Our Approach: Multiple Detection</h3>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145746.png" srcset="/img/loading.gif" alt="image-20200626142909323" /></p>
 <p>The (a) shows how single predication paradigms solve the overlapping problem. It’s very difficult as the proposals share very similar feature, and NMS will keep only one prediction.</p>
 <p>The (b) shows how we trying to solve the problem. Each proposal predicts a set of instances and our Set-NMS can easily remove the duplicate predictions.</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145747.png" srcset="/img/loading.gif" alt="image-20200626143816825"></p>
-<h4 id="EMD-Loss-A-Set-Distance-Measurement"><a href="#EMD-Loss-A-Set-Distance-Measurement" class="headerlink" title="EMD Loss: A Set Distance Measurement"></a>EMD Loss: A Set Distance Measurement</h4><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145748.png" srcset="/img/loading.gif" alt="image-20200626144014276"></p>
-<h4 id="Set-NMS-Skip-the-Suppression-in-Same-Set"><a href="#Set-NMS-Skip-the-Suppression-in-Same-Set" class="headerlink" title="Set-NMS: Skip the Suppression in Same Set"></a>Set-NMS: Skip the Suppression in Same Set</h4><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145749.png" srcset="/img/loading.gif" alt="image-20200626144150181"></p>
-<h4 id="Experiments-Main-Results-and-Ablation-Study"><a href="#Experiments-Main-Results-and-Ablation-Study" class="headerlink" title="Experiments: Main Results and Ablation Study"></a>Experiments: Main Results and Ablation Study</h4><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145750.png" srcset="/img/loading.gif" alt="image-20200626144400334"></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145751.png" srcset="/img/loading.gif" alt="image-20200626144856803"></p>
-<h4 id="Comparison-with-SOTA"><a href="#Comparison-with-SOTA" class="headerlink" title="Comparison with  SOTA"></a>Comparison with  SOTA</h4><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145752.png" srcset="/img/loading.gif" alt="image-20200626145122370"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145747.png" srcset="/img/loading.gif" alt="image-20200626143816825" /></p>
+<h4 id="emd-loss-a-set-distance-measurement"><a class="markdownIt-Anchor" href="#emd-loss-a-set-distance-measurement"></a> EMD Loss: A Set Distance Measurement</h4>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145748.png" srcset="/img/loading.gif" alt="image-20200626144014276" /></p>
+<h4 id="set-nms-skip-the-suppression-in-same-set"><a class="markdownIt-Anchor" href="#set-nms-skip-the-suppression-in-same-set"></a> Set-NMS: Skip the Suppression in Same Set</h4>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145749.png" srcset="/img/loading.gif" alt="image-20200626144150181" /></p>
+<h4 id="experiments-main-results-and-ablation-study"><a class="markdownIt-Anchor" href="#experiments-main-results-and-ablation-study"></a> Experiments: Main Results and Ablation Study</h4>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145750.png" srcset="/img/loading.gif" alt="image-20200626144400334" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145751.png" srcset="/img/loading.gif" alt="image-20200626144856803" /></p>
+<h4 id="comparison-with-sota"><a class="markdownIt-Anchor" href="#comparison-with-sota"></a> Comparison with  SOTA</h4>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200626145752.png" srcset="/img/loading.gif" alt="image-20200626145122370" /></p>
 <section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>Chu X, Zheng A, Zhang X, et al. Detection in Crowded Scenes: One Proposal, Multiple Predictions[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 12214-12223.
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>

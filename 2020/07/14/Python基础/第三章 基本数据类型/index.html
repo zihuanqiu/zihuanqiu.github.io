@@ -221,16 +221,18 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161020.png" srcset="/img/loading.gif" alt="image-20200713161017237"></p>
-<h1 id="第一部分-数字类型"><a href="#第一部分-数字类型" class="headerlink" title="第一部分 数字类型"></a>第一部分 数字类型</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161755.png" srcset="/img/loading.gif" alt="image-20200713161752710"></p>
-<h2 id="1-1-数字类型的组成"><a href="#1-1-数字类型的组成" class="headerlink" title="1.1 数字类型的组成"></a>1.1 数字类型的组成</h2><h3 id="1-1-1-整数——不同进制的转换"><a href="#1-1-1-整数——不同进制的转换" class="headerlink" title="1.1.1 整数——不同进制的转换"></a>1.1.1 整数——不同进制的转换</h3><ul>
-<li>默认输入十进制 </li>
+              <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161020.png" srcset="/img/loading.gif" alt="image-20200713161017237" /></p>
+<h1 id="第一部分-数字类型"><a class="markdownIt-Anchor" href="#第一部分-数字类型"></a> 第一部分 数字类型</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161755.png" srcset="/img/loading.gif" alt="image-20200713161752710" /></p>
+<h2 id="11-数字类型的组成"><a class="markdownIt-Anchor" href="#11-数字类型的组成"></a> 1.1 数字类型的组成</h2>
+<h3 id="111-整数不同进制的转换"><a class="markdownIt-Anchor" href="#111-整数不同进制的转换"></a> 1.1.1 整数——不同进制的转换</h3>
+<ul>
+<li>默认输入十进制</li>
 <li>二进制0b、八进制0o、十六进制0x</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-number">16</span> == <span class="hljs-number">0b10000</span> == <span class="hljs-number">0o20</span> == <span class="hljs-number">0x10</span></code></pre>
-
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <ul>
 <li>十进制与其他进制的转换</li>
 </ul>
@@ -238,34 +240,28 @@
 b = oct(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转八进制</span>
 c = hex(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转十六进制</span>
 print(a, b, c)</code></pre>
-
-<pre><code>0b10000 0o20 0x10</code></pre>
+<pre><code>0b10000 0o20 0x10
+</code></pre>
 <p><strong>注意：上述转换后结果为字符串类型</strong></p>
 <pre><code class="hljs python">a == b == c</code></pre>
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <pre><code class="hljs python">type(a)</code></pre>
-
-
-<pre><code>str</code></pre>
+<pre><code>str
+</code></pre>
 <pre><code class="hljs python">a
 b
 c
 eval(a)
 eval(b)
 eval(c)</code></pre>
+<pre><code>'0b10000'
 
 
+'0o20'
 
 
-<pre><code>&#39;0b10000&#39;
-
-
-&#39;0o20&#39;
-
-
-&#39;0x10&#39;
+'0x10'
 
 
 16
@@ -274,7 +270,8 @@ eval(c)</code></pre>
 16
 
 
-16</code></pre>
+16
+</code></pre>
 <ul>
 <li>其他进制转十进制</li>
 </ul>
@@ -282,22 +279,22 @@ eval(c)</code></pre>
 e = int(b, <span class="hljs-number">8</span>)      <span class="hljs-comment"># 八进制转十进制</span>
 f = int(c, <span class="hljs-number">16</span>)     <span class="hljs-comment"># 十六进制转十进制</span>
 print(d, e, f)</code></pre>
-
-<pre><code>16 16 16</code></pre>
-<h3 id="1-1-2-浮点数——不确定性"><a href="#1-1-2-浮点数——不确定性" class="headerlink" title="1.1.2 浮点数——不确定性"></a>1.1.2 浮点数——不确定性</h3><ul>
+<pre><code>16 16 16
+</code></pre>
+<h3 id="112-浮点数不确定性"><a class="markdownIt-Anchor" href="#112-浮点数不确定性"></a> 1.1.2 浮点数——不确定性</h3>
+<ul>
 <li>不确定小数问题</li>
 </ul>
 <pre><code class="hljs python">(<span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span>) == <span class="hljs-number">0.3</span></code></pre>
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span></code></pre>
-
-
-<pre><code>0.30000000000000004</code></pre>
+<pre><code>0.30000000000000004
+</code></pre>
 <p><strong>计算机采用二进制小数来表示浮点数的小数部分</strong></p>
 <ul>
-<li><p>部分小数不能用二进制小数完全表示</p>
+<li>
+<p>部分小数不能用二进制小数完全表示</p>
 <table>
 <thead>
 <tr>
@@ -305,7 +302,8 @@ print(d, e, f)</code></pre>
 <th>十进制</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>0.00011001100110011001</td>
 <td>0.09999942779541016</td>
 </tr>
@@ -325,168 +323,154 @@ print(d, e, f)</code></pre>
 <td>0.1</td>
 <td>0.5</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</li>
+<li>
+<p>通常情况下不会影响计算精度</p>
 </li>
 </ul>
-<ul>
-<li>通常情况下不会影响计算精度</li>
-</ul>
 <pre><code class="hljs python"><span class="hljs-number">0.1</span> + <span class="hljs-number">0.7</span></code></pre>
-
-
-<pre><code>0.7999999999999999</code></pre>
+<pre><code>0.7999999999999999
+</code></pre>
 <ul>
 <li>四舍五入获得精确解</li>
 </ul>
 <pre><code class="hljs python">a = <span class="hljs-number">3</span>*<span class="hljs-number">0.1</span>
 print(a)</code></pre>
-
-<pre><code>0.30000000000000004</code></pre>
+<pre><code>0.30000000000000004
+</code></pre>
 <pre><code class="hljs python">b = round(a, <span class="hljs-number">1</span>)
 print(b)
 b == <span class="hljs-number">0.3</span>
 round(<span class="hljs-number">0.033</span>, <span class="hljs-number">1</span>)</code></pre>
-
 <pre><code>0.3
 
 True
 
 
-0.0</code></pre>
+0.0
+</code></pre>
 <blockquote>
 <p>round(v1,v2)     v1是变量，v2是四舍五入至小数点后多少位</p>
 </blockquote>
-<h3 id="1-1-3-复数——a-bj"><a href="#1-1-3-复数——a-bj" class="headerlink" title="1.1.3 复数——a+bj"></a>1.1.3 复数——a+bj</h3><ul>
+<h3 id="113-复数abj"><a class="markdownIt-Anchor" href="#113-复数abj"></a> 1.1.3 复数——a+bj</h3>
+<ul>
 <li>大写J或小写j均可</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-number">3</span>+<span class="hljs-number">4j</span>
 <span class="hljs-number">2</span>+<span class="hljs-number">5J</span></code></pre>
-
-
 <pre><code>(3+4j)
 
 
-(2+5j)</code></pre>
+(2+5j)
+</code></pre>
 <ul>
 <li>虚部系数为1时，需要显式写出</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-number">2</span>+<span class="hljs-number">1j</span></code></pre>
-
-
-<pre><code>(2+1j)</code></pre>
-<h2 id="1-2-数字运算操作符（a-操作符-b）"><a href="#1-2-数字运算操作符（a-操作符-b）" class="headerlink" title="1.2 数字运算操作符（a 操作符 b）"></a>1.2 数字运算操作符（a 操作符 b）</h2><ul>
-<li>加减乘除运算 &ensp;  +&ensp;  -&ensp;  /&ensp;  *</li>
+<pre><code>(2+1j)
+</code></pre>
+<h2 id="12-数字运算操作符a-操作符-b"><a class="markdownIt-Anchor" href="#12-数字运算操作符a-操作符-b"></a> 1.2 数字运算操作符（a 操作符 b）</h2>
+<ul>
+<li>加减乘除运算    +   -   /   *</li>
 </ul>
 <pre><code class="hljs python">(<span class="hljs-number">1</span> + <span class="hljs-number">3</span> - <span class="hljs-number">4</span>*<span class="hljs-number">2</span>)/<span class="hljs-number">5</span></code></pre>
-
-
-<pre><code>-0.8</code></pre>
+<pre><code>-0.8
+</code></pre>
 <ul>
-<li>取反&ensp;  -</li>
+<li>取反   -</li>
 </ul>
 <pre><code class="hljs python">x = <span class="hljs-number">1</span>
 -x</code></pre>
-
-
-<pre><code>-1</code></pre>
+<pre><code>-1
+</code></pre>
 <ul>
-<li>乘方运算&ensp;  **</li>
+<li>乘方运算   **</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-number">2</span>**<span class="hljs-number">3</span></code></pre>
-
-
-<pre><code>8</code></pre>
+<pre><code>8
+</code></pre>
 <ul>
-<li>整数商//&ensp;  和&ensp;  模运算%</li>
+<li>整数商//   和   模运算%</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-number">13</span>//<span class="hljs-number">5</span>    <span class="hljs-comment"># 整数商    x/y 向下取整数</span></code></pre>
-
-
-<pre><code>2</code></pre>
+<pre><code>2
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-number">13</span> % <span class="hljs-number">5</span>   <span class="hljs-comment"># 模运算    余数 13=2*5+3</span></code></pre>
-
-
-<pre><code>3</code></pre>
+<pre><code>3
+</code></pre>
 <p><strong>几点说明</strong></p>
 <ul>
 <li>整数与浮点数运算结果是浮点数</li>
 <li>除法运算的结果是浮点数</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-number">1</span>+<span class="hljs-number">1.5</span></code></pre>
-
-
-<pre><code>2.5</code></pre>
+<pre><code>2.5
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-number">2</span>/<span class="hljs-number">5</span></code></pre>
-
-
-<pre><code>0.4</code></pre>
+<pre><code>0.4
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-number">8</span>/<span class="hljs-number">4</span></code></pre>
-
-
-<pre><code>2.0</code></pre>
-<h2 id="1-3-数字运算操作函数-ensp-function-x-…"><a href="#1-3-数字运算操作函数-ensp-function-x-…" class="headerlink" title="1.3 数字运算操作函数&ensp;  function(x, …)"></a>1.3 数字运算操作函数&ensp;  function(x, …)</h2><ul>
+<pre><code>2.0
+</code></pre>
+<h2 id="13-数字运算操作函数-functionx"><a class="markdownIt-Anchor" href="#13-数字运算操作函数-functionx"></a> 1.3 数字运算操作函数   function(x, …)</h2>
+<ul>
 <li>求绝对值 abs()</li>
 </ul>
 <pre><code class="hljs python">abs(<span class="hljs-number">-5</span>)</code></pre>
-
-
-<pre><code>5</code></pre>
+<pre><code>5
+</code></pre>
 <pre><code class="hljs python">abs(<span class="hljs-number">3</span>+<span class="hljs-number">4j</span>)  <span class="hljs-comment"># 对复数a+bj 执行的是求模运算(a^2+b^2)^0.5</span></code></pre>
-
-
-<pre><code>5.0</code></pre>
+<pre><code>5.0
+</code></pre>
 <ul>
 <li>幂次方 pow(x,n)</li>
 </ul>
 <pre><code class="hljs python">pow(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)  <span class="hljs-comment"># pow(x,n) x的n次方  等价于x**n</span></code></pre>
-
-
-<pre><code>32</code></pre>
+<pre><code>32
+</code></pre>
 <pre><code class="hljs python">pow(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># 2^5 % 3  更快速</span></code></pre>
-
-
-<pre><code>2</code></pre>
+<pre><code>2
+</code></pre>
 <ul>
 <li>四舍五入 round(x,n)</li>
 </ul>
 <pre><code class="hljs python">a = <span class="hljs-number">1.618</span>
 print(round(a))      <span class="hljs-comment"># 默认四舍五入为整数</span></code></pre>
-
-<pre><code>2</code></pre>
+<pre><code>2
+</code></pre>
 <pre><code class="hljs python">print(round(a, <span class="hljs-number">2</span>))   <span class="hljs-comment"># 参数2表示四舍五入后保留2位小数</span></code></pre>
-
-<pre><code>1.62</code></pre>
+<pre><code>1.62
+</code></pre>
 <pre><code class="hljs python">print(round(a, <span class="hljs-number">5</span>))   <span class="hljs-comment"># 位数不足，无需补齐</span></code></pre>
-
-<pre><code>1.618</code></pre>
+<pre><code>1.618
+</code></pre>
 <ul>
 <li>整数商和模运算 divmod(x,y)</li>
 <li>等价于返回二元元组（x//y,x % y）</li>
 </ul>
 <pre><code class="hljs python">divmod(<span class="hljs-number">13</span>, <span class="hljs-number">5</span>)   <span class="hljs-comment"># 较（x//y,x % y）更快，只执行了一次x/y</span></code></pre>
-
-
-<pre><code>(2, 3)</code></pre>
+<pre><code>(2, 3)
+</code></pre>
 <ul>
-<li>序列最大/最小值 max( )&ensp;  min( )</li>
+<li>序列最大/最小值 max( )   min( )</li>
 </ul>
 <pre><code class="hljs python">max(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)</code></pre>
-
-
-<pre><code>9</code></pre>
+<pre><code>9
+</code></pre>
 <pre><code class="hljs python">a = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
 print(<span class="hljs-string">&quot;max:&quot;</span>, max(a))
 print(<span class="hljs-string">&quot;min:&quot;</span>, min(a))</code></pre>
-
 <pre><code>max: 9
-min: 2</code></pre>
+min: 2
+</code></pre>
 <ul>
 <li>求和sum(x)</li>
 </ul>
 <pre><code class="hljs python">sum((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>))</code></pre>
-
-
-<pre><code>15</code></pre>
+<pre><code>15
+</code></pre>
 <ul>
 <li>借助科学计算库 math\scipy\numpy</li>
 </ul>
@@ -494,53 +478,56 @@ min: 2</code></pre>
 print(math.exp(<span class="hljs-number">1</span>))   <span class="hljs-comment"># 指数运算 e^x</span>
 print(math.log2(<span class="hljs-number">2</span>))  <span class="hljs-comment"># 对数运算</span>
 print(math.sqrt(<span class="hljs-number">4</span>))  <span class="hljs-comment"># 开平方运算  等价于4^0.5</span></code></pre>
-
 <pre><code>2.718281828459045
 1.0
-2.0</code></pre>
+2.0
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
 print(np.mean(a))    <span class="hljs-comment"># 求均值</span>
 print(np.median(a))  <span class="hljs-comment"># 求中位数</span>
 print(np.std(a))     <span class="hljs-comment"># 求标准差</span></code></pre>
-
 <pre><code>3.0
 3.0
-1.4142135623730951</code></pre>
-<h1 id="第二部分-字符串类型"><a href="#第二部分-字符串类型" class="headerlink" title="第二部分 字符串类型"></a>第二部分 字符串类型</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161814.png" srcset="/img/loading.gif" alt="image-20200713161811073"></p>
-<h2 id="2-1-字符串的表达"><a href="#2-1-字符串的表达" class="headerlink" title="2.1 字符串的表达"></a>2.1 字符串的表达</h2><ul>
-<li>用””或’’括起来的任意字符</li>
+1.4142135623730951
+</code></pre>
+<h1 id="第二部分-字符串类型"><a class="markdownIt-Anchor" href="#第二部分-字符串类型"></a> 第二部分 字符串类型</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161814.png" srcset="/img/loading.gif" alt="image-20200713161811073" /></p>
+<h2 id="21-字符串的表达"><a class="markdownIt-Anchor" href="#21-字符串的表达"></a> 2.1 字符串的表达</h2>
+<ul>
+<li>用&quot;&quot;或’'括起来的任意字符</li>
 </ul>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;Python&quot;</span>)
 print(<span class="hljs-string">&#x27;Python&#x27;</span>)</code></pre>
-
 <pre><code>Python
-Python</code></pre>
+Python
+</code></pre>
 <ul>
 <li>字符串中有双引号或单引号的情况</li>
 </ul>
 <p><strong>双中有单</strong></p>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;I&#x27;m 18 years old&quot;</span>)</code></pre>
-
-<pre><code>I&#39;m 18 years old</code></pre>
+<pre><code>I'm 18 years old
+</code></pre>
 <p><strong>单中有双</strong></p>
 <pre><code class="hljs python">print(<span class="hljs-string">&#x27;&quot;Python&quot; is good&#x27;</span>)</code></pre>
-
-<pre><code>&quot;Python&quot; is good</code></pre>
-<p><strong>双中有双，单中有单</strong>——转义符&ensp;  \</p>
+<pre><code>&quot;Python&quot; is good
+</code></pre>
+<p><strong>双中有双，单中有单</strong>——转义符   \</p>
 <pre><code class="hljs python"><span class="hljs-comment"># print(&quot;&quot;Python&quot; is good&quot;)</span>
 print(<span class="hljs-string">&quot;\&quot;Python\&quot; is good&quot;</span>)  <span class="hljs-comment"># \ 我是个字符呀</span></code></pre>
-
-<pre><code>&quot;Python&quot; is good</code></pre>
+<pre><code>&quot;Python&quot; is good
+</code></pre>
 <p><strong>转义符可以用来换行继续输入</strong></p>
 <pre><code class="hljs python"><span class="hljs-comment"># 等等，我还没完事！</span>
 s = <span class="hljs-string">&quot;py\</span>
 <span class="hljs-string">thon&quot;</span>                    
 print(s)</code></pre>
-
-<pre><code>python</code></pre>
-<h2 id="2-2-字符串的性质"><a href="#2-2-字符串的性质" class="headerlink" title="2.2 字符串的性质"></a>2.2 字符串的性质</h2><h3 id="2-2-1-字符串的索引"><a href="#2-2-1-字符串的索引" class="headerlink" title="2.2.1 字符串的索引"></a>2.2.1 字符串的索引</h3><pre><code class="hljs python">s = <span class="hljs-string">&quot;My name is Peppa Pig&quot;</span></code></pre>
-
+<pre><code>python
+</code></pre>
+<h2 id="22-字符串的性质"><a class="markdownIt-Anchor" href="#22-字符串的性质"></a> 2.2 字符串的性质</h2>
+<h3 id="221-字符串的索引"><a class="markdownIt-Anchor" href="#221-字符串的索引"></a> 2.2.1 字符串的索引</h3>
+<pre><code class="hljs python">s = <span class="hljs-string">&quot;My name is Peppa Pig&quot;</span></code></pre>
 <p><strong>变量名[位置编号]</strong></p>
 <ul>
 <li>正向索引——从零开始递增</li>
@@ -549,38 +536,38 @@ print(s)</code></pre>
 <pre><code class="hljs python">print(s[<span class="hljs-number">0</span>])   
 print(s[<span class="hljs-number">2</span>])
 print(s[<span class="hljs-number">5</span>])</code></pre>
-
 <pre><code>M
-
-m</code></pre>
+ 
+m
+</code></pre>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;My name is Peppa Pig&quot;</span></code></pre>
-
 <ul>
 <li>反向索引——从-1开始递减</li>
 </ul>
 <pre><code class="hljs python">print(s[<span class="hljs-number">-1</span>])
 print(s[<span class="hljs-number">-3</span>])
 print(s[<span class="hljs-number">-5</span>])</code></pre>
-
 <pre><code>g
 P
-a</code></pre>
+a
+</code></pre>
 <p><strong>索引只能获得一个字符，如何获得多个字符？</strong></p>
-<h3 id="2-2-2-字符串的切片"><a href="#2-2-2-字符串的切片" class="headerlink" title="2.2.2 字符串的切片"></a>2.2.2 字符串的切片</h3><p><strong>变量名[开始位置：结束位置：切片间隔]</strong></p>
+<h3 id="222-字符串的切片"><a class="markdownIt-Anchor" href="#222-字符串的切片"></a> 2.2.2 字符串的切片</h3>
+<p><strong>变量名[开始位置：结束位置：切片间隔]</strong></p>
 <ul>
 <li>切片间隔如不设置默认为1，可省略</li>
 <li>切片范围不包含结束位置</li>
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;Python&quot;</span>
 print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">1</span>])</code></pre>
-
-<pre><code>Pyt</code></pre>
+<pre><code>Pyt
+</code></pre>
 <pre><code class="hljs python">print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>])</code></pre>
-
-<pre><code>Pyt</code></pre>
+<pre><code>Pyt
+</code></pre>
 <pre><code class="hljs python">print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>])</code></pre>
-
-<pre><code>Pt</code></pre>
+<pre><code>Pt
+</code></pre>
 <ul>
 <li>起始位置是0 可以省略</li>
 <li>结束位置省略，代表可以取到最后一个字符</li>
@@ -588,17 +575,17 @@ print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<s
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;Python&quot;</span>
 print(s[<span class="hljs-number">0</span>:<span class="hljs-number">6</span>])</code></pre>
-
-<pre><code>Python</code></pre>
+<pre><code>Python
+</code></pre>
 <pre><code class="hljs python">print(s[:<span class="hljs-number">6</span>])</code></pre>
-
-<pre><code>Python</code></pre>
+<pre><code>Python
+</code></pre>
 <pre><code class="hljs python">print(s[:])</code></pre>
-
-<pre><code>Python</code></pre>
+<pre><code>Python
+</code></pre>
 <pre><code class="hljs python">print(s[<span class="hljs-number">-6</span>:])</code></pre>
-
-<pre><code>Python</code></pre>
+<pre><code>Python
+</code></pre>
 <p><strong>反向切片</strong></p>
 <ul>
 <li>起始位置是-1也可以省略</li>
@@ -606,72 +593,75 @@ print(s[<span class="hljs-number">0</span>:<span class="hljs-number">6</span>])<
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;123456789&quot;</span>
 print(s[<span class="hljs-number">-1</span>:<span class="hljs-number">-10</span>:<span class="hljs-number">-1</span>])</code></pre>
-
-<pre><code>987654321</code></pre>
+<pre><code>987654321
+</code></pre>
 <pre><code class="hljs python">print(s[:<span class="hljs-number">-10</span>:<span class="hljs-number">-1</span>])</code></pre>
-
-<pre><code>987654321</code></pre>
+<pre><code>987654321
+</code></pre>
 <pre><code class="hljs python">print(s[::<span class="hljs-number">-1</span>])</code></pre>
-
-<pre><code>987654321</code></pre>
+<pre><code>987654321
+</code></pre>
 <pre><code class="hljs python">print(s[<span class="hljs-number">3</span>::<span class="hljs-number">-1</span>])</code></pre>
-
-<pre><code>4321</code></pre>
-<h2 id="2-3-字符串操作符"><a href="#2-3-字符串操作符" class="headerlink" title="2.3 字符串操作符"></a>2.3 字符串操作符</h2><h3 id="2-3-1-字符串的拼接"><a href="#2-3-1-字符串的拼接" class="headerlink" title="2.3.1 字符串的拼接"></a>2.3.1 字符串的拼接</h3><ul>
+<pre><code>4321
+</code></pre>
+<h2 id="23-字符串操作符"><a class="markdownIt-Anchor" href="#23-字符串操作符"></a> 2.3 字符串操作符</h2>
+<h3 id="231-字符串的拼接"><a class="markdownIt-Anchor" href="#231-字符串的拼接"></a> 2.3.1 字符串的拼接</h3>
+<ul>
 <li>字符串1+字符串2</li>
 </ul>
 <pre><code class="hljs python">a = <span class="hljs-string">&quot;I love &quot;</span>
 b = <span class="hljs-string">&quot;my wife &quot;</span>
 a+b</code></pre>
-
-
-<pre><code>&#39;I love my wife &#39;</code></pre>
-<h3 id="2-3-2-字符串的成倍复制"><a href="#2-3-2-字符串的成倍复制" class="headerlink" title="2.3.2 字符串的成倍复制"></a>2.3.2 字符串的成倍复制</h3><ul>
-<li>字符串&nbsp;&#42;&nbsp;n &ensp; n&nbsp;&#42;&nbsp;字符串</li>
+<pre><code>'I love my wife '
+</code></pre>
+<h3 id="232-字符串的成倍复制"><a class="markdownIt-Anchor" href="#232-字符串的成倍复制"></a> 2.3.2 字符串的成倍复制</h3>
+<ul>
+<li>字符串 * n   n * 字符串</li>
 </ul>
 <pre><code class="hljs python">c = a+b
 print(c*<span class="hljs-number">3</span>)
 print(<span class="hljs-number">3</span>*c)</code></pre>
-
 <pre><code>I love my wife I love my wife I love my wife 
-I love my wife I love my wife I love my wife </code></pre>
-<h3 id="2-2-3-成员运算"><a href="#2-2-3-成员运算" class="headerlink" title="2.2.3 成员运算"></a>2.2.3 成员运算</h3><ul>
-<li><strong>子集in全集</strong>  &ensp;  任何一个连续的切片都是原字符串的子集</li>
+I love my wife I love my wife I love my wife 
+</code></pre>
+<h3 id="223-成员运算"><a class="markdownIt-Anchor" href="#223-成员运算"></a> 2.2.3 成员运算</h3>
+<ul>
+<li><strong>子集in全集</strong>     任何一个连续的切片都是原字符串的子集</li>
 </ul>
 <pre><code class="hljs python">folk_singers = <span class="hljs-string">&quot;Peter, Paul and Mary&quot;</span>    
 <span class="hljs-string">&quot;Peter&quot;</span> <span class="hljs-keyword">in</span> folk_singers
 <span class="hljs-string">&#x27; a&#x27;</span> <span class="hljs-keyword">in</span> folk_singers</code></pre>
-
-
 <pre><code>True
 
 
-True</code></pre>
+True
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-string">&quot;PPM&quot;</span> <span class="hljs-keyword">in</span> folk_singers</code></pre>
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <ul>
-<li><strong>遍历字符串字符</strong> &ensp;  for 字符 in 字符串</li>
+<li><strong>遍历字符串字符</strong>    for 字符 in 字符串</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;Python&quot;</span>:
     print(s)</code></pre>
-
 <pre><code>P
 y
 t
 h
 o
-n</code></pre>
-<h2 id="2-4-字符串处理函数"><a href="#2-4-字符串处理函数" class="headerlink" title="2.4 字符串处理函数"></a>2.4 字符串处理函数</h2><h3 id="2-4-1-字符串的长度"><a href="#2-4-1-字符串的长度" class="headerlink" title="2.4.1 字符串的长度"></a>2.4.1 字符串的长度</h3><ul>
+n
+</code></pre>
+<h2 id="24-字符串处理函数"><a class="markdownIt-Anchor" href="#24-字符串处理函数"></a> 2.4 字符串处理函数</h2>
+<h3 id="241-字符串的长度"><a class="markdownIt-Anchor" href="#241-字符串的长度"></a> 2.4.1 字符串的长度</h3>
+<ul>
 <li>所含字符的个数</li>
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;python&quot;</span>
 len(s)</code></pre>
-
-
-<pre><code>6</code></pre>
-<h3 id="2-4-2-字符编码"><a href="#2-4-2-字符编码" class="headerlink" title="2.4.2 字符编码"></a>2.4.2 字符编码</h3><p><strong>将中文字库，英文字母、数字、特殊字符等转化成计算机可识别的二进制数</strong></p>
+<pre><code>6
+</code></pre>
+<h3 id="242-字符编码"><a class="markdownIt-Anchor" href="#242-字符编码"></a> 2.4.2 字符编码</h3>
+<p><strong>将中文字库，英文字母、数字、特殊字符等转化成计算机可识别的二进制数</strong></p>
 <ul>
 <li>每个单一字符对应一个唯一的互不重复的二进制编码</li>
 <li>Python 中使用的是Unicode编码</li>
@@ -682,23 +672,25 @@ print(ord(<span class="hljs-string">&quot;a&quot;</span>))
 print(ord(<span class="hljs-string">&quot;*&quot;</span>))
 print(ord(<span class="hljs-string">&quot;中&quot;</span>))
 print(ord(<span class="hljs-string">&quot;国&quot;</span>))</code></pre>
-
 <pre><code>49
 97
 42
 20013
-22269</code></pre>
+22269
+</code></pre>
 <p><strong>将Unicode码转化为字符</strong>——chr(Unicode码)</p>
 <pre><code class="hljs python">print(chr(<span class="hljs-number">1010</span>))
 print(chr(<span class="hljs-number">10000</span>))
 print(chr(<span class="hljs-number">12345</span>))
 print(chr(<span class="hljs-number">23456</span>))</code></pre>
-
 <pre><code>ϲ
 ✐
 〹
-宠</code></pre>
-<h2 id="2-5-字符串的处理方法"><a href="#2-5-字符串的处理方法" class="headerlink" title="2.5 字符串的处理方法"></a>2.5 字符串的处理方法</h2><h3 id="2-5-1-字符串的分割——字符串-split-分割字符"><a href="#2-5-1-字符串的分割——字符串-split-分割字符" class="headerlink" title="2.5.1 字符串的分割——字符串.split(分割字符)"></a>2.5.1 字符串的分割——字符串.split(分割字符)</h3><ul>
+宠
+</code></pre>
+<h2 id="25-字符串的处理方法"><a class="markdownIt-Anchor" href="#25-字符串的处理方法"></a> 2.5 字符串的处理方法</h2>
+<h3 id="251-字符串的分割字符串split分割字符"><a class="markdownIt-Anchor" href="#251-字符串的分割字符串split分割字符"></a> 2.5.1 字符串的分割——字符串.split(分割字符)</h3>
+<ul>
 <li>返回一个列表</li>
 <li>原字符串不变</li>
 </ul>
@@ -707,93 +699,97 @@ print(chr(<span class="hljs-number">23456</span>))</code></pre>
 languages_list = languages.split(<span class="hljs-string">&quot; &quot;</span>)
 print(languages_list)
 print(languages)</code></pre>
-
-<pre><code>[&#39;Python&#39;, &#39;C&#39;, &#39;C++&#39;, &#39;Java&#39;, &#39;PHP&#39;, &#39;R&#39;]
-Python C C++ Java PHP R</code></pre>
-<h3 id="2-5-2-字符串的聚合——“聚合字符”-join-可迭代数据类型"><a href="#2-5-2-字符串的聚合——“聚合字符”-join-可迭代数据类型" class="headerlink" title="2.5.2  字符串的聚合——“聚合字符”.join(可迭代数据类型)"></a>2.5.2  字符串的聚合——“聚合字符”.join(可迭代数据类型)</h3><ul>
+<pre><code>['Python', 'C', 'C++', 'Java', 'PHP', 'R']
+Python C C++ Java PHP R
+</code></pre>
+<h3 id="252-字符串的聚合聚合字符join可迭代数据类型"><a class="markdownIt-Anchor" href="#252-字符串的聚合聚合字符join可迭代数据类型"></a> 2.5.2  字符串的聚合——“聚合字符”.join(可迭代数据类型)</h3>
+<ul>
 <li>可迭代类型 如：字符串、列表</li>
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;12345&quot;</span>
 s_join = <span class="hljs-string">&quot;,&quot;</span>.join(s)
 s_join</code></pre>
-
-
-<pre><code>&#39;1,2,3,4,5&#39;</code></pre>
+<pre><code>'1,2,3,4,5'
+</code></pre>
 <ul>
 <li>序列类型的元素必须是字符类型</li>
 </ul>
 <pre><code class="hljs python"><span class="hljs-comment"># s = [1, 2, 3, 4, 5]</span>
 s = [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>, <span class="hljs-string">&quot;5&quot;</span>]
 <span class="hljs-string">&quot;*&quot;</span>.join(s)</code></pre>
-
-
-<pre><code>&#39;1*2*3*4*5&#39;</code></pre>
-<h3 id="2-5-3-删除两端特定字符——字符串-strip-删除字符"><a href="#2-5-3-删除两端特定字符——字符串-strip-删除字符" class="headerlink" title="2.5.3 删除两端特定字符——字符串.strip(删除字符)"></a>2.5.3 删除两端特定字符——字符串.strip(删除字符)</h3><ul>
+<pre><code>'1*2*3*4*5'
+</code></pre>
+<h3 id="253-删除两端特定字符字符串strip删除字符"><a class="markdownIt-Anchor" href="#253-删除两端特定字符字符串strip删除字符"></a> 2.5.3 删除两端特定字符——字符串.strip(删除字符)</h3>
+<ul>
 <li>strip从两侧开始搜索，遇到指定字符执行删除，遇到非指定字符，搜索停止</li>
-<li>类似的还有左删除lstrip和右删除rstrip </li>
+<li>类似的还有左删除lstrip和右删除rstrip</li>
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;      I have many blanks     &quot;</span>
 print(s.strip(<span class="hljs-string">&quot; &quot;</span>))                        <span class="hljs-comment"># 还有吗？hahaha</span>
 print(s.lstrip(<span class="hljs-string">&quot; &quot;</span>))
 print(s.rstrip(<span class="hljs-string">&quot; &quot;</span>))
 print(s)</code></pre>
-
 <pre><code>I have many blanks
 I have many blanks     
       I have many blanks
-      I have many blanks     </code></pre>
-<h3 id="2-5-4-字符串的替换——字符串-replace-“被替换”，”替换成”"><a href="#2-5-4-字符串的替换——字符串-replace-“被替换”，”替换成”" class="headerlink" title="2.5.4 字符串的替换——字符串.replace(“被替换”，”替换成”)"></a>2.5.4 字符串的替换——字符串.replace(“被替换”，”替换成”)</h3><pre><code class="hljs python">s = <span class="hljs-string">&quot;Python is coming&quot;</span>
+      I have many blanks     
+</code></pre>
+<h3 id="254-字符串的替换字符串replace被替换替换成"><a class="markdownIt-Anchor" href="#254-字符串的替换字符串replace被替换替换成"></a> 2.5.4 字符串的替换——字符串.replace(“被替换”，“替换成”)</h3>
+<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python is coming&quot;</span>
 s1 = s.replace(<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;Py&quot;</span>)
 print(s1)</code></pre>
-
-<pre><code>Py is coming</code></pre>
-<h3 id="2-5-5-字符串统计——字符串-count-“待统计字符串”"><a href="#2-5-5-字符串统计——字符串-count-“待统计字符串”" class="headerlink" title="2.5.5 字符串统计——字符串.count(“待统计字符串”)"></a>2.5.5 字符串统计——字符串.count(“待统计字符串”)</h3><pre><code class="hljs python">s = <span class="hljs-string">&quot;Python is an excellent language&quot;</span>
+<pre><code>Py is coming
+</code></pre>
+<h3 id="255-字符串统计字符串count待统计字符串"><a class="markdownIt-Anchor" href="#255-字符串统计字符串count待统计字符串"></a> 2.5.5 字符串统计——字符串.count(“待统计字符串”)</h3>
+<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python is an excellent language&quot;</span>
 print(<span class="hljs-string">&quot;an:&quot;</span>, s.count(<span class="hljs-string">&quot;an&quot;</span>))
 print(<span class="hljs-string">&quot;e:&quot;</span>, s.count(<span class="hljs-string">&quot;e&quot;</span>))</code></pre>
-
 <pre><code>an: 2
-e: 4</code></pre>
-<h3 id="2-3-6-字符串字母大小写"><a href="#2-3-6-字符串字母大小写" class="headerlink" title="2.3.6 字符串字母大小写"></a>2.3.6 字符串字母大小写</h3><ul>
+e: 4
+</code></pre>
+<h3 id="236-字符串字母大小写"><a class="markdownIt-Anchor" href="#236-字符串字母大小写"></a> 2.3.6 字符串字母大小写</h3>
+<ul>
 <li>字符串.upper() 字母全部大写</li>
 </ul>
 <pre><code class="hljs python">s = <span class="hljs-string">&quot;Python&quot;</span>
 s.upper()</code></pre>
-
-
-<pre><code>&#39;PYTHON&#39;</code></pre>
+<pre><code>'PYTHON'
+</code></pre>
 <ul>
 <li>字符串.lower() 字母全部小写</li>
 </ul>
 <pre><code class="hljs python">print(s.lower())
 print(s)</code></pre>
-
 <pre><code>python
-Python</code></pre>
+Python
+</code></pre>
 <ul>
 <li>字符串.title()首字母大写</li>
 </ul>
 <pre><code class="hljs python">s.title()</code></pre>
-
-
-<pre><code>&#39;Python&#39;</code></pre>
-<h1 id="第三部分-布尔类型-ensp-TRUE-ensp-or-ensp-False"><a href="#第三部分-布尔类型-ensp-TRUE-ensp-or-ensp-False" class="headerlink" title="第三部分 布尔类型&ensp;TRUE&ensp;or&ensp;False"></a>第三部分 布尔类型&ensp;TRUE&ensp;or&ensp;False</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161835.png" srcset="/img/loading.gif" alt="image-20200713161833452"></p>
-<h2 id="3-1-逻辑运算的结果"><a href="#3-1-逻辑运算的结果" class="headerlink" title="3.1 逻辑运算的结果"></a>3.1 逻辑运算的结果</h2><pre><code class="hljs python">a = <span class="hljs-number">10</span>
+<pre><code>'Python'
+</code></pre>
+<h1 id="第三部分-布尔类型-true-or-false"><a class="markdownIt-Anchor" href="#第三部分-布尔类型-true-or-false"></a> 第三部分 布尔类型 TRUE or False</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161835.png" srcset="/img/loading.gif" alt="image-20200713161833452" /></p>
+<h2 id="31-逻辑运算的结果"><a class="markdownIt-Anchor" href="#31-逻辑运算的结果"></a> 3.1 逻辑运算的结果</h2>
+<pre><code class="hljs python">a = <span class="hljs-number">10</span>
 print(a &gt; <span class="hljs-number">8</span>)
 print(a == <span class="hljs-number">12</span>)
 print(a &lt; <span class="hljs-number">5</span>)</code></pre>
-
 <pre><code>True
 False
-False</code></pre>
+False
+</code></pre>
 <ul>
-<li>any()&ensp;all()</li>
+<li>any() all()</li>
 </ul>
 <pre><code class="hljs python">print(any([<span class="hljs-literal">False</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">None</span>]))   <span class="hljs-comment"># 0 False None 都是无</span>
 print(all([<span class="hljs-literal">False</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">None</span>]))</code></pre>
-
 <pre><code>True
-False</code></pre>
-<h2 id="3-2-指示条件"><a href="#3-2-指示条件" class="headerlink" title="3.2 指示条件"></a>3.2 指示条件</h2><pre><code class="hljs python">n = <span class="hljs-number">2800</span>
+False
+</code></pre>
+<h2 id="32-指示条件"><a class="markdownIt-Anchor" href="#32-指示条件"></a> 3.2 指示条件</h2>
+<pre><code class="hljs python">n = <span class="hljs-number">2800</span>
 <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
     m = eval(input(<span class="hljs-string">&quot;请输入一个正整数：&quot;</span>))
     <span class="hljs-keyword">if</span> m == n:
@@ -803,7 +799,6 @@ False</code></pre>
         print(<span class="hljs-string">&quot;太大了&quot;</span>)
     <span class="hljs-keyword">else</span>:
         print(<span class="hljs-string">&quot;太小了&quot;</span>)</code></pre>
-
 <pre><code>请输入一个正整数：40
 太小了
 请输入一个正整数：60
@@ -813,103 +808,94 @@ False</code></pre>
 请输入一个正整数：28001
 太大了
 请输入一个正整数：2800
-你猜对啦</code></pre>
-<h2 id="3-3-作为掩码"><a href="#3-3-作为掩码" class="headerlink" title="3.3 作为掩码"></a>3.3 作为掩码</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+你猜对啦
+</code></pre>
+<h2 id="33-作为掩码"><a class="markdownIt-Anchor" href="#33-作为掩码"></a> 3.3 作为掩码</h2>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>]])   <span class="hljs-comment"># 定义 numpy数组</span>
 print(x &gt; <span class="hljs-number">3</span>)
 x[x &gt; <span class="hljs-number">3</span>]</code></pre>
-
 <pre><code>[[False False False  True  True]]
 
-array([5, 7])</code></pre>
-<h1 id="第四部分-类型判别及类型转换"><a href="#第四部分-类型判别及类型转换" class="headerlink" title="第四部分 类型判别及类型转换"></a>第四部分 类型判别及类型转换</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161846.png" srcset="/img/loading.gif" alt="image-20200713161845449"></p>
-<h2 id="4-1-类型判别"><a href="#4-1-类型判别" class="headerlink" title="4.1 类型判别"></a>4.1 类型判别</h2><ul>
+array([5, 7])
+</code></pre>
+<h1 id="第四部分-类型判别及类型转换"><a class="markdownIt-Anchor" href="#第四部分-类型判别及类型转换"></a> 第四部分 类型判别及类型转换</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200713161846.png" srcset="/img/loading.gif" alt="image-20200713161845449" /></p>
+<h2 id="41-类型判别"><a class="markdownIt-Anchor" href="#41-类型判别"></a> 4.1 类型判别</h2>
+<ul>
 <li>type(变量)</li>
 </ul>
 <pre><code class="hljs python">age = <span class="hljs-number">20</span>
 name = <span class="hljs-string">&quot;Ada&quot;</span>
 print(type(age))
 print(type(name))</code></pre>
-
-<pre><code>&lt;class &#39;int&#39;&gt;
-&lt;class &#39;str&#39;&gt;</code></pre>
+<pre><code>&lt;class 'int'&gt;
+&lt;class 'str'&gt;
+</code></pre>
 <ul>
-<li>isinstance(变量,预判类型)&ensp;<strong>承认继承</strong></li>
+<li>isinstance(变量,预判类型) <strong>承认继承</strong></li>
 <li>变量类型是预判类型的子类型，则为真，否则为假</li>
 </ul>
 <pre><code class="hljs python">print(isinstance(age, int))        <span class="hljs-comment"># 承认继承</span></code></pre>
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <pre><code class="hljs python">print(isinstance(age, object))
 print(isinstance(name, object))    <span class="hljs-comment"># object 是老祖宗</span></code></pre>
-
 <pre><code>True
-True</code></pre>
+True
+</code></pre>
 <ul>
 <li>字符串检查方法</li>
 </ul>
 <p><strong>字符串.isdigit()字符是否只有数字组成</strong></p>
 <pre><code class="hljs python">age = <span class="hljs-string">&quot;20&quot;</span>
 name = <span class="hljs-string">&quot;Ada&quot;</span></code></pre>
-
-
 <pre><code class="hljs python">age.isdigit()</code></pre>
-
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <pre><code class="hljs python">name.isdigit()</code></pre>
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <p><strong>字符串.isalpha()字符是否只有字母组成</strong></p>
 <pre><code class="hljs python">name.isalpha()</code></pre>
-
-
-<pre><code>True</code></pre>
+<pre><code>True
+</code></pre>
 <pre><code class="hljs python">age.isalpha()</code></pre>
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <p><strong>字符串.isalnum()字符是否只有数字和字母组成</strong></p>
 <pre><code class="hljs python"><span class="hljs-string">&quot;Ada20&quot;</span>.isalnum()    <span class="hljs-comment"># 比如可用于判断用户名是否合法</span></code></pre>
-
-
-<pre><code>True</code></pre>
-<h2 id="4-2-类型转换"><a href="#4-2-类型转换" class="headerlink" title="4.2 类型转换"></a>4.2 类型转换</h2><ul>
-<li>数字类型转字符串&ensp; str(数字类型)</li>
+<pre><code>True
+</code></pre>
+<h2 id="42-类型转换"><a class="markdownIt-Anchor" href="#42-类型转换"></a> 4.2 类型转换</h2>
+<ul>
+<li>数字类型转字符串  str(数字类型)</li>
 </ul>
 <pre><code class="hljs python">age = <span class="hljs-number">20</span>
 print(<span class="hljs-string">&quot;My age is &quot;</span>+str(age))</code></pre>
-
-<pre><code>My age is 20</code></pre>
+<pre><code>My age is 20
+</code></pre>
 <ul>
-<li>仅有数字组成的字符串转数字&ensp; int()&ensp; float()&ensp; eval()</li>
+<li>仅有数字组成的字符串转数字  int()  float()  eval()</li>
 </ul>
 <pre><code class="hljs python">s1 = <span class="hljs-string">&quot;20&quot;</span>
 s2 = <span class="hljs-string">&quot;10.1&quot;</span></code></pre>
-
-
 <pre><code class="hljs python">int(s1)     <span class="hljs-comment"># 仅整型</span>
 <span class="hljs-comment"># int(s2)</span></code></pre>
-
-
-<pre><code>20</code></pre>
+<pre><code>20
+</code></pre>
 <pre><code class="hljs python">float(s1)</code></pre>
-
-
-<pre><code>20.0</code></pre>
+<pre><code>20.0
+</code></pre>
 <pre><code class="hljs python">float(s2)</code></pre>
-
-
-<pre><code>10.1</code></pre>
+<pre><code>10.1
+</code></pre>
 <pre><code class="hljs python">eval(s1)</code></pre>
-
-
-<pre><code>20</code></pre>
+<pre><code>20
+</code></pre>
 <pre><code class="hljs python">eval(s2)</code></pre>
-
-
-<pre><code>10.1</code></pre>
+<pre><code>10.1
+</code></pre>
 <blockquote>
 <p>eval()负责把字符串转化为最合适的数据类型，而int()和float()可以把除了字符以外的转化为整型和浮点型</p>
 </blockquote>

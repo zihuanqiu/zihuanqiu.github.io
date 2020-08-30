@@ -216,24 +216,25 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2020年8月30日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="1-池化层——Pooling-Layer"><a href="#1-池化层——Pooling-Layer" class="headerlink" title="1. 池化层——Pooling Layer"></a>1. 池化层——Pooling Layer</h1><p>池化运算：对信号进行 “收集”并 “总结”。<br>“收集”：多变少 “总结”：最大值/平均值</p>
+              <h1 id="1-池化层pooling-layer"><a class="markdownIt-Anchor" href="#1-池化层pooling-layer"></a> 1. 池化层——Pooling Layer</h1>
+<p>池化运算：对信号进行 “收集”并 “总结”。</p>
+<p>“收集”：多变少</p>
+<p>“总结”：最大值/平均值</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730210002.png" srcset="/img/loading.gif" alt="image-20200730205958161" style="zoom:67%;" />
-
-
-
-<h2 id="1-1-nn-MaxPool2d"><a href="#1-1-nn-MaxPool2d" class="headerlink" title="1.1 nn.MaxPool2d"></a>1.1 nn.MaxPool2d</h2><pre><code class="hljs python">nn.MaxPool2d(kernel_size, 
+<h2 id="11-nnmaxpool2d"><a class="markdownIt-Anchor" href="#11-nnmaxpool2d"></a> 1.1 nn.MaxPool2d</h2>
+<pre><code class="hljs python">nn.MaxPool2d(kernel_size, 
              stride=<span class="hljs-literal">None</span>, 
              padding=<span class="hljs-number">0</span>, 
              dilation=<span class="hljs-number">1</span>, 
              return_indices=<span class="hljs-literal">False</span>, 
              ceil_mode=<span class="hljs-literal">False</span>)</code></pre>
-
-<p>功能：对二维信号（图像）进行最大值池化<br>主要参数：</p>
+<p>功能：对二维信号（图像）进行最大值池化<br />
+主要参数：</p>
 <ul>
 <li>kernel_size：池化核尺寸</li>
 <li>stride：步长</li>
@@ -243,9 +244,6 @@
 <li>return_indices：记录池化像素索引（用于反池化时选择位置，如下图所示）</li>
 </ul>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730211257.png" srcset="/img/loading.gif" alt="image-20200730211252810" style="zoom:67%;" />
-
-
-
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> random
@@ -279,54 +277,49 @@ img_raw = transform_invert(img_tensor.squeeze(), img_transform)
 plt.subplot(<span class="hljs-number">122</span>).imshow(img_pool)
 plt.subplot(<span class="hljs-number">121</span>).imshow(img_raw)
 plt.show()</code></pre>
-
 <ol>
-<li><p>观察kernel_size和stride参数。</p>
-<p> 用2x2池化并且步长为2，则不重叠刚好4选1。一般来说，池化都是不重叠的，也就是kernel_size = stride。</p>
+<li>
+<p>观察kernel_size和stride参数。</p>
+<p>用2x2池化并且步长为2，则不重叠刚好4选1。一般来说，池化都是不重叠的，也就是kernel_size = stride。</p>
  <pre><code class="hljs python">maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 img_pool = maxpool_layer(img_tensor)</code></pre>
-
-<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212314.png" srcset="/img/loading.gif" alt="image-20200730212313327"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212314.png" srcset="/img/loading.gif" alt="image-20200730212313327" /></p>
  <pre><code class="hljs python">池化前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 池化后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>])</code></pre>
-
-<p> 下图为逐渐增大kernel_size和stride的输出图像。</p>
-<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212729.png" srcset="/img/loading.gif" alt="image-20200730212723707"></p>
-<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212836.png" srcset="/img/loading.gif" alt="image-20200730212832909"></p>
-<p> 可见，池化就是一个下采样（抽取）的过程。</p>
+<p>下图为逐渐增大kernel_size和stride的输出图像。</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212729.png" srcset="/img/loading.gif" alt="image-20200730212723707" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730212836.png" srcset="/img/loading.gif" alt="image-20200730212832909" /></p>
+<p>可见，池化就是一个下采样（抽取）的过程。</p>
 </li>
-</ol>
-<ol start="2">
-<li><p>观察padding参数</p>
-<p> padding必须小于kernel_size的一半，否则就会报错。函数不希望产生池化后是0的值。padding在图像外围最多补一圈kernel_size/2的0值。</p>
+<li>
+<p>观察padding参数</p>
+<p>padding必须小于kernel_size的一半，否则就会报错。函数不希望产生池化后是0的值。padding在图像外围最多补一圈kernel_size/2的0值。</p>
  <pre><code class="hljs python">maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, padding=<span class="hljs-number">1</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 img_pool = maxpool_layer(img_tensor)</code></pre>
-
-<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730214628.png" srcset="/img/loading.gif" alt="image-20200730214627876"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730214628.png" srcset="/img/loading.gif" alt="image-20200730214627876" /></p>
  <pre><code class="hljs python">池化前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 池化后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">257</span>, <span class="hljs-number">257</span>])</code></pre>
-
-<p> 可以看到，相比padding=0的情况，输出图像的尺寸大了1。</p>
+<p>可以看到，相比padding=0的情况，输出图像的尺寸大了1。</p>
 </li>
-<li><p>观察dilation参数，dilation的池化不再是连续的方块中取一个最大的了，dilation的池化核和dilation的卷积核是差不多的，卷积核的元素之间有空隙。</p>
+<li>
+<p>观察dilation参数，dilation的池化不再是连续的方块中取一个最大的了，dilation的池化核和dilation的卷积核是差不多的，卷积核的元素之间有空隙。</p>
  <pre><code class="hljs python">maxpool_layer = nn.MaxPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, dilation=<span class="hljs-number">5</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 img_pool = maxpool_layer(img_tensor)</code></pre>
-
-<p> <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730214933.png" srcset="/img/loading.gif" alt="image-20200730214932203"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730214933.png" srcset="/img/loading.gif" alt="image-20200730214932203" /></p>
  <pre><code class="hljs python">池化前尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>])
 池化后尺寸:torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">254</span>, <span class="hljs-number">254</span>])</code></pre>
-
-<p> 可以预见结果，dilation池化也会造成散光的效果。输出特征图的尺寸是不小的，同样输出尺寸下不加dilation肯定不会有一丝模糊。</p>
+<p>可以预见结果，dilation池化也会造成散光的效果。输出特征图的尺寸是不小的，同样输出尺寸下不加dilation肯定不会有一丝模糊。</p>
 </li>
 </ol>
-<h2 id="1-2-nn-AvgPool2d"><a href="#1-2-nn-AvgPool2d" class="headerlink" title="1.2 nn.AvgPool2d"></a>1.2 nn.AvgPool2d</h2><pre><code class="hljs python">nn.AvgPool2d(kernel_size, 
+<h2 id="12-nnavgpool2d"><a class="markdownIt-Anchor" href="#12-nnavgpool2d"></a> 1.2 nn.AvgPool2d</h2>
+<pre><code class="hljs python">nn.AvgPool2d(kernel_size, 
              stride=<span class="hljs-literal">None</span>, 
              padding=<span class="hljs-number">0</span>, 
              ceil_mode=<span class="hljs-literal">False</span>, 
              count_include_pad=<span class="hljs-literal">True</span>, 
              divisor_override=<span class="hljs-literal">None</span>)</code></pre>
-
-<p>功能：对二维信号（图像）进行平均值池化<br>主要参数：</p>
+<p>功能：对二维信号（图像）进行平均值池化<br />
+主要参数：</p>
 <ul>
 <li>kernel_size：池化核尺寸</li>
 <li>stride：步长</li>
@@ -337,27 +330,24 @@ img_pool = maxpool_layer(img_tensor)</code></pre>
 </ul>
 <pre><code class="hljs python">avgpoollayer = nn.AvgPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 img_pool = avgpoollayer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220410.png" srcset="/img/loading.gif" alt="image-20200730220409296"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220410.png" srcset="/img/loading.gif" alt="image-20200730220409296" /></p>
 <p>比nn.MaxPool2d(2, stride=2)输出的图像亮度会暗一些，毕竟是取了平均的操作。 如果设置divisor_override =1就会亮很多了，同样如果设置divisor_override =8就会暗很多。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220938.png" srcset="/img/loading.gif" alt="image-20200730220937171"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220938.png" srcset="/img/loading.gif" alt="image-20200730220937171" /></p>
 <p>当divisor_override 小于kernel_size的时候，求出来的像素值可能会超过量化的最大值，造成类似颜色泄露奇怪的现象（也不知道颜色超过量化最大值PIL包是做削顶还是循环处理）。</p>
 <p>kernel_size=2，divisor_override=3时情况会减轻。</p>
 <pre><code class="hljs python">avgpoollayer = nn.AvgPool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>, divisor_override=<span class="hljs-number">3</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 img_pool = avgpoollayer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730221404.png" srcset="/img/loading.gif" alt="image-20200730221402973"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730221404.png" srcset="/img/loading.gif" alt="image-20200730221402973" /></p>
 <p>kernel_size=3，divisor_override=8时情况会减轻更多。</p>
 <pre><code class="hljs python">avgpoollayer = nn.AvgPool2d(<span class="hljs-number">3</span>, stride=<span class="hljs-number">3</span>, divisor_override=<span class="hljs-number">8</span>)   <span class="hljs-comment"># input:(i, o, size) weights:(o, i , h, w)</span>
 img_pool = avgpoollayer(img_tensor)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730221716.png" srcset="/img/loading.gif" alt="image-20200730221715731"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730221716.png" srcset="/img/loading.gif" alt="image-20200730221715731" /></p>
 <p>当divisor_override 大于kernel_size的时候，输出图像的确是变暗的</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220849.png" srcset="/img/loading.gif" alt="image-20200730220847089"></p>
-<h2 id="1-3-nn-MaxUnpool2d"><a href="#1-3-nn-MaxUnpool2d" class="headerlink" title="1.3 nn.MaxUnpool2d"></a>1.3 nn.MaxUnpool2d</h2><pre><code class="hljs python">nn.MaxUnpool2d(kernel_size, 
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730220849.png" srcset="/img/loading.gif" alt="image-20200730220847089" /></p>
+<h2 id="13-nnmaxunpool2d"><a class="markdownIt-Anchor" href="#13-nnmaxunpool2d"></a> 1.3 nn.MaxUnpool2d</h2>
+<pre><code class="hljs python">nn.MaxUnpool2d(kernel_size, 
                stride=<span class="hljs-literal">None</span>, 
                padding=<span class="hljs-number">0</span>)</code></pre>
-
 <p>功能：对二维信号（图像）进行最大值池化上采样</p>
 <p>主要参数：</p>
 <ul>
@@ -366,9 +356,6 @@ img_pool = avgpoollayer(img_tensor)</code></pre>
 <li>padding ：填充个数</li>
 </ul>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730222318.png" srcset="/img/loading.gif" alt="image-20200730222313291" style="zoom:67%;" />
-
-
-
 <p>MaxUnpool2d就是把输入的元素放到指定的位置，其他地方填0，如上图所示，需要使用Maxpool2d的indices。</p>
 <p>就需要使用Maxpool2d的indices，</p>
 <pre><code class="hljs python"><span class="hljs-comment"># pooling</span>
@@ -378,15 +365,21 @@ img_pool, indices = maxpool_layer(img_tensor)
 <span class="hljs-comment"># unpooling</span>
 maxunpool_layer = nn.MaxUnpool2d(<span class="hljs-number">2</span>, stride=<span class="hljs-number">2</span>)
 img_unpool = maxunpool_layer(img_pool, indices)</code></pre>
-
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730223137.png" srcset="/img/loading.gif" alt="image-20200730223136594"></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730223137.png" srcset="/img/loading.gif" alt="image-20200730223136594" /></p>
 <p>上面代码截取了原图像RGB通道在2x2池化核中的最大值，并且放回至原来截取的位置得到最右边的图片。（按右图的结果，猜测RGB3个通道的indices是独立的，也就是说在同一块池化核中，三个通道的位置是独立记录的，因此才会造成右图中花花绿绿的情况。）</p>
-<h1 id="2-线性层——Linear-Layer"><a href="#2-线性层——Linear-Layer" class="headerlink" title="2. 线性层——Linear Layer"></a>2. 线性层——Linear Layer</h1><p>线性层又称全连接层，其每个神经元与上一层所有神经元相连<br>实现对前一层的线性组合，线性变换。</p>
+<h1 id="2-线性层linear-layer"><a class="markdownIt-Anchor" href="#2-线性层linear-layer"></a> 2. 线性层——Linear Layer</h1>
+<p>线性层又称全连接层，其每个神经元与上一层所有神经元相连<br />
+实现对前一层的线性组合，线性变换。</p>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730223715.png" srcset="/img/loading.gif" alt="image-20200730223704722" style="zoom: 33%;" />
-
-<h2 id="2-1-nn-Linear"><a href="#2-1-nn-Linear" class="headerlink" title="2.1 nn.Linear"></a>2.1 nn.Linear</h2><pre><code class="hljs python">nn.Linear(in_features, out_features, bias=<span class="hljs-literal">True</span>)</code></pre>
-
-<p>功能：对一维信号（向量）进行线性组合 主要参数：<br>• in_features：输入结点数<br>• out_features：输出结点数<br>• bias ：是否需要偏置<br>计算公式：$y=xW^{T}+bias$</p>
+<h2 id="21-nnlinear"><a class="markdownIt-Anchor" href="#21-nnlinear"></a> 2.1 nn.Linear</h2>
+<pre><code class="hljs python">nn.Linear(in_features, 
+          out_features, 
+          bias=<span class="hljs-literal">True</span>)</code></pre>
+<p>功能：对一维信号（向量）进行线性组合 主要参数：<br />
+• in_features：输入结点数<br />
+• out_features：输出结点数<br />
+• bias ：是否需要偏置<br />
+计算公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><msup><mi>W</mi><mi>T</mi></msup><mo>+</mo><mi>b</mi><mi>i</mi><mi>a</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">y=xW^{T}+bias</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span></span></span></span></p>
 <pre><code class="hljs python">inputs = torch.tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
 linear_layer = nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
 linear_layer.weight.data = torch.tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
@@ -399,57 +392,53 @@ output = linear_layer(inputs)
 print(inputs, inputs.shape)
 print(linear_layer.weight.data, linear_layer.weight.data.shape)
 print(output, output.shape)</code></pre>
-
 <pre><code class="hljs python">tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>]]) torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>])
 tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
         [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
         [<span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
         [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]]) torch.Size([<span class="hljs-number">4</span>, <span class="hljs-number">3</span>])
 tensor([[ <span class="hljs-number">6.5000</span>, <span class="hljs-number">12.5000</span>, <span class="hljs-number">18.5000</span>, <span class="hljs-number">24.5000</span>]], grad_fn=&lt;AddmmBackward&gt;) torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">4</span>])</code></pre>
-
-
-
-
-
-
-
-<h1 id="3-激活函数层——Activation-Layer"><a href="#3-激活函数层——Activation-Layer" class="headerlink" title="3. 激活函数层——Activation Layer"></a>3. 激活函数层——Activation Layer</h1><h2 id="3-1-nn-Sigmoid"><a href="#3-1-nn-Sigmoid" class="headerlink" title="3.1 nn.Sigmoid"></a>3.1 nn.Sigmoid</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224302.png" srcset="/img/loading.gif" alt="image-20200730224301366" style="zoom: 67%;" />
-
-<p>计算公式：$y=\frac{1}{1+e^{-x}}$</p>
+<h1 id="3-激活函数层activation-layer"><a class="markdownIt-Anchor" href="#3-激活函数层activation-layer"></a> 3. 激活函数层——Activation Layer</h1>
+<h2 id="31-nnsigmoid"><a class="markdownIt-Anchor" href="#31-nnsigmoid"></a> 3.1 nn.Sigmoid</h2>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224302.png" srcset="/img/loading.gif" alt="image-20200730224301366" style="zoom: 67%;" />
+<p>计算公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">y=\frac{1}{1+e^{-x}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2484389999999999em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7026642857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
 <p>梯度公式：𝒚′ = 𝒚 ∗ (1 − 𝒚)</p>
 <p>特性：</p>
 <ul>
 <li>输出值在(0,1)，符合概率</li>
-<li>导数范围是[0, 0.25],易导致梯度消失 </li>
+<li>导数范围是[0, 0.25],易导致梯度消失</li>
 <li>输出为非0均值，破坏数据分布</li>
 </ul>
-<h2 id="3-2-nn-tanh"><a href="#3-2-nn-tanh" class="headerlink" title="3.2 nn.tanh"></a>3.2 nn.tanh</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224443.png" srcset="/img/loading.gif" alt="image-20200730224442639" style="zoom: 67%;" />
-
-<p>计算公式：$y=\frac{\sin x}{\cos x}=\frac{e^{x}-e^{-x}}{e^{-}+e^{-x}}=\frac{2}{1+e^{-2 x}}+1$</p>
-<p>梯度公式：$y^{\prime}=1-y^{2}$</p>
+<h2 id="32-nntanh"><a class="markdownIt-Anchor" href="#32-nntanh"></a> 3.2 nn.tanh</h2>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224443.png" srcset="/img/loading.gif" alt="image-20200730224442639" style="zoom: 67%;" />
+<p>计算公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mfrac><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi></mrow><mrow><mi>cos</mi><mo>⁡</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mrow><msup><mi>e</mi><mo>−</mo></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mn>2</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mn>2</mn><mi>x</mi></mrow></msup></mrow></mfrac><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y=\frac{\sin x}{\cos x}=\frac{e^{x}-e^{-x}}{e^{-}+e^{-x}}=\frac{2}{1+e^{-2 x}}+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.206502em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.861502em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">cos</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">x</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight">sin</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.3906960000000002em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.987365em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7026642857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span></span></span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7026642857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7385428571428572em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8476642857142858em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2484389999999999em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
+<p>梯度公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mn>1</mn><mo>−</mo><msup><mi>y</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">y^{\prime}=1-y^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>特性：</p>
 <ul>
 <li>输出值在(-1,1)，数据符合0均值</li>
 <li>导数范围是(0, 1),易导致梯度消失</li>
 </ul>
-<h2 id="3-3-nn-ReLU"><a href="#3-3-nn-ReLU" class="headerlink" title="3.3 nn.ReLU"></a>3.3 nn.ReLU</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224630.png" srcset="/img/loading.gif" alt="image-20200730224628936" style="zoom: 67%;" />
-
-<p>计算公式：$\mathbf{y}=\max (\mathbf{0}, x)$</p>
-<p>梯度公式：$y^{\prime}=\left{\begin{array}{ll}1, &amp; x&gt;0 \ u n d e f \text { ine } d, &amp; x=0 \ 0, &amp; x&lt;0\end{array}\right.$</p>
+<h2 id="33-nnrelu"><a class="markdownIt-Anchor" href="#33-nnrelu"></a> 3.3 nn.ReLU</h2>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730224630.png" srcset="/img/loading.gif" alt="image-20200730224628936" style="zoom: 67%;" />
+<p>计算公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn mathvariant="bold">0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{y}=\max (\mathbf{0}, x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">0</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></p>
+<p>梯度公式：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.15999999999999992em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>u</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>f</mi><mtext> ine </mtext><mi>d</mi><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>x</mi><mo>=</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">y^{\prime}=\left\{\begin{array}{ll}1, &amp; x&gt;0 \\ u n d e f \text { ine } d, &amp; x=0 \\ 0, &amp; x&lt;0\end{array}\right.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.49999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-3.15001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord text"><span class="mord"> ine </span></span><span class="mord mathdefault">d</span><span class="mpunct">,</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
 <p>特性：</p>
 <ul>
 <li>输出值均为正数，负半轴导致死神经元</li>
 <li>导数是1,缓解梯度消失</li>
 </ul>
-<h2 id="3-4-改进型ReLU"><a href="#3-4-改进型ReLU" class="headerlink" title="3.4 改进型ReLU"></a>3.4 改进型ReLU</h2><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730225007.png" srcset="/img/loading.gif" alt="image-20200730225005732" style="zoom: 67%;" />
-
-<h3 id="3-4-1-nn-LeakyReLU"><a href="#3-4-1-nn-LeakyReLU" class="headerlink" title="3.4.1 nn.LeakyReLU"></a>3.4.1 nn.LeakyReLU</h3><ul>
+<h2 id="34-改进型relu"><a class="markdownIt-Anchor" href="#34-改进型relu"></a> 3.4 改进型ReLU</h2>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200730225007.png" srcset="/img/loading.gif" alt="image-20200730225005732" style="zoom: 67%;" />
+<h3 id="341-nnleakyrelu"><a class="markdownIt-Anchor" href="#341-nnleakyrelu"></a> 3.4.1 nn.LeakyReLU</h3>
+<ul>
 <li>negative_slope: 负半轴斜率</li>
 </ul>
-<h3 id="3-4-2-nn-PReLU"><a href="#3-4-2-nn-PReLU" class="headerlink" title="3.4.2 nn.PReLU"></a>3.4.2 nn.PReLU</h3><ul>
+<h3 id="342-nnprelu"><a class="markdownIt-Anchor" href="#342-nnprelu"></a> 3.4.2 nn.PReLU</h3>
+<ul>
 <li>init: 可学习斜率</li>
 </ul>
-<h3 id="3-4-3-nn-RReLU"><a href="#3-4-3-nn-RReLU" class="headerlink" title="3.4.3 nn.RReLU"></a>3.4.3 nn.RReLU</h3><ul>
+<h3 id="343-nnrrelu"><a class="markdownIt-Anchor" href="#343-nnrrelu"></a> 3.4.3 nn.RReLU</h3>
+<ul>
 <li>lower: 均匀分布下限</li>
 <li>upper:均匀分布上限</li>
 </ul>

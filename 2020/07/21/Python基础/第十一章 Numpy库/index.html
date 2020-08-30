@@ -221,9 +221,12 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Numpy库"><a href="#Numpy库" class="headerlink" title="Numpy库"></a>Numpy库</h1><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165335.png" srcset="/img/loading.gif" alt="image-20200714165326989"></p>
-<h2 id="11-1-为什么要用Numpy"><a href="#11-1-为什么要用Numpy" class="headerlink" title="11.1 为什么要用Numpy"></a>11.1 为什么要用Numpy</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170121.png" srcset="/img/loading.gif" alt="image-20200714170119393"></p>
-<h3 id="11-1-1-ensp-低效的Python-for循环"><a href="#11-1-1-ensp-低效的Python-for循环" class="headerlink" title="11.1.1 &ensp;低效的Python for循环"></a>11.1.1 &ensp;低效的Python for循环</h3><p>【例】 求100万个数的倒数</p>
+              <h1 id="numpy库"><a class="markdownIt-Anchor" href="#numpy库"></a> Numpy库</h1>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165335.png" srcset="/img/loading.gif" alt="image-20200714165326989" /></p>
+<h2 id="111-为什么要用numpy"><a class="markdownIt-Anchor" href="#111-为什么要用numpy"></a> 11.1 为什么要用Numpy</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170121.png" srcset="/img/loading.gif" alt="image-20200714170119393" /></p>
+<h3 id="1111-低效的python-for循环"><a class="markdownIt-Anchor" href="#1111-低效的python-for循环"></a> 11.1.1  低效的Python for循环</h3>
+<p>【例】 求100万个数的倒数</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_reciprocals</span>(<span class="hljs-params">values</span>):</span>
     res = []
     <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> values:      <span class="hljs-comment"># 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数</span>
@@ -233,49 +236,53 @@
 
 values = list(range(<span class="hljs-number">1</span>, <span class="hljs-number">1000000</span>))
 %timeit compute_reciprocals(values)</code></pre>
-
-<pre><code>186 ms ± 33.6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+<pre><code>186 ms ± 33.6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</code></pre>
 <p>%timeit ：ipython中统计运行时间的魔术方法（多次运行取平均值）</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
 values = np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">1000000</span>)
 %timeit <span class="hljs-number">1</span>/values</code></pre>
-
-<pre><code>5.48 ms ± 340 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+<pre><code>5.48 ms ± 340 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</code></pre>
 <p><strong>实现相同计算，Numpy的运行速度是Python循环的25倍，产生了质的飞跃</strong></p>
-<h3 id="11-1-2-ensp-Numpy为什么如此高效"><a href="#11-1-2-ensp-Numpy为什么如此高效" class="headerlink" title="11.1.2 &ensp;Numpy为什么如此高效"></a>11.1.2 &ensp;Numpy为什么如此高效</h3><p><strong>Numpy 是由C语言编写的</strong></p>
+<h3 id="1112-numpy为什么如此高效"><a class="markdownIt-Anchor" href="#1112-numpy为什么如此高效"></a> 11.1.2  Numpy为什么如此高效</h3>
+<p><strong>Numpy 是由C语言编写的</strong></p>
 <p><strong>1、编译型语言VS解释型语言</strong></p>
 <p>C语言执行时，对代码进行整体编译，速度更快</p>
 <p><strong>2、连续单一类型存储VS分散多变类型存储</strong></p>
 <p>（1）Numpy数组内的数据类型必须是统一的，如全部是浮点型，而Python列表支持任意类型数据的填充</p>
 <p>（2）Numpy数组内的数据<strong>连续存储在内存中</strong>，而Python列表的数据<strong>分散在内存中</strong></p>
-<p> &emsp; <strong>这种存储结构，与一些更加高效的底层处理方式更加的契合</strong></p>
+<p>  <strong>这种存储结构，与一些更加高效的底层处理方式更加的契合</strong></p>
 <p><strong>3、多线程VS线程锁</strong></p>
 <p>Python语言执行时有线程锁，无法实现真正的多线程并行，而C语言可以</p>
-<h3 id="11-1-3-ensp-什么时候用Numpy"><a href="#11-1-3-ensp-什么时候用Numpy" class="headerlink" title="11.1.3 &ensp;什么时候用Numpy"></a>11.1.3 &ensp;什么时候用Numpy</h3><p><strong>在数据处理的过程中，遇到使用“Python for循环” 实现一些向量化、矩阵化操作的时候，要优先考虑用Numpy</strong></p>
-<p>如：  1、两个向量的点乘  </p>
-<p>&emsp;  &emsp;2、矩阵乘法  </p>
-<h2 id="11-2-Numpy数组的创建"><a href="#11-2-Numpy数组的创建" class="headerlink" title="11.2 Numpy数组的创建"></a>11.2 Numpy数组的创建</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170133.png" srcset="/img/loading.gif" alt="image-20200714170131042"></p>
-<h3 id="11-2-1-从列表开始创建"><a href="#11-2-1-从列表开始创建" class="headerlink" title="11.2.1 从列表开始创建"></a>11.2.1 从列表开始创建</h3><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<h3 id="1113-什么时候用numpy"><a class="markdownIt-Anchor" href="#1113-什么时候用numpy"></a> 11.1.3  什么时候用Numpy</h3>
+<p><strong>在数据处理的过程中，遇到使用“Python for循环” 实现一些向量化、矩阵化操作的时候，要优先考虑用Numpy</strong></p>
+<p>如：  1、两个向量的点乘</p>
+<p>    2、矩阵乘法</p>
+<h2 id="112-numpy数组的创建"><a class="markdownIt-Anchor" href="#112-numpy数组的创建"></a> 11.2 Numpy数组的创建</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170133.png" srcset="/img/loading.gif" alt="image-20200714170131042" /></p>
+<h3 id="1121-从列表开始创建"><a class="markdownIt-Anchor" href="#1121-从列表开始创建"></a> 11.2.1 从列表开始创建</h3>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
 x = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])
 print(x)</code></pre>
-
-<pre><code>[1 2 3 4 5]</code></pre>
+<pre><code>[1 2 3 4 5]
+</code></pre>
 <pre><code class="hljs python">print(type(x))
 print(x.shape)</code></pre>
-
-<pre><code>&lt;class &#39;numpy.ndarray&#39;&gt;
-(5,)</code></pre>
+<pre><code>&lt;class 'numpy.ndarray'&gt;
+(5,)
+</code></pre>
 <ul>
 <li>设置数组的数据类型</li>
 </ul>
 <pre><code class="hljs python">x = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], dtype=<span class="hljs-string">&quot;float32&quot;</span>)
 print(x)
 print(type(x[<span class="hljs-number">0</span>]))</code></pre>
-
 <pre><code>[1. 2. 3. 4. 5.]
-&lt;class &#39;numpy.float32&#39;&gt;</code></pre>
+&lt;class 'numpy.float32'&gt;
+</code></pre>
 <ul>
 <li>二维数组</li>
 </ul>
@@ -284,143 +291,103 @@ print(type(x[<span class="hljs-number">0</span>]))</code></pre>
              [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]])
 print(x)
 print(x.shape)</code></pre>
-
 <pre><code>[[1 2 3]
  [4 5 6]
  [7 8 9]]
-(3, 3)</code></pre>
-<h3 id="11-2-2-从头创建数组"><a href="#11-2-2-从头创建数组" class="headerlink" title="11.2.2 从头创建数组"></a>11.2.2 从头创建数组</h3><p><strong>（1）创建长度为5的数组，值都为0</strong></p>
+(3, 3)
+</code></pre>
+<h3 id="1122-从头创建数组"><a class="markdownIt-Anchor" href="#1122-从头创建数组"></a> 11.2.2 从头创建数组</h3>
+<p><strong>（1）创建长度为5的数组，值都为0</strong></p>
 <pre><code class="hljs python">np.zeros(<span class="hljs-number">5</span>, dtype=int)</code></pre>
-
-
-
-
-<pre><code>array([0, 0, 0, 0, 0])</code></pre>
-<p>*<em>（2）创建一个2</em>4的浮点型数组，值都为1**</p>
+<pre><code>array([0, 0, 0, 0, 0])
+</code></pre>
+<p><strong>（2）创建一个2*4的浮点型数组，值都为1</strong></p>
 <pre><code class="hljs python">np.ones((<span class="hljs-number">2</span>, <span class="hljs-number">4</span>), dtype=float)</code></pre>
-
-
-
-
 <pre><code>array([[1., 1., 1., 1.],
-       [1., 1., 1., 1.]])</code></pre>
-<p>*<em>（3）创建一个3</em>5的数组，值都为8.8**</p>
+       [1., 1., 1., 1.]])
+</code></pre>
+<p><strong>（3）创建一个3*5的数组，值都为8.8</strong></p>
 <pre><code class="hljs python">np.full((<span class="hljs-number">3</span>, <span class="hljs-number">5</span>), <span class="hljs-number">8.8</span>)</code></pre>
-
-
-
-
 <pre><code>array([[8.8, 8.8, 8.8, 8.8, 8.8],
        [8.8, 8.8, 8.8, 8.8, 8.8],
-       [8.8, 8.8, 8.8, 8.8, 8.8]])</code></pre>
-<p>*<em>（4）创建一个3</em>3的单位矩阵**</p>
+       [8.8, 8.8, 8.8, 8.8, 8.8]])
+</code></pre>
+<p><strong>（4）创建一个3*3的单位矩阵</strong></p>
 <pre><code class="hljs python">np.eye(<span class="hljs-number">3</span>)</code></pre>
-
-
-
-
 <pre><code>array([[1., 0., 0.],
        [0., 1., 0.],
-       [0., 0., 1.]])</code></pre>
+       [0., 0., 1.]])
+</code></pre>
 <p><strong>（5）创建一个线性序列数组，从1开始，到15结束，步长为2</strong></p>
 <pre><code class="hljs python">np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">15</span>, <span class="hljs-number">2</span>)</code></pre>
-
-
-
-
-<pre><code>array([ 1,  3,  5,  7,  9, 11, 13])</code></pre>
+<pre><code>array([ 1,  3,  5,  7,  9, 11, 13])
+</code></pre>
 <p><strong>（6）创建一个4个元素的数组，这四个数均匀的分配到0~1</strong></p>
 <pre><code class="hljs python">np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>)</code></pre>
-
-
-
-
-<pre><code>array([0.        , 0.33333333, 0.66666667, 1.        ])</code></pre>
+<pre><code>array([0.        , 0.33333333, 0.66666667, 1.        ])
+</code></pre>
 <p><strong>（7）创建一个10个元素的数组，形成1~10^9的等比数列</strong></p>
 <pre><code class="hljs python">np.logspace(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>)</code></pre>
-
-
-
-
 <pre><code>array([1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06, 1.e+07,
-       1.e+08, 1.e+09])</code></pre>
-<p>*<em>（8）创建一个3</em>3的，在0~1之间均匀分布的随机数构成的数组**</p>
+       1.e+08, 1.e+09])
+</code></pre>
+<p><strong>（8）创建一个3*3的，在0~1之间均匀分布的随机数构成的数组</strong></p>
 <pre><code class="hljs python">np.random.random((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))</code></pre>
-
-
-
-
 <pre><code>array([[0.57664546, 0.02649211, 0.02776287],
        [0.13697427, 0.26319293, 0.18207141],
-       [0.41400812, 0.03992104, 0.6775525 ]])</code></pre>
-<p>*<em>（9）创建一个3</em>3的，均值为0，标准差为1的正态分布随机数构成的数组**</p>
+       [0.41400812, 0.03992104, 0.6775525 ]])
+</code></pre>
+<p><strong>（9）创建一个3*3的，均值为0，标准差为1的正态分布随机数构成的数组</strong></p>
 <pre><code class="hljs python">np.random.normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))</code></pre>
-
-
-
-
 <pre><code>array([[ 1.58543187, -0.01831794,  0.86629919],
        [ 0.7911387 , -0.71228317,  1.49750223],
-       [-0.45986603, -0.53562974, -0.72991252]])</code></pre>
-<p>*<em>（10）创建一个3</em>3的，在[0,10)之间随机整数构成的数组**</p>
+       [-0.45986603, -0.53562974, -0.72991252]])
+</code></pre>
+<p><strong>（10）创建一个3*3的，在[0,10)之间随机整数构成的数组</strong></p>
 <pre><code class="hljs python">np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))</code></pre>
-
-
-
-
 <pre><code>array([[5, 1, 8],
        [8, 8, 2],
-       [2, 7, 0]])</code></pre>
+       [2, 7, 0]])
+</code></pre>
 <p><strong>（11）随机重排列</strong></p>
 <pre><code class="hljs python">x = np.array([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>])
 np.random.permutation(x)       <span class="hljs-comment"># 生产新列表</span></code></pre>
-
-
-
-
-<pre><code>array([40, 20, 10, 30])</code></pre>
+<pre><code>array([40, 20, 10, 30])
+</code></pre>
 <pre><code class="hljs python">print(x)
 np.random.shuffle(x)          <span class="hljs-comment"># 修改原列表</span>
 print(x)</code></pre>
-
 <pre><code>[10 20 30 40]
-[30 20 10 40]</code></pre>
+[30 20 10 40]
+</code></pre>
 <p><strong>（12）随机采样</strong></p>
 <ul>
 <li>按指定形状采样</li>
 </ul>
 <pre><code class="hljs python">x = np.arange(<span class="hljs-number">10</span>, <span class="hljs-number">25</span>, dtype = float)
 x</code></pre>
-
-
-
-
 <pre><code>array([10., 11., 12., 13., 14., 15., 16., 17., 18., 19., 20., 21., 22.,
-       23., 24.])</code></pre>
+       23., 24.])
+</code></pre>
 <pre><code class="hljs python">np.random.choice(x, size=(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>))</code></pre>
-
-
-
-
 <pre><code>array([[24., 18., 11.],
        [24., 11., 22.],
        [11., 16., 23.],
-       [16., 20., 19.]])</code></pre>
+       [16., 20., 19.]])
+</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 np.random.choice(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)</code></pre>
-
-
-
-
-<pre><code>array([6, 5, 0, 4, 2, 7, 2, 6, 6, 3])</code></pre>
+<pre><code>array([6, 5, 0, 4, 2, 7, 2, 6, 6, 3])
+</code></pre>
 <p><strong>choice(a, size=None, replace=True, p=None)</strong></p>
-<p>a为一个一维数据或者int的对象<br>size为随机选取出后的数据的类型，可以是一维，也可以是二维<br>replace=True 代表选取后可以放回，也就是说有可能会出现重复选取的数据<br>replace=False 代表选取后不放回，不会出现重复数据<br>p为选取的概率<br>random.choice中的参数a如果为一个int类型，那么会自动生成一个（0,5）的一维数组形式</p>
+<p>a为一个一维数据或者int的对象<br />
+size为随机选取出后的数据的类型，可以是一维，也可以是二维<br />
+replace=True 代表选取后可以放回，也就是说有可能会出现重复选取的数据<br />
+replace=False 代表选取后不放回，不会出现重复数据<br />
+p为选取的概率<br />
+random.choice中的参数a如果为一个int类型，那么会自动生成一个（0,5）的一维数组形式</p>
 <pre><code class="hljs python">x = np.arange(<span class="hljs-number">5</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)
 x.sum(axis=<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)</code></pre>
-
-
-
-
 <pre><code>array([[0, 1, 2, 3, 4]])
 
 
@@ -428,330 +395,208 @@ x.sum(axis=<span class="hljs-number">1</span>, keepdims=<span class="hljs-litera
 
 
 
-array([[10]])</code></pre>
+array([[10]])
+</code></pre>
 <ul>
 <li>按概率采样</li>
 </ul>
 <pre><code class="hljs python">x = x.flatten()
 np.random.choice(x, size=(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>), p=x/np.sum(x))</code></pre>
-
-
-
-
 <pre><code>array([[4, 4, 4],
        [2, 3, 4],
        [2, 1, 1],
-       [3, 4, 2]])</code></pre>
-<h2 id="11-3-Numpy数组的性质"><a href="#11-3-Numpy数组的性质" class="headerlink" title="11.3 Numpy数组的性质"></a>11.3 Numpy数组的性质</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170141.png" srcset="/img/loading.gif" alt="image-20200714170140446"></p>
-<h3 id="11-3-1-数组的属性"><a href="#11-3-1-数组的属性" class="headerlink" title="11.3.1 数组的属性"></a>11.3.1 数组的属性</h3><pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
+       [3, 4, 2]])
+</code></pre>
+<h2 id="113-numpy数组的性质"><a class="markdownIt-Anchor" href="#113-numpy数组的性质"></a> 11.3 Numpy数组的性质</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170141.png" srcset="/img/loading.gif" alt="image-20200714170140446" /></p>
+<h3 id="1131-数组的属性"><a class="markdownIt-Anchor" href="#1131-数组的属性"></a> 11.3.1 数组的属性</h3>
+<pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
 x</code></pre>
-
-
-
-
 <pre><code>array([[1, 6, 8, 9],
        [7, 4, 2, 7],
-       [5, 9, 2, 1]])</code></pre>
+       [5, 9, 2, 1]])
+</code></pre>
 <p><strong>1、数组的形状shape</strong></p>
 <pre><code class="hljs python">x.shape</code></pre>
-
-
-
-
-<pre><code>(3, 4)</code></pre>
+<pre><code>(3, 4)
+</code></pre>
 <p><strong>2、数组的维度ndim</strong></p>
 <pre><code class="hljs python">x.ndim</code></pre>
-
-
-
-
-<pre><code>2</code></pre>
+<pre><code>2
+</code></pre>
 <pre><code class="hljs python">y = np.arange(<span class="hljs-number">10</span>)
 y</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
 <pre><code class="hljs python">y.ndim</code></pre>
-
-
-
-
-<pre><code>1</code></pre>
+<pre><code>1
+</code></pre>
 <p><strong>3、数组的大小size</strong></p>
 <pre><code class="hljs python">x.size</code></pre>
-
-
-
-
-<pre><code>12</code></pre>
+<pre><code>12
+</code></pre>
 <p><strong>4、数组的数据类型dtype</strong></p>
 <pre><code class="hljs python">x.dtype</code></pre>
-
-
-
-
-<pre><code>dtype(&#39;int32&#39;)</code></pre>
-<h3 id="11-3-2-数组索引"><a href="#11-3-2-数组索引" class="headerlink" title="11.3.2 数组索引"></a>11.3.2 数组索引</h3><p><strong>1、一维数组的索引</strong></p>
+<pre><code>dtype('int32')
+</code></pre>
+<h3 id="1132-数组索引"><a class="markdownIt-Anchor" href="#1132-数组索引"></a> 11.3.2 数组索引</h3>
+<p><strong>1、一维数组的索引</strong></p>
 <pre><code class="hljs python">x1 = np.arange(<span class="hljs-number">10</span>)
 x1</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
 <pre><code class="hljs python">x1[<span class="hljs-number">0</span>]</code></pre>
-
-
-
-
-<pre><code>0</code></pre>
+<pre><code>0
+</code></pre>
 <pre><code class="hljs python">x1[<span class="hljs-number">5</span>]</code></pre>
-
-
-
-
-<pre><code>5</code></pre>
+<pre><code>5
+</code></pre>
 <pre><code class="hljs python">x1[<span class="hljs-number">-1</span>]</code></pre>
-
-
-
-
-<pre><code>9</code></pre>
+<pre><code>9
+</code></pre>
 <p><strong>2、多维数组的索引——以二维为例</strong></p>
 <pre><code class="hljs python">x2 = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">20</span>, (<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))
 x2</code></pre>
-
-
-
-
 <pre><code>array([[ 9,  7, 14],
-       [ 2,  8,  3]])</code></pre>
+       [ 2,  8,  3]])
+</code></pre>
 <pre><code class="hljs python">x2[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</code></pre>
-
-
-
-
-<pre><code>9</code></pre>
+<pre><code>9
+</code></pre>
 <pre><code class="hljs python">x2[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]</code></pre>
-
-
-
-
-<pre><code>9</code></pre>
+<pre><code>9
+</code></pre>
 <p><strong>注意：numpy数组的数据类型是固定的，向一个整型数组插入一个浮点值，浮点值会向下进行取整</strong></p>
 <pre><code class="hljs python">x2[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">1.618</span></code></pre>
-
-
 <pre><code class="hljs python">x2</code></pre>
-
-
-
-
 <pre><code>array([[ 1,  7, 14],
-       [ 2,  8,  3]])</code></pre>
-<h3 id="11-3-3-数组的切片"><a href="#11-3-3-数组的切片" class="headerlink" title="11.3.3 数组的切片"></a>11.3.3 数组的切片</h3><p><strong>1、一维数组——跟列表一样</strong></p>
+       [ 2,  8,  3]])
+</code></pre>
+<h3 id="1133-数组的切片"><a class="markdownIt-Anchor" href="#1133-数组的切片"></a> 11.3.3 数组的切片</h3>
+<p><strong>1、一维数组——跟列表一样</strong></p>
 <pre><code class="hljs python">x1 = np.arange(<span class="hljs-number">10</span>)
 x1</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
 <pre><code class="hljs python">x1[:<span class="hljs-number">3</span>]</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2])</code></pre>
+<pre><code>array([0, 1, 2])
+</code></pre>
 <pre><code class="hljs python">x1[<span class="hljs-number">3</span>:]</code></pre>
-
-
-
-
-<pre><code>array([3, 4, 5, 6, 7, 8, 9])</code></pre>
+<pre><code>array([3, 4, 5, 6, 7, 8, 9])
+</code></pre>
 <pre><code class="hljs python">x1[::<span class="hljs-number">-1</span>]</code></pre>
-
-
-
-
-<pre><code>array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])</code></pre>
+<pre><code>array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+</code></pre>
 <p><strong>2、多维数组——以二维为例</strong></p>
 <pre><code class="hljs python">x2 = np.random.randint(<span class="hljs-number">20</span>, size=(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)) 
 x2</code></pre>
-
-
-
-
 <pre><code>array([[15, 11, 12, 18],
        [ 8, 12, 10,  8],
-       [19, 13, 19, 13]])</code></pre>
+       [19, 13, 19, 13]])
+</code></pre>
 <pre><code class="hljs python">x2[:<span class="hljs-number">2</span>, :<span class="hljs-number">3</span>]             <span class="hljs-comment"># 前两行，前三列</span></code></pre>
-
-
-
-
 <pre><code>array([[15, 11, 12],
-       [ 8, 12, 10]])</code></pre>
+       [ 8, 12, 10]])
+</code></pre>
 <pre><code class="hljs python">x2[:<span class="hljs-number">2</span>, <span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>]       <span class="hljs-comment"># 前两行 前三列（每隔一列）</span></code></pre>
-
-
-
-
 <pre><code>array([[15, 12],
-       [ 8, 10]])</code></pre>
+       [ 8, 10]])
+</code></pre>
 <pre><code class="hljs python">x2[::<span class="hljs-number">-1</span>, ::<span class="hljs-number">-1</span>]</code></pre>
-
-
-
-
 <pre><code>array([[13, 19, 13, 19],
        [ 8, 10, 12,  8],
-       [18, 12, 11, 15]])</code></pre>
+       [18, 12, 11, 15]])
+</code></pre>
 <p><strong>3、获取数组的行和列</strong></p>
 <pre><code class="hljs python">x3 = np.random.randint(<span class="hljs-number">20</span>, size=(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)) 
 x3</code></pre>
-
-
-
-
 <pre><code>array([[18, 14, 16, 18],
        [11, 14, 13, 15],
-       [ 9,  8,  9, 12]])</code></pre>
+       [ 9,  8,  9, 12]])
+</code></pre>
 <pre><code class="hljs python">x3[<span class="hljs-number">1</span>, :]   <span class="hljs-comment">#第一行  从0开始计数</span></code></pre>
-
-
-
-
-<pre><code>array([11, 14, 13, 15])</code></pre>
+<pre><code>array([11, 14, 13, 15])
+</code></pre>
 <pre><code class="hljs python">x3[<span class="hljs-number">1</span>]    <span class="hljs-comment"># 第一行简写</span></code></pre>
-
-
-
-
-<pre><code>array([11, 14, 13, 15])</code></pre>
+<pre><code>array([11, 14, 13, 15])
+</code></pre>
 <pre><code class="hljs python">x3[:, <span class="hljs-number">2</span>]  <span class="hljs-comment"># 第二列   从0开始计数</span></code></pre>
-
-
-
-
-<pre><code>array([16, 13,  9])</code></pre>
+<pre><code>array([16, 13,  9])
+</code></pre>
 <p><strong>4、切片获取的是视图，而非副本</strong></p>
 <pre><code class="hljs python">x4 = np.random.randint(<span class="hljs-number">20</span>, size=(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)) 
 x4</code></pre>
-
-
-
-
 <pre><code>array([[ 9, 18,  2,  3],
        [ 8, 10,  2, 14],
-       [ 0,  6, 18, 14]])</code></pre>
+       [ 0,  6, 18, 14]])
+</code></pre>
 <pre><code class="hljs python">x5 = x4[:<span class="hljs-number">2</span>, :<span class="hljs-number">2</span>]
 x5</code></pre>
-
-
-
-
 <pre><code>array([[ 9, 18],
-       [ 8, 10]])</code></pre>
+       [ 8, 10]])
+</code></pre>
 <p><strong>注意：视图元素发生修改，则原数组亦发生相应修改</strong></p>
 <pre><code class="hljs python">x5[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
 x5</code></pre>
-
-
-
-
 <pre><code>array([[ 0, 18],
-       [ 8, 10]])</code></pre>
+       [ 8, 10]])
+</code></pre>
 <pre><code class="hljs python">x4</code></pre>
-
-
-
-
 <pre><code>array([[ 0, 18,  2,  3],
        [ 8, 10,  2, 14],
-       [ 0,  6, 18, 14]])</code></pre>
+       [ 0,  6, 18, 14]])
+</code></pre>
 <p><strong>修改切片的安全方式：copy</strong></p>
 <pre><code class="hljs python">x4 = np.random.randint(<span class="hljs-number">20</span>, size=(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)) 
 x4</code></pre>
-
-
-
-
 <pre><code>array([[15, 15,  4, 10],
        [ 3, 15, 12, 15],
-       [ 5,  5, 16,  8]])</code></pre>
+       [ 5,  5, 16,  8]])
+</code></pre>
 <pre><code class="hljs python">x6 = x4[:<span class="hljs-number">2</span>, :<span class="hljs-number">2</span>].copy()
 x6</code></pre>
-
-
-
-
 <pre><code>array([[15, 15],
-       [ 3, 15]])</code></pre>
+       [ 3, 15]])
+</code></pre>
 <pre><code class="hljs python">x6[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
 x6</code></pre>
-
-
-
-
 <pre><code>array([[ 0, 15],
-       [ 3, 15]])</code></pre>
+       [ 3, 15]])
+</code></pre>
 <pre><code class="hljs python">x4</code></pre>
-
-
-
-
 <pre><code>array([[15, 15,  4, 10],
        [ 3, 15, 12, 15],
-       [ 5,  5, 16,  8]])</code></pre>
-<h3 id="11-3-4-数组的变形"><a href="#11-3-4-数组的变形" class="headerlink" title="11.3.4 数组的变形"></a>11.3.4 数组的变形</h3><pre><code class="hljs python">x5 = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>)
+       [ 5,  5, 16,  8]])
+</code></pre>
+<h3 id="1134-数组的变形"><a class="markdownIt-Anchor" href="#1134-数组的变形"></a> 11.3.4 数组的变形</h3>
+<pre><code class="hljs python">x5 = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>)
 x5</code></pre>
-
-
-
-
-<pre><code>array([8, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3])</code></pre>
+<pre><code>array([8, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3])
+</code></pre>
 <p>numpy.random.randint(low,high=None,size=None,dtype)</p>
 <pre><code class="hljs python">x5.shape</code></pre>
-
-
-
-
-<pre><code>(12,)</code></pre>
+<pre><code>(12,)
+</code></pre>
 <pre><code class="hljs python">x6 = x5.reshape(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
 x6</code></pre>
-
-
-
-
 <pre><code>array([[8, 7, 0, 9],
        [6, 0, 6, 2],
-       [7, 4, 5, 3]])</code></pre>
+       [7, 4, 5, 3]])
+</code></pre>
 <p><strong>注意：reshape返回的是视图，而非副本</strong></p>
 <pre><code class="hljs python">x6[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
 x5</code></pre>
-
-
-
-
-<pre><code>array([0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3])</code></pre>
+<pre><code>array([0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3])
+</code></pre>
 <p><strong>一维向量转行向量</strong></p>
 <pre><code class="hljs python">x7 = x5.reshape(<span class="hljs-number">1</span>, x5.shape[<span class="hljs-number">0</span>])    
 x7</code></pre>
-
-
-
-
-<pre><code>array([[0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3]])</code></pre>
+<pre><code>array([[0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3]])
+</code></pre>
 <pre><code class="hljs python">x8 = x5[np.newaxis, :]
 x8</code></pre>
-
-
-
-
-<pre><code>array([[0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3]])</code></pre>
+<pre><code>array([[0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3]])
+</code></pre>
 <pre><code class="hljs python">x8 = x5[np.newaxis, :]
 x8
 x8 = x8[np.newaxis, :]
@@ -760,8 +605,6 @@ x8 = x8[np.newaxis, :]
 x8
 x8.T
 <span class="hljs-comment">#可见np.newaxis的作用真的是增加坐标轴</span></code></pre>
-
-
 <pre><code>array([[0, 7, 0, 9, 6, 0, 6, 2, 7, 4, 5, 3]])
 
 
@@ -793,14 +636,11 @@ array([[[[0]]]
 
        [[[5]]],
 
-       [[[3]]]])</code></pre>
+       [[[3]]]])
+</code></pre>
 <p><strong>一维向量转列向量</strong></p>
 <pre><code class="hljs python">x7 = x5.reshape(x5.shape[<span class="hljs-number">0</span>], <span class="hljs-number">1</span>)    
 x7</code></pre>
-
-
-
-
 <pre><code>array([[0],
        [7],
        [0],
@@ -812,13 +652,10 @@ x7</code></pre>
        [7],
        [4],
        [5],
-       [3]])</code></pre>
+       [3]])
+</code></pre>
 <pre><code class="hljs python">x8 = x5[:, np.newaxis]
 x8</code></pre>
-
-
-
-
 <pre><code>array([[0],
        [7],
        [0],
@@ -830,162 +667,116 @@ x8</code></pre>
        [7],
        [4],
        [5],
-       [3]])</code></pre>
+       [3]])
+</code></pre>
 <p><strong>多维向量转一维向量</strong></p>
 <pre><code class="hljs python">x6 = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
 x6</code></pre>
-
-
-
-
 <pre><code>array([[9, 8, 1, 4],
        [5, 2, 4, 9],
-       [0, 5, 2, 0]])</code></pre>
+       [0, 5, 2, 0]])
+</code></pre>
 <p><strong>flatten返回的是副本</strong></p>
 <pre><code class="hljs python">x9 = x6.flatten()
 x9</code></pre>
-
-
-
-
-<pre><code>array([9, 8, 1, 4, 5, 2, 4, 9, 0, 5, 2, 0])</code></pre>
+<pre><code>array([9, 8, 1, 4, 5, 2, 4, 9, 0, 5, 2, 0])
+</code></pre>
 <pre><code class="hljs python">x9[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>
 x6</code></pre>
-
-
-
-
 <pre><code>array([[9, 8, 1, 4],
        [5, 2, 4, 9],
-       [0, 5, 2, 0]])</code></pre>
+       [0, 5, 2, 0]])
+</code></pre>
 <p><strong>ravel返回的是视图</strong></p>
 <pre><code class="hljs python">x10 = x6.ravel()
 x10</code></pre>
-
-
-
-
-<pre><code>array([9, 8, 1, 4, 5, 2, 4, 9, 0, 5, 2, 0])</code></pre>
+<pre><code>array([9, 8, 1, 4, 5, 2, 4, 9, 0, 5, 2, 0])
+</code></pre>
 <pre><code class="hljs python">x10[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>
 x6</code></pre>
-
-
-
-
 <pre><code>array([[0, 8, 1, 4],
        [5, 2, 4, 9],
-       [0, 5, 2, 0]])</code></pre>
+       [0, 5, 2, 0]])
+</code></pre>
 <p><strong>reshape返回的是视图</strong></p>
 <pre><code class="hljs python">x11 = x6.reshape(<span class="hljs-number">-1</span>)
 x11</code></pre>
-
-
-
-
-<pre><code>array([0, 8, 1, 4, 5, 2, 4, 9, 0, 5, 2, 0])</code></pre>
+<pre><code>array([0, 8, 1, 4, 5, 2, 4, 9, 0, 5, 2, 0])
+</code></pre>
 <pre><code class="hljs python">x11[<span class="hljs-number">0</span>]=<span class="hljs-number">10</span>
 x6</code></pre>
-
-
-
-
 <pre><code>array([[10,  8,  1,  4],
        [ 5,  2,  4,  9],
-       [ 0,  5,  2,  0]])</code></pre>
-<h3 id="11-3-5-数组的拼接"><a href="#11-3-5-数组的拼接" class="headerlink" title="11.3.5 数组的拼接"></a>11.3.5 数组的拼接</h3><pre><code class="hljs python">x1 = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+       [ 0,  5,  2,  0]])
+</code></pre>
+<h3 id="1135-数组的拼接"><a class="markdownIt-Anchor" href="#1135-数组的拼接"></a> 11.3.5 数组的拼接</h3>
+<pre><code class="hljs python">x1 = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
               [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
 x2 = np.array([[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>],
               [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]])</code></pre>
-
 <p><strong>1、水平拼接——非视图</strong></p>
 <pre><code class="hljs python">x3 = np.hstack([x1, x2])
 x3</code></pre>
-
-
-
-
 <pre><code>array([[1, 2, 3, 7, 8, 9],
-       [4, 5, 6, 0, 1, 2]])</code></pre>
+       [4, 5, 6, 0, 1, 2]])
+</code></pre>
 <pre><code class="hljs python">x3[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
 x1</code></pre>
-
-
-
-
 <pre><code>array([[1, 2, 3],
-       [4, 5, 6]])</code></pre>
+       [4, 5, 6]])
+</code></pre>
 <pre><code class="hljs python">x4 = np.c_[x1, x2]
 x4</code></pre>
-
-
-
-
 <pre><code>array([[1, 2, 3, 7, 8, 9],
-       [4, 5, 6, 0, 1, 2]])</code></pre>
+       [4, 5, 6, 0, 1, 2]])
+</code></pre>
 <pre><code class="hljs python">x4[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
 x1</code></pre>
-
-
-
-
 <pre><code>array([[1, 2, 3],
-       [4, 5, 6]])</code></pre>
+       [4, 5, 6]])
+</code></pre>
 <p><strong>2、垂直拼接——非视图</strong></p>
 <pre><code class="hljs python">x1 = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
               [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
 x2 = np.array([[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>],
               [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]])</code></pre>
-
-
 <pre><code class="hljs python">x5 = np.vstack([x1, x2])
 x5</code></pre>
-
-
-
-
 <pre><code>array([[1, 2, 3],
        [4, 5, 6],
        [7, 8, 9],
-       [0, 1, 2]])</code></pre>
+       [0, 1, 2]])
+</code></pre>
 <pre><code class="hljs python">x6 = np.r_[x1, x2]
 x6</code></pre>
-
-
-
-
 <pre><code>array([[1, 2, 3],
        [4, 5, 6],
        [7, 8, 9],
-       [0, 1, 2]])</code></pre>
-<h3 id="11-3-6-数组的分裂"><a href="#11-3-6-数组的分裂" class="headerlink" title="11.3.6 数组的分裂"></a>11.3.6 数组的分裂</h3><p><strong>1、split的用法</strong></p>
+       [0, 1, 2]])
+</code></pre>
+<h3 id="1136-数组的分裂"><a class="markdownIt-Anchor" href="#1136-数组的分裂"></a> 11.3.6 数组的分裂</h3>
+<p><strong>1、split的用法</strong></p>
 <pre><code class="hljs python">x6 = np.arange(<span class="hljs-number">10</span>)
 x6</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
 <pre><code class="hljs python">x1, x2, x3 = np.split(x6, [<span class="hljs-number">2</span>, <span class="hljs-number">7</span>])
 print(x1, x2, x3)</code></pre>
-
-<pre><code>[0 1] [2 3 4 5 6] [7 8 9]</code></pre>
+<pre><code>[0 1] [2 3 4 5 6] [7 8 9]
+</code></pre>
 <p><strong>2、hsplit的用法</strong></p>
 <pre><code class="hljs python">x7 = np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">26</span>).reshape(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)
 x7</code></pre>
-
-
-
-
 <pre><code>array([[ 1,  2,  3,  4,  5],
        [ 6,  7,  8,  9, 10],
        [11, 12, 13, 14, 15],
        [16, 17, 18, 19, 20],
-       [21, 22, 23, 24, 25]])</code></pre>
+       [21, 22, 23, 24, 25]])
+</code></pre>
 <pre><code class="hljs python">left, middle, right = np.hsplit(x7, [<span class="hljs-number">2</span>,<span class="hljs-number">4</span>])
 print(<span class="hljs-string">&quot;left:\n&quot;</span>, left)            <span class="hljs-comment"># 第0~1列</span>
 print(<span class="hljs-string">&quot;middle:\n&quot;</span>, middle)        <span class="hljs-comment"># 第2~3列</span>
 print(<span class="hljs-string">&quot;right:\n&quot;</span>, right)          <span class="hljs-comment"># 第4列</span></code></pre>
-
 <pre><code>left:
  [[ 1  2]
  [ 6  7]
@@ -1003,24 +794,21 @@ right:
  [10]
  [15]
  [20]
- [25]]</code></pre>
+ [25]]
+</code></pre>
 <p><strong>3、vsplit的用法</strong></p>
 <pre><code class="hljs python">x7 = np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">26</span>).reshape(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)
 x7</code></pre>
-
-
-
-
 <pre><code>array([[ 1,  2,  3,  4,  5],
        [ 6,  7,  8,  9, 10],
        [11, 12, 13, 14, 15],
        [16, 17, 18, 19, 20],
-       [21, 22, 23, 24, 25]])</code></pre>
+       [21, 22, 23, 24, 25]])
+</code></pre>
 <pre><code class="hljs python">upper, middle, lower = np.vsplit(x7, [<span class="hljs-number">2</span>,<span class="hljs-number">4</span>])
 print(<span class="hljs-string">&quot;upper:\n&quot;</span>, upper)         <span class="hljs-comment"># 第0~1行</span>
 print(<span class="hljs-string">&quot;middle:\n&quot;</span>, middle)       <span class="hljs-comment"># 第2~3行</span>
 print(<span class="hljs-string">&quot;lower:\n&quot;</span>, lower)         <span class="hljs-comment"># 第4行</span></code></pre>
-
 <pre><code>upper:
  [[ 1  2  3  4  5]
  [ 6  7  8  9 10]]
@@ -1028,13 +816,13 @@ middle:
  [[11 12 13 14 15]
  [16 17 18 19 20]]
 lower:
- [[21 22 23 24 25]]</code></pre>
+ [[21 22 23 24 25]]
+</code></pre>
 <pre><code class="hljs python">upper, middle1, middle2, lower = np.vsplit(x7, [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])
 print(<span class="hljs-string">&quot;upper:\n&quot;</span>, upper)         <span class="hljs-comment"># 第0行</span>
 print(<span class="hljs-string">&quot;middle1:\n&quot;</span>, middle1)       <span class="hljs-comment"># 第1~2行</span>
 print(<span class="hljs-string">&quot;middle2:\n&quot;</span>, middle2)       <span class="hljs-comment"># 第3行</span>
 print(<span class="hljs-string">&quot;lower:\n&quot;</span>, lower)         <span class="hljs-comment"># 第4行</span></code></pre>
-
 <pre><code>upper:
  [[1 2 3 4 5]]
 middle1:
@@ -1043,146 +831,117 @@ middle1:
 middle2:
  [[16 17 18 19 20]]
 lower:
- [[21 22 23 24 25]]</code></pre>
-<h2 id="11-4-Numpy四大运算"><a href="#11-4-Numpy四大运算" class="headerlink" title="11.4 Numpy四大运算"></a>11.4 Numpy四大运算</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170158.png" srcset="/img/loading.gif" alt="image-20200714170156830"></p>
-<h3 id="11-4-1-向量化运算"><a href="#11-4-1-向量化运算" class="headerlink" title="11.4.1 向量化运算"></a>11.4.1 向量化运算</h3><p><strong>1、与数字的加减乘除等</strong></p>
+ [[21 22 23 24 25]]
+</code></pre>
+<h2 id="114-numpy四大运算"><a class="markdownIt-Anchor" href="#114-numpy四大运算"></a> 11.4 Numpy四大运算</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170158.png" srcset="/img/loading.gif" alt="image-20200714170156830" /></p>
+<h3 id="1141-向量化运算"><a class="markdownIt-Anchor" href="#1141-向量化运算"></a> 11.4.1 向量化运算</h3>
+<p><strong>1、与数字的加减乘除等</strong></p>
 <pre><code class="hljs python">x1 = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)
 x1</code></pre>
-
-
-
-
-<pre><code>array([1, 2, 3, 4, 5])</code></pre>
+<pre><code>array([1, 2, 3, 4, 5])
+</code></pre>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;x1+5&quot;</span>, x1+<span class="hljs-number">5</span>)
 print(<span class="hljs-string">&quot;x1-5&quot;</span>, x1<span class="hljs-number">-5</span>)
 print(<span class="hljs-string">&quot;x1*5&quot;</span>, x1*<span class="hljs-number">5</span>)
 print(<span class="hljs-string">&quot;x1/5&quot;</span>, x1/<span class="hljs-number">5</span>)</code></pre>
-
 <pre><code>x1+5 [ 6  7  8  9 10]
 x1-5 [-4 -3 -2 -1  0]
 x1*5 [ 5 10 15 20 25]
-x1/5 [0.2 0.4 0.6 0.8 1. ]</code></pre>
+x1/5 [0.2 0.4 0.6 0.8 1. ]
+</code></pre>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;-x1&quot;</span>, -x1)
 print(<span class="hljs-string">&quot;x1**2&quot;</span>, x1**<span class="hljs-number">2</span>)
 print(<span class="hljs-string">&quot;x1//2&quot;</span>, x1//<span class="hljs-number">2</span>)
 print(<span class="hljs-string">&quot;x1%2&quot;</span>, x1%<span class="hljs-number">2</span>)</code></pre>
-
 <pre><code>-x1 [-1 -2 -3 -4 -5]
 x1**2 [ 1  4  9 16 25]
 x1//2 [0 1 1 2 2]
-x1%2 [1 0 1 0 1]</code></pre>
+x1%2 [1 0 1 0 1]
+</code></pre>
 <p><strong>2、绝对值、三角函数、指数、对数</strong></p>
 <p>（1）绝对值</p>
 <pre><code class="hljs python">x2 = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">-2</span>, <span class="hljs-number">0</span>])
 x2</code></pre>
-
-
-
-
-<pre><code>array([ 1, -1,  2, -2,  0])</code></pre>
+<pre><code>array([ 1, -1,  2, -2,  0])
+</code></pre>
 <pre><code class="hljs python">abs(x2)</code></pre>
-
-
-
-
-<pre><code>array([1, 1, 2, 2, 0])</code></pre>
+<pre><code>array([1, 1, 2, 2, 0])
+</code></pre>
 <pre><code class="hljs python">np.abs(x2)</code></pre>
-
-
-
-
-<pre><code>array([1, 1, 2, 2, 0])</code></pre>
+<pre><code>array([1, 1, 2, 2, 0])
+</code></pre>
 <p>（2）三角函数</p>
 <pre><code class="hljs python">theta = np.linspace(<span class="hljs-number">0</span>, np.pi, <span class="hljs-number">3</span>)
 theta</code></pre>
-
-
-
-
-<pre><code>array([0.        , 1.57079633, 3.14159265])</code></pre>
+<pre><code>array([0.        , 1.57079633, 3.14159265])
+</code></pre>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;sin(theta)&quot;</span>, np.sin(theta))
 print(<span class="hljs-string">&quot;con(theta)&quot;</span>, np.cos(theta))
 print(<span class="hljs-string">&quot;tan(theta)&quot;</span>, np.tan(theta))</code></pre>
-
 <pre><code>sin(theta) [0.0000000e+00 1.0000000e+00 1.2246468e-16]
 con(theta) [ 1.000000e+00  6.123234e-17 -1.000000e+00]
-tan(theta) [ 0.00000000e+00  1.63312394e+16 -1.22464680e-16]</code></pre>
+tan(theta) [ 0.00000000e+00  1.63312394e+16 -1.22464680e-16]
+</code></pre>
 <pre><code class="hljs python">x = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span> ,<span class="hljs-number">-1</span>]
 print(<span class="hljs-string">&quot;arcsin(x)&quot;</span>, np.arcsin(x))
 print(<span class="hljs-string">&quot;arccon(x)&quot;</span>, np.arccos(x))
 print(<span class="hljs-string">&quot;arctan(x)&quot;</span>, np.arctan(x))</code></pre>
-
 <pre><code>arcsin(x) [ 1.57079633  0.         -1.57079633]
 arccon(x) [0.         1.57079633 3.14159265]
-arctan(x) [ 0.78539816  0.         -0.78539816]</code></pre>
+arctan(x) [ 0.78539816  0.         -0.78539816]
+</code></pre>
 <p>（3）指数运算</p>
 <pre><code class="hljs python">x = np.arange(<span class="hljs-number">3</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([0, 1, 2])</code></pre>
+<pre><code>array([0, 1, 2])
+</code></pre>
 <pre><code class="hljs python">np.exp(x)</code></pre>
-
-
-
-
-<pre><code>array([1.        , 2.71828183, 7.3890561 ])</code></pre>
+<pre><code>array([1.        , 2.71828183, 7.3890561 ])
+</code></pre>
 <p>（4）对数运算</p>
 <pre><code class="hljs python">x = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span> ,<span class="hljs-number">10</span>])
 print(<span class="hljs-string">&quot;ln(x)&quot;</span>, np.log(x))
 print(<span class="hljs-string">&quot;log2(x)&quot;</span>, np.log2(x))
 print(<span class="hljs-string">&quot;log10(x)&quot;</span>, np.log10(x))</code></pre>
-
 <pre><code>ln(x) [0.         0.69314718 1.38629436 2.07944154 2.30258509]
 log2(x) [0.         1.         2.         3.         3.32192809]
-log10(x) [0.         0.30103    0.60205999 0.90308999 1.        ]</code></pre>
+log10(x) [0.         0.30103    0.60205999 0.90308999 1.        ]
+</code></pre>
 <p><strong>3、两个数组的运算</strong></p>
 <pre><code class="hljs python">x1 = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)
 x1</code></pre>
-
-
-
-
-<pre><code>array([1, 2, 3, 4, 5])</code></pre>
+<pre><code>array([1, 2, 3, 4, 5])
+</code></pre>
 <pre><code class="hljs python">x2 = np.arange(<span class="hljs-number">6</span>,<span class="hljs-number">11</span>)
 x2</code></pre>
-
-
-
-
-<pre><code>array([ 6,  7,  8,  9, 10])</code></pre>
+<pre><code>array([ 6,  7,  8,  9, 10])
+</code></pre>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;x1+x2:&quot;</span>, x1+x2)
 print(<span class="hljs-string">&quot;x1-x2:&quot;</span>, x1-x2)
 print(<span class="hljs-string">&quot;x1*x2:&quot;</span>, x1*x2)
 print(<span class="hljs-string">&quot;x1/x2:&quot;</span>, x1/x2)</code></pre>
-
 <pre><code>x1+x2: [ 7  9 11 13 15]
 x1-x2: [-5 -5 -5 -5 -5]
 x1*x2: [ 6 14 24 36 50]
-x1/x2: [0.16666667 0.28571429 0.375      0.44444444 0.5       ]</code></pre>
-<h3 id="11-4-2-矩阵运算"><a href="#11-4-2-矩阵运算" class="headerlink" title="11.4.2 矩阵运算"></a>11.4.2 矩阵运算</h3><pre><code class="hljs python">x = np.arange(<span class="hljs-number">9</span>).reshape(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)
+x1/x2: [0.16666667 0.28571429 0.375      0.44444444 0.5       ]
+</code></pre>
+<h3 id="1142-矩阵运算"><a class="markdownIt-Anchor" href="#1142-矩阵运算"></a> 11.4.2 矩阵运算</h3>
+<pre><code class="hljs python">x = np.arange(<span class="hljs-number">9</span>).reshape(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)
 x</code></pre>
-
-
-
-
 <pre><code>array([[0, 1, 2],
        [3, 4, 5],
-       [6, 7, 8]])</code></pre>
+       [6, 7, 8]])
+</code></pre>
 <ul>
 <li>矩阵的转置</li>
 </ul>
 <pre><code class="hljs python">y = x.T
 y</code></pre>
-
-
-
-
 <pre><code>array([[0, 3, 6],
        [1, 4, 7],
-       [2, 5, 8]])</code></pre>
+       [2, 5, 8]])
+</code></pre>
 <ul>
 <li>矩阵乘法</li>
 </ul>
@@ -1190,140 +949,88 @@ y</code></pre>
              [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]])
 y = np.array([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
              [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>]])</code></pre>
-
-
 <pre><code class="hljs python">x.dot(y)</code></pre>
-
-
-
-
 <pre><code>array([[0, 1],
-       [1, 2]])</code></pre>
+       [1, 2]])
+</code></pre>
 <pre><code class="hljs python">np.dot(x, y)</code></pre>
-
-
-
-
 <pre><code>array([[0, 1],
-       [1, 2]])</code></pre>
+       [1, 2]])
+</code></pre>
 <pre><code class="hljs python">y.dot(x)</code></pre>
-
-
-
-
 <pre><code>array([[1, 1],
-       [2, 1]])</code></pre>
+       [2, 1]])
+</code></pre>
 <pre><code class="hljs python">np.dot(y, x)</code></pre>
-
-
-
-
 <pre><code>array([[1, 1],
-       [2, 1]])</code></pre>
-<p>*<em>注意跟x</em>y的区别**</p>
+       [2, 1]])
+</code></pre>
+<p><strong>注意跟x*y的区别</strong></p>
 <pre><code class="hljs python">x*y <span class="hljs-comment">#按元素乘</span></code></pre>
-
-
-
-
 <pre><code>array([[0, 0],
-       [1, 1]])</code></pre>
-<h3 id="11-4-3-广播运算"><a href="#11-4-3-广播运算" class="headerlink" title="11.4.3 广播运算"></a>11.4.3 广播运算</h3><pre><code class="hljs python">x = np.arange(<span class="hljs-number">3</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+       [1, 1]])
+</code></pre>
+<h3 id="1143-广播运算"><a class="markdownIt-Anchor" href="#1143-广播运算"></a> 11.4.3 广播运算</h3>
+<pre><code class="hljs python">x = np.arange(<span class="hljs-number">3</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([[0, 1, 2]])</code></pre>
+<pre><code>array([[0, 1, 2]])
+</code></pre>
 <pre><code class="hljs python">x+<span class="hljs-number">5</span></code></pre>
-
-
-
-
-<pre><code>array([[5, 6, 7]])</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165535.png" srcset="/img/loading.gif" alt="image-20200714165533041"></p>
+<pre><code>array([[5, 6, 7]])
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165535.png" srcset="/img/loading.gif" alt="image-20200714165533041" /></p>
 <p><strong>规则</strong></p>
 <p>如果两个数组的形状在维度上不匹配</p>
 <p>那么数组的形式会沿着维度为1的维度进行扩展以匹配另一个数组的形状。</p>
 <pre><code class="hljs python">x1 = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
 x1</code></pre>
-
-
-
-
 <pre><code>array([[1., 1., 1.],
        [1., 1., 1.],
-       [1., 1., 1.]])</code></pre>
+       [1., 1., 1.]])
+</code></pre>
 <pre><code class="hljs python">x2 = np.arange(<span class="hljs-number">3</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
 x2</code></pre>
-
-
-
-
-<pre><code>array([[0, 1, 2]])</code></pre>
+<pre><code>array([[0, 1, 2]])
+</code></pre>
 <pre><code class="hljs python">x1+x2</code></pre>
-
-
-
-
 <pre><code>array([[1., 2., 3.],
        [1., 2., 3.],
-       [1., 2., 3.]])</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170011.png" srcset="/img/loading.gif" alt="image-20200714170009935"></p>
+       [1., 2., 3.]])
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170011.png" srcset="/img/loading.gif" alt="image-20200714170009935" /></p>
 <pre><code class="hljs python">x3 = np.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, base=<span class="hljs-number">2</span>).reshape(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)
 x3</code></pre>
-
-
-
-
 <pre><code>array([[   2.,    4.,    8.,   16.,   32.],
-       [  64.,  128.,  256.,  512., 1024.]])</code></pre>
+       [  64.,  128.,  256.,  512., 1024.]])
+</code></pre>
 <pre><code class="hljs python">x4 = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">16</span>]])
 x4</code></pre>
-
-
-
-
-<pre><code>array([[ 1,  2,  4,  8, 16]])</code></pre>
+<pre><code>array([[ 1,  2,  4,  8, 16]])
+</code></pre>
 <pre><code class="hljs python">x3/x4</code></pre>
-
-
-
-
 <pre><code>array([[ 2.,  2.,  2.,  2.,  2.],
-       [64., 64., 64., 64., 64.]])</code></pre>
+       [64., 64., 64., 64., 64.]])
+</code></pre>
 <pre><code class="hljs python">x5 = np.arange(<span class="hljs-number">3</span>).reshape(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>)
 x5</code></pre>
-
-
-
-
 <pre><code>array([[0],
        [1],
-       [2]])</code></pre>
+       [2]])
+</code></pre>
 <pre><code class="hljs python">x6 = np.arange(<span class="hljs-number">3</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
 x6</code></pre>
-
-
-
-
-<pre><code>array([[0, 1, 2]])</code></pre>
+<pre><code>array([[0, 1, 2]])
+</code></pre>
 <pre><code class="hljs python">x5+x6</code></pre>
-
-
-
-
 <pre><code>array([[0, 1, 2],
        [1, 2, 3],
-       [2, 3, 4]])</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165921.png" srcset="/img/loading.gif" alt="image-20200714165920329"></p>
-<h3 id="11-4-4-比较运算和掩码"><a href="#11-4-4-比较运算和掩码" class="headerlink" title="11.4.4 比较运算和掩码"></a>11.4.4 比较运算和掩码</h3><p><strong>1、比较运算</strong></p>
+       [2, 3, 4]])
+</code></pre>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165921.png" srcset="/img/loading.gif" alt="image-20200714165920329" /></p>
+<h3 id="1144-比较运算和掩码"><a class="markdownIt-Anchor" href="#1144-比较运算和掩码"></a> 11.4.4 比较运算和掩码</h3>
+<p><strong>1、比较运算</strong></p>
 <pre><code class="hljs python">x1 = np.random.randint(<span class="hljs-number">100</span>, size=(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>))
 x1</code></pre>
-
-
-
-
 <pre><code>array([[64, 24, 50, 91, 67, 48,  9, 79, 49,  6],
        [32, 42, 76, 59, 90, 99, 14, 77, 72, 24],
        [16, 21, 56, 70, 26,  4, 71, 26, 30, 23],
@@ -1333,12 +1040,9 @@ x1</code></pre>
        [40, 13, 62, 98, 91, 26,  0, 68, 17, 98],
        [94, 74,  8, 47, 97, 45, 97, 97, 24, 46],
        [19, 41,  4,  2, 76,  3, 47, 76, 99, 56],
-       [71, 17, 16, 71, 76, 40, 97, 60, 11, 58]])</code></pre>
+       [71, 17, 16, 71, 76, 40, 97, 60, 11, 58]])
+</code></pre>
 <pre><code class="hljs python">x1 &gt; <span class="hljs-number">50</span></code></pre>
-
-
-
-
 <pre><code>array([[ True, False, False,  True,  True, False, False,  True, False,
         False],
        [False, False,  True,  True,  True,  True, False,  True,  True,
@@ -1358,20 +1062,17 @@ x1</code></pre>
        [False, False, False, False,  True, False, False,  True,  True,
          True],
        [ True, False, False,  True,  True, False,  True,  True, False,
-         True]])</code></pre>
+         True]])
+</code></pre>
 <p><strong>2、操作布尔数组</strong></p>
 <pre><code class="hljs python">x2 = np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
 x2</code></pre>
-
-
-
-
 <pre><code>array([[5, 7, 2, 8],
        [7, 3, 3, 9],
-       [9, 0, 9, 1]])</code></pre>
+       [9, 0, 9, 1]])
+</code></pre>
 <pre><code class="hljs python">print(x2 &gt; <span class="hljs-number">5</span>)
 np.sum(x2 &gt; <span class="hljs-number">5</span>)</code></pre>
-
 <pre><code>[[False  True False  True]
  [ True False False  True]
  [ True False  True False]]
@@ -1380,87 +1081,55 @@ np.sum(x2 &gt; <span class="hljs-number">5</span>)</code></pre>
 
 
 
-6</code></pre>
+6
+</code></pre>
 <pre><code class="hljs python">np.all(x2 &gt; <span class="hljs-number">0</span>)</code></pre>
-
-
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <pre><code class="hljs python">np.any(x2 == <span class="hljs-number">6</span>)</code></pre>
-
-
-
-
-<pre><code>False</code></pre>
+<pre><code>False
+</code></pre>
 <pre><code class="hljs python">np.all(x2 &lt; <span class="hljs-number">9</span>, axis=<span class="hljs-number">1</span>)   <span class="hljs-comment"># 按行进行判断</span></code></pre>
-
-
-
-
-<pre><code>array([ True, False, False])</code></pre>
+<pre><code>array([ True, False, False])
+</code></pre>
 <pre><code class="hljs python">x2</code></pre>
-
-
-
-
 <pre><code>array([[5, 7, 2, 8],
        [7, 3, 3, 9],
-       [9, 0, 9, 1]])</code></pre>
+       [9, 0, 9, 1]])
+</code></pre>
 <pre><code class="hljs python">(x2 &lt; <span class="hljs-number">9</span>) &amp; (x2 &gt;<span class="hljs-number">5</span>)</code></pre>
-
-
-
-
 <pre><code>array([[False,  True, False,  True],
        [ True, False, False, False],
-       [False, False, False, False]])</code></pre>
+       [False, False, False, False]])
+</code></pre>
 <pre><code class="hljs python">np.sum((x2 &lt; <span class="hljs-number">9</span>) &amp; (x2 &gt;<span class="hljs-number">5</span>))</code></pre>
-
-
-
-
-<pre><code>3</code></pre>
+<pre><code>3
+</code></pre>
 <p><strong>3、将布尔数组作为掩码</strong></p>
 <pre><code class="hljs python">x2</code></pre>
-
-
-
-
 <pre><code>array([[5, 7, 2, 8],
        [7, 3, 3, 9],
-       [9, 0, 9, 1]])</code></pre>
+       [9, 0, 9, 1]])
+</code></pre>
 <pre><code class="hljs python">x2 &gt; <span class="hljs-number">5</span></code></pre>
-
-
-
-
 <pre><code>array([[False,  True, False,  True],
        [ True, False, False,  True],
-       [ True, False,  True, False]])</code></pre>
+       [ True, False,  True, False]])
+</code></pre>
 <pre><code class="hljs python">x2[x2 &gt; <span class="hljs-number">5</span>]</code></pre>
-
-
-
-
-<pre><code>array([7, 8, 7, 9, 9, 9])</code></pre>
-<h3 id="11-4-5-花哨的索引"><a href="#11-4-5-花哨的索引" class="headerlink" title="11.4.5  花哨的索引"></a>11.4.5  花哨的索引</h3><p><strong>1、一维数组</strong></p>
+<pre><code>array([7, 8, 7, 9, 9, 9])
+</code></pre>
+<h3 id="1145-花哨的索引"><a class="markdownIt-Anchor" href="#1145-花哨的索引"></a> 11.4.5  花哨的索引</h3>
+<p><strong>1、一维数组</strong></p>
 <pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">100</span>, size=<span class="hljs-number">10</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([75, 41,  0, 77, 78, 82,  2, 79, 93,  7])</code></pre>
+<pre><code>array([75, 41,  0, 77, 78, 82,  2, 79, 93,  7])
+</code></pre>
 <p><strong>注意：结果的形状与索引数组ind一致，相应元素就是索引位置的元素</strong></p>
 <pre><code class="hljs python">ind = [<span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
 x[ind]
 ind = [<span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>]
 x[ind]</code></pre>
-
-
-
-
 <pre><code>array([0, 2, 7])
 
 
@@ -1468,34 +1137,25 @@ x[ind]</code></pre>
 
 
 
-array([2, 2, 0])</code></pre>
+array([2, 2, 0])
+</code></pre>
 <pre><code class="hljs python">ind = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>],
                [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
 x[ind]</code></pre>
-
-
-
-
 <pre><code>array([[41, 75],
-       [ 0, 77]])</code></pre>
+       [ 0, 77]])
+</code></pre>
 <p><strong>2、多维数组</strong></p>
 <pre><code class="hljs python">x = np.arange(<span class="hljs-number">12</span>).reshape(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
 x</code></pre>
-
-
-
-
 <pre><code>array([[ 0,  1,  2,  3],
        [ 4,  5,  6,  7],
-       [ 8,  9, 10, 11]])</code></pre>
+       [ 8,  9, 10, 11]])
+</code></pre>
 <pre><code class="hljs python">row = np.array([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 x[row,:] 
 row = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>])
 x[row,:]</code></pre>
-
-
-
-
 <pre><code>array([[ 0,  1,  2,  3],
        [ 4,  5,  6,  7],
        [ 8,  9, 10, 11]])
@@ -1507,15 +1167,12 @@ x[row,:]</code></pre>
 
 array([[4, 5, 6, 7],
        [4, 5, 6, 7],
-       [0, 1, 2, 3]])</code></pre>
+       [0, 1, 2, 3]])
+</code></pre>
 <pre><code class="hljs python">col = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>])
 x[:, col] 
 col = np.array([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
 x[:, col]</code></pre>
-
-
-
-
 <pre><code>array([[ 1,  3,  0],
        [ 5,  7,  4],
        [ 9, 11,  8]])
@@ -1527,184 +1184,124 @@ x[:, col]</code></pre>
 
 array([[0, 0, 0],
        [4, 4, 4],
-       [8, 8, 8]])</code></pre>
+       [8, 8, 8]])
+</code></pre>
 <pre><code class="hljs python">row = np.array([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
 col = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>])
 x[row, col]               <span class="hljs-comment"># x(0, 1) x(1, 3) x(2, 0)</span></code></pre>
-
-
-
-
-<pre><code>array([1, 7, 8])</code></pre>
+<pre><code>array([1, 7, 8])
+</code></pre>
 <pre><code class="hljs python">row[:, np.newaxis]       <span class="hljs-comment"># 列向量</span></code></pre>
-
-
-
-
 <pre><code>array([[0],
        [1],
-       [2]])</code></pre>
+       [2]])
+</code></pre>
 <pre><code class="hljs python">x[row[:, np.newaxis], col]    <span class="hljs-comment"># 广播机制</span></code></pre>
-
-
-
-
 <pre><code>array([[ 1,  3,  0],
        [ 5,  7,  4],
-       [ 9, 11,  8]])</code></pre>
-<h2 id="11-5-其他Numpy通用函数"><a href="#11-5-其他Numpy通用函数" class="headerlink" title="11.5 其他Numpy通用函数"></a>11.5 其他Numpy通用函数</h2><p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170209.png" srcset="/img/loading.gif" alt="image-20200714170208060"></p>
-<h3 id="11-5-1-数值排序"><a href="#11-5-1-数值排序" class="headerlink" title="11.5.1  数值排序"></a>11.5.1  数值排序</h3><pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>, size=<span class="hljs-number">10</span>)
+       [ 9, 11,  8]])
+</code></pre>
+<h2 id="115-其他numpy通用函数"><a class="markdownIt-Anchor" href="#115-其他numpy通用函数"></a> 11.5 其他Numpy通用函数</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170209.png" srcset="/img/loading.gif" alt="image-20200714170208060" /></p>
+<h3 id="1151-数值排序"><a class="markdownIt-Anchor" href="#1151-数值排序"></a> 11.5.1  数值排序</h3>
+<pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>, size=<span class="hljs-number">10</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([39, 21, 45, 46, 27, 32, 42, 25, 44, 32])</code></pre>
+<pre><code>array([39, 21, 45, 46, 27, 32, 42, 25, 44, 32])
+</code></pre>
 <ul>
 <li>产生新的排序数组</li>
 </ul>
 <pre><code class="hljs python">np.sort(x)</code></pre>
-
-
-
-
-<pre><code>array([21, 25, 27, 32, 32, 39, 42, 44, 45, 46])</code></pre>
+<pre><code>array([21, 25, 27, 32, 32, 39, 42, 44, 45, 46])
+</code></pre>
 <pre><code class="hljs python">x</code></pre>
-
-
-
-
-<pre><code>array([39, 21, 45, 46, 27, 32, 42, 25, 44, 32])</code></pre>
+<pre><code>array([39, 21, 45, 46, 27, 32, 42, 25, 44, 32])
+</code></pre>
 <ul>
 <li>替换原数组</li>
 </ul>
 <pre><code class="hljs python">x.sort()
 x</code></pre>
-
-
-
-
-<pre><code>array([21, 25, 27, 32, 32, 39, 42, 44, 45, 46])</code></pre>
+<pre><code>array([21, 25, 27, 32, 32, 39, 42, 44, 45, 46])
+</code></pre>
 <ul>
 <li>获得排序索引</li>
 </ul>
 <pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>, size=<span class="hljs-number">10</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([32, 43, 44, 25, 21, 40, 33, 45, 23, 21])</code></pre>
+<pre><code>array([32, 43, 44, 25, 21, 40, 33, 45, 23, 21])
+</code></pre>
 <pre><code class="hljs python">i = np.argsort(x)
 i</code></pre>
-
-
-
-
-<pre><code>array([4, 9, 8, 3, 0, 6, 5, 1, 2, 7], dtype=int64)</code></pre>
-<h3 id="11-5-2-最大最小值"><a href="#11-5-2-最大最小值" class="headerlink" title="11.5.2  最大最小值"></a>11.5.2  最大最小值</h3><pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>, size=<span class="hljs-number">10</span>)
+<pre><code>array([4, 9, 8, 3, 0, 6, 5, 1, 2, 7], dtype=int64)
+</code></pre>
+<h3 id="1152-最大最小值"><a class="markdownIt-Anchor" href="#1152-最大最小值"></a> 11.5.2  最大最小值</h3>
+<pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>, size=<span class="hljs-number">10</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([26, 44, 27, 20, 33, 20, 24, 47, 41, 48])</code></pre>
+<pre><code>array([26, 44, 27, 20, 33, 20, 24, 47, 41, 48])
+</code></pre>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;max:&quot;</span>, np.max(x))
 print(<span class="hljs-string">&quot;min:&quot;</span>, np.min(x))</code></pre>
-
 <pre><code>max: 48
-min: 20</code></pre>
+min: 20
+</code></pre>
 <pre><code class="hljs python">print(<span class="hljs-string">&quot;max_index:&quot;</span>, np.argmax(x))
 print(<span class="hljs-string">&quot;min_index:&quot;</span>, np.argmin(x))</code></pre>
-
 <pre><code>max_index: 9
-min_index: 3</code></pre>
-<h3 id="11-5-3-数值求和、求积"><a href="#11-5-3-数值求和、求积" class="headerlink" title="11.5.3  数值求和、求积"></a>11.5.3  数值求和、求积</h3><pre><code class="hljs python">x = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)
+min_index: 3
+</code></pre>
+<h3 id="1153-数值求和-求积"><a class="markdownIt-Anchor" href="#1153-数值求和-求积"></a> 11.5.3  数值求和、求积</h3>
+<pre><code class="hljs python">x = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)
 x</code></pre>
-
-
-
-
-<pre><code>array([1, 2, 3, 4, 5])</code></pre>
+<pre><code>array([1, 2, 3, 4, 5])
+</code></pre>
 <pre><code class="hljs python">x.sum()</code></pre>
-
-
-
-
-<pre><code>15</code></pre>
+<pre><code>15
+</code></pre>
 <pre><code class="hljs python">np.sum(x)</code></pre>
-
-
-
-
-<pre><code>15</code></pre>
+<pre><code>15
+</code></pre>
 <pre><code class="hljs python">x1 = np.arange(<span class="hljs-number">6</span>).reshape(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)
 x1</code></pre>
-
-
-
-
 <pre><code>array([[0, 1, 2],
-       [3, 4, 5]])</code></pre>
+       [3, 4, 5]])
+</code></pre>
 <ul>
 <li>按行求和</li>
 </ul>
 <pre><code class="hljs python">np.sum(x1, axis=<span class="hljs-number">1</span>)</code></pre>
-
-
-
-
-<pre><code>array([ 3, 12])</code></pre>
+<pre><code>array([ 3, 12])
+</code></pre>
 <ul>
 <li>按列求和</li>
 </ul>
 <pre><code class="hljs python">np.sum(x1, axis=<span class="hljs-number">0</span>)</code></pre>
-
-
-
-
-<pre><code>array([3, 5, 7])</code></pre>
+<pre><code>array([3, 5, 7])
+</code></pre>
 <ul>
 <li>全体求和</li>
 </ul>
 <pre><code class="hljs python">np.sum(x1)</code></pre>
-
-
-
-
-<pre><code>15</code></pre>
+<pre><code>15
+</code></pre>
 <ul>
 <li>求积</li>
 </ul>
 <pre><code class="hljs python">x</code></pre>
-
-
-
-
-<pre><code>array([1, 2, 3, 4, 5])</code></pre>
+<pre><code>array([1, 2, 3, 4, 5])
+</code></pre>
 <pre><code class="hljs python">x.prod()</code></pre>
-
-
-
-
-<pre><code>120</code></pre>
+<pre><code>120
+</code></pre>
 <pre><code class="hljs python">np.prod(x)</code></pre>
-
-
-
-
-<pre><code>120</code></pre>
-<h3 id="11-5-4-中位数、均值、方差、标准差"><a href="#11-5-4-中位数、均值、方差、标准差" class="headerlink" title="11.5.4  中位数、均值、方差、标准差"></a>11.5.4  中位数、均值、方差、标准差</h3><pre><code class="hljs python">x = np.random.normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, size=<span class="hljs-number">10000</span>)</code></pre>
-
-
+<pre><code>120
+</code></pre>
+<h3 id="1154-中位数-均值-方差-标准差"><a class="markdownIt-Anchor" href="#1154-中位数-均值-方差-标准差"></a> 11.5.4  中位数、均值、方差、标准差</h3>
+<pre><code class="hljs python">x = np.random.normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, size=<span class="hljs-number">10000</span>)</code></pre>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 
 plt.hist(x, bins=<span class="hljs-number">50</span>)
 plt.show()</code></pre>
-
-
-
-
 <pre><code>(array([  2.,   0.,   0.,   0.,   3.,   1.,   9.,   8.,  10.,  15.,  37.,
          62.,  53.,  77., 124., 169., 209., 308., 354., 460., 488., 532.,
         612., 583., 655., 653., 638., 588., 553., 491., 481., 387., 347.,
@@ -1726,61 +1323,41 @@ plt.show()</code></pre>
 
 
 
-&lt;Figure size 640x480 with 1 Axes&gt;</code></pre>
+&lt;Figure size 640x480 with 1 Axes&gt;
+</code></pre>
 <ul>
 <li>中位数</li>
 </ul>
 <pre><code class="hljs python">np.median(x)</code></pre>
-
-
-
-
-<pre><code>-0.010584626095505473</code></pre>
+<pre><code>-0.010584626095505473
+</code></pre>
 <ul>
 <li>均值</li>
 </ul>
 <pre><code class="hljs python">x.mean()</code></pre>
-
-
-
-
-<pre><code>-0.0018366166547129652</code></pre>
+<pre><code>-0.0018366166547129652
+</code></pre>
 <pre><code class="hljs python">np.mean(x)</code></pre>
-
-
-
-
-<pre><code>-0.0018366166547129652</code></pre>
+<pre><code>-0.0018366166547129652
+</code></pre>
 <ul>
 <li>方差</li>
 </ul>
 <pre><code class="hljs python">x.var()</code></pre>
-
-
-
-
-<pre><code>0.984963218594082</code></pre>
+<pre><code>0.984963218594082
+</code></pre>
 <pre><code class="hljs python">np.var(x)</code></pre>
-
-
-
-
-<pre><code>0.984963218594082</code></pre>
+<pre><code>0.984963218594082
+</code></pre>
 <ul>
 <li>标准差</li>
 </ul>
 <pre><code class="hljs python">x.std()</code></pre>
-
-
-
-
-<pre><code>0.9924531316863694</code></pre>
+<pre><code>0.9924531316863694
+</code></pre>
 <pre><code class="hljs python">np.std(x)</code></pre>
-
-
-
-
-<pre><code>0.9924531316863694</code></pre>
+<pre><code>0.9924531316863694
+</code></pre>
 
             </div>
             <hr>
