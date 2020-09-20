@@ -192,6 +192,68 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">GPU的使用</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">
+          
+          
+            
+          
+           1. 数据迁移至GPU
+
+to函数：转换数据类型/设备
+
+
+tensor.to(*args, **kwargs)
+
+
+module.to(*args, **kwargs)
+
+
+区别：张量不执行inplace，模型执行inplace
+x = torch.ones((3, 3))
+x = x.to(torch.float64)  #转换类型；张量不执行inplace，需要用等号赋值
+
+x = tor
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-17 10:00" pubdate>
+              2020-08-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/08/16/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8Bfinetune/">模型finetune</a>
       </h1>
 
@@ -667,63 +729,6 @@ H2=H1∗W2ΔW2=∂Loss∂W2=∂Loss∂out∗∂out∂H2∗∂H2∂w2=∂Loss∂o
             <i class="iconfont icon-date"></i>
             <time datetime="2020-07-31 10:00" pubdate>
               2020-07-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/">nn网络层-池化-线性-激活函数层</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/">
-          
-          
-            
-          
-           1. 池化层——Pooling Layer
-池化运算：对信号进行 “收集”并 “总结”。
-“收集”：多变少
-“总结”：最大值/平均值
-
- 1.1 nn.MaxPool2d
-nn.MaxPool2d(kernel_size, 
-             stride=None, 
-             padding=0, 
-             dilation=1, 
-        
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-30 10:00" pubdate>
-              2020-07-30
             </time>
           </div>
         

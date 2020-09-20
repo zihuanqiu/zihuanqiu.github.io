@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2020年9月20日 晚上
                 
               </p>
             
@@ -736,7 +736,7 @@ writer.close()</code></pre>
           pad_value=<span class="hljs-number">0</span>)</code></pre>
 <p>功能：制作网格图像</p>
 <ul>
-<li>tensor：图像数据； 4Dmini-batch的张量（B x C x H x W）或相同大小的图像列表。</li>
+<li>tensor：图像数据； 4Dmini-batch的张量（B x C x H x W）或相同大小的图像列表。其中C只能为1（黑白显示）或者3（彩色显示）</li>
 <li>nrow：网格中每行显示的图像数。最终栅格大小为（B/nrow，nrow）；默认值：8。</li>
 <li>padding：图像间距（像素单位）</li>
 <li>normalize：是否将像素值标准化；如果为True，则将图像按range指定的最小值和最大值移动到范围（0，1）。默认值：False。</li>
@@ -766,7 +766,7 @@ train_dir = os.path.join(split_dir, <span class="hljs-string">&quot;train&quot;<
 transform_compose = transforms.Compose([transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">64</span>)), transforms.ToTensor()])
 train_data = RMBDataset(data_dir=train_dir, transform=transform_compose)
 train_loader = DataLoader(dataset=train_data, batch_size=<span class="hljs-number">16</span>, shuffle=<span class="hljs-literal">True</span>)
-data_batch, label_batch = next(iter(train_loader))
+data_batch, label_batch = next(iter(train_loader))  <span class="hljs-comment"># batch_size=16，next一次一批16张图片</span>
 
 img_grid = vutils.make_grid(data_batch, nrow=<span class="hljs-number">4</span>)
 writer.close()</code></pre>
