@@ -192,18 +192,20 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/09/16/CV%20baseline/AlexNet/">(Alexnet) ImageNet Classiﬁcation with Deep Convolutional Neural Networks</a>
+        <a href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/">目标检测的常用指标（Pascal VOC与COCO）</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/16/CV%20baseline/AlexNet/">
+        <a href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/">
           
           
             
           
-           ImageNet Classiﬁcation with Deep Convolutional Neural Networks
- Abstract
-我们训练了一个大型的深度卷积神经网络，将ImageNet LSVRC-2010竞赛中的120万像素的高分辨率图像分类为1000个不同的类。在测试数据上，我们实现了37.5％的top-1错误率和17.0％的top-5错误率，这比以前的最佳技术要好得多。这
+           目标检测的常用指标（Pascal VOC与COCO）
+ 检测框预测正确的标准是什么？
+在探究目标检测模型的性能评估指标之前，我们首先需要搞清楚，在什么情况下才认为一个检测框是正确的。
+这里主要涉及两个阈值，IoU阈值和置信度（confidence）阈值。
+首先是置信度阈值，所谓置信度即模型认为检测框中存在目标的确信度。对于一个检测框，会首先使用置信度阈值进行过滤，当检测框的置信度大于该阈值时才认
         </a>
       </p>
 
@@ -211,8 +213,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-16 10:00" pubdate>
-              2020-09-16
+            <time datetime="2020-09-29 10:00" pubdate>
+              2020-09-29
             </time>
           </div>
         
@@ -220,7 +222,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/CV-baseline/">CV baseline</a>
+              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
             
           </div>
         
@@ -228,56 +230,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/CV-baseline/">CV baseline</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/09/15/CV%20baseline/CV%20baseline%20%E8%B5%84%E6%96%99%E5%90%88%E9%9B%86/">CV baseline 资料合集</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/15/CV%20baseline/CV%20baseline%20%E8%B5%84%E6%96%99%E5%90%88%E9%9B%86/">
-          
-          
-            
-          
-          链接：https://pan.baidu.com/s/1qh4FYA8ePJuq-gLHdf7RyQ
-提取码：lmno
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-15 10:00" pubdate>
-              2020-09-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CV-baseline/">CV baseline</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD/">资料下载</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8C%87%E6%A0%87/">深度学习指标</a>
             
           </div>
         
@@ -549,11 +502,11 @@ Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/">SVM</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">SVM</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/SVM/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
           
           
             
@@ -603,11 +556,11 @@ Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
           
           
             
@@ -657,11 +610,70 @@ Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PCA/">PCA</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/">ROC曲线</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/PCA/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/">
+          
+          
+            
+          
+           四个概率
+TPTPTP——将正样本预测为正（的概率）
+FNFNFN——将正样本预测为负（的概率）
+FPFPFP——将负样本预测为正（的概率）
+TNTNTN——将负样本预测为负（的概率）
+精确度定义为：
+P=TPTP+FPP=\frac{TP}{TP+FP}
+P=TP+FPTP​
+
+分母为所有判断为正的样本，PPP表示在所有被判断为正的样本中真正的正样本的概率
+
+召回率定义为：
+R=TPTP+FN
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">PCA</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">
           
           
             
@@ -709,7 +721,7 @@ YYY是PCA的输出，aaa是投影的方向矩阵，XXX是PCA的输入，X‾\ove
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
