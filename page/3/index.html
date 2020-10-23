@@ -192,6 +192,171 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/">学习率调整策略</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/">
+          
+          
+            
+          
+           1. 为什么要调整学习率？
+可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。
+学习率调整策略的函数都继承于_LRScheduler这个基类。
+主要属性：
+
+optimizer：关联的优化器
+last_epoch：记录epoch数
+base_lrs：记录初始学习率
+
+主要方法：
+
+step()：更新下一个epoch的学习率（一次epoch运行一次st
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-05 10:00" pubdate>
+              2020-08-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/">优化器</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/">
+          
+          
+            
+          
+           1. optimizer的属性
+class Optimizer(object):
+	def __init__(self, params, defaults):
+		self.defaults = defaults
+    self.state = defaultdict(dict)
+    self.param_groups = []
+
+defaults：优化器超参数（字典：包含’lr’, 'm
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-04 10:00" pubdate>
+              2020-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">
+          
+          
+            
+          
+           1. 损失函数概念
+损失函数：衡量模型输出与真实标签的差异
+
+损失函数(Loss Function)：
+Loss=f(y^,y)Loss=f\left( \hat{y},y \right)Loss=f(y^​,y)
+代价函数(Cost Function)：
+Cost=1N∑i=1Nf(y^i,y)Cost=\frac{1}{N}\sum_{i=1}^N{f\left( \hat{y}_i,y \
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-03 10:00" pubdate>
+              2020-08-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Pytorch/">Pytorch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/">权值初始化</a>
       </h1>
 
@@ -559,168 +724,6 @@ torchvision.transforms : 常用的图像预处理方法
             <i class="iconfont icon-date"></i>
             <time datetime="2020-07-24 10:00" pubdate>
               2020-07-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/22/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">Python Pandas库</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/22/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/">
-          
-          
-            
-          
-           Pandas库
-
- 引子
-Numpy 在向量化的数值计算中表现优异
-但是在处理更灵活、复杂的数据任务：
-如为数据添加标签、处理缺失值、分组和透视表等方面
-Numpy显得力不从心
-而基于Numpy构建的Pandas库，提供了使得数据分析变得更快更简单的高级数据结构和操作工具
- 12.1 对象创建
- 12.1.1 Pandas Series对象
-Series 是带标签数据的一维数组
-Series对象
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-22 10:00" pubdate>
-              2020-07-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">DataLoader与DataSet</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/">
-          
-          
-            
-          
-           1. 为什么要DataSet和DataLoader
-
-相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。
-使用DataSet和DataLoader可以帮助我们进行小批次训练。
-
- 2. Dat
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-21 12:00" pubdate>
-              2020-07-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">autograd</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">
-          
-          
-            
-          
-           autograd—自动求导系统
- 1.  torch.autograd.backward
-torch.autograd.backward(tensors, 
-                        grad_tensors=None, 
-                        retain_graph=None, 
-                        create_g
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-21 11:00" pubdate>
-              2020-07-21
             </time>
           </div>
         

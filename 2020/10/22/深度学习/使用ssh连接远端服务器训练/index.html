@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zihuanqiu">
+  <meta name="keywords" content="">
+  <title>使用SSH连接远端服务器训练 - zihuan&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/plan/">
+                <i class="iconfont icon-plan"></i>
+                计划
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-10-22 10:00" pubdate>
+      2020年10月22日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">使用SSH连接远端服务器训练</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年10月23日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="使用ssh连接远端服务器训练"><a class="markdownIt-Anchor" href="#使用ssh连接远端服务器训练"></a> 使用SSH连接远端服务器训练</h1>
+<h1 id="1-租用机器"><a class="markdownIt-Anchor" href="#1-租用机器"></a> 1. 租用机器</h1>
+<p>DeepShare平台：<a target="_blank" rel="noopener" href="https://gpu.deepshare.net/home">https://gpu.deepshare.net/home</a></p>
+<p>选择一个有你需要环境的机器</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124457.png" srcset="/img/loading.gif" alt="image-20201023045041163" /></p>
+<p>先租用CPU上传代码，配置环境，再转换为GPU以节省资费</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124506.png" srcset="/img/loading.gif" alt="image-20201023045215184" /></p>
+<p>租用CPU（至少30G空间）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124515.png" srcset="/img/loading.gif" alt="image-20201023045444903" /></p>
+<p>支付订单</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124522.png" srcset="/img/loading.gif" alt="image-20201023045823511" /></p>
+<h1 id="2-使用cpu容器配置环境"><a class="markdownIt-Anchor" href="#2-使用cpu容器配置环境"></a> 2. 使用CPU容器配置环境</h1>
+<p>根据收到的邮件信息，连接服务器（终端），jupyter（没啥用开着吧）和网盘（用于传输文件，可能会比pycharm传输快）</p>
+<p>打开网盘，将压缩后的工程文件上传到网盘</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124528.png" srcset="/img/loading.gif" alt="image-20201023050328268" /></p>
+<p>连接终端，可以使用conda命令查看环境和包</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124535.png" srcset="/img/loading.gif" alt="image-20201023050712212" /></p>
+<p>打开pycharm，设置deployment</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124544.png" srcset="/img/loading.gif" alt="屏幕快照 2020-10-23 下午05.09.41 上午" /></p>
+<p>新建一个SFTP连接</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124550.png" srcset="/img/loading.gif" alt="image-20201023051204797" /></p>
+<p>配置SSH，然后测试一下，没有问题就确认</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124608.png" srcset="/img/loading.gif" alt="image-20201023051533564" /></p>
+<p>对应到邮件信息：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124622.png" srcset="/img/loading.gif" alt="image-20201023051437095" /></p>
+<p>连接一下jupyter</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124626.png" srcset="/img/loading.gif" alt="image-20201023052123465" /></p>
+<p>输入命令，找一下路径</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124631.png" srcset="/img/loading.gif" alt="image-20201023052218916" /></p>
+<p>显然我们刚刚把文件放在上一级目录了，后面就可以用终端操作了</p>
+<p>先解压文件</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124640.png" srcset="/img/loading.gif" alt="image-20201023052433313" /></p>
+<p>然后返回pycharm，选择刚刚上传的工程目录</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124645.png" srcset="/img/loading.gif" alt="image-20201023052623094" /></p>
+<p>然后创建一个远端python解释器（点一下蓝色的move）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124651.png" srcset="/img/loading.gif" alt="image-20201023052756759" /></p>
+<p>根据邮件设置python解释器在服务器的路径，并且设置工程映射路径</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124656.png" srcset="/img/loading.gif" alt="image-20201023053036027" /></p>
+<p>也可以看一下远端是否同步工程文件</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124700.png" srcset="/img/loading.gif" alt="屏幕快照 2020-10-23 下午05.31.34 上午" /></p>
+<p>然后就可以使用CPU跑一下代码看看代码有没有问题啦（batch不能太大，内存只有3G，超过会杀进程，没有问题就行）</p>
+<h1 id="3-转用gpu容器训练模型"><a class="markdownIt-Anchor" href="#3-转用gpu容器训练模型"></a> 3. 转用GPU容器训练模型</h1>
+<p>开启GPU</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124707.png" srcset="/img/loading.gif" alt="image-20201023053727776" /></p>
+<p>支付订单（时间尽量久一点，多了可以退，少了也能续）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124710.png" srcset="/img/loading.gif" alt="image-20201023053903258" /></p>
+<p>然后就可以在终端查询到GPU信息了，使用命令 watch -n1 nvidia-smi</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124715.png" srcset="/img/loading.gif" alt="image-20201023054642212" /></p>
+<p>再转回pycharm训练即可</p>
+<p>batch设置为12就把8G的显卡塞满了，可怕</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124720.png" srcset="/img/loading.gif" alt="image-20201023055255165" /></p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124725.png" srcset="/img/loading.gif" alt="image-20201023055241584" /></p>
+<h1 id="4-监控训练进程"><a class="markdownIt-Anchor" href="#4-监控训练进程"></a> 4. 监控训练进程</h1>
+<p>使用tensorboard，输入命令 tensorboard --logdir=./runs（注意，一定要登陆服务器后进行，不然就是憨批）</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124951.png" srcset="/img/loading.gif" alt="image-20201023070716113" /></p>
+<p>再打开邮件中的tensorboard网址即可（我就失败了，打不开，也可以选择隔一段时间从服务器下载even文件在本地打开）</p>
+<h1 id="5-挂后台训练"><a class="markdownIt-Anchor" href="#5-挂后台训练"></a> 5. 挂后台训练</h1>
+<p>睡了一觉发现pycharm挂掉了（电脑休眠断网）</p>
+<p>调试用pycharm，训练直接在screen挂后台训练</p>
+<p>使用screen命令后台运行，不要在pycharm里面训练</p>
+<p>使用命令 screen -ls 查看当前所有任务</p>
+<p>使用命令 screen -S session_name 创建一个新的后台</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124945.png" srcset="/img/loading.gif" alt="image-20201023103938130" /></p>
+<p>attached表示已经连接上后台</p>
+<p>使用命令 exit 退出并删去当前后台</p>
+<p>使用命令 screen -d session_name 与目标后台脱离连接</p>
+<p>使用命令 screen -r session_name 与目标后台建立连接</p>
+<p>建立后台并且attached之后，直接在命令行运行python。之后再输入命令 screen -d session_name 与当前后台脱离（如果当前程序一直在print可以打开另外一个终端）。现在就算断连，服务器也不会停止训练了。</p>
+<p>下次连接输入命令 screen -r session_name 连接后台，就可以看到当前程序运行了</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124957.png" srcset="/img/loading.gif" alt="image-20201023104823473" /></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">代码实现</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/20/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/FCN%E4%BB%A3%E7%A0%81%E8%AF%A6%E8%A7%A3/">
+                        <span class="hidden-mobile">FCN代码详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "使用SSH连接远端服务器训练&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 65,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
