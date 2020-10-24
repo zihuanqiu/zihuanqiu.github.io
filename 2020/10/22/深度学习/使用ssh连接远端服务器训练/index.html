@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月23日 下午
+                  本文最后更新于：2020年10月25日 凌晨
                 
               </p>
             
@@ -238,14 +238,6 @@
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124528.png" srcset="/img/loading.gif" alt="image-20201023050328268" /></p>
 <p>连接终端，可以使用conda命令查看环境和包</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124535.png" srcset="/img/loading.gif" alt="image-20201023050712212" /></p>
-<p>打开pycharm，设置deployment</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124544.png" srcset="/img/loading.gif" alt="屏幕快照 2020-10-23 下午05.09.41 上午" /></p>
-<p>新建一个SFTP连接</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124550.png" srcset="/img/loading.gif" alt="image-20201023051204797" /></p>
-<p>配置SSH，然后测试一下，没有问题就确认</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124608.png" srcset="/img/loading.gif" alt="image-20201023051533564" /></p>
-<p>对应到邮件信息：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124622.png" srcset="/img/loading.gif" alt="image-20201023051437095" /></p>
 <p>连接一下jupyter</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124626.png" srcset="/img/loading.gif" alt="image-20201023052123465" /></p>
 <p>输入命令，找一下路径</p>
@@ -253,15 +245,19 @@
 <p>显然我们刚刚把文件放在上一级目录了，后面就可以用终端操作了</p>
 <p>先解压文件</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124640.png" srcset="/img/loading.gif" alt="image-20201023052433313" /></p>
-<p>然后返回pycharm，选择刚刚上传的工程目录</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124645.png" srcset="/img/loading.gif" alt="image-20201023052623094" /></p>
-<p>然后创建一个远端python解释器（点一下蓝色的move）</p>
+<p>打开pycharm</p>
+<p>然后创建一个远端python解释器</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124651.png" srcset="/img/loading.gif" alt="image-20201023052756759" /></p>
+<p>配置SSH，然后测试一下，没有问题就确认</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124608.png" srcset="/img/loading.gif" alt="image-20201023051533564" /></p>
+<p>对应到邮件信息：</p>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124622.png" srcset="/img/loading.gif" alt="image-20201023051437095" /></p>
 <p>根据邮件设置python解释器在服务器的路径，并且设置工程映射路径</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124656.png" srcset="/img/loading.gif" alt="image-20201023053036027" /></p>
-<p>也可以看一下远端是否同步工程文件</p>
+<p>也可以看一下远端是否同步工程文件（配置SSH解释器的同时会自动生成deployment配置）</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124700.png" srcset="/img/loading.gif" alt="屏幕快照 2020-10-23 下午05.31.34 上午" /></p>
 <p>然后就可以使用CPU跑一下代码看看代码有没有问题啦（batch不能太大，内存只有3G，超过会杀进程，没有问题就行）</p>
+<p>若有时候发现同步有问题，即没有你上传的文件，需要删除所有配置然后从头来一遍，我也不知道是什么bug</p>
 <h1 id="3-转用gpu容器训练模型"><a class="markdownIt-Anchor" href="#3-转用gpu容器训练模型"></a> 3. 转用GPU容器训练模型</h1>
 <p>开启GPU</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124707.png" srcset="/img/loading.gif" alt="image-20201023053727776" /></p>
@@ -288,7 +284,8 @@
 <p>使用命令 exit 退出并删去当前后台</p>
 <p>使用命令 screen -d session_name 与目标后台脱离连接</p>
 <p>使用命令 screen -r session_name 与目标后台建立连接</p>
-<p>建立后台并且attached之后，直接在命令行运行python。之后再输入命令 screen -d session_name 与当前后台脱离（如果当前程序一直在print可以打开另外一个终端）。现在就算断连，服务器也不会停止训练了。</p>
+<p>建立后台并且attached之后，直接在命令行运行python文件。之后再输入命令 screen -d session_name 与当前后台脱离（如果当前程序一直在print可以打开另外一个终端输入脱离命令）。</p>
+<p>现在就算断连，服务器也不会停止训练了。（建议先脱离连接再建立连接，无论之前有没有attached，都先脱离一下再连接，不然程序容易没有跑在后台）</p>
 <p>下次连接输入命令 screen -r session_name 连接后台，就可以看到当前程序运行了</p>
 <p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201023124957.png" srcset="/img/loading.gif" alt="image-20201023104823473" /></p>
 
@@ -320,6 +317,12 @@
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2020-10-24-%5B%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)%5D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

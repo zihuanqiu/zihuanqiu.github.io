@@ -216,20 +216,22 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月21日 晚上
+                  本文最后更新于：2020年10月25日 凌晨
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="fcn代码详解"><a class="markdownIt-Anchor" href="#fcn代码详解"></a> FCN代码详解</h1>
+<p>代码下载地址：</p>
+<pre><code class="hljs awk">链接: https:<span class="hljs-regexp">//</span>pan.baidu.com<span class="hljs-regexp">/s/</span><span class="hljs-number">1</span>J4j55zFm42DDGF3vNXx3ng  密码: ltaa</code></pre>
 <h1 id="1-fcnpy"><a class="markdownIt-Anchor" href="#1-fcnpy"></a> 1. <a target="_blank" rel="noopener" href="http://FCN.py">FCN.py</a></h1>
 <pre><code class="hljs python"><span class="hljs-comment"># encoding: utf-8</span>
+<span class="hljs-string">&quot;&quot;&quot;补充内容见model and loss.ipynb &amp; 自定义双向线性插值滤子（卷积核）.ipynb&quot;&quot;&quot;</span>
 
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> models
 <span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn
-
 
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bilinear_kernel</span>(<span class="hljs-params">in_channels, out_channels, kernel_size</span>):</span>
@@ -262,12 +264,12 @@ pretrained_net = models.vgg16_bn(pretrained=<span class="hljs-literal">True</spa
         self.stage4 = pretrained_net.features[<span class="hljs-number">24</span>:<span class="hljs-number">34</span>]
         self.stage5 = pretrained_net.features[<span class="hljs-number">34</span>:]
 
-        self.scores1 = nn.Conv2d(<span class="hljs-number">512</span>, num_classes, <span class="hljs-number">1</span>)
-        self.scores2 = nn.Conv2d(<span class="hljs-number">512</span>, num_classes, <span class="hljs-number">1</span>)
-        self.scores3 = nn.Conv2d(<span class="hljs-number">128</span>, num_classes, <span class="hljs-number">1</span>)
+        relu_gain = nn.init.calculate_gain(<span class="hljs-string">&#x27;relu&#x27;</span>)
 
         self.conv_trans1 = nn.Conv2d(<span class="hljs-number">512</span>, <span class="hljs-number">256</span>, <span class="hljs-number">1</span>)
         self.conv_trans2 = nn.Conv2d(<span class="hljs-number">256</span>, num_classes, <span class="hljs-number">1</span>)
+        nn.init.xavier_uniform_(self.conv_trans1.weight.data, gain=relu_gain)
+        nn.init.xavier_uniform_(self.conv_trans2.weight.data, gain=relu_gain)
 
         self.upsample_8x = nn.ConvTranspose2d(num_classes, num_classes, <span class="hljs-number">16</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, bias=<span class="hljs-literal">False</span>)
         self.upsample_8x.weight.data = bilinear_kernel(num_classes, num_classes, <span class="hljs-number">16</span>)
@@ -285,11 +287,8 @@ pretrained_net = models.vgg16_bn(pretrained=<span class="hljs-literal">True</spa
         s4 = self.stage4(s3)
         s5 = self.stage5(s4)
 
-        scores1 = self.scores1(s5)
         s5 = self.upsample_2x_1(s5)
         add1 = s5 + s4
-
-        scores2 = self.scores2(add1)
 
         add1 = self.conv_trans1(add1)
         add1 = self.upsample_2x_2(add1)
@@ -410,19 +409,21 @@ VGG(
         self.stage4 = pretrained_net.features[<span class="hljs-number">24</span>:<span class="hljs-number">34</span>]
         self.stage5 = pretrained_net.features[<span class="hljs-number">34</span>:]
 
-        self.scores3 = nn.Conv2d(<span class="hljs-number">128</span>, num_classes, <span class="hljs-number">1</span>)
+        relu_gain = nn.init.calculate_gain(<span class="hljs-string">&#x27;relu&#x27;</span>)
 
         self.conv_trans1 = nn.Conv2d(<span class="hljs-number">512</span>, <span class="hljs-number">256</span>, <span class="hljs-number">1</span>)
         self.conv_trans2 = nn.Conv2d(<span class="hljs-number">256</span>, num_classes, <span class="hljs-number">1</span>)
+        nn.init.xavier_uniform_(self.conv_trans1.weight.data, gain=relu_gain)
+        nn.init.xavier_uniform_(self.conv_trans2.weight.data, gain=relu_gain)
+
+        self.upsample_8x = nn.ConvTranspose2d(num_classes, num_classes, <span class="hljs-number">16</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, bias=<span class="hljs-literal">False</span>)
+        self.upsample_8x.weight.data = bilinear_kernel(num_classes, num_classes, <span class="hljs-number">16</span>)
 
         self.upsample_2x_1 = nn.ConvTranspose2d(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, bias=<span class="hljs-literal">False</span>)
         self.upsample_2x_1.weight.data = bilinear_kernel(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">4</span>)
 
         self.upsample_2x_2 = nn.ConvTranspose2d(<span class="hljs-number">256</span>, <span class="hljs-number">256</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, bias=<span class="hljs-literal">False</span>)
         self.upsample_2x_2.weight.data = bilinear_kernel(<span class="hljs-number">256</span>, <span class="hljs-number">256</span>, <span class="hljs-number">4</span>)
-        
-        self.upsample_8x = nn.ConvTranspose2d(num_classes, num_classes, <span class="hljs-number">16</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, bias=<span class="hljs-literal">False</span>)
-        self.upsample_8x.weight.data = bilinear_kernel(num_classes, num_classes, <span class="hljs-number">16</span>)
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span>
         s1 = self.stage1(x)
@@ -455,8 +456,9 @@ s5.shape
 Out[<span class="hljs-number">5</span>]: torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">512</span>, <span class="hljs-number">11</span>, <span class="hljs-number">15</span>])</code></pre>
 <p>s5经过upsample_2x_1后，得到输出尺寸为[1, 512, 22, 30]，因此可以直接与s4相加得到add1；s3的通道数为256，因此add1需要做一个1x1卷积减少通道数到256，然后再upsample_2x_2上采样到与s3相同尺寸；add1与s3相加得到add2，add2的尺寸与s3相同[1, 256, 44, 60]；add2直接改变通道到类别数，然后再用upsample_8x上采样8倍得到output；output的尺寸和输入相同。</p>
 <h1 id="2-cfgpy"><a class="markdownIt-Anchor" href="#2-cfgpy"></a> 2. <a target="_blank" rel="noopener" href="http://cfg.py">cfg.py</a></h1>
-<pre><code class="hljs python">BATCH_SIZE = <span class="hljs-number">4</span>
-EPOCH_NUMBER = <span class="hljs-number">2</span>
+<pre><code class="hljs python">BATCH_SIZE = <span class="hljs-number">14</span>
+EPOCH_NUMBER = <span class="hljs-number">1000</span>
+
 TRAIN_ROOT = <span class="hljs-string">&#x27;./CamVid/train&#x27;</span>
 TRAIN_LABEL = <span class="hljs-string">&#x27;./CamVid/train_labels&#x27;</span>
 VAL_ROOT = <span class="hljs-string">&#x27;./CamVid/val&#x27;</span>
@@ -464,12 +466,23 @@ VAL_LABEL = <span class="hljs-string">&#x27;./CamVid/val_labels&#x27;</span>
 TEST_ROOT = <span class="hljs-string">&#x27;./CamVid/test&#x27;</span>
 TEST_LABEL = <span class="hljs-string">&#x27;./CamVid/test_labels&#x27;</span>
 class_dict_path = <span class="hljs-string">&#x27;./CamVid/class_dict.csv&#x27;</span>
+
+<span class="hljs-comment"># TRAIN_ROOT = &#x27;./PASCAL VOC/train&#x27;</span>
+<span class="hljs-comment"># TRAIN_LABEL = &#x27;./PASCAL VOC/train_labels&#x27;</span>
+<span class="hljs-comment"># TEST_ROOT = &#x27;./PASCAL VOC/val&#x27;</span>
+<span class="hljs-comment"># TEST_LABEL = &#x27;./PASCAL VOC/val_labels&#x27;</span>
+<span class="hljs-comment"># class_dict_path = &#x27;./PASCAL VOC/class_dict.csv&#x27;</span>
+
 pre_path = <span class="hljs-string">&#x27;./result_pics/&#x27;</span>
 class_num = <span class="hljs-number">12</span>
-crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480</span>)</code></pre>
+crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480</span>)
+checkpoint_interval = <span class="hljs-number">5</span>
+path_checkpoint = <span class="hljs-string">&#x27;./checkpoint/&#x27;</span>
+path_bestmodel = <span class="hljs-string">&#x27;./bestmodel/&#x27;</span></code></pre>
 <p>在cfg.py中对所有超参数进行设置，免得混乱。</p>
 <h1 id="3-datasetpy"><a class="markdownIt-Anchor" href="#3-datasetpy"></a> 3. <a target="_blank" rel="noopener" href="http://dataset.py">dataset.py</a></h1>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<pre><code class="hljs python"><span class="hljs-string">&quot;&quot;&quot;补充内容见 data process and load.ipynb&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
 <span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> t
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
@@ -478,10 +491,46 @@ crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
 <span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
 <span class="hljs-keyword">import</span> cfg
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_seed</span>(<span class="hljs-params">seed=<span class="hljs-number">1</span></span>):</span>  <span class="hljs-comment"># 固定随机性，使得img和label的transform相同</span>
+    random.seed(seed)
+    t.manual_seed(seed)
+    t.cuda.manual_seed(seed)
+    <span class="hljs-comment"># np.random.seed(seed)</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transform_invert</span>(<span class="hljs-params">img_, transform_train</span>):</span>
+    <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">    将data 进行反transfrom操作</span>
+<span class="hljs-string">    :param img_: tensor</span>
+<span class="hljs-string">    :param transform_train: torchvision.transforms</span>
+<span class="hljs-string">    :return: PIL image</span>
+<span class="hljs-string">    &quot;&quot;&quot;</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;Normalize&#x27;</span> <span class="hljs-keyword">in</span> str(transform_train):
+        norm_transform = list(filter(<span class="hljs-keyword">lambda</span> x: isinstance(x, transforms.Normalize), transform_train.transforms))
+        mean = t.tensor(norm_transform[<span class="hljs-number">0</span>].mean, dtype=img_.dtype, device=img_.device)
+        std = t.tensor(norm_transform[<span class="hljs-number">0</span>].std, dtype=img_.dtype, device=img_.device)
+        img_.mul_(std[:, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>]).add_(mean[:, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>])
+
+    img_ = img_.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># C*H*W --&gt; H*W*C</span>
+    img_ = np.array(img_) * <span class="hljs-number">255</span>
+
+    <span class="hljs-keyword">if</span> img_.shape[<span class="hljs-number">2</span>] == <span class="hljs-number">3</span>:
+        img_ = Image.fromarray(img_.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>)).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)
+    <span class="hljs-keyword">elif</span> img_.shape[<span class="hljs-number">2</span>] == <span class="hljs-number">1</span>:
+        img_ = Image.fromarray(img_.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>).squeeze())
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&quot;Invalid img shape, expected 1 or 3 in axis 2, but got &#123;&#125;!&quot;</span>.format(img_.shape[<span class="hljs-number">2</span>]) )
+
+    <span class="hljs-keyword">return</span> img_
 
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LabelProcessor</span>:</span>
-    <span class="hljs-string">&quot;&quot;&quot;对标签图像的编码&quot;&quot;&quot;</span>
+    <span class="hljs-string">&quot;&quot;&quot;对标签图的编码&quot;&quot;&quot;</span>
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, file_path</span>):</span>
 
@@ -517,10 +566,9 @@ crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480
 
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CamvidDataset</span>(<span class="hljs-params">Dataset</span>):</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, file_path=[], crop_size=None</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, file_path=[], crop_size=None, train_flag=True</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;para:</span>
 <span class="hljs-string">            file_path(list): 数据和标签路径,列表元素第一个为图片路径，第二个为标签路径</span>
-<span class="hljs-string">            								 数据和标签是两个文件夹</span>
 <span class="hljs-string">        &quot;&quot;&quot;</span>
         <span class="hljs-comment"># 1 正确读入图片和标签路径</span>
         <span class="hljs-keyword">if</span> len(file_path) != <span class="hljs-number">2</span>:
@@ -532,6 +580,7 @@ crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480
         self.labels = self.read_file(self.label_path)
         <span class="hljs-comment"># 3 初始化数据处理函数设置</span>
         self.crop_size = crop_size
+        self.train_flag = train_flag
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getitem__</span>(<span class="hljs-params">self, index</span>):</span>
         img = self.imgs[index]
@@ -539,8 +588,6 @@ crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480
         <span class="hljs-comment"># 从文件名中读取数据（图片和标签都是png格式的图像数据）</span>
         img = Image.open(img)
         label = Image.open(label).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)
-
-        img, label = self.center_crop(img, label, self.crop_size)
 
         img, label = self.img_transform(img, label)
         <span class="hljs-comment"># print(&#x27;处理后的图片和标签大小：&#x27;,img.shape, label.shape)</span>
@@ -566,17 +613,160 @@ crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">img_transform</span>(<span class="hljs-params">self, img, label</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;对图片和标签做一些数值处理&quot;&quot;&quot;</span>
-        label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
-        label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
-        transform_img = transforms.Compose(
+        transform_img1 = transforms.Compose(
             [
+                transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),  <span class="hljs-comment"># 随机翻转</span>
+                transforms.RandomResizedCrop(size=cfg.crop_size, scale=(<span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>)),  <span class="hljs-comment"># 从0.5到2范围做随机尺度变换然后随机裁剪</span>
                 transforms.ToTensor(),
-                transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])
+                transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])  <span class="hljs-comment"># 减去RGB均值做标准化</span>
             ]
         )
-        img = transform_img(img)
-        label = label_processor.encode_label_img(label)
-        label = t.from_numpy(label)
+
+        transform_img2 = transforms.Compose(
+            [
+                transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),  <span class="hljs-comment"># 随机翻转</span>
+                transforms.RandomResizedCrop(size=cfg.crop_size, scale=(<span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>)),  <span class="hljs-comment"># 从0.5到2范围做随机尺度变换然后随机裁剪</span>
+                <span class="hljs-comment"># transforms.ToTensor(),  # 调试时打开,训练时关闭</span>
+            ]
+        )
+
+        <span class="hljs-keyword">if</span> self.train_flag:  <span class="hljs-comment"># 测试或预测时可能不想要随机裁剪翻转</span>
+            seed = np.random.randint(<span class="hljs-number">2147483647</span>)  <span class="hljs-comment"># 生成随机种子</span>
+            set_seed(seed)  <span class="hljs-comment"># 固定随机，使得img和label做同样的变换</span>
+            img = transform_img1(img)
+            set_seed(seed)  <span class="hljs-comment"># 固定随机，使得img和label做同样的变换</span>
+            label = transform_img2(label)
+
+        <span class="hljs-keyword">else</span>:
+            img, label = self.center_crop(img, label, self.crop_size)
+            label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
+            label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
+            transform_img = transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])
+                ]
+            )
+            img = transform_img(img)
+
+        <span class="hljs-comment">#   用于调试时设置断点观察数据增强效果，训练时一定要关掉</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-literal">False</span>:
+        <span class="hljs-comment"># if True:</span>
+            plt.imshow(transform_invert(img, transform_img1))
+            plt.show()
+            plt.imshow(transform_invert(label, transform_img2))
+            plt.show()
+
+        <span class="hljs-comment">#   用于调试时设置断点观察数据增强效果，训练时一定要打开</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-literal">True</span>:
+        <span class="hljs-comment"># if False:</span>
+            label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
+            label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
+            label = label_processor.encode_label_img(label)
+            label = t.from_numpy(label)
+
+        <span class="hljs-keyword">return</span> img, label
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PascalVocDataset</span>(<span class="hljs-params">Dataset</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, file_path=[], crop_size=None, train_flag=True</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;para:</span>
+<span class="hljs-string">            file_path(list): 数据和标签路径,列表元素第一个为图片路径，第二个为标签路径</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-comment"># 1 正确读入图片和标签路径</span>
+        <span class="hljs-keyword">if</span> len(file_path) != <span class="hljs-number">2</span>:
+            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;同时需要图片和标签文件夹的路径，图片路径在前&quot;</span>)
+        self.img_path = file_path[<span class="hljs-number">0</span>]
+        self.label_path = file_path[<span class="hljs-number">1</span>]
+        <span class="hljs-comment"># 2 从路径中取出图片和标签数据的文件名保持到两个列表当中（程序中的数据来源）</span>
+        self.imgs = self.read_file(self.img_path)
+        self.labels = self.read_file(self.label_path)
+        <span class="hljs-comment"># 3 初始化数据处理函数设置</span>
+        self.crop_size = crop_size
+        self.train_flag = train_flag
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getitem__</span>(<span class="hljs-params">self, index</span>):</span>
+        img = self.imgs[index]
+        label = self.labels[index]
+        <span class="hljs-comment"># 从文件名中读取数据（图片和标签都是png格式的图像数据）</span>
+        img = Image.open(img)
+        label = Image.open(label).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)
+
+        img, label = self.img_transform(img, label)
+        <span class="hljs-comment"># print(&#x27;处理后的图片和标签大小：&#x27;,img.shape, label.shape)</span>
+        sample = &#123;<span class="hljs-string">&#x27;img&#x27;</span>: img, <span class="hljs-string">&#x27;label&#x27;</span>: label&#125;
+
+        <span class="hljs-keyword">return</span> sample
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__len__</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> len(self.imgs)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_file</span>(<span class="hljs-params">self, path</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;从文件夹中读取数据&quot;&quot;&quot;</span>
+        files_list = os.listdir(path)
+        file_path_list = [os.path.join(path, img) <span class="hljs-keyword">for</span> img <span class="hljs-keyword">in</span> files_list]
+        file_path_list.sort()
+        <span class="hljs-keyword">return</span> file_path_list
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">center_crop</span>(<span class="hljs-params">self, data, label, crop_size</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;裁剪输入的图片和标签大小&quot;&quot;&quot;</span>
+        data = ff.center_crop(data, crop_size)
+        label = ff.center_crop(label, crop_size)
+        <span class="hljs-keyword">return</span> data, label
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">img_transform</span>(<span class="hljs-params">self, img, label</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;对图片和标签做一些数值处理&quot;&quot;&quot;</span>
+        transform_img1 = transforms.Compose(
+            [
+                transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),  <span class="hljs-comment"># 随机翻转</span>
+                transforms.RandomResizedCrop(size=cfg.crop_size, scale=(<span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>)),  <span class="hljs-comment"># 从0.5到2范围做随机尺度变换然后随机裁剪</span>
+                transforms.ToTensor(),
+                transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])  <span class="hljs-comment"># 减去RGB均值做标准化</span>
+            ]
+        )
+
+        transform_img2 = transforms.Compose(
+            [
+                transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),  <span class="hljs-comment"># 随机翻转</span>
+                transforms.RandomResizedCrop(size=cfg.crop_size, scale=(<span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>)),  <span class="hljs-comment"># 从0.5到2范围做随机尺度变换然后随机裁剪</span>
+                <span class="hljs-comment"># transforms.ToTensor(),  # 调试时打开,训练时关闭</span>
+            ]
+        )
+
+        <span class="hljs-keyword">if</span> self.train_flag:  <span class="hljs-comment"># 测试或预测时可能不想要随机裁剪翻转</span>
+            seed = np.random.randint(<span class="hljs-number">2147483647</span>)  <span class="hljs-comment"># 生成随机种子</span>
+            set_seed(seed)  <span class="hljs-comment"># 固定随机，使得img和label做同样的变换</span>
+            img = transform_img1(img)
+            set_seed(seed)  <span class="hljs-comment"># 固定随机，使得img和label做同样的变换</span>
+            label = transform_img2(label)
+
+        <span class="hljs-keyword">else</span>:
+            img, label = self.center_crop(img, label, self.crop_size)
+            label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
+            label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
+            transform_img = transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])
+                ]
+            )
+            img = transform_img(img)
+
+        <span class="hljs-comment">#   用于调试时设置断点观察数据增强效果，训练时一定要关掉</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-literal">False</span>:
+        <span class="hljs-comment"># if True:</span>
+            plt.imshow(transform_invert(img, transform_img1))
+            plt.show()
+            plt.imshow(transform_invert(label, transform_img2))
+            plt.show()
+
+        <span class="hljs-comment">#   用于调试时设置断点观察数据增强效果，训练时一定要打开</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-literal">True</span>:
+        <span class="hljs-comment"># if False:</span>
+            label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
+            label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
+            label = label_processor.encode_label_img(label)
+            label = t.from_numpy(label)
 
         <span class="hljs-keyword">return</span> img, label
 
@@ -594,7 +784,24 @@ label_processor = LabelProcessor(cfg.class_dict_path)
     crop_size = (<span class="hljs-number">352</span>, <span class="hljs-number">480</span>)
     Cam_train = CamvidDataset([TRAIN_ROOT, TRAIN_LABEL], crop_size)
     Cam_val = CamvidDataset([VAL_ROOT, VAL_LABEL], crop_size)
-    Cam_test = CamvidDataset([TEST_ROOT, TEST_LABEL], crop_size)</code></pre>
+    Cam_test = CamvidDataset([TEST_ROOT, TEST_LABEL], crop_size)
+
+    <span class="hljs-comment"># TRAIN_ROOT = &#x27;./PASCAL VOC/train&#x27;</span>
+    <span class="hljs-comment"># TRAIN_LABEL = &#x27;./PASCAL VOC/train_labels&#x27;</span>
+    <span class="hljs-comment"># VAL_ROOT = &#x27;./PASCAL VOC/val&#x27;</span>
+    <span class="hljs-comment"># VAL_LABEL = &#x27;./PASCAL VOC/val_labels&#x27;</span>
+    <span class="hljs-comment"># crop_size = (352, 480)</span>
+
+    <span class="hljs-comment"># 构建MyDataset实例</span>
+    train_data = PascalVocDataset([TRAIN_ROOT, TRAIN_LABEL], crop_size)
+
+    <span class="hljs-comment"># 构建DataLoder</span>
+    train_loader = DataLoader(dataset=Cam_train, batch_size=<span class="hljs-number">5</span>, shuffle=<span class="hljs-literal">False</span>)
+
+    <span class="hljs-comment"># ============================ step 2/2 训练 ============================</span>
+    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+        <span class="hljs-keyword">for</span> i, sample <span class="hljs-keyword">in</span> enumerate(train_loader):  <span class="hljs-comment"># 跳出for循环刚好一个epoch</span>
+            print(<span class="hljs-string">&quot;done&quot;</span>)</code></pre>
 <h2 id="31-class-labelprocessor"><a class="markdownIt-Anchor" href="#31-class-labelprocessor"></a> 3.1 class LabelProcessor</h2>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LabelProcessor</span>:</span>
     <span class="hljs-string">&quot;&quot;&quot;对标签图像的编码&quot;&quot;&quot;</span>
@@ -685,10 +892,9 @@ unlabelled,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>
 <p>从哈希表中找到类别数，使用Groundtruth的RGB值经过哈希映射得到哈希值，那么哈希表中第哈希值个元素就是这个RGB值对应的类别数。</p>
 <h2 id="32-class-camviddataset"><a class="markdownIt-Anchor" href="#32-class-camviddataset"></a> 3.2 class CamvidDataset</h2>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CamvidDataset</span>(<span class="hljs-params">Dataset</span>):</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, file_path=[], crop_size=None</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, file_path=[], crop_size=None, train_flag=True</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;para:</span>
 <span class="hljs-string">            file_path(list): 数据和标签路径,列表元素第一个为图片路径，第二个为标签路径</span>
-<span class="hljs-string">            								 数据和标签是两个文件夹</span>
 <span class="hljs-string">        &quot;&quot;&quot;</span>
         <span class="hljs-comment"># 1 正确读入图片和标签路径</span>
         <span class="hljs-keyword">if</span> len(file_path) != <span class="hljs-number">2</span>:
@@ -700,6 +906,7 @@ unlabelled,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>
         self.labels = self.read_file(self.label_path)
         <span class="hljs-comment"># 3 初始化数据处理函数设置</span>
         self.crop_size = crop_size
+        self.train_flag = train_flag
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getitem__</span>(<span class="hljs-params">self, index</span>):</span>
         img = self.imgs[index]
@@ -707,8 +914,6 @@ unlabelled,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>
         <span class="hljs-comment"># 从文件名中读取数据（图片和标签都是png格式的图像数据）</span>
         img = Image.open(img)
         label = Image.open(label).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)
-
-        img, label = self.center_crop(img, label, self.crop_size)
 
         img, label = self.img_transform(img, label)
         <span class="hljs-comment"># print(&#x27;处理后的图片和标签大小：&#x27;,img.shape, label.shape)</span>
@@ -734,17 +939,57 @@ unlabelled,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">img_transform</span>(<span class="hljs-params">self, img, label</span>):</span>
         <span class="hljs-string">&quot;&quot;&quot;对图片和标签做一些数值处理&quot;&quot;&quot;</span>
-        label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
-        label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
-        transform_img = transforms.Compose(
+        transform_img1 = transforms.Compose(
             [
+                transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),  <span class="hljs-comment"># 随机翻转</span>
+                transforms.RandomResizedCrop(size=cfg.crop_size, scale=(<span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>)),  <span class="hljs-comment"># 从0.3到1范围做随机尺度变换然后随机裁剪</span>
                 transforms.ToTensor(),
-                transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])
+                transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])  <span class="hljs-comment"># 减去RGB均值做标准化</span>
             ]
         )
-        img = transform_img(img)
-        label = label_processor.encode_label_img(label)
-        label = t.from_numpy(label)
+
+        transform_img2 = transforms.Compose(
+            [
+                transforms.RandomHorizontalFlip(p=<span class="hljs-number">0.5</span>),  <span class="hljs-comment"># 随机翻转</span>
+                transforms.RandomResizedCrop(size=cfg.crop_size, scale=(<span class="hljs-number">0.3</span>, <span class="hljs-number">1</span>)),  <span class="hljs-comment"># 从0.5到2范围做随机尺度变换然后随机裁剪</span>
+                <span class="hljs-comment"># transforms.ToTensor(),  # 调试时打开,训练时关闭</span>
+            ]
+        )
+
+        <span class="hljs-keyword">if</span> self.train_flag:  <span class="hljs-comment"># 测试或预测时可能不想要随机裁剪翻转</span>
+            seed = np.random.randint(<span class="hljs-number">2147483647</span>)  <span class="hljs-comment"># 生成随机种子</span>
+            set_seed(seed)  <span class="hljs-comment"># 固定随机，使得img和label做同样的变换</span>
+            img = transform_img1(img)
+            set_seed(seed)  <span class="hljs-comment"># 固定随机，使得img和label做同样的变换</span>
+            label = transform_img2(label)
+
+        <span class="hljs-keyword">else</span>:
+            img, label = self.center_crop(img, label, self.crop_size)
+            label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
+            label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
+            transform_img = transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize([<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])
+                ]
+            )
+            img = transform_img(img)
+
+        <span class="hljs-comment">#   用于调试时设置断点观察数据增强效果，训练时一定要关掉</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-literal">False</span>:
+        <span class="hljs-comment"># if True:</span>
+            plt.imshow(transform_invert(img, transform_img1))
+            plt.show()
+            plt.imshow(transform_invert(label, transform_img2))
+            plt.show()
+
+        <span class="hljs-comment">#   用于调试时设置断点观察数据增强效果，训练时一定要打开</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-literal">True</span>:
+        <span class="hljs-comment"># if False:</span>
+            label = np.array(label)  <span class="hljs-comment"># 以免不是np格式的数据</span>
+            label = Image.fromarray(label.astype(<span class="hljs-string">&#x27;uint8&#x27;</span>))
+            label = label_processor.encode_label_img(label)
+            label = t.from_numpy(label)
 
         <span class="hljs-keyword">return</span> img, label</code></pre>
 <p>主要就是getitem函数：</p>
@@ -774,39 +1019,123 @@ unlabelled,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>
 <span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
 <span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime
 <span class="hljs-keyword">from</span> dataset <span class="hljs-keyword">import</span> CamvidDataset
+<span class="hljs-keyword">from</span> dataset <span class="hljs-keyword">import</span> PascalVocDataset
 <span class="hljs-keyword">from</span> evalution_segmentaion <span class="hljs-keyword">import</span> eval_semantic_segmentation
 <span class="hljs-keyword">from</span> FCN <span class="hljs-keyword">import</span> FCN
 <span class="hljs-keyword">import</span> cfg
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
+writer = SummaryWriter()
 
 device = t.device(<span class="hljs-string">&#x27;cuda&#x27;</span>) <span class="hljs-keyword">if</span> t.cuda.is_available() <span class="hljs-keyword">else</span> t.device(<span class="hljs-string">&#x27;cpu&#x27;</span>)
 
 Cam_train = CamvidDataset([cfg.TRAIN_ROOT, cfg.TRAIN_LABEL], cfg.crop_size)
-train_data = DataLoader(Cam_train, batch_size=cfg.BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+Cam_val = CamvidDataset([cfg.VAL_ROOT, cfg.VAL_LABEL], cfg.crop_size)
 
-fcn = FCN(<span class="hljs-number">12</span>)
+<span class="hljs-comment"># Pascal_train = PascalVocDataset([cfg.TRAIN_ROOT, cfg.TRAIN_LABEL], cfg.crop_size)</span>
+<span class="hljs-comment"># Pascal_val = PascalVocDataset([cfg.VAL_ROOT, cfg.VAL_LABEL], cfg.crop_size)</span>
+
+train_data = DataLoader(Cam_train, batch_size=cfg.BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+val_data = DataLoader(Cam_val, batch_size=cfg.BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+
+fcn = FCN(cfg.class_num)
 fcn = fcn.to(device)
 criterion = nn.NLLLoss().to(device)
-optimizer = optim.Adam(fcn.parameters(), lr=<span class="hljs-number">1e-4</span>)
+<span class="hljs-comment"># optimizer = optim.SGD(fcn.parameters(), lr=1e-4, momentum=0.9, weight_decay=5e-4)</span>
+
+optimizer = optim.Adam(fcn.parameters(), lr=<span class="hljs-number">1e-4</span>, weight_decay=<span class="hljs-number">1e-4</span>)
+<span class="hljs-comment"># lambda1 = lambda epoch: (1 - epoch/cfg.EPOCH_NUMBER)**0.9  # 学习率策略自定义函数 这里使用poly</span>
+<span class="hljs-comment"># scheduler_lr = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda1)</span>
+<span class="hljs-comment"># scheduler_lr = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.01)</span>
+<span class="hljs-comment"># milestones = [50, 125, 160]</span>
+<span class="hljs-comment"># scheduler_lr = optim.lr_scheduler.MultiStepLR(optimizer, step_size=milestones, gamma=0.01)</span>
+scheduler_lr = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode=<span class="hljs-string">&#x27;min&#x27;</span>, factor=<span class="hljs-number">0.1</span>, patience=<span class="hljs-number">5</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">net, epoch</span>):</span>
+    best = [<span class="hljs-number">0</span>]
+    eval_loss = <span class="hljs-number">0</span>
+    eval_acc = <span class="hljs-number">0</span>
+    eval_miou = <span class="hljs-number">0</span>
+    eval_class_acc = <span class="hljs-number">0</span>
+
+    prec_time = datetime.now()
+    <span class="hljs-keyword">for</span> j, sample <span class="hljs-keyword">in</span> enumerate(val_data):
+        valImg = Variable(sample[<span class="hljs-string">&#x27;img&#x27;</span>].to(device))
+        valLabel = Variable(sample[<span class="hljs-string">&#x27;label&#x27;</span>].long().to(device))
+
+        out = net(valImg)
+        out = F.log_softmax(out, dim=<span class="hljs-number">1</span>)
+        loss = criterion(out, valLabel)
+        eval_loss = loss.item() + eval_loss
+        pre_label = out.max(dim=<span class="hljs-number">1</span>)[<span class="hljs-number">1</span>].data.cpu().numpy()
+        pre_label = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> pre_label]
+
+        true_label = valLabel.data.cpu().numpy()
+        true_label = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> true_label]
+
+        eval_metrics = eval_semantic_segmentation(pre_label, true_label)
+        eval_acc = eval_metrics[<span class="hljs-string">&#x27;mean_class_accuracy&#x27;</span>] + eval_acc
+        eval_miou = eval_metrics[<span class="hljs-string">&#x27;miou&#x27;</span>] + eval_miou
+        eval_class_acc = eval_metrics[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>] + eval_class_acc
+
+    cur_time = datetime.now()
+    h, remainder = divmod((cur_time - prec_time).seconds, <span class="hljs-number">3600</span>)
+    m, s = divmod(remainder, <span class="hljs-number">60</span>)
+    time_str = <span class="hljs-string">&#x27;Time: &#123;:.0f&#125;:&#123;:.0f&#125;:&#123;:.0f&#125;&#x27;</span>.format(h, m, s)
+
+    val_str = (<span class="hljs-string">&#x27;|Valid Loss|: &#123;:.5f&#125; \n|Valid Acc|: &#123;:.5f&#125; \n|Valid Mean IU|: &#123;:.5f&#125; \n|Valid Class Acc|:&#123;:&#125;&#x27;</span>.format(
+        eval_loss / len(val_data),
+        eval_acc / len(val_data),
+        eval_miou / len(val_data),
+        eval_class_acc / len(val_data)))
+    print(val_str)
+    print(time_str)
+
+    <span class="hljs-keyword">if</span> max(best) &lt;= eval_miou / len(val_data):
+        best.append(eval_miou / len(val_data))
+        t.save(net.state_dict(), cfg.path_bestmodel + <span class="hljs-string">&#x27;model_epoch&#123;&#125;.pth&#x27;</span>.format(epoch))  <span class="hljs-comment"># 保存在验证集上最好的权重</span>
+        print(<span class="hljs-string">&#x27;save:&#x27;</span>+<span class="hljs-string">&#x27;model_epoch&#123;&#125;.pth&#x27;</span>.format(epoch))
+
+    <span class="hljs-comment"># tensorboard保存数据</span>
+    writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Val&quot;</span>: eval_loss / len(val_data)&#125;, epoch)
+    writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Val&quot;</span>: eval_acc / len(val_data)&#125;, epoch)
+    writer.add_scalars(<span class="hljs-string">&quot;mIoU&quot;</span>, &#123;<span class="hljs-string">&quot;Val&quot;</span>: eval_miou / len(val_data)&#125;, epoch)
 
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span>(<span class="hljs-params">model</span>):</span>
-    best = [<span class="hljs-number">0</span>]
+
     net = model.train()
+
+    <span class="hljs-comment"># 如果需要恢复断点就运行这个</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-literal">False</span>:
+    <span class="hljs-comment"># if True:</span>
+        path_checkpoint = cfg.path_checkpoint + <span class="hljs-string">&quot;checkpoint_x_epoch.pkl&quot;</span>
+        checkpoint = t.load(path_checkpoint)
+
+        net.load_state_dict(checkpoint[<span class="hljs-string">&#x27;model_state_dict&#x27;</span>])
+
+        optimizer.load_state_dict(checkpoint[<span class="hljs-string">&#x27;optimizer_state_dict&#x27;</span>])
+
+        start_epoch = checkpoint[<span class="hljs-string">&#x27;epoch&#x27;</span>]
+
+        scheduler_lr.last_epoch = start_epoch
+
     <span class="hljs-comment"># 训练轮次</span>
     <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(cfg.EPOCH_NUMBER):
         print(<span class="hljs-string">&#x27;Epoch is [&#123;&#125;/&#123;&#125;]&#x27;</span>.format(epoch + <span class="hljs-number">1</span>, cfg.EPOCH_NUMBER))
-        scheduler_lr = optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">50</span>, gamma=<span class="hljs-number">0.5</span>)
-
-        <span class="hljs-comment"># if epoch % 50 == 0 and epoch != 0:</span>
-        <span class="hljs-comment">#     for group in optimizer.param_groups:</span>
-        <span class="hljs-comment">#         group[&#x27;lr&#x27;] *= 0.5</span>
 
         train_loss = <span class="hljs-number">0</span>
         train_acc = <span class="hljs-number">0</span>
         train_miou = <span class="hljs-number">0</span>
         train_class_acc = <span class="hljs-number">0</span>
+
         <span class="hljs-comment"># 训练批次</span>
         <span class="hljs-keyword">for</span> i, sample <span class="hljs-keyword">in</span> enumerate(train_data):  <span class="hljs-comment"># 跳出for循环刚好一个epoch</span>
+
+            <span class="hljs-comment"># if i &gt; 1:  # 调试时打开</span>
+            <span class="hljs-comment">#     break</span>
+
             <span class="hljs-comment"># 载入数据</span>
             img_data = Variable(sample[<span class="hljs-string">&#x27;img&#x27;</span>].to(device))   <span class="hljs-comment"># [4, 3, 352, 480]</span>
             img_label = Variable(sample[<span class="hljs-string">&#x27;label&#x27;</span>].to(device))    <span class="hljs-comment"># [4, 352, 480]</span>
@@ -834,21 +1163,45 @@ optimizer = optim.Adam(fcn.parameters(), lr=<span class="hljs-number">1e-4</span
 
             print(<span class="hljs-string">&#x27;|batch[&#123;&#125;/&#123;&#125;]|batch_loss &#123;: .8f&#125;|&#x27;</span>.format(i + <span class="hljs-number">1</span>, len(train_data), loss.item()))
 
-        metric_description = <span class="hljs-string">&#x27;|Train Acc|: &#123;:.5f&#125;|Train Mean IU|: &#123;:.5f&#125;\n|Train_class_acc|:&#123;:&#125;&#x27;</span>.format(
+        metric_description = <span class="hljs-string">&#x27;|Train Acc|: &#123;:.5f&#125;\n|Train Mean IU|: &#123;:.5f&#125;\n|Train_class_acc|:&#123;:&#125;\n|lr|:&#123;:&#125;\n|loss|:&#123;:&#125;&#x27;</span>.format(
             train_acc / len(train_data),
             train_miou / len(train_data),
             train_class_acc / len(train_data),
+            optimizer.param_groups[<span class="hljs-number">0</span>][<span class="hljs-string">&#x27;lr&#x27;</span>],
+            train_loss / len(train_data)
         )
 
         print(metric_description)
-        
-        <span class="hljs-keyword">if</span> max(best) &lt;= train_miou / len(train_data):
-            best.append(train_miou / len(train_data))
-            t.save(net.state_dict(), <span class="hljs-string">&#x27;&#123;&#125;.pth&#x27;</span>.format(epoch))
 
-        scheduler_lr.step()
+        <span class="hljs-comment"># tensorboard保存数据</span>
+        writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: train_loss / len(train_data)&#125;, epoch)
+        writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: train_acc / len(train_data)&#125;, epoch)
+        writer.add_scalars(<span class="hljs-string">&quot;mIoU&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: train_miou / len(train_data)&#125;, epoch)
+        writer.add_scalars(<span class="hljs-string">&quot;Learning_Rate&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: optimizer.param_groups[<span class="hljs-number">0</span>][<span class="hljs-string">&#x27;lr&#x27;</span>]&#125;, epoch)
+
+        <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net.named_parameters():
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_grad&#x27;</span>, param.grad, epoch)
+            writer.add_histogram(name + <span class="hljs-string">&#x27;_data&#x27;</span>, param, epoch)
+
+        <span class="hljs-comment"># 断点保存与验证集指标</span>
+        <span class="hljs-keyword">if</span> (epoch + <span class="hljs-number">1</span>) % cfg.checkpoint_interval == <span class="hljs-number">0</span>:
+            checkpoint = &#123;<span class="hljs-string">&quot;model_state_dict&quot;</span>: net.state_dict(),
+                          <span class="hljs-string">&quot;optimizer_state_dict&quot;</span>: optimizer.state_dict(),
+                          <span class="hljs-string">&quot;epoch&quot;</span>: epoch&#125;
+            path_checkpoint = cfg.path_checkpoint + <span class="hljs-string">&quot;checkpoint_&#123;&#125;_epoch.pkl&quot;</span>.format(epoch)
+            t.save(checkpoint, path_checkpoint)
+
+            net.eval()
+            <span class="hljs-keyword">with</span> t.no_grad():
+                evaluate(net, epoch)
+
+        <span class="hljs-comment"># scheduler_lr.step()</span>
+        scheduler_lr.step(train_loss / len(train_data))  <span class="hljs-comment"># loss不减达到设置的次数就下降学习率</span>
+
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+
+    <span class="hljs-comment"># 训练</span>
     train(fcn)</code></pre>
 <p>train(model)的代码比较清晰，这里就讲一下指标的计算部分：</p>
 <pre><code class="hljs python">eval_metrix = eval_semantic_segmentation(pre_label, true_label)
@@ -881,21 +1234,25 @@ scheduler_lr.step()</code></pre>
 
 <span class="hljs-keyword">from</span> evalution_segmentaion <span class="hljs-keyword">import</span> eval_semantic_segmentation
 <span class="hljs-keyword">from</span> dataset <span class="hljs-keyword">import</span> CamvidDataset
+<span class="hljs-keyword">from</span> dataset <span class="hljs-keyword">import</span> PascalVocDataset
 <span class="hljs-keyword">from</span> FCN <span class="hljs-keyword">import</span> FCN
 <span class="hljs-keyword">import</span> cfg
 
 device = t.device(<span class="hljs-string">&#x27;cuda&#x27;</span>) <span class="hljs-keyword">if</span> t.cuda.is_available() <span class="hljs-keyword">else</span> t.device(<span class="hljs-string">&#x27;cpu&#x27;</span>)
 
-BATCH_SIZE = <span class="hljs-number">4</span>
-miou_list = [<span class="hljs-number">0</span>]
+BATCH_SIZE = cfg.BATCH_SIZE
 
-Cam_test = CamvidDataset([cfg.TEST_ROOT, cfg.TEST_LABEL], cfg.crop_size)
-test_data = DataLoader(Cam_test, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+Cam_test = CamvidDataset([cfg.TEST_ROOT, cfg.TEST_LABEL], cfg.crop_size, train_flag=<span class="hljs-literal">False</span>)
+<span class="hljs-comment"># Pascal_test = PascalVocDataset([cfg.TEST_ROOT, cfg.TEST_LABEL], cfg.crop_size, train_flag=False)</span>
+<span class="hljs-comment"># Pascal_test = PascalVocDataset([cfg.TRAIN_ROOT, cfg.TRAIN_LABEL], cfg.crop_size, train_flag=False)</span>
 
-net = FCN(<span class="hljs-number">12</span>)
-net.eval()
+test_data = DataLoader(Cam_test, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">False</span>, num_workers=<span class="hljs-number">0</span>)
+
+net = FCN(cfg.class_num)
+net.load_state_dict(t.load(cfg.path_bestmodel+<span class="hljs-string">&#x27;model_epoch174.pth&#x27;</span>))
 net.to(device)
-net.load_state_dict(t.load(<span class="hljs-string">&#x27;xxx.pth&#x27;</span>))
+net.eval()
+
 
 test_acc = <span class="hljs-number">0</span>
 test_miou = <span class="hljs-number">0</span>
@@ -903,7 +1260,8 @@ test_class_acc = <span class="hljs-number">0</span>
 test_mpa = <span class="hljs-number">0</span>
 error = <span class="hljs-number">0</span>
 
-<span class="hljs-keyword">for</span> i, sample <span class="hljs-keyword">in</span> enumerate(test_data):
+<span class="hljs-keyword">with</span> t.no_grad():
+	<span class="hljs-keyword">for</span> i, sample <span class="hljs-keyword">in</span> enumerate(test_data):
 		data = Variable(sample[<span class="hljs-string">&#x27;img&#x27;</span>]).to(device)
 		label = Variable(sample[<span class="hljs-string">&#x27;label&#x27;</span>]).to(device)
 		out = net(data)
@@ -920,11 +1278,11 @@ error = <span class="hljs-number">0</span>
 		test_miou = eval_metrix[<span class="hljs-string">&#x27;miou&#x27;</span>] + test_miou
 		test_mpa = eval_metrix[<span class="hljs-string">&#x27;pixel_accuracy&#x27;</span>] + test_mpa
 		<span class="hljs-keyword">if</span> len(eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>]) &lt; cfg.class_num:  <span class="hljs-comment"># 去掉预测类别小于目标类别数的数据</span>
-				eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>] = <span class="hljs-number">0</span>
-				test_class_acc = test_class_acc + eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>]
-				error += <span class="hljs-number">1</span>
+			eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>] = <span class="hljs-number">0</span>
+			test_class_acc = test_class_acc + eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>]
+			error += <span class="hljs-number">1</span>
 		<span class="hljs-keyword">else</span>:
-				test_class_acc = test_class_acc + eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>]
+			test_class_acc = test_class_acc + eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>]
 
 		print(eval_metrix[<span class="hljs-string">&#x27;class_accuracy&#x27;</span>], <span class="hljs-string">&#x27;================&#x27;</span>, i)
 
@@ -934,10 +1292,7 @@ epoch_str = (<span class="hljs-string">&#x27;test_acc :&#123;:.5f&#125; ,test_mi
 																							   test_mpa / (len(test_data) - error),
 																							   test_class_acc / (len(test_data) - error)))
 
-<span class="hljs-keyword">if</span> test_miou/(len(test_data) - error) &gt; max(miou_list):
-		miou_list.append(test_miou / (len(test_data) - error))
-		print(epoch_str+<span class="hljs-string">&#x27;==========last&#x27;</span>)
-</code></pre>
+print(epoch_str+<span class="hljs-string">&#x27;==========last&#x27;</span>)</code></pre>
 <h1 id="6-evaluation_segmentationpy"><a class="markdownIt-Anchor" href="#6-evaluation_segmentationpy"></a> 6. evaluation_segmentation.py</h1>
 <pre><code class="hljs python"><span class="hljs-string">&quot;&quot;&quot;补充内容见evaluate.ipynb&quot;&quot;&quot;</span>
 <span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> division
@@ -1231,22 +1586,24 @@ confusion += np.bincount(n_class * gt_label[mask].astype(int) + pred_label[mask]
 <span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
 <span class="hljs-keyword">from</span> dataset <span class="hljs-keyword">import</span> CamvidDataset
+<span class="hljs-keyword">from</span> dataset <span class="hljs-keyword">import</span> PascalVocDataset
 <span class="hljs-keyword">from</span> FCN <span class="hljs-keyword">import</span> FCN
 <span class="hljs-keyword">import</span> cfg
 
 device = t.device(<span class="hljs-string">&#x27;cuda&#x27;</span>) <span class="hljs-keyword">if</span> t.cuda.is_available() <span class="hljs-keyword">else</span> t.device(<span class="hljs-string">&#x27;cpu&#x27;</span>)
 
-Cam_test = CamvidDataset([cfg.TEST_ROOT, cfg.TEST_LABEL], cfg.crop_size)
-test_data = DataLoader(Cam_test, batch_size=<span class="hljs-number">1</span>, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+Cam_test = CamvidDataset([cfg.TEST_ROOT, cfg.TEST_LABEL], cfg.crop_size, train_flag=<span class="hljs-literal">False</span>)
+test_data = DataLoader(Cam_test, batch_size=<span class="hljs-number">1</span>, shuffle=<span class="hljs-literal">False</span>, num_workers=<span class="hljs-number">0</span>)
 
-net = FCN(<span class="hljs-number">12</span>).to(device)
-net.load_state_dict(t.load(<span class="hljs-string">&quot;xxx.pth&quot;</span>))
+net = FCN(cfg.class_num).to(device)
+net.load_state_dict(t.load(cfg.path_bestmodel+<span class="hljs-string">&quot;model_epoch174.pth&quot;</span>))
 net.eval()
 
-pd_label_color = pd.read_csv(<span class="hljs-string">&#x27;./CamVid/class_dict.csv&#x27;</span>, sep=<span class="hljs-string">&#x27;,&#x27;</span>)
+pd_label_color = pd.read_csv(cfg.class_dict_path, sep=<span class="hljs-string">&#x27;,&#x27;</span>)
 name_value = pd_label_color[<span class="hljs-string">&#x27;name&#x27;</span>].values
 num_class = len(name_value)
 colormap = []
+
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num_class):
 	tmp = pd_label_color.iloc[i]
 	color = [tmp[<span class="hljs-string">&#x27;r&#x27;</span>], tmp[<span class="hljs-string">&#x27;g&#x27;</span>], tmp[<span class="hljs-string">&#x27;b&#x27;</span>]]
@@ -1254,18 +1611,18 @@ colormap = []
 
 cm = np.array(colormap).astype(<span class="hljs-string">&#x27;uint8&#x27;</span>)
 
-dir = <span class="hljs-string">&quot;/home/lsj/Documents/深度之眼/Semantic_Segmentation_FCN-master/result_pics/&quot;</span>
+dir = cfg.pre_path
 
-<span class="hljs-keyword">for</span> i, sample <span class="hljs-keyword">in</span> enumerate(test_data):
-	valImg = sample[<span class="hljs-string">&#x27;img&#x27;</span>].to(device)
-	valLabel = sample[<span class="hljs-string">&#x27;label&#x27;</span>].long().to(device)
-	out = net(valImg)
-	out = F.log_softmax(out, dim=<span class="hljs-number">1</span>)
-	pre_label = out.max(<span class="hljs-number">1</span>)[<span class="hljs-number">1</span>].squeeze().cpu().data.numpy()
-	pre = cm[pre_label]
-	pre1 = Image.fromarray(pre)
-	pre1.save(dir + str(i) + <span class="hljs-string">&#x27;.png&#x27;</span>)
-	print(<span class="hljs-string">&#x27;Done&#x27;</span>)</code></pre>
+<span class="hljs-keyword">with</span> t.no_grad():
+	<span class="hljs-keyword">for</span> i, sample <span class="hljs-keyword">in</span> enumerate(test_data):
+		valImg = sample[<span class="hljs-string">&#x27;img&#x27;</span>].to(device)
+		out = net(valImg)
+		out = F.log_softmax(out, dim=<span class="hljs-number">1</span>)
+		pre_label = out.max(<span class="hljs-number">1</span>)[<span class="hljs-number">1</span>].squeeze().cpu().data.numpy()
+		pre = cm[pre_label]
+		pre1 = Image.fromarray(pre)
+		pre1.save(dir + str(i) + <span class="hljs-string">&#x27;.png&#x27;</span>)
+		print(<span class="hljs-string">&#x27;Done&#x27;</span>)</code></pre>
 <p>读取训练好的权重，然后为测试集做分割可视化</p>
 
             </div>
