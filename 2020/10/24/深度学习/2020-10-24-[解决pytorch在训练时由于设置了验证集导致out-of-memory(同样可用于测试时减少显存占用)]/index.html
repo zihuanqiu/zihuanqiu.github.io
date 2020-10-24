@@ -223,14 +223,12 @@
             <div class="markdown-body" id="post-body">
               <h1 id="解决pytorch在训练时由于设置了验证集导致out-of-memory同样可用于测试时减少显存占用"><a class="markdownIt-Anchor" href="#解决pytorch在训练时由于设置了验证集导致out-of-memory同样可用于测试时减少显存占用"></a> 解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</h1>
 <h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述:</h2>
-<hr />
 <p>最近一直在使用pytorch, 由于深度学习的网络往往需要设置验证集来验证模型是否稳定.</p>
 <p>我一直再做一个关于医学影像分割的课题,为了查看自己的模型是否稳定,于是设置了验证集.</p>
 <p>但是在运行的过程中,当程序执行到 validatioon时,显存立即上升,我可怜的显卡只有8GB显存,瞬间爆炸.</p>
 <p>怎么办呢?实验得做呀.于是找了不少方法,比如设置各个网络变量requires_grad=False,但是并不管用,显存依然爆炸.</p>
 <p>后来百度了一番,终于解决了显存爆炸的问题.</p>
 <h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案:</h2>
-<hr />
 <p>假设训练程序是这样的:</p>
 <blockquote>
 <p>for train_data, train_label in  train_dataloader:</p>
