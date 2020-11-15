@@ -231,7 +231,7 @@
 <p>​	我的思考是，这里的注意力机制被强迫学习了二值信息，是否可以学习到一种更好的注意力，难度在于如何人为定义怎么样的注意力图是更好的。或者说我们在二值注意力的基础上加上普通的注意力，但又希望普通的注意力能受到这个二值注意力的一些影响而不至于和普通的完全一样。</p>
 <h2 id="strip-pooling-rethinking-spatial-pooling-for-scene-parsingcvpr2020"><a class="markdownIt-Anchor" href="#strip-pooling-rethinking-spatial-pooling-for-scene-parsingcvpr2020"></a> Strip Pooling: Rethinking Spatial Pooling for Scene Parsing——CVPR2020</h2>
 <img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115151002.png" srcset="/img/loading.gif" alt="image-20201115151001444" style="zoom:50%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115152935.png" srcset="/img/loading.gif" alt="image-20201115152933791" style="zoom:67%;" />
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115152935.png" srcset="/img/loading.gif" alt="image-20201115152933791" style="zoom: 50%;" />
 <p>这篇论文是讲池化方法创新的，引入了条形池化的概念。主要创新就是两个地方，SP模块和MPM模块。</p>
 <p>​	SP模块就是一个条形池化，并且使用的位置是骨干网络。以往的池化都是方形的，这里用了条形池化，横着池化和竖着池化然后组合一下就行了。SP模块并没有部署在骨干网络的所有位置，而是每一级的最后和最后一级的全部位置。</p>
 <p>​	MPM模块包含两个支路，上面的是短距离模块，和普通的PPM区别不大，也是方形池，就是参数少了一些，结构简单了一些。下面的是长距离模块，使用条形池化捕捉长距离的关系。MPM模块的位置是在整个网络的头部，并且重复了两次。</p>
