@@ -245,6 +245,59 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/11/15/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%BC%B1%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">弱监督语义分割论文简评</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/15/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%BC%B1%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">
+          
+          
+            
+          
+           2020年
+ Self-supervised Equivariant Attention Mechanism for Weakly Supervised Semantic Segmentation——CVPR2020
+
+
+
+​	这篇论文基于一个观察，即不同尺度的图像得到的CAM是不同的，而且CAM具有覆盖区域不完整的问题。
+​	作者认为不同尺度图像得到的CAM不同的原因是因为缺乏一个显性的约束，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-15 10:00" pubdate>
+              2020-11-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/">论文简评</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-%E5%85%A8%E7%9B%91%E7%9D%A3/">语义分割 全监督</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/11/10/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/semseg%E5%BC%80%E6%BA%90%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A8%A1%E6%9D%BF/">semseg语义分割库介绍及实现SPNet</a>
       </h1>
 
@@ -511,29 +564,18 @@ DeepShare平台：https://gpu.deepshare.net/home
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Detection%20in%20Crowded%20Scenes%20One%20Proposal,%20Multiple%20Predictions/">Detection in Crowded Scenes: One Proposal, Multiple Predictions</a>
+        <a href="/2020/08/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">Global Average Pooling</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Detection%20in%20Crowded%20Scenes%20One%20Proposal,%20Multiple%20Predictions/">
+        <a href="/2020/08/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">
           
           
             
           
-           Detection in Crowded Scenes: One Proposal, Multiple Predictions
-
-            参考文献[1]
-          
- Common detection methods
-
-Two Stage Methods
-
-Fast R-CNN
-Faster R-CNN
-Cascade R-CNN
-
-
-One  Stage Method
+           Global Average Pooling
+Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。
+在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是
         </a>
       </p>
 
@@ -550,7 +592,7 @@ One  Stage Method
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
+              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
             
           </div>
         
@@ -558,7 +600,7 @@ One  Stage Method
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Detection/">Detection</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/">深度学习模块</a>
             
           </div>
         
@@ -571,18 +613,23 @@ One  Stage Method
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Adaptive%20Context%20Network%20for%20Scene%20Parsing/">Adaptive Context Network for Scene Parsing</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">SVM</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Adaptive%20Context%20Network%20for%20Scene%20Parsing/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
           
           
             
           
-           Adaptive Context Network for Scene Parsing
+           SVM（线性模型）数学推导
 
-            报告简介：​		场景解析中需要预测出场景图像中的像素点属于某一目标类或场景类。上下文的利用对于识别每个像素点十分关键。 当前的方法主要是基于全卷积神经网络上将不同上下文融合到高层语义部特征中。具体来说，利用全局上下文来改善局部特征的歧义，利用浅层的局部上下文补充空间细节。这些方法在融合
+学习路线：先线性二分类解释清楚，再加入核方法扩展至非线性二分类
+ 几个重要的概念
+
+
+训练样本集
+(xi,yi)(\boldsymbol{x}_i,y_i)(xi​,yi​)，其中xi\boldsymbol{x_i}xi​为nnn维列向量，表示nnn维特征；yiy_iyi​为标签，当yi=+1y_i=+1yi​=+1时为正样本，yi=−1y_i=-1yi​=−1时为
         </a>
       </p>
 
@@ -599,7 +646,7 @@ One  Stage Method
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
             
           </div>
         
@@ -607,7 +654,7 @@ One  Stage Method
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Scene-Parsing/">Scene Parsing</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
@@ -620,18 +667,23 @@ One  Stage Method
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/High-frequency%20Component%20Helps%20Explain%20the%20Generalization%20of%20Convolutional%20Neural%20Networks/">High-frequency Component Helps Explain the Generalization of Convolutional Neural Networks</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/High-frequency%20Component%20Helps%20Explain%20the%20Generalization%20of%20Convolutional%20Neural%20Networks/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
           
           
             
           
-           High-frequency Component Helps Explain the Generalization of Convolutional Neural Networks
- Abstract
-我们研究了图像数据的频谱与卷积神经网络（CNN）的泛化行为之间的关系。我们首先注意到CNN能够捕获图像的高频分量。这些高频成分几乎是人类无法察觉的。因此，观察结果得出了与CNN泛化行为有关的多种假
+           感知机
+1943年，心理学家W.S.McCulloch和数理逻辑学家W.Pitts基于神经元的生理特征，建立了单个神经元的数学模型（MP模型）
+
+
+实际上没啥依据
+
+
+1957年，Frank Rosenblatt从纯数学的度重新考察这一模型，指出能够从一些输入输出对     中通过学习算法获得权重w\boldsymbol{w}w和bbb  。（这被认为是第一个机器学习算法，SVM是90年代的算法
         </a>
       </p>
 
@@ -648,7 +700,7 @@ One  Stage Method
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
             
           </div>
         
@@ -656,59 +708,7 @@ One  Stage Method
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%A7%A3%E9%87%8A%E6%80%A7/">深度学习解释性</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Network%20In%20Network/">Network In Network</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/Network%20In%20Network/">
-          
-          
-            
-          
-           Network In Network
-本文[21]是2014年ICLR上一篇非常有名的文章，作者Min Lin , Qiang Chen , Shuicheng Yan 来自于新加坡国立大学。这篇paper改进了传统的CNN网络，采用了少量的参数就松松击败了Alexnet网络，Alexnet网络参数大小是230M，采用这篇paper的算法才29M，减小了将近10倍。主要有两个创新点：multil
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AF%BB%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">读论文笔记</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Global-Pooling/">Global Pooling</a>
-            
-              <a href="/tags/classification/">classification</a>
-            
-              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%BC%98%E5%8C%96/">网络架构优化</a>
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
             
           </div>
         
