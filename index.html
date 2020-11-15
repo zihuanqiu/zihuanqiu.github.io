@@ -192,11 +192,119 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a>
+        <a href="/2020/11/15/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%85%A8%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">全监督语义分割论文简评</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/">
+        <a href="/2020/11/15/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%85%A8%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">
+          
+          
+            
+          
+           2020年
+ Context Prior for Scene Segmentation——CVPR2020
+
+
+文章核心模块就两个：Aggregation模块和Context Prior Map。
+​	Aggregation模块就是一个上下文信息提取器，类似于ASPP和PPM的作用——捕捉空间位置更远的像素的依赖关系，或者说增加模型的感受域。
+​	Context Prior Map是比较新颖的模
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-15 10:00" pubdate>
+              2020-11-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/">论文简评</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-%E5%85%A8%E7%9B%91%E7%9D%A3/">语义分割 全监督</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/11/10/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/semseg%E5%BC%80%E6%BA%90%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A8%A1%E6%9D%BF/">semseg语义分割库介绍及实现SPNet</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/10/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/semseg%E5%BC%80%E6%BA%90%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%A8%A1%E6%9D%BF/">
+          
+          
+            
+          
+          semseg是PSPNet作者构建的一个语义分割库，可用于快速建立模型、训练和验证
+ 1. 环境搭建
+Linux系统下：
+# 创建虚拟环境
+conda create -n pytorch-semseg python==3.7
+pip install torch==1.0.0
+pip install tensorboardX
+conda install opencv
+conda install pi
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-10 10:00" pubdate>
+              2020-11-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/">
           
           
             
@@ -222,7 +330,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+              <a href="/categories/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
             
           </div>
         
@@ -230,7 +338,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">代码实现</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
             
           </div>
         
@@ -243,11 +351,11 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/">使用SSH连接远端服务器训练</a>
+        <a href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/">使用SSH连接远端服务器训练</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/">
+        <a href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/">
           
           
             
@@ -281,7 +389,7 @@ DeepShare平台：https://gpu.deepshare.net/home
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+              <a href="/categories/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
             
           </div>
         
@@ -289,7 +397,7 @@ DeepShare平台：https://gpu.deepshare.net/home
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">代码实现</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
             
           </div>
         
@@ -601,108 +709,6 @@ One  Stage Method
               <a href="/tags/classification/">classification</a>
             
               <a href="/tags/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%BC%98%E5%8C%96/">网络架构优化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">Global Average Pooling</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">
-          
-          
-            
-          
-           Global Average Pooling
-Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。
-在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/">深度学习模块</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%85%A8%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">全监督语义分割论文简评</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%85%A8%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">
-          
-          
-            
-          
-           2020年
- Context Prior for Scene Segmentation——CVPR2020
-
-
-文章核心模块就两个：Aggregation模块和Context Prior Map。
-​	Aggregation模块就是一个上下文信息提取器，类似于ASPP和PPM的作用——捕捉空间位置更远的像素的依赖关系，或者说增加模型的感受域。
-​	Context Prior Map是比较新颖的模
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/">论文简评</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-%E5%85%A8%E7%9B%91%E7%9D%A3/">语义分割 全监督</a>
             
           </div>
         
