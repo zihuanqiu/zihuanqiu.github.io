@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>zihuan&#39;s Space</title>
+  <title>全监督语义分割论文简评 - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -176,8 +176,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-10-13 21:22" pubdate>
-      2020年10月13日 晚上
+    <time datetime="2020-08-21 17:17" pubdate>
+      2020年8月21日 下午
     </time>
   </div>
 
@@ -212,65 +212,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">全监督语义分割论文简评</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月20日 下午
+                  本文最后更新于：2020年11月15日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="语义分割从入门到入土"><a class="markdownIt-Anchor" href="#语义分割从入门到入土"></a> 语义分割从入门到入土</h1>
-<h2 id="fcn开山之作"><a class="markdownIt-Anchor" href="#fcn开山之作"></a> FCN——开山之作</h2>
-<h2 id="deeplab系列"><a class="markdownIt-Anchor" href="#deeplab系列"></a> DeepLab系列</h2>
-<h3 id="deeplabv1deeplab系列之雏形"><a class="markdownIt-Anchor" href="#deeplabv1deeplab系列之雏形"></a> DeepLabV1——DeepLab系列之雏形</h3>
-<p>​	论文题目：<em>SEMANTIC IMAGE SEGMENTATION WITH DEEP CONVOLUTIONAL NETS AND FULLY C ONNECTED CRFs</em></p>
-<p>提出了使用DCNNs（深度卷积网络）解决语义分割问题的两大挑战</p>
-<ol>
-<li>信号下采样</li>
-<li>空间不变性</li>
-</ol>
-<h4 id="1-解决特征分辨率问题"><a class="markdownIt-Anchor" href="#1-解决特征分辨率问题"></a> 1. 解决特征分辨率问题</h4>
-<p>​	第一个问题是由于卷积神经网络重复使用卷积和池化的组合操作来降低特征的分辨率；第二个问题是由于DCNNs本身的结构属性（卷积池化都是具有空间不变的操作），限制了DCNNs对空间信息提取的能力。</p>
-<p>​	针对第一个问题，作者使用了空洞算法解决这个问题（也就是之后的空洞卷积，只不过这时候还没发展到给卷积核插0值，而是对输入特征做抽取）；空洞算法能扩大卷积的感受域，具体做法是对输入抽取，然后再做卷积。这样一个卷积核就能捕获原图像中更大范围的区域。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201014171626.png" srcset="/img/loading.gif" alt="image-20201014171623303" /></p>
-<p>​	上图是论文中对空洞算法在1维情况下的示例说明（在deeplabV2中我们会看到真正的空洞卷积，由Nobel identity的原理，对输入抽取等效于对卷积核做插值，变成空洞卷积核）</p>
-<blockquote>
-<p>由Nobel identity的原理可以做一个形象的说明：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201014173922.png" srcset="/img/loading.gif" alt="image-20201014173920755" style="zoom: 50%;" />
-<p>（a）可以视为池化之后卷积，那么与之等效的系统如（b）所示。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><msup><mi>z</mi><mi>M</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(z^{M})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>通过插0值上采样<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>倍的结果，那么就可以等效为对卷积核做插0值，得到空洞卷积核。</p>
-<p>​	所以一个在池化后的卷积核被等效为了在池化前的空洞卷积核，因此使用空洞卷积可以避免过多地堆叠卷积池化。使用较少的卷积池化就可以获得相同的效果，避免了特征分辨率的过度下降。</p>
-</blockquote>
-<p>​	本文的模型也是从在ImageNet中预训练的VGG16微调得到的。与FCN的想法类似，把全连接层改为卷积层得到一个全卷积网络。但是FCN为了得到较大的感受域得到的特征图只相当于原输入图像尺寸1/32，本文作者认为这是过于粗糙的。因此把最后两层池化层去掉，并且使用了空洞算法，得到了1/8尺寸的特征图。并且作者认为他们得到的1/8特征图是非常平滑的，不需要使用反卷积上采样而是直接使用双线性插值直接上采样8倍得到原图像尺寸的特征图。并且抨击了FCN使用反卷积造成过多的训练参数和计算量（FCN训练了几天而他们只训练了10个小时）。</p>
-<p>​	DCNN的训练使用交叉熵损失函数，对1/8特征图双线性插值上采样8倍的结果与GroundTrue做交叉熵损失，用SGD训练。</p>
-<h4 id="2-解决空间不变性问题"><a class="markdownIt-Anchor" href="#2-解决空间不变性问题"></a> 2. 解决空间不变性问题</h4>
-<p>​	针对第二个问题，本文使用了全连接的条件随机场（CRF），对使用双线性插值8倍上采样的特征图做细节修饰。经过多轮CRF迭代最终得到语义分割的结果。全连接的CRF对特征图的任意两个像素点之间都建立了联系，每一个像素都是一个CRF节点，使用快速算法得到可以接受的计算效率。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201014183050.png" srcset="/img/loading.gif" alt="image-20201014183049871" /></p>
-<p>​	上图中第二列第二个图就是DCNN的输出，已经基本能看了。使用CRF后能获得IoU 4%的提升。</p>
-<p>​	另外，注意CRF只是对DCNN的输出做修饰（毕竟只有4%的提升），所以本文对1/8特征图直接双线性插值上采样8倍的操作已经能获得不错的分割结果。这是与FCN相比非常惊人的，因为FCN使用了反卷积。所以deeplabV1能达到这样的效果应该归功于空洞算法对特征图分辨率的保留。</p>
-<p>​	CRF是在DCNN训练结束以后单独训练的。整个网络就DCNN+CRF的两端拼接结构。</p>
-<h4 id="3-其他细节"><a class="markdownIt-Anchor" href="#3-其他细节"></a> 3. 其他细节</h4>
-<p>​	模型从ImageNet预训练的VGG16改造而来，替换全连接为全卷积。并且将最后的1000类分类器改为21类分类器（Pascal Voc为20类+背景）</p>
-<p>​	作者认为FCN把FC1改成卷积层使用的7x7卷积核过大（FCN这么做是为了获得更大的感受域），造成计算量和参数量增大，成为FCN网络的瓶颈。因此本文的方法是对FC1改为了3x3的卷积核，提高了计算速度。</p>
-<p>​	作者也尝试融合了多尺度信息，将输入图像和前四个池化层的输出通过MLP层（MLP层为两层卷积结构。第一个卷积层<code>128 3x3</code>，第二卷积层<code>128 1x1</code>），然后将其输出和最后一个softmax层concat（使softmax输入增加了5*128=640个通道）。MLP是在DCNN训练完成后额外训练的。作者发现多尺度信息能提升细节信息，但是没有CRF来的明显。</p>
-<h4 id="4-实验"><a class="markdownIt-Anchor" href="#4-实验"></a> 4. 实验</h4>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201014193744.png" srcset="/img/loading.gif" alt="image-20201014193743889" /></p>
-<p>本文使用PASCAL VOC 2012数据集。</p>
-<p>DeepLab就是在VGG16上改造得来的最普通的DCNN（没有空洞算法），得到59.80%的mIoU（FCN-32s的mIoU为59.4%）；在DeepLab上使用CRF得到DeepLab-CRF模型，获得63.74%的mIoU，得到了4%的提升，这对于CRF已经算很好的成绩（对比其他用CRF的模型只提高了1.5%）；</p>
-<p>DeepLab-MSc是使用MLP层融合多尺度特征的模型，相比DeepLab提高1.5%，不如DeepLab结合CRF的提高明显；DeepLab-MSc-CRF是即融合多尺度又使用CRF的模型，相比DeepLab-MSc提高4%，得到65.21%的mIoU。</p>
-<p>DeepLab-CRF-7x7是在VGG上直接使用空洞算法（kernel size = 7×7 and input stride = 4）的版本，得到67.64%的mIoU；7x7卷积核是十分</p>
-<p>DeepLab-CRF-LargeFOV是使用了kernel size 3×3 和 input stride = 12的版本，与DeepLab-CRF-7x7达到相同的性能，然而参数从134.3M减小到20.5M，运行速度也快了3.36倍。</p>
-<p>（这篇论文的实验对比非常丰富，而且deeplab具体的结构是什么也没说，等我有空了仔细研究。fcn的结构也没记住很难弄。迟点来填坑，把网络结构彻底弄清楚）</p>
-<h4 id="5-总结"><a class="markdownIt-Anchor" href="#5-总结"></a> 5. 总结</h4>
-<p>​	deeplabv1提出了空洞算法，提出了将DCNNs与CRF结合的模型，取得了比FCN好的效果。</p>
-<h3 id="deeplabv2deeplab系列之aspp的提出"><a class="markdownIt-Anchor" href="#deeplabv2deeplab系列之aspp的提出"></a> DeepLabV2——DeepLab系列之ASPP的提出</h3>
+              <h1 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h1>
+<h2 id="context-prior-for-scene-segmentationcvpr2020"><a class="markdownIt-Anchor" href="#context-prior-for-scene-segmentationcvpr2020"></a> Context Prior for Scene Segmentation——CVPR2020</h2>
+<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115144936.png" srcset="/img/loading.gif" alt="image-20201115144934131" /></p>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115150429.png" srcset="/img/loading.gif" alt="image-20201115150350027" style="zoom: 45%;" />
+<p>文章核心模块就两个：Aggregation模块和Context Prior Map。</p>
+<p>​	Aggregation模块就是一个上下文信息提取器，类似于ASPP和PPM的作用——捕捉空间位置更远的像素的依赖关系，或者说增加模型的感受域。</p>
+<p>​	Context Prior Map是比较新颖的模块，其实就是基于注意力机制改造过来的。作者发现无论是基于空间金字塔或者是注意力的方法，都没有明确约束模型去学习同类和不同类的关系，而是让模型通过降低loss自动学习到一些关系，当然其中有正确的也有不正确的。因此，作者想要人为约束模型去学习类内和类间的关系，于是模仿注意力机制弄了一张称为亲和图（Affinity Map）的东西去监督模型的中Context Prior Map的训练。实际上可以理解为，作者弄了一个注意力机制，但是又不想他胡来，想告诉他应该学习什么，于是弄了一张和注意力图同尺寸的亲和图去监督Context Prior Map的训练，那么实际上Context Prior Map也就是注意力模块。但是这里作者遇到的问题就是，人为很难规定像素点之间的相关性，只能粗劣的分类为是同一类和不是同一类，于是作者根据groundtruth弄出来的亲和图是一张二值图，只有类间和类内的信息，也就是说这个注意力机制只能学习到很粗浅的信息。总之，实验结果看来还是有一些用的。</p>
+<p>​	我的思考是，这里的注意力机制被强迫学习了二值信息，是否可以学习到一种更好的注意力，难度在于如何人为定义怎么样的注意力图是更好的。或者说我们在二值注意力的基础上加上普通的注意力，但又希望普通的注意力能受到这个二值注意力的一些影响而不至于和普通的完全一样。</p>
+<h2 id="strip-pooling-rethinking-spatial-pooling-for-scene-parsingcvpr2020"><a class="markdownIt-Anchor" href="#strip-pooling-rethinking-spatial-pooling-for-scene-parsingcvpr2020"></a> Strip Pooling: Rethinking Spatial Pooling for Scene Parsing——CVPR2020</h2>
+<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115151002.png" srcset="/img/loading.gif" alt="image-20201115151001444" style="zoom:50%;" />
+<img src="/Users/zihuanqiu/我的hexo博客/source/_posts/论文简评/全监督语义分割.assets/image-20201115151238931.png" srcset="/img/loading.gif" alt="image-20201115151238931" style="zoom:67%;" />
+<p>这篇论文是讲池化方法创新的，引入了条形池化的概念。主要创新就是两个地方，SP模块和MPM模块。</p>
+<p>​	SP模块就是一个条形池化，并且使用的位置是骨干网络。以往的池化都是方形的，这里用了条形池化，横着池化和竖着池化然后组合一下就行了。SP模块并没有部署在骨干网络的所有位置，而是每一级的最后和最后一级的全部位置。</p>
+<p>​	MPM模块包含两个支路，上面的是短距离模块，和普通的PPM区别不大，也是方形池，就是参数少了一些，结构简单了一些。下面的是长距离模块，使用条形池化捕捉长距离的关系。MPM模块的位置是在整个网络的头部，并且重复了两次。</p>
+<p>注意上面说到的条形池化的长度为特征图的长或者宽，宽度为1，所以是相当于对特征图的行或者列求平均。</p>
+<p>这篇论文有点水，意义不大，可能以后可以试试条形池化方法看看有没有提升，完全结果导向的论文。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/">论文简评</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-%E5%85%A8%E7%9B%91%E7%9D%A3/">语义分割 全监督</a>
+                    
+                  </div>
                 
               </div>
               
@@ -281,9 +267,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/20/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/FCN%E4%BB%A3%E7%A0%81%E8%AF%A6%E8%A7%A3/">
+                      <a href="/2020/08/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/Global%20Pooling/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FCN代码详解</span>
+                        <span class="hidden-mobile">Global Average Pooling</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -291,8 +277,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/">
-                        <span class="hidden-mobile">贝叶斯决策</span>
+                      <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
+                        <span class="hidden-mobile">SVM</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -457,7 +443,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "全监督语义分割论文简评&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
