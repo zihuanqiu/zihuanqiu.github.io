@@ -1,260 +1,156 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 基本数据类型 | zihuan's Blog</title><meta name="author" content="Zihuan Qiu"><meta name="copyright" content="Zihuan Qiu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一部分 数字类型   1.1 数字类型的组成  1.1.1 整数——不同进制的转换  默认输入十进制 二进制0b、八进制0o、十六进制0x  116 &#x3D;&#x3D; 0b10000 &#x3D;&#x3D; 0o20 &#x3D;&#x3D; 0x10 True   十进制与其他进制的转换  1234a &#x3D; bin(16)   # 转二进制b &#x3D; oct(16)   # 转八进制c &#x3D; hex(16)   # 转十六进制print(a, b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 基本数据类型">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="第一部分 数字类型   1.1 数字类型的组成  1.1.1 整数——不同进制的转换  默认输入十进制 二进制0b、八进制0o、十六进制0x  116 &#x3D;&#x3D; 0b10000 &#x3D;&#x3D; 0o20 &#x3D;&#x3D; 0x10 True   十进制与其他进制的转换  1234a &#x3D; bin(16)   # 转二进制b &#x3D; oct(16)   # 转八进制c &#x3D; hex(16)   # 转十六进制print(a, b">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2020-07-14T02:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-17T09:33:50.744Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Python基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="canonical" href="http://yoursite.com/2020/07/14/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python 基本数据类型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-17 17:33:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <link rel="icon" type="image/png" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="zihuanqiu">
-  <meta name="keywords" content="">
-  <title>Python 基本数据类型 - zihuan&#39;s Space</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-  
-<link rel="stylesheet" href="/css/custom.css">
-
-
-
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.1.1"></head>
-
-
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/plan/">
-                <i class="iconfont icon-plan"></i>
-                计划
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607042953.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-14 10:00" pubdate>
-      2020年7月14日 上午
-    </time>
-  </div>
-
-
-<div class="mt-1">
-  
-
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Python 基本数据类型</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2022年11月17日 下午
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161020.png" srcset="/img/loading.gif" alt="image-20200713161017237" /></p>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zihuan's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Python 基本数据类型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-14T02:00:00.000Z" title="发表于 2020-07-14 10:00:00">2020-07-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.744Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161020.png" alt="image-20200713161017237" /></p>
 <h1 id="第一部分-数字类型"><a class="markdownIt-Anchor" href="#第一部分-数字类型"></a> 第一部分 数字类型</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161755.png" srcset="/img/loading.gif" alt="image-20200713161752710" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161755.png" alt="image-20200713161752710" /></p>
 <h2 id="11-数字类型的组成"><a class="markdownIt-Anchor" href="#11-数字类型的组成"></a> 1.1 数字类型的组成</h2>
 <h3 id="111-整数不同进制的转换"><a class="markdownIt-Anchor" href="#111-整数不同进制的转换"></a> 1.1.1 整数——不同进制的转换</h3>
 <ul>
 <li>默认输入十进制</li>
 <li>二进制0b、八进制0o、十六进制0x</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">16</span> == <span class="hljs-number">0b10000</span> == <span class="hljs-number">0o20</span> == <span class="hljs-number">0x10</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16</span> == <span class="number">0b10000</span> == <span class="number">0o20</span> == <span class="number">0x10</span></span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
 <ul>
 <li>十进制与其他进制的转换</li>
 </ul>
-<pre><code class="hljs python">a = bin(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转二进制</span>
-b = oct(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转八进制</span>
-c = hex(<span class="hljs-number">16</span>)   <span class="hljs-comment"># 转十六进制</span>
-print(a, b, c)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = bin(<span class="number">16</span>)   <span class="comment"># 转二进制</span></span><br><span class="line">b = oct(<span class="number">16</span>)   <span class="comment"># 转八进制</span></span><br><span class="line">c = hex(<span class="number">16</span>)   <span class="comment"># 转十六进制</span></span><br><span class="line">print(a, b, c)</span><br></pre></td></tr></table></figure>
 <pre><code>0b10000 0o20 0x10
 </code></pre>
 <p><strong>注意：上述转换后结果为字符串类型</strong></p>
-<pre><code class="hljs python">a == b == c</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a == b == c</span><br></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<pre><code class="hljs python">type(a)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></table></figure>
 <pre><code>str
 </code></pre>
-<pre><code class="hljs python">a
-b
-c
-eval(a)
-eval(b)
-eval(c)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">eval(a)</span><br><span class="line">eval(b)</span><br><span class="line">eval(c)</span><br></pre></td></tr></table></figure>
 <pre><code>'0b10000'
 
 
@@ -275,20 +171,17 @@ eval(c)</code></pre>
 <ul>
 <li>其他进制转十进制</li>
 </ul>
-<pre><code class="hljs python">d = int(a, <span class="hljs-number">2</span>)      <span class="hljs-comment"># 二进制转十进制</span>
-e = int(b, <span class="hljs-number">8</span>)      <span class="hljs-comment"># 八进制转十进制</span>
-f = int(c, <span class="hljs-number">16</span>)     <span class="hljs-comment"># 十六进制转十进制</span>
-print(d, e, f)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d = int(a, <span class="number">2</span>)      <span class="comment"># 二进制转十进制</span></span><br><span class="line">e = int(b, <span class="number">8</span>)      <span class="comment"># 八进制转十进制</span></span><br><span class="line">f = int(c, <span class="number">16</span>)     <span class="comment"># 十六进制转十进制</span></span><br><span class="line">print(d, e, f)</span><br></pre></td></tr></table></figure>
 <pre><code>16 16 16
 </code></pre>
 <h3 id="112-浮点数不确定性"><a class="markdownIt-Anchor" href="#112-浮点数不确定性"></a> 1.1.2 浮点数——不确定性</h3>
 <ul>
 <li>不确定小数问题</li>
 </ul>
-<pre><code class="hljs python">(<span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span>) == <span class="hljs-number">0.3</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>) == <span class="number">0.3</span></span><br></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
-<pre><code class="hljs python"><span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span>+<span class="number">0.2</span></span><br></pre></td></tr></table></figure>
 <pre><code>0.30000000000000004
 </code></pre>
 <p><strong>计算机采用二进制小数来表示浮点数的小数部分</strong></p>
@@ -330,20 +223,16 @@ print(d, e, f)</code></pre>
 <p>通常情况下不会影响计算精度</p>
 </li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">0.1</span> + <span class="hljs-number">0.7</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.7</span></span><br></pre></td></tr></table></figure>
 <pre><code>0.7999999999999999
 </code></pre>
 <ul>
 <li>四舍五入获得精确解</li>
 </ul>
-<pre><code class="hljs python">a = <span class="hljs-number">3</span>*<span class="hljs-number">0.1</span>
-print(a)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span>*<span class="number">0.1</span></span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
 <pre><code>0.30000000000000004
 </code></pre>
-<pre><code class="hljs python">b = round(a, <span class="hljs-number">1</span>)
-print(b)
-b == <span class="hljs-number">0.3</span>
-round(<span class="hljs-number">0.033</span>, <span class="hljs-number">1</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b = round(a, <span class="number">1</span>)</span><br><span class="line">print(b)</span><br><span class="line">b == <span class="number">0.3</span></span><br><span class="line">round(<span class="number">0.033</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>0.3
 
 True
@@ -358,8 +247,7 @@ True
 <ul>
 <li>大写J或小写j均可</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">3</span>+<span class="hljs-number">4j</span>
-<span class="hljs-number">2</span>+<span class="hljs-number">5J</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>+<span class="number">4j</span></span><br><span class="line"><span class="number">2</span>+<span class="number">5J</span></span><br></pre></td></tr></table></figure>
 <pre><code>(3+4j)
 
 
@@ -368,36 +256,35 @@ True
 <ul>
 <li>虚部系数为1时，需要显式写出</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">2</span>+<span class="hljs-number">1j</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>+<span class="number">1j</span></span><br></pre></td></tr></table></figure>
 <pre><code>(2+1j)
 </code></pre>
 <h2 id="12-数字运算操作符a-操作符-b"><a class="markdownIt-Anchor" href="#12-数字运算操作符a-操作符-b"></a> 1.2 数字运算操作符（a 操作符 b）</h2>
 <ul>
 <li>加减乘除运算    +   -   /   *</li>
 </ul>
-<pre><code class="hljs python">(<span class="hljs-number">1</span> + <span class="hljs-number">3</span> - <span class="hljs-number">4</span>*<span class="hljs-number">2</span>)/<span class="hljs-number">5</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> + <span class="number">3</span> - <span class="number">4</span>*<span class="number">2</span>)/<span class="number">5</span></span><br></pre></td></tr></table></figure>
 <pre><code>-0.8
 </code></pre>
 <ul>
 <li>取反   -</li>
 </ul>
-<pre><code class="hljs python">x = <span class="hljs-number">1</span>
--x</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br><span class="line">-x</span><br></pre></td></tr></table></figure>
 <pre><code>-1
 </code></pre>
 <ul>
 <li>乘方运算   **</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">2</span>**<span class="hljs-number">3</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>**<span class="number">3</span></span><br></pre></td></tr></table></figure>
 <pre><code>8
 </code></pre>
 <ul>
 <li>整数商//   和   模运算%</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">13</span>//<span class="hljs-number">5</span>    <span class="hljs-comment"># 整数商    x/y 向下取整数</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">13</span>//<span class="number">5</span>    <span class="comment"># 整数商    x/y 向下取整数</span></span><br></pre></td></tr></table></figure>
 <pre><code>2
 </code></pre>
-<pre><code class="hljs python"><span class="hljs-number">13</span> % <span class="hljs-number">5</span>   <span class="hljs-comment"># 模运算    余数 13=2*5+3</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">13</span> % <span class="number">5</span>   <span class="comment"># 模运算    余数 13=2*5+3</span></span><br></pre></td></tr></table></figure>
 <pre><code>3
 </code></pre>
 <p><strong>几点说明</strong></p>
@@ -405,100 +292,89 @@ True
 <li>整数与浮点数运算结果是浮点数</li>
 <li>除法运算的结果是浮点数</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-number">1</span>+<span class="hljs-number">1.5</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">1.5</span></span><br></pre></td></tr></table></figure>
 <pre><code>2.5
 </code></pre>
-<pre><code class="hljs python"><span class="hljs-number">2</span>/<span class="hljs-number">5</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>/<span class="number">5</span></span><br></pre></td></tr></table></figure>
 <pre><code>0.4
 </code></pre>
-<pre><code class="hljs python"><span class="hljs-number">8</span>/<span class="hljs-number">4</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span>/<span class="number">4</span></span><br></pre></td></tr></table></figure>
 <pre><code>2.0
 </code></pre>
 <h2 id="13-数字运算操作函数-functionx"><a class="markdownIt-Anchor" href="#13-数字运算操作函数-functionx"></a> 1.3 数字运算操作函数   function(x, …)</h2>
 <ul>
 <li>求绝对值 abs()</li>
 </ul>
-<pre><code class="hljs python">abs(<span class="hljs-number">-5</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abs(<span class="number">-5</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>5
 </code></pre>
-<pre><code class="hljs python">abs(<span class="hljs-number">3</span>+<span class="hljs-number">4j</span>)  <span class="hljs-comment"># 对复数a+bj 执行的是求模运算(a^2+b^2)^0.5</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abs(<span class="number">3</span>+<span class="number">4j</span>)  <span class="comment"># 对复数a+bj 执行的是求模运算(a^2+b^2)^0.5</span></span><br></pre></td></tr></table></figure>
 <pre><code>5.0
 </code></pre>
 <ul>
 <li>幂次方 pow(x,n)</li>
 </ul>
-<pre><code class="hljs python">pow(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)  <span class="hljs-comment"># pow(x,n) x的n次方  等价于x**n</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pow(<span class="number">2</span>, <span class="number">5</span>)  <span class="comment"># pow(x,n) x的n次方  等价于x**n</span></span><br></pre></td></tr></table></figure>
 <pre><code>32
 </code></pre>
-<pre><code class="hljs python">pow(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># 2^5 % 3  更快速</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pow(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment"># 2^5 % 3  更快速</span></span><br></pre></td></tr></table></figure>
 <pre><code>2
 </code></pre>
 <ul>
 <li>四舍五入 round(x,n)</li>
 </ul>
-<pre><code class="hljs python">a = <span class="hljs-number">1.618</span>
-print(round(a))      <span class="hljs-comment"># 默认四舍五入为整数</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1.618</span></span><br><span class="line">print(round(a))      <span class="comment"># 默认四舍五入为整数</span></span><br></pre></td></tr></table></figure>
 <pre><code>2
 </code></pre>
-<pre><code class="hljs python">print(round(a, <span class="hljs-number">2</span>))   <span class="hljs-comment"># 参数2表示四舍五入后保留2位小数</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(round(a, <span class="number">2</span>))   <span class="comment"># 参数2表示四舍五入后保留2位小数</span></span><br></pre></td></tr></table></figure>
 <pre><code>1.62
 </code></pre>
-<pre><code class="hljs python">print(round(a, <span class="hljs-number">5</span>))   <span class="hljs-comment"># 位数不足，无需补齐</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(round(a, <span class="number">5</span>))   <span class="comment"># 位数不足，无需补齐</span></span><br></pre></td></tr></table></figure>
 <pre><code>1.618
 </code></pre>
 <ul>
 <li>整数商和模运算 divmod(x,y)</li>
 <li>等价于返回二元元组（x//y,x % y）</li>
 </ul>
-<pre><code class="hljs python">divmod(<span class="hljs-number">13</span>, <span class="hljs-number">5</span>)   <span class="hljs-comment"># 较（x//y,x % y）更快，只执行了一次x/y</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">divmod(<span class="number">13</span>, <span class="number">5</span>)   <span class="comment"># 较（x//y,x % y）更快，只执行了一次x/y</span></span><br></pre></td></tr></table></figure>
 <pre><code>(2, 3)
 </code></pre>
 <ul>
 <li>序列最大/最小值 max( )   min( )</li>
 </ul>
-<pre><code class="hljs python">max(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(<span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>9
 </code></pre>
-<pre><code class="hljs python">a = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
-print(<span class="hljs-string">&quot;max:&quot;</span>, max(a))
-print(<span class="hljs-string">&quot;min:&quot;</span>, min(a))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">print(<span class="string">&quot;max:&quot;</span>, max(a))</span><br><span class="line">print(<span class="string">&quot;min:&quot;</span>, min(a))</span><br></pre></td></tr></table></figure>
 <pre><code>max: 9
 min: 2
 </code></pre>
 <ul>
 <li>求和sum(x)</li>
 </ul>
-<pre><code class="hljs python">sum((<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
 <pre><code>15
 </code></pre>
 <ul>
 <li>借助科学计算库 math\scipy\numpy</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> math   <span class="hljs-comment"># 导入库</span>
-print(math.exp(<span class="hljs-number">1</span>))   <span class="hljs-comment"># 指数运算 e^x</span>
-print(math.log2(<span class="hljs-number">2</span>))  <span class="hljs-comment"># 对数运算</span>
-print(math.sqrt(<span class="hljs-number">4</span>))  <span class="hljs-comment"># 开平方运算  等价于4^0.5</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math   <span class="comment"># 导入库</span></span><br><span class="line">print(math.exp(<span class="number">1</span>))   <span class="comment"># 指数运算 e^x</span></span><br><span class="line">print(math.log2(<span class="number">2</span>))  <span class="comment"># 对数运算</span></span><br><span class="line">print(math.sqrt(<span class="number">4</span>))  <span class="comment"># 开平方运算  等价于4^0.5</span></span><br></pre></td></tr></table></figure>
 <pre><code>2.718281828459045
 1.0
 2.0
 </code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
-print(np.mean(a))    <span class="hljs-comment"># 求均值</span>
-print(np.median(a))  <span class="hljs-comment"># 求中位数</span>
-print(np.std(a))     <span class="hljs-comment"># 求标准差</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">print(np.mean(a))    <span class="comment"># 求均值</span></span><br><span class="line">print(np.median(a))  <span class="comment"># 求中位数</span></span><br><span class="line">print(np.std(a))     <span class="comment"># 求标准差</span></span><br></pre></td></tr></table></figure>
 <pre><code>3.0
 3.0
 1.4142135623730951
 </code></pre>
 <h1 id="第二部分-字符串类型"><a class="markdownIt-Anchor" href="#第二部分-字符串类型"></a> 第二部分 字符串类型</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161814.png" srcset="/img/loading.gif" alt="image-20200713161811073" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161814.png" alt="image-20200713161811073" /></p>
 <h2 id="21-字符串的表达"><a class="markdownIt-Anchor" href="#21-字符串的表达"></a> 2.1 字符串的表达</h2>
 <ul>
 <li>用&quot;&quot;或’'括起来的任意字符</li>
 </ul>
-<pre><code class="hljs python">print(<span class="hljs-string">&quot;Python&quot;</span>)
-print(<span class="hljs-string">&#x27;Python&#x27;</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&quot;Python&quot;</span>)</span><br><span class="line">print(<span class="string">&#x27;Python&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>Python
 Python
 </code></pre>
@@ -506,47 +382,39 @@ Python
 <li>字符串中有双引号或单引号的情况</li>
 </ul>
 <p><strong>双中有单</strong></p>
-<pre><code class="hljs python">print(<span class="hljs-string">&quot;I&#x27;m 18 years old&quot;</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&quot;I&#x27;m 18 years old&quot;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>I'm 18 years old
 </code></pre>
 <p><strong>单中有双</strong></p>
-<pre><code class="hljs python">print(<span class="hljs-string">&#x27;&quot;Python&quot; is good&#x27;</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&#x27;&quot;Python&quot; is good&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>&quot;Python&quot; is good
 </code></pre>
 <p><strong>双中有双，单中有单</strong>——转义符   \</p>
-<pre><code class="hljs python"><span class="hljs-comment"># print(&quot;&quot;Python&quot; is good&quot;)</span>
-print(<span class="hljs-string">&quot;\&quot;Python\&quot; is good&quot;</span>)  <span class="hljs-comment"># \ 我是个字符呀</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># print(&quot;&quot;Python&quot; is good&quot;)</span></span><br><span class="line">print(<span class="string">&quot;\&quot;Python\&quot; is good&quot;</span>)  <span class="comment"># \ 我是个字符呀</span></span><br></pre></td></tr></table></figure>
 <pre><code>&quot;Python&quot; is good
 </code></pre>
 <p><strong>转义符可以用来换行继续输入</strong></p>
-<pre><code class="hljs python"><span class="hljs-comment"># 等等，我还没完事！</span>
-s = <span class="hljs-string">&quot;py\</span>
-<span class="hljs-string">thon&quot;</span>                    
-print(s)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等等，我还没完事！</span></span><br><span class="line">s = <span class="string">&quot;py\</span></span><br><span class="line"><span class="string">thon&quot;</span>                    </span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
 <pre><code>python
 </code></pre>
 <h2 id="22-字符串的性质"><a class="markdownIt-Anchor" href="#22-字符串的性质"></a> 2.2 字符串的性质</h2>
 <h3 id="221-字符串的索引"><a class="markdownIt-Anchor" href="#221-字符串的索引"></a> 2.2.1 字符串的索引</h3>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;My name is Peppa Pig&quot;</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;My name is Peppa Pig&quot;</span></span><br></pre></td></tr></table></figure>
 <p><strong>变量名[位置编号]</strong></p>
 <ul>
 <li>正向索引——从零开始递增</li>
 <li>位置编号不能超过字符串的长度</li>
 </ul>
-<pre><code class="hljs python">print(s[<span class="hljs-number">0</span>])   
-print(s[<span class="hljs-number">2</span>])
-print(s[<span class="hljs-number">5</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="number">0</span>])   </span><br><span class="line">print(s[<span class="number">2</span>])</span><br><span class="line">print(s[<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>M
  
 m
 </code></pre>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;My name is Peppa Pig&quot;</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;My name is Peppa Pig&quot;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>反向索引——从-1开始递减</li>
 </ul>
-<pre><code class="hljs python">print(s[<span class="hljs-number">-1</span>])
-print(s[<span class="hljs-number">-3</span>])
-print(s[<span class="hljs-number">-5</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="number">-1</span>])</span><br><span class="line">print(s[<span class="number">-3</span>])</span><br><span class="line">print(s[<span class="number">-5</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>g
 P
 a
@@ -558,14 +426,13 @@ a
 <li>切片间隔如不设置默认为1，可省略</li>
 <li>切片范围不包含结束位置</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python&quot;</span>
-print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">1</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;Python&quot;</span></span><br><span class="line">print(s[<span class="number">0</span>:<span class="number">3</span>:<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>Pyt
 </code></pre>
-<pre><code class="hljs python">print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="number">0</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>Pyt
 </code></pre>
-<pre><code class="hljs python">print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="number">0</span>:<span class="number">3</span>:<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>Pt
 </code></pre>
 <ul>
@@ -573,17 +440,16 @@ print(s[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<s
 <li>结束位置省略，代表可以取到最后一个字符</li>
 <li>可以使用反向索引</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python&quot;</span>
-print(s[<span class="hljs-number">0</span>:<span class="hljs-number">6</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;Python&quot;</span></span><br><span class="line">print(s[<span class="number">0</span>:<span class="number">6</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>Python
 </code></pre>
-<pre><code class="hljs python">print(s[:<span class="hljs-number">6</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[:<span class="number">6</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>Python
 </code></pre>
-<pre><code class="hljs python">print(s[:])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[:])</span><br></pre></td></tr></table></figure>
 <pre><code>Python
 </code></pre>
-<pre><code class="hljs python">print(s[<span class="hljs-number">-6</span>:])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="number">-6</span>:])</span><br></pre></td></tr></table></figure>
 <pre><code>Python
 </code></pre>
 <p><strong>反向切片</strong></p>
@@ -591,17 +457,16 @@ print(s[<span class="hljs-number">0</span>:<span class="hljs-number">6</span>])<
 <li>起始位置是-1也可以省略</li>
 <li>结束位置省略，代表可以取到第一个字符</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;123456789&quot;</span>
-print(s[<span class="hljs-number">-1</span>:<span class="hljs-number">-10</span>:<span class="hljs-number">-1</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;123456789&quot;</span></span><br><span class="line">print(s[<span class="number">-1</span>:<span class="number">-10</span>:<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>987654321
 </code></pre>
-<pre><code class="hljs python">print(s[:<span class="hljs-number">-10</span>:<span class="hljs-number">-1</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[:<span class="number">-10</span>:<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>987654321
 </code></pre>
-<pre><code class="hljs python">print(s[::<span class="hljs-number">-1</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>987654321
 </code></pre>
-<pre><code class="hljs python">print(s[<span class="hljs-number">3</span>::<span class="hljs-number">-1</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(s[<span class="number">3</span>::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>4321
 </code></pre>
 <h2 id="23-字符串操作符"><a class="markdownIt-Anchor" href="#23-字符串操作符"></a> 2.3 字符串操作符</h2>
@@ -609,18 +474,14 @@ print(s[<span class="hljs-number">-1</span>:<span class="hljs-number">-10</span>
 <ul>
 <li>字符串1+字符串2</li>
 </ul>
-<pre><code class="hljs python">a = <span class="hljs-string">&quot;I love &quot;</span>
-b = <span class="hljs-string">&quot;my wife &quot;</span>
-a+b</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;I love &quot;</span></span><br><span class="line">b = <span class="string">&quot;my wife &quot;</span></span><br><span class="line">a+b        </span><br></pre></td></tr></table></figure>
 <pre><code>'I love my wife '
 </code></pre>
 <h3 id="232-字符串的成倍复制"><a class="markdownIt-Anchor" href="#232-字符串的成倍复制"></a> 2.3.2 字符串的成倍复制</h3>
 <ul>
 <li>字符串 * n   n * 字符串</li>
 </ul>
-<pre><code class="hljs python">c = a+b
-print(c*<span class="hljs-number">3</span>)
-print(<span class="hljs-number">3</span>*c)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = a+b</span><br><span class="line">print(c*<span class="number">3</span>)</span><br><span class="line">print(<span class="number">3</span>*c)</span><br></pre></td></tr></table></figure>
 <pre><code>I love my wife I love my wife I love my wife 
 I love my wife I love my wife I love my wife 
 </code></pre>
@@ -628,22 +489,19 @@ I love my wife I love my wife I love my wife
 <ul>
 <li><strong>子集in全集</strong>     任何一个连续的切片都是原字符串的子集</li>
 </ul>
-<pre><code class="hljs python">folk_singers = <span class="hljs-string">&quot;Peter, Paul and Mary&quot;</span>    
-<span class="hljs-string">&quot;Peter&quot;</span> <span class="hljs-keyword">in</span> folk_singers
-<span class="hljs-string">&#x27; a&#x27;</span> <span class="hljs-keyword">in</span> folk_singers</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">folk_singers = <span class="string">&quot;Peter, Paul and Mary&quot;</span>    </span><br><span class="line"><span class="string">&quot;Peter&quot;</span> <span class="keyword">in</span> folk_singers</span><br><span class="line"><span class="string">&#x27; a&#x27;</span> <span class="keyword">in</span> folk_singers</span><br></pre></td></tr></table></figure>
 <pre><code>True
 
 
 True
 </code></pre>
-<pre><code class="hljs python"><span class="hljs-string">&quot;PPM&quot;</span> <span class="hljs-keyword">in</span> folk_singers</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;PPM&quot;</span> <span class="keyword">in</span> folk_singers</span><br></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
 <ul>
 <li><strong>遍历字符串字符</strong>    for 字符 in 字符串</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;Python&quot;</span>:
-    print(s)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> <span class="string">&quot;Python&quot;</span>:</span><br><span class="line">    print(s)</span><br></pre></td></tr></table></figure>
 <pre><code>P
 y
 t
@@ -656,8 +514,7 @@ n
 <ul>
 <li>所含字符的个数</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;python&quot;</span>
-len(s)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;python&quot;</span></span><br><span class="line">len(s)</span><br></pre></td></tr></table></figure>
 <pre><code>6
 </code></pre>
 <h3 id="242-字符编码"><a class="markdownIt-Anchor" href="#242-字符编码"></a> 2.4.2 字符编码</h3>
@@ -667,11 +524,7 @@ len(s)</code></pre>
 <li>Python 中使用的是Unicode编码</li>
 </ul>
 <p><strong>将字符转化为Unicode码</strong>——ord(字符)</p>
-<pre><code class="hljs python">print(ord(<span class="hljs-string">&quot;1&quot;</span>))
-print(ord(<span class="hljs-string">&quot;a&quot;</span>))
-print(ord(<span class="hljs-string">&quot;*&quot;</span>))
-print(ord(<span class="hljs-string">&quot;中&quot;</span>))
-print(ord(<span class="hljs-string">&quot;国&quot;</span>))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(ord(<span class="string">&quot;1&quot;</span>))</span><br><span class="line">print(ord(<span class="string">&quot;a&quot;</span>))</span><br><span class="line">print(ord(<span class="string">&quot;*&quot;</span>))</span><br><span class="line">print(ord(<span class="string">&quot;中&quot;</span>))</span><br><span class="line">print(ord(<span class="string">&quot;国&quot;</span>))</span><br></pre></td></tr></table></figure>
 <pre><code>49
 97
 42
@@ -679,10 +532,7 @@ print(ord(<span class="hljs-string">&quot;国&quot;</span>))</code></pre>
 22269
 </code></pre>
 <p><strong>将Unicode码转化为字符</strong>——chr(Unicode码)</p>
-<pre><code class="hljs python">print(chr(<span class="hljs-number">1010</span>))
-print(chr(<span class="hljs-number">10000</span>))
-print(chr(<span class="hljs-number">12345</span>))
-print(chr(<span class="hljs-number">23456</span>))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(chr(<span class="number">1010</span>))</span><br><span class="line">print(chr(<span class="number">10000</span>))</span><br><span class="line">print(chr(<span class="number">12345</span>))</span><br><span class="line">print(chr(<span class="number">23456</span>))</span><br></pre></td></tr></table></figure>
 <pre><code>ϲ
 ✐
 〹
@@ -695,10 +545,7 @@ print(chr(<span class="hljs-number">23456</span>))</code></pre>
 <li>原字符串不变</li>
 </ul>
 <p><strong>上述特性适合以下所有字符串处理方法</strong></p>
-<pre><code class="hljs python">languages = <span class="hljs-string">&quot;Python C C++ Java PHP R&quot;</span>
-languages_list = languages.split(<span class="hljs-string">&quot; &quot;</span>)
-print(languages_list)
-print(languages)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">languages = <span class="string">&quot;Python C C++ Java PHP R&quot;</span></span><br><span class="line">languages_list = languages.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line">print(languages_list)</span><br><span class="line">print(languages)</span><br></pre></td></tr></table></figure>
 <pre><code>['Python', 'C', 'C++', 'Java', 'PHP', 'R']
 Python C C++ Java PHP R
 </code></pre>
@@ -706,17 +553,13 @@ Python C C++ Java PHP R
 <ul>
 <li>可迭代类型 如：字符串、列表</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;12345&quot;</span>
-s_join = <span class="hljs-string">&quot;,&quot;</span>.join(s)
-s_join</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;12345&quot;</span></span><br><span class="line">s_join = <span class="string">&quot;,&quot;</span>.join(s)</span><br><span class="line">s_join</span><br></pre></td></tr></table></figure>
 <pre><code>'1,2,3,4,5'
 </code></pre>
 <ul>
 <li>序列类型的元素必须是字符类型</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-comment"># s = [1, 2, 3, 4, 5]</span>
-s = [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>, <span class="hljs-string">&quot;5&quot;</span>]
-<span class="hljs-string">&quot;*&quot;</span>.join(s)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># s = [1, 2, 3, 4, 5]</span></span><br><span class="line">s = [<span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="string">&quot;5&quot;</span>]</span><br><span class="line"><span class="string">&quot;*&quot;</span>.join(s) </span><br></pre></td></tr></table></figure>
 <pre><code>'1*2*3*4*5'
 </code></pre>
 <h3 id="253-删除两端特定字符字符串strip删除字符"><a class="markdownIt-Anchor" href="#253-删除两端特定字符字符串strip删除字符"></a> 2.5.3 删除两端特定字符——字符串.strip(删除字符)</h3>
@@ -724,26 +567,18 @@ s = [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&
 <li>strip从两侧开始搜索，遇到指定字符执行删除，遇到非指定字符，搜索停止</li>
 <li>类似的还有左删除lstrip和右删除rstrip</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;      I have many blanks     &quot;</span>
-print(s.strip(<span class="hljs-string">&quot; &quot;</span>))                        <span class="hljs-comment"># 还有吗？hahaha</span>
-print(s.lstrip(<span class="hljs-string">&quot; &quot;</span>))
-print(s.rstrip(<span class="hljs-string">&quot; &quot;</span>))
-print(s)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;      I have many blanks     &quot;</span></span><br><span class="line">print(s.strip(<span class="string">&quot; &quot;</span>))                        <span class="comment"># 还有吗？hahaha</span></span><br><span class="line">print(s.lstrip(<span class="string">&quot; &quot;</span>))</span><br><span class="line">print(s.rstrip(<span class="string">&quot; &quot;</span>))</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
 <pre><code>I have many blanks
 I have many blanks     
       I have many blanks
       I have many blanks     
 </code></pre>
 <h3 id="254-字符串的替换字符串replace被替换替换成"><a class="markdownIt-Anchor" href="#254-字符串的替换字符串replace被替换替换成"></a> 2.5.4 字符串的替换——字符串.replace(“被替换”，“替换成”)</h3>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python is coming&quot;</span>
-s1 = s.replace(<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;Py&quot;</span>)
-print(s1)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;Python is coming&quot;</span></span><br><span class="line">s1 = s.replace(<span class="string">&quot;Python&quot;</span>,<span class="string">&quot;Py&quot;</span>)</span><br><span class="line">print(s1)</span><br></pre></td></tr></table></figure>
 <pre><code>Py is coming
 </code></pre>
 <h3 id="255-字符串统计字符串count待统计字符串"><a class="markdownIt-Anchor" href="#255-字符串统计字符串count待统计字符串"></a> 2.5.5 字符串统计——字符串.count(“待统计字符串”)</h3>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python is an excellent language&quot;</span>
-print(<span class="hljs-string">&quot;an:&quot;</span>, s.count(<span class="hljs-string">&quot;an&quot;</span>))
-print(<span class="hljs-string">&quot;e:&quot;</span>, s.count(<span class="hljs-string">&quot;e&quot;</span>))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;Python is an excellent language&quot;</span></span><br><span class="line">print(<span class="string">&quot;an:&quot;</span>, s.count(<span class="string">&quot;an&quot;</span>))</span><br><span class="line">print(<span class="string">&quot;e:&quot;</span>, s.count(<span class="string">&quot;e&quot;</span>))</span><br></pre></td></tr></table></figure>
 <pre><code>an: 2
 e: 4
 </code></pre>
@@ -751,31 +586,26 @@ e: 4
 <ul>
 <li>字符串.upper() 字母全部大写</li>
 </ul>
-<pre><code class="hljs python">s = <span class="hljs-string">&quot;Python&quot;</span>
-s.upper()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;Python&quot;</span></span><br><span class="line">s.upper()</span><br></pre></td></tr></table></figure>
 <pre><code>'PYTHON'
 </code></pre>
 <ul>
 <li>字符串.lower() 字母全部小写</li>
 </ul>
-<pre><code class="hljs python">print(s.lower())
-print(s)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(s.lower())</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
 <pre><code>python
 Python
 </code></pre>
 <ul>
 <li>字符串.title()首字母大写</li>
 </ul>
-<pre><code class="hljs python">s.title()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.title()</span><br></pre></td></tr></table></figure>
 <pre><code>'Python'
 </code></pre>
 <h1 id="第三部分-布尔类型-true-or-false"><a class="markdownIt-Anchor" href="#第三部分-布尔类型-true-or-false"></a> 第三部分 布尔类型 TRUE or False</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161835.png" srcset="/img/loading.gif" alt="image-20200713161833452" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161835.png" alt="image-20200713161833452" /></p>
 <h2 id="31-逻辑运算的结果"><a class="markdownIt-Anchor" href="#31-逻辑运算的结果"></a> 3.1 逻辑运算的结果</h2>
-<pre><code class="hljs python">a = <span class="hljs-number">10</span>
-print(a &gt; <span class="hljs-number">8</span>)
-print(a == <span class="hljs-number">12</span>)
-print(a &lt; <span class="hljs-number">5</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span></span><br><span class="line">print(a &gt; <span class="number">8</span>)</span><br><span class="line">print(a == <span class="number">12</span>)</span><br><span class="line">print(a &lt; <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>True
 False
 False
@@ -783,22 +613,12 @@ False
 <ul>
 <li>any() all()</li>
 </ul>
-<pre><code class="hljs python">print(any([<span class="hljs-literal">False</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">None</span>]))   <span class="hljs-comment"># 0 False None 都是无</span>
-print(all([<span class="hljs-literal">False</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">None</span>]))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(any([<span class="literal">False</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="literal">None</span>]))   <span class="comment"># 0 False None 都是无</span></span><br><span class="line">print(all([<span class="literal">False</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="literal">None</span>]))</span><br></pre></td></tr></table></figure>
 <pre><code>True
 False
 </code></pre>
 <h2 id="32-指示条件"><a class="markdownIt-Anchor" href="#32-指示条件"></a> 3.2 指示条件</h2>
-<pre><code class="hljs python">n = <span class="hljs-number">2800</span>
-<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
-    m = eval(input(<span class="hljs-string">&quot;请输入一个正整数：&quot;</span>))
-    <span class="hljs-keyword">if</span> m == n:
-        print(<span class="hljs-string">&quot;你猜对啦&quot;</span>)
-        <span class="hljs-keyword">break</span>
-    <span class="hljs-keyword">elif</span> m &gt; n:
-        print(<span class="hljs-string">&quot;太大了&quot;</span>)
-    <span class="hljs-keyword">else</span>:
-        print(<span class="hljs-string">&quot;太小了&quot;</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">2800</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    m = eval(input(<span class="string">&quot;请输入一个正整数：&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> m == n:</span><br><span class="line">        print(<span class="string">&quot;你猜对啦&quot;</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">elif</span> m &gt; n:</span><br><span class="line">        print(<span class="string">&quot;太大了&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">&quot;太小了&quot;</span>)  </span><br></pre></td></tr></table></figure>
 <pre><code>请输入一个正整数：40
 太小了
 请输入一个正整数：60
@@ -811,24 +631,18 @@ False
 你猜对啦
 </code></pre>
 <h2 id="33-作为掩码"><a class="markdownIt-Anchor" href="#33-作为掩码"></a> 3.3 作为掩码</h2>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>]])   <span class="hljs-comment"># 定义 numpy数组</span>
-print(x &gt; <span class="hljs-number">3</span>)
-x[x &gt; <span class="hljs-number">3</span>]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">7</span>]])   <span class="comment"># 定义 numpy数组</span></span><br><span class="line">print(x &gt; <span class="number">3</span>)</span><br><span class="line">x[x &gt; <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
 <pre><code>[[False False False  True  True]]
 
 array([5, 7])
 </code></pre>
 <h1 id="第四部分-类型判别及类型转换"><a class="markdownIt-Anchor" href="#第四部分-类型判别及类型转换"></a> 第四部分 类型判别及类型转换</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161846.png" srcset="/img/loading.gif" alt="image-20200713161845449" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713161846.png" alt="image-20200713161845449" /></p>
 <h2 id="41-类型判别"><a class="markdownIt-Anchor" href="#41-类型判别"></a> 4.1 类型判别</h2>
 <ul>
 <li>type(变量)</li>
 </ul>
-<pre><code class="hljs python">age = <span class="hljs-number">20</span>
-name = <span class="hljs-string">&quot;Ada&quot;</span>
-print(type(age))
-print(type(name))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line">name = <span class="string">&quot;Ada&quot;</span></span><br><span class="line">print(type(age))</span><br><span class="line">print(type(name))</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;class 'int'&gt;
 &lt;class 'str'&gt;
 </code></pre>
@@ -836,11 +650,10 @@ print(type(name))</code></pre>
 <li>isinstance(变量,预判类型) <strong>承认继承</strong></li>
 <li>变量类型是预判类型的子类型，则为真，否则为假</li>
 </ul>
-<pre><code class="hljs python">print(isinstance(age, int))        <span class="hljs-comment"># 承认继承</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(isinstance(age, int))        <span class="comment"># 承认继承</span></span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<pre><code class="hljs python">print(isinstance(age, object))
-print(isinstance(name, object))    <span class="hljs-comment"># object 是老祖宗</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(isinstance(age, object))</span><br><span class="line">print(isinstance(name, object))    <span class="comment"># object 是老祖宗</span></span><br></pre></td></tr></table></figure>
 <pre><code>True
 True
 </code></pre>
@@ -848,346 +661,55 @@ True
 <li>字符串检查方法</li>
 </ul>
 <p><strong>字符串.isdigit()字符是否只有数字组成</strong></p>
-<pre><code class="hljs python">age = <span class="hljs-string">&quot;20&quot;</span>
-name = <span class="hljs-string">&quot;Ada&quot;</span></code></pre>
-<pre><code class="hljs python">age.isdigit()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="string">&quot;20&quot;</span></span><br><span class="line">name = <span class="string">&quot;Ada&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age.isdigit()</span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<pre><code class="hljs python">name.isdigit()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.isdigit()</span><br></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
 <p><strong>字符串.isalpha()字符是否只有字母组成</strong></p>
-<pre><code class="hljs python">name.isalpha()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.isalpha()</span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
-<pre><code class="hljs python">age.isalpha()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age.isalpha()</span><br></pre></td></tr></table></figure>
 <pre><code>False
 </code></pre>
 <p><strong>字符串.isalnum()字符是否只有数字和字母组成</strong></p>
-<pre><code class="hljs python"><span class="hljs-string">&quot;Ada20&quot;</span>.isalnum()    <span class="hljs-comment"># 比如可用于判断用户名是否合法</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;Ada20&quot;</span>.isalnum()    <span class="comment"># 比如可用于判断用户名是否合法</span></span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre>
 <h2 id="42-类型转换"><a class="markdownIt-Anchor" href="#42-类型转换"></a> 4.2 类型转换</h2>
 <ul>
 <li>数字类型转字符串  str(数字类型)</li>
 </ul>
-<pre><code class="hljs python">age = <span class="hljs-number">20</span>
-print(<span class="hljs-string">&quot;My age is &quot;</span>+str(age))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line">print(<span class="string">&quot;My age is &quot;</span>+str(age))</span><br></pre></td></tr></table></figure>
 <pre><code>My age is 20
 </code></pre>
 <ul>
 <li>仅有数字组成的字符串转数字  int()  float()  eval()</li>
 </ul>
-<pre><code class="hljs python">s1 = <span class="hljs-string">&quot;20&quot;</span>
-s2 = <span class="hljs-string">&quot;10.1&quot;</span></code></pre>
-<pre><code class="hljs python">int(s1)     <span class="hljs-comment"># 仅整型</span>
-<span class="hljs-comment"># int(s2)</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&quot;20&quot;</span></span><br><span class="line">s2 = <span class="string">&quot;10.1&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int(s1)     <span class="comment"># 仅整型</span></span><br><span class="line"><span class="comment"># int(s2)</span></span><br></pre></td></tr></table></figure>
 <pre><code>20
 </code></pre>
-<pre><code class="hljs python">float(s1)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float(s1)</span><br></pre></td></tr></table></figure>
 <pre><code>20.0
 </code></pre>
-<pre><code class="hljs python">float(s2)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float(s2)</span><br></pre></td></tr></table></figure>
 <pre><code>10.1
 </code></pre>
-<pre><code class="hljs python">eval(s1)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(s1)</span><br></pre></td></tr></table></figure>
 <pre><code>20
 </code></pre>
-<pre><code class="hljs python">eval(s2)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(s2)</span><br></pre></td></tr></table></figure>
 <pre><code>10.1
 </code></pre>
 <blockquote>
 <p>eval()负责把字符串转化为最合适的数据类型，而int()和float()可以把除了字符以外的转化为整型和浮点型</p>
 </blockquote>
-
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/07/15/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Python 组合数据类型</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">
-                        <span class="hidden-mobile">Python 基本语法元素</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 6,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Python 基本数据类型&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/15/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python 组合数据类型</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python 基本语法元素</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/07/13/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/" title="Python 基本语法元素"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-13</div><div class="title">Python 基本语法元素</div></div></a></div><div><a href="/2020/07/16/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" title="Python 程序控制结构"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-16</div><div class="title">Python 程序控制结构</div></div></a></div><div><a href="/2020/07/15/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="Python 组合数据类型"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-15</div><div class="title">Python 组合数据类型</div></div></a></div><div><a href="/2020/07/17/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/" title="Python 类——面向对象的编程"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-17</div><div class="title">Python 类——面向对象的编程</div></div></a></div><div><a href="/2020/07/19/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E6%9C%89%E7%9B%8A%E7%9A%84%E6%8E%A2%E7%B4%A2/" title="Python 有益的探索"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-19</div><div class="title">Python 有益的探索</div></div></a></div><div><a href="/2020/07/18/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/" title="Python 文件、异常和模块"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-18</div><div class="title">Python 文件、异常和模块</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zihuan Qiu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zihuanqiu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text"> 第一部分 数字类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.1 数字类型的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#111-%E6%95%B4%E6%95%B0%E4%B8%8D%E5%90%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 1.1.1 整数——不同进制的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#112-%E6%B5%AE%E7%82%B9%E6%95%B0%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 1.1.2 浮点数——不确定性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#113-%E5%A4%8D%E6%95%B0abj"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 1.1.3 复数——a+bj</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%95%B0%E5%AD%97%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C%E7%AC%A6a-%E6%93%8D%E4%BD%9C%E7%AC%A6-b"><span class="toc-number">1.2.</span> <span class="toc-text"> 1.2 数字运算操作符（a 操作符 b）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E6%95%B0%E5%AD%97%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0-functionx"><span class="toc-number">1.3.</span> <span class="toc-text"> 1.3 数字运算操作函数   function(x, …)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 第二部分 字符串类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A1%A8%E8%BE%BE"><span class="toc-number">2.1.</span> <span class="toc-text"> 2.1 字符串的表达</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.2 字符串的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#221-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 2.2.1 字符串的索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#222-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%87%E7%89%87"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 2.2.2 字符串的切片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">2.3.</span> <span class="toc-text"> 2.3 字符串操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#231-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8B%BC%E6%8E%A5"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 2.3.1 字符串的拼接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#232-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%88%90%E5%80%8D%E5%A4%8D%E5%88%B6"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 2.3.2 字符串的成倍复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#223-%E6%88%90%E5%91%98%E8%BF%90%E7%AE%97"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 2.2.3 成员运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text"> 2.4 字符串处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#241-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 2.4.1 字符串的长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#242-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 2.4.2 字符编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">2.5.</span> <span class="toc-text"> 2.5 字符串的处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#251-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B2split%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 2.5.1 字符串的分割——字符串.split(分割字符)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#252-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%81%9A%E5%90%88%E8%81%9A%E5%90%88%E5%AD%97%E7%AC%A6join%E5%8F%AF%E8%BF%AD%E4%BB%A3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 2.5.2  字符串的聚合——“聚合字符”.join(可迭代数据类型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#253-%E5%88%A0%E9%99%A4%E4%B8%A4%E7%AB%AF%E7%89%B9%E5%AE%9A%E5%AD%97%E7%AC%A6%E5%AD%97%E7%AC%A6%E4%B8%B2strip%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6"><span class="toc-number">2.5.3.</span> <span class="toc-text"> 2.5.3 删除两端特定字符——字符串.strip(删除字符)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#254-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2replace%E8%A2%AB%E6%9B%BF%E6%8D%A2%E6%9B%BF%E6%8D%A2%E6%88%90"><span class="toc-number">2.5.4.</span> <span class="toc-text"> 2.5.4 字符串的替换——字符串.replace(“被替换”，“替换成”)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#255-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%9F%E8%AE%A1%E5%AD%97%E7%AC%A6%E4%B8%B2count%E5%BE%85%E7%BB%9F%E8%AE%A1%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.5.5.</span> <span class="toc-text"> 2.5.5 字符串统计——字符串.count(“待统计字符串”)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#236-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="toc-number">2.5.6.</span> <span class="toc-text"> 2.3.6 字符串字母大小写</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B-true-or-false"><span class="toc-number">3.</span> <span class="toc-text"> 第三部分 布尔类型 TRUE or False</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#31-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">3.1.</span> <span class="toc-text"> 3.1 逻辑运算的结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32-%E6%8C%87%E7%A4%BA%E6%9D%A1%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text"> 3.2 指示条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#33-%E4%BD%9C%E4%B8%BA%E6%8E%A9%E7%A0%81"><span class="toc-number">3.3.</span> <span class="toc-text"> 3.3 作为掩码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E7%B1%BB%E5%9E%8B%E5%88%A4%E5%88%AB%E5%8F%8A%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text"> 第四部分 类型判别及类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#41-%E7%B1%BB%E5%9E%8B%E5%88%A4%E5%88%AB"><span class="toc-number">4.1.</span> <span class="toc-text"> 4.1 类型判别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#42-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.2.</span> <span class="toc-text"> 4.2 类型转换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"/></a><div class="content"><a class="title" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a><time datetime="2020-10-24T02:00:00.000Z" title="发表于 2020-10-24 10:00:00">2020-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用SSH连接远端服务器训练"/></a><div class="content"><a class="title" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练">使用SSH连接远端服务器训练</a><time datetime="2020-10-22T02:00:00.000Z" title="发表于 2020-10-22 10:00:00">2020-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贝叶斯决策"/></a><div class="content"><a class="title" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策">贝叶斯决策</a><time datetime="2020-10-10T02:00:00.000Z" title="发表于 2020-10-10 10:00:00">2020-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="语义分割中的self-attention变种模型"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型">语义分割中的self-attention变种模型</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="目标检测的常用指标（Pascal VOC与COCO）"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）">目标检测的常用指标（Pascal VOC与COCO）</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div></div></div></div></div></main><footer id="footer" style="background: FFFFFF"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>

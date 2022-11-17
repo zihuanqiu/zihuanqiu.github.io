@@ -1,207 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>zihuan's Blog</title><meta name="author" content="Zihuan Qiu"><meta name="copyright" content="Zihuan Qiu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="zihuan&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG">
+<meta property="article:author" content="Zihuan Qiu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="shortcut icon" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="canonical" href="http://yoursite.com/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'zihuan\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-11-18 01:10:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <link rel="icon" type="image/png" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="zihuanqiu">
-  <meta name="keywords" content="">
-  <title>zihuan&#39;s Space</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-<link rel="stylesheet" href="/css/custom.css">
-
-
-
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.1.1"></head>
-
-
-<body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/plan/">
-                <i class="iconfont icon-plan"></i>
-                计划
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607043000.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-          </div>
-
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">GPU的使用</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/">
-          
-          
-            
-          
-           1. 数据迁移至GPU
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zihuan's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/" title="GPU的使用">GPU的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-17T02:00:00.000Z" title="发表于 2020-08-17 10:00:00">2020-08-17</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.748Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 数据迁移至GPU
 
 to函数：转换数据类型/设备
 
@@ -213,57 +132,12 @@ module.to(*args, **kwargs)
 
 
 区别：张量不执行inplace，模型执行inplace
-x = torch.ones((3, 3))
-x = x.to(torch.float64)  #转换类型；张量不执行inplace，需要用等号赋值
+1234567891011x = torch.ones((3, 3))x = x.to(torch.float64)  #转换类型；张量不执行inplace，需要用等号赋值x = torch.ones((3, 3))x = x.to(&quot;cuda&quot;)  # 转换设备；张量不执行inplace，需要用等号赋值linear = nn.Linear(2, 2)linear.to(torch.double)gpu1 = torch.device(&quot;cuda&quot;)linear.to(gpu1)  # 模型执行inplace
+实验：
 
-x = tor
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-17 10:00" pubdate>
-              2020-08-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/16/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8Bfinetune/">模型finetune</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/16/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8Bfinetune/">
-          
-          
-            
-          
-           1. 迁移学习
+tensor to cuda
+12345678import torchimport torch.nn as nnx_cpu = torch.ones((3, 3))print(&quot;x_cpu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/16/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8Bfinetune/" title="模型finetune">模型finetune</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-16T02:00:00.000Z" title="发表于 2020-08-16 10:00:00">2020-08-16</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.746Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 迁移学习
 Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)
 
 模型微调是属于迁移学习的，但迁移学习更多是研究目标域无标注的情况
@@ -276,279 +150,75 @@ Transfer Learning：机器学习分支，研究源域(source domain)的知识如
 
 模型微调训练方法：
 
-固定预训练的参数(令requires
-        </a>
-      </p>
+固定预训练的参数(令requires_grad =False或lr=0)
+浅层网络使用较小的学习率（params_group）
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-16 10:00" pubdate>
-              2020-08-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+实验：
+Finetune Resnet-18 用于二分类
+蚂蚁蜜蜂二分类数据
+训练集：各120～张 验证集：各70～张
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/15/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD/">模型保存与加载</a>
-      </h1>
+这是一个很小的训练集样本，我们只能在预训练参数上做finetune实现蚂蚁蜜蜂二分类
+Resnet-18数据下载
+数据：https://download.pytorch.org/tutorial/hymenoptera_data.zip
+模型： https://download.pytorch.org/models/resnet18-5c106cde.pth
 
-      <p class="index-excerpt">
-        <a href="/2020/08/15/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD/">
-          
-          
-            
-          
-           1. PyTorch中对象的保存与加载
+
+
+首先构建数据集： ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/15/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD/" title="模型保存与加载">模型保存与加载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-15T02:00:00.000Z" title="发表于 2020-08-15 10:00:00">2020-08-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.753Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. PyTorch中对象的保存与加载
  1.1 torch.save
-torch.save(obj, f)
+1torch.save(obj, f)
 主要参数：
 
 obj：对象
 f：输出路径
 
  1.2 torch.load
-torch.load(f, map_location=None)
+1torch.load(f, map_location=None)
 主要参数
 
 f：文件路径
 map_location：指定存放位置, cpu or gpu
 
  2. PyTorch中模型的保存
-以下实验要保存的网
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 10:00" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/10/Pytorch%E5%9F%BA%E7%A1%80/%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95/">正则化方法</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/10/Pytorch%E5%9F%BA%E7%A1%80/%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95/">
-          
-          
-            
-          
-           1. 正则化与偏差-方差分解
+以下实验要保存的网络为：
+1234567891011121314151617181920212223242526272829303132import torchimport torch.nn as nnclass LeNet2(nn.Module):    def __init__(self, classes):        super(LeNet2, self).__init__()        self.features = nn.Sequential(            nn.Conv2d(3, 6, 5),            nn.ReLU(),            nn.MaxPoo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/10/Pytorch%E5%9F%BA%E7%A1%80/%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95/" title="正则化方法">正则化方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-10T02:00:00.000Z" title="发表于 2020-08-10 10:00:00">2020-08-10</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.749Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 正则化与偏差-方差分解
 Regularization：减小方差的策略
 误差可分解为：偏差，方差与噪声之和。即误差 = 偏差 + 方差 + 噪声之和
 偏差度量了学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力
 方差度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了数据扰动所造成的影响
 噪声则表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界
 
-高偏差：
-        </a>
-      </p>
+高偏差：模型不够复杂，拟合能力不足（欠拟合）
+高方差：泛化能力不足（过拟合）
+正则化就是增强模型泛化能力的方法
+目标函数(Objective Function)：
+𝑶𝒃𝒋 = 𝑪𝒐𝒔𝒕 + Regularization Term
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-10 10:00" pubdate>
-              2020-08-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+L1 Regularization Term:  ∑iN∣wi∣\sum_{i}^{N}\left|\boldsymbol{w}_{i}\right|∑iN​∣wi​∣
+L2 Regularization Term:  ∑iNwi2\sum_{i}^{N} w_{i}^{2}∑iN​wi2​
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/">Hook函数</a>
-      </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/">
-          
-          
-            
-          
-           1. Hook函数概念
+正则化项就是约束参数尽量小，这样对于输入数据的扰动，模型有着较大 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/" title="Hook函数">Hook函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-09T02:00:00.000Z" title="发表于 2020-08-09 10:00:00">2020-08-09</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.753Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. Hook函数概念
 Hook函数机制：不改变主体，实现额外功能，就是开挂的意思
 大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数
 
 torch.Tensor.register_hook(hook)
 torch.nn.Module.register_forward_hook
-torch.nn.Module.registe
-        </a>
-      </p>
+torch.nn.Module.register_forward_pre_hook
+torch.nn.Module.register_backward_hook
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-09 10:00" pubdate>
-              2020-08-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+关于torch.nn.Module的hook函数，我们可以在module.py看到是怎么执行的。对于一个nn.module类，在调用时都会进入__call__函数
+可以看到，__call__函数是分为四个部分的，依次执行顺序是register_forward_pre_hook，forward，forward_hook，backward_hook。根据需要hook函数执行的位置，我们可以选择不同位置进行hook注册。
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/06/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/">tensorboard可视化</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/06/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/">
-          
-          
-            
-          
-           1. TensorBoard简介与安装
+ 1.1 torch.Tensor.register_hoo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/06/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/" title="tensorboard可视化">tensorboard可视化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-06T02:00:00.000Z" title="发表于 2020-08-06 10:00:00">2020-08-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.751Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. TensorBoard简介与安装
  1.1 安装TensorBoard
 TensorBoard：TensorFlow中强大的可视化工具
 
 通过pip install future和pip install tensorboard安装tensorboard
  1.2 运行TensorBoard
 实验代码：
-import numpy as np
-from torch.utils.tensorbo
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-06 10:00" pubdate>
-              2020-08-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/">学习率调整策略</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/">
-          
-          
-            
-          
-           1. 为什么要调整学习率？
+123456789101112131415import numpy as npfrom torch.utils.tensorboard import SummaryWriterwriter = SummaryWriter(comment=&#x27;test_tensorboard&#x27;)for x in range(100):    writer.add_scalar(&#x27;y=2x&#x27;, x * 2, x)    writer.add_scalar(&#x27;y=pow(2, x)&#x27;,  2 ** x, x)        writer.add_scalars(&#x27;data/scalar_group&#x27;, &#123;&quot ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/" title="学习率调整策略">学习率调整策略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-05T02:00:00.000Z" title="发表于 2020-08-05 10:00:00">2020-08-05</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.748Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 为什么要调整学习率？
 可以先快后慢，根据某种学习率调整策略，在适当的时候更改学习率，使训练过程收敛更快，训练效果更好。
 学习率调整策略的函数都继承于_LRScheduler这个基类。
 主要属性：
@@ -559,377 +229,47 @@ base_lrs：记录初始学习率
 
 主要方法：
 
-step()：更新下一个epoch的学习率（一次epoch运行一次st
-        </a>
-      </p>
+step()：更新下一个epoch的学习率（一次epoch运行一次step函数以更新学习率；在一次epoch以内，学习率不应该改变）
+get_lr()：虚函数（需要子类重写），计算下一个epoch的学习率
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-05 10:00" pubdate>
-              2020-08-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+12345&gt;&gt;&gt; scheduler = ...&gt;&gt;&gt; for epoch in range(100):&gt;&gt;&gt;     train(...)&gt;&gt;&gt;     validate(...)&gt;&gt;&gt;     scheduler.step()
+ 2. pytorch的六种学习率调整策略
+ 2.1 StepLR
+12345torch.optim.lr_scheduler.StepLR ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/" title="优化器">优化器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-04T02:00:00.000Z" title="发表于 2020-08-04 10:00:00">2020-08-04</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.747Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. optimizer的属性
+12345class Optimizer(object):	def __init__(self, params, defaults):		self.defaults = defaults    self.state = defaultdict(dict)    self.param_groups = []
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/">优化器</a>
-      </h1>
+defaults：优化器超参数（字典：包含’lr’, 'momentum’等等关于优化器的超参数）
+state：参数的缓存，如momentum的缓存
+params_groups：管理的参数组（params_groups是一个list，list内有字典；字典内有一组参数，以及这一组参数对应的超参数设置）
+_step_count：记录更新次数，学习率调整中使用
 
-      <p class="index-excerpt">
-        <a href="/2020/08/04/Pytorch%E5%9F%BA%E7%A1%80/%E4%BC%98%E5%8C%96%E5%99%A8/">
-          
-          
-            
-          
-           1. optimizer的属性
-class Optimizer(object):
-	def __init__(self, params, defaults):
-		self.defaults = defaults
-    self.state = defaultdict(dict)
-    self.param_groups = []
-
-defaults：优化器超参数（字典：包含’lr’, 'm
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-04 10:00" pubdate>
-              2020-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">
-          
-          
-            
-          
-           1. 损失函数概念
+ 2. optimizer的方法
+ 2.1 step()
+功能：执行一步更新
+实验：
+12345678910111213141516import osBASE_DIR = os.path.dirname(os.path.abspath(__file__))import torchimport  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/08/03/Pytorch%E5%9F%BA%E7%A1%80/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" title="损失函数">损失函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-03T02:00:00.000Z" title="发表于 2020-08-03 10:00:00">2020-08-03</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.752Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 损失函数概念
 损失函数：衡量模型输出与真实标签的差异
 
 损失函数(Loss Function)：
 Loss=f(y^,y)Loss=f\left( \hat{y},y \right)Loss=f(y^​,y)
 代价函数(Cost Function)：
-Cost=1N∑i=1Nf(y^i,y)Cost=\frac{1}{N}\sum_{i=1}^N{f\left( \hat{y}_i,y \
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-03 10:00" pubdate>
-              2020-08-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/">权值初始化</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/">
-          
-          
-            
-          
-           1. 梯度消失与爆炸
+Cost=1N∑i=1Nf(y^i,y)Cost=\frac{1}{N}\sum_{i=1}^N{f\left( \hat{y}_i,y \right)}Cost=N1​∑i=1N​f(y^​i​,y)
+目标函数(Objective Function)：
+Obj  =  Cost  +  RegularizationObj\,\,=\,\,Cost\,\,+\,\,RegularizationObj=Cost+Regularization
+ 2. pytorch提供的各种损失函数
+ 2.1 nn.CrossEntropyLoss
+12345nn.CrossEntropyLoss(weight=None,                     size_average=None,                     ignor ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/" title="权值初始化">权值初始化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-31T02:00:00.000Z" title="发表于 2020-07-31 10:00:00">2020-07-31</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.751Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 梯度消失与爆炸
 对于一个没有激活函数（先不考虑激活函数）的多层神经网络，参数的导数可以计算如下
 
 H2=H1∗W2ΔW2=∂Loss∂W2=∂Loss∂out∗∂out∂H2∗∂H2∂w2=∂Loss∂out∗∂out∂H2∗H1\begin{aligned}
 \text{H}_2&amp;=\text{H}_1*\text{W}_2
 \\
-	\Delta \text{W}_2&amp;=
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-31 10:00" pubdate>
-              2020-07-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
+	\Delta \text{W}_2&amp;=\frac{\partial \text{Loss}}{\partial \text{W}_2}=\frac{\partial \text{Loss}}{\partial \text{out}}*\frac{\partial \text{out}}{\partial \text{H}_2}*\frac{\partial \text{H}_2}{\partial \text{w}_2}\\
+	&amp;=\frac{\partial \text{Loss}}{\partial \text{out}}*\frac{\partial \text{out}}{\partial \text{H}_2}* ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zihuan Qiu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zihuanqiu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"/></a><div class="content"><a class="title" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a><time datetime="2020-10-24T02:00:00.000Z" title="发表于 2020-10-24 10:00:00">2020-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用SSH连接远端服务器训练"/></a><div class="content"><a class="title" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练">使用SSH连接远端服务器训练</a><time datetime="2020-10-22T02:00:00.000Z" title="发表于 2020-10-22 10:00:00">2020-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贝叶斯决策"/></a><div class="content"><a class="title" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策">贝叶斯决策</a><time datetime="2020-10-10T02:00:00.000Z" title="发表于 2020-10-10 10:00:00">2020-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="语义分割中的self-attention变种模型"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型">语义分割中的self-attention变种模型</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="目标检测的常用指标（Pascal VOC与COCO）"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）">目标检测的常用指标（Pascal VOC与COCO）</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
             
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
-
-
-
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "态度决定一切&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Pytorch/"><span class="card-category-list-name">Pytorch</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">5</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/C-%E5%9F%BA%E7%A1%80/" style="font-size: 1.2em; color: #999da3">C++基础</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.4em; color: #99a5b6">Python基础</a> <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/" style="font-size: 1.5em; color: #99a9bf">Pytorch基础</a> <a href="/tags/self-attention/" style="font-size: 1.1em; color: #999">self-attention</a> <a href="/tags/%E4%BB%A3%E7%A0%81/" style="font-size: 1.2em; color: #999da3">代码</a> <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/" style="font-size: 1.3em; color: #99a1ac">浙江大学机器学习网课笔记</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8C%87%E6%A0%87/" style="font-size: 1.1em; color: #999">深度学习指标</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/" style="font-size: 1.1em; color: #999">深度学习模块</a> <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" style="font-size: 1.1em; color: #999">课程笔记</a> <a href="/tags/%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD/" style="font-size: 1.1em; color: #999">资料下载</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">八月 2020</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">25</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/02/"><span class="card-archive-list-date">二月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/01/"><span class="card-archive-list-date">一月 2019</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">46</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-11-17T17:10:42.717Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: FFFFFF"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>

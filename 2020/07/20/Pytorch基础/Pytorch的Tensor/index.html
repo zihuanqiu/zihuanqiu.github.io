@@ -1,229 +1,133 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Pytorch的Tensor | zihuan's Blog</title><meta name="author" content="Zihuan Qiu"><meta name="copyright" content="Zihuan Qiu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 张量是什么 张量是一个多维数组，它是标量、向量、矩阵的高维拓展  Pytorch0.4.0版开始，Variable并入Tensor   dtype:张量的数据类型，如torch.FloatTensor,torch.cuda.FloatTensor   shape:张量的形状，如(64,3,224,224)   device:张量所在设备，GPU&#x2F;CPU，是加速的关键      2. 张量的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch的Tensor">
+<meta property="og:url" content="http://yoursite.com/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="1. 张量是什么 张量是一个多维数组，它是标量、向量、矩阵的高维拓展  Pytorch0.4.0版开始，Variable并入Tensor   dtype:张量的数据类型，如torch.FloatTensor,torch.cuda.FloatTensor   shape:张量的形状，如(64,3,224,224)   device:张量所在设备，GPU&#x2F;CPU，是加速的关键      2. 张量的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2020-07-20T02:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-17T09:33:50.747Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Pytorch基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="canonical" href="http://yoursite.com/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pytorch的Tensor',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-17 17:33:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <link rel="icon" type="image/png" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="zihuanqiu">
-  <meta name="keywords" content="">
-  <title>Pytorch的Tensor - zihuan&#39;s Space</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-  
-<link rel="stylesheet" href="/css/custom.css">
-
-
-
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.1.1"></head>
-
-
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/plan/">
-                <i class="iconfont icon-plan"></i>
-                计划
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607042953.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-20 10:00" pubdate>
-      2020年7月20日 上午
-    </time>
-  </div>
-
-
-<div class="mt-1">
-  
-
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Pytorch的Tensor</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2022年11月17日 下午
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="1-张量是什么"><a class="markdownIt-Anchor" href="#1-张量是什么"></a> 1. 张量是什么</h1>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zihuan's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Pytorch的Tensor</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-20T02:00:00.000Z" title="发表于 2020-07-20 10:00:00">2020-07-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.747Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Pytorch/">Pytorch</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="1-张量是什么"><a class="markdownIt-Anchor" href="#1-张量是什么"></a> 1. 张量是什么</h1>
 <p>张量是一个多维数组，它是标量、向量、矩阵的高维拓展</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720140740.png" srcset="/img/loading.gif" alt="image-20200720140731459" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720140740.png" alt="image-20200720140731459" /></p>
 <p>Pytorch0.4.0版开始，Variable并入Tensor</p>
 <ul>
 <li>
@@ -236,17 +140,13 @@
 <p>device:张量所在设备，GPU/CPU，是加速的关键</p>
 </li>
 </ul>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720141408.png" srcset="/img/loading.gif" alt="image-20200720141349926" style="zoom: 67%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720143004.png" srcset="/img/loading.gif" alt="image-20200720142848284" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720141408.png" alt="image-20200720141349926" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720143004.png" alt="image-20200720142848284" style="zoom:67%;" />
 <h1 id="2-张量的创建"><a class="markdownIt-Anchor" href="#2-张量的创建"></a> 2. 张量的创建</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720150026.png" srcset="/img/loading.gif" alt="创建Tensor" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720150026.png" alt="创建Tensor" /></p>
 <h2 id="21-从ndarray创建"><a class="markdownIt-Anchor" href="#21-从ndarray创建"></a> 2.1 从ndarray创建</h2>
 <h3 id="211-通过torchtensor创建张量"><a class="markdownIt-Anchor" href="#211-通过torchtensor创建张量"></a> 2.1.1 通过torch.tensor创建张量</h3>
-<pre><code class="hljs python">torch.tensor(data, 
-             dtype=<span class="hljs-literal">None</span>, 
-             device=<span class="hljs-literal">None</span>, 
-             requires_grad=<span class="hljs-literal">False</span>, 
-             pin_memory=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.tensor(data, </span><br><span class="line">             dtype=<span class="literal">None</span>, </span><br><span class="line">             device=<span class="literal">None</span>, </span><br><span class="line">             requires_grad=<span class="literal">False</span>, </span><br><span class="line">             pin_memory=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：从data创建tensor</p>
 <ul>
 <li>
@@ -265,67 +165,18 @@
 <p>pin_memory：是否存于锁页内存</p>
 </li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-arr = np.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))
-print(<span class="hljs-string">&quot;ndarray的数据类型：&quot;</span>, arr.dtype)
-
-<span class="hljs-comment"># t = torch.tensor(arr, device=&#x27;cuda&#x27;)</span>
-t = torch.tensor(arr)
-print(t)</code></pre>
-<pre><code class="hljs python">ndarray的数据类型： float64
-tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
-        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
-        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]], dtype=torch.float64)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.ones((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">print(<span class="string">&quot;ndarray的数据类型：&quot;</span>, arr.dtype)</span><br><span class="line"></span><br><span class="line"><span class="comment"># t = torch.tensor(arr, device=&#x27;cuda&#x27;)</span></span><br><span class="line">t = torch.tensor(arr)</span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ndarray的数据类型： float64</span><br><span class="line">tensor([[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]], dtype=torch.float64)</span><br></pre></td></tr></table></figure>
 <h3 id="212-通过torchfrom_numpy创建张量"><a class="markdownIt-Anchor" href="#212-通过torchfrom_numpy创建张量"></a> 2.1.2  通过torch.from_numpy创建张量</h3>
-<pre><code class="hljs python">torch.from_numpy(ndarray) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.from_numpy(ndarray) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：从numpy创建tensor<br />
 注意事项：从torch.from_numpy创建的tensor于原ndarray共享内存，当修改其中一个的数据，另外一个也将会被改动</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720142411.png" srcset="/img/loading.gif" alt="image-20200720142410333" style="zoom:50%;" />
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-arr = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
-t = torch.from_numpy(arr)
-print(<span class="hljs-string">&quot;numpy array: \n&quot;</span>, arr)
-print(<span class="hljs-string">&quot;tensor : \n&quot;</span>, t)
-
-print(<span class="hljs-string">&quot;\n修改arr&quot;</span>)
-arr[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
-print(<span class="hljs-string">&quot;numpy array: &quot;</span>, arr)
-print(<span class="hljs-string">&quot;tensor : &quot;</span>, t)
-
-print(<span class="hljs-string">&quot;\n修改tensor&quot;</span>)
-t[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>
-print(<span class="hljs-string">&quot;numpy array: &quot;</span>, arr)
-print(<span class="hljs-string">&quot;tensor : &quot;</span>, t)</code></pre>
-<pre><code class="hljs python">numpy array: 
- [[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>]
- [<span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>]]
-tensor : 
- tensor([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
-        [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]], dtype=torch.int32)
-
-修改arr
-numpy array:  [[<span class="hljs-number">0</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>]
- [<span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>]]
-tensor :  tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
-        [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]], dtype=torch.int32)
-
-修改tensor
-numpy array:  [[<span class="hljs-number">-1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>]
- [ <span class="hljs-number">4</span>  <span class="hljs-number">5</span>  <span class="hljs-number">6</span>]]
-tensor :  tensor([[<span class="hljs-number">-1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],
-        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>]], dtype=torch.int32)</code></pre>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720142411.png" alt="image-20200720142410333" style="zoom:50%;" />
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">t = torch.from_numpy(arr)</span><br><span class="line">print(<span class="string">&quot;numpy array: \n&quot;</span>, arr)</span><br><span class="line">print(<span class="string">&quot;tensor : \n&quot;</span>, t)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;\n修改arr&quot;</span>)</span><br><span class="line">arr[<span class="number">0</span>, <span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">print(<span class="string">&quot;numpy array: &quot;</span>, arr)</span><br><span class="line">print(<span class="string">&quot;tensor : &quot;</span>, t)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;\n修改tensor&quot;</span>)</span><br><span class="line">t[<span class="number">0</span>, <span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">print(<span class="string">&quot;numpy array: &quot;</span>, arr)</span><br><span class="line">print(<span class="string">&quot;tensor : &quot;</span>, t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">numpy array: </span><br><span class="line"> [[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line"> [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line">tensor : </span><br><span class="line"> tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], dtype=torch.int32)</span><br><span class="line"></span><br><span class="line">修改arr</span><br><span class="line">numpy array:  [[<span class="number">0</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line"> [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line">tensor :  tensor([[<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], dtype=torch.int32)</span><br><span class="line"></span><br><span class="line">修改tensor</span><br><span class="line">numpy array:  [[<span class="number">-1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>]]</span><br><span class="line">tensor :  tensor([[<span class="number">-1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</span><br><span class="line">        [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>]], dtype=torch.int32)</span><br></pre></td></tr></table></figure>
 <h2 id="22-依据数值创建"><a class="markdownIt-Anchor" href="#22-依据数值创建"></a> 2.2 依据数值创建</h2>
 <h3 id="221-通过torchzeros创建张量"><a class="markdownIt-Anchor" href="#221-通过torchzeros创建张量"></a> 2.2.1 通过torch.zeros创建张量</h3>
-<pre><code class="hljs python">torch.zeros(*size, 
-			out=<span class="hljs-literal">None</span>,
-			dtype=<span class="hljs-literal">None</span>, 
-            layout=torch.strided, 
-            device=<span class="hljs-literal">None</span>, 
-            requires_grad=<span class="hljs-literal">False</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.zeros(*size, </span><br><span class="line">			out=<span class="literal">None</span>,</span><br><span class="line">			dtype=<span class="literal">None</span>, </span><br><span class="line">            layout=torch.strided, </span><br><span class="line">            device=<span class="literal">None</span>, </span><br><span class="line">            requires_grad=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：依size创建全0张量</p>
 <ul>
 <li>
@@ -344,51 +195,23 @@ tensor :  tensor([[<span class="hljs-number">-1</span>,  <span class="hljs-numbe
 <p>requires_grad：是否需要梯度</p>
 </li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-out_t = torch.tensor([<span class="hljs-number">1</span>])
-t = torch.zeros((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), out=out_t)
-
-print(t, <span class="hljs-string">&#x27;\n&#x27;</span>, out_t)
-print(id(t), id(out_t), id(t) == id(out_t))</code></pre>
-<pre><code class="hljs python">tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
-        [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
-        [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]) 
- tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
-        [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
-        [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]])
-<span class="hljs-number">2028621356232</span> <span class="hljs-number">2028621356232</span> <span class="hljs-literal">True</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">out_t = torch.tensor([<span class="number">1</span>])</span><br><span class="line">t = torch.zeros((<span class="number">3</span>, <span class="number">3</span>), out=out_t)</span><br><span class="line"></span><br><span class="line">print(t, <span class="string">&#x27;\n&#x27;</span>, out_t)</span><br><span class="line">print(id(t), id(out_t), id(t) == id(out_t))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]]) </span><br><span class="line"> tensor([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]])</span><br><span class="line"><span class="number">2028621356232</span> <span class="number">2028621356232</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>两种输出方式：直接复制，或者通过参数out</p>
 </blockquote>
 <h3 id="222-通过torchzeros_like创建张量"><a class="markdownIt-Anchor" href="#222-通过torchzeros_like创建张量"></a> 2.2.2 通过torch.zeros_like创建张量</h3>
-<pre><code class="hljs python">torch.zeros_like(input, 
-                 dtype=<span class="hljs-literal">None</span>, 
-                 layout=<span class="hljs-literal">None</span>, 
-                 device=<span class="hljs-literal">None</span>, 
-                 requires_grad=<span class="hljs-literal">False</span>, 
-                 memory_format=torch.preserve_format) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.zeros_like(input, </span><br><span class="line">                 dtype=<span class="literal">None</span>, </span><br><span class="line">                 layout=<span class="literal">None</span>, </span><br><span class="line">                 device=<span class="literal">None</span>, </span><br><span class="line">                 requires_grad=<span class="literal">False</span>, </span><br><span class="line">                 memory_format=torch.preserve_format) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：依input形状创建全0张量</p>
 <ul>
 <li>intput: 创建与input同形状的全0张量</li>
 <li>dtype : 数据类型</li>
 <li>layout : 内存中布局形式</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-input_ = torch.empty(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
-print(torch.zeros_like(input_))</code></pre>
-<pre><code class="hljs python">tensor([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
-        [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">input_ = torch.empty(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">print(torch.zeros_like(input_))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">        [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]])</span><br></pre></td></tr></table></figure>
 <h3 id="223-通过torchones创建张量"><a class="markdownIt-Anchor" href="#223-通过torchones创建张量"></a> 2.2.3 通过torch.ones创建张量</h3>
-<pre><code class="hljs python">torch.ones(*size, 
-           out=<span class="hljs-literal">None</span>, 
-           dtype=<span class="hljs-literal">None</span>, 
-           layout=torch.strided, 
-           device=<span class="hljs-literal">None</span>, 
-           requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.ones(*size, </span><br><span class="line">           out=<span class="literal">None</span>, </span><br><span class="line">           dtype=<span class="literal">None</span>, </span><br><span class="line">           layout=torch.strided, </span><br><span class="line">           device=<span class="literal">None</span>, </span><br><span class="line">           requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：依input形状创建全1张量</p>
 <ul>
 <li>size: 定义输出张量形状的整数序列。可以是可变数量的参数，也可以是列表或元组。</li>
@@ -398,12 +221,7 @@ print(torch.zeros_like(input_))</code></pre>
 <li>requires_grad：是否需要梯度</li>
 </ul>
 <h3 id="224-通过torchones_like创建张量"><a class="markdownIt-Anchor" href="#224-通过torchones_like创建张量"></a> 2.2.4 通过torch.ones_like创建张量</h3>
-<pre><code class="hljs python">torch.ones_like(input, 
-                dtype=<span class="hljs-literal">None</span>, 
-                layout=<span class="hljs-literal">None</span>, 
-                device=<span class="hljs-literal">None</span>, 
-                requires_grad=<span class="hljs-literal">False</span>, 
-                memory_format=torch.preserve_format) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.ones_like(input, </span><br><span class="line">                dtype=<span class="literal">None</span>, </span><br><span class="line">                layout=<span class="literal">None</span>, </span><br><span class="line">                device=<span class="literal">None</span>, </span><br><span class="line">                requires_grad=<span class="literal">False</span>, </span><br><span class="line">                memory_format=torch.preserve_format) → Tensor</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>input</strong> (<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor"><em>Tensor</em></a>) – the size of <code>input</code> will determine size of the output tensor.</li>
 <li><strong>dtype</strong> (<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.dtype"><code>torch.dtype</code></a>, optional) – the desired data type of returned Tensor. Default: if <code>None</code>, defaults to the dtype of <code>input</code>.</li>
@@ -413,13 +231,7 @@ print(torch.zeros_like(input_))</code></pre>
 <li><strong>memory_format</strong> (<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.memory_format"><code>torch.memory_format</code></a>, optional) – the desired memory format of returned Tensor. Default: <code>torch.preserve_format</code>.</li>
 </ul>
 <h3 id="225-通过torchfull创建张量"><a class="markdownIt-Anchor" href="#225-通过torchfull创建张量"></a> 2.2.5 通过torch.full创建张量</h3>
-<pre><code class="hljs python">torch.full(size, 
-           fill_value, 
-           out=<span class="hljs-literal">None</span>, 
-           dtype=<span class="hljs-literal">None</span>, 
-           layout=torch.strided, 
-           device=<span class="hljs-literal">None</span>, 
-           requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">torch.full(size, </span><br><span class="line">           fill_value, </span><br><span class="line">           out=<span class="literal">None</span>, </span><br><span class="line">           dtype=<span class="literal">None</span>, </span><br><span class="line">           layout=torch.strided, </span><br><span class="line">           device=<span class="literal">None</span>, </span><br><span class="line">           requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>size</strong> (<em>int…</em>) – a list, tuple, or <code>torch.Size</code> of integers defining the shape of the output tensor.</li>
 <li><strong>fill_value</strong> – the number to fill the output tensor with.</li>
@@ -430,37 +242,17 @@ print(torch.zeros_like(input_))</code></pre>
 <li><strong>requires_grad</strong> (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a><em>,</em> <em>optional</em>) – If autograd should record operations on the returned tensor. Default: <code>False</code>.</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-t = torch.full((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), <span class="hljs-number">1</span>, dtype=float)
-print(t)</code></pre>
-<pre><code class="hljs python">tensor([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
-        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
-        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]], dtype=torch.float64)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">t = torch.full((<span class="number">3</span>, <span class="number">3</span>), <span class="number">1</span>, dtype=float)</span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">        [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]], dtype=torch.float64)</span><br></pre></td></tr></table></figure>
 <h3 id="226-通过torchfull_like创建张量"><a class="markdownIt-Anchor" href="#226-通过torchfull_like创建张量"></a> 2.2.6 通过torch.full_like创建张量</h3>
-<pre><code class="hljs python">torch.full_like(input, 
-                fill_value, 
-                out=<span class="hljs-literal">None</span>, 
-                dtype=<span class="hljs-literal">None</span>, 
-                layout=torch.strided, 
-                device=<span class="hljs-literal">None</span>, 
-                requires_grad=<span class="hljs-literal">False</span>, 
-                memory_format=torch.preserve_format) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">torch.full_like(input, </span><br><span class="line">                fill_value, </span><br><span class="line">                out=<span class="literal">None</span>, </span><br><span class="line">                dtype=<span class="literal">None</span>, </span><br><span class="line">                layout=torch.strided, </span><br><span class="line">                device=<span class="literal">None</span>, </span><br><span class="line">                requires_grad=<span class="literal">False</span>, </span><br><span class="line">                memory_format=torch.preserve_format) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：依input形状创建指定数据的张量</p>
 <ul>
 <li>size: 张量的形状, 如(3, 3)</li>
 <li>fill_value : 张量的值</li>
 </ul>
 <h3 id="227-通过torcharange创建等差数列张量"><a class="markdownIt-Anchor" href="#227-通过torcharange创建等差数列张量"></a> 2.2.7 通过torch.arange创建等差数列张量</h3>
-<pre><code class="hljs python">torch.arange(start=<span class="hljs-number">0</span>, 
-             end, 
-             step=<span class="hljs-number">1</span>, 
-             out=<span class="hljs-literal">None</span>, 
-             dtype=<span class="hljs-literal">None</span>, 
-             layout=torch.strided, 
-             device=<span class="hljs-literal">None</span>, 
-             requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">torch.arange(start=<span class="number">0</span>, </span><br><span class="line">             end, </span><br><span class="line">             step=<span class="number">1</span>, </span><br><span class="line">             out=<span class="literal">None</span>, </span><br><span class="line">             dtype=<span class="literal">None</span>, </span><br><span class="line">             layout=torch.strided, </span><br><span class="line">             device=<span class="literal">None</span>, </span><br><span class="line">             requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：创建等差的1维张量</p>
 <p>注意事项：数值区间为[start, end)</p>
 <ul>
@@ -468,21 +260,10 @@ print(t)</code></pre>
 <li>end : 数列“结束值”</li>
 <li>step: 数列公差，默认为1</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-t = torch.arange(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)
-print(t)</code></pre>
-<pre><code class="hljs python">tensor([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">t = torch.arange(<span class="number">2</span>, <span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>])</span><br></pre></td></tr></table></figure>
 <h3 id="228-通过torchlinspace创建均分数列张量"><a class="markdownIt-Anchor" href="#228-通过torchlinspace创建均分数列张量"></a> 2.2.8 通过torch.linspace创建均分数列张量</h3>
-<pre><code class="hljs python">torch.linspace(start, 
-               end, 
-               steps=<span class="hljs-number">100</span>, 
-               out=<span class="hljs-literal">None</span>, 
-               dtype=<span class="hljs-literal">None</span>, 
-               layout=torch.strided, 
-               device=<span class="hljs-literal">None</span>, 
-               requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">torch.linspace(start, </span><br><span class="line">               end, </span><br><span class="line">               steps=<span class="number">100</span>, </span><br><span class="line">               out=<span class="literal">None</span>, </span><br><span class="line">               dtype=<span class="literal">None</span>, </span><br><span class="line">               layout=torch.strided, </span><br><span class="line">               device=<span class="literal">None</span>, </span><br><span class="line">               requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：创建均分的1维张量</p>
 <p>注意事项：数值区间为[start, end]</p>
 <ul>
@@ -490,23 +271,10 @@ print(t)</code></pre>
 <li>end : 数列结束值</li>
 <li>steps: 数列长度</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-print(torch.linspace(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>))
-print(torch.linspace(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">6</span>))</code></pre>
-<pre><code class="hljs python">tensor([ <span class="hljs-number">2.</span>,  <span class="hljs-number">4.</span>,  <span class="hljs-number">6.</span>,  <span class="hljs-number">8.</span>, <span class="hljs-number">10.</span>])
-tensor([ <span class="hljs-number">2.0000</span>,  <span class="hljs-number">3.6000</span>,  <span class="hljs-number">5.2000</span>,  <span class="hljs-number">6.8000</span>,  <span class="hljs-number">8.4000</span>, <span class="hljs-number">10.0000</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(torch.linspace(<span class="number">2</span>, <span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">print(torch.linspace(<span class="number">2</span>, <span class="number">10</span>, <span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([ <span class="number">2.</span>,  <span class="number">4.</span>,  <span class="number">6.</span>,  <span class="number">8.</span>, <span class="number">10.</span>])</span><br><span class="line">tensor([ <span class="number">2.0000</span>,  <span class="number">3.6000</span>,  <span class="number">5.2000</span>,  <span class="number">6.8000</span>,  <span class="number">8.4000</span>, <span class="number">10.0000</span>])</span><br></pre></td></tr></table></figure>
 <h3 id="229-通过torchlogspace创建对数均分数列张量"><a class="markdownIt-Anchor" href="#229-通过torchlogspace创建对数均分数列张量"></a> 2.2.9 通过torch.logspace创建对数均分数列张量</h3>
-<pre><code class="hljs python">torch.logspace(start, 
-               end, 
-               steps=<span class="hljs-number">100</span>, 
-               base=<span class="hljs-number">10.0</span>, 
-               out=<span class="hljs-literal">None</span>, 
-               dtype=<span class="hljs-literal">None</span>, 
-               layout=torch.strided, 
-               device=<span class="hljs-literal">None</span>, 
-               requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">torch.logspace(start, </span><br><span class="line">               end, </span><br><span class="line">               steps=<span class="number">100</span>, </span><br><span class="line">               base=<span class="number">10.0</span>, </span><br><span class="line">               out=<span class="literal">None</span>, </span><br><span class="line">               dtype=<span class="literal">None</span>, </span><br><span class="line">               layout=torch.strided, </span><br><span class="line">               device=<span class="literal">None</span>, </span><br><span class="line">               requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：创建对数均分的1维张量；应该是取了对数以后是均分的意思</p>
 <p>注意事项：长度为steps, 底为base</p>
 <ul>
@@ -515,35 +283,17 @@ tensor([ <span class="hljs-number">2.0000</span>,  <span class="hljs-number">3.6
 <li>steps: 数列长度</li>
 <li>base : 对数函数的底，默认为10</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-print(torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>))</code></pre>
-<pre><code class="hljs python">tensor([<span class="hljs-number">1.0000e+01</span>, <span class="hljs-number">1.0000e+04</span>, <span class="hljs-number">1.0000e+07</span>, <span class="hljs-number">1.0000e+10</span>])</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
-print(t)</code></pre>
-<pre><code class="hljs python">tensor([   <span class="hljs-number">2.</span>,   <span class="hljs-number">16.</span>,  <span class="hljs-number">128.</span>, <span class="hljs-number">1024.</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(torch.logspace(<span class="number">1</span>, <span class="number">10</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([<span class="number">1.0000e+01</span>, <span class="number">1.0000e+04</span>, <span class="number">1.0000e+07</span>, <span class="number">1.0000e+10</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">t = torch.logspace(<span class="number">1</span>, <span class="number">10</span>, <span class="number">4</span>, <span class="number">2</span>)</span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([   <span class="number">2.</span>,   <span class="number">16.</span>,  <span class="number">128.</span>, <span class="number">1024.</span>])</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>其实就是一个指数等比数列，logspace对数均分的意思是，取了对数以后是均分</p>
 </blockquote>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-torch.manual_seed(<span class="hljs-number">1</span>)
-
-t = torch.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
-print(np.log2(t))</code></pre>
-<pre><code class="hljs python">tensor([ <span class="hljs-number">1.</span>,  <span class="hljs-number">4.</span>,  <span class="hljs-number">7.</span>, <span class="hljs-number">10.</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">torch.manual_seed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">t = torch.logspace(<span class="number">1</span>, <span class="number">10</span>, <span class="number">4</span>, <span class="number">2</span>)</span><br><span class="line">print(np.log2(t))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([ <span class="number">1.</span>,  <span class="number">4.</span>,  <span class="number">7.</span>, <span class="number">10.</span>])</span><br></pre></td></tr></table></figure>
 <h3 id="2210-通过torcheye创建单位对角矩阵"><a class="markdownIt-Anchor" href="#2210-通过torcheye创建单位对角矩阵"></a> 2.2.10 通过torch.eye创建单位对角矩阵</h3>
-<pre><code class="hljs python">torch.eye(n, 
-          m=<span class="hljs-literal">None</span>, 
-          out=<span class="hljs-literal">None</span>, 
-          dtype=<span class="hljs-literal">None</span>, 
-          layout=torch.strided, 
-          device=<span class="hljs-literal">None</span>, 
-          requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">torch.eye(n, </span><br><span class="line">          m=<span class="literal">None</span>, </span><br><span class="line">          out=<span class="literal">None</span>, </span><br><span class="line">          dtype=<span class="literal">None</span>, </span><br><span class="line">          layout=torch.strided, </span><br><span class="line">          device=<span class="literal">None</span>, </span><br><span class="line">          requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：创建单位对角矩阵（ 2维张量）</p>
 <p>注意事项：默认为方阵</p>
 <ul>
@@ -552,37 +302,13 @@ print(np.log2(t))</code></pre>
 </ul>
 <h1 id="23-依概率分布创建张量"><a class="markdownIt-Anchor" href="#23-依概率分布创建张量"></a> 2.3 依概率分布创建张量</h1>
 <h3 id="231-通过torchnormal创建正态分布张量"><a class="markdownIt-Anchor" href="#231-通过torchnormal创建正态分布张量"></a> 2.3.1 通过torch.normal创建正态分布张量</h3>
-<pre><code class="hljs python">torch.normal(mean, 
-             std, 
-             *, 
-             generator=<span class="hljs-literal">None</span>, 
-             out=<span class="hljs-literal">None</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.normal(mean, </span><br><span class="line">             std, </span><br><span class="line">             *, </span><br><span class="line">             generator=<span class="literal">None</span>, </span><br><span class="line">             out=<span class="literal">None</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：生成正态分布（高斯分布）</p>
 <ul>
 <li>mean : 均值</li>
 <li>std : 标准差</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-torch.manual_seed(<span class="hljs-number">1</span>)
-
-<span class="hljs-comment"># mean：张量 std: 张量</span>
-mean = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)
-std = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)
-t_normal = torch.normal(mean, std)
-print(<span class="hljs-string">&quot;mean:&#123;&#125;\nstd:&#123;&#125;&quot;</span>.format(mean, std))
-print(t_normal, <span class="hljs-string">&quot;\n&quot;</span>)
-
-<span class="hljs-comment"># mean：标量 std: 标量</span>
-t_normal = torch.normal(<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, size=(<span class="hljs-number">4</span>,))
-print(t_normal, <span class="hljs-string">&quot;\n&quot;</span>)
-
-<span class="hljs-comment"># mean：张量 std: 标量</span>
-mean = torch.arange(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, dtype=torch.float)
-std = <span class="hljs-number">1</span>
-t_normal = torch.normal(mean, std)
-print(<span class="hljs-string">&quot;mean:&#123;&#125;\nstd:&#123;&#125;&quot;</span>.format(mean, std))
-print(t_normal)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">torch.manual_seed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># mean：张量 std: 张量</span></span><br><span class="line">mean = torch.arange(<span class="number">1</span>, <span class="number">5</span>, dtype=torch.float)</span><br><span class="line">std = torch.arange(<span class="number">1</span>, <span class="number">5</span>, dtype=torch.float)</span><br><span class="line">t_normal = torch.normal(mean, std)</span><br><span class="line">print(<span class="string">&quot;mean:&#123;&#125;\nstd:&#123;&#125;&quot;</span>.format(mean, std))</span><br><span class="line">print(t_normal, <span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># mean：标量 std: 标量</span></span><br><span class="line">t_normal = torch.normal(<span class="number">0.</span>, <span class="number">1.</span>, size=(<span class="number">4</span>,))</span><br><span class="line">print(t_normal, <span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># mean：张量 std: 标量</span></span><br><span class="line">mean = torch.arange(<span class="number">1</span>, <span class="number">5</span>, dtype=torch.float)</span><br><span class="line">std = <span class="number">1</span></span><br><span class="line">t_normal = torch.normal(mean, std)</span><br><span class="line">print(<span class="string">&quot;mean:&#123;&#125;\nstd:&#123;&#125;&quot;</span>.format(mean, std))</span><br><span class="line">print(t_normal)</span><br></pre></td></tr></table></figure>
 <pre><code>mean:tensor([1., 2., 3., 4.])
 std:tensor([1., 2., 3., 4.])
 tensor([1.6614, 2.5338, 3.1850, 6.4853])
@@ -594,427 +320,55 @@ std:1
 tensor([-0.0276,  1.4369,  2.1077,  3.9417])
 </code></pre>
 <h3 id="232-通过torchrandn创建标准正态分布张量"><a class="markdownIt-Anchor" href="#232-通过torchrandn创建标准正态分布张量"></a> 2.3.2 通过torch.randn创建标准正态分布张量</h3>
-<pre><code class="hljs python">torch.randn(*size, 
-            out=<span class="hljs-literal">None</span>, 
-            dtype=<span class="hljs-literal">None</span>, 
-            layout=torch.strided, 
-            device=<span class="hljs-literal">None</span>, 
-            requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-print(torch.randn((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)))</code></pre>
-<pre><code class="hljs angelscript">tensor([[<span class="hljs-number">-0.1955</span>, <span class="hljs-number">-0.9656</span>,  <span class="hljs-number">0.4224</span>],
-        [ <span class="hljs-number">0.2673</span>, <span class="hljs-number">-0.4212</span>, <span class="hljs-number">-0.5107</span>],
-        [<span class="hljs-number">-1.5727</span>, <span class="hljs-number">-0.1232</span>,  <span class="hljs-number">3.5870</span>]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.randn(*size, </span><br><span class="line">            out=<span class="literal">None</span>, </span><br><span class="line">            dtype=<span class="literal">None</span>, </span><br><span class="line">            layout=torch.strided, </span><br><span class="line">            device=<span class="literal">None</span>, </span><br><span class="line">            requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.randn((<span class="number">3</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[-0.1955, -0.9656,  0.4224],</span><br><span class="line">        [ 0.2673, -0.4212, -0.5107],</span><br><span class="line">        [-1.5727, -0.1232,  3.5870]])</span><br></pre></td></tr></table></figure>
 <h3 id="233-通过torchrandn_like创建标准正态分布张量"><a class="markdownIt-Anchor" href="#233-通过torchrandn_like创建标准正态分布张量"></a> 2.3.3 通过torch.randn_like创建标准正态分布张量</h3>
-<pre><code class="hljs python">torch.randn_like(input, 
-                 dtype=<span class="hljs-literal">None</span>, 
-                 layout=<span class="hljs-literal">None</span>, 
-                 device=<span class="hljs-literal">None</span>, 
-                 requires_grad=<span class="hljs-literal">False</span>, 
-                 memory_format=torch.preserve_format) → Tensor</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-print(torch.randn_like(torch.tensor(np.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)))))</code></pre>
-<pre><code class="hljs python">tensor([[<span class="hljs-number">-1.8313</span>,  <span class="hljs-number">1.5987</span>, <span class="hljs-number">-1.2770</span>],
-        [ <span class="hljs-number">0.3255</span>, <span class="hljs-number">-0.4791</span>,  <span class="hljs-number">1.3790</span>],
-        [ <span class="hljs-number">2.5286</span>,  <span class="hljs-number">0.4107</span>, <span class="hljs-number">-0.9880</span>]], dtype=torch.float64)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.randn_like(input, </span><br><span class="line">                 dtype=<span class="literal">None</span>, </span><br><span class="line">                 layout=<span class="literal">None</span>, </span><br><span class="line">                 device=<span class="literal">None</span>, </span><br><span class="line">                 requires_grad=<span class="literal">False</span>, </span><br><span class="line">                 memory_format=torch.preserve_format) → Tensor</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(torch.randn_like(torch.tensor(np.ones((<span class="number">3</span>, <span class="number">3</span>)))))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">-1.8313</span>,  <span class="number">1.5987</span>, <span class="number">-1.2770</span>],</span><br><span class="line">        [ <span class="number">0.3255</span>, <span class="number">-0.4791</span>,  <span class="number">1.3790</span>],</span><br><span class="line">        [ <span class="number">2.5286</span>,  <span class="number">0.4107</span>, <span class="number">-0.9880</span>]], dtype=torch.float64)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>参数input必须是tensor类型，不能是其他类型，比如ndarray</p>
 </blockquote>
 <h3 id="234-通过-torchrand创建均匀分布张量"><a class="markdownIt-Anchor" href="#234-通过-torchrand创建均匀分布张量"></a> 2.3.4 通过 torch.rand创建均匀分布张量</h3>
-<pre><code class="hljs python">torch.rand(*size, 
-           out=<span class="hljs-literal">None</span>, 
-           dtype=<span class="hljs-literal">None</span>, 
-           layout=torch.strided, 
-           device=<span class="hljs-literal">None</span>, 
-           requires_grad=<span class="hljs-literal">False</span>) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.rand(*size, </span><br><span class="line">           out=<span class="literal">None</span>, </span><br><span class="line">           dtype=<span class="literal">None</span>, </span><br><span class="line">           layout=torch.strided, </span><br><span class="line">           device=<span class="literal">None</span>, </span><br><span class="line">           requires_grad=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：在区间[0, 1)上，生成均匀分布</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-
-print(torch.rand((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)))</code></pre>
-<pre><code class="hljs python">tensor([[<span class="hljs-number">0.9391</span>, <span class="hljs-number">0.4167</span>, <span class="hljs-number">0.7140</span>],
-        [<span class="hljs-number">0.2676</span>, <span class="hljs-number">0.9906</span>, <span class="hljs-number">0.2885</span>],
-        [<span class="hljs-number">0.8750</span>, <span class="hljs-number">0.5059</span>, <span class="hljs-number">0.2366</span>]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">print(torch.rand((<span class="number">3</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[<span class="number">0.9391</span>, <span class="number">0.4167</span>, <span class="number">0.7140</span>],</span><br><span class="line">        [<span class="number">0.2676</span>, <span class="number">0.9906</span>, <span class="number">0.2885</span>],</span><br><span class="line">        [<span class="number">0.8750</span>, <span class="number">0.5059</span>, <span class="number">0.2366</span>]])</span><br></pre></td></tr></table></figure>
 <h3 id="235-通过-torchrand_like创建均匀分布张量"><a class="markdownIt-Anchor" href="#235-通过-torchrand_like创建均匀分布张量"></a> 2.3.5 通过 torch.rand_like创建均匀分布张量</h3>
-<pre><code class="hljs python">torch.rand_like(input, 
-                dtype=<span class="hljs-literal">None</span>, 
-                layout=<span class="hljs-literal">None</span>, 
-                device=<span class="hljs-literal">None</span>, 
-                requires_grad=<span class="hljs-literal">False</span>, 
-                memory_format=torch.preserve_format) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.rand_like(input, </span><br><span class="line">                dtype=<span class="literal">None</span>, </span><br><span class="line">                layout=<span class="literal">None</span>, </span><br><span class="line">                device=<span class="literal">None</span>, </span><br><span class="line">                requires_grad=<span class="literal">False</span>, </span><br><span class="line">                memory_format=torch.preserve_format) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：在区间[0, 1)上，生成均匀分布</p>
 <h3 id="236-通过-torchrandint创建均匀分布张量"><a class="markdownIt-Anchor" href="#236-通过-torchrandint创建均匀分布张量"></a> 2.3.6 通过 torch.randint创建均匀分布张量</h3>
-<pre><code class="hljs python">torch.randint(low=<span class="hljs-number">0</span>,
-              high,
-              size,
-              out=<span class="hljs-literal">None</span>,
-              dtype=<span class="hljs-literal">None</span>, 
-              layout=torch.strided, 
-              device=<span class="hljs-literal">None</span>, 
-              requires_grad=<span class="hljs-literal">False</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">torch.randint(low=<span class="number">0</span>,</span><br><span class="line">              high,</span><br><span class="line">              size,</span><br><span class="line">              out=<span class="literal">None</span>,</span><br><span class="line">              dtype=<span class="literal">None</span>, </span><br><span class="line">              layout=torch.strided, </span><br><span class="line">              device=<span class="literal">None</span>, </span><br><span class="line">              requires_grad=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：区间[low, high)生成整数均匀分布</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-print(torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, (<span class="hljs-number">3</span>,)))</code></pre>
-<pre><code class="hljs angelscript">tensor([<span class="hljs-number">6</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>])</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-print(torch.randint(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)))</code></pre>
-<pre><code class="hljs angelscript">tensor([[<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>],
-        [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>],
-        [<span class="hljs-number">0</span>, <span class="hljs-number">7</span>, <span class="hljs-number">5</span>]])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.randint(<span class="number">0</span>, <span class="number">9</span>, (<span class="number">3</span>,)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([6, 0, 6])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.randint(<span class="number">0</span>, <span class="number">9</span>, (<span class="number">3</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[2, 4, 3],</span><br><span class="line">        [3, 4, 6],</span><br><span class="line">        [0, 7, 5]])</span><br></pre></td></tr></table></figure>
 <h3 id="237-通过-torchrandint_like创建均匀分布张量"><a class="markdownIt-Anchor" href="#237-通过-torchrandint_like创建均匀分布张量"></a> 2.3.7 通过 torch.randint_like创建均匀分布张量</h3>
-<pre><code class="hljs python">torch.randint_like(input, 
-                   low=<span class="hljs-number">0</span>, 
-                   high, 
-                   dtype=<span class="hljs-literal">None</span>, 
-                   layout=torch.strided, 
-                   device=<span class="hljs-literal">None</span>, 
-                   requires_grad=<span class="hljs-literal">False</span>, 
-                   memory_format=torch.preserve_format) → Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">torch.randint_like(input, </span><br><span class="line">                   low=<span class="number">0</span>, </span><br><span class="line">                   high, </span><br><span class="line">                   dtype=<span class="literal">None</span>, </span><br><span class="line">                   layout=torch.strided, </span><br><span class="line">                   device=<span class="literal">None</span>, </span><br><span class="line">                   requires_grad=<span class="literal">False</span>, </span><br><span class="line">                   memory_format=torch.preserve_format) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：区间[low, high)生成整数均匀分布</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-
-t = torch.randint_like(torch.tensor(np.ones((<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))), <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)
-print(t)</code></pre>
-<pre><code class="hljs angelscript">tensor([[<span class="hljs-number">5.</span>, <span class="hljs-number">9.</span>, <span class="hljs-number">4.</span>],
-        [<span class="hljs-number">8.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
-        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">9.</span>]], dtype=torch.<span class="hljs-built_in">float</span>64)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">t = torch.randint_like(torch.tensor(np.ones((<span class="number">3</span>, <span class="number">3</span>))), <span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">print(t)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[5., 9., 4.],</span><br><span class="line">        [8., 3., 3.],</span><br><span class="line">        [1., 1., 9.]], dtype&#x3D;torch.float64)</span><br></pre></td></tr></table></figure>
 <h3 id="238-通过torchrandperm创建0到n-1的随机排列张量"><a class="markdownIt-Anchor" href="#238-通过torchrandperm创建0到n-1的随机排列张量"></a> 2.3.8 通过torch.randperm创建0到n-1的随机排列张量</h3>
-<pre><code class="hljs python">torch.randperm(n, 
-               out=<span class="hljs-literal">None</span>, 
-               dtype=torch.int64, 
-               layout=torch.strided, 
-               device=<span class="hljs-literal">None</span>, 
-               requires_grad=<span class="hljs-literal">False</span>) → LongTensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torch.randperm(n, </span><br><span class="line">               out=<span class="literal">None</span>, </span><br><span class="line">               dtype=torch.int64, </span><br><span class="line">               layout=torch.strided, </span><br><span class="line">               device=<span class="literal">None</span>, </span><br><span class="line">               requires_grad=<span class="literal">False</span>) → LongTensor</span><br></pre></td></tr></table></figure>
 <p>功能：生成生成从0到n-1的随机排列</p>
 <ul>
 <li>n : 张量的长度</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-print(torch.randperm(<span class="hljs-number">4</span>))</code></pre>
-<pre><code class="hljs python">tensor([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>])</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-print(torch.randperm(<span class="hljs-number">8</span>))</code></pre>
-<pre><code class="hljs python">tensor([<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>])</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.randperm(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.randperm(<span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([<span class="number">3</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 <h3 id="239-通过torchbernoulli创建0到n-1的随机排列张量"><a class="markdownIt-Anchor" href="#239-通过torchbernoulli创建0到n-1的随机排列张量"></a> 2.3.9 通过torch.bernoulli创建0到n-1的随机排列张量</h3>
-<pre><code class="hljs python">torch.bernoulli(input,
-                *, 
-                generator=<span class="hljs-literal">None</span>, 
-                out=<span class="hljs-literal">None</span>)→ Tensor</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">torch.bernoulli(input,</span><br><span class="line">                *, </span><br><span class="line">                generator=<span class="literal">None</span>, </span><br><span class="line">                out=<span class="literal">None</span>)→ Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：以input为概率，生成伯努力分布 （0-1分布，两点分布）</p>
 <ul>
 <li>input : 概率值</li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = torch.empty(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>).uniform_(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># generate a uniform random matrix with range [0, 1]</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>a
-tensor([[ <span class="hljs-number">0.1737</span>,  <span class="hljs-number">0.0950</span>,  <span class="hljs-number">0.3609</span>],
-        [ <span class="hljs-number">0.7148</span>,  <span class="hljs-number">0.0289</span>,  <span class="hljs-number">0.2676</span>],
-        [ <span class="hljs-number">0.9456</span>,  <span class="hljs-number">0.8937</span>,  <span class="hljs-number">0.7202</span>]])
-<span class="hljs-meta">&gt;&gt;&gt; </span>torch.bernoulli(a)
-tensor([[ <span class="hljs-number">1.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
-        [ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
-        [ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>]])
-
-<span class="hljs-meta">&gt;&gt;&gt; </span>a = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># probability of drawing &quot;1&quot; is 1</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>torch.bernoulli(a)
-tensor([[ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>],
-        [ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>],
-        [ <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">1.</span>]])
-<span class="hljs-meta">&gt;&gt;&gt; </span>a = torch.zeros(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># probability of drawing &quot;1&quot; is 0</span>
-<span class="hljs-meta">&gt;&gt;&gt; </span>torch.bernoulli(a)
-tensor([[ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
-        [ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>],
-        [ <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>,  <span class="hljs-number">0.</span>]])</code></pre>
-
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/07/20/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Python 标准库</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/07/19/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-                        <span class="hidden-mobile">Pytorch离线安装教程</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 6,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Pytorch的Tensor&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.empty(<span class="number">3</span>, <span class="number">3</span>).uniform_(<span class="number">0</span>, <span class="number">1</span>)  <span class="comment"># generate a uniform random matrix with range [0, 1]</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[ <span class="number">0.1737</span>,  <span class="number">0.0950</span>,  <span class="number">0.3609</span>],</span><br><span class="line">        [ <span class="number">0.7148</span>,  <span class="number">0.0289</span>,  <span class="number">0.2676</span>],</span><br><span class="line">        [ <span class="number">0.9456</span>,  <span class="number">0.8937</span>,  <span class="number">0.7202</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.bernoulli(a)</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">        [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>]])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.ones(<span class="number">3</span>, <span class="number">3</span>) <span class="comment"># probability of drawing &quot;1&quot; is 1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.bernoulli(a)</span><br><span class="line">tensor([[ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">        [ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.zeros(<span class="number">3</span>, <span class="number">3</span>) <span class="comment"># probability of drawing &quot;1&quot; is 0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.bernoulli(a)</span><br><span class="line">tensor([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">        [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">        [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>]])</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/20/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python 标准库</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/19/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Pytorch离线安装教程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/" title="DataLoader与DataSet"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-21</div><div class="title">DataLoader与DataSet</div></div></a></div><div><a href="/2020/07/19/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="Pytorch离线安装教程"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-19</div><div class="title">Pytorch离线安装教程</div></div></a></div><div><a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/" title="GPU的使用"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-17</div><div class="title">GPU的使用</div></div></a></div><div><a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/" title="autograd"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-21</div><div class="title">autograd</div></div></a></div><div><a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/" title="nn网络层-池化-线性-激活函数层"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-30</div><div class="title">nn网络层-池化-线性-激活函数层</div></div></a></div><div><a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/" title="Hook函数"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">Hook函数</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zihuan Qiu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zihuanqiu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%BC%A0%E9%87%8F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text"> 1. 张量是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BC%A0%E9%87%8F%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text"> 2. 张量的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E4%BB%8Endarray%E5%88%9B%E5%BB%BA"><span class="toc-number">2.1.</span> <span class="toc-text"> 2.1 从ndarray创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#211-%E9%80%9A%E8%BF%87torchtensor%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 2.1.1 通过torch.tensor创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#212-%E9%80%9A%E8%BF%87torchfrom_numpy%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 2.1.2  通过torch.from_numpy创建张量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E4%BE%9D%E6%8D%AE%E6%95%B0%E5%80%BC%E5%88%9B%E5%BB%BA"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.2 依据数值创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#221-%E9%80%9A%E8%BF%87torchzeros%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 2.2.1 通过torch.zeros创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#222-%E9%80%9A%E8%BF%87torchzeros_like%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 2.2.2 通过torch.zeros_like创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#223-%E9%80%9A%E8%BF%87torchones%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 2.2.3 通过torch.ones创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#224-%E9%80%9A%E8%BF%87torchones_like%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 2.2.4 通过torch.ones_like创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#225-%E9%80%9A%E8%BF%87torchfull%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 2.2.5 通过torch.full创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#226-%E9%80%9A%E8%BF%87torchfull_like%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.6.</span> <span class="toc-text"> 2.2.6 通过torch.full_like创建张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#227-%E9%80%9A%E8%BF%87torcharange%E5%88%9B%E5%BB%BA%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.7.</span> <span class="toc-text"> 2.2.7 通过torch.arange创建等差数列张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#228-%E9%80%9A%E8%BF%87torchlinspace%E5%88%9B%E5%BB%BA%E5%9D%87%E5%88%86%E6%95%B0%E5%88%97%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.8.</span> <span class="toc-text"> 2.2.8 通过torch.linspace创建均分数列张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#229-%E9%80%9A%E8%BF%87torchlogspace%E5%88%9B%E5%BB%BA%E5%AF%B9%E6%95%B0%E5%9D%87%E5%88%86%E6%95%B0%E5%88%97%E5%BC%A0%E9%87%8F"><span class="toc-number">2.2.9.</span> <span class="toc-text"> 2.2.9 通过torch.logspace创建对数均分数列张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2210-%E9%80%9A%E8%BF%87torcheye%E5%88%9B%E5%BB%BA%E5%8D%95%E4%BD%8D%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5"><span class="toc-number">2.2.10.</span> <span class="toc-text"> 2.2.10 通过torch.eye创建单位对角矩阵</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#23-%E4%BE%9D%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%E5%88%9B%E5%BB%BA%E5%BC%A0%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text"> 2.3 依概率分布创建张量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#231-%E9%80%9A%E8%BF%87torchnormal%E5%88%9B%E5%BB%BA%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.1.</span> <span class="toc-text"> 2.3.1 通过torch.normal创建正态分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#232-%E9%80%9A%E8%BF%87torchrandn%E5%88%9B%E5%BB%BA%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.2.</span> <span class="toc-text"> 2.3.2 通过torch.randn创建标准正态分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#233-%E9%80%9A%E8%BF%87torchrandn_like%E5%88%9B%E5%BB%BA%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.3.</span> <span class="toc-text"> 2.3.3 通过torch.randn_like创建标准正态分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#234-%E9%80%9A%E8%BF%87-torchrand%E5%88%9B%E5%BB%BA%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.4.</span> <span class="toc-text"> 2.3.4 通过 torch.rand创建均匀分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#235-%E9%80%9A%E8%BF%87-torchrand_like%E5%88%9B%E5%BB%BA%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.5.</span> <span class="toc-text"> 2.3.5 通过 torch.rand_like创建均匀分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#236-%E9%80%9A%E8%BF%87-torchrandint%E5%88%9B%E5%BB%BA%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.6.</span> <span class="toc-text"> 2.3.6 通过 torch.randint创建均匀分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#237-%E9%80%9A%E8%BF%87-torchrandint_like%E5%88%9B%E5%BB%BA%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.7.</span> <span class="toc-text"> 2.3.7 通过 torch.randint_like创建均匀分布张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#238-%E9%80%9A%E8%BF%87torchrandperm%E5%88%9B%E5%BB%BA0%E5%88%B0n-1%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%88%97%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.8.</span> <span class="toc-text"> 2.3.8 通过torch.randperm创建0到n-1的随机排列张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#239-%E9%80%9A%E8%BF%87torchbernoulli%E5%88%9B%E5%BB%BA0%E5%88%B0n-1%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%88%97%E5%BC%A0%E9%87%8F"><span class="toc-number">3.0.9.</span> <span class="toc-text"> 2.3.9 通过torch.bernoulli创建0到n-1的随机排列张量</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"/></a><div class="content"><a class="title" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a><time datetime="2020-10-24T02:00:00.000Z" title="发表于 2020-10-24 10:00:00">2020-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用SSH连接远端服务器训练"/></a><div class="content"><a class="title" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练">使用SSH连接远端服务器训练</a><time datetime="2020-10-22T02:00:00.000Z" title="发表于 2020-10-22 10:00:00">2020-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贝叶斯决策"/></a><div class="content"><a class="title" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策">贝叶斯决策</a><time datetime="2020-10-10T02:00:00.000Z" title="发表于 2020-10-10 10:00:00">2020-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="语义分割中的self-attention变种模型"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型">语义分割中的self-attention变种模型</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="目标检测的常用指标（Pascal VOC与COCO）"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）">目标检测的常用指标（Pascal VOC与COCO）</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div></div></div></div></div></main><footer id="footer" style="background: FFFFFF"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>

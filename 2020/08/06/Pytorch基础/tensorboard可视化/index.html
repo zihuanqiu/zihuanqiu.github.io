@@ -1,279 +1,153 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>tensorboard可视化 | zihuan's Blog</title><meta name="author" content="Zihuan Qiu"><meta name="copyright" content="Zihuan Qiu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. TensorBoard简介与安装  1.1 安装TensorBoard TensorBoard：TensorFlow中强大的可视化工具  通过pip install future和pip install tensorboard安装tensorboard  1.2 运行TensorBoard 实验代码： 123456789101112131415import numpy as npfrom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorboard可视化">
+<meta property="og:url" content="http://yoursite.com/2020/08/06/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="1. TensorBoard简介与安装  1.1 安装TensorBoard TensorBoard：TensorFlow中强大的可视化工具  通过pip install future和pip install tensorboard安装tensorboard  1.2 运行TensorBoard 实验代码： 123456789101112131415import numpy as npfrom">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2020-08-06T02:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-17T09:33:50.751Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Pytorch基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="canonical" href="http://yoursite.com/2020/08/06/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'tensorboard可视化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-17 17:33:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <link rel="icon" type="image/png" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="zihuanqiu">
-  <meta name="keywords" content="">
-  <title>tensorboard可视化 - zihuan&#39;s Space</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-  
-<link rel="stylesheet" href="/css/custom.css">
-
-
-
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.1.1"></head>
-
-
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>zihuan's Space</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/plan/">
-                <i class="iconfont icon-plan"></i>
-                计划
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607042953.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-06 10:00" pubdate>
-      2020年8月6日 上午
-    </time>
-  </div>
-
-
-<div class="mt-1">
-  
-
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">tensorboard可视化</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2022年11月17日 下午
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="1-tensorboard简介与安装"><a class="markdownIt-Anchor" href="#1-tensorboard简介与安装"></a> 1. TensorBoard简介与安装</h1>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zihuan's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">tensorboard可视化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-06T02:00:00.000Z" title="发表于 2020-08-06 10:00:00">2020-08-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.751Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Pytorch/">Pytorch</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="1-tensorboard简介与安装"><a class="markdownIt-Anchor" href="#1-tensorboard简介与安装"></a> 1. TensorBoard简介与安装</h1>
 <h2 id="11-安装tensorboard"><a class="markdownIt-Anchor" href="#11-安装tensorboard"></a> 1.1 安装TensorBoard</h2>
 <p>TensorBoard：TensorFlow中强大的可视化工具</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806224446.png" srcset="/img/loading.gif" alt="image-20200806224445463" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806224446.png" alt="image-20200806224445463" /></p>
 <p>通过pip install future和pip install tensorboard安装tensorboard</p>
 <h2 id="12-运行tensorboard"><a class="markdownIt-Anchor" href="#12-运行tensorboard"></a> 1.2 运行TensorBoard</h2>
 <p><strong>实验代码：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_tensorboard&#x27;</span>)
-
-<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>):
-
-    writer.add_scalar(<span class="hljs-string">&#x27;y=2x&#x27;</span>, x * <span class="hljs-number">2</span>, x)
-    writer.add_scalar(<span class="hljs-string">&#x27;y=pow(2, x)&#x27;</span>,  <span class="hljs-number">2</span> ** x, x)
-    
-    writer.add_scalars(<span class="hljs-string">&#x27;data/scalar_group&#x27;</span>, &#123;<span class="hljs-string">&quot;xsinx&quot;</span>: x * np.sin(x),
-                                             <span class="hljs-string">&quot;xcosx&quot;</span>: x * np.cos(x),
-                                             <span class="hljs-string">&quot;arctanx&quot;</span>: np.arctan(x)&#125;, x)
-writer.close()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_tensorboard&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line"></span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;y=2x&#x27;</span>, x * <span class="number">2</span>, x)</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;y=pow(2, x)&#x27;</span>,  <span class="number">2</span> ** x, x)</span><br><span class="line">    </span><br><span class="line">    writer.add_scalars(<span class="string">&#x27;data/scalar_group&#x27;</span>, &#123;<span class="string">&quot;xsinx&quot;</span>: x * np.sin(x),</span><br><span class="line">                                             <span class="string">&quot;xcosx&quot;</span>: x * np.cos(x),</span><br><span class="line">                                             <span class="string">&quot;arctanx&quot;</span>: np.arctan(x)&#125;, x)</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
 <p>运行后，会在py文件目录中生成一个run文件夹，每一次运行会在run文件夹中生成一个子文件夹。</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807150805.png" srcset="/img/loading.gif" alt="image-20200807150757596" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807150805.png" alt="image-20200807150757596" style="zoom:80%;" />
 <p>然后在terminal中cd到run文件夹的根目录，输入<code>tensorboard --logdir=./runs</code>命令，就开始运行tensorboard了，在浏览器中可以查看。</p>
-<pre><code class="hljs livecodeserver">TensorFlow installation <span class="hljs-keyword">not</span> found - running <span class="hljs-keyword">with</span> reduced feature <span class="hljs-built_in">set</span>.
-<span class="hljs-keyword">or</span> pass <span class="hljs-comment">--bind_all</span>
-TensorBoard <span class="hljs-number">2.2</span><span class="hljs-number">.1</span> <span class="hljs-keyword">at</span> <span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">6006</span>/ (Press CTRL+C <span class="hljs-built_in">to</span> quit)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TensorFlow installation not found - running with reduced feature set.</span><br><span class="line">or pass --bind_all</span><br><span class="line">TensorBoard 2.2.1 at http:&#x2F;&#x2F;localhost:6006&#x2F; (Press CTRL+C to quit)</span><br></pre></td></tr></table></figure>
 <h2 id="13-界面tensorboard"><a class="markdownIt-Anchor" href="#13-界面tensorboard"></a> 1.3 界面TensorBoard</h2>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225638.png" srcset="/img/loading.gif" alt="image-20200806225425418" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225644.png" srcset="/img/loading.gif" alt="image-20200806225500005" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225641.png" srcset="/img/loading.gif" alt="image-20200806225633639" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806230720.png" srcset="/img/loading.gif" alt="image-20200806230716606" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225638.png" alt="image-20200806225425418" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225644.png" alt="image-20200806225500005" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225641.png" alt="image-20200806225633639" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806230720.png" alt="image-20200806230716606" /></p>
 <blockquote>
 <p>平滑的作用在于，当曲线噪声非常大时，使用平滑我们可以看出大致的趋势（低通滤波？）</p>
 </blockquote>
 <h1 id="2-tensorboard使用"><a class="markdownIt-Anchor" href="#2-tensorboard使用"></a> 2. TensorBoard使用</h1>
 <h2 id="21-summarywriter"><a class="markdownIt-Anchor" href="#21-summarywriter"></a> 2.1 SummaryWriter</h2>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-
-set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SummaryWriter</span>(<span class="hljs-params">object</span>):</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, </span></span>
-<span class="hljs-function"><span class="hljs-params">                 log_dir=None, </span></span>
-<span class="hljs-function"><span class="hljs-params">                 comment=<span class="hljs-string">&#x27;&#x27;</span>, </span></span>
-<span class="hljs-function"><span class="hljs-params">                 purge_step=None, </span></span>
-<span class="hljs-function"><span class="hljs-params">                 max_queue=<span class="hljs-number">10</span>,</span></span>
-<span class="hljs-function"><span class="hljs-params">                 flush_secs=<span class="hljs-number">120</span>, </span></span>
-<span class="hljs-function"><span class="hljs-params">                 filename_suffix=’’</span>)</span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SummaryWriter</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, </span></span></span><br><span class="line"><span class="function"><span class="params">                 log_dir=None, </span></span></span><br><span class="line"><span class="function"><span class="params">                 comment=<span class="string">&#x27;&#x27;</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                 purge_step=None, </span></span></span><br><span class="line"><span class="function"><span class="params">                 max_queue=<span class="number">10</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 flush_secs=<span class="number">120</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                 filename_suffix=’’</span>)</span></span><br></pre></td></tr></table></figure>
 <p>功能：提供创建event file的高级接口；SummaryWriter类提供了一个高级API，用于在给定目录中创建事件文件，并向其中添加摘要和事件。类异步更新文件内容，这使得训练程序可以调用方法直接从训练循环中向文件中添加数据，而不会减慢训练速度。</p>
 <p>主要属性：</p>
 <ul>
@@ -282,41 +156,23 @@ set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设�
 <li>filename_suffix：为log_dir目录中所有event file文件名添加后缀</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-
-set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
-
-log_dir = <span class="hljs-string">&quot;./train_log/test_log_dir&quot;</span>
-writer = SummaryWriter()
-<span class="hljs-comment"># writer = SummaryWriter(log_dir=log_dir, comment=&#x27;_scalars&#x27;, filename_suffix=&quot;12345678&quot;)</span>
-<span class="hljs-comment"># writer = SummaryWriter(comment=&#x27;_scalars&#x27;, filename_suffix=&quot;12345678&quot;)</span>
-
-<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>):
-    writer.add_scalar(<span class="hljs-string">&#x27;y=pow_2_x&#x27;</span>, <span class="hljs-number">2</span> ** x, x)
-
-writer.close()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line">log_dir = <span class="string">&quot;./train_log/test_log_dir&quot;</span></span><br><span class="line">writer = SummaryWriter()</span><br><span class="line"><span class="comment"># writer = SummaryWriter(log_dir=log_dir, comment=&#x27;_scalars&#x27;, filename_suffix=&quot;12345678&quot;)</span></span><br><span class="line"><span class="comment"># writer = SummaryWriter(comment=&#x27;_scalars&#x27;, filename_suffix=&quot;12345678&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;y=pow_2_x&#x27;</span>, <span class="number">2</span> ** x, x)</span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
 <ol>
 <li>
 <p>运行<code>writer = SummaryWriter()</code>，得到输出文件夹如下所示：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807163512.png" srcset="/img/loading.gif" alt="image-20200807163509626" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807163512.png" alt="image-20200807163509626" /></p>
 </li>
 <li>
 <p>运行<code>writer = SummaryWriter(log_dir=log_dir, comment='_scalars', filename_suffix=&quot;12345678&quot;)</code>，得到输出文件夹如下所示：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807164948.png" srcset="/img/loading.gif" alt="image-20200807164947430" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807164948.png" alt="image-20200807164947430" /></p>
 </li>
 <li>
 <p>运行<code>riter = SummaryWriter(comment='_scalars', filename_suffix=&quot;12345678&quot;)</code>，得到输出文件夹如下所示：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807165128.png" srcset="/img/loading.gif" alt="image-20200807165126857" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807165128.png" alt="image-20200807165126857" /></p>
 </li>
 </ol>
 <h3 id="211-add_scalar"><a class="markdownIt-Anchor" href="#211-add_scalar"></a> 2.1.1 add_scalar</h3>
-<pre><code class="hljs python">add_scalar(tag, 
-           scalar_value, 
-           global_step=<span class="hljs-literal">None</span>, 
-           walltime=<span class="hljs-literal">None</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add_scalar(tag, </span><br><span class="line">           scalar_value, </span><br><span class="line">           global_step=<span class="literal">None</span>, </span><br><span class="line">           walltime=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：将标量数据添加到summary（只能记录一条曲线）</p>
 <ul>
 <li>tag：图像的标签名，图的唯一标识</li>
@@ -324,42 +180,20 @@ writer.close()</code></pre>
 <li>global_step：x轴</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-
-writer = SummaryWriter()
-x = range(<span class="hljs-number">100</span>)
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x:
-    writer.add_scalar(<span class="hljs-string">&#x27;y=2x&#x27;</span>, i * <span class="hljs-number">2</span>, i)
-writer.close()</code></pre>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807170108.png" srcset="/img/loading.gif" alt="image-20200807170106483" style="zoom: 50%;" />
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter()</span><br><span class="line">x = range(<span class="number">100</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;y=2x&#x27;</span>, i * <span class="number">2</span>, i)</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807170108.png" alt="image-20200807170106483" style="zoom: 50%;" />
 <h3 id="212-add_scalars"><a class="markdownIt-Anchor" href="#212-add_scalars"></a> 2.1.2 add_scalars</h3>
-<pre><code class="hljs python">add_scalars(main_tag, 
-            tag_scalar_dict, 
-            global_step=<span class="hljs-literal">None</span>, 
-            walltime=<span class="hljs-literal">None</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add_scalars(main_tag, </span><br><span class="line">            tag_scalar_dict, </span><br><span class="line">            global_step=<span class="literal">None</span>, </span><br><span class="line">            walltime=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：将许多标量数据添加到summary（记录多条曲线）</p>
 <ul>
 <li>main_tag：该图的标签</li>
 <li>tag_scalar_dict：key是变量的tag，value是变量的值</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-
-writer = SummaryWriter()
-r = <span class="hljs-number">5</span>
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>):
-    writer.add_scalars(<span class="hljs-string">&#x27;run_14h&#x27;</span>, &#123;<span class="hljs-string">&#x27;xsinx&#x27;</span>:i*np.sin(i/r),
-                                    <span class="hljs-string">&#x27;xcosx&#x27;</span>:i*np.cos(i/r),
-                                    <span class="hljs-string">&#x27;tanx&#x27;</span>: np.tan(i/r)&#125;, i)
-writer.close()
-<span class="hljs-comment"># This call adds three values to the same scalar plot with the tag</span>
-<span class="hljs-comment"># &#x27;run_14h&#x27; in TensorBoard&#x27;s scalar section.</span></code></pre>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807170503.png" srcset="/img/loading.gif" alt="image-20200807170501816" style="zoom: 50%;" />
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter()</span><br><span class="line">r = <span class="number">5</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    writer.add_scalars(<span class="string">&#x27;run_14h&#x27;</span>, &#123;<span class="string">&#x27;xsinx&#x27;</span>:i*np.sin(i/r),</span><br><span class="line">                                    <span class="string">&#x27;xcosx&#x27;</span>:i*np.cos(i/r),</span><br><span class="line">                                    <span class="string">&#x27;tanx&#x27;</span>: np.tan(i/r)&#125;, i)</span><br><span class="line">writer.close()</span><br><span class="line"><span class="comment"># This call adds three values to the same scalar plot with the tag</span></span><br><span class="line"><span class="comment"># &#x27;run_14h&#x27; in TensorBoard&#x27;s scalar section.</span></span><br></pre></td></tr></table></figure>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807170503.png" alt="image-20200807170501816" style="zoom: 50%;" />
 <h3 id="213-add_histogram"><a class="markdownIt-Anchor" href="#213-add_histogram"></a> 2.1.3 add_histogram</h3>
-<pre><code class="hljs python">add_histogram(tag, values, 
-              global_step=<span class="hljs-literal">None</span>, 
-              bins=<span class="hljs-string">&#x27;tensorflow&#x27;</span>, 
-              walltime=<span class="hljs-literal">None</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add_histogram(tag, values, </span><br><span class="line">              global_step=<span class="literal">None</span>, </span><br><span class="line">              bins=<span class="string">&#x27;tensorflow&#x27;</span>, </span><br><span class="line">              walltime=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：统计直方图与多分位数折线图</p>
 <ul>
 <li>
@@ -376,256 +210,65 @@ writer.close()
 </li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-
-set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;test_suffix&quot;</span>)
-
-<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>):
-
-    np.random.seed(x)
-
-    data_union = np.arange(<span class="hljs-number">100</span>)
-    data_normal = np.random.normal(size=<span class="hljs-number">1000</span>)
-
-    writer.add_histogram(<span class="hljs-string">&#x27;distribution union&#x27;</span>, data_union, x)
-    writer.add_histogram(<span class="hljs-string">&#x27;distribution normal&#x27;</span>, data_normal, x)
-
-    plt.subplot(<span class="hljs-number">121</span>)
-    plt.hist(data_union, label=<span class="hljs-string">&quot;union&quot;</span>)
-    plt.legend()
-    plt.subplot(<span class="hljs-number">122</span>)
-    plt.hist(data_normal, label=<span class="hljs-string">&quot;normal&quot;</span>)
-    plt.legend()
-    plt.show()
-
-writer.close()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_comment&#x27;</span>, filename_suffix=<span class="string">&quot;test_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line"></span><br><span class="line">    np.random.seed(x)</span><br><span class="line"></span><br><span class="line">    data_union = np.arange(<span class="number">100</span>)</span><br><span class="line">    data_normal = np.random.normal(size=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">    writer.add_histogram(<span class="string">&#x27;distribution union&#x27;</span>, data_union, x)</span><br><span class="line">    writer.add_histogram(<span class="string">&#x27;distribution normal&#x27;</span>, data_normal, x)</span><br><span class="line"></span><br><span class="line">    plt.subplot(<span class="number">121</span>)</span><br><span class="line">    plt.hist(data_union, label=<span class="string">&quot;union&quot;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.subplot(<span class="number">122</span>)</span><br><span class="line">    plt.hist(data_normal, label=<span class="string">&quot;normal&quot;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
 <ol>
 <li>matplot输出如下所示（得到两个figure）：</li>
 </ol>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807174331.png" srcset="/img/loading.gif" alt="image-20200807174329774" style="zoom:67%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807174452.png" srcset="/img/loading.gif" alt="image-20200807174451131" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807174331.png" alt="image-20200807174329774" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807174452.png" alt="image-20200807174451131" style="zoom:67%;" />
 <blockquote>
 <p>plt.hist默认bin=10，即把直方图分成10个条。对于左图就是[0, 9], [10, 19], …, [90, 99]统计在一起，显然对于每一个bin都有10个数据落入其中；</p>
 <p>以下是bin=20的直方图：</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190424.png" srcset="/img/loading.gif" alt="image-20200808190423187" style="zoom:67%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190433.png" srcset="/img/loading.gif" alt="image-20200808190432190" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190424.png" alt="image-20200808190423187" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190433.png" alt="image-20200808190432190" style="zoom:67%;" />
 </blockquote>
 <p>打开tensorboard，可以看到下面的直方图。bins=‘tensorflow’（默认），这个bin的计算方式我目前还没看懂。均匀分布的直方图本来应该是平的，但是出现的高低起伏，说明bin是不等宽的，由内部函数动态分配。</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190632.png" srcset="/img/loading.gif" alt="image-20200808190630473" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190646.png" srcset="/img/loading.gif" alt="image-20200808190644191" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190632.png" alt="image-20200808190630473" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190646.png" alt="image-20200808190644191" style="zoom: 80%;" />
 <p>如果我们令bins=10：</p>
-<pre><code class="hljs python">writer.add_histogram(<span class="hljs-string">&#x27;distribution union&#x27;</span>, data_union, x, bins=<span class="hljs-number">10</span>)
-writer.add_histogram(<span class="hljs-string">&#x27;distribution normal&#x27;</span>, data_normal, x, bins=<span class="hljs-number">10</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">writer.add_histogram(<span class="string">&#x27;distribution union&#x27;</span>, data_union, x, bins=<span class="number">10</span>)</span><br><span class="line">writer.add_histogram(<span class="string">&#x27;distribution normal&#x27;</span>, data_normal, x, bins=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <p>tensorboard得到下面直方图：</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190848.png" srcset="/img/loading.gif" alt="image-20200808190847039" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190904.png" srcset="/img/loading.gif" alt="image-20200808190900011" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190848.png" alt="image-20200808190847039" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190904.png" alt="image-20200808190900011" style="zoom: 80%;" />
 <p>我们可以发现，已经和我们用plt.hist输出的直方图很相似了，唯一还搞不懂的就是纵坐标的计算方式（居然是个小数，其次这个直方图还不是条形的，搞不懂）</p>
 <p>以下是bins=20的tensorboard直方图，可以看到随着bins的增加，曲线更加圆滑了（还是搞不懂这个图是怎么来的，直方图却不是条状）</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191547.png" srcset="/img/loading.gif" alt="image-20200808191546038" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191600.png" srcset="/img/loading.gif" alt="image-20200808191559457" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191547.png" alt="image-20200808191546038" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191600.png" alt="image-20200808191559457" style="zoom: 80%;" />
 <p>下面是bins=100的tensorboard直方图：</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191856.png" srcset="/img/loading.gif" alt="image-20200808191854291" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191931.png" srcset="/img/loading.gif" alt="image-20200808191930137" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191856.png" alt="image-20200808191854291" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191931.png" alt="image-20200808191930137" style="zoom: 80%;" />
 <p>通过以上实验可以发现，bins这个参数就调整精细程度，bins愈大得到的直方图越精细。此外随着bins提高，直方图的值（纵坐标）并没有变化，这也说明了tensorboard的直方图不是传统意义的直方图（传统直方图是统计在bin内数据的数量）</p>
 <p>另外，我还发现了，无论bins取多少，tensorboard这个直方图总是有30个采样点（下图展示了无论bins取多少，每个采样的位置都是一样的。可以看到第一个是点是-2.94，第二个点是-2.70）。这30个数据点的值加在一起就约等于样本总体的数据量。像下面这个标准正态分布的30个数据点的数加起来约等于1000。所以这个tensorboard的直方图还是有智慧的。我们不能把他看成传统意义的直方图，纵坐标应该看成在这个横坐标左右区域（比如第一个数据点横坐标是-2.94，第二个是-2.70，那么宽度就是0.24，所以第一个数据点纵坐标的意义是：在[-3.06, -2.82]）大概有3.33个数据点。</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193748.png" srcset="/img/loading.gif" alt="image-20200808193745391" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193755.png" srcset="/img/loading.gif" alt="image-20200808193658538" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193833.png" srcset="/img/loading.gif" alt="image-20200808193832336" style="zoom: 80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193857.png" srcset="/img/loading.gif" alt="image-20200808193856160" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193748.png" alt="image-20200808193745391" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193755.png" alt="image-20200808193658538" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193833.png" alt="image-20200808193832336" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193857.png" alt="image-20200808193856160" style="zoom: 80%;" />
 <p><strong>所以我猜测：这个图的计算方法是先按给定的bins参数绘制出直方图，然后对直方图等间隔采样30个数据点，再将这些数据点用折线连接起来。数据点的值做了归一化处理，与bins的数量无关。</strong></p>
 <h3 id="214-实战一-监控loss-accuracy-weights-gradients"><a class="markdownIt-Anchor" href="#214-实战一-监控loss-accuracy-weights-gradients"></a> 2.1.4 实战一： 监控loss, accuracy, weights, gradients</h3>
 <p>下面是我们之前用Lenet做的的rmb二分类的tensorboard可视化的结果。</p>
 <p><strong>实验代码：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
-<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
-<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
-<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
-<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-
-set_seed()  <span class="hljs-comment"># 设置随机种子</span>
-rmb_label = &#123;<span class="hljs-string">&quot;1&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;100&quot;</span>: <span class="hljs-number">1</span>&#125;
-
-<span class="hljs-comment"># 参数设置</span>
-MAX_EPOCH = <span class="hljs-number">10</span>
-BATCH_SIZE = <span class="hljs-number">16</span>
-LR = <span class="hljs-number">0.01</span>
-log_interval = <span class="hljs-number">10</span>
-val_interval = <span class="hljs-number">1</span>
-
-<span class="hljs-comment"># ============================ step 1/5 数据 ============================</span>
-
-split_dir = os.path.join(<span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-string">&quot;rmb_split&quot;</span>)
-train_dir = os.path.join(split_dir, <span class="hljs-string">&quot;train&quot;</span>)
-valid_dir = os.path.join(split_dir, <span class="hljs-string">&quot;valid&quot;</span>)
-
-norm_mean = [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>]
-norm_std = [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>]
-
-train_transform = transforms.Compose([
-    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
-    transforms.RandomCrop(<span class="hljs-number">32</span>, padding=<span class="hljs-number">4</span>),
-    transforms.RandomGrayscale(p=<span class="hljs-number">0.8</span>),
-    transforms.ToTensor(),
-    transforms.Normalize(norm_mean, norm_std),
-])
-
-valid_transform = transforms.Compose([
-    transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">32</span>)),
-    transforms.ToTensor(),
-    transforms.Normalize(norm_mean, norm_std),
-])
-
-<span class="hljs-comment"># 构建MyDataset实例</span>
-train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
-valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
-
-<span class="hljs-comment"># 构建DataLoder</span>
-train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="hljs-literal">True</span>)
-valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
-
-<span class="hljs-comment"># ============================ step 2/5 模型 ============================</span>
-
-net = LeNet(classes=<span class="hljs-number">2</span>)
-net.initialize_weights()
-
-<span class="hljs-comment"># ============================ step 3/5 损失函数 ============================</span>
-criterion = nn.CrossEntropyLoss()                                                   <span class="hljs-comment"># 选择损失函数</span>
-
-<span class="hljs-comment"># ============================ step 4/5 优化器 ============================</span>
-optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="hljs-number">0.9</span>)                        <span class="hljs-comment"># 选择优化器</span>
-scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="hljs-number">10</span>, gamma=<span class="hljs-number">0.1</span>)     <span class="hljs-comment"># 设置学习率下降策略</span>
-
-<span class="hljs-comment"># ============================ step 5/5 训练 ============================</span>
-train_curve = list()
-valid_curve = list()
-
-iter_count = <span class="hljs-number">0</span>
-
-<span class="hljs-comment"># 构建 SummaryWriter</span>
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
-
-<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(MAX_EPOCH):
-
-    loss_mean = <span class="hljs-number">0.</span>
-    correct = <span class="hljs-number">0.</span>
-    total = <span class="hljs-number">0.</span>
-
-    net.train()
-    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(train_loader):
-
-        iter_count += <span class="hljs-number">1</span>
-
-        <span class="hljs-comment"># forward</span>
-        inputs, labels = data
-        outputs = net(inputs)
-
-        <span class="hljs-comment"># backward</span>
-        optimizer.zero_grad()
-        loss = criterion(outputs, labels)
-        loss.backward()
-
-        <span class="hljs-comment"># update weights</span>
-        optimizer.step()
-
-        <span class="hljs-comment"># 统计分类情况</span>
-        _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
-        total += labels.size(<span class="hljs-number">0</span>)
-        correct += (predicted == labels).squeeze().sum().numpy()
-
-        <span class="hljs-comment"># 打印训练信息</span>
-        loss_mean += loss.item()  <span class="hljs-comment"># tensor转换为float</span>
-        train_curve.append(loss.item())
-        <span class="hljs-keyword">if</span> (i+<span class="hljs-number">1</span>) % log_interval == <span class="hljs-number">0</span>:
-            loss_mean = loss_mean / log_interval
-            print(<span class="hljs-string">&quot;Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
-                epoch, MAX_EPOCH, i+<span class="hljs-number">1</span>, len(train_loader), loss_mean, correct / total))
-            loss_mean = <span class="hljs-number">0.</span>
-
-        <span class="hljs-comment"># 记录数据，保存于event file 每个iteration，记录Loss，Accuracy</span>
-        writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: loss.item()&#125;, iter_count)
-        writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Train&quot;</span>: correct / total&#125;, iter_count)
-
-    <span class="hljs-comment"># 每个epoch，记录梯度，权值</span>
-    <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net.named_parameters():
-        writer.add_histogram(name + <span class="hljs-string">&#x27;_grad&#x27;</span>, param.grad, epoch)
-        writer.add_histogram(name + <span class="hljs-string">&#x27;_data&#x27;</span>, param, epoch)
-
-    scheduler.step()  <span class="hljs-comment"># 更新学习率</span>
-
-    <span class="hljs-comment"># validate the model</span>
-    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % val_interval == <span class="hljs-number">0</span>:
-
-        correct_val = <span class="hljs-number">0.</span>
-        total_val = <span class="hljs-number">0.</span>
-        loss_val = <span class="hljs-number">0.</span>
-        net.eval()
-        <span class="hljs-keyword">with</span> torch.no_grad():
-            <span class="hljs-keyword">for</span> j, data <span class="hljs-keyword">in</span> enumerate(valid_loader):
-                inputs, labels = data
-                outputs = net(inputs)
-                loss = criterion(outputs, labels)
-
-                _, predicted = torch.max(outputs.data, <span class="hljs-number">1</span>)
-                total_val += labels.size(<span class="hljs-number">0</span>)
-                correct_val += (predicted == labels).squeeze().sum().numpy()
-
-                loss_val += loss.item()
-
-            valid_curve.append(loss.item())
-            print(<span class="hljs-string">&quot;Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(
-                epoch, MAX_EPOCH, j+<span class="hljs-number">1</span>, len(valid_loader), loss_val, correct / total))
-
-            <span class="hljs-comment"># 记录数据，保存于event file</span>
-            writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Valid&quot;</span>: np.mean(valid_curve)&#125;, iter_count)
-            writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Valid&quot;</span>: correct / total&#125;, iter_count)
-
-train_x = range(len(train_curve))
-train_y = train_curve
-
-train_iters = len(train_loader)
-valid_x = np.arange(<span class="hljs-number">1</span>, len(valid_curve)+<span class="hljs-number">1</span>) * train_iters*val_interval <span class="hljs-comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span>
-valid_y = valid_curve
-
-plt.plot(train_x, train_y, label=<span class="hljs-string">&#x27;Train&#x27;</span>)
-plt.plot(valid_x, valid_y, label=<span class="hljs-string">&#x27;Valid&#x27;</span>)
-
-plt.legend(loc=<span class="hljs-string">&#x27;upper right&#x27;</span>)
-plt.ylabel(<span class="hljs-string">&#x27;loss value&#x27;</span>)
-plt.xlabel(<span class="hljs-string">&#x27;Iteration&#x27;</span>)
-plt.show()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> model.lenet <span class="keyword">import</span> LeNet</span><br><span class="line"><span class="keyword">from</span> tools.my_dataset <span class="keyword">import</span> RMBDataset</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed()  <span class="comment"># 设置随机种子</span></span><br><span class="line">rmb_label = &#123;<span class="string">&quot;1&quot;</span>: <span class="number">0</span>, <span class="string">&quot;100&quot;</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数设置</span></span><br><span class="line">MAX_EPOCH = <span class="number">10</span></span><br><span class="line">BATCH_SIZE = <span class="number">16</span></span><br><span class="line">LR = <span class="number">0.01</span></span><br><span class="line">log_interval = <span class="number">10</span></span><br><span class="line">val_interval = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ step 1/5 数据 ============================</span></span><br><span class="line"></span><br><span class="line">split_dir = os.path.join(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;data&quot;</span>, <span class="string">&quot;rmb_split&quot;</span>)</span><br><span class="line">train_dir = os.path.join(split_dir, <span class="string">&quot;train&quot;</span>)</span><br><span class="line">valid_dir = os.path.join(split_dir, <span class="string">&quot;valid&quot;</span>)</span><br><span class="line"></span><br><span class="line">norm_mean = [<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>]</span><br><span class="line">norm_std = [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>]</span><br><span class="line"></span><br><span class="line">train_transform = transforms.Compose([</span><br><span class="line">    transforms.Resize((<span class="number">32</span>, <span class="number">32</span>)),</span><br><span class="line">    transforms.RandomCrop(<span class="number">32</span>, padding=<span class="number">4</span>),</span><br><span class="line">    transforms.RandomGrayscale(p=<span class="number">0.8</span>),</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    transforms.Normalize(norm_mean, norm_std),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">valid_transform = transforms.Compose([</span><br><span class="line">    transforms.Resize((<span class="number">32</span>, <span class="number">32</span>)),</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    transforms.Normalize(norm_mean, norm_std),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建MyDataset实例</span></span><br><span class="line">train_data = RMBDataset(data_dir=train_dir, transform=train_transform)</span><br><span class="line">valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建DataLoder</span></span><br><span class="line">train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line">valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ step 2/5 模型 ============================</span></span><br><span class="line"></span><br><span class="line">net = LeNet(classes=<span class="number">2</span>)</span><br><span class="line">net.initialize_weights()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ step 3/5 损失函数 ============================</span></span><br><span class="line">criterion = nn.CrossEntropyLoss()                                                   <span class="comment"># 选择损失函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ step 4/5 优化器 ============================</span></span><br><span class="line">optimizer = optim.SGD(net.parameters(), lr=LR, momentum=<span class="number">0.9</span>)                        <span class="comment"># 选择优化器</span></span><br><span class="line">scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=<span class="number">10</span>, gamma=<span class="number">0.1</span>)     <span class="comment"># 设置学习率下降策略</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ step 5/5 训练 ============================</span></span><br><span class="line">train_curve = list()</span><br><span class="line">valid_curve = list()</span><br><span class="line"></span><br><span class="line">iter_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建 SummaryWriter</span></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(MAX_EPOCH):</span><br><span class="line"></span><br><span class="line">    loss_mean = <span class="number">0.</span></span><br><span class="line">    correct = <span class="number">0.</span></span><br><span class="line">    total = <span class="number">0.</span></span><br><span class="line"></span><br><span class="line">    net.train()</span><br><span class="line">    <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(train_loader):</span><br><span class="line"></span><br><span class="line">        iter_count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># forward</span></span><br><span class="line">        inputs, labels = data</span><br><span class="line">        outputs = net(inputs)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># backward</span></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss = criterion(outputs, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># update weights</span></span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 统计分类情况</span></span><br><span class="line">        _, predicted = torch.max(outputs.data, <span class="number">1</span>)</span><br><span class="line">        total += labels.size(<span class="number">0</span>)</span><br><span class="line">        correct += (predicted == labels).squeeze().sum().numpy()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 打印训练信息</span></span><br><span class="line">        loss_mean += loss.item()  <span class="comment"># tensor转换为float</span></span><br><span class="line">        train_curve.append(loss.item())</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="number">1</span>) % log_interval == <span class="number">0</span>:</span><br><span class="line">            loss_mean = loss_mean / log_interval</span><br><span class="line">            print(<span class="string">&quot;Training:Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(</span><br><span class="line">                epoch, MAX_EPOCH, i+<span class="number">1</span>, len(train_loader), loss_mean, correct / total))</span><br><span class="line">            loss_mean = <span class="number">0.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 记录数据，保存于event file 每个iteration，记录Loss，Accuracy</span></span><br><span class="line">        writer.add_scalars(<span class="string">&quot;Loss&quot;</span>, &#123;<span class="string">&quot;Train&quot;</span>: loss.item()&#125;, iter_count)</span><br><span class="line">        writer.add_scalars(<span class="string">&quot;Accuracy&quot;</span>, &#123;<span class="string">&quot;Train&quot;</span>: correct / total&#125;, iter_count)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每个epoch，记录梯度，权值</span></span><br><span class="line">    <span class="keyword">for</span> name, param <span class="keyword">in</span> net.named_parameters():</span><br><span class="line">        writer.add_histogram(name + <span class="string">&#x27;_grad&#x27;</span>, param.grad, epoch)</span><br><span class="line">        writer.add_histogram(name + <span class="string">&#x27;_data&#x27;</span>, param, epoch)</span><br><span class="line"></span><br><span class="line">    scheduler.step()  <span class="comment"># 更新学习率</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># validate the model</span></span><br><span class="line">    <span class="keyword">if</span> (epoch+<span class="number">1</span>) % val_interval == <span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">        correct_val = <span class="number">0.</span></span><br><span class="line">        total_val = <span class="number">0.</span></span><br><span class="line">        loss_val = <span class="number">0.</span></span><br><span class="line">        net.eval()</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">            <span class="keyword">for</span> j, data <span class="keyword">in</span> enumerate(valid_loader):</span><br><span class="line">                inputs, labels = data</span><br><span class="line">                outputs = net(inputs)</span><br><span class="line">                loss = criterion(outputs, labels)</span><br><span class="line"></span><br><span class="line">                _, predicted = torch.max(outputs.data, <span class="number">1</span>)</span><br><span class="line">                total_val += labels.size(<span class="number">0</span>)</span><br><span class="line">                correct_val += (predicted == labels).squeeze().sum().numpy()</span><br><span class="line"></span><br><span class="line">                loss_val += loss.item()</span><br><span class="line"></span><br><span class="line">            valid_curve.append(loss.item())</span><br><span class="line">            print(<span class="string">&quot;Valid:\t Epoch[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Iteration[&#123;:0&gt;3&#125;/&#123;:0&gt;3&#125;] Loss: &#123;:.4f&#125; Acc:&#123;:.2%&#125;&quot;</span>.format(</span><br><span class="line">                epoch, MAX_EPOCH, j+<span class="number">1</span>, len(valid_loader), loss_val, correct / total))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 记录数据，保存于event file</span></span><br><span class="line">            writer.add_scalars(<span class="string">&quot;Loss&quot;</span>, &#123;<span class="string">&quot;Valid&quot;</span>: np.mean(valid_curve)&#125;, iter_count)</span><br><span class="line">            writer.add_scalars(<span class="string">&quot;Accuracy&quot;</span>, &#123;<span class="string">&quot;Valid&quot;</span>: correct / total&#125;, iter_count)</span><br><span class="line"></span><br><span class="line">train_x = range(len(train_curve))</span><br><span class="line">train_y = train_curve</span><br><span class="line"></span><br><span class="line">train_iters = len(train_loader)</span><br><span class="line">valid_x = np.arange(<span class="number">1</span>, len(valid_curve)+<span class="number">1</span>) * train_iters*val_interval <span class="comment"># 由于valid中记录的是epochloss，需要对记录点进行转换到iterations</span></span><br><span class="line">valid_y = valid_curve</span><br><span class="line"></span><br><span class="line">plt.plot(train_x, train_y, label=<span class="string">&#x27;Train&#x27;</span>)</span><br><span class="line">plt.plot(valid_x, valid_y, label=<span class="string">&#x27;Valid&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=<span class="string">&#x27;upper right&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;loss value&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Iteration&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <ol>
 <li>
 <p>Accuracy</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215557.png" srcset="/img/loading.gif" alt="image-20200808215556184" style="zoom:80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215747.png" srcset="/img/loading.gif" alt="image-20200808215741753" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215557.png" alt="image-20200808215556184" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215747.png" alt="image-20200808215741753" style="zoom:67%;" />
 </li>
 <li>
 <p>Loss</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215617.png" srcset="/img/loading.gif" alt="1" style="zoom:80%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215813.png" srcset="/img/loading.gif" alt="image-20200808215811301" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215617.png" alt="1" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215813.png" alt="image-20200808215811301" style="zoom: 67%;" />
 </li>
 <li>
 <p>conv1.weight_data</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220759.png" srcset="/img/loading.gif" alt="image-20200808220043248" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220759.png" alt="image-20200808220043248" style="zoom:80%;" />
 <blockquote>
 <p>可以看见，conv1层的参数分布还是不错的，方差保持了一致性</p>
 </blockquote>
 </li>
 <li>
 <p>conv1.weight_grad</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220804.png" srcset="/img/loading.gif" alt="image-20200808220124651" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220804.png" alt="image-20200808220124651" style="zoom:80%;" />
 <blockquote>
 <p>conv1层的梯度也可以，在后面梯度变为0的原因有两种：</p>
 <ol>
@@ -637,22 +280,18 @@ plt.show()</code></pre>
 </li>
 <li>
 <p>fc3.weight_data</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220806.png" srcset="/img/loading.gif" alt="image-20200808220309895" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220806.png" alt="image-20200808220309895" style="zoom:80%;" />
 </li>
 <li>
 <p>fc3.weight_grad</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220810.png" srcset="/img/loading.gif" alt="image-20200808220330517" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220810.png" alt="image-20200808220330517" style="zoom:80%;" />
 <blockquote>
 <p>最后一层网络层随着迭代的次数，梯度也逐渐变小，说明没有发生梯度回传障碍。</p>
 </blockquote>
 </li>
 </ol>
 <h3 id="215-add_image"><a class="markdownIt-Anchor" href="#215-add_image"></a> 2.1.5 add_image</h3>
-<pre><code class="hljs python">add_image(tag, 
-          img_tensor, 
-          global_step=<span class="hljs-literal">None</span>, 
-          walltime=<span class="hljs-literal">None</span>, 
-          dataformats=<span class="hljs-string">&#x27;CHW&#x27;</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">add_image(tag, </span><br><span class="line">          img_tensor, </span><br><span class="line">          global_step=<span class="literal">None</span>, </span><br><span class="line">          walltime=<span class="literal">None</span>, </span><br><span class="line">          dataformats=<span class="string">&#x27;CHW&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：记录图像</p>
 <ul>
 <li>tag：图像的标签名，图的唯一标识</li>
@@ -661,79 +300,36 @@ plt.show()</code></pre>
 <li>dataformats：数据形式，CHW，HWC，HW</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> time
-<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
-<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
-<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
-<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
-
-<span class="hljs-comment"># img 1     random</span>
-fake_img = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)
-writer.add_image(<span class="hljs-string">&quot;fake_img&quot;</span>, fake_img, <span class="hljs-number">1</span>)
-time.sleep(<span class="hljs-number">1</span>)
-
-<span class="hljs-comment"># img 2     ones</span>
-fake_img = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)
-time.sleep(<span class="hljs-number">1</span>)
-writer.add_image(<span class="hljs-string">&quot;fake_img&quot;</span>, fake_img, <span class="hljs-number">2</span>)
-
-<span class="hljs-comment"># img 3     1.1</span>
-fake_img = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>) * <span class="hljs-number">1.1</span>
-time.sleep(<span class="hljs-number">1</span>)
-writer.add_image(<span class="hljs-string">&quot;fake_img&quot;</span>, fake_img, <span class="hljs-number">3</span>)
-
-<span class="hljs-comment"># img 4     HW</span>
-fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>)
-writer.add_image(<span class="hljs-string">&quot;fake_img&quot;</span>, fake_img, <span class="hljs-number">4</span>, dataformats=<span class="hljs-string">&quot;HW&quot;</span>)
-
-<span class="hljs-comment"># img 5     HWC</span>
-fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">3</span>)
-writer.add_image(<span class="hljs-string">&quot;fake_img&quot;</span>, fake_img, <span class="hljs-number">5</span>, dataformats=<span class="hljs-string">&quot;HWC&quot;</span>)
-
-writer.close()</code></pre>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224947.png" srcset="/img/loading.gif" alt="image-20200808224844182" /></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> vutils</span><br><span class="line"><span class="keyword">from</span> tools.my_dataset <span class="keyword">import</span> RMBDataset</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"><span class="keyword">from</span> model.lenet <span class="keyword">import</span> LeNet</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># img 1     random</span></span><br><span class="line">fake_img = torch.randn(<span class="number">3</span>, <span class="number">512</span>, <span class="number">512</span>)</span><br><span class="line">writer.add_image(<span class="string">&quot;fake_img&quot;</span>, fake_img, <span class="number">1</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># img 2     ones</span></span><br><span class="line">fake_img = torch.ones(<span class="number">3</span>, <span class="number">512</span>, <span class="number">512</span>)</span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">writer.add_image(<span class="string">&quot;fake_img&quot;</span>, fake_img, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># img 3     1.1</span></span><br><span class="line">fake_img = torch.ones(<span class="number">3</span>, <span class="number">512</span>, <span class="number">512</span>) * <span class="number">1.1</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">writer.add_image(<span class="string">&quot;fake_img&quot;</span>, fake_img, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># img 4     HW</span></span><br><span class="line">fake_img = torch.rand(<span class="number">512</span>, <span class="number">512</span>)</span><br><span class="line">writer.add_image(<span class="string">&quot;fake_img&quot;</span>, fake_img, <span class="number">4</span>, dataformats=<span class="string">&quot;HW&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># img 5     HWC</span></span><br><span class="line">fake_img = torch.rand(<span class="number">512</span>, <span class="number">512</span>, <span class="number">3</span>)</span><br><span class="line">writer.add_image(<span class="string">&quot;fake_img&quot;</span>, fake_img, <span class="number">5</span>, dataformats=<span class="string">&quot;HWC&quot;</span>)</span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224947.png" alt="image-20200808224844182" /></p>
 <blockquote>
-<pre><code class="hljs angelscript">fake_img = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fake_img &#x3D; torch.randn(3, 512, 512)</span><br></pre></td></tr></table></figure>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值</p>
 </blockquote>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224950.png" srcset="/img/loading.gif" alt="image-20200808224902181" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224950.png" alt="image-20200808224902181" /></p>
 <blockquote>
-<pre><code class="hljs angelscript">fake_img = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fake_img &#x3D; torch.ones(3, 512, 512)</span><br></pre></td></tr></table></figure>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值；所以图片变成了像素值全为255的纯白照片。</p>
 </blockquote>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224953.png" srcset="/img/loading.gif" alt="image-20200808224912239" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224953.png" alt="image-20200808224912239" /></p>
 <blockquote>
-<pre><code class="hljs apache"><span class="hljs-attribute">fake_img</span> = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>) * <span class="hljs-number">1</span>.<span class="hljs-number">1</span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fake_img &#x3D; torch.ones(3, 512, 512) * 1.1</span><br></pre></td></tr></table></figure>
 <p>数据不处于[0, 1]范围内，且全部数据值为1.1，所以显示出来是黑色的照片</p>
 </blockquote>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224959.png" srcset="/img/loading.gif" alt="image-20200808224922284" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224959.png" alt="image-20200808224922284" /></p>
 <blockquote>
-<pre><code class="hljs angelscript">fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fake_img &#x3D; torch.rand(512, 512)</span><br></pre></td></tr></table></figure>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值；但只有一个通道，参数应写为dataformats=“HW”</p>
 </blockquote>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224932.png" srcset="/img/loading.gif" alt="image-20200808224929722" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224932.png" alt="image-20200808224929722" /></p>
 <blockquote>
-<pre><code class="hljs angelscript">fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">3</span>)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fake_img &#x3D; torch.rand(512, 512, 3)</span><br></pre></td></tr></table></figure>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值；但通道是HWC，参数应写为dataformats=“HWC”</p>
 </blockquote>
 <p>用<code>add_img</code>显示图片需要用鼠标拖动显示相应step的图像</p>
 <p>那有没有方法能一次显示所有图片呢？<code>torchvision.utils.make_grid</code>就是答案。</p>
 <h3 id="216-torchvisionutilsmake_grid"><a class="markdownIt-Anchor" href="#216-torchvisionutilsmake_grid"></a> 2.1.6 torchvision.utils.make_grid</h3>
-<pre><code class="hljs python">make_grid(tensor, 
-          nrow=<span class="hljs-number">8</span>, 
-          padding=<span class="hljs-number">2</span>, 
-          normalize=<span class="hljs-literal">False</span>, 
-          range=<span class="hljs-literal">None</span>, 
-          scale_each=<span class="hljs-literal">False</span>, 
-          pad_value=<span class="hljs-number">0</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">make_grid(tensor, </span><br><span class="line">          nrow=<span class="number">8</span>, </span><br><span class="line">          padding=<span class="number">2</span>, </span><br><span class="line">          normalize=<span class="literal">False</span>, </span><br><span class="line">          range=<span class="literal">None</span>, </span><br><span class="line">          scale_each=<span class="literal">False</span>, </span><br><span class="line">          pad_value=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：制作网格图像</p>
 <ul>
 <li>tensor：图像数据； 4Dmini-batch的张量（B x C x H x W）或相同大小的图像列表。其中C只能为1（黑白显示）或者3（彩色显示）</li>
@@ -745,126 +341,23 @@ writer.close()</code></pre>
 <li>pad_value：padding的像素值</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> time
-<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
-<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
-<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
-<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
-
-split_dir = os.path.join(<span class="hljs-string">&quot;..&quot;</span>, <span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-string">&quot;rmb_split&quot;</span>)
-train_dir = os.path.join(split_dir, <span class="hljs-string">&quot;train&quot;</span>)
-<span class="hljs-comment"># train_dir = &quot;path to your training data&quot;</span>
-
-transform_compose = transforms.Compose([transforms.Resize((<span class="hljs-number">32</span>, <span class="hljs-number">64</span>)), transforms.ToTensor()])
-train_data = RMBDataset(data_dir=train_dir, transform=transform_compose)
-train_loader = DataLoader(dataset=train_data, batch_size=<span class="hljs-number">16</span>, shuffle=<span class="hljs-literal">True</span>)
-data_batch, label_batch = next(iter(train_loader))  <span class="hljs-comment"># batch_size=16，next一次一批16张图片</span>
-
-img_grid = vutils.make_grid(data_batch, nrow=<span class="hljs-number">4</span>)
-writer.close()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> vutils</span><br><span class="line"><span class="keyword">from</span> tools.my_dataset <span class="keyword">import</span> RMBDataset</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"><span class="keyword">from</span> model.lenet <span class="keyword">import</span> LeNet</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line">split_dir = os.path.join(<span class="string">&quot;..&quot;</span>, <span class="string">&quot;data&quot;</span>, <span class="string">&quot;rmb_split&quot;</span>)</span><br><span class="line">train_dir = os.path.join(split_dir, <span class="string">&quot;train&quot;</span>)</span><br><span class="line"><span class="comment"># train_dir = &quot;path to your training data&quot;</span></span><br><span class="line"></span><br><span class="line">transform_compose = transforms.Compose([transforms.Resize((<span class="number">32</span>, <span class="number">64</span>)), transforms.ToTensor()])</span><br><span class="line">train_data = RMBDataset(data_dir=train_dir, transform=transform_compose)</span><br><span class="line">train_loader = DataLoader(dataset=train_data, batch_size=<span class="number">16</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line">data_batch, label_batch = next(iter(train_loader))  <span class="comment"># batch_size=16，next一次一批16张图片</span></span><br><span class="line"></span><br><span class="line">img_grid = vutils.make_grid(data_batch, nrow=<span class="number">4</span>)</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
 <p>输出图像：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809155826.png" srcset="/img/loading.gif" alt="image-20200809155825299" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809155826.png" alt="image-20200809155825299" /></p>
 <h3 id="217-实战二-卷积核和特征图的可视化"><a class="markdownIt-Anchor" href="#217-实战二-卷积核和特征图的可视化"></a> 2.1.7 实战二 ：卷积核和特征图的可视化</h3>
 <p>下面是我们对alexnet前两个卷积层的卷积核可视化的结果：</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
-<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
-<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
-
-set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
-
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
-
-alexnet = models.alexnet(pretrained=<span class="hljs-literal">True</span>)
-
-kernel_num = <span class="hljs-number">-1</span>
-vis_max = <span class="hljs-number">1</span>
-
-<span class="hljs-keyword">for</span> sub_module <span class="hljs-keyword">in</span> alexnet.modules():
-    <span class="hljs-keyword">if</span> isinstance(sub_module, nn.Conv2d):
-        kernel_num += <span class="hljs-number">1</span>
-        <span class="hljs-keyword">if</span> kernel_num &gt; vis_max:
-            <span class="hljs-keyword">break</span>
-        kernels = sub_module.weight
-        c_out, c_int, k_w, k_h = tuple(kernels.shape)
-
-        kernel_idx = kernels.view(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, k_h, k_w)  <span class="hljs-comment"># 3, h, w</span>
-
-        kernel_grid = vutils.make_grid(kernel_idx, normalize=<span class="hljs-literal">True</span>, scale_each=<span class="hljs-literal">True</span>, nrow=c_int)  <span class="hljs-comment"># 一行显示所有的通道</span>
-        writer.add_image(<span class="hljs-string">&#x27;&#123;&#125;_Convlayer_split_in_channel&#x27;</span>.format(kernel_num), kernel_grid, global_step=<span class="hljs-number">0</span>)
-
-        print(<span class="hljs-string">&quot;&#123;&#125;_convlayer shape:&#123;&#125;&quot;</span>.format(kernel_num, tuple(kernels.shape)))
-
-writer.close()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> vutils</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line">alexnet = models.alexnet(pretrained=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">kernel_num = <span class="number">-1</span></span><br><span class="line">vis_max = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sub_module <span class="keyword">in</span> alexnet.modules():</span><br><span class="line">    <span class="keyword">if</span> isinstance(sub_module, nn.Conv2d):</span><br><span class="line">        kernel_num += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> kernel_num &gt; vis_max:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        kernels = sub_module.weight</span><br><span class="line">        c_out, c_int, k_w, k_h = tuple(kernels.shape)</span><br><span class="line"></span><br><span class="line">        kernel_idx = kernels.view(<span class="number">-1</span>, <span class="number">1</span>, k_h, k_w)  <span class="comment"># 3, h, w</span></span><br><span class="line"></span><br><span class="line">        kernel_grid = vutils.make_grid(kernel_idx, normalize=<span class="literal">True</span>, scale_each=<span class="literal">True</span>, nrow=c_int)  <span class="comment"># 一行显示所有的通道</span></span><br><span class="line">        writer.add_image(<span class="string">&#x27;&#123;&#125;_Convlayer_split_in_channel&#x27;</span>.format(kernel_num), kernel_grid, global_step=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">&quot;&#123;&#125;_convlayer shape:&#123;&#125;&quot;</span>.format(kernel_num, tuple(kernels.shape)))</span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
 <p>打印输出：</p>
-<pre><code class="hljs python"><span class="hljs-number">0</span>_convlayer shape:(<span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>)
-<span class="hljs-number">1</span>_convlayer shape:(<span class="hljs-number">192</span>, <span class="hljs-number">64</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>_convlayer shape:(<span class="number">64</span>, <span class="number">3</span>, <span class="number">11</span>, <span class="number">11</span>)</span><br><span class="line"><span class="number">1</span>_convlayer shape:(<span class="number">192</span>, <span class="number">64</span>, <span class="number">5</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <p>tensorboard的显示（同一行是一个卷积核的各个通道）：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182113.png" srcset="/img/loading.gif" alt="image-20200809175151439" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182110.png" srcset="/img/loading.gif" alt="image-20200809175212965" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182113.png" alt="image-20200809175151439" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182110.png" alt="image-20200809175212965" /></p>
 <p>下面是我们对alexnet第一个卷积层的输出特征图可视化的结果</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
-<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
-<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
-
-set_seed(<span class="hljs-number">1</span>)  <span class="hljs-comment"># 设置随机种子</span>
-
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
-
-<span class="hljs-comment"># 数据</span>
-path_img = <span class="hljs-string">&quot;./lena.png&quot;</span>     <span class="hljs-comment"># your path to image</span>
-normMean = [<span class="hljs-number">0.49139968</span>, <span class="hljs-number">0.48215827</span>, <span class="hljs-number">0.44653124</span>]
-normStd = [<span class="hljs-number">0.24703233</span>, <span class="hljs-number">0.24348505</span>, <span class="hljs-number">0.26158768</span>]
-
-norm_transform = transforms.Normalize(normMean, normStd)
-img_transforms = transforms.Compose([
-    transforms.Resize((<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)),
-    transforms.ToTensor(),
-    norm_transform
-])
-
-img_pil = Image.open(path_img).convert(<span class="hljs-string">&#x27;RGB&#x27;</span>)
-<span class="hljs-keyword">if</span> img_transforms <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
-    img_tensor = img_transforms(img_pil)
-img_tensor.unsqueeze_(<span class="hljs-number">0</span>)    <span class="hljs-comment"># chw --&gt; bchw</span>
-
-<span class="hljs-comment"># 模型</span>
-alexnet = models.alexnet(pretrained=<span class="hljs-literal">True</span>)
-
-<span class="hljs-comment"># forward</span>
-convlayer0 = alexnet.features[<span class="hljs-number">0</span>]  <span class="hljs-comment"># 得到alexnet的第一个卷积层</span>
-fmap_0 = convlayer0(img_tensor)   <span class="hljs-comment"># 得到alexnet的第一个卷积层的输出</span>
-
-<span class="hljs-comment"># 预处理</span>
-b_int, c_int, k_w, k_h = tuple(fmap_0.shape)
-fmap_0 = fmap_0.view(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, k_h, k_w)  <span class="hljs-comment"># 拉平特征图 bchw=(1, 64, 55, 55) --&gt; (64, 1, 55, 55)</span>
-fmap_0_grid = vutils.make_grid(fmap_0, normalize=<span class="hljs-literal">True</span>, scale_each=<span class="hljs-literal">True</span>, nrow=<span class="hljs-number">8</span>)
-
-writer.add_image(<span class="hljs-string">&#x27;feature map in conv0&#x27;</span>, fmap_0_grid)
-writer.close()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> vutils</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据</span></span><br><span class="line">path_img = <span class="string">&quot;./lena.png&quot;</span>     <span class="comment"># your path to image</span></span><br><span class="line">normMean = [<span class="number">0.49139968</span>, <span class="number">0.48215827</span>, <span class="number">0.44653124</span>]</span><br><span class="line">normStd = [<span class="number">0.24703233</span>, <span class="number">0.24348505</span>, <span class="number">0.26158768</span>]</span><br><span class="line"></span><br><span class="line">norm_transform = transforms.Normalize(normMean, normStd)</span><br><span class="line">img_transforms = transforms.Compose([</span><br><span class="line">    transforms.Resize((<span class="number">224</span>, <span class="number">224</span>)),</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    norm_transform</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">img_pil = Image.open(path_img).convert(<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> img_transforms <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    img_tensor = img_transforms(img_pil)</span><br><span class="line">img_tensor.unsqueeze_(<span class="number">0</span>)    <span class="comment"># chw --&gt; bchw</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型</span></span><br><span class="line">alexnet = models.alexnet(pretrained=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># forward</span></span><br><span class="line">convlayer0 = alexnet.features[<span class="number">0</span>]  <span class="comment"># 得到alexnet的第一个卷积层</span></span><br><span class="line">fmap_0 = convlayer0(img_tensor)   <span class="comment"># 得到alexnet的第一个卷积层的输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预处理</span></span><br><span class="line">b_int, c_int, k_w, k_h = tuple(fmap_0.shape)</span><br><span class="line">fmap_0 = fmap_0.view(<span class="number">-1</span>, <span class="number">1</span>, k_h, k_w)  <span class="comment"># 拉平特征图 bchw=(1, 64, 55, 55) --&gt; (64, 1, 55, 55)</span></span><br><span class="line">fmap_0_grid = vutils.make_grid(fmap_0, normalize=<span class="literal">True</span>, scale_each=<span class="literal">True</span>, nrow=<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">writer.add_image(<span class="string">&#x27;feature map in conv0&#x27;</span>, fmap_0_grid)</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
 <p>tensorboard的显示：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182103.png" srcset="/img/loading.gif" alt="image-20200809181742482" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182103.png" alt="image-20200809181742482" /></p>
 <h3 id="218-add_graph"><a class="markdownIt-Anchor" href="#218-add_graph"></a> 2.1.8  add_graph</h3>
-<pre><code class="hljs python">add_graph(model, 
-          input_to_model=<span class="hljs-literal">None</span>, 
-          verbose=<span class="hljs-literal">False</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add_graph(model, </span><br><span class="line">          input_to_model=<span class="literal">None</span>, </span><br><span class="line">          verbose=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：可视化模型计算图</p>
 <ul>
 <li>model：模型，必须是 nn.Module</li>
@@ -872,34 +365,10 @@ writer.close()</code></pre>
 <li>verbose：是否打印计算图结构信息</li>
 </ul>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> time
-<span class="hljs-keyword">import</span> torchvision.models <span class="hljs-keyword">as</span> models
-<span class="hljs-keyword">import</span> torchvision.transforms <span class="hljs-keyword">as</span> transforms
-<span class="hljs-keyword">import</span> torchvision.utils <span class="hljs-keyword">as</span> vutils
-<span class="hljs-keyword">from</span> tools.my_dataset <span class="hljs-keyword">import</span> RMBDataset
-<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
-<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
-<span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
-<span class="hljs-keyword">from</span> model.lenet <span class="hljs-keyword">import</span> LeNet
-
-writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="hljs-string">&quot;_test_your_filename_suffix&quot;</span>)
-
-<span class="hljs-comment"># 模型</span>
-fake_img = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>)
-
-lenet = LeNet(classes=<span class="hljs-number">2</span>)
-
-writer.add_graph(lenet, fake_img)
-
-writer.close()</code></pre>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809193113.png" srcset="/img/loading.gif" alt="image-20200809193109809" /></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> vutils</span><br><span class="line"><span class="keyword">from</span> tools.my_dataset <span class="keyword">import</span> RMBDataset</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"><span class="keyword">from</span> model.lenet <span class="keyword">import</span> LeNet</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型</span></span><br><span class="line">fake_img = torch.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">32</span>, <span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">lenet = LeNet(classes=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">writer.add_graph(lenet, fake_img)</span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809193113.png" alt="image-20200809193109809" /></p>
 <h2 id="22-torchsummary"><a class="markdownIt-Anchor" href="#22-torchsummary"></a> 2.2 torchsummary</h2>
-<pre><code class="hljs python">summary(model, 
-        input_size, 
-        batch_size=<span class="hljs-number">-1</span>, 
-        device=<span class="hljs-string">&quot;cuda&quot;</span>)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">summary(model, </span><br><span class="line">        input_size, </span><br><span class="line">        batch_size=<span class="number">-1</span>, </span><br><span class="line">        device=<span class="string">&quot;cuda&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>功能：查看模型信息，便于调试</p>
 <ul>
 <li>model：pytorch模型</li>
@@ -912,318 +381,11 @@ writer.close()</code></pre>
 <p>device='cuda’有时候会报错</p>
 </blockquote>
 <p><strong>实验：</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> torchsummary <span class="hljs-keyword">import</span> summary
-
-print(summary(lenet, (<span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>), device=<span class="hljs-string">&quot;cpu&quot;</span>))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchsummary <span class="keyword">import</span> summary</span><br><span class="line"></span><br><span class="line">print(summary(lenet, (<span class="number">3</span>, <span class="number">32</span>, <span class="number">32</span>), device=<span class="string">&quot;cpu&quot;</span>))</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
-<pre><code class="hljs python">----------------------------------------------------------------
-        Layer (type)               Output Shape         Param <span class="hljs-comment">#</span>
-================================================================
-            Conv2d<span class="hljs-number">-1</span>            [<span class="hljs-number">-1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>]             <span class="hljs-number">456</span>
-            Conv2d<span class="hljs-number">-2</span>           [<span class="hljs-number">-1</span>, <span class="hljs-number">16</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>]           <span class="hljs-number">2</span>,<span class="hljs-number">416</span>
-            Linear<span class="hljs-number">-3</span>                  [<span class="hljs-number">-1</span>, <span class="hljs-number">120</span>]          <span class="hljs-number">48</span>,<span class="hljs-number">120</span>
-            Linear<span class="hljs-number">-4</span>                   [<span class="hljs-number">-1</span>, <span class="hljs-number">84</span>]          <span class="hljs-number">10</span>,<span class="hljs-number">164</span>
-            Linear<span class="hljs-number">-5</span>                    [<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>]             <span class="hljs-number">170</span>
-================================================================
-Total params: <span class="hljs-number">61</span>,<span class="hljs-number">326</span>
-Trainable params: <span class="hljs-number">61</span>,<span class="hljs-number">326</span>
-Non-trainable params: <span class="hljs-number">0</span>
-----------------------------------------------------------------
-Input size (MB): <span class="hljs-number">0.01</span>
-Forward/backward <span class="hljs-keyword">pass</span> size (MB): <span class="hljs-number">0.05</span>
-Params size (MB): <span class="hljs-number">0.23</span>
-Estimated Total Size (MB): <span class="hljs-number">0.30</span>
-----------------------------------------------------------------
-<span class="hljs-literal">None</span></code></pre>
-
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Pytorch/">Pytorch</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hook函数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/">
-                        <span class="hidden-mobile">学习率调整策略</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 6,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "tensorboard可视化&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
-
-
-
-
-
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------</span><br><span class="line">        Layer (type)               Output Shape         Param <span class="comment">#</span></span><br><span class="line">================================================================</span><br><span class="line">            Conv2d<span class="number">-1</span>            [<span class="number">-1</span>, <span class="number">6</span>, <span class="number">28</span>, <span class="number">28</span>]             <span class="number">456</span></span><br><span class="line">            Conv2d<span class="number">-2</span>           [<span class="number">-1</span>, <span class="number">16</span>, <span class="number">10</span>, <span class="number">10</span>]           <span class="number">2</span>,<span class="number">416</span></span><br><span class="line">            Linear<span class="number">-3</span>                  [<span class="number">-1</span>, <span class="number">120</span>]          <span class="number">48</span>,<span class="number">120</span></span><br><span class="line">            Linear<span class="number">-4</span>                   [<span class="number">-1</span>, <span class="number">84</span>]          <span class="number">10</span>,<span class="number">164</span></span><br><span class="line">            Linear<span class="number">-5</span>                    [<span class="number">-1</span>, <span class="number">2</span>]             <span class="number">170</span></span><br><span class="line">================================================================</span><br><span class="line">Total params: <span class="number">61</span>,<span class="number">326</span></span><br><span class="line">Trainable params: <span class="number">61</span>,<span class="number">326</span></span><br><span class="line">Non-trainable params: <span class="number">0</span></span><br><span class="line">----------------------------------------------------------------</span><br><span class="line">Input size (MB): <span class="number">0.01</span></span><br><span class="line">Forward/backward <span class="keyword">pass</span> size (MB): <span class="number">0.05</span></span><br><span class="line">Params size (MB): <span class="number">0.23</span></span><br><span class="line">Estimated Total Size (MB): <span class="number">0.30</span></span><br><span class="line">----------------------------------------------------------------</span><br><span class="line"><span class="literal">None</span></span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hook函数</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/05/Pytorch%E5%9F%BA%E7%A1%80/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学习率调整策略</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/" title="DataLoader与DataSet"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-21</div><div class="title">DataLoader与DataSet</div></div></a></div><div><a href="/2020/07/19/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="Pytorch离线安装教程"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-19</div><div class="title">Pytorch离线安装教程</div></div></a></div><div><a href="/2020/08/17/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/" title="GPU的使用"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-17</div><div class="title">GPU的使用</div></div></a></div><div><a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/" title="autograd"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-21</div><div class="title">autograd</div></div></a></div><div><a href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/" title="nn网络层-池化-线性-激活函数层"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-30</div><div class="title">nn网络层-池化-线性-激活函数层</div></div></a></div><div><a href="/2020/08/09/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/" title="Hook函数"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">Hook函数</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zihuan Qiu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zihuanqiu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-tensorboard%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text"> 1. TensorBoard简介与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%AE%89%E8%A3%85tensorboard"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.1 安装TensorBoard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E8%BF%90%E8%A1%8Ctensorboard"><span class="toc-number">1.2.</span> <span class="toc-text"> 1.2 运行TensorBoard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E7%95%8C%E9%9D%A2tensorboard"><span class="toc-number">1.3.</span> <span class="toc-text"> 1.3 界面TensorBoard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-tensorboard%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text"> 2. TensorBoard使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-summarywriter"><span class="toc-number">2.1.</span> <span class="toc-text"> 2.1 SummaryWriter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#211-add_scalar"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 2.1.1 add_scalar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#212-add_scalars"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 2.1.2 add_scalars</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#213-add_histogram"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 2.1.3 add_histogram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#214-%E5%AE%9E%E6%88%98%E4%B8%80-%E7%9B%91%E6%8E%A7loss-accuracy-weights-gradients"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 2.1.4 实战一： 监控loss, accuracy, weights, gradients</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#215-add_image"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 2.1.5 add_image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#216-torchvisionutilsmake_grid"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 2.1.6 torchvision.utils.make_grid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#217-%E5%AE%9E%E6%88%98%E4%BA%8C-%E5%8D%B7%E7%A7%AF%E6%A0%B8%E5%92%8C%E7%89%B9%E5%BE%81%E5%9B%BE%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">2.1.7.</span> <span class="toc-text"> 2.1.7 实战二 ：卷积核和特征图的可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#218-add_graph"><span class="toc-number">2.1.8.</span> <span class="toc-text"> 2.1.8  add_graph</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-torchsummary"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.2 torchsummary</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)"/></a><div class="content"><a class="title" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a><time datetime="2020-10-24T02:00:00.000Z" title="发表于 2020-10-24 10:00:00">2020-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用SSH连接远端服务器训练"/></a><div class="content"><a class="title" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练">使用SSH连接远端服务器训练</a><time datetime="2020-10-22T02:00:00.000Z" title="发表于 2020-10-22 10:00:00">2020-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贝叶斯决策"/></a><div class="content"><a class="title" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策">贝叶斯决策</a><time datetime="2020-10-10T02:00:00.000Z" title="发表于 2020-10-10 10:00:00">2020-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="语义分割中的self-attention变种模型"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型">语义分割中的self-attention变种模型</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="目标检测的常用指标（Pascal VOC与COCO）"/></a><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87%EF%BC%88Pascal%20VOC%E4%B8%8ECOCO%EF%BC%89/" title="目标检测的常用指标（Pascal VOC与COCO）">目标检测的常用指标（Pascal VOC与COCO）</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div></div></div></div></div></main><footer id="footer" style="background: FFFFFF"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>
