@@ -241,6 +241,60 @@ Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">SVM</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
+          
+          
+            
+          
+           SVM（线性模型）数学推导
+
+学习路线：先线性二分类解释清楚，再加入核方法扩展至非线性二分类
+ 几个重要的概念
+
+
+训练样本集
+(xi,yi)(\boldsymbol{x}_i,y_i)(xi​,yi​)，其中xi\boldsymbol{x_i}xi​为nnn维列向量，表示nnn维特征；yiy_iyi​为标签，当yi=+1y_i=+1yi​=+1时为正样本，yi=−1y_i=-1yi​=−1时为
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-21 17:17" pubdate>
+              2020-08-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
       </h1>
 
@@ -295,23 +349,22 @@ Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">SVM</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">PCA</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/SVM/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">
           
           
             
           
-           SVM（线性模型）数学推导
+           PCA
 
-学习路线：先线性二分类解释清楚，再加入核方法扩展至非线性二分类
- 几个重要的概念
+主成分分析（PCA，Principle Component Analysis）就是在寻找使方差最大的方向，并在该方向上投影。(通常方差越大被视为越重要，方差也常常被称为能量)
+Y=A(X−X‾)Y=A\left( X-\overline{X} \right)
+Y=A(X−X)
 
-
-训练样本集
-(xi,yi)(\boldsymbol{x}_i,y_i)(xi​,yi​)，其中xi\boldsymbol{x_i}xi​为nnn维列向量，表示nnn维特征；yiy_iyi​为标签，当yi=+1y_i=+1yi​=+1时为正样本，yi=−1y_i=-1yi​=−1时为
+YYY是PCA的输出，aaa是投影的方向矩阵，XXX是PCA的输入，X‾\overline{X}X是XXX的
         </a>
       </p>
 
@@ -371,59 +424,6 @@ P=TP+FPTP​
 
 召回率定义为：
 R=TPTP+FN
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-21 17:17" pubdate>
-              2020-08-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/">浙江大学机器学习网课笔记</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">PCA</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">
-          
-          
-            
-          
-           PCA
-
-主成分分析（PCA，Principle Component Analysis）就是在寻找使方差最大的方向，并在该方向上投影。(通常方差越大被视为越重要，方差也常常被称为能量)
-Y=A(X−X‾)Y=A\left( X-\overline{X} \right)
-Y=A(X−X)
-
-YYY是PCA的输出，aaa是投影的方向矩阵，XXX是PCA的输入，X‾\overline{X}X是XXX的
         </a>
       </p>
 
