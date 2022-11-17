@@ -192,117 +192,6 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">autograd</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/">
-          
-          
-            
-          
-           autograd—自动求导系统
- 1.  torch.autograd.backward
-torch.autograd.backward(tensors, 
-                        grad_tensors=None, 
-                        retain_graph=None, 
-                        create_g
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-21 11:00" pubdate>
-              2020-07-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">计算图与动态图机制</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/">
-          
-          
-            
-          
-           1. 计算图
- 1.1 用计算图表示：
-
-计算图是用来描述运算的有向无环图，计算图有两个主要元素：结点（Node）和边（Edge）
-结点表示数据，如向量，矩阵，张量，边表示运算，如加减乘除卷积等
-y=(x+w)∗(w+1)a=x+wb=w+1y=a∗by = (x+ w) * (w+1)\\
-
-a = x + w \\
-
-b = w + 1\\
-
-y = a * b
-y=(x+w)∗(w+1)a
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-21 10:00" pubdate>
-              2020-07-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Pytorch/">Pytorch</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
         <a href="/2020/07/21/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/">Python Numpy库</a>
       </h1>
 
@@ -420,6 +309,66 @@ t = torch.a
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/07/20/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">Python 标准库</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/20/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
+          
+          
+            
+          
+           Python标准库
+
+Python自身提供了比较丰富的生态，拿来即用，可极大的提高开发效率
+ 10.1 time库
+
+Python处理时间的标准库
+1、获取现在时间
+（1）time.localtime()  本地时间
+（2）time.gmtime()   UTC世界统一时间
+北京时间比时间统一时间UTC早8个小时
+import time
+
+t_local = time.localtime()
+t
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-20 10:00" pubdate>
+              2020-07-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/07/20/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/">Pytorch的Tensor</a>
       </h1>
 
@@ -472,66 +421,6 @@ device:张量所在设备，GPU/CPU，是加速的关键
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/07/20/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">Python 标准库</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/07/20/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/">
-          
-          
-            
-          
-           Python标准库
-
-Python自身提供了比较丰富的生态，拿来即用，可极大的提高开发效率
- 10.1 time库
-
-Python处理时间的标准库
-1、获取现在时间
-（1）time.localtime()  本地时间
-（2）time.gmtime()   UTC世界统一时间
-北京时间比时间统一时间UTC早8个小时
-import time
-
-t_local = time.localtime()
-t
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-07-20 10:00" pubdate>
-              2020-07-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Python/">Python</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
             
           </div>
         
@@ -748,6 +637,138 @@ with open(&quot;文件路径&quot;, &quot;打开模式&quot;, encoding = &quot;�
             <i class="iconfont icon-date"></i>
             <time datetime="2020-07-18 10:00" pubdate>
               2020-07-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/17/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/">Python 类——面向对象的编程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/17/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/">
+          
+          
+            
+          
+           类——面向对象的编程
+
+ 引子
+
+Why：面向对象更符合人类对客观世界的抽象和理解
+
+
+一切皆对象
+一只小狗，一把椅子，一张信用卡，一条巧克力。。。
+
+
+一切对象，都有自己内在的属性
+狗狗的品种、椅子的质地、信用卡的额度、巧克力的口味。。。
+
+
+一切行为，皆是对象的行为
+狗狗蹲下、椅子移动位置、刷信用卡、巧克力融化了。。。
+
+
+How：类是对象的载体
+不同年龄、肤色、品质的猫，每一只都是一个对象
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-17 10:00" pubdate>
+              2020-07-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/17/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">Python 函数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/17/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/">
+          
+          
+            
+          
+           函数
+
+ 4.1 函数的定义及调用
+
+ 4.1.1 为什么要用函数
+1、提高代码复用性——抽象出来，封装为函数
+2、将复杂的大问题分解成一系列小问题，分而治之——模块化设计的思想
+3、利于代码的维护和管理
+顺序式
+# 5的阶乘
+n = 5
+res = 1
+for i in range(1, n+1):
+    res *= i
+print(res)
+
+# 20的阶乘
+n = 20
+res = 1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-17 09:00" pubdate>
+              2020-07-17
             </time>
           </div>
         
