@@ -349,28 +349,22 @@ Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/">ROC曲线</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">PCA</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">
           
           
             
           
-           四个概率
-TPTPTP——将正样本预测为正（的概率）
-FNFNFN——将正样本预测为负（的概率）
-FPFPFP——将负样本预测为正（的概率）
-TNTNTN——将负样本预测为负（的概率）
-精确度定义为：
-P=TPTP+FPP=\frac{TP}{TP+FP}
-P=TP+FPTP​
+           PCA
 
-分母为所有判断为正的样本，PPP表示在所有被判断为正的样本中真正的正样本的概率
+主成分分析（PCA，Principle Component Analysis）就是在寻找使方差最大的方向，并在该方向上投影。(通常方差越大被视为越重要，方差也常常被称为能量)
+Y=A(X−X‾)Y=A\left( X-\overline{X} \right)
+Y=A(X−X)
 
-召回率定义为：
-R=TPTP+FN
+YYY是PCA的输出，aaa是投影的方向矩阵，XXX是PCA的输入，X‾\overline{X}X是XXX的
         </a>
       </p>
 
@@ -408,22 +402,28 @@ R=TPTP+FN
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">PCA</a>
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/">ROC曲线</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/PCA/">
+        <a href="/2020/08/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/">
           
           
             
           
-           PCA
+           四个概率
+TPTPTP——将正样本预测为正（的概率）
+FNFNFN——将正样本预测为负（的概率）
+FPFPFP——将负样本预测为正（的概率）
+TNTNTN——将负样本预测为负（的概率）
+精确度定义为：
+P=TPTP+FPP=\frac{TP}{TP+FP}
+P=TP+FPTP​
 
-主成分分析（PCA，Principle Component Analysis）就是在寻找使方差最大的方向，并在该方向上投影。(通常方差越大被视为越重要，方差也常常被称为能量)
-Y=A(X−X‾)Y=A\left( X-\overline{X} \right)
-Y=A(X−X)
+分母为所有判断为正的样本，PPP表示在所有被判断为正的样本中真正的正样本的概率
 
-YYY是PCA的输出，aaa是投影的方向矩阵，XXX是PCA的输入，X‾\overline{X}X是XXX的
+召回率定义为：
+R=TPTP+FN
         </a>
       </p>
 
