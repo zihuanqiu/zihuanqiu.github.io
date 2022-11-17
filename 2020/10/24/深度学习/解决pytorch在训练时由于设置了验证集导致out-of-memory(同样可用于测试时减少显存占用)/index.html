@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
-  <link rel="icon" type="image/png" href="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/bitbug_favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
+  <link rel="icon" type="image/png" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/bitbug_favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="zihuanqiu">
   <meta name="keywords" content="">
-  <title>深度学习调参宝典 - zihuan&#39;s Space</title>
+  <title>解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用) - zihuan&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200607042953.jpg') no-repeat center center;
+         style="background: url('https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607042953.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -176,8 +176,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-12-21 10:00" pubdate>
-      2020年12月21日 上午
+    <time datetime="2020-10-24 10:00" pubdate>
+      2020年10月24日 上午
     </time>
   </div>
 
@@ -212,21 +212,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">深度学习调参宝典</h1>
+            <h1 style="display: none">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年11月17日 下午
+                  本文最后更新于：2022年11月17日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="深度学习调参宝典"><a class="markdownIt-Anchor" href="#深度学习调参宝典"></a> 深度学习调参宝典</h1>
-<ol>
-<li>网络部分层的梯度很大，导致训练不收敛，问题可能是由于optimizer的参数组没包含该网络层</li>
-<li>使用pl的lr_finder时，不用设置传参，只需plmodule类内有self.learing_rate即可（名称要一样）。另外注意一定要注释掉自己的lr调整策略（或者直接注释自己写的optimizer_step函数）。并且lr_finder是直接改变optimizer的参数组的lr的，与optimizer的初始设置无关。不管各层设置时是不是倍数关系，lr_finder都会设置为同一个数。</li>
-<li></li>
-</ol>
+              <h1 id="解决pytorch在训练时由于设置了验证集导致out-of-memory同样可用于测试时减少显存占用"><a class="markdownIt-Anchor" href="#解决pytorch在训练时由于设置了验证集导致out-of-memory同样可用于测试时减少显存占用"></a> 解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</h1>
+<h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述:</h2>
+<p>最近一直在使用pytorch, 由于深度学习的网络往往需要设置验证集来验证模型是否稳定.</p>
+<p>我一直再做一个关于医学影像分割的课题,为了查看自己的模型是否稳定,于是设置了验证集.</p>
+<p>但是在运行的过程中,当程序执行到 validatioon时,显存立即上升,我可怜的显卡只有8GB显存,瞬间爆炸.</p>
+<p>怎么办呢?实验得做呀.于是找了不少方法,比如设置各个网络变量requires_grad=False,但是并不管用,显存依然爆炸.</p>
+<p>后来百度了一番,终于解决了显存爆炸的问题.</p>
+<h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案:</h2>
+<p>假设训练程序是这样的:</p>
+<blockquote>
+<p>for train_data, train_label in  train_dataloader:</p>
+<p>do</p>
+<p>​      trainning</p>
+<p>then</p>
+<p>for valid_data,valid_label in valid_dataloader:</p>
+<p>do</p>
+<p>​      validtion</p>
+</blockquote>
+<p>当程序执行到validation时,显存忽然上升,几乎是之前的两倍.</p>
+<p>只需要这样改:</p>
+<blockquote>
+<p>for train_data, train_label in train_dataloader:</p>
+<p>​    do</p>
+<p>​      trainning</p>
+<p>then</p>
+<p><strong>with torch.no_grad():</strong></p>
+<p>for valid_data,valid_label in valid_dataloader:</p>
+<p>​      do</p>
+<p>​        validtion</p>
+</blockquote>
+<p>当程序执行到validation时,显存将不再上升.问题得到解决.真的是非常简单.</p>
 
             </div>
             <hr>
@@ -236,7 +261,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
                     
                   </div>
                 
@@ -244,7 +269,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/">深度代码</a>
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81/">代码</a>
                     
                   </div>
                 
@@ -257,12 +282,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2020/11/15/%E8%AE%BA%E6%96%87%E7%AE%80%E8%AF%84/%E5%BC%B1%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">弱监督语义分割论文简评</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/24/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/%E6%A8%A1%E5%9D%97%E4%BB%A3%E7%A0%81%E6%94%B6%E9%9B%86/">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/">
+                        <span class="hidden-mobile">使用SSH连接远端服务器训练</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -427,7 +458,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "深度学习调参宝典&nbsp;",
+        "解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
