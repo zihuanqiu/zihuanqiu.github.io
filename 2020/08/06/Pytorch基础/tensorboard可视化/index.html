@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月20日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
@@ -224,7 +224,7 @@
               <h1 id="1-tensorboard简介与安装"><a class="markdownIt-Anchor" href="#1-tensorboard简介与安装"></a> 1. TensorBoard简介与安装</h1>
 <h2 id="11-安装tensorboard"><a class="markdownIt-Anchor" href="#11-安装tensorboard"></a> 1.1 安装TensorBoard</h2>
 <p>TensorBoard：TensorFlow中强大的可视化工具</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806224446.png" srcset="/img/loading.gif" alt="image-20200806224445463" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806224446.png" srcset="/img/loading.gif" alt="image-20200806224445463" /></p>
 <p>通过pip install future和pip install tensorboard安装tensorboard</p>
 <h2 id="12-运行tensorboard"><a class="markdownIt-Anchor" href="#12-运行tensorboard"></a> 1.2 运行TensorBoard</h2>
 <p><strong>实验代码：</strong></p>
@@ -244,16 +244,16 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_tensorboard&
                                              <span class="hljs-string">&quot;arctanx&quot;</span>: np.arctan(x)&#125;, x)
 writer.close()</code></pre>
 <p>运行后，会在py文件目录中生成一个run文件夹，每一次运行会在run文件夹中生成一个子文件夹。</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807150805.png" srcset="/img/loading.gif" alt="image-20200807150757596" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807150805.png" srcset="/img/loading.gif" alt="image-20200807150757596" style="zoom:80%;" />
 <p>然后在terminal中cd到run文件夹的根目录，输入<code>tensorboard --logdir=./runs</code>命令，就开始运行tensorboard了，在浏览器中可以查看。</p>
 <pre><code class="hljs livecodeserver">TensorFlow installation <span class="hljs-keyword">not</span> found - running <span class="hljs-keyword">with</span> reduced feature <span class="hljs-built_in">set</span>.
 <span class="hljs-keyword">or</span> pass <span class="hljs-comment">--bind_all</span>
 TensorBoard <span class="hljs-number">2.2</span><span class="hljs-number">.1</span> <span class="hljs-keyword">at</span> <span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">6006</span>/ (Press CTRL+C <span class="hljs-built_in">to</span> quit)</code></pre>
 <h2 id="13-界面tensorboard"><a class="markdownIt-Anchor" href="#13-界面tensorboard"></a> 1.3 界面TensorBoard</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806225638.png" srcset="/img/loading.gif" alt="image-20200806225425418" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806225644.png" srcset="/img/loading.gif" alt="image-20200806225500005" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806225641.png" srcset="/img/loading.gif" alt="image-20200806225633639" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806230720.png" srcset="/img/loading.gif" alt="image-20200806230716606" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225638.png" srcset="/img/loading.gif" alt="image-20200806225425418" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225644.png" srcset="/img/loading.gif" alt="image-20200806225500005" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806225641.png" srcset="/img/loading.gif" alt="image-20200806225633639" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806230720.png" srcset="/img/loading.gif" alt="image-20200806230716606" /></p>
 <blockquote>
 <p>平滑的作用在于，当曲线噪声非常大时，使用平滑我们可以看出大致的趋势（低通滤波？）</p>
 </blockquote>
@@ -301,15 +301,15 @@ writer.close()</code></pre>
 <ol>
 <li>
 <p>运行<code>writer = SummaryWriter()</code>，得到输出文件夹如下所示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807163512.png" srcset="/img/loading.gif" alt="image-20200807163509626" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807163512.png" srcset="/img/loading.gif" alt="image-20200807163509626" /></p>
 </li>
 <li>
 <p>运行<code>writer = SummaryWriter(log_dir=log_dir, comment='_scalars', filename_suffix=&quot;12345678&quot;)</code>，得到输出文件夹如下所示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807164948.png" srcset="/img/loading.gif" alt="image-20200807164947430" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807164948.png" srcset="/img/loading.gif" alt="image-20200807164947430" /></p>
 </li>
 <li>
 <p>运行<code>riter = SummaryWriter(comment='_scalars', filename_suffix=&quot;12345678&quot;)</code>，得到输出文件夹如下所示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807165128.png" srcset="/img/loading.gif" alt="image-20200807165126857" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807165128.png" srcset="/img/loading.gif" alt="image-20200807165126857" /></p>
 </li>
 </ol>
 <h3 id="211-add_scalar"><a class="markdownIt-Anchor" href="#211-add_scalar"></a> 2.1.1 add_scalar</h3>
@@ -331,7 +331,7 @@ x = range(<span class="hljs-number">100</span>)
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x:
     writer.add_scalar(<span class="hljs-string">&#x27;y=2x&#x27;</span>, i * <span class="hljs-number">2</span>, i)
 writer.close()</code></pre>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807170108.png" srcset="/img/loading.gif" alt="image-20200807170106483" style="zoom: 50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807170108.png" srcset="/img/loading.gif" alt="image-20200807170106483" style="zoom: 50%;" />
 <h3 id="212-add_scalars"><a class="markdownIt-Anchor" href="#212-add_scalars"></a> 2.1.2 add_scalars</h3>
 <pre><code class="hljs python">add_scalars(main_tag, 
             tag_scalar_dict, 
@@ -354,7 +354,7 @@ r = <span class="hljs-number">5</span>
 writer.close()
 <span class="hljs-comment"># This call adds three values to the same scalar plot with the tag</span>
 <span class="hljs-comment"># &#x27;run_14h&#x27; in TensorBoard&#x27;s scalar section.</span></code></pre>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807170503.png" srcset="/img/loading.gif" alt="image-20200807170501816" style="zoom: 50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807170503.png" srcset="/img/loading.gif" alt="image-20200807170501816" style="zoom: 50%;" />
 <h3 id="213-add_histogram"><a class="markdownIt-Anchor" href="#213-add_histogram"></a> 2.1.3 add_histogram</h3>
 <pre><code class="hljs python">add_histogram(tag, values, 
               global_step=<span class="hljs-literal">None</span>, 
@@ -407,36 +407,36 @@ writer.close()</code></pre>
 <ol>
 <li>matplot输出如下所示（得到两个figure）：</li>
 </ol>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807174331.png" srcset="/img/loading.gif" alt="image-20200807174329774" style="zoom:67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200807174452.png" srcset="/img/loading.gif" alt="image-20200807174451131" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807174331.png" srcset="/img/loading.gif" alt="image-20200807174329774" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200807174452.png" srcset="/img/loading.gif" alt="image-20200807174451131" style="zoom:67%;" />
 <blockquote>
 <p>plt.hist默认bin=10，即把直方图分成10个条。对于左图就是[0, 9], [10, 19], …, [90, 99]统计在一起，显然对于每一个bin都有10个数据落入其中；</p>
 <p>以下是bin=20的直方图：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808190424.png" srcset="/img/loading.gif" alt="image-20200808190423187" style="zoom:67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808190433.png" srcset="/img/loading.gif" alt="image-20200808190432190" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190424.png" srcset="/img/loading.gif" alt="image-20200808190423187" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190433.png" srcset="/img/loading.gif" alt="image-20200808190432190" style="zoom:67%;" />
 </blockquote>
 <p>打开tensorboard，可以看到下面的直方图。bins=‘tensorflow’（默认），这个bin的计算方式我目前还没看懂。均匀分布的直方图本来应该是平的，但是出现的高低起伏，说明bin是不等宽的，由内部函数动态分配。</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808190632.png" srcset="/img/loading.gif" alt="image-20200808190630473" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808190646.png" srcset="/img/loading.gif" alt="image-20200808190644191" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190632.png" srcset="/img/loading.gif" alt="image-20200808190630473" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190646.png" srcset="/img/loading.gif" alt="image-20200808190644191" style="zoom: 80%;" />
 <p>如果我们令bins=10：</p>
 <pre><code class="hljs python">writer.add_histogram(<span class="hljs-string">&#x27;distribution union&#x27;</span>, data_union, x, bins=<span class="hljs-number">10</span>)
 writer.add_histogram(<span class="hljs-string">&#x27;distribution normal&#x27;</span>, data_normal, x, bins=<span class="hljs-number">10</span>)</code></pre>
 <p>tensorboard得到下面直方图：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808190848.png" srcset="/img/loading.gif" alt="image-20200808190847039" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808190904.png" srcset="/img/loading.gif" alt="image-20200808190900011" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190848.png" srcset="/img/loading.gif" alt="image-20200808190847039" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808190904.png" srcset="/img/loading.gif" alt="image-20200808190900011" style="zoom: 80%;" />
 <p>我们可以发现，已经和我们用plt.hist输出的直方图很相似了，唯一还搞不懂的就是纵坐标的计算方式（居然是个小数，其次这个直方图还不是条形的，搞不懂）</p>
 <p>以下是bins=20的tensorboard直方图，可以看到随着bins的增加，曲线更加圆滑了（还是搞不懂这个图是怎么来的，直方图却不是条状）</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808191547.png" srcset="/img/loading.gif" alt="image-20200808191546038" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808191600.png" srcset="/img/loading.gif" alt="image-20200808191559457" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191547.png" srcset="/img/loading.gif" alt="image-20200808191546038" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191600.png" srcset="/img/loading.gif" alt="image-20200808191559457" style="zoom: 80%;" />
 <p>下面是bins=100的tensorboard直方图：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808191856.png" srcset="/img/loading.gif" alt="image-20200808191854291" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808191931.png" srcset="/img/loading.gif" alt="image-20200808191930137" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191856.png" srcset="/img/loading.gif" alt="image-20200808191854291" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808191931.png" srcset="/img/loading.gif" alt="image-20200808191930137" style="zoom: 80%;" />
 <p>通过以上实验可以发现，bins这个参数就调整精细程度，bins愈大得到的直方图越精细。此外随着bins提高，直方图的值（纵坐标）并没有变化，这也说明了tensorboard的直方图不是传统意义的直方图（传统直方图是统计在bin内数据的数量）</p>
 <p>另外，我还发现了，无论bins取多少，tensorboard这个直方图总是有30个采样点（下图展示了无论bins取多少，每个采样的位置都是一样的。可以看到第一个是点是-2.94，第二个点是-2.70）。这30个数据点的值加在一起就约等于样本总体的数据量。像下面这个标准正态分布的30个数据点的数加起来约等于1000。所以这个tensorboard的直方图还是有智慧的。我们不能把他看成传统意义的直方图，纵坐标应该看成在这个横坐标左右区域（比如第一个数据点横坐标是-2.94，第二个是-2.70，那么宽度就是0.24，所以第一个数据点纵坐标的意义是：在[-3.06, -2.82]）大概有3.33个数据点。</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808193748.png" srcset="/img/loading.gif" alt="image-20200808193745391" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808193755.png" srcset="/img/loading.gif" alt="image-20200808193658538" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808193833.png" srcset="/img/loading.gif" alt="image-20200808193832336" style="zoom: 80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808193857.png" srcset="/img/loading.gif" alt="image-20200808193856160" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193748.png" srcset="/img/loading.gif" alt="image-20200808193745391" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193755.png" srcset="/img/loading.gif" alt="image-20200808193658538" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193833.png" srcset="/img/loading.gif" alt="image-20200808193832336" style="zoom: 80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808193857.png" srcset="/img/loading.gif" alt="image-20200808193856160" style="zoom: 80%;" />
 <p><strong>所以我猜测：这个图的计算方法是先按给定的bins参数绘制出直方图，然后对直方图等间隔采样30个数据点，再将这些数据点用折线连接起来。数据点的值做了归一化处理，与bins的数量无关。</strong></p>
 <h3 id="214-实战一-监控loss-accuracy-weights-gradients"><a class="markdownIt-Anchor" href="#214-实战一-监控loss-accuracy-weights-gradients"></a> 2.1.4 实战一： 监控loss, accuracy, weights, gradients</h3>
 <p>下面是我们之前用Lenet做的的rmb二分类的tensorboard可视化的结果。</p>
@@ -608,24 +608,24 @@ plt.show()</code></pre>
 <ol>
 <li>
 <p>Accuracy</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808215557.png" srcset="/img/loading.gif" alt="image-20200808215556184" style="zoom:80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808215747.png" srcset="/img/loading.gif" alt="image-20200808215741753" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215557.png" srcset="/img/loading.gif" alt="image-20200808215556184" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215747.png" srcset="/img/loading.gif" alt="image-20200808215741753" style="zoom:67%;" />
 </li>
 <li>
 <p>Loss</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808215617.png" srcset="/img/loading.gif" alt="1" style="zoom:80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808215813.png" srcset="/img/loading.gif" alt="image-20200808215811301" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215617.png" srcset="/img/loading.gif" alt="1" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808215813.png" srcset="/img/loading.gif" alt="image-20200808215811301" style="zoom: 67%;" />
 </li>
 <li>
 <p>conv1.weight_data</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808220759.png" srcset="/img/loading.gif" alt="image-20200808220043248" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220759.png" srcset="/img/loading.gif" alt="image-20200808220043248" style="zoom:80%;" />
 <blockquote>
 <p>可以看见，conv1层的参数分布还是不错的，方差保持了一致性</p>
 </blockquote>
 </li>
 <li>
 <p>conv1.weight_grad</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808220804.png" srcset="/img/loading.gif" alt="image-20200808220124651" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220804.png" srcset="/img/loading.gif" alt="image-20200808220124651" style="zoom:80%;" />
 <blockquote>
 <p>conv1层的梯度也可以，在后面梯度变为0的原因有两种：</p>
 <ol>
@@ -637,11 +637,11 @@ plt.show()</code></pre>
 </li>
 <li>
 <p>fc3.weight_data</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808220806.png" srcset="/img/loading.gif" alt="image-20200808220309895" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220806.png" srcset="/img/loading.gif" alt="image-20200808220309895" style="zoom:80%;" />
 </li>
 <li>
 <p>fc3.weight_grad</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808220810.png" srcset="/img/loading.gif" alt="image-20200808220330517" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808220810.png" srcset="/img/loading.gif" alt="image-20200808220330517" style="zoom:80%;" />
 <blockquote>
 <p>最后一层网络层随着迭代的次数，梯度也逐渐变小，说明没有发生梯度回传障碍。</p>
 </blockquote>
@@ -699,27 +699,27 @@ fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-nu
 writer.add_image(<span class="hljs-string">&quot;fake_img&quot;</span>, fake_img, <span class="hljs-number">5</span>, dataformats=<span class="hljs-string">&quot;HWC&quot;</span>)
 
 writer.close()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808224947.png" srcset="/img/loading.gif" alt="image-20200808224844182" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224947.png" srcset="/img/loading.gif" alt="image-20200808224844182" /></p>
 <blockquote>
 <pre><code class="hljs angelscript">fake_img = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</code></pre>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值</p>
 </blockquote>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808224950.png" srcset="/img/loading.gif" alt="image-20200808224902181" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224950.png" srcset="/img/loading.gif" alt="image-20200808224902181" /></p>
 <blockquote>
 <pre><code class="hljs angelscript">fake_img = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</code></pre>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值；所以图片变成了像素值全为255的纯白照片。</p>
 </blockquote>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808224953.png" srcset="/img/loading.gif" alt="image-20200808224912239" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224953.png" srcset="/img/loading.gif" alt="image-20200808224912239" /></p>
 <blockquote>
 <pre><code class="hljs apache"><span class="hljs-attribute">fake_img</span> = torch.ones(<span class="hljs-number">3</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span>) * <span class="hljs-number">1</span>.<span class="hljs-number">1</span></code></pre>
 <p>数据不处于[0, 1]范围内，且全部数据值为1.1，所以显示出来是黑色的照片</p>
 </blockquote>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808224959.png" srcset="/img/loading.gif" alt="image-20200808224922284" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224959.png" srcset="/img/loading.gif" alt="image-20200808224922284" /></p>
 <blockquote>
 <pre><code class="hljs angelscript">fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</code></pre>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值；但只有一个通道，参数应写为dataformats=“HW”</p>
 </blockquote>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200808224932.png" srcset="/img/loading.gif" alt="image-20200808224929722" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200808224932.png" srcset="/img/loading.gif" alt="image-20200808224929722" /></p>
 <blockquote>
 <pre><code class="hljs angelscript">fake_img = torch.rand(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">3</span>)</code></pre>
 <p>数据处于[0, 1]范围内，所以会自动乘255转化为像素值；但通道是HWC，参数应写为dataformats=“HWC”</p>
@@ -771,7 +771,7 @@ data_batch, label_batch = next(iter(train_loader))  <span class="hljs-comment">#
 img_grid = vutils.make_grid(data_batch, nrow=<span class="hljs-number">4</span>)
 writer.close()</code></pre>
 <p>输出图像：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809155826.png" srcset="/img/loading.gif" alt="image-20200809155825299" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809155826.png" srcset="/img/loading.gif" alt="image-20200809155825299" /></p>
 <h3 id="217-实战二-卷积核和特征图的可视化"><a class="markdownIt-Anchor" href="#217-实战二-卷积核和特征图的可视化"></a> 2.1.7 实战二 ：卷积核和特征图的可视化</h3>
 <p>下面是我们对alexnet前两个卷积层的卷积核可视化的结果：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
@@ -812,8 +812,8 @@ writer.close()</code></pre>
 <pre><code class="hljs python"><span class="hljs-number">0</span>_convlayer shape:(<span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>)
 <span class="hljs-number">1</span>_convlayer shape:(<span class="hljs-number">192</span>, <span class="hljs-number">64</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>)</code></pre>
 <p>tensorboard的显示（同一行是一个卷积核的各个通道）：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809182113.png" srcset="/img/loading.gif" alt="image-20200809175151439" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809182110.png" srcset="/img/loading.gif" alt="image-20200809175212965" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182113.png" srcset="/img/loading.gif" alt="image-20200809175151439" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182110.png" srcset="/img/loading.gif" alt="image-20200809175212965" /></p>
 <p>下面是我们对alexnet第一个卷积层的输出特征图可视化的结果</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
@@ -860,7 +860,7 @@ fmap_0_grid = vutils.make_grid(fmap_0, normalize=<span class="hljs-literal">True
 writer.add_image(<span class="hljs-string">&#x27;feature map in conv0&#x27;</span>, fmap_0_grid)
 writer.close()</code></pre>
 <p>tensorboard的显示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809182103.png" srcset="/img/loading.gif" alt="image-20200809181742482" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809182103.png" srcset="/img/loading.gif" alt="image-20200809181742482" /></p>
 <h3 id="218-add_graph"><a class="markdownIt-Anchor" href="#218-add_graph"></a> 2.1.8  add_graph</h3>
 <pre><code class="hljs python">add_graph(model, 
           input_to_model=<span class="hljs-literal">None</span>, 
@@ -894,7 +894,7 @@ lenet = LeNet(classes=<span class="hljs-number">2</span>)
 writer.add_graph(lenet, fake_img)
 
 writer.close()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809193113.png" srcset="/img/loading.gif" alt="image-20200809193109809" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809193113.png" srcset="/img/loading.gif" alt="image-20200809193109809" /></p>
 <h2 id="22-torchsummary"><a class="markdownIt-Anchor" href="#22-torchsummary"></a> 2.2 torchsummary</h2>
 <pre><code class="hljs python">summary(model, 
         input_size, 

@@ -216,13 +216,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="1-数据迁移至gpu"><a class="markdownIt-Anchor" href="#1-数据迁移至gpu"></a> 1. 数据迁移至GPU</h1>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200817185341.png" srcset="/img/loading.gif" alt="image-20200817160011137" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817185341.png" srcset="/img/loading.gif" alt="image-20200817160011137" /></p>
 <p>to函数：转换数据类型/设备</p>
 <ol>
 <li>
@@ -318,7 +318,7 @@ print(<span class="hljs-string">&quot;output is_cuda: &#123;&#125;&quot;</span>.
 </ol>
 <blockquote>
 <p>推荐： os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”)</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200817175040.png" srcset="/img/loading.gif" alt="image-20200817175036479" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817175040.png" srcset="/img/loading.gif" alt="image-20200817175036479" /></p>
 <p>通过设置环境将逻辑gpu映射为物理gpu；os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”)这句话的意思就是设置逻辑gpu0、逻辑gpu1为物理gpu2，物理gpu3。</p>
 </blockquote>
 <h1 id="3-多gpu并行运算"><a class="markdownIt-Anchor" href="#3-多gpu并行运算"></a> 3. 多GPU并行运算</h1>

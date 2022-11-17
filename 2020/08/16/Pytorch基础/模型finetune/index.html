@@ -216,14 +216,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="1-迁移学习"><a class="markdownIt-Anchor" href="#1-迁移学习"></a> 1. 迁移学习</h1>
 <p>Transfer Learning：机器学习分支，研究源域(source domain)的知识如何应用到目标域(target domain)</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816091629.png" srcset="/img/loading.gif" alt="image-20200816091617288" style="zoom: 50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816091629.png" srcset="/img/loading.gif" alt="image-20200816091617288" style="zoom: 50%;" />
 <p>模型微调是属于迁移学习的，但迁移学习更多是研究目标域无标注的情况</p>
 <h1 id="2-模型微调"><a class="markdownIt-Anchor" href="#2-模型微调"></a> 2. 模型微调</h1>
 <p>模型微调步骤：</p>
@@ -617,7 +617,7 @@ plt.show()</code></pre>
 <span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1197</span> Acc:<span class="hljs-number">95</span>.<span class="hljs-number">62</span>%
 <span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">1991</span> Acc:<span class="hljs-number">93</span>.<span class="hljs-number">46</span>%</code></pre>
 <p>25个epoch之后，在验证集上的准确率达到了93.46%</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816101616.png" srcset="/img/loading.gif" alt="image-20200816101614963" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816101616.png" srcset="/img/loading.gif" alt="image-20200816101614963" /></p>
 </li>
 <li>
 <p>选择flag_1 = 1，flag_2 = 0，冻结网络参数，只训练最后一个(in=512, out=2)的全连接层：</p>
@@ -673,7 +673,7 @@ Valid:	 Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025
 Training:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.2133</span> Acc:<span class="hljs-number">92.50</span>%
 Valid:	 Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.2063</span> Acc:<span class="hljs-number">94.77</span>%</code></pre>
 <p>25个epoch之后，在验证集上的准确率达到了94.77%</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816102144.png" srcset="/img/loading.gif" alt="image-20200816102142913" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816102144.png" srcset="/img/loading.gif" alt="image-20200816102142913" /></p>
 </li>
 <li>
 <p>选择flag_1 = 0，flag_2 =1，对非最后一层fc的参数使用小学习率，对最后一层fc的参数使用大学习率</p>
@@ -729,7 +729,7 @@ Valid:	 Epoch[<span class="hljs-number">023</span>/<span class="hljs-number">025
 Training:Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">016</span>] Loss: <span class="hljs-number">0.1505</span> Acc:<span class="hljs-number">95.00</span>%
 Valid:	 Epoch[<span class="hljs-number">024</span>/<span class="hljs-number">025</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.1963</span> Acc:<span class="hljs-number">95.42</span>%</code></pre>
 <p>25个epoch之后，在验证集上的准确率达到了95.42%</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816105210.png" srcset="/img/loading.gif" alt="image-20200816105209289" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816105210.png" srcset="/img/loading.gif" alt="image-20200816105209289" /></p>
 </li>
 </ol>
 

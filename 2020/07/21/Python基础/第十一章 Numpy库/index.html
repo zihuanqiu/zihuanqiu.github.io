@@ -216,15 +216,15 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="numpy库"><a class="markdownIt-Anchor" href="#numpy库"></a> Numpy库</h1>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165335.png" srcset="/img/loading.gif" alt="image-20200714165326989" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png" srcset="/img/loading.gif" alt="image-20200714165326989" /></p>
 <h2 id="111-为什么要用numpy"><a class="markdownIt-Anchor" href="#111-为什么要用numpy"></a> 11.1 为什么要用Numpy</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170121.png" srcset="/img/loading.gif" alt="image-20200714170119393" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170121.png" srcset="/img/loading.gif" alt="image-20200714170119393" /></p>
 <h3 id="1111-低效的python-for循环"><a class="markdownIt-Anchor" href="#1111-低效的python-for循环"></a> 11.1.1  低效的Python for循环</h3>
 <p>【例】 求100万个数的倒数</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_reciprocals</span>(<span class="hljs-params">values</span>):</span>
@@ -261,7 +261,7 @@ values = np.arange(<span class="hljs-number">1</span>, <span class="hljs-number"
 <p>如：  1、两个向量的点乘</p>
 <p>    2、矩阵乘法</p>
 <h2 id="112-numpy数组的创建"><a class="markdownIt-Anchor" href="#112-numpy数组的创建"></a> 11.2 Numpy数组的创建</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170133.png" srcset="/img/loading.gif" alt="image-20200714170131042" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170133.png" srcset="/img/loading.gif" alt="image-20200714170131042" /></p>
 <h3 id="1121-从列表开始创建"><a class="markdownIt-Anchor" href="#1121-从列表开始创建"></a> 11.2.1 从列表开始创建</h3>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
@@ -408,7 +408,7 @@ np.random.choice(x, size=(<span class="hljs-number">4</span>, <span class="hljs-
        [3, 4, 2]])
 </code></pre>
 <h2 id="113-numpy数组的性质"><a class="markdownIt-Anchor" href="#113-numpy数组的性质"></a> 11.3 Numpy数组的性质</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170141.png" srcset="/img/loading.gif" alt="image-20200714170140446" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170141.png" srcset="/img/loading.gif" alt="image-20200714170140446" /></p>
 <h3 id="1131-数组的属性"><a class="markdownIt-Anchor" href="#1131-数组的属性"></a> 11.3.1 数组的属性</h3>
 <pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))
 x</code></pre>
@@ -834,7 +834,7 @@ lower:
  [[21 22 23 24 25]]
 </code></pre>
 <h2 id="114-numpy四大运算"><a class="markdownIt-Anchor" href="#114-numpy四大运算"></a> 11.4 Numpy四大运算</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170158.png" srcset="/img/loading.gif" alt="image-20200714170156830" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170158.png" srcset="/img/loading.gif" alt="image-20200714170156830" /></p>
 <h3 id="1141-向量化运算"><a class="markdownIt-Anchor" href="#1141-向量化运算"></a> 11.4.1 向量化运算</h3>
 <p><strong>1、与数字的加减乘除等</strong></p>
 <pre><code class="hljs python">x1 = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)
@@ -978,7 +978,7 @@ x</code></pre>
 <pre><code class="hljs python">x+<span class="hljs-number">5</span></code></pre>
 <pre><code>array([[5, 6, 7]])
 </code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165535.png" srcset="/img/loading.gif" alt="image-20200714165533041" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165535.png" srcset="/img/loading.gif" alt="image-20200714165533041" /></p>
 <p><strong>规则</strong></p>
 <p>如果两个数组的形状在维度上不匹配</p>
 <p>那么数组的形式会沿着维度为1的维度进行扩展以匹配另一个数组的形状。</p>
@@ -997,7 +997,7 @@ x2</code></pre>
        [1., 2., 3.],
        [1., 2., 3.]])
 </code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170011.png" srcset="/img/loading.gif" alt="image-20200714170009935" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170011.png" srcset="/img/loading.gif" alt="image-20200714170009935" /></p>
 <pre><code class="hljs python">x3 = np.logspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, base=<span class="hljs-number">2</span>).reshape(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)
 x3</code></pre>
 <pre><code>array([[   2.,    4.,    8.,   16.,   32.],
@@ -1026,7 +1026,7 @@ x6</code></pre>
        [1, 2, 3],
        [2, 3, 4]])
 </code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714165921.png" srcset="/img/loading.gif" alt="image-20200714165920329" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165921.png" srcset="/img/loading.gif" alt="image-20200714165920329" /></p>
 <h3 id="1144-比较运算和掩码"><a class="markdownIt-Anchor" href="#1144-比较运算和掩码"></a> 11.4.4 比较运算和掩码</h3>
 <p><strong>1、比较运算</strong></p>
 <pre><code class="hljs python">x1 = np.random.randint(<span class="hljs-number">100</span>, size=(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>))
@@ -1202,7 +1202,7 @@ x[row, col]               <span class="hljs-comment"># x(0, 1) x(1, 3) x(2, 0)</
        [ 9, 11,  8]])
 </code></pre>
 <h2 id="115-其他numpy通用函数"><a class="markdownIt-Anchor" href="#115-其他numpy通用函数"></a> 11.5 其他Numpy通用函数</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200714170209.png" srcset="/img/loading.gif" alt="image-20200714170208060" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170209.png" srcset="/img/loading.gif" alt="image-20200714170208060" /></p>
 <h3 id="1151-数值排序"><a class="markdownIt-Anchor" href="#1151-数值排序"></a> 11.5.1  数值排序</h3>
 <pre><code class="hljs python">x = np.random.randint(<span class="hljs-number">20</span>, <span class="hljs-number">50</span>, size=<span class="hljs-number">10</span>)
 x</code></pre>

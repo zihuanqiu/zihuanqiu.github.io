@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月30日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
@@ -298,7 +298,7 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200830203247.png" srcset="/img/loading.gif" alt="image-20200830203244614" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200830203247.png" srcset="/img/loading.gif" alt="image-20200830203244614" /></p>
 <p>每隔step_size=50个epoch，学习率会将为原来的gamma=0.1倍。</p>
 <h2 id="22-multisteplr"><a class="markdownIt-Anchor" href="#22-multisteplr"></a> 2.2 MultiStepLR</h2>
 <pre><code class="hljs python">torch.optim.lr_scheduler.MultiStepLR(optimizer, 
@@ -348,7 +348,7 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200830204111.png" srcset="/img/loading.gif" alt="image-20200830204109334" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200830204111.png" srcset="/img/loading.gif" alt="image-20200830204109334" /></p>
 <p>每当epoch达到milestones时，学习率会将为原来的gamma=0.1倍。</p>
 <h2 id="23-exponentiallr"><a class="markdownIt-Anchor" href="#23-exponentiallr"></a> 2.3 ExponentialLR</h2>
 <pre><code class="hljs python">torch.optim.lr_scheduler.ExponentialLR(optimizer, 
@@ -396,7 +396,7 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806214219.png" srcset="/img/loading.gif" alt="image-20200806141832412" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806214219.png" srcset="/img/loading.gif" alt="image-20200806141832412" /></p>
 <p>每次epoch都会调整学习率</p>
 <h2 id="24-cosineannealinglr"><a class="markdownIt-Anchor" href="#24-cosineannealinglr"></a> 2.4 CosineAnnealingLR</h2>
 <pre><code class="hljs python">torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, 
@@ -445,7 +445,7 @@ plt.xlabel(<span class="hljs-string">&quot;Epoch&quot;</span>)
 plt.ylabel(<span class="hljs-string">&quot;Learning rate&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200830204648.png" srcset="/img/loading.gif" alt="image-20200830204646962" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200830204648.png" srcset="/img/loading.gif" alt="image-20200830204646962" /></p>
 <h2 id="25-reducelronplateau"><a class="markdownIt-Anchor" href="#25-reducelronplateau"></a> 2.5 ReduceLRonPlateau</h2>
 <pre><code class="hljs python">torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 
                                            mode=<span class="hljs-string">&#x27;min&#x27;</span>, 
@@ -572,7 +572,7 @@ plt.ylabel(<span class="hljs-string">&quot;Learning Rate&quot;</span>)
 plt.title(<span class="hljs-string">&quot;LambdaLR&quot;</span>)
 plt.legend()
 plt.show()</code></pre>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200806213540.png" srcset="/img/loading.gif" alt="image-20200806213531952" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200806213540.png" srcset="/img/loading.gif" alt="image-20200806213531952" /></p>
 <p>可以看到两组参数的学习率遵循了不同的更新方法。</p>
 <h1 id="3-学习率调整小结"><a class="markdownIt-Anchor" href="#3-学习率调整小结"></a> 3. 学习率调整小结</h1>
 <p>学习率调整小结</p>
@@ -593,8 +593,8 @@ plt.show()</code></pre>
 <li>搜索最大学习率： 《Cyclical Learning Rates for Training Neural<br />
 Networks》</li>
 </ol>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171209.png" srcset="/img/loading.gif" alt="image-20200805171206930" /></p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200805171212.png" srcset="/img/loading.gif" alt="image-20200805171210988" style="zoom:80%;" />
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200805171209.png" srcset="/img/loading.gif" alt="image-20200805171206930" /></p>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200805171212.png" srcset="/img/loading.gif" alt="image-20200805171210988" style="zoom:80%;" />
 
             </div>
             <hr>

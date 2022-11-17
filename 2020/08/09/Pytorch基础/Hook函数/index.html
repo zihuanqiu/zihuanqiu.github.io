@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
@@ -232,7 +232,7 @@
 </ol>
 <p>关于torch.nn.Module的hook函数，我们可以在module.py看到是怎么执行的。对于一个nn.module类，在调用时都会进入<code>__call__</code>函数</p>
 <p>可以看到，<code>__call__</code>函数是分为四个部分的，依次执行顺序是register_forward_pre_hook，forward，forward_hook，backward_hook。根据需要hook函数执行的位置，我们可以选择不同位置进行hook注册。</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809225314.png" srcset="/img/loading.gif" alt="image-20200809225312341" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809225314.png" srcset="/img/loading.gif" alt="image-20200809225312341" /></p>
 <h2 id="11-torchtensorregister_hook"><a class="markdownIt-Anchor" href="#11-torchtensorregister_hook"></a> 1.1 torch.Tensor.register_hook</h2>
 <pre><code class="hljs python">torch.Tensor.register_hook(hook)</code></pre>
 <p>功能：注册一个Tensor反向传播的hook函数</p>
@@ -241,7 +241,7 @@
 <p>hook函数仅一个输入参数（张量的梯度），可以定义一些对参数梯度的操作。</p>
 <p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
 <p><strong>实验：</strong></p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809202430.png" srcset="/img/loading.gif" alt="image-20200809202429113" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809202430.png" srcset="/img/loading.gif" alt="image-20200809202429113" style="zoom:67%;" />
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
 <span class="hljs-keyword">from</span> tools.common_tools <span class="hljs-keyword">import</span> set_seed
@@ -353,7 +353,7 @@ output = net(fake_img)
 print(<span class="hljs-string">&quot;feature maps shape: &#123;&#125;\noutput value: &#123;&#125;\n&quot;</span>.format(fmap_block[<span class="hljs-number">0</span>].shape, fmap_block[<span class="hljs-number">0</span>]))
 print(<span class="hljs-string">&quot;input shape: &#123;&#125;\ninput value: &#123;&#125;&quot;</span>.format(input_block[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape, input_block[<span class="hljs-number">0</span>]))</code></pre>
 <p>可视化这个网络的输入和卷积核参数如下所示：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200809215221.png" srcset="/img/loading.gif" alt="image-20200809215220453" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809215221.png" srcset="/img/loading.gif" alt="image-20200809215220453" /></p>
 <p>由于我们是对net.conv1注册的hook函数（<code>net.conv1.register_forward_hook(forward_hook)</code>），因此在运行到net.conv1的forward()函数时，会自动调用hook函数</p>
 <p>print输出conv1的输入和输出如下所示：</p>
 <pre><code class="hljs python">feature maps shape: torch.Size([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>])
@@ -552,10 +552,10 @@ output = alexnet(img_tensor)
     fmap_grid = vutils.make_grid(fmap, normalize=<span class="hljs-literal">True</span>, scale_each=<span class="hljs-literal">True</span>, nrow=nrow)
     writer.add_image(<span class="hljs-string">&#x27;feature map in &#123;&#125;&#x27;</span>.format(layer_name), fmap_grid, global_step=<span class="hljs-number">322</span>)</code></pre>
 <p>tensorboard可视化特征图的效果如下：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013157.png" srcset="/img/loading.gif" alt="image-20200810013148726" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013200.png" srcset="/img/loading.gif" alt="image-20200810013158604" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013211.png" srcset="/img/loading.gif" alt="image-20200810013210146" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200810013222.png" srcset="/img/loading.gif" alt="image-20200810013220562" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013157.png" srcset="/img/loading.gif" alt="image-20200810013148726" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013200.png" srcset="/img/loading.gif" alt="image-20200810013158604" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013211.png" srcset="/img/loading.gif" alt="image-20200810013210146" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013222.png" srcset="/img/loading.gif" alt="image-20200810013220562" /></p>
 
             </div>
             <hr>

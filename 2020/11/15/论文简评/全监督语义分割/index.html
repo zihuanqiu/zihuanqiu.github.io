@@ -216,22 +216,22 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年11月15日 下午
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="2020年"><a class="markdownIt-Anchor" href="#2020年"></a> 2020年</h1>
 <h2 id="context-prior-for-scene-segmentationcvpr2020"><a class="markdownIt-Anchor" href="#context-prior-for-scene-segmentationcvpr2020"></a> Context Prior for Scene Segmentation——CVPR2020</h2>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115144936.png" srcset="/img/loading.gif" alt="image-20201115144934131" /></p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115150429.png" srcset="/img/loading.gif" alt="image-20201115150350027" style="zoom: 33%;" />
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201115144936.png" srcset="/img/loading.gif" alt="image-20201115144934131" /></p>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201115150429.png" srcset="/img/loading.gif" alt="image-20201115150350027" style="zoom: 33%;" />
 <p>文章核心模块就两个：Aggregation模块和Context Prior Map。</p>
 <p>​	Aggregation模块就是一个上下文信息提取器，类似于ASPP和PPM的作用——捕捉空间位置更远的像素的依赖关系，或者说增加模型的感受域。</p>
 <p>​	Context Prior Map是比较新颖的模块，其实就是基于注意力机制改造过来的。作者发现无论是基于空间金字塔或者是注意力的方法，都没有明确约束模型去学习同类和不同类的关系，而是让模型通过降低loss自动学习到一些关系，当然其中有正确的也有不正确的。因此，作者想要人为约束模型去学习类内和类间的关系，于是模仿注意力机制弄了一张称为亲和图（Affinity Map）的东西去监督模型的中Context Prior Map的训练。实际上可以理解为，作者弄了一个注意力机制，但是又不想他胡来，想告诉他应该学习什么，于是弄了一张和注意力图同尺寸的亲和图去监督Context Prior Map的训练，那么实际上Context Prior Map也就是注意力模块。但是这里作者遇到的问题就是，人为很难规定像素点之间的相关性，只能粗劣的分类为是同一类和不是同一类，于是作者根据groundtruth弄出来的亲和图是一张二值图，只有类间和类内的信息，也就是说这个注意力机制只能学习到很粗浅的信息。总之，实验结果看来还是有一些用的。</p>
 <p>​	我的思考是，这里的注意力机制被强迫学习了二值信息，是否可以学习到一种更好的注意力，难度在于如何人为定义怎么样的注意力图是更好的。或者说我们在二值注意力的基础上加上普通的注意力，但又希望普通的注意力能受到这个二值注意力的一些影响而不至于和普通的完全一样。</p>
 <h2 id="strip-pooling-rethinking-spatial-pooling-for-scene-parsingcvpr2020"><a class="markdownIt-Anchor" href="#strip-pooling-rethinking-spatial-pooling-for-scene-parsingcvpr2020"></a> Strip Pooling: Rethinking Spatial Pooling for Scene Parsing——CVPR2020</h2>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115151002.png" srcset="/img/loading.gif" alt="image-20201115151001444" style="zoom:50%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20201115152935.png" srcset="/img/loading.gif" alt="image-20201115152933791" style="zoom: 50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201115151002.png" srcset="/img/loading.gif" alt="image-20201115151001444" style="zoom:50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201115152935.png" srcset="/img/loading.gif" alt="image-20201115152933791" style="zoom: 50%;" />
 <p>这篇论文是讲池化方法创新的，引入了条形池化的概念。主要创新就是两个地方，SP模块和MPM模块。</p>
 <p>​	SP模块就是一个条形池化，并且使用的位置是骨干网络。以往的池化都是方形的，这里用了条形池化，横着池化和竖着池化然后组合一下就行了。SP模块并没有部署在骨干网络的所有位置，而是每一级的最后和最后一级的全部位置。</p>
 <p>​	MPM模块包含两个支路，上面的是短距离模块，和普通的PPM区别不大，也是方形池，就是参数少了一些，结构简单了一些。下面的是长距离模块，使用条形池化捕捉长距离的关系。MPM模块的位置是在整个网络的头部，并且重复了两次。</p>
@@ -266,6 +266,12 @@
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/11/24/%E6%B7%B1%E5%BA%A6%E4%BB%A3%E7%A0%81/%E6%A8%A1%E5%9D%97%E4%BB%A3%E7%A0%81%E6%94%B6%E9%9B%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

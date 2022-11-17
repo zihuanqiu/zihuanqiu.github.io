@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
@@ -336,8 +336,8 @@ torch.save(net_state_dict, path_state_dict)</code></pre>
          [<span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>, <span class="hljs-number">20191104.</span>]]],
        grad_fn=&lt;SelectBackward&gt;)</code></pre>
 <p>保存为如下两个文件：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816001131.png" srcset="/img/loading.gif" alt="image-20200816001104430" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816001128.png" srcset="/img/loading.gif" alt="image-20200816001120505" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816001131.png" srcset="/img/loading.gif" alt="image-20200816001104430" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816001128.png" srcset="/img/loading.gif" alt="image-20200816001120505" /></p>
 <h1 id="3-pytorch中模型的加载"><a class="markdownIt-Anchor" href="#3-pytorch中模型的加载"></a> 3. PyTorch中模型的加载</h1>
 <h2 id="31-方法一加载整个module"><a class="markdownIt-Anchor" href="#31-方法一加载整个module"></a> 3.1 方法一：加载整个Module</h2>
 <p><strong>实验：</strong></p>
@@ -599,7 +599,7 @@ Training:Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">01
 Valid:	 Epoch[<span class="hljs-number">005</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">95.62</span>%
 Training:Epoch[<span class="hljs-number">006</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0102</span> Acc:<span class="hljs-number">100.00</span>%
 训练意外中断...</code></pre>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816005402.png" srcset="/img/loading.gif" alt="image-20200816005401148" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816005402.png" srcset="/img/loading.gif" alt="image-20200816005401148" style="zoom:67%;" />
 <p>checkpoints的设计如下，checkpoint_interval = 5，所以我们保存了Epoch=5的数据</p>
 <pre><code class="hljs pgsql"><span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % checkpoint_interval == <span class="hljs-number">0</span>:
 
@@ -789,7 +789,7 @@ Training:Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">01
 Valid:	 Epoch[<span class="hljs-number">008</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">100.00</span>%
 Training:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0.0004</span> Acc:<span class="hljs-number">100.00</span>%
 Valid:	 Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0.0000</span> Acc:<span class="hljs-number">100.00</span>%</code></pre>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200816010441.png" srcset="/img/loading.gif" alt="image-20200816010440776" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200816010441.png" srcset="/img/loading.gif" alt="image-20200816010440776" style="zoom:67%;" />
 <p>断点加载设置如下</p>
 <pre><code class="hljs python">path_checkpoint = <span class="hljs-string">&quot;./checkpoint_4_epoch.pkl&quot;</span>
 checkpoint = torch.load(path_checkpoint)

@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月21日 晚上
+                  本文最后更新于：2022年11月17日 下午
                 
               </p>
             
@@ -227,7 +227,7 @@
 <p>偏差度量了学习算法的期望预测与真实结果的偏离程度，即刻画了<strong>学习算法本身的拟合能力</strong></p>
 <p>方差度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了<strong>数据扰动所造成的影响</strong></p>
 <p>噪声则表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812165405.png" srcset="/img/loading.gif" alt="image-20200812165355822" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812165405.png" srcset="/img/loading.gif" alt="image-20200812165355822" /></p>
 <p>高偏差：模型不够复杂，拟合能力不足（欠拟合）</p>
 <p>高方差：泛化能力不足（过拟合）</p>
 <p><strong>正则化就是增强模型泛化能力的方法</strong></p>
@@ -353,16 +353,16 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;_test_tensorboard
         plt.show()
         plt.close()</code></pre>
 <p>matplotlib输出结果：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173515.png" srcset="/img/loading.gif" alt="image-20200812173513043" style="zoom: 67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173532.png" srcset="/img/loading.gif" alt="image-20200812173530726" style="zoom: 67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173545.png" srcset="/img/loading.gif" alt="image-20200812173544115" style="zoom: 67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173559.png" srcset="/img/loading.gif" alt="image-20200812173557852" style="zoom: 67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812173613.png" srcset="/img/loading.gif" alt="image-20200812173612676" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812173515.png" srcset="/img/loading.gif" alt="image-20200812173513043" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812173532.png" srcset="/img/loading.gif" alt="image-20200812173530726" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812173545.png" srcset="/img/loading.gif" alt="image-20200812173544115" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812173559.png" srcset="/img/loading.gif" alt="image-20200812173557852" style="zoom: 67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812173613.png" srcset="/img/loading.gif" alt="image-20200812173612676" style="zoom: 67%;" />
 <p>可以看到，L2正则化有效防止了过拟合的发生，提高了模型的泛化能力。</p>
 <p>下面是tensorboard的可视化结果：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812174958.png" srcset="/img/loading.gif" alt="image-20200812174956565" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812174958.png" srcset="/img/loading.gif" alt="image-20200812174956565" style="zoom:80%;" />
 <p>上面是不带weight decay的参数可视化，可见随着迭代增加，参数还是分布在[-1, 1]的范围中。</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812175111.png" srcset="/img/loading.gif" alt="image-20200812175110363" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812175111.png" srcset="/img/loading.gif" alt="image-20200812175110363" style="zoom:80%;" />
 <p>上面是带weight decay的参数可视化，可见随着迭代增加，参数的尺度逐渐缩小，最终分布在很小的范围内，符合weight decay的含义。</p>
 <h1 id="2-dropout正则化"><a class="markdownIt-Anchor" href="#2-dropout正则化"></a> 2. Dropout正则化</h1>
 <pre><code class="hljs python">torch.nn.Dropout(p=<span class="hljs-number">0.5</span>, inplace=<span class="hljs-literal">False</span>)</code></pre>
@@ -373,7 +373,7 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;_test_tensorboard
 <li><strong>inplace</strong> – If set to <code>True</code>, will do this operation in-place. Default: <code>False</code></li>
 </ul>
 <p>实现细节：训练时权重均乘以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{1-p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> ，即除以1-p</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812181246.png" srcset="/img/loading.gif" alt="image-20200812181242198" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812181246.png" srcset="/img/loading.gif" alt="image-20200812181242198" /></p>
 <p>Dropout方法通过对神经网络的神经元按一定概率失活（每一次训练迭代，即前向传播和反向传播都按一定概率抛弃一些神经元），这样就可以减轻模型对某一个神经元的依赖性，也可以防止神经网络训练不充分的问题（即接收梯度更新的总是那几个，而其他神经元几乎没有变化）。</p>
 <p>随机：dropout probability<br />
 失活：weight = 0</p>
@@ -494,14 +494,14 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;_test_tensorboard
         net_prob_0.train()  <span class="hljs-comment"># 测试结束，即将进入下一轮训练，得打开train，这样所有神经元会按概率失活，并且权值会除以1-p</span>
         net_prob_05.train()  <span class="hljs-comment"># 总的来说，测试时，计算正确率和loss需要打开eval，测试结束回到训练需要打开train</span></code></pre>
 <p>matplotlib输出：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184041.png" srcset="/img/loading.gif" alt="image-20200812184039695" style="zoom:67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184106.png" srcset="/img/loading.gif" alt="image-20200812184103864" style="zoom:67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184122.png" srcset="/img/loading.gif" alt="image-20200812184120682" style="zoom:67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184137.png" srcset="/img/loading.gif" alt="image-20200812184136408" style="zoom:67%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812184159.png" srcset="/img/loading.gif" alt="image-20200812184158353" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812184041.png" srcset="/img/loading.gif" alt="image-20200812184039695" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812184106.png" srcset="/img/loading.gif" alt="image-20200812184103864" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812184122.png" srcset="/img/loading.gif" alt="image-20200812184120682" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812184137.png" srcset="/img/loading.gif" alt="image-20200812184136408" style="zoom:67%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812184159.png" srcset="/img/loading.gif" alt="image-20200812184158353" style="zoom:67%;" />
 <p>以下是tensorboard可视化结果：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812185115.png" srcset="/img/loading.gif" alt="image-20200812185111496" style="zoom:80%;" />
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812185129.png" srcset="/img/loading.gif" alt="image-20200812185128759" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812185115.png" srcset="/img/loading.gif" alt="image-20200812185111496" style="zoom:80%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812185129.png" srcset="/img/loading.gif" alt="image-20200812185128759" style="zoom:80%;" />
 <p>可以看到，用了dropout之后参数的尺度会比较小，分布比较集中，这也是泛化能力强的特征。</p>
 <h1 id="3-batch-normalization正则化"><a class="markdownIt-Anchor" href="#3-batch-normalization正则化"></a> 3. Batch Normalization正则化</h1>
 <p>Batch Normalization：批标准化<br />
@@ -517,7 +517,7 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;_test_tensorboard
 </ol>
 <p>参考文献：《 Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》</p>
 <p>计算方式：</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812191638.png" srcset="/img/loading.gif" alt="image-20200812191621492" style="zoom: 33%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812191638.png" srcset="/img/loading.gif" alt="image-20200812191621492" style="zoom: 33%;" />
 <p>这个算法非常简单，对于迭代输入的mini-batch数据<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">B</mi></mrow><annotation encoding="application/x-tex">\mathcal{B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.03041em;">B</span></span></span></span></span>（也就是dataloader一次迭代产生的数据）计算它们的样本均值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>μ</mi><mi mathvariant="script">B</mi></msub></mrow><annotation encoding="application/x-tex">\mu_{\mathcal{B}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.03041em;">B</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和样本方差<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>σ</mi><mi mathvariant="script">B</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">\sigma_{\mathcal{B}}^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.089439em;vertical-align:-0.275331em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.424669em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.03041em;">B</span></span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.275331em;"><span></span></span></span></span></span></span></span></span></span>，然后对输入数据<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">B</mi></mrow><annotation encoding="application/x-tex">\mathcal{B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.03041em;">B</span></span></span></span></span>做标准化得到标准化的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>x</mi><mo stretchy="true">^</mo></mover><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\widehat{x}_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8205600000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.67056em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span class="svg-align" style="width:calc(100% - 0.05556em);margin-left:0.05556em;top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.24em;"><svg width='100%' height='0.24em' viewBox='0 0 1062 239' preserveAspectRatio='none'><path d='M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22
 c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z'/></svg></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>（分母的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ϵ</span></span></span></span>是为了防止分母为0的一个无穷小量），最后对<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>x</mi><mo stretchy="true">^</mo></mover><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\widehat{x}_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8205600000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.67056em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span class="svg-align" style="width:calc(100% - 0.05556em);margin-left:0.05556em;top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.24em;"><svg width='100%' height='0.24em' viewBox='0 0 1062 239' preserveAspectRatio='none'><path d='M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22
 c-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z'/></svg></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>做一个affine transform得到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">y_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>（参数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>γ</mi><mo separator="true">,</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\gamma, \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>也是需要反向传播学习的）。其实这个affine transform可以给标准化后的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>x</mi><mo stretchy="true">^</mo></mover><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\widehat{x}_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8205600000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.67056em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span class="svg-align" style="width:calc(100% - 0.05556em);margin-left:0.05556em;top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.24em;"><svg width='100%' height='0.24em' viewBox='0 0 1062 239' preserveAspectRatio='none'><path d='M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22
@@ -573,7 +573,7 @@ running_var = (1 - momentum) * pre_running_var + momentum * var_t</p>
 </ul>
 <p>输入数据尺寸：</p>
 <p>nn.BatchNorm1d input= B<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord">∗</span></span></span></span>特征数$*$1d特征（比如一个神经元的输出就是1d特征）</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812230651.png" srcset="/img/loading.gif" alt="image-20200812230643623" style="zoom: 50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812230651.png" srcset="/img/loading.gif" alt="image-20200812230643623" style="zoom: 50%;" />
 <p><strong>实验：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
@@ -725,7 +725,7 @@ tensor([[[<span class="hljs-number">0.7000</span>],
 </ul>
 <p>输入数据尺寸：</p>
 <p>nn.BatchNorm2d input= B<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord">∗</span></span></span></span>特征数$*$2d特征（比如卷积输出的特征图就是2d特征）</p>
-<img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812230754.png" srcset="/img/loading.gif" alt="image-20200812230752297" style="zoom: 50%;" />
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812230754.png" srcset="/img/loading.gif" alt="image-20200812230752297" style="zoom: 50%;" />
 <p><strong>实验：</strong></p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
@@ -1074,18 +1074,18 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment
             writer.add_scalars(<span class="hljs-string">&quot;Loss&quot;</span>, &#123;<span class="hljs-string">&quot;Valid&quot;</span>: loss.item()&#125;, iter_count)
             writer.add_scalars(<span class="hljs-string">&quot;Accuracy&quot;</span>, &#123;<span class="hljs-string">&quot;Valid&quot;</span>: correct / total&#125;, iter_count)</code></pre>
 <p>这里我们对权值初始化用的是mean=0，std=0.5的正态分布，这不是一个很好的参数初始化，如果我们不用BN层，会得到下面的结果：</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213706.png" srcset="/img/loading.gif" alt="image-20200812213500478" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213705.png" srcset="/img/loading.gif" alt="image-20200812213645735" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213702.png" srcset="/img/loading.gif" alt="image-20200812213535791" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213700.png" srcset="/img/loading.gif" alt="image-20200812213658787" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213706.png" srcset="/img/loading.gif" alt="image-20200812213500478" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213705.png" srcset="/img/loading.gif" alt="image-20200812213645735" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213702.png" srcset="/img/loading.gif" alt="image-20200812213535791" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213700.png" srcset="/img/loading.gif" alt="image-20200812213658787" /></p>
 <pre><code class="hljs apache"><span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">6934</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%
 <span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">1</span>.<span class="hljs-number">3892</span> Acc:<span class="hljs-number">50</span>.<span class="hljs-number">00</span>%</code></pre>
 <p>到第9个epoch，loss还是很大，acc=50%，对于一个二分类问题基本就是瞎猜的概率，这个模型根本没有训练到。</p>
 <p>下面我们使用BN层</p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213911.png" srcset="/img/loading.gif" alt="image-20200812213909788" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213934.png" srcset="/img/loading.gif" alt="image-20200812213933179" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213922.png" srcset="/img/loading.gif" alt="image-20200812213921147" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200812213951.png" srcset="/img/loading.gif" alt="image-20200812213950548" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213911.png" srcset="/img/loading.gif" alt="image-20200812213909788" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213934.png" srcset="/img/loading.gif" alt="image-20200812213933179" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213922.png" srcset="/img/loading.gif" alt="image-20200812213921147" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200812213951.png" srcset="/img/loading.gif" alt="image-20200812213950548" /></p>
 <pre><code class="hljs apache"><span class="hljs-attribute">Training</span>:Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">010</span>/<span class="hljs-number">010</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0019</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%
 <span class="hljs-attribute">Valid</span>:	 Epoch[<span class="hljs-number">009</span>/<span class="hljs-number">010</span>] Iteration[<span class="hljs-number">002</span>/<span class="hljs-number">002</span>] Loss: <span class="hljs-number">0</span>.<span class="hljs-number">0000</span> Acc:<span class="hljs-number">100</span>.<span class="hljs-number">00</span>%</code></pre>
 <p>可以看到，这改变是非常大的，使用BN层使得模型对参数初始化不那么敏感</p>
@@ -1097,8 +1097,8 @@ writer = SummaryWriter(comment=<span class="hljs-string">&#x27;test_your_comment
 <li>Instance Normalization（IN）</li>
 <li>Group Normalization（GN）</li>
 </ol>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200813214834.png" srcset="/img/loading.gif" alt="image-20200813214826326" /></p>
-<p><img src="https://gitee.com/zihuanqiu/My_PicGo/raw/master/img/20200814160107.png" srcset="/img/loading.gif" alt="image-20200814160059681" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200813214834.png" srcset="/img/loading.gif" alt="image-20200813214826326" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200814160107.png" srcset="/img/loading.gif" alt="image-20200814160059681" /></p>
 <p>加入输入数据一个batch的尺寸是BCHW</p>
 <ul>
 <li>BN是对BHW计算均值方差，每一个C有一个均值和方差</li>
