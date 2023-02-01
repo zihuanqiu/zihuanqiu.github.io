@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="类——面向对象的编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 类——面向对象的编程">
+<meta property="og:url" content="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/17/07/2020/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="类——面向对象的编程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195741.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195757.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195804.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195812.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195818.png">
+<meta property="article:published_time" content="2020-07-17T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T19:59:20.275Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Python基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195741.png">
+
+
+<link rel="canonical" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/17/07/2020/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/17/07/2020/","path":"Python基础/第七章 类——面向对象的编程/17/07/2020/","title":"Python 类——面向对象的编程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python 类——面向对象的编程 | zihuan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zihuan's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B"><span class="nav-text"> 类——面向对象的编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-text"> 引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#71-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text"> 7.1 类的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#711-%E7%B1%BB%E7%9A%84%E5%91%BD%E5%90%8D"><span class="nav-text"> 7.1.1 类的命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#712-%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text"> 7.1.2 类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#713-%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text"> 7.1.3 类的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#72-%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B"><span class="nav-text"> 7.2 创建实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#721-%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-text"> 7.2.1 实例的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#722-%E8%AE%BF%E9%97%AE%E5%B1%9E%E6%80%A7"><span class="nav-text"> 7.2.2 访问属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#723-%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text"> 7.2.3 调用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#724-%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7"><span class="nav-text"> 7.2.4 修改属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text"> 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#73-%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-text"> 7.3 类的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AD%90-2"><span class="nav-text"> 引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#731-%E7%AE%80%E5%8D%95%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-text"> 7.3.1 简单的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#732-%E7%BB%99%E5%AD%90%E7%B1%BB%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-text"> 7.3.2 给子类添加属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#733-%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E5%A4%9A%E6%80%81"><span class="nav-text"> 7.3.3 重写父类的方法——多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#734-%E7%94%A8%E5%9C%A8%E7%B1%BB%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text"> 7.3.4 用在类中的实例</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zihuan Qiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/17/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python 类——面向对象的编程 | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 类——面向对象的编程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：17-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-17T10:00:00+08:00">17-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 03:59:20" itemprop="dateModified" datetime="2023-02-02T03:59:20+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="类面向对象的编程"><a class="markdownIt-Anchor" href="#类面向对象的编程"></a> 类——面向对象的编程</h1>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195741.png" alt="image-20200713195739884" /></p>
+<span id="more"></span>
+<h2 id="引子"><a class="markdownIt-Anchor" href="#引子"></a> 引子</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195757.png" alt="image-20200713195755778" /></p>
+<p><strong>Why：面向对象更符合人类对客观世界的抽象和理解</strong></p>
+<ul>
+<li>
+<p><strong>一切皆对象</strong><br />
+一只小狗，一把椅子，一张信用卡，一条巧克力。。。</p>
+</li>
+<li>
+<p><strong>一切对象，都有自己内在的属性</strong><br />
+狗狗的品种、椅子的质地、信用卡的额度、巧克力的口味。。。</p>
+</li>
+<li>
+<p><strong>一切行为，皆是对象的行为</strong><br />
+狗狗蹲下、椅子移动位置、刷信用卡、巧克力融化了。。。</p>
+</li>
+</ul>
+<p><strong>How：类是对象的载体</strong></p>
+<p>不同年龄、肤色、品质的猫，每一只都是一个对象</p>
+<p>他们有一个共同的特征：都是猫</p>
+<p>我们可以把一类对象的公共特征抽象出来，创建通用的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟猫&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化属性&quot;&quot;&quot;</span></span><br><span class="line">        self.name = name</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">jump</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;模拟猫跳跃&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.name + <span class="string">&quot; is jumping&quot;</span>) </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用类创建实例</span></span><br><span class="line">my_cat = Cat(<span class="string">&quot;Loser&quot;</span>)</span><br><span class="line">your_cat = Cat(<span class="string">&quot;Lucky&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调用属性</span></span><br><span class="line"><span class="built_in">print</span>(my_cat.name)</span><br><span class="line"><span class="built_in">print</span>(your_cat.name)</span><br></pre></td></tr></table></figure>
+<pre><code>Loser
+Lucky
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调用方法</span></span><br><span class="line">my_cat.jump()</span><br><span class="line">your_cat.jump()</span><br></pre></td></tr></table></figure>
+<pre><code>Loser is jumping
+Lucky is jumping
+</code></pre>
+<h2 id="71-类的定义"><a class="markdownIt-Anchor" href="#71-类的定义"></a> 7.1 类的定义</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195804.png" alt="image-20200713195803237" /></p>
+<p><strong>三要素：类名、属性、方法</strong></p>
+<h3 id="711-类的命名"><a class="markdownIt-Anchor" href="#711-类的命名"></a> 7.1.1 类的命名</h3>
+<ul>
+<li>
+<p>要有实际意义</p>
+</li>
+<li>
+<p>驼峰命名法——组成的单词首字母大写<br />
+Dog、   CreditCard、   ElectricCar</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># class 类名：</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;类前空两行&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;对该类的简单介绍&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;类后空两行&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="712-类的属性"><a class="markdownIt-Anchor" href="#712-类的属性"></a> 7.1.2 类的属性</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># def __init__(self,要传递的参数)  初始化类的属性</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="comment"># 相当于类内部的变量</span></span><br><span class="line">        self.brand = brand                 <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.model = model                 <span class="comment"># 汽车的型号</span></span><br><span class="line">        self.year = year                   <span class="comment"># 汽车出厂年份</span></span><br><span class="line">        self.mileage = <span class="number">0</span>                   <span class="comment"># 新车总里程初始化为0        </span></span><br></pre></td></tr></table></figure>
+<h3 id="713-类的方法"><a class="markdownIt-Anchor" href="#713-类的方法"></a> 7.1.3 类的方法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 相对于类内部定义的函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="comment"># 相当于类内部的变量</span></span><br><span class="line">        self.brand = brand                 <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.model = model                 <span class="comment"># 汽车的型号</span></span><br><span class="line">        self.year = year                   <span class="comment"># 汽车出厂年份</span></span><br><span class="line">        self.mileage = <span class="number">0</span>                   <span class="comment"># 新车总里程初始化为0  </span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># self不能省</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(self.brand, self.model, self.year))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_mileage</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取总里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.<span class="built_in">format</span>(self.mileage)</span><br></pre></td></tr></table></figure>
+<h2 id="72-创建实例"><a class="markdownIt-Anchor" href="#72-创建实例"></a> 7.2 创建实例</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195812.png" alt="image-20200713195810913" /></p>
+<h3 id="721-实例的创建"><a class="markdownIt-Anchor" href="#721-实例的创建"></a> 7.2.1 实例的创建</h3>
+<p>将实例赋值给对象，实例化过程中，传入相应的参数<br />
+v = 类名（必要的初始化参数）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_new_car = Car(<span class="string">&quot;Audi&quot;</span>, <span class="string">&quot;A6&quot;</span>, <span class="number">2018</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="722-访问属性"><a class="markdownIt-Anchor" href="#722-访问属性"></a> 7.2.2 访问属性</h3>
+<p>实例名.属性名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(my_new_car.brand)</span><br><span class="line"><span class="built_in">print</span>(my_new_car.model)</span><br><span class="line"><span class="built_in">print</span>(my_new_car.year)</span><br></pre></td></tr></table></figure>
+<pre><code>Audi
+A6
+2018
+</code></pre>
+<h3 id="723-调用方法"><a class="markdownIt-Anchor" href="#723-调用方法"></a> 7.2.3 调用方法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="comment"># 相当于类内部的变量</span></span><br><span class="line">        self.brand = brand                 <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.model = model                 <span class="comment"># 汽车的型号</span></span><br><span class="line">        self.year = year                   <span class="comment"># 汽车出厂年份</span></span><br><span class="line">        self.mileage = <span class="number">0</span>                   <span class="comment"># 新车总里程初始化为0  </span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># self不能省</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(self.brand, self.model, self.year))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_mileage</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.<span class="built_in">format</span>(self.mileage)</span><br></pre></td></tr></table></figure>
+<p>实例名.方法名(必要的参数)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_new_car = Car(<span class="string">&quot;Audi&quot;</span>, <span class="string">&quot;A6&quot;</span>, <span class="number">2018</span>)</span><br><span class="line">my_new_car.get_main_information()</span><br></pre></td></tr></table></figure>
+<pre><code>品牌：Audi   型号：A6   出厂年份：2018
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mileage = my_new_car.get_mileage()</span><br><span class="line"><span class="built_in">print</span>(mileage)</span><br></pre></td></tr></table></figure>
+<pre><code>行车总里程：0公里
+</code></pre>
+<h3 id="724-修改属性"><a class="markdownIt-Anchor" href="#724-修改属性"></a> 7.2.4 修改属性</h3>
+<p><strong>1、直接修改</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_old_car = Car(<span class="string">&quot;BYD&quot;</span>, <span class="string">&quot;宋&quot;</span>, <span class="number">2016</span>)</span><br></pre></td></tr></table></figure>
+<p>先访问，后修改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(my_old_car.mileage)</span><br><span class="line">my_old_car.mileage = <span class="number">12000</span></span><br><span class="line"><span class="built_in">print</span>(my_old_car.mileage)</span><br></pre></td></tr></table></figure>
+<pre><code>0
+12000
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(my_old_car.get_mileage())</span><br></pre></td></tr></table></figure>
+<pre><code>行车总里程：12000公里
+</code></pre>
+<p><strong>2、通过方法修改属性</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="comment"># 相当于类内部的变量</span></span><br><span class="line">        self.brand = brand                 <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.model = model                 <span class="comment"># 汽车的型号</span></span><br><span class="line">        self.year = year                   <span class="comment"># 汽车出厂年份</span></span><br><span class="line">        self.mileage = <span class="number">0</span>                   <span class="comment"># 新车总里程初始化为0  </span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># self不能省</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(self.brand, self.model, self.year))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_mileage</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.<span class="built_in">format</span>(self.mileage)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_mileage</span>(<span class="params">self, distance</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置总里程数&quot;&quot;&quot;</span></span><br><span class="line">        self.mileage = distance</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_old_car = Car(<span class="string">&quot;BYD&quot;</span>, <span class="string">&quot;宋&quot;</span>, <span class="number">2016</span>)</span><br><span class="line"><span class="built_in">print</span>(my_old_car.get_mileage())</span><br><span class="line">my_old_car.set_mileage(<span class="number">8000</span>)</span><br><span class="line"><span class="built_in">print</span>(my_old_car.get_mileage())</span><br></pre></td></tr></table></figure>
+<pre><code>行车总里程：0公里
+行车总里程：8000公里
+</code></pre>
+<p><strong>3、继续拓展</strong></p>
+<ul>
+<li>禁止设置负里程</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="comment"># 相当于类内部的变量</span></span><br><span class="line">        self.brand = brand                 <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.model = model                 <span class="comment"># 汽车的型号</span></span><br><span class="line">        self.year = year                   <span class="comment"># 汽车出厂年份</span></span><br><span class="line">        self.mileage = <span class="number">0</span>                   <span class="comment"># 新车总里程初始化为0  </span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># self不能省</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(self.brand, self.model, self.year))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_mileage</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.<span class="built_in">format</span>(self.mileage)) </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_mileage</span>(<span class="params">self, distance</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置总里程数&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> distance &gt;= <span class="number">0</span>:</span><br><span class="line">            self.mileage = distance</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;里程数不能为负！&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">increment_mileage</span>(<span class="params">self, distance</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;总里程数累计&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> distance &gt;= <span class="number">0</span>:</span><br><span class="line">            self.mileage += distance</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;新增里程数不能为负！&quot;</span>) </span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_old_car = Car(<span class="string">&quot;BYD&quot;</span>, <span class="string">&quot;宋&quot;</span>, <span class="number">2016</span>)</span><br><span class="line">my_old_car.get_mileage()</span><br><span class="line">my_old_car.set_mileage(-<span class="number">8000</span>)</span><br><span class="line">my_old_car.get_mileage()</span><br></pre></td></tr></table></figure>
+<pre><code>行车总里程：0公里
+里程数不能为负！
+行车总里程：0公里
+</code></pre>
+<ul>
+<li>将每次的里程数累加</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">my_old_car.get_mileage()</span><br><span class="line">my_old_car.set_mileage(<span class="number">8000</span>)</span><br><span class="line">my_old_car.get_mileage()</span><br><span class="line">my_old_car.increment_mileage(<span class="number">500</span>)</span><br><span class="line">my_old_car.get_mileage()</span><br></pre></td></tr></table></figure>
+<pre><code>行车总里程：0公里
+行车总里程：8000公里
+行车总里程：8500公里
+</code></pre>
+<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_new_car = Car(<span class="string">&quot;Audi&quot;</span>, <span class="string">&quot;A6&quot;</span>, <span class="number">2018</span>)</span><br><span class="line">my_cars = [my_new_car, my_old_car]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>包含的信息量可以是极大的，可以创建无穷多的实例</li>
+<li>高度的拟人（物）化，符合人类对客观世界的抽象和理解</li>
+</ul>
+<h2 id="73-类的继承"><a class="markdownIt-Anchor" href="#73-类的继承"></a> 7.3 类的继承</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713195818.png" alt="image-20200713195817364" /></p>
+<h3 id="引子-2"><a class="markdownIt-Anchor" href="#引子-2"></a> 引子</h3>
+<p><strong>看一下人在生物界的分支链</strong></p>
+<p>生物——动物界——脊索动物门——哺乳动物纲——灵长目——人科——人属——智人种</p>
+<p><strong>公共特征逐渐增加的过程</strong></p>
+<p><strong>【问题】</strong></p>
+<p>假设二元系统：  人属 = {A人种， B人种， C人种。。。。}<br />
+为每一个人种构造一个类</p>
+<p><strong>方案一：</strong><br />
+各自独立，分别构造各自人种的类</p>
+<p><strong>方案二：</strong><br />
+1、将各人种<strong>公共特征提取出来</strong>，建立人属的类；<br />
+2、各人种<strong>继承上一级（人属）的公共特征，然后添加自身特殊特征</strong>，构建各自人种的类。</p>
+<p>通常，我们选择方案二，因为他避免了过多的重复劳动</p>
+<p><strong>所谓继承，就是低层抽象继承高层抽象的过程</strong></p>
+<h3 id="731-简单的继承"><a class="markdownIt-Anchor" href="#731-简单的继承"></a> 7.3.1 简单的继承</h3>
+<p><strong>父类</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化汽车属性&quot;&quot;&quot;</span>               <span class="comment"># 相当于类内部的变量</span></span><br><span class="line">        self.brand = brand                 <span class="comment"># 汽车的品牌</span></span><br><span class="line">        self.model = model                 <span class="comment"># 汽车的型号</span></span><br><span class="line">        self.year = year                   <span class="comment"># 汽车出厂年份</span></span><br><span class="line">        self.mileage = <span class="number">0</span>                   <span class="comment"># 新车总里程初始化为0</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># self不能省</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(self.brand, self.model, self.year))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_mileage</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取总里程数&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;行车总里程：&#123;&#125;公里&quot;</span>.<span class="built_in">format</span>(self.mileage)) </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_mileage</span>(<span class="params">self, distance</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置总里程数&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> distance &gt;= <span class="number">0</span>:</span><br><span class="line">            self.mileage = distance</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;里程数不能为负！&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">increment_mileage</span>(<span class="params">self, distance</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;总里程数累计&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> distance &gt;= <span class="number">0</span>:</span><br><span class="line">            self.mileage += distance</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;新增里程数不能为负！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>子类</strong></p>
+<p>class 子类名（父类名）：</p>
+<ul>
+<li>新建一个电动汽车的类</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(brand, model, year)  <span class="comment"># 声明继承父类的属性</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>自动继承父类的所有方法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car = ElectricCar(<span class="string">&quot;NextWeek&quot;</span>, <span class="string">&quot;FF91&quot;</span>, <span class="number">2046</span>)</span><br><span class="line">my_electric_car.get_main_information()</span><br></pre></td></tr></table></figure>
+<pre><code>品牌：NextWeek   型号：FF91   出厂年份：2046
+</code></pre>
+<h3 id="732-给子类添加属性和方法"><a class="markdownIt-Anchor" href="#732-给子类添加属性和方法"></a> 7.3.2 给子类添加属性和方法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year, bettery_size</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(brand, model, year)    <span class="comment"># 声明继承父类的属性</span></span><br><span class="line">        self.bettery_size = bettery_size        <span class="comment"># 电池容量</span></span><br><span class="line">        self.electric_quantity = bettery_size   <span class="comment"># 电池剩余电量</span></span><br><span class="line">        self.electric2distance_ratio = <span class="number">5</span>        <span class="comment"># 电量距离换算系数 5公里/kW.h</span></span><br><span class="line">        self.remainder_range = self.electric_quantity*self.electric2distance_ratio <span class="comment"># 剩余可行驶里程</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_electric_quantit</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;查看当前电池电量&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;当前电池剩余电量：&#123;&#125; kW.h&quot;</span>.<span class="built_in">format</span>(self.electric_quantity))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_electric_quantity</span>(<span class="params">self, electric_quantity</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置电池剩余电量，重新计算电量可支撑行驶里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> electric_quantity &gt;= <span class="number">0</span> <span class="keyword">and</span> electric_quantity &lt;= self.bettery_size:</span><br><span class="line">            self.electric_quantity = electric_quantity</span><br><span class="line">            self.remainder_range = self.electric_quantity*self.electric2distance_ratio</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;电量未设置在合理范围！&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_remainder_range</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;查看剩余可行驶里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;当前电量还可以继续驾驶 &#123;&#125; 公里&quot;</span>.<span class="built_in">format</span>(self.remainder_range))              </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car = ElectricCar(<span class="string">&quot;NextWeek&quot;</span>, <span class="string">&quot;FF91&quot;</span>, <span class="number">2046</span>, <span class="number">70</span>)</span><br><span class="line">my_electric_car.get_electric_quantit()            <span class="comment"># 获取当前电池电量</span></span><br><span class="line">my_electric_car.get_remainder_range()             <span class="comment"># 获取当前剩余可行驶里程</span></span><br></pre></td></tr></table></figure>
+<pre><code>当前电池剩余电量：70 kW.h
+当前电量还可以继续驾驶 350 公里
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car.set_electric_quantity(<span class="number">50</span>)         <span class="comment"># 重设电池电量</span></span><br><span class="line">my_electric_car.get_electric_quantit()            <span class="comment"># 获取当前电池电量</span></span><br><span class="line">my_electric_car.get_remainder_range()             <span class="comment"># 获取当前剩余可行驶里程</span></span><br></pre></td></tr></table></figure>
+<pre><code>当前电池剩余电量：50 kW.h
+当前电量还可以继续驾驶 250 公里
+</code></pre>
+<h3 id="733-重写父类的方法多态"><a class="markdownIt-Anchor" href="#733-重写父类的方法多态"></a> 7.3.3 重写父类的方法——多态</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year, bettery_size</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(brand, model, year)    <span class="comment"># 声明继承父类的属性</span></span><br><span class="line">        self.bettery_size = bettery_size        <span class="comment"># 电池容量</span></span><br><span class="line">        self.electric_quantity = bettery_size   <span class="comment"># 电池剩余电量</span></span><br><span class="line">        self.electric2distance_ratio = <span class="number">5</span>        <span class="comment"># 电量距离换算系数 5公里/kW.h</span></span><br><span class="line">        self.remainder_range = self.electric_quantity*self.electric2distance_ratio <span class="comment"># 剩余可行驶里程</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># 重写父类方法</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;   续航里程：&#123;&#125; 公里&quot;</span></span><br><span class="line">              .<span class="built_in">format</span>(self.brand, self.model, self.year, self.bettery_size*self.electric2distance_ratio))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_electric_quantit</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;查看当前电池电量，重新计算电量可支撑行驶里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;当前电池剩余电量：&#123;&#125; kW.h&quot;</span>.<span class="built_in">format</span>(self.electric_quantity))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_electric_quantity</span>(<span class="params">self, electric_quantity</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置电池剩余电量&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> electric_quantity &gt;= <span class="number">0</span> <span class="keyword">and</span> electric_quantity &lt;= self.bettery_size:</span><br><span class="line">            self.electric_quantity = electric_quantity</span><br><span class="line">            self.remainder_range = self.electric_quantity*self.electric2distance_ratio</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;电量未设置在合理范围！&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_remainder_range</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;查看剩余可行驶里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;当前电量还可以继续驾驶 &#123;&#125; 公里&quot;</span>.<span class="built_in">format</span>(self.remainder_range))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car = ElectricCar(<span class="string">&quot;NextWeek&quot;</span>, <span class="string">&quot;FF91&quot;</span>, <span class="number">2046</span>, <span class="number">70</span>)</span><br><span class="line">my_electric_car.get_main_information()</span><br></pre></td></tr></table></figure>
+<pre><code>品牌：NextWeek   型号：FF91   出厂年份：2046   续航里程：350 公里
+</code></pre>
+<h3 id="734-用在类中的实例"><a class="markdownIt-Anchor" href="#734-用在类中的实例"></a> 7.3.4 用在类中的实例</h3>
+<p>把电池抽象成一个对象<br />
+逻辑更加清晰</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Bettery</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟电动汽车的电池&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, bettery_size = <span class="number">70</span></span>):</span><br><span class="line">        self.bettery_size = bettery_size        <span class="comment"># 电池容量</span></span><br><span class="line">        self.electric_quantity = bettery_size   <span class="comment"># 电池剩余电量</span></span><br><span class="line">        self.electric2distance_ratio = <span class="number">5</span>        <span class="comment"># 电量距离换算系数 5公里/kW.h</span></span><br><span class="line">        self.remainder_range = self.electric_quantity*self.electric2distance_ratio <span class="comment"># 剩余可行驶里程</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_electric_quantit</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;查看当前电池电量&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;当前电池剩余电量：&#123;&#125; kW.h&quot;</span>.<span class="built_in">format</span>(self.electric_quantity))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_electric_quantity</span>(<span class="params">self, electric_quantity</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置电池剩余电量，计重新算电量可支撑行驶里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> electric_quantity &gt;= <span class="number">0</span> <span class="keyword">and</span> electric_quantity &lt;= self.bettery_size:</span><br><span class="line">            self.electric_quantity = electric_quantity</span><br><span class="line">            self.remainder_range = self.electric_quantity*self.electric2distance_ratio</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;电量未设置在合理范围！&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_remainder_range</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;查看剩余可行驶里程&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;当前电量还可以继续驾驶 &#123;&#125; 公里&quot;</span>.<span class="built_in">format</span>(self.remainder_range))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;模拟电动汽车&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, brand, model, year, bettery_size</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化电动汽车属性&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(brand, model, year)    <span class="comment"># 声明继承父类的属性</span></span><br><span class="line">        self.bettery = Bettery(bettery_size)    <span class="comment"># 电池</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_main_information</span>(<span class="params">self</span>):        <span class="comment"># 重写父类方法</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取汽车主要信息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;品牌：&#123;&#125;   型号：&#123;&#125;   出厂年份：&#123;&#125;   续航里程：&#123;&#125; 公里&quot;</span></span><br><span class="line">              .<span class="built_in">format</span>(self.brand, self.model, self.year, </span><br><span class="line">              self.bettery.bettery_size*self.bettery.electric2distance_ratio))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car = ElectricCar(<span class="string">&quot;NextWeek&quot;</span>, <span class="string">&quot;FF91&quot;</span>, <span class="number">2046</span>, <span class="number">70</span>)</span><br><span class="line">my_electric_car.get_main_information()                  <span class="comment"># 获取车辆主要信息</span></span><br></pre></td></tr></table></figure>
+<pre><code>品牌：NextWeek   型号：FF91   出厂年份：2046   续航里程：350 公里
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car.bettery.get_electric_quantit()          <span class="comment"># 获取当前电池电量</span></span><br></pre></td></tr></table></figure>
+<pre><code>当前电池剩余电量：70 kW.h
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car.bettery.set_electric_quantity(<span class="number">50</span>)       <span class="comment"># 重设电池电量</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car.bettery.get_electric_quantit()          <span class="comment"># 获取当前电池电量    </span></span><br></pre></td></tr></table></figure>
+<pre><code>当前电池剩余电量：50 kW.h
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_electric_car.bettery.get_remainder_range()           <span class="comment"># 获取当前剩余可行驶里程</span></span><br></pre></td></tr></table></figure>
+<pre><code>当前电量还可以继续驾驶 250 公里
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag"># Python基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%87%BD%E6%95%B0/17/07/2020/" rel="prev" title="Python 函数">
+                  <i class="fa fa-chevron-left"></i> Python 函数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/18/07/2020/" rel="next" title="Python 文件、异常和模块">
+                  Python 文件、异常和模块 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zihuan Qiu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1. 数据迁移至GPU  to函数：转换数据类型&#x2F;设备   tensor.to(*args, **kwargs)   module.to(*args, **kwargs)   区别：张量不执行inplace，模型执行inplace">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPU的使用">
+<meta property="og:url" content="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/17/08/2020/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="1. 数据迁移至GPU  to函数：转换数据类型&#x2F;设备   tensor.to(*args, **kwargs)   module.to(*args, **kwargs)   区别：张量不执行inplace，模型执行inplace">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817185341.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817175040.png">
+<meta property="article:published_time" content="2020-08-17T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T20:01:03.325Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Pytorch基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817185341.png">
+
+
+<link rel="canonical" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/17/08/2020/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/17/08/2020/","path":"Pytorch基础/GPU的使用/17/08/2020/","title":"GPU的使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>GPU的使用 | zihuan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zihuan's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E8%87%B3gpu"><span class="nav-text"> 1. 数据迁移至GPU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-torchcuda%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text"> 2. torch.cuda常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%A4%9Agpu%E5%B9%B6%E8%A1%8C%E8%BF%90%E7%AE%97"><span class="nav-text"> 3. 多GPU并行运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-gpu%E5%8A%A0%E8%BD%BD%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99"><span class="nav-text"> 4. GPU加载常见报错</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zihuan Qiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/GPU%E7%9A%84%E4%BD%BF%E7%94%A8/17/08/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="GPU的使用 | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GPU的使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：17-08-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T10:00:00+08:00">17-08-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:01:03" itemprop="dateModified" datetime="2023-02-02T04:01:03+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="1-数据迁移至gpu"><a class="markdownIt-Anchor" href="#1-数据迁移至gpu"></a> 1. 数据迁移至GPU</h1>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817185341.png" alt="image-20200817160011137" /></p>
+<p>to函数：转换数据类型/设备</p>
+<ol>
+<li>
+<p><a target="_blank" rel="noopener" href="http://tensor.to">tensor.to</a>(*args, **kwargs)</p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://module.to">module.to</a>(*args, **kwargs)</p>
+</li>
+</ol>
+<p>区别：张量不执行inplace，模型执行inplace</p>
+<span id="more"></span>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x = torch.ones((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">x = x.to(torch.float64)  <span class="comment">#转换类型；张量不执行inplace，需要用等号赋值</span></span><br><span class="line"></span><br><span class="line">x = torch.ones((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">x = x.to(<span class="string">&quot;cuda&quot;</span>)  <span class="comment"># 转换设备；张量不执行inplace，需要用等号赋值</span></span><br><span class="line"></span><br><span class="line">linear = nn.Linear(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">linear.to(torch.double)</span><br><span class="line"></span><br><span class="line">gpu1 = torch.device(<span class="string">&quot;cuda&quot;</span>)</span><br><span class="line">linear.to(gpu1)  <span class="comment"># 模型执行inplace</span></span><br></pre></td></tr></table></figure>
+<p><strong>实验：</strong></p>
+<ol>
+<li>
+<p><strong>tensor to cuda</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">x_cpu = torch.ones((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_cpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(x_cpu.device, x_cpu.is_cuda, <span class="built_in">id</span>(x_cpu)))</span><br><span class="line"></span><br><span class="line">x_gpu = x_cpu.to(<span class="string">&#x27;cuda&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_gpu:\ndevice: &#123;&#125; is_cuda: &#123;&#125; id: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(x_gpu.device, x_gpu.is_cuda, <span class="built_in">id</span>(x_gpu)))</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x_cpu:</span><br><span class="line">device: cpu is_cuda: <span class="literal">False</span> <span class="built_in">id</span>: <span class="number">2141032222976</span></span><br><span class="line">x_gpu:</span><br><span class="line">device: cuda:<span class="number">0</span> is_cuda: <span class="literal">True</span> <span class="built_in">id</span>: <span class="number">2138929688384</span></span><br></pre></td></tr></table></figure>
+<p>转换前后id不同，说明不是inplace操作，划分了新的内存地址</p>
+</li>
+<li>
+<p><strong>module to cuda</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">net = nn.Sequential(nn.Linear(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">id</span>(net), <span class="built_in">next</span>(net.parameters()).is_cuda))</span><br><span class="line"></span><br><span class="line">net.to(<span class="string">&#x27;cuda&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nid:&#123;&#125; is_cuda: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">id</span>(net), <span class="built_in">next</span>(net.parameters()).is_cuda))</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span>:<span class="number">2455688847568</span> is_cuda: <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">id</span>:<span class="number">2455688847568</span> is_cuda: <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>模型转换是inplace操作</p>
+</li>
+<li>
+<p><strong>forward in cuda</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">x_cpu = torch.ones((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">x_gpu = x_cpu.to(<span class="string">&#x27;cuda&#x27;</span>)</span><br><span class="line">net = nn.Sequential(nn.Linear(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">output = net(x_gpu)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output is_cuda: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(output.is_cuda))</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output is_cuda: <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="2-torchcuda常用方法"><a class="markdownIt-Anchor" href="#2-torchcuda常用方法"></a> 2. torch.cuda常用方法</h1>
+<ol>
+<li>
+<p>torch.cuda.device_count()：计算当前可见可用gpu数</p>
+</li>
+<li>
+<p>torch.cuda.get_device_name()：获取gpu名称</p>
+</li>
+<li>
+<p>torch.cuda.is_available()：返回True则说明cuda可用（安装的是cuda版的pytorch）</p>
+</li>
+<li>
+<p>torch.cuda.manual_seed()：为当前gpu设置随机种子</p>
+</li>
+<li>
+<p>torch.cuda.manual_seed_all()：为所有可见可用gpu设置随机种子</p>
+</li>
+<li>
+<p>torch.cuda.set_device()：设置主gpu为哪一个物理gpu（不推荐）</p>
+</li>
+</ol>
+<blockquote>
+<p>推荐： os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”)</p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200817175040.png" alt="image-20200817175036479" /></p>
+<p>通过设置环境将逻辑gpu映射为物理gpu；os.environ.setdefault(“CUDA_VISIBLE_DEVICES”, “2, 3”)这句话的意思就是设置逻辑gpu0、逻辑gpu1为物理gpu2，物理gpu3。</p>
+</blockquote>
+<h1 id="3-多gpu并行运算"><a class="markdownIt-Anchor" href="#3-多gpu并行运算"></a> 3. 多GPU并行运算</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.DataParallel(module, </span><br><span class="line">                      device_ids=<span class="literal">None</span>, </span><br><span class="line">                      output_device=<span class="literal">None</span>, </span><br><span class="line">                      dim=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>功能：包装模型，实现分发并行机制</p>
+<p>主要参数：</p>
+<ul>
+<li>module: 需要包装分发的模型</li>
+<li>device_ids: 可分发的gpu，默认分发到所有可见可用gpu</li>
+<li>output_device: 结果输出设备</li>
+</ul>
+<p><strong>实验：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ 手动选择gpu</span></span><br><span class="line">gpu_list = [<span class="number">0</span>]</span><br><span class="line">gpu_list_str = <span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, gpu_list))</span><br><span class="line">os.environ.setdefault(<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>, gpu_list_str)</span><br><span class="line">device = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ 模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FooNet</span>(nn.Module):  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, neural_num, layers=<span class="number">3</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(FooNet, self).__init__()</span><br><span class="line">        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=<span class="literal">False</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(layers)])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\nbatch size in forward: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(x.size()[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i, linear) <span class="keyword">in</span> <span class="built_in">enumerate</span>(self.linears):</span><br><span class="line">            x = linear(x)</span><br><span class="line">            x = torch.relu(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================ 训练</span></span><br><span class="line">batch_size = <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># data</span></span><br><span class="line">inputs = torch.randn(batch_size, <span class="number">3</span>)</span><br><span class="line">labels = torch.randn(batch_size, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">inputs, labels = inputs.to(device), labels.to(device)</span><br><span class="line"></span><br><span class="line"><span class="comment"># model</span></span><br><span class="line">net = FooNet(neural_num=<span class="number">3</span>, layers=<span class="number">3</span>)</span><br><span class="line">net = nn.DataParallel(net)</span><br><span class="line">net.to(device)</span><br><span class="line"></span><br><span class="line"><span class="comment"># training</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>):</span><br><span class="line"></span><br><span class="line">    outputs = net(inputs)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;model outputs.size: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(outputs.size()))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;CUDA_VISIBLE_DEVICES :&#123;&#125;&quot;</span>.<span class="built_in">format</span>(os.environ[<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;device_count :&#123;&#125;&quot;</span>.<span class="built_in">format</span>(torch.cuda.device_count()))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">batch size <span class="keyword">in</span> forward: <span class="number">16</span></span><br><span class="line">model outputs.size: torch.Size([<span class="number">16</span>, <span class="number">3</span>])</span><br><span class="line">CUDA_VISIBLE_DEVICES :<span class="number">0</span></span><br><span class="line">device_count :<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>我的电脑只有一个GPU，因此batch size in forward = 16</p>
+<p>如果我们在选择GPU时设置为<code>gpu_list = [1]</code>，将逻辑GPU0映射为物理GPU1，那么运行代码后的结果如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">batch size <span class="keyword">in</span> forward: <span class="number">16</span></span><br><span class="line">model outputs.size: torch.Size([<span class="number">16</span>, <span class="number">3</span>])</span><br><span class="line">CUDA_VISIBLE_DEVICES :<span class="number">1</span></span><br><span class="line">device_count :<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>显然我们是没有物理GPU1的，因此device_count=0</p>
+<p>下面是一台有四个GPU（选择了2、3号GPU）的电脑运行上面程序的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">batch size <span class="keyword">in</span> forward: <span class="number">8</span></span><br><span class="line">batch size <span class="keyword">in</span> forward: <span class="number">8</span></span><br><span class="line">model outputs.size: torch.Size([<span class="number">16</span>, <span class="number">3</span>])</span><br><span class="line">CUDA_VISIBLE_DEVICES :<span class="number">2</span>,<span class="number">3</span></span><br><span class="line">device_count :<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-gpu加载常见报错"><a class="markdownIt-Anchor" href="#4-gpu加载常见报错"></a> 4. GPU加载常见报错</h1>
+<p>报错1：</p>
+<p>RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU -only machine, please use torch.load with map_location=torch.device(‘cpu’) to map your storages to the CPU.</p>
+<p>这个错误是因为保存模型是保存在了cuda上，而加载的电脑并不能使用cuda时，就会有这个错误。</p>
+<p>解决：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.load(path_state_dict, map_location=<span class="string">&quot;cpu&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>报错2：</p>
+<p>RuntimeError: Error(s) in loading state_dict for FooNet:Missing key(s) in state_dict: “linears.0.weight”, “linears.1.weight”, “linears.2.weight”. Unexpected key(s) in state_dict: “module.linears.0.weight”, “module.linears.1.weight”, “module.linears.2.weight”.</p>
+<p>这个错误是因为当使用了<code>torch.nn.DataParallel</code>进行多GPU运算时，这个函数会把state_dict的键的名称前面加上一个module.的前缀（共7个字符）</p>
+<p>解决：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">new_state_dict = OrderedDict()</span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> state_dict_load.items():</span><br><span class="line">    namekey = k[<span class="number">7</span>:] <span class="keyword">if</span> k.startswith(<span class="string">&#x27;module.&#x27;</span>) <span class="keyword">else</span> k</span><br><span class="line">    new_state_dict[namekey] = v</span><br><span class="line">    </span><br><span class="line">net.load_state_dict(new_state_dict)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/" rel="tag"># Pytorch基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8Bfinetune/16/08/2020/" rel="prev" title="模型finetune">
+                  <i class="fa fa-chevron-left"></i> 模型finetune
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/ROC%E6%9B%B2%E7%BA%BF/21/08/2020/" rel="next" title="ROC曲线">
+                  ROC曲线 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zihuan Qiu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

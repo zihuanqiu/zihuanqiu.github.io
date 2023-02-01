@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1. Hook函数概念 Hook函数机制：不改变主体，实现额外功能，就是开挂的意思 大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数  torch.Tensor.register_hook(hook) torch.nn.Module.register_forward_hook torch.nn.Module.registe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hook函数">
+<meta property="og:url" content="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/09/08/2020/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="1. Hook函数概念 Hook函数机制：不改变主体，实现额外功能，就是开挂的意思 大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数  torch.Tensor.register_hook(hook) torch.nn.Module.register_forward_hook torch.nn.Module.registe">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809225314.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809202430.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809215221.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013157.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013200.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013211.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013222.png">
+<meta property="article:published_time" content="2020-08-09T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T20:01:10.424Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Pytorch基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809225314.png">
+
+
+<link rel="canonical" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/09/08/2020/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/09/08/2020/","path":"Pytorch基础/Hook函数/09/08/2020/","title":"Hook函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hook函数 | zihuan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zihuan's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-hook%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5"><span class="nav-text"> 1. Hook函数概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-torchtensorregister_hook"><span class="nav-text"> 1.1 torch.Tensor.register_hook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-torchnnmoduleregister_forward_hook"><span class="nav-text"> 1.2 torch.nn.Module.register_forward_hook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-torchnnmoduleregister_forward_pre_hook"><span class="nav-text"> 1.3 torch.nn.Module.register_forward_pre_hook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-torchnnmoduleregister_backward_hook"><span class="nav-text"> 1.4 torch.nn.Module.register_backward_hook</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-hook%E5%87%BD%E6%95%B0%E4%B8%8E%E7%89%B9%E5%BE%81%E5%9B%BE%E6%8F%90%E5%8F%96"><span class="nav-text"> 2. Hook函数与特征图提取</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zihuan Qiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/Hook%E5%87%BD%E6%95%B0/09/08/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hook函数 | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hook函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：09-08-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-09T10:00:00+08:00">09-08-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:01:10" itemprop="dateModified" datetime="2023-02-02T04:01:10+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="1-hook函数概念"><a class="markdownIt-Anchor" href="#1-hook函数概念"></a> 1. Hook函数概念</h1>
+<p>Hook函数机制：不改变主体，实现额外功能，就是开挂的意思</p>
+<p>大致分为两类：torch.Tensor（对参数）和torch.nn.Module（对模型）的register_hook函数</p>
+<ol>
+<li>torch.Tensor.register_hook(hook)</li>
+<li>torch.nn.Module.register_forward_hook</li>
+<li>torch.nn.Module.register_forward_pre_hook</li>
+<li>torch.nn.Module.register_backward_hook</li>
+</ol>
+<span id="more"></span>
+<p>关于torch.nn.Module的hook函数，我们可以在module.py看到是怎么执行的。对于一个nn.module类，在调用时都会进入<code>__call__</code>函数</p>
+<p>可以看到，<code>__call__</code>函数是分为四个部分的，依次执行顺序是register_forward_pre_hook，forward，forward_hook，backward_hook。根据需要hook函数执行的位置，我们可以选择不同位置进行hook注册。</p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809225314.png" alt="image-20200809225312341" /></p>
+<h2 id="11-torchtensorregister_hook"><a class="markdownIt-Anchor" href="#11-torchtensorregister_hook"></a> 1.1 torch.Tensor.register_hook</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.Tensor.register_hook(hook)</span><br></pre></td></tr></table></figure>
+<p>功能：注册一个Tensor反向传播的hook函数</p>
+<p>参数：hook是一个函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hook(grad) -&gt; Tensor <span class="keyword">or</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>hook函数仅一个输入参数（张量的梯度），可以定义一些对参数梯度的操作。</p>
+<p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
+<p><strong>实验：</strong></p>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809202430.png" alt="image-20200809202429113" style="zoom:67%;" />
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line">w = torch.tensor([<span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = torch.tensor([<span class="number">2.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">a = torch.add(w, x)</span><br><span class="line">b = torch.add(w, <span class="number">1</span>)</span><br><span class="line">y = torch.mul(a, b)</span><br><span class="line"></span><br><span class="line">a_grad = <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">grad_hook</span>(<span class="params">grad</span>):</span><br><span class="line">    a_grad.append(grad)</span><br><span class="line"></span><br><span class="line">handle = a.register_hook(grad_hook)</span><br><span class="line"></span><br><span class="line">y.backward()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看梯度</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;gradient:&quot;</span>, w.grad, x.grad, a.grad, b.grad, y.grad)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;a_grad[0]: &quot;</span>, a_grad[<span class="number">0</span>])</span><br><span class="line">handle.remove()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gradient: tensor([<span class="number">5.</span>]) tensor([<span class="number">2.</span>]) <span class="literal">None</span> <span class="literal">None</span> <span class="literal">None</span></span><br><span class="line">a_grad[<span class="number">0</span>]:  tensor([<span class="number">2.</span>])</span><br></pre></td></tr></table></figure>
+<p>可以看到非叶子节点的梯度都已经被系统自动释放了；我们用hook函数把参数a的梯度保留了下来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line">w = torch.tensor([<span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = torch.tensor([<span class="number">2.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">a = torch.add(w, x)</span><br><span class="line">b = torch.add(w, <span class="number">1</span>)</span><br><span class="line">y = torch.mul(a, b)</span><br><span class="line"></span><br><span class="line">a_grad = <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">grad_hook</span>(<span class="params">grad</span>):</span><br><span class="line">    grad *= <span class="number">2</span></span><br><span class="line">    <span class="comment"># return grad*2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">handle = w.register_hook(grad_hook)</span><br><span class="line"></span><br><span class="line">y.backward()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看梯度</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;w.grad: &quot;</span>, w.grad)</span><br><span class="line">handle.remove()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w.grad:  tensor([<span class="number">10.</span>])</span><br></pre></td></tr></table></figure>
+<p>hook函数不仅可以获取grad，甚至可以修改grad（像外挂一样）</p>
+<h2 id="12-torchnnmoduleregister_forward_hook"><a class="markdownIt-Anchor" href="#12-torchnnmoduleregister_forward_hook"></a> 1.2 torch.nn.Module.register_forward_hook</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module.register_forward_hook(hook)</span><br></pre></td></tr></table></figure>
+<p>功能：注册module的前向传播hook函数</p>
+<p>参数：hook函数</p>
+<p>模型的每次forward()计算出一个输出后，都会调用hook函数。hook函数应该有如下形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hook(module, <span class="built_in">input</span>, output) -&gt; <span class="literal">None</span> <span class="keyword">or</span> modified output</span><br></pre></td></tr></table></figure>
+<p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
+<p>参数：</p>
+<ul>
+<li>module: 当前网络层</li>
+<li>input：当前网络层输入数据</li>
+<li>output：当前网络层输出数据</li>
+</ul>
+<p><strong>实验：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Net, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.conv1(x)</span><br><span class="line">        x = self.pool1(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化网络</span></span><br><span class="line">net = Net()</span><br><span class="line">net.conv1.weight[<span class="number">0</span>].detach().fill_(<span class="number">1</span>)  <span class="comment"># 直接修改conv网络层的参数，由于输出通道为2，所以有两个卷积核</span></span><br><span class="line">net.conv1.weight[<span class="number">1</span>].detach().fill_(<span class="number">2</span>)  <span class="comment"># weight[0]是第一个卷积核 weight[1]是第二个卷积核</span></span><br><span class="line">net.conv1.bias.data.detach().zero_()  <span class="comment"># bias设为0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注册hook</span></span><br><span class="line">fmap_block = <span class="built_in">list</span>()</span><br><span class="line">input_block = <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">forward_hook</span>(<span class="params">module, data_input, data_output</span>):</span><br><span class="line">    fmap_block.append(data_output)  <span class="comment"># 收集各层的输出特征图</span></span><br><span class="line">    input_block.append(data_input)  <span class="comment"># 收集各层的输入</span></span><br><span class="line"></span><br><span class="line">net.conv1.register_forward_hook(forward_hook)</span><br><span class="line"></span><br><span class="line"><span class="comment"># inference</span></span><br><span class="line">fake_img = torch.ones((<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>))   <span class="comment"># batch size * channel * H * W</span></span><br><span class="line">output = net(fake_img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 观察</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;feature maps shape: &#123;&#125;\noutput value: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(fmap_block[<span class="number">0</span>].shape, fmap_block[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;input shape: &#123;&#125;\ninput value: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(input_block[<span class="number">0</span>][<span class="number">0</span>].shape, input_block[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<p>可视化这个网络的输入和卷积核参数如下所示：</p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200809215221.png" alt="image-20200809215220453" /></p>
+<p>由于我们是对net.conv1注册的hook函数（<code>net.conv1.register_forward_hook(forward_hook)</code>），因此在运行到net.conv1的forward()函数时，会自动调用hook函数</p>
+<p>print输出conv1的输入和输出如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">feature maps shape: torch.Size([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line">output value: tensor([[[[ <span class="number">9.</span>,  <span class="number">9.</span>],</span><br><span class="line">          [ <span class="number">9.</span>,  <span class="number">9.</span>]],</span><br><span class="line"></span><br><span class="line">         [[<span class="number">18.</span>, <span class="number">18.</span>],</span><br><span class="line">          [<span class="number">18.</span>, <span class="number">18.</span>]]]], grad_fn=&lt;MkldnnConvolutionBackward&gt;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">input</span> shape: torch.Size([<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>])</span><br><span class="line"><span class="built_in">input</span> value: (tensor([[[[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">          [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">          [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">          [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]]]]),)</span><br></pre></td></tr></table></figure>
+<h2 id="13-torchnnmoduleregister_forward_pre_hook"><a class="markdownIt-Anchor" href="#13-torchnnmoduleregister_forward_pre_hook"></a> 1.3 torch.nn.Module.register_forward_pre_hook</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module.register_forward_pre_hook(hook)</span><br></pre></td></tr></table></figure>
+<p>功能：注册module前向传播前的hook函数</p>
+<p>参数：hook函数</p>
+<p>模型在forward()之前调用hook函数。hook函数应该有如下形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hook(module, <span class="built_in">input</span>) -&gt; <span class="literal">None</span> <span class="keyword">or</span> modified output</span><br></pre></td></tr></table></figure>
+<p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
+<p>参数：</p>
+<ul>
+<li>module: 当前网络层</li>
+<li>input：当前网络层输入数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Net, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.conv1(x)</span><br><span class="line">        x = self.pool1(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化网络</span></span><br><span class="line">net = Net()</span><br><span class="line">net.conv1.weight[<span class="number">0</span>].detach().fill_(<span class="number">1</span>)</span><br><span class="line">net.conv1.weight[<span class="number">1</span>].detach().fill_(<span class="number">2</span>)</span><br><span class="line">net.conv1.bias.data.detach().zero_()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注册hook</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">forward_pre_hook</span>(<span class="params">module, data_input</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;forward_pre_hook input:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(data_input))</span><br><span class="line">    </span><br><span class="line">net.conv1.register_forward_pre_hook(forward_pre_hook)</span><br><span class="line"></span><br><span class="line"><span class="comment"># inference</span></span><br><span class="line">fake_img = torch.ones((<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>))   <span class="comment"># batch size * channel * H * W</span></span><br><span class="line">output = net(fake_img)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">forward_pre_hook <span class="built_in">input</span>:(tensor([[[[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">          [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">          [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">          [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]]]]),)</span><br></pre></td></tr></table></figure>
+<p>可以看到hook函数将conv1的输入打印出来了</p>
+<h2 id="14-torchnnmoduleregister_backward_hook"><a class="markdownIt-Anchor" href="#14-torchnnmoduleregister_backward_hook"></a> 1.4 torch.nn.Module.register_backward_hook</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module.register_backward_hook(hook)</span><br></pre></td></tr></table></figure>
+<p>功能：注册module反向传播的hook函数</p>
+<p>参数：hook函数</p>
+<p>模型在反向传播之后调用hook函数。hook函数应该有如下形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hook(module, grad_input, grad_output) -&gt; <span class="literal">None</span> <span class="keyword">or</span> modified output</span><br></pre></td></tr></table></figure>
+<p>此函数返回带有方法的句柄，使用<code>remove()</code>可以从模块中移除挂钩。</p>
+<p>参数：</p>
+<ul>
+<li>module: 当前网络层</li>
+<li>grad_input：当前网络层输入梯度数据</li>
+<li>grad_output：当前网络层输出梯度数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Net, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.conv1(x)</span><br><span class="line">        x = self.pool1(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化网络</span></span><br><span class="line">net = Net()</span><br><span class="line">net.conv1.weight[<span class="number">0</span>].detach().fill_(<span class="number">1</span>)</span><br><span class="line">net.conv1.weight[<span class="number">1</span>].detach().fill_(<span class="number">2</span>)</span><br><span class="line">net.conv1.bias.data.detach().zero_()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注册hook</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">backward_hook</span>(<span class="params">module, grad_input, grad_output</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;backward hook input:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(grad_input))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;backward hook output:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(grad_output))</span><br><span class="line"></span><br><span class="line">net.conv1.register_backward_hook(backward_hook)</span><br><span class="line"></span><br><span class="line"><span class="comment"># inference</span></span><br><span class="line">fake_img = torch.ones((<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>))   <span class="comment"># batch size * channel * H * W</span></span><br><span class="line">output = net(fake_img)</span><br><span class="line"></span><br><span class="line">loss_fnc = nn.L1Loss()</span><br><span class="line">target = torch.randn_like(output)</span><br><span class="line">loss = loss_fnc(target, output)</span><br><span class="line">loss.backward()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">backward hook <span class="built_in">input</span>:(<span class="literal">None</span>, tensor([[[[<span class="number">0.5000</span>, <span class="number">0.5000</span>, <span class="number">0.5000</span>],</span><br><span class="line">          [<span class="number">0.5000</span>, <span class="number">0.5000</span>, <span class="number">0.5000</span>],</span><br><span class="line">          [<span class="number">0.5000</span>, <span class="number">0.5000</span>, <span class="number">0.5000</span>]]],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        [[[<span class="number">0.5000</span>, <span class="number">0.5000</span>, <span class="number">0.5000</span>],</span><br><span class="line">          [<span class="number">0.5000</span>, <span class="number">0.5000</span>, <span class="number">0.5000</span>],</span><br><span class="line">          [<span class="number">0.5000</span>, <span class="number">0.5000</span>, <span class="number">0.5000</span>]]]]), tensor([<span class="number">0.5000</span>, <span class="number">0.5000</span>]))</span><br><span class="line">backward hook output:(tensor([[[[<span class="number">0.5000</span>, <span class="number">0.0000</span>],</span><br><span class="line">          [<span class="number">0.0000</span>, <span class="number">0.0000</span>]],</span><br><span class="line"></span><br><span class="line">         [[<span class="number">0.5000</span>, <span class="number">0.0000</span>],</span><br><span class="line">          [<span class="number">0.0000</span>, <span class="number">0.0000</span>]]]]),)</span><br></pre></td></tr></table></figure>
+<h1 id="2-hook函数与特征图提取"><a class="markdownIt-Anchor" href="#2-hook函数与特征图提取"></a> 2. Hook函数与特征图提取</h1>
+<p><strong>代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> vutils</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">from</span> tools.common_tools <span class="keyword">import</span> set_seed</span><br><span class="line"><span class="keyword">import</span> torchvision.models <span class="keyword">as</span> models</span><br><span class="line"></span><br><span class="line">set_seed(<span class="number">1</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ----------------------------------- feature map visualization -----------------------------------</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(comment=<span class="string">&#x27;test_your_comment&#x27;</span>, filename_suffix=<span class="string">&quot;_test_your_filename_suffix&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据</span></span><br><span class="line">path_img = <span class="string">&quot;./lena.png&quot;</span>     <span class="comment"># your path to image</span></span><br><span class="line">normMean = [<span class="number">0.49139968</span>, <span class="number">0.48215827</span>, <span class="number">0.44653124</span>]</span><br><span class="line">normStd = [<span class="number">0.24703233</span>, <span class="number">0.24348505</span>, <span class="number">0.26158768</span>]</span><br><span class="line"></span><br><span class="line">norm_transform = transforms.Normalize(normMean, normStd)</span><br><span class="line">img_transforms = transforms.Compose([</span><br><span class="line">    transforms.Resize((<span class="number">224</span>, <span class="number">224</span>)),</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    norm_transform</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">img_pil = Image.<span class="built_in">open</span>(path_img).convert(<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> img_transforms <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    img_tensor = img_transforms(img_pil)</span><br><span class="line">img_tensor.unsqueeze_(<span class="number">0</span>)    <span class="comment"># chw --&gt; bchw</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型</span></span><br><span class="line">alexnet = models.alexnet(pretrained=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注册hook</span></span><br><span class="line">fmap_dict = <span class="built_in">dict</span>()</span><br><span class="line"><span class="keyword">for</span> name, sub_module <span class="keyword">in</span> alexnet.named_modules():</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(sub_module, nn.Conv2d):</span><br><span class="line">        key_name = <span class="built_in">str</span>(sub_module.weight.shape)  <span class="comment"># 按卷积核的尺寸命名</span></span><br><span class="line">        fmap_dict.setdefault(key_name, <span class="built_in">list</span>())  <span class="comment"># 初始化fmap_dict，键为卷积核尺寸，值为空列表</span></span><br><span class="line"></span><br><span class="line">        n1, n2 = name.split(<span class="string">&quot;.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">hook_func</span>(<span class="params">m, i, o</span>):  <span class="comment"># hook函数把网络层的输出按卷积核尺寸分类加入字典</span></span><br><span class="line">            key_name = <span class="built_in">str</span>(m.weight.shape)</span><br><span class="line">            fmap_dict[key_name].append(o)</span><br><span class="line"></span><br><span class="line">        alexnet._modules[n1]._modules[n2].register_forward_hook(hook_func)  <span class="comment"># 由于alexnet是用Sequential容器装载网络层的，</span></span><br><span class="line">        																	<span class="comment"># 所以先索引容器名，再索引容器內部的网络层。</span></span><br><span class="line">            																<span class="comment"># 这样就为每个Conv2d网络层都注册了hook函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># forward</span></span><br><span class="line">output = alexnet(img_tensor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># add image</span></span><br><span class="line"><span class="keyword">for</span> layer_name, fmap_list <span class="keyword">in</span> fmap_dict.items():</span><br><span class="line">    fmap = fmap_list[<span class="number">0</span>]</span><br><span class="line">    fmap.transpose_(<span class="number">0</span>, <span class="number">1</span>)  <span class="comment"># bchw→cbhw，这是因为我们的batch=1，但是通道数c由于在不同的卷积层，通道数不一样，</span></span><br><span class="line">    					   <span class="comment"># 对于一个超过3通道的卷积核我们只能把每个通道用灰度显示</span></span><br><span class="line"></span><br><span class="line">    nrow = <span class="built_in">int</span>(np.sqrt(fmap.shape[<span class="number">0</span>]))</span><br><span class="line">    fmap_grid = vutils.make_grid(fmap, normalize=<span class="literal">True</span>, scale_each=<span class="literal">True</span>, nrow=nrow)</span><br><span class="line">    writer.add_image(<span class="string">&#x27;feature map in &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(layer_name), fmap_grid, global_step=<span class="number">322</span>)</span><br></pre></td></tr></table></figure>
+<p>tensorboard可视化特征图的效果如下：</p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013157.png" alt="image-20200810013148726" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013200.png" alt="image-20200810013158604" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013211.png" alt="image-20200810013210146" /></p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200810013222.png" alt="image-20200810013220562" /></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/" rel="tag"># Pytorch基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Pytorch%E5%9F%BA%E7%A1%80/tensorboard%E5%8F%AF%E8%A7%86%E5%8C%96/06/08/2020/" rel="prev" title="tensorboard可视化">
+                  <i class="fa fa-chevron-left"></i> tensorboard可视化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95/10/08/2020/" rel="next" title="正则化方法">
+                  正则化方法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zihuan Qiu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

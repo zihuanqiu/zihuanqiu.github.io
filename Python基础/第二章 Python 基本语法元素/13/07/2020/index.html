@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Python 基本语法元素">
+<meta property="og:url" content="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/13/07/2020/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713155747.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713160545.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713160458.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713160800.png">
+<meta property="article:published_time" content="2020-07-13T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T19:59:47.227Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Python基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713155747.png">
+
+
+<link rel="canonical" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/13/07/2020/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/13/07/2020/","path":"Python基础/第二章 Python 基本语法元素/13/07/2020/","title":"Python 基本语法元素"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python 基本语法元素 | zihuan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zihuan's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text"> 第一部分 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E6%95%B0%E5%AD%97-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%B8%83%E5%B0%94"><span class="nav-text"> 1. 基本类型：数字、字符串、布尔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="nav-text"> 1.1 数字类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-text"> 1.2 字符串类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="nav-text"> 1.3 布尔类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BB%84%E5%90%88%E7%B1%BB%E5%9E%8B%E5%88%97%E8%A1%A8-%E5%85%83%E7%BB%84-%E5%AD%97%E5%85%B8-%E9%9B%86%E5%90%88"><span class="nav-text"> 2. 组合类型：列表、元组、字典、集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E5%88%97%E8%A1%A8"><span class="nav-text"> 2.1 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E5%85%83%E7%BB%84"><span class="nav-text"> 2.2 元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E5%AD%97%E5%85%B8"><span class="nav-text"> 2.3 字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E9%9B%86%E5%90%88"><span class="nav-text"> 2.4 集合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E5%8F%98%E9%87%8F"><span class="nav-text"> 第二部分 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8F%98%E9%87%8F%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text"> 1. 变量的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%98%E9%87%8F%E7%9A%84%E5%91%BD%E5%90%8D"><span class="nav-text"> 2. 变量的命名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E5%93%AA%E4%BA%9B%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E5%8F%98%E9%87%8F%E5%90%8D"><span class="nav-text"> 2.1 哪些可以用来做变量名？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8D%E8%A2%AB%E5%85%81%E8%AE%B8"><span class="nav-text"> 2.2 哪些情况不被允许？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E5%8F%98%E9%87%8F%E5%90%8D%E5%AE%9A%E4%B9%89%E6%8A%80%E5%B7%A7"><span class="nav-text"> 2.3 变量名定义技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%98%E9%87%8F%E7%9A%84%E8%B5%8B%E5%80%BC"><span class="nav-text"> 3. 变量的赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E4%B8%80%E8%88%AC%E8%B5%8B%E5%80%BC"><span class="nav-text"> 3.1 一般赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E5%A2%9E%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="nav-text"> 3.2 增量赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E6%89%93%E5%8C%85%E8%B5%8B%E5%80%BC"><span class="nav-text"> 3.3 打包赋值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="nav-text"> 第三部分 控制流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A1%BA%E5%BA%8F%E6%B5%81%E7%A8%8B"><span class="nav-text"> 1. 顺序流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BE%AA%E7%8E%AF%E6%B5%81%E7%A8%8B%E9%81%8D%E5%8E%86%E5%BE%AA%E7%8E%AFfor"><span class="nav-text"> 2. 循环流程——遍历循环（for)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%BD%A2%E5%BC%8F"><span class="nav-text"> 主要形式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 执行过程：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BE%AA%E7%8E%AF%E6%B5%81%E7%A8%8B%E6%97%A0%E9%99%90%E5%BE%AA%E7%8E%AFwhile"><span class="nav-text"> 3. 循环流程——无限循环（while）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%BD%A2%E5%BC%8F-2"><span class="nav-text"> 主要形式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%86%E6%94%AF%E6%B5%81%E7%A8%8Bif"><span class="nav-text"> 4. 分支流程（if）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="nav-text"> 最简单的形式：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-text"> 第四部分 输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E4%BB%8E%E5%93%AA%E9%87%8C%E6%9D%A5"><span class="nav-text"> 1. 数据从哪里来？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%88%B0%E5%93%AA%E9%87%8C%E5%8E%BB"><span class="nav-text"> 2. 数据到哪里去？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E7%A8%8B%E5%BA%8F%E6%A0%BC%E5%BC%8F"><span class="nav-text"> 第五部分 程序格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A1%8C%E6%9C%80%E5%A4%A7%E9%95%BF%E5%BA%A6"><span class="nav-text"> 1. 行最大长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BC%A9%E8%BF%9B"><span class="nav-text"> 2. 缩进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E7%A9%BA%E6%A0%BC"><span class="nav-text"> 3. 使用空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E7%A9%BA%E6%A0%BC"><span class="nav-text"> 4. 避免使用空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text"> 小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%A5%E4%B8%8A%E5%B1%9E%E4%BA%8Epep8%E6%A0%BC%E5%BC%8F%E6%8C%87%E5%8D%97%E7%9A%84%E9%83%A8%E5%88%86%E5%86%85%E5%AE%B9%E5%85%BB%E6%88%90%E8%89%AF%E5%A5%BD%E7%9A%84%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%E5%88%A9%E4%BA%BA%E5%88%A9%E5%B7%B1"><span class="nav-text"> 1、以上属于PEP8格式指南的部分内容，养成良好的编码规范利人利己</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%BC%E5%BC%8F%E7%BA%A6%E5%AE%9A%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-text"> 2、格式约定的目的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B0%BD%E4%BF%A1%E4%B9%A6%E4%B8%8D%E5%A6%82%E6%97%A0%E4%B9%A6%E4%B8%8D%E5%BA%94%E6%AD%BB%E6%9D%BF%E6%95%99%E6%9D%A1%E7%9A%84%E6%89%A7%E8%A1%8C%E6%A0%BC%E5%BC%8F%E8%A7%84%E8%8C%83"><span class="nav-text"> 3、尽信书不如无书，不应死板教条的执行格式规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%B3%A8%E9%87%8A"><span class="nav-text"> 5. 注释</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zihuan Qiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20Python%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/13/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python 基本语法元素 | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 基本语法元素
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：13-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-13T10:00:00+08:00">13-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 03:59:47" itemprop="dateModified" datetime="2023-02-02T03:59:47+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713155747.png" alt="image-20200713155733364" /></p>
+<span id="more"></span>
+<h1 id="第一部分-数据类型"><a class="markdownIt-Anchor" href="#第一部分-数据类型"></a> 第一部分 数据类型</h1>
+<h2 id="1-基本类型数字-字符串-布尔"><a class="markdownIt-Anchor" href="#1-基本类型数字-字符串-布尔"></a> 1. 基本类型：数字、字符串、布尔</h2>
+<h3 id="11-数字类型"><a class="markdownIt-Anchor" href="#11-数字类型"></a> 1.1 数字类型</h3>
+<ul>
+<li>int     整型          整数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>float   浮点型       带小数的数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>complex 复数          a+bj</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>+<span class="number">4j</span></span><br></pre></td></tr></table></figure>
+<h3 id="12-字符串类型"><a class="markdownIt-Anchor" href="#12-字符串类型"></a> 1.2 字符串类型</h3>
+<ul>
+<li>str 字符串      视作文本</li>
+<li><strong>组成：</strong> 由数字、字母、空格、其他字符等组合而成</li>
+<li><strong>表达：</strong> 用&quot; &quot; 或’ ’</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;python 123 @#$^&amp;(())&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="13-布尔类型"><a class="markdownIt-Anchor" href="#13-布尔类型"></a> 1.3 布尔类型</h3>
+<ul>
+<li>bool 布尔类型</li>
+<li>主要用于逻辑运算</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="number">2</span> &lt; <span class="number">1</span></span><br><span class="line">y</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre>
+<p><strong>上述类型均可定义单个数据，如果我们有一组数据，该如何表示？</strong></p>
+<h2 id="2-组合类型列表-元组-字典-集合"><a class="markdownIt-Anchor" href="#2-组合类型列表-元组-字典-集合"></a> 2. 组合类型：列表、元组、字典、集合</h2>
+<h3 id="21-列表"><a class="markdownIt-Anchor" href="#21-列表"></a> 2.1 列表</h3>
+<ul>
+<li>list <strong>列表    序列类型:   数据有位置顺序</strong></li>
+<li><strong>表示方式：</strong>   [data1,data2…]</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">a[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre>
+<h3 id="22-元组"><a class="markdownIt-Anchor" href="#22-元组"></a> 2.2 元组</h3>
+<ul>
+<li>tuple 元组   <strong>   序列类型</strong></li>
+<li><strong>表示方式：</strong> (data1,data2…)</li>
+<li>元素不支持修改——“不可变的列表”</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">b[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre>
+<h3 id="23-字典"><a class="markdownIt-Anchor" href="#23-字典"></a> 2.3 字典</h3>
+<ul>
+<li>dict 字典   <strong>映射类型：</strong>  通过“键”-“值”的映射实现数据存储和查找</li>
+<li><strong>表示方式：</strong> {key1:value1 , key2:value2 , …}</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">student = &#123;<span class="number">201901</span>: <span class="string">&quot;小明&quot;</span>, <span class="number">201902</span>: <span class="string">&quot;小红&quot;</span>, <span class="number">201903</span>: <span class="string">&quot;小强&quot;</span>&#125;</span><br><span class="line">student[<span class="number">201901</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>'小明'
+</code></pre>
+<h3 id="24-集合"><a class="markdownIt-Anchor" href="#24-集合"></a> 2.4 集合</h3>
+<ul>
+<li>set 集合  <strong> 一系列互不相等元素的集合，无序的</strong></li>
+<li><strong>表示方式：</strong> {data1,data2…}</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="string">&quot;小明&quot;</span>, <span class="string">&quot;小红&quot;</span>, <span class="string">&quot;小强&quot;</span>, <span class="string">&quot;小明&quot;</span>&#125;</span><br><span class="line">s</span><br></pre></td></tr></table></figure>
+<pre><code>&#123;'小强', '小明', '小红'&#125;
+</code></pre>
+<p><strong>在程序中，我们如何来引用这些数据？</strong></p>
+<ul>
+<li>非常通俗的处理办法：赋值给一个变量</li>
+</ul>
+<h1 id="第二部分-变量"><a class="markdownIt-Anchor" href="#第二部分-变量"></a> 第二部分 变量</h1>
+<h2 id="1-变量的概念"><a class="markdownIt-Anchor" href="#1-变量的概念"></a> 1. 变量的概念</h2>
+<ul>
+<li><strong>“量”</strong>    实实在在的对象：如数据、抽象</li>
+<li><strong>“变”</strong>    可变性：增、删、查、改等</li>
+<li><strong>变量定义二要素：  变量名、赋值</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-变量的命名"><a class="markdownIt-Anchor" href="#2-变量的命名"></a> 2. 变量的命名</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713160545.png" alt="image-20200713160532483" /></p>
+<h3 id="21-哪些可以用来做变量名"><a class="markdownIt-Anchor" href="#21-哪些可以用来做变量名"></a> 2.1 哪些可以用来做变量名？</h3>
+<ul>
+<li>大写字母、小写字母、数字、下划线、汉字及其组合。</li>
+<li>严格区分大小写</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Python_is_第<span class="number">1</span>名 = <span class="literal">True</span></span><br><span class="line">python_is_第<span class="number">1</span>名 = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="22-哪些情况不被允许"><a class="markdownIt-Anchor" href="#22-哪些情况不被允许"></a> 2.2 哪些情况不被允许？</h3>
+<ul>
+<li>首字符不允许为数字</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1_fruit = <span class="string">&quot;apple&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code>  File &quot;&lt;ipython-input-12-e3b1d93d01a0&gt;&quot;, line 1
+    1_fruit = &quot;apple&quot;
+     ^
+SyntaxError: invalid token
+</code></pre>
+<ul>
+<li>变量名中间不能有空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my fruit = <span class="string">&quot;apple&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code>  File &quot;&lt;ipython-input-13-36327c3a601f&gt;&quot;, line 1
+    my fruit = &quot;apple&quot;
+           ^
+SyntaxError: invalid syntax
+</code></pre>
+<ul>
+<li>不能与33个Pyhton保留字相同</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<pre><code>  File &quot;&lt;ipython-input-14-4c75bcfb9bb9&gt;&quot;, line 1
+    if = True
+       ^
+SyntaxError: invalid syntax
+</code></pre>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713160458.png" alt="image-20200713160453904" /></p>
+<h3 id="23-变量名定义技巧"><a class="markdownIt-Anchor" href="#23-变量名定义技巧"></a> 2.3 变量名定义技巧</h3>
+<ul>
+<li>变量名尽可能有实际意义，表征数据的某种特性</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]</span><br><span class="line">age_of_students = [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下划线（推荐：变量和函数名）<br />
+<strong>变量名由多个单词组成：用_连接多个单词</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age_of_students</span><br></pre></td></tr></table></figure>
+<ul>
+<li>驼峰体（推荐：类名） <strong>变量名由多个单词组成：单词首字母大写</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AgeOfStudents</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>尽量避免用中文和拼音做变量名</p>
+</li>
+<li>
+<p>特殊的变量：常量（不变的量，如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>、e）      <strong>变量名所有字母均为大写</strong></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAX_ITERATION = <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-变量的赋值"><a class="markdownIt-Anchor" href="#3-变量的赋值"></a> 3. 变量的赋值</h2>
+<h3 id="31-一般赋值"><a class="markdownIt-Anchor" href="#31-一般赋值"></a> 3.1 一般赋值</h3>
+<ul>
+<li>通过等号自右向左进行赋值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span>+<span class="number">2</span></span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>3
+</code></pre>
+<h3 id="32-增量赋值"><a class="markdownIt-Anchor" href="#32-增量赋值"></a> 3.2 增量赋值</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">x = x+<span class="number">10</span></span><br><span class="line">x</span><br><span class="line">x += <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<pre><code>20
+</code></pre>
+<h3 id="33-打包赋值"><a class="markdownIt-Anchor" href="#33-打包赋值"></a> 3.3 打包赋值</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x, y = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(x, y)</span><br><span class="line">x, y = y, x</span><br><span class="line"><span class="built_in">print</span>(x, y)</span><br></pre></td></tr></table></figure>
+<pre><code>1 2
+2 1
+</code></pre>
+<h1 id="第三部分-控制流程"><a class="markdownIt-Anchor" href="#第三部分-控制流程"></a> 第三部分 控制流程</h1>
+<h2 id="1-顺序流程"><a class="markdownIt-Anchor" href="#1-顺序流程"></a> 1. 顺序流程</h2>
+<ul>
+<li>自上向下依次执行</li>
+</ul>
+<p><strong>【小例子】实现1到5的整数求和</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># res = 1+2+3+4+5 </span></span><br><span class="line">res = <span class="number">0</span>    <span class="comment"># 赋初值</span></span><br><span class="line">res += <span class="number">1</span></span><br><span class="line">res += <span class="number">2</span></span><br><span class="line">res += <span class="number">3</span></span><br><span class="line">res += <span class="number">4</span></span><br><span class="line">res += <span class="number">5</span></span><br><span class="line">res     <span class="comment"># 显示结果</span></span><br></pre></td></tr></table></figure>
+<pre><code>15
+</code></pre>
+<h2 id="2-循环流程遍历循环for"><a class="markdownIt-Anchor" href="#2-循环流程遍历循环for"></a> 2. 循环流程——遍历循环（for)</h2>
+<h3 id="主要形式"><a class="markdownIt-Anchor" href="#主要形式"></a> 主要形式：</h3>
+<ul>
+<li><strong>for</strong> 元素 <strong>in</strong> 可迭代对象：<br />
+  执行语句</li>
+</ul>
+<h3 id="执行过程"><a class="markdownIt-Anchor" href="#执行过程"></a> 执行过程：</h3>
+<ul>
+<li>从可迭代对象中，依次取出每一个元素，并进行相应的操作</li>
+</ul>
+<p><strong>【小例子】实现1到5的整数求和</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]:    <span class="comment"># 每次迭代，取出一个i</span></span><br><span class="line">    res += i               <span class="comment"># 对每次迭代取出的i 进行相应操作   </span></span><br><span class="line">res                      <span class="comment"># 遍历结束后，执行后续语句</span></span><br></pre></td></tr></table></figure>
+<pre><code>15
+</code></pre>
+<h2 id="3-循环流程无限循环while"><a class="markdownIt-Anchor" href="#3-循环流程无限循环while"></a> 3. 循环流程——无限循环（while）</h2>
+<h3 id="主要形式-2"><a class="markdownIt-Anchor" href="#主要形式-2"></a> 主要形式：</h3>
+<ul>
+<li><strong>while</strong> 判断条件：</li>
+<li>  <strong>条件为真，执行语句</strong></li>
+<li><strong>条件为假，while 循环结束</strong></li>
+</ul>
+<p><strong>【小例子】实现1到5的整数求和</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">1</span></span><br><span class="line">res = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i &lt;= <span class="number">5</span>:   <span class="comment"># 若i不大于5，则循环继续</span></span><br><span class="line">    res += i</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">res           <span class="comment"># 若循环条件不成立，循环停止，执行后续语句</span></span><br></pre></td></tr></table></figure>
+<pre><code>15
+</code></pre>
+<h2 id="4-分支流程if"><a class="markdownIt-Anchor" href="#4-分支流程if"></a> 4. 分支流程（if）</h2>
+<h3 id="最简单的形式"><a class="markdownIt-Anchor" href="#最简单的形式"></a> 最简单的形式：</h3>
+<ul>
+<li>if 判断条件：</li>
+<li>  条件为真，执行语句</li>
+<li>else:</li>
+<li>  条件为假，执行语句</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">18</span></span><br><span class="line"><span class="keyword">if</span> age &gt; <span class="number">22</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;可以结婚啦&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;em，着急了点，再等等。。。&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>em，着急了点，再等等。。。
+</code></pre>
+<ul>
+<li>有了数据和变量，以及控制流程这些个中间过程后</li>
+<li>我们回过头来考虑下<strong>程序的输入和输出</strong></li>
+</ul>
+<h1 id="第四部分-输入输出"><a class="markdownIt-Anchor" href="#第四部分-输入输出"></a> 第四部分 输入输出</h1>
+<h2 id="1-数据从哪里来"><a class="markdownIt-Anchor" href="#1-数据从哪里来"></a> 1. 数据从哪里来？</h2>
+<p><strong>1. 外部文件导入</strong></p>
+<ul>
+<li>从本地硬盘、网络端读入等</li>
+<li>该部分内容放在 第八章《文件、异常和模块》进行讲解</li>
+</ul>
+<p><strong>2. 程序中定义</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">18</span></span><br><span class="line">name = <span class="string">&quot;Tom&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>3. 动态交互输入 input</strong></p>
+<ul>
+<li>在程序运行的过程中进行输入</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="built_in">input</span>(<span class="string">&quot;请输入一个数字：&quot;</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>请输入一个数字：3
+
+'3'
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="built_in">input</span>(<span class="string">&quot;请输入一个数字：&quot;</span>)</span><br><span class="line">y</span><br></pre></td></tr></table></figure>
+<pre><code>请输入一个数字：e
+
+'e'
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y </span><br></pre></td></tr></table></figure>
+<pre><code>'3e'
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span>(x)</span><br></pre></td></tr></table></figure>
+<pre><code>str
+</code></pre>
+<ul>
+<li>eval() 去掉引号</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="built_in">eval</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字：&quot;</span>))</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>请输入一个数字：2
+
+2
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="built_in">eval</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入一个数字：&quot;</span>))</span><br><span class="line">y</span><br></pre></td></tr></table></figure>
+<pre><code>请输入一个数字：3
+
+3
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
+<pre><code>5
+</code></pre>
+<h2 id="2-数据到哪里去"><a class="markdownIt-Anchor" href="#2-数据到哪里去"></a> 2. 数据到哪里去？</h2>
+<p><strong>1. 存储到本地硬盘或网络端</strong></p>
+<ul>
+<li>该部分内容放在 第八章《文件、异常和模块》进行讲解</li>
+</ul>
+<p><strong>2. 打印输出 print</strong></p>
+<ul>
+<li>直接打印数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;我是一颗小星星&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>我是一颗小星星
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">1234</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>1234
+</code></pre>
+<ul>
+<li>打印变量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1024</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+<pre><code>1024
+</code></pre>
+<ul>
+<li>print 默认换行</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+2
+</code></pre>
+<ul>
+<li>如果不想换行怎么办？</li>
+<li>换行控制 end=</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">123</span>,end=<span class="string">&quot; &quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="number">456</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>123 456
+</code></pre>
+<ul>
+<li>有时候，我们需要一些复杂的输出:比如几个变量一起组合输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PI = <span class="number">3.1415926</span></span><br><span class="line">E = <span class="number">2.71828</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;PI = &quot;</span>, PI, <span class="string">&quot;E = &quot;</span>, E)</span><br></pre></td></tr></table></figure>
+<pre><code>PI =  3.1415926 E =  2.71828
+</code></pre>
+<p><strong>3. 格式化输出方法 format</strong></p>
+<ul>
+<li><strong>基本格式：“字符{ 0 }字符{ 1 }字符”.format(v0,v1)</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;PI = &#123;0&#125;,E = &#123;1&#125;&quot;</span>.<span class="built_in">format</span>(PI, E))</span><br></pre></td></tr></table></figure>
+<pre><code>PI = 3.1415926,E = 2.71828
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;PI = &#123;1&#125;,E = &#123;0&#125;&quot;</span>.<span class="built_in">format</span>(PI, E))</span><br></pre></td></tr></table></figure>
+<pre><code>PI = 2.71828,E = 3.1415926
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;PI = &#123;&#125;,E = &#123;&#125;&quot;</span>.<span class="built_in">format</span>(PI, E))</span><br></pre></td></tr></table></figure>
+<pre><code>PI = 3.1415926,E = 2.71828
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;PI = &#123;0&#125;,E = &#123;0&#125;&quot;</span>.<span class="built_in">format</span>(PI, E))</span><br></pre></td></tr></table></figure>
+<pre><code>PI = 3.1415926,E = 3.1415926
+</code></pre>
+<ul>
+<li>再进一步 修饰性输出</li>
+</ul>
+<ol>
+<li>填充输出</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ____3.1415926_____  进行填充</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:_^20&#125;&quot;</span>.<span class="built_in">format</span>(PI))</span><br></pre></td></tr></table></figure>
+<pre><code>_____3.1415926______
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:*&lt;30&#125;&quot;</span>.<span class="built_in">format</span>(PI))</span><br></pre></td></tr></table></figure>
+<pre><code>3.1415926*********************
+</code></pre>
+<ol start="2">
+<li>数字千分位分隔符</li>
+</ol>
+<ul>
+<li>显示1,000,000</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:,&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">10000000</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>10,000,000
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:&amp;&gt;20,&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">10000000</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;10,000,000
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:,&amp;&gt;20&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">10000000</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-48-9f30412a92d9&gt; in &lt;module&gt;
+----&gt; 1 print(&quot;&#123;0:,&amp;&gt;20&#125;&quot;.format(10000000))
+
+
+ValueError: Invalid format specifier
+</code></pre>
+<ol start="3">
+<li>浮点数简化输出</li>
+</ol>
+<ul>
+<li>留2位小数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:.2f&#125;&quot;</span>.<span class="built_in">format</span>(PI))</span><br></pre></td></tr></table></figure>
+<pre><code>3.14
+</code></pre>
+<ul>
+<li>按百分数输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:.1%&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">0.818727</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>81.9%
+</code></pre>
+<ul>
+<li>科学计数法输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#123;0:.2e&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">0.818727</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>8.19e-01
+</code></pre>
+<ol start="4">
+<li>整数的进制转换输出</li>
+</ol>
+<ul>
+<li>十进制整数转二进制、unicode码、十进制、八进制、十六进制输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;二进制&#123;0:b&#125;,Unicode码&#123;0:c&#125;,十进制&#123;0:d&#125;,八进制&#123;0:o&#125;,十六进制&#123;0:x&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">450</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>'二进制111000010,Unicode码ǂ,十进制450,八进制702,十六进制1c2'
+</code></pre>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713160800.png" alt="image-20200713160757246" /></p>
+<h1 id="第五部分-程序格式"><a class="markdownIt-Anchor" href="#第五部分-程序格式"></a> 第五部分 程序格式</h1>
+<h2 id="1-行最大长度"><a class="markdownIt-Anchor" href="#1-行最大长度"></a> 1. 行最大长度</h2>
+<p>所有行限制的最大字符数为79</p>
+<h2 id="2-缩进"><a class="markdownIt-Anchor" href="#2-缩进"></a> 2. 缩进</h2>
+<ul>
+<li>用缩进来<strong>表示语句间的逻辑</strong></li>
+<li>在 for while if def class等 <strong>:之后下一行开始进行缩进</strong>，表明<strong>后续代码与前句之间的从属关系</strong></li>
+<li>缩进量：4字符</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;打印结束&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+2
+3
+打印结束
+</code></pre>
+<h2 id="3-使用空格"><a class="markdownIt-Anchor" href="#3-使用空格"></a> 3. 使用空格</h2>
+<ul>
+<li>二元运算符两边加一个空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">2</span>       <span class="comment"># 赋值</span></span><br><span class="line">x + = <span class="number">4</span>     <span class="comment"># 增量</span></span><br><span class="line"><span class="number">6</span> &gt; <span class="number">2</span>       <span class="comment"># 比较</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用不同优先级的运算符，考虑在最低优先级的运算符周围添加空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = x*<span class="number">2</span> - <span class="number">1</span></span><br><span class="line">z = x*x + y*y</span><br><span class="line">c = (a+b) * (a-b)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在逗号后使用空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x, y = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">ls = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不要使用一个以上的空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x     = <span class="number">2</span>        <span class="comment"># 空格一个就够了，不应过多</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-避免使用空格"><a class="markdownIt-Anchor" href="#4-避免使用空格"></a> 4. 避免使用空格</h2>
+<ul>
+<li>在制定关键字参数或者默认参数值的时候，不要在=附近加上空格</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">n=<span class="number">1</span>, m=<span class="number">2</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(n, m)</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+<h3 id="1-以上属于pep8格式指南的部分内容养成良好的编码规范利人利己"><a class="markdownIt-Anchor" href="#1-以上属于pep8格式指南的部分内容养成良好的编码规范利人利己"></a> 1、以上属于PEP8格式指南的部分内容，养成良好的编码规范利人利己</h3>
+<h3 id="2-格式约定的目的"><a class="markdownIt-Anchor" href="#2-格式约定的目的"></a> 2、格式约定的目的：</h3>
+<ul>
+<li>使大量Python代码风格一致</li>
+<li>提升代码可读性</li>
+</ul>
+<h3 id="3-尽信书不如无书不应死板教条的执行格式规范"><a class="markdownIt-Anchor" href="#3-尽信书不如无书不应死板教条的执行格式规范"></a> 3、尽信书不如无书，不应死板教条的执行格式规范</h3>
+<ul>
+<li>项目规范优先</li>
+</ul>
+<h2 id="5-注释"><a class="markdownIt-Anchor" href="#5-注释"></a> 5. 注释</h2>
+<ul>
+<li>单行注释</li>
+<li>格式：# 注释内容</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">1</span>  <span class="comment"># 我是单行注释</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>多行注释</li>
+<li>格式：&quot;&quot;“注释内容，可分行”&quot;&quot;</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">妈妈</span></span><br><span class="line"><span class="string">我</span></span><br><span class="line"><span class="string">好像</span></span><br><span class="line"><span class="string">发现了</span></span><br><span class="line"><span class="string">写诗</span></span><br><span class="line"><span class="string">的</span></span><br><span class="line"><span class="string">诀窍</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code>'\n妈妈\n我\n好像\n发现了\n写诗\n的\n诀窍\n'
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag"># Python基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/C++%E5%9F%BA%E7%A1%80/C++%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/13/02/2019/" rel="prev" title="C++提高编程">
+                  <i class="fa fa-chevron-left"></i> C++提高编程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/14/07/2020/" rel="next" title="Python 基本数据类型">
+                  Python 基本数据类型 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zihuan Qiu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

@@ -1,262 +1,1198 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>zihuan's Blog</title><meta name="author" content="Zihuan Qiu"><meta name="copyright" content="Zihuan Qiu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="website">
 <meta property="og:title" content="zihuan&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="zihuan&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG">
 <meta property="article:author" content="Zihuan Qiu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="shortcut icon" href="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG"><link rel="canonical" href="http://yoursite.com/page/3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'zihuan\'s Blog',
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2023-01-26 18:04:29'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
 
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
+<link rel="canonical" href="http://yoursite.com/page/3/">
 
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>zihuan's Blog</title>
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">zihuan's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
   
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zihuan Qiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">zihuan's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/31/Pytorch%E5%9F%BA%E7%A1%80/%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96/" title="权值初始化">权值初始化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-31T02:00:00.000Z" title="发表于 2020-07-31 10:00:00">2020-07-31</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.751Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 梯度消失与爆炸
-对于一个没有激活函数（先不考虑激活函数）的多层神经网络，参数的导数可以计算如下
-
-H2=H1∗W2ΔW2=∂Loss∂W2=∂Loss∂out∗∂out∂H2∗∂H2∂w2=∂Loss∂out∗∂out∂H2∗H1\begin{aligned}
-\text{H}_2&amp;=\text{H}_1*\text{W}_2
-\\
-	\Delta \text{W}_2&amp;=\frac{\partial \text{Loss}}{\partial \text{W}_2}=\frac{\partial \text{Loss}}{\partial \text{out}}*\frac{\partial \text{out}}{\partial \text{H}_2}*\frac{\partial \text{H}_2}{\partial \text{w}_2}\\
-	&amp;=\frac{\partial \text{Loss}}{\partial \text{out}}*\frac{\partial \text{out}}{\partial \text{H}_2}* ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/30/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E6%B1%A0%E5%8C%96-%E7%BA%BF%E6%80%A7-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%B1%82/" title="nn网络层-池化-线性-激活函数层">nn网络层-池化-线性-激活函数层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-30T02:00:00.000Z" title="发表于 2020-07-30 10:00:00">2020-07-30</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.748Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 池化层——Pooling Layer
-池化运算：对信号进行 “收集”并 “总结”。
-“收集”：多变少
-“总结”：最大值/平均值
-
- 1.1 nn.MaxPool2d
-123456nn.MaxPool2d(kernel_size,              stride=None,              padding=0,              dilation=1,              return_indices=False,              ceil_mode=False)
-功能：对二维信号（图像）进行最大值池化
-主要参数：
-
-kernel_size：池化核尺寸
-stride：步长
-padding ：填充个数
-dilation：池化核间隔大小
-ceil_mode：尺寸向上取整
-return_indices：记录池化像素索引（用于反池化时选择位置，如下图所示）
+  </aside>
 
 
-123456789101112131415161718192021222324252627282930313233import osimport torchimport randomimp ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/29/Pytorch%E5%9F%BA%E7%A1%80/nn%E7%BD%91%E7%BB%9C%E5%B1%82-%E5%8D%B7%E7%A7%AF%E5%B1%82/" title="nn网络层-卷积层">nn网络层-卷积层</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-29T02:00:00.000Z" title="发表于 2020-07-29 10:00:00">2020-07-29</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.750Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 卷积层
- 1. 1d/2d/3d卷积
-卷积维度：一般情况下，卷积核在几个维度上滑动，
-就是几维卷积。
+    </div>
 
- 2. 卷积-nn.Conv2d
-123456789torch.nn.Conv2d(in_channels,                out_channels,                kernel_size,                stride=1,                padding=0,                dilation=1,                groups=1,                bias=True,                padding_mode=&#x27;zeros&#x27;)
-功能：对多个二维信号进行二维卷积
-主要参数：
+    <div class="main-inner index posts-expand">
+
+    
 
 
-in_channels (int) – Number of channels in the input image
+<div class="post-block">
+  
+  
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/28/07/2020/">
 
-out_channels (int) – Number of channels produced by the convolution（也即卷积核的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/28/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/" title="模型容器与AlexNet构建">模型容器与AlexNet构建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-28T02:00:00.000Z" title="发表于 2020-07-28 10:00:00">2020-07-28</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.751Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 网络层容器(Containers)
-上一节我们学习了如何构建一个LeNet，回顾代码如下：
-12345678910111213141516171819202122import torch.nn as nnimport torch.nn.functional as Fclass LeNet(nn.Module):    def __init__(self, classes):        super(LeNet, self).__init__()        self.conv1 = nn.Conv2d(3, 6, 5)        self.conv2 = nn.Conv2d(6, 16, 5)        self.fc1 = nn.Linear(16*5*5, 120)        self.fc2 = nn.Linear(120, 84)        self.fc3 = nn.Linear(84, classes)    def forward(self, x):        out = F.relu(self.conv1(x))        out = ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/27/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/" title="模型创建与nn.Module">模型创建与nn.Module</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-27T02:00:00.000Z" title="发表于 2020-07-27 10:00:00">2020-07-27</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.749Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 网络模型创建步骤
-前几次已经学完了数据部分，现在开始学习模型部分。
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
 
-模型又分为模型创建和权值初始化。其中，模型创建还可以进一步分为构建网络层和拼接网络层。这些工作都可以用nn.Module来完成。
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
 
-本节我们用7层结构的LeNet来学习模型创建和nn.Module。
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/28/07/2020/" class="post-title-link" itemprop="url">模型容器与AlexNet构建</a>
+        </h2>
 
-实验：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210310410510610710810911011111211311411511611711811912012112212312412512612712812913013113213313413513613713813914014114214314414514614714814915015115215315415 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" title="transforms方法详解">transforms方法详解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-24T03:00:00.000Z" title="发表于 2020-07-24 11:00:00">2020-07-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.750Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content">
- 1. transforms——裁剪
-实验代码：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596# -*- coding: utf-8 -*-&quot;&quot;&quot;# @file name  : transforms_methods_1.py# @author     : tingsongyu# @date       : 2019-09-11 10:08:00# @brief      : transforms方法(一)&quot;&quot;&quot;import osimport numpy as npimport torchimport randomfrom torch.utils.data import DataLoaderimport tor ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/24/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" title="transforms运行机制">transforms运行机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-24T02:00:00.000Z" title="发表于 2020-07-24 10:00:00">2020-07-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.749Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content">通过import torchvision.transforms as transforms导入pytorch的计算机视觉包torchvision中的transforms模块。
-torchvision 包由流行的数据集、模型体系结构和用于计算机视觉的常见图像转换组成
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-torchvision.transforms : 常用的图像预处理方法
+      <time title="创建时间：28-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-28T10:00:00+08:00">28-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:03:24" itemprop="dateModified" datetime="2023-02-02T04:03:24+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
 
-数据中心化
-数据标准化
-缩放
-裁剪
-旋转
-翻转
-填充
-噪声添加
-灰度变换
-线性变换
-仿射变换
-亮度、饱和度及对比度变换
+  
+</div>
 
-这是利用torchvision.transforms对一张图片进行数据增强的结果
+        </div>
+      </header>
 
-
-transforms是在自定义dataset的__getitem__(self, index)中实现的
-实验：
-
-
-主函数中定义了两个transforms.Compose类，它的作用是将几个变换组合在一起。传入参数为Transform对象的列表。
-
-
-
-我们知道transforms是在自定义dataset的__getitem__(self, index)中实现的，因此直接在这个位置打断点。
-
-
-
-self.transform是在__init__中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/22/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/" title="Python Pandas库">Python Pandas库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-22T02:00:00.000Z" title="发表于 2020-07-22 10:00:00">2020-07-22</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.742Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python%E5%9F%BA%E7%A1%80/">Python基础</a></span></div><div class="content"> Pandas库
-
- 引子
-Numpy 在向量化的数值计算中表现优异
-但是在处理更灵活、复杂的数据任务：
-如为数据添加标签、处理缺失值、分组和透视表等方面
-Numpy显得力不从心
-而基于Numpy构建的Pandas库，提供了使得数据分析变得更快更简单的高级数据结构和操作工具
- 12.1 对象创建
- 12.1.1 Pandas Series对象
-Series 是带标签数据的一维数组
-Series对象的创建
-通用结构: pd.Series(data, index=index, dtype=dtype)
-data：数据，可以是列表，字典或Numpy数组
-index：索引，为可选参数
-dtype: 数据类型，为可选参数
-1、用列表创建
-
-index缺省，默认为整数序列
-
-1234import pandas as pddata = pd.Series([1.5, 3, 4.5, 6])data
-0    1.5
-1    3.0
-2    4.5
-3    6.0
-dtype: float64
-
-
-增加index
-
-12data = pd.Series([1.5, 3, 4.5, 6], ind ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/" title="DataLoader与DataSet">DataLoader与DataSet</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-21T04:00:00.000Z" title="发表于 2020-07-21 12:00:00">2020-07-21</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.753Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> 1. 为什么要DataSet和DataLoader
-
-相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。
-使用DataSet和DataLoader可以帮助我们进行小批次训练。
-
- 2. DataLoader
-DataLoader位于torch.utils.data.DataLoader。Data loader包括一个Sampler和一个DataSet，它为给定的数据集提供迭代功能。
-1234567891011torch.utils.data.DataLoader(dataset, batch_size=1,                             shuffle=False,                             sampler=None,                             batch_sampler=None,        ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/07/21/Pytorch%E5%9F%BA%E7%A1%80/autograd/" title="autograd">autograd</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-21T03:00:00.000Z" title="发表于 2020-07-21 11:00:00">2020-07-21</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-17T09:33:50.747Z" title="更新于 2022-11-17 17:33:50">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Pytorch/">Pytorch</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a></span></div><div class="content"> autograd—自动求导系统
- 1.  torch.autograd.backward
-12345torch.autograd.backward(tensors,                         grad_tensors=None,                         retain_graph=None,                         create_graph=False,                         grad_variables=None)
-功能：自动求取梯度
-
-tensors: 用于求导的张量，如 loss
-retain_graph : 保存计算图
-create_graph : 创建导数计算图，用于高阶求导
-grad_tensors：多梯度权重
-
-1234567891011import torchw = torch.tensor([1.], requires_grad=True)x = torch.tensor([2.], requires_grad=True)a = torch.add(w, x)b = tor ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200607030657.PNG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zihuan Qiu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zihuanqiu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/26/Idea%20Collections/idea%EF%BC%9A%E6%B3%A8%E6%84%8F%E5%8A%9B%E4%BD%8E%E7%A7%A9%E8%BF%91%E4%BC%BC%E5%A2%9E%E9%87%8F%E5%AD%A6%E4%B9%A0/" title="idea：注意力低秩近似增量学习">idea：注意力低秩近似增量学习</a><time datetime="2023-01-26T02:00:00.000Z" title="发表于 2023-01-26 10:00:00">2023-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/10/24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%A7%A3%E5%86%B3pytorch%E5%9C%A8%E8%AE%AD%E7%BB%83%E6%97%B6%E7%94%B1%E4%BA%8E%E8%AE%BE%E7%BD%AE%E4%BA%86%E9%AA%8C%E8%AF%81%E9%9B%86%E5%AF%BC%E8%87%B4out-of-memory(%E5%90%8C%E6%A0%B7%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%8F%E5%B0%91%E6%98%BE%E5%AD%98%E5%8D%A0%E7%94%A8)/" title="解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)">解决pytorch在训练时由于设置了验证集导致out of memory(同样可用于测试时减少显存占用)</a><time datetime="2020-10-24T02:00:00.000Z" title="发表于 2020-10-24 10:00:00">2020-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/10/22/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/" title="使用SSH连接远端服务器训练">使用SSH连接远端服务器训练</a><time datetime="2020-10-22T02:00:00.000Z" title="发表于 2020-10-22 10:00:00">2020-10-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/10/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/" title="贝叶斯决策">贝叶斯决策</a><time datetime="2020-10-10T02:00:00.000Z" title="发表于 2020-10-10 10:00:00">2020-10-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/09/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/self-%20attention%E6%9C%BA%E5%88%B6/" title="语义分割中的self-attention变种模型">语义分割中的self-attention变种模型</a><time datetime="2020-09-29T02:00:00.000Z" title="发表于 2020-09-29 10:00:00">2020-09-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>分类</span>
-            
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-网络层容器containers"><a class="markdownIt-Anchor" href="#1-网络层容器containers"></a> 1. 网络层容器(Containers)</h1>
+<p>上一节我们学习了如何构建一个LeNet，回顾代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LeNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, classes</span>):</span><br><span class="line">        <span class="built_in">super</span>(LeNet, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">16</span>*<span class="number">5</span>*<span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">84</span>, classes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = F.relu(self.conv1(x))</span><br><span class="line">        out = F.max_pool2d(out, <span class="number">2</span>)</span><br><span class="line">        out = F.relu(self.conv2(out))</span><br><span class="line">        out = F.max_pool2d(out, <span class="number">2</span>)</span><br><span class="line">        out = out.view(out.size(<span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line">        out = F.relu(self.fc1(out))</span><br><span class="line">        out = F.relu(self.fc2(out))</span><br><span class="line">        out = self.fc3(out)</span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
+<p>在<code>__init__(self, classes)</code>中实现了网络层的初始化，在<code>forward(self, x)</code>中完成了前向传播。</p>
+<p>如果我们可以给网络层再进行分类，把网络层放到不同的容器里，那么可以方便我们构建网络。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/28/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
             </div>
-            <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Pytorch/"><span class="card-category-list-name">Pytorch</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/idea-collections/"><span class="card-category-list-name">idea collections</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">5</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/C-%E5%9F%BA%E7%A1%80/" style="font-size: 1.2em; color: #999da3">C++基础</a> <a href="/tags/Python%E5%9F%BA%E7%A1%80/" style="font-size: 1.4em; color: #99a5b6">Python基础</a> <a href="/tags/Pytorch%E5%9F%BA%E7%A1%80/" style="font-size: 1.5em; color: #99a9bf">Pytorch基础</a> <a href="/tags/attension/" style="font-size: 1.1em; color: #999">attension</a> <a href="/tags/incremental-learning/" style="font-size: 1.1em; color: #999">incremental learning</a> <a href="/tags/self-attention/" style="font-size: 1.1em; color: #999">self-attention</a> <a href="/tags/%E4%BB%A3%E7%A0%81/" style="font-size: 1.2em; color: #999da3">代码</a> <a href="/tags/%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BD%91%E8%AF%BE%E7%AC%94%E8%AE%B0/" style="font-size: 1.3em; color: #99a1ac">浙江大学机器学习网课笔记</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8C%87%E6%A0%87/" style="font-size: 1.1em; color: #999">深度学习指标</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/" style="font-size: 1.1
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/27/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/27/07/2020/" class="post-title-link" itemprop="url">模型创建与nn.Module</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：27-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-27T10:00:00+08:00">27-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:03:16" itemprop="dateModified" datetime="2023-02-02T04:03:16+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-网络模型创建步骤"><a class="markdownIt-Anchor" href="#1-网络模型创建步骤"></a> 1. 网络模型创建步骤</h1>
+<p>前几次已经学完了数据部分，现在开始学习模型部分。</p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200727224450.png" alt="image-20200727224448921" /></p>
+<p>模型又分为模型创建和权值初始化。其中，模型创建还可以进一步分为构建网络层和拼接网络层。这些工作都可以用nn.Module来完成。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA%E4%B8%8Enn.Module/27/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/24/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/24/07/2020/" class="post-title-link" itemprop="url">transforms方法详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：24-07-2020 11:00:00" itemprop="dateCreated datePublished" datetime="2020-07-24T11:00:00+08:00">24-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:02:09" itemprop="dateModified" datetime="2023-02-02T04:02:09+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200727145834.png" alt="transforms方法" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/transforms%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/24/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/24/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/24/07/2020/" class="post-title-link" itemprop="url">transforms运行机制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：24-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-24T10:00:00+08:00">24-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:02:17" itemprop="dateModified" datetime="2023-02-02T04:02:17+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>通过<code>import torchvision.transforms as transforms</code>导入pytorch的计算机视觉包torchvision中的transforms模块。</p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torchvision/index.html#module-torchvision"><code>torchvision</code></a> 包由流行的数据集、模型体系结构和用于计算机视觉的常见图像转换组成</p>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200724113303.png" alt="image-20200724104816574" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/transforms%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/24/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/22/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/22/07/2020/" class="post-title-link" itemprop="url">Python Pandas库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：22-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-22T10:00:00+08:00">22-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:00:24" itemprop="dateModified" datetime="2023-02-02T04:00:24+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="pandas库"><a class="markdownIt-Anchor" href="#pandas库"></a> Pandas库</h1>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714235053.png" alt="image-20200714235042682" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%20%20Pandas%20%E5%BA%93/22/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/21/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/21/07/2020/" class="post-title-link" itemprop="url">DataLoader与DataSet</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：21-07-2020 12:00:00" itemprop="dateCreated datePublished" datetime="2020-07-21T12:00:00+08:00">21-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:00:58" itemprop="dateModified" datetime="2023-02-02T04:00:58+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-为什么要dataset和dataloader"><a class="markdownIt-Anchor" href="#1-为什么要dataset和dataloader"></a> 1. 为什么要DataSet和DataLoader</h1>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200721221103.png" alt="image-20200721221026985" style="zoom: 67%;" />
+<p>相比一次喂入全部数据的方法，我们更希望使用小批次的方法。把一轮数据全部训练一次称为一个Epoch，一个Epoch分为若干次Iteration，每次Iteration的数据量为一个Batch-Size。通过这种方法，可以有效地加快训练速度，避免显卡内存爆炸。</p>
+<p>使用DataSet和DataLoader可以帮助我们进行小批次训练。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/DataLoader%E4%B8%8EDataSet/21/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/autograd/21/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/autograd/21/07/2020/" class="post-title-link" itemprop="url">autograd</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：21-07-2020 11:00:00" itemprop="dateCreated datePublished" datetime="2020-07-21T11:00:00+08:00">21-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:00:49" itemprop="dateModified" datetime="2023-02-02T04:00:49+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="autograd自动求导系统"><a class="markdownIt-Anchor" href="#autograd自动求导系统"></a> autograd—自动求导系统</h1>
+<h2 id="1-torchautogradbackward"><a class="markdownIt-Anchor" href="#1-torchautogradbackward"></a> 1.  torch.autograd.backward</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd.backward(tensors, </span><br><span class="line">                        grad_tensors=<span class="literal">None</span>, </span><br><span class="line">                        retain_graph=<span class="literal">None</span>, </span><br><span class="line">                        create_graph=<span class="literal">False</span>, </span><br><span class="line">                        grad_variables=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>功能：自动求取梯度</p>
+<ul>
+<li>tensors: 用于求导的张量，如 loss</li>
+<li>retain_graph : 保存计算图</li>
+<li>create_graph : 创建导数计算图，用于高阶求导</li>
+<li>grad_tensors：多梯度权重</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/autograd/21/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/21/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/21/07/2020/" class="post-title-link" itemprop="url">计算图与动态图机制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：21-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-21T10:00:00+08:00">21-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:03:38" itemprop="dateModified" datetime="2023-02-02T04:03:38+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-计算图"><a class="markdownIt-Anchor" href="#1-计算图"></a> 1. 计算图</h1>
+<h2 id="11-用计算图表示"><a class="markdownIt-Anchor" href="#11-用计算图表示"></a> 1.1 用计算图表示：</h2>
+<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200721140813.png" alt="image-20200721135913837" style="zoom:50%;" />
+<p>计算图是用来描述运算的有向无环图，计算图有两个主要元素：结点（Node）和边（Edge）</p>
+<p>结点表示数据，如向量，矩阵，张量，边表示运算，如加减乘除卷积等</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>w</mi><mo stretchy="false">)</mo><mo>∗</mo><mo stretchy="false">(</mo><mi>w</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>a</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>w</mi><mspace linebreak="newline"></mspace><mi>b</mi><mo>=</mo><mi>w</mi><mo>+</mo><mn>1</mn><mspace linebreak="newline"></mspace><mi>y</mi><mo>=</mo><mi>a</mi><mo>∗</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y = (x+ w) * (w+1)\\
+
+a = x + w \\
+
+b = w + 1\\
+
+y = a * b
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/21/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/21/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/21/07/2020/" class="post-title-link" itemprop="url">Python Numpy库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：21-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-21T10:00:00+08:00">21-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:00:16" itemprop="dateModified" datetime="2023-02-02T04:00:16+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="numpy库"><a class="markdownIt-Anchor" href="#numpy库"></a> Numpy库</h1>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png" alt="image-20200714165326989" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/21/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C/20/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C/20/07/2020/" class="post-title-link" itemprop="url">张量的操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：20-07-2020 11:00:00" itemprop="dateCreated datePublished" datetime="2020-07-20T11:00:00+08:00">20-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:02:38" itemprop="dateModified" datetime="2023-02-02T04:02:38+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-张量的操作拼接-切分-索引和变换"><a class="markdownIt-Anchor" href="#1-张量的操作拼接-切分-索引和变换"></a> 1. 张量的操作：拼接、切分、索引和变换</h1>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720225049.png" alt="image-20200720225048285" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C/20/07/2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zihuan Qiu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

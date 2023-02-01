@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文件、异常和模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 文件、异常和模块">
+<meta property="og:url" content="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/18/07/2020/index.html">
+<meta property="og:site_name" content="zihuan&#39;s Blog">
+<meta property="og:description" content="文件、异常和模块">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205506.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205537.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205558.png">
+<meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205610.png">
+<meta property="article:published_time" content="2020-07-18T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T20:00:00.869Z">
+<meta property="article:author" content="Zihuan Qiu">
+<meta property="article:tag" content="Python基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205506.png">
+
+
+<link rel="canonical" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/18/07/2020/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/18/07/2020/","path":"Python基础/第八章 文件、异常和模块/18/07/2020/","title":"Python 文件、异常和模块"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python 文件、异常和模块 | zihuan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zihuan's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6-%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97"><span class="nav-text"> 文件、异常和模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#81-%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%86%99"><span class="nav-text"> 8.1 文件的读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#811-%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80"><span class="nav-text"> 8.1.1 文件的打开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#812-%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%8F%96"><span class="nav-text"> 8.1.2 文件的读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#813-%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%99%E5%85%A5"><span class="nav-text"> 8.1.3 文件的写入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#814-%E6%97%A2%E8%AF%BB%E5%8F%88%E5%86%99"><span class="nav-text"> 8.1.4 既读又写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#815-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E5%82%A8%E4%B8%8E%E8%AF%BB%E5%8F%96"><span class="nav-text"> 8.1.5 数据的存储与读取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#82-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text"> 8.2 异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#821-%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-text"> 8.2.1 常见异常的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#822-%E5%BC%82%E5%B8%B8%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-text"> 8.2.2 异常的处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#83-%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="nav-text"> 8.3 模块简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#831-%E5%B9%BF%E4%B9%89%E6%A8%A1%E5%9D%97%E5%88%86%E7%B1%BB"><span class="nav-text"> 8.3.1 广义模块分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#832-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%AF%BC%E5%85%A5"><span class="nav-text"> 8.3.2 模块的导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#833-%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9F%A5%E6%89%BE%E8%B7%AF%E5%BE%84"><span class="nav-text"> 8.3.3 模块的查找路径</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zihuan Qiu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E6%96%87%E4%BB%B6%E3%80%81%E5%BC%82%E5%B8%B8%E5%92%8C%E6%A8%A1%E5%9D%97/18/07/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zihuan Qiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python 文件、异常和模块 | zihuan's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 文件、异常和模块
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：18-07-2020 10:00:00" itemprop="dateCreated datePublished" datetime="2020-07-18T10:00:00+08:00">18-07-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：02-02-2023 04:00:00" itemprop="dateModified" datetime="2023-02-02T04:00:00+08:00">02-02-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="文件-异常和模块"><a class="markdownIt-Anchor" href="#文件-异常和模块"></a> 文件、异常和模块</h1>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205506.png" alt="image-20200713205504882" /></p>
+<span id="more"></span>
+<p><strong>实际应用中，我们绝大多数的数据都是通过文件的交互完成的</strong></p>
+<h2 id="81-文件的读写"><a class="markdownIt-Anchor" href="#81-文件的读写"></a> 8.1 文件的读写</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205537.png" alt="image-20200713205536199" /></p>
+<h3 id="811-文件的打开"><a class="markdownIt-Anchor" href="#811-文件的打开"></a> 8.1.1 文件的打开</h3>
+<ul>
+<li>文件的打开通用格式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;文件路径&quot;</span>, <span class="string">&quot;打开模式&quot;</span>, encoding = <span class="string">&quot;操作文件的字符编码&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="string">&quot;对文件进行相应的读写操作&quot;</span></span><br><span class="line">使用<span class="keyword">with</span> 块的好处：执行完毕后，自动对文件进行close操作。</span><br></pre></td></tr></table></figure>
+<p>【例1】一个简单的文件读取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;E:\ipython\测试文件.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding = <span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     <span class="comment"># 第一步：打开文件</span></span><br><span class="line">    text = f.read()                                                   <span class="comment"># 第二步：读取文件</span></span><br><span class="line">    <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>我是一个测试文件
+</code></pre>
+<p><strong>1、文件路径</strong></p>
+<ul>
+<li>
+<p>完整路径，如上例所示</p>
+</li>
+<li>
+<p>程序与文件在同一文件夹，可简化成文件名</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;测试文件.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding = <span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     <span class="comment"># 第一步：打开文件</span></span><br><span class="line">    text = f.read()                                        <span class="comment"># 第二步：读取文件</span></span><br><span class="line">    <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>我是一个测试文件
+</code></pre>
+<p><strong>2、打开模式</strong></p>
+<ul>
+<li>
+<p>“r”  只读模式，如文件不存在，报错</p>
+</li>
+<li>
+<p>“w” 覆盖写模式，如文件不存在，则创建；如文件存在，则完全覆盖原文件</p>
+</li>
+<li>
+<p>“x” 创建写模式，如文件不存在，则创建；如文件存在，报错</p>
+</li>
+<li>
+<p>“a”  追加写模式，如文件不存在，则创建；如文件存在，则在原文件后追加内容</p>
+</li>
+<li>
+<p>“b” 二进制文件模式，不能单独使用，需要配合使用如&quot;rb&quot;，“wb”，“ab”，<strong>该模式不需指定encoding</strong></p>
+</li>
+<li>
+<p>“t” 文本文件模式，默认值，需配合使用 如&quot;rt&quot;，“wt”，“at”，一般省略，简写成如&quot;r&quot;，“w”，“a”</p>
+</li>
+<li>
+<p>“+”，与&quot;r&quot;,“w”,“x”,&quot;a&quot;配合使用，在原功能基础上，增加读写功能</p>
+</li>
+<li>
+<p><strong>打开模式缺省，默认为只读模式</strong></p>
+</li>
+</ul>
+<p><strong>3、字符编码</strong></p>
+<ul>
+<li><strong>万国码 utf-8</strong></li>
+</ul>
+<p>包含全世界所有国家需要用到的字符</p>
+<ul>
+<li><strong>中文编码 gbk</strong></li>
+</ul>
+<p>专门解决中文编码问题</p>
+<ul>
+<li>
+<p><strong>windows系统下，如果缺省，则默认为gbk（所在区域的编码）</strong></p>
+</li>
+<li>
+<p>为清楚起见，除了处理二进制文件，<strong>建议不要缺省encoding</strong></p>
+</li>
+</ul>
+<h3 id="812-文件的读取"><a class="markdownIt-Anchor" href="#812-文件的读取"></a> 8.1.2 文件的读取</h3>
+<p>1、<strong>读取整个内容——f.read()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_utf.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:       <span class="comment"># 第一步：打开文件</span></span><br><span class="line">    text = f.read()                                                    <span class="comment"># 第二步：读取文件</span></span><br><span class="line">    <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>临江仙·滚滚长江东逝水
+滚滚长江东逝水，浪花淘尽英雄。
+是非成败转头空。
+青山依旧在，几度夕阳红。
+白发渔樵江渚上，惯看秋月春风。
+一壶浊酒喜相逢。
+古今多少事，都付笑谈中。
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_utf.txt&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:     <span class="comment"># &quot;r&quot;，可缺省，为清晰起见，最好写上</span></span><br><span class="line">    text = f.read()                                                   </span><br><span class="line">    <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>临江仙·滚滚长江东逝水
+滚滚长江东逝水，浪花淘尽英雄。
+是非成败转头空。
+青山依旧在，几度夕阳红。
+白发渔樵江渚上，惯看秋月春风。
+一壶浊酒喜相逢。
+古今多少事，都付笑谈中。
+</code></pre>
+<ul>
+<li>解码模式不匹配</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_utf.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     </span><br><span class="line">    text = f.read()                                                    </span><br><span class="line">    <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+UnicodeDecodeError                        Traceback (most recent call last)
+
+&lt;ipython-input-6-8e9ea685585d&gt; in &lt;module&gt;
+      1 with open(&quot;三国演义片头曲_utf.txt&quot;, &quot;r&quot;, encoding=&quot;gbk&quot;) as f:
+----&gt; 2     text = f.read()
+      3     print(text)
+
+
+UnicodeDecodeError: 'gbk' codec can't decode byte 0x80 in position 50: illegal multibyte sequence
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_utf.txt&quot;</span>, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:     <span class="comment"># encoding缺省，windows系统默认为&quot;gbk&quot;</span></span><br><span class="line">    text = f.read()                                                    </span><br><span class="line">    <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+UnicodeDecodeError                        Traceback (most recent call last)
+
+&lt;ipython-input-7-480622bc01aa&gt; in &lt;module&gt;
+      1 with open(&quot;三国演义片头曲_utf.txt&quot;, &quot;r&quot;) as f:     # encoding缺省，windows系统默认为&quot;gbk&quot;
+----&gt; 2     text = f.read()
+      3     print(text)
+
+
+UnicodeDecodeError: 'gbk' codec can't decode byte 0x80 in position 50: illegal multibyte sequence
+</code></pre>
+<p>2、<strong>逐行进行读取——f.readline()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        text = f.readline()                                                   <span class="comment"># 每次只读取一行</span></span><br><span class="line">        <span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+<pre><code>临江仙·滚滚长江东逝水
+
+滚滚长江东逝水，浪花淘尽英雄。
+
+是非成败转头空。
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        text = f.readline()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> text:</span><br><span class="line">            <span class="comment"># print(text is &quot;&quot;)</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># print(text == &quot;\n&quot;)</span></span><br><span class="line">            <span class="built_in">print</span>(text, end=<span class="string">&quot;&quot;</span>)      <span class="comment"># 保留原文的换行，使print()的换行不起作用</span></span><br></pre></td></tr></table></figure>
+<pre><code>临江仙·滚滚长江东逝水
+滚滚长江东逝水，浪花淘尽英雄。
+是非成败转头空。
+
+青山依旧在，几度夕阳红。
+白发渔樵江渚上，惯看秋月春风。
+一壶浊酒喜相逢。
+古今多少事，都付笑谈中。
+</code></pre>
+<p>3、<strong>读入所有行，以每行为元素形成一个列表——f.readlines()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    text = f.readlines()              <span class="comment"># 注意每行末尾有换行符</span></span><br><span class="line">    <span class="built_in">print</span>(text)               </span><br></pre></td></tr></table></figure>
+<pre><code>['临江仙·滚滚长江东逝水\n', '滚滚长江东逝水，浪花淘尽英雄。\n', '是非成败转头空。\n', '\n', '青山依旧在，几度夕阳红。\n', '白发渔樵江渚上，惯看秋月春风。\n', '一壶浊酒喜相逢。\n', '古今多少事，都付笑谈中。\n']
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     </span><br><span class="line">    <span class="keyword">for</span> text <span class="keyword">in</span> f.readlines():                                                   </span><br><span class="line">        <span class="built_in">print</span>(text)                <span class="comment"># 不想换行则用print(text, end=&quot;&quot;)         </span></span><br></pre></td></tr></table></figure>
+<pre><code>临江仙·滚滚长江东逝水
+
+滚滚长江东逝水，浪花淘尽英雄。
+
+是非成败转头空。
+
+青山依旧在，几度夕阳红。
+
+白发渔樵江渚上，惯看秋月春风。
+
+一壶浊酒喜相逢。
+
+古今多少事，都付笑谈中。
+</code></pre>
+<p>4、<strong>文本文件读取小结</strong></p>
+<p>文件比较大时，read()和readlines()占用内存过大，不建议使用</p>
+<p>readline用起来又不太方便</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;三国演义片头曲_gbk.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:     </span><br><span class="line">    <span class="keyword">for</span> text <span class="keyword">in</span> f:         <span class="comment"># f本身就是一个可迭代对象，每次迭代读取一行内容 </span></span><br><span class="line">        <span class="built_in">print</span>(text)  </span><br></pre></td></tr></table></figure>
+<pre><code>临江仙·滚滚长江东逝水
+
+滚滚长江东逝水，浪花淘尽英雄。
+
+是非成败转头空。
+
+青山依旧在，几度夕阳红。
+
+白发渔樵江渚上，惯看秋月春风。
+
+一壶浊酒喜相逢。
+
+古今多少事，都付笑谈中。
+</code></pre>
+<p>5、<strong>二进制文件</strong></p>
+<p>图片：二进制文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.jpg&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:     </span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">len</span>(f.readlines()))</span><br></pre></td></tr></table></figure>
+<pre><code>69
+</code></pre>
+<h3 id="813-文件的写入"><a class="markdownIt-Anchor" href="#813-文件的写入"></a> 8.1.3 文件的写入</h3>
+<p>1、<strong>向文件写入一个字符串或字节流（二进制）——f.write()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;恋曲1980.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:                      </span><br><span class="line">        f.write(<span class="string">&quot;你曾经对我说\n&quot;</span>)        <span class="comment"># 文件不存在则立刻创建一个</span></span><br><span class="line">        f.write(<span class="string">&quot;你永远爱着我\n&quot;</span>)        <span class="comment"># 如需换行，末尾加换行符\n</span></span><br><span class="line">        f.write(<span class="string">&quot;爱情这东西我明白\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">&quot;但永远是什么\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;恋曲1980.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:                      </span><br><span class="line">        f.write(<span class="string">&quot;姑娘你别哭泣\n&quot;</span>)        <span class="comment"># 如果文件存在，新写入内容会覆盖掉原内容，一定要注意！！！</span></span><br><span class="line">        f.write(<span class="string">&quot;我俩还在一起\n&quot;</span>)        </span><br><span class="line">        f.write(<span class="string">&quot;今天的欢乐\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">&quot;将是明天创痛的回忆\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>2、<strong>追加模式——&quot;a&quot;</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;恋曲1980.txt&quot;</span>, <span class="string">&quot;a&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:                      </span><br><span class="line">        f.write(<span class="string">&quot;姑娘你别哭泣\n&quot;</span>)        <span class="comment"># 如果文件存在，新写入内容会覆盖掉原内容，一定要注意！！！</span></span><br><span class="line">        f.write(<span class="string">&quot;我俩还在一起\n&quot;</span>)        </span><br><span class="line">        f.write(<span class="string">&quot;今天的欢乐\n&quot;</span>)</span><br><span class="line">        f.write(<span class="string">&quot;将是明天创痛的回忆\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>3、<strong>将一个元素为字符串的列表整体写入文件——f.writelines()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls = [<span class="string">&quot;春天刮着风&quot;</span>, <span class="string">&quot;秋天下着雨&quot;</span>, <span class="string">&quot;春风秋雨多少海誓山盟随风远去&quot;</span>]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;恋曲1980.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.writelines(ls)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls = [<span class="string">&quot;春天刮着风\n&quot;</span>, <span class="string">&quot;秋天下着雨\n&quot;</span>, <span class="string">&quot;春风秋雨多少海誓山盟随风远去\n&quot;</span>]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;恋曲1980.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.writelines(ls)</span><br></pre></td></tr></table></figure>
+<h3 id="814-既读又写"><a class="markdownIt-Anchor" href="#814-既读又写"></a> 8.1.4 既读又写</h3>
+<p>1、<strong>&quot;r+&quot;</strong></p>
+<ul>
+<li>如果文件名不存在，则报错</li>
+<li>指针在开始</li>
+<li>要把指针移到末尾才能开始写，否则会覆盖前面内容</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="string">&quot;r+&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="comment">#     for line in f:</span></span><br><span class="line"><span class="comment">#         print(line)   # 全部读一遍后，指针到达结尾</span></span><br><span class="line">    f.seek(<span class="number">0</span>,<span class="number">2</span>)         <span class="comment"># 或者可以将指针移到末尾f.seek(偏移字节数,位置（0：开始；1：当前位置；2：结尾）)</span></span><br><span class="line">    text = [<span class="string">&quot;萧瑟秋风今又是，\n&quot;</span>, <span class="string">&quot;换了人间。\n&quot;</span>]</span><br><span class="line">    f.writelines(text)</span><br></pre></td></tr></table></figure>
+<p>2、<strong>&quot;w+&quot;</strong></p>
+<ul>
+<li>若文件不存在，则创建</li>
+<li>若文件存在，会立刻清空原内容！！！</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    text = [<span class="string">&quot;萧瑟秋风今又是，\n&quot;</span>, <span class="string">&quot;换了人间。\n&quot;</span>]  <span class="comment"># 清空原内容</span></span><br><span class="line">    f.writelines(text)                             <span class="comment"># 写入新内容，指针在最后</span></span><br><span class="line">    f.seek(<span class="number">0</span>,<span class="number">0</span>)            <span class="comment"># 指针移到开始</span></span><br><span class="line">    <span class="built_in">print</span>(f.read())        <span class="comment"># 读取内容</span></span><br></pre></td></tr></table></figure>
+<p>3、<strong>&quot;a+&quot;</strong></p>
+<ul>
+<li>若文件不存在，则创建</li>
+<li>指针在末尾，添加新内容，不会清空原内容</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="string">&quot;a+&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.seek(<span class="number">0</span>,<span class="number">0</span>)            <span class="comment"># 指针移到开始</span></span><br><span class="line">    <span class="built_in">print</span>(f.read())        <span class="comment"># 读取内容</span></span><br></pre></td></tr></table></figure>
+<pre><code>大雨落幽燕，
+白浪滔天。
+秦皇岛外打鱼船。
+一片汪洋都不见，
+知向谁边？
+往事越千年，
+魏武挥鞭，
+东临碣石有遗篇。
+萧瑟秋风今又是，
+换了人间。
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;浪淘沙_北戴河.txt&quot;</span>, <span class="string">&quot;a+&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    text = [<span class="string">&quot;萧瑟秋风今又是，\n&quot;</span>, <span class="string">&quot;换了人间。\n&quot;</span>]  </span><br><span class="line">    f.writelines(text)                             <span class="comment"># 指针在最后,追加新内容， </span></span><br><span class="line">    f.seek(<span class="number">0</span>,<span class="number">0</span>)            <span class="comment"># 指针移到开始</span></span><br><span class="line">    <span class="built_in">print</span>(f.read())        <span class="comment"># 读取内容</span></span><br></pre></td></tr></table></figure>
+<pre><code>大雨落幽燕，
+白浪滔天。
+秦皇岛外打鱼船。
+一片汪洋都不见，
+知向谁边？
+往事越千年，
+魏武挥鞭，
+东临碣石有遗篇。
+萧瑟秋风今又是，
+换了人间。
+萧瑟秋风今又是，
+换了人间。
+</code></pre>
+<h3 id="815-数据的存储与读取"><a class="markdownIt-Anchor" href="#815-数据的存储与读取"></a> 8.1.5 数据的存储与读取</h3>
+<p><strong>通用的数据格式，可以在不同语言中加载和存储</strong></p>
+<p><strong>本节简单了解两种数据存储结构csv和json</strong></p>
+<p>1、<strong>csv格式</strong></p>
+<p>由逗号将数据分开的字符序列，可以由excel打开</p>
+<ul>
+<li><strong>读取</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;成绩.csv&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    ls = [] </span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:                              <span class="comment"># 逐行读取</span></span><br><span class="line">        ls.append(line.strip(<span class="string">&quot;\n&quot;</span>).split(<span class="string">&quot;,&quot;</span>))  <span class="comment"># 去掉每行的换行符，然后用“,”进行分割</span></span><br><span class="line"><span class="keyword">for</span> res <span class="keyword">in</span> ls:</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br></pre></td></tr></table></figure>
+<pre><code>['编号', '数学成绩', '语文成绩']
+['1', '100', '98']
+['2', '96', '99']
+['3', '97', '95']
+</code></pre>
+<ul>
+<li><strong>写入</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls = [[<span class="string">&#x27;编号&#x27;</span>, <span class="string">&#x27;数学成绩&#x27;</span>, <span class="string">&#x27;语文成绩&#x27;</span>], [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;100&#x27;</span>, <span class="string">&#x27;98&#x27;</span>], [<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;96&#x27;</span>, <span class="string">&#x27;99&#x27;</span>], [<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;97&#x27;</span>, <span class="string">&#x27;95&#x27;</span>]]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;score.csv&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;gbk&quot;</span>) <span class="keyword">as</span> f:   <span class="comment"># encoding=&quot;utf-8&quot;中文出现乱码</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> ls:                                  <span class="comment"># 逐行写入</span></span><br><span class="line">        f.write(<span class="string">&quot;,&quot;</span>.join(row)+<span class="string">&quot;\n&quot;</span>)                 <span class="comment"># 用逗号组合成字符串形式，末尾加换行符</span></span><br></pre></td></tr></table></figure>
+<p><strong>也可以借助csv模块完成上述操作</strong></p>
+<p>2、<strong>json格式</strong></p>
+<p>常被用来存储字典类型</p>
+<ul>
+<li><strong>写入——dump()</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">scores = &#123;<span class="string">&quot;Petter&quot;</span>:&#123;<span class="string">&quot;math&quot;</span>:<span class="number">96</span> , <span class="string">&quot;physics&quot;</span>: <span class="number">98</span>&#125;,</span><br><span class="line">        <span class="string">&quot;Paul&quot;</span>:&#123;<span class="string">&quot;math&quot;</span>:<span class="number">92</span> , <span class="string">&quot;physics&quot;</span>: <span class="number">99</span>&#125;,</span><br><span class="line">        <span class="string">&quot;Mary&quot;</span>:&#123;<span class="string">&quot;math&quot;</span>:<span class="number">98</span> , <span class="string">&quot;physics&quot;</span>: <span class="number">97</span>&#125;&#125;</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;score.json&quot;</span>, <span class="string">&quot;w&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:             <span class="comment"># 写入整个对象 </span></span><br><span class="line">        <span class="comment"># indent 表示字符串换行+缩进 ensure_ascii=False 显示中文</span></span><br><span class="line">        json.dump(scores, f, indent=<span class="number">4</span>, ensure_ascii=<span class="literal">False</span>)       </span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>读取——load()</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;score.json&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:                                         </span><br><span class="line">        scores = json.load(f)           <span class="comment"># 加载整个对象</span></span><br><span class="line">        <span class="keyword">for</span> k,v <span class="keyword">in</span> scores.items():</span><br><span class="line">            <span class="built_in">print</span>(k,v)</span><br></pre></td></tr></table></figure>
+<pre><code>Petter &#123;'math': 96, 'physics': 98&#125;
+Paul &#123;'math': 92, 'physics': 99&#125;
+Mary &#123;'math': 98, 'physics': 97&#125;
+</code></pre>
+<h2 id="82-异常处理"><a class="markdownIt-Anchor" href="#82-异常处理"></a> 8.2 异常处理</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205558.png" alt="image-20200713205556781" /></p>
+<h3 id="821-常见异常的产生"><a class="markdownIt-Anchor" href="#821-常见异常的产生"></a> 8.2.1 常见异常的产生</h3>
+<p>1、<strong>除0运算——ZeroDivisionError</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>/<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ZeroDivisionError                         Traceback (most recent call last)
+
+&lt;ipython-input-1-9e1622b385b6&gt; in &lt;module&gt;
+----&gt; 1 1/0
+
+
+ZeroDivisionError: division by zero
+</code></pre>
+<p>2、<strong>找不到可读文件——FileNotFoundError</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;nobody.csv&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+FileNotFoundError                         Traceback (most recent call last)
+
+&lt;ipython-input-2-f2e8c7d0ac60&gt; in &lt;module&gt;
+----&gt; 1 with open(&quot;nobody.csv&quot;) as f:
+      2     pass
+
+
+FileNotFoundError: [Errno 2] No such file or directory: 'nobody.csv'
+</code></pre>
+<p>3、<strong>值错误——ValueError</strong></p>
+<p>传入一个调用者不期望的值，即使这个值的类型是正确的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;1.3&quot;</span></span><br><span class="line">n = <span class="built_in">int</span>(s)</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-8-69942d9db3c0&gt; in &lt;module&gt;
+      1 s = &quot;1.3&quot;
+----&gt; 2 n = int(s)
+
+
+ValueError: invalid literal for int() with base 10: '1.3'
+</code></pre>
+<p>4、<strong>索引错误——IndexError</strong></p>
+<p>下标超出序列边界</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">ls[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-9-acf459124b52&gt; in &lt;module&gt;
+      1 ls = [1, 2, 3]
+----&gt; 2 ls[5]
+
+
+IndexError: list index out of range
+</code></pre>
+<p>5、<strong>类型错误——TypeError</strong></p>
+<p>传入对象类型与要求不符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="string">&quot;3&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-10-ee505dc42f75&gt; in &lt;module&gt;
+----&gt; 1 1 + &quot;3&quot;
+
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre>
+<p>6、<strong>其他常见的异常类型</strong></p>
+<p>NameError 使用一个未被定义的变量<br />
+KeyError 试图访问字典里不存在的键<br />
+。。。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-11-bca0e2660b9f&gt; in &lt;module&gt;
+----&gt; 1 print(a)
+
+
+NameError: name 'a' is not defined
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;&#125;</span><br><span class="line">d[<span class="string">&quot;1&quot;</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-12-e629d551aca0&gt; in &lt;module&gt;
+      1 d = &#123;&#125;
+----&gt; 2 d[&quot;1&quot;]
+
+
+KeyError: '1'
+</code></pre>
+<p><strong>当异常发生的时候，如果不预先设定处理方法，程序就会中断</strong></p>
+<h3 id="822-异常的处理"><a class="markdownIt-Anchor" href="#822-异常的处理"></a> 8.2.2 异常的处理</h3>
+<p><strong>提高程序的稳定性和可靠性</strong></p>
+<p>1、<strong>try_except</strong></p>
+<ul>
+<li>
+<p>如果try内代码块顺利执行，except不被触发</p>
+</li>
+<li>
+<p>如果try内代码块发生错误，触发except,执行except内代码块</p>
+</li>
+<li>
+<p>单分支</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">y = <span class="number">0</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    z = x/y</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:                  <span class="comment"># 一般来说会预判到出现什么错误</span></span><br><span class="line">    <span class="comment"># z = x/(y+1e-7)</span></span><br><span class="line">    <span class="comment"># print(z)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;0不可以被除！&quot;</span>)    </span><br></pre></td></tr></table></figure>
+<pre><code>0不可以被除！
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">y = <span class="number">0</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    z = x/y</span><br><span class="line"><span class="keyword">except</span> NameError:                  <span class="comment"># 一般来说会预判到出现什么错误</span></span><br><span class="line">    <span class="comment"># z = x/(y+1e-7)</span></span><br><span class="line">    <span class="comment"># print(z)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;0不可以被除！&quot;</span>)   </span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+ZeroDivisionError                         Traceback (most recent call last)
+
+&lt;ipython-input-14-aea58863ad72&gt; in &lt;module&gt;
+      2 y = 0
+      3 try:
+----&gt; 4     z = x/y
+      5 except NameError:                  # 一般来说会预判到出现什么错误
+      6     # z = x/(y+1e-7)
+
+
+ZeroDivisionError: division by zero
+</code></pre>
+<ul>
+<li>多分支</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ls = []</span><br><span class="line">d = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;大杰仔&quot;</span>&#125;</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    y = m</span><br><span class="line">    <span class="comment"># ls[3]</span></span><br><span class="line">    <span class="comment"># d[&quot;age&quot;]</span></span><br><span class="line"><span class="keyword">except</span> NameError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;变量名不存在&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> IndexError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;索引超出界限&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> KeyError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;键不存在&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>变量名不存在
+</code></pre>
+<ul>
+<li>万能异常 Exception （所有错误的老祖宗）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls = []</span><br><span class="line">d = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;大杰仔&quot;</span>&#125;</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># y = m</span></span><br><span class="line">    ls[<span class="number">3</span>]</span><br><span class="line">    <span class="comment"># d[&quot;age&quot;]</span></span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;出错啦&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>出错啦
+</code></pre>
+<ul>
+<li>捕获异常的值 as</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ls = []</span><br><span class="line">d = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;大杰仔&quot;</span>&#125;</span><br><span class="line"><span class="comment"># y = x</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    y = m</span><br><span class="line">    <span class="comment"># ls[3]</span></span><br><span class="line">    <span class="comment"># d[&quot;age&quot;]</span></span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:    <span class="comment"># 虽不能获得错误具体类型，但可以获得错误的值</span></span><br><span class="line">    <span class="built_in">print</span>(e)</span><br></pre></td></tr></table></figure>
+<pre><code>name 'm' is not defined
+</code></pre>
+<p>2、<strong>try_except_else</strong></p>
+<ul>
+<li>如果try 模块执行，则else模块也执行</li>
+</ul>
+<p>可以将else 看做try成功的额外奖赏</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;浪淘沙_北戴河.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        text = f.read()</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;找不到该文件，ta是不是用了美颜？&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> [<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;，&quot;</span>, <span class="string">&quot;。&quot;</span>, <span class="string">&quot;？&quot;</span>]:         <span class="comment"># 去掉换行符和标点符号</span></span><br><span class="line">        text = text.replace(s, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;毛主席的名作《浪淘沙_北戴河》共由&#123;&#125;个字组成。&quot;</span>.<span class="built_in">format</span>(<span class="built_in">len</span>(text)))</span><br></pre></td></tr></table></figure>
+<pre><code>毛主席的名作《浪淘沙_北戴河》共由65个字组成。
+</code></pre>
+<p>3、<strong>try_except_finally</strong></p>
+<ul>
+<li>不论try模块是否执行，finally最后都执行</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ls = []</span><br><span class="line">d = &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;大杰仔&quot;</span>&#125;</span><br><span class="line"><span class="comment"># y = x</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    y = m</span><br><span class="line">    <span class="comment"># ls[3]</span></span><br><span class="line">    <span class="comment"># d[&quot;age&quot;]</span></span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:    <span class="comment"># 虽不能获得错误具体类型，但可以获得错误的值</span></span><br><span class="line">    <span class="built_in">print</span>(e)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;不论触不触发异常，都将执行&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>name 'm' is not defined
+不论触不触发异常，都将执行
+</code></pre>
+<h2 id="83-模块简介"><a class="markdownIt-Anchor" href="#83-模块简介"></a> 8.3 模块简介</h2>
+<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200713205610.png" alt="image-20200713205609455" /></p>
+<p>已经被封装好</p>
+<p>无需自己再“造轮子”</p>
+<p>声明导入后，拿来即用</p>
+<h3 id="831-广义模块分类"><a class="markdownIt-Anchor" href="#831-广义模块分类"></a> 8.3.1 广义模块分类</h3>
+<p><strong>1、Python 内置</strong></p>
+<p> 时间库time\  随机库random\  容器数据类型collection\  迭代器函数itertools</p>
+<p><strong>2、第三方库</strong></p>
+<p> 数据分析numpy、pandas\  数据可视化matplotlib\  机器学习scikit-learn\  深度学习Tensorflow</p>
+<p><strong>3、自定义文件</strong></p>
+<ul>
+<li>
+<p>单独py文件</p>
+</li>
+<li>
+<p>包——多个py文件</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件夹内多个py文件，再加一个__init__.py文件（内容可为空）</span></span><br></pre></td></tr></table></figure>
+<h3 id="832-模块的导入"><a class="markdownIt-Anchor" href="#832-模块的导入"></a> 8.3.2 模块的导入</h3>
+<p><strong>1、导入整个模块——import 模块名</strong></p>
+<ul>
+<li>**调用方式：**模块名.函数名或类名</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">start = time.time()      <span class="comment"># 调用time模块中的time()</span></span><br><span class="line">time.sleep(<span class="number">3</span>)            <span class="comment"># 调用time模块中的sleep()  休息3秒钟</span></span><br><span class="line">end = time.time()       </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;程序运行用时：&#123;:.2f&#125;秒&quot;</span>.<span class="built_in">format</span>(end-start))</span><br></pre></td></tr></table></figure>
+<pre><code>程序运行用时：3.00秒
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fun1</span><br><span class="line"></span><br><span class="line">fun1.f1()</span><br></pre></td></tr></table></figure>
+<pre><code>导入fun1成功
+</code></pre>
+<p><strong>2、从模块中导入类或函数——from 模块 import 类名或函数名</strong></p>
+<ul>
+<li>**调用方式：**函数名或类名</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product   </span><br><span class="line"></span><br><span class="line">ls = <span class="built_in">list</span>(product(<span class="string">&quot;AB&quot;</span>, <span class="string">&quot;123&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(ls)</span><br></pre></td></tr></table></figure>
+<pre><code>[('A', '1'), ('A', '2'), ('A', '3'), ('B', '1'), ('B', '2'), ('B', '3')]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> function.fun1 <span class="keyword">import</span> f1         <span class="comment"># 注意这种用法</span></span><br><span class="line"></span><br><span class="line">f1()</span><br></pre></td></tr></table></figure>
+<pre><code>导入fun1成功
+</code></pre>
+<p><strong>一次导入多个</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> function <span class="keyword">import</span> fun1, fun2</span><br><span class="line"></span><br><span class="line">fun1.f1()</span><br><span class="line">fun2.f2()</span><br></pre></td></tr></table></figure>
+<pre><code>导入fun1成功
+导入fun2成功
+</code></pre>
+<p><strong>3、导入模块中所有的类和函数</strong>——from 模块 import *</p>
+<ul>
+<li>**调用方式：**函数名或类名</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> * </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">1</span>,<span class="number">100</span>))       <span class="comment"># 产生一个[1,100]之间的随机整数</span></span><br><span class="line"><span class="built_in">print</span>(random())             <span class="comment"># 产生一个[0,1)之间的随机小数</span></span><br></pre></td></tr></table></figure>
+<pre><code>36
+0.6582485822110181
+</code></pre>
+<h3 id="833-模块的查找路径"><a class="markdownIt-Anchor" href="#833-模块的查找路径"></a> 8.3.3 模块的查找路径</h3>
+<p><strong>模块搜索查找顺序：</strong></p>
+<ul>
+<li>1、内存中已经加载的模块</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fun1</span><br><span class="line"></span><br><span class="line">fun1.f1()</span><br></pre></td></tr></table></figure>
+<pre><code>导入fun1成功
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除硬盘上的fun1 文件</span></span><br><span class="line"><span class="keyword">import</span> fun1</span><br><span class="line"></span><br><span class="line">fun1.f1()</span><br></pre></td></tr></table></figure>
+<pre><code>导入fun1成功
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改硬盘上的fun1 文件</span></span><br><span class="line"><span class="keyword">import</span> fun1</span><br><span class="line"></span><br><span class="line">fun1.f1()</span><br><span class="line"><span class="comment"># 居然没变，说明是优先从内存中读取的</span></span><br></pre></td></tr></table></figure>
+<pre><code>导入fun1成功
+</code></pre>
+<ul>
+<li>2、内置模块</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python 启动时，解释器会默认加载一些 modules 存放在sys.modules中</span></span><br><span class="line"><span class="comment"># sys.modules 变量包含一个由当前载入(完整且成功导入)到解释器的模块组成的字典, 模块名作为键, 它们的位置作为值</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(sys.modules))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;math&quot;</span> <span class="keyword">in</span> sys.modules)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numpy&quot;</span> <span class="keyword">in</span> sys.modules)</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">list</span>(sys.modules.items())[:<span class="number">20</span>]:</span><br><span class="line">    <span class="built_in">print</span>(k, <span class="string">&quot;:&quot;</span>, v)</span><br></pre></td></tr></table></figure>
+<pre><code>738
+True
+False
+sys : &lt;module 'sys' (built-in)&gt;
+builtins : &lt;module 'builtins' (built-in)&gt;
+_frozen_importlib : &lt;module 'importlib._bootstrap' (frozen)&gt;
+_imp : &lt;module '_imp' (built-in)&gt;
+_thread : &lt;module '_thread' (built-in)&gt;
+_warnings : &lt;module '_warnings' (built-in)&gt;
+_weakref : &lt;module '_weakref' (built-in)&gt;
+zipimport : &lt;module 'zipimport' (built-in)&gt;
+_frozen_importlib_external : &lt;module 'importlib._bootstrap_external' (frozen)&gt;
+_io : &lt;module 'io' (built-in)&gt;
+marshal : &lt;module 'marshal' (built-in)&gt;
+nt : &lt;module 'nt' (built-in)&gt;
+winreg : &lt;module 'winreg' (built-in)&gt;
+encodings : &lt;module 'encodings' from 'C:\\Users\\ibm\\Anaconda3\\lib\\encodings\\__init__.py'&gt;
+codecs : &lt;module 'codecs' from 'C:\\Users\\ibm\\Anaconda3\\lib\\codecs.py'&gt;
+_codecs : &lt;module '_codecs' (built-in)&gt;
+encodings.aliases : &lt;module 'encodings.aliases' from 'C:\\Users\\ibm\\Anaconda3\\lib\\encodings\\aliases.py'&gt;
+encodings.utf_8 : &lt;module 'encodings.utf_8' from 'C:\\Users\\ibm\\Anaconda3\\lib\\encodings\\utf_8.py'&gt;
+_signal : &lt;module '_signal' (built-in)&gt;
+__main__ : &lt;module '__main__'&gt;
+</code></pre>
+<ul>
+<li>3、sys.path路径中包含的模块</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">sys.path</span><br></pre></td></tr></table></figure>
+<pre><code>['E:\\ipython',
+ 'C:\\Users\\ibm\\Anaconda3\\python37.zip',
+ 'C:\\Users\\ibm\\Anaconda3\\DLLs',
+ 'C:\\Users\\ibm\\Anaconda3\\lib',
+ 'C:\\Users\\ibm\\Anaconda3',
+ '',
+ 'C:\\Users\\ibm\\AppData\\Roaming\\Python\\Python37\\site-packages',
+ 'C:\\Users\\ibm\\Anaconda3\\lib\\site-packages',
+ 'C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\win32',
+ 'C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\Pythonwin',
+ 'C:\\Users\\ibm\\Anaconda3\\lib\\site-packages\\IPython\\extensions',
+ 'C:\\Users\\ibm\\.ipython']
+</code></pre>
+<ul>
+<li>sys.path的第一个路径是当前执行文件所在的文件夹</li>
+<li>若需将不在该文件夹内的模块导入，需要将模块的路径添加到sys.path</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import fun3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">sys.path.append(<span class="string">&quot;C:\\Users\\ibm\\Desktop&quot;</span>)    <span class="comment"># 注意是双斜杠</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> fun3</span><br><span class="line"></span><br><span class="line">fun3.f3()</span><br></pre></td></tr></table></figure>
+<pre><code>导入fun3成功
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python%E5%9F%BA%E7%A1%80/" rel="tag"># Python基础</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E7%B1%BB%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/17/07/2020/" rel="prev" title="Python 类——面向对象的编程">
+                  <i class="fa fa-chevron-left"></i> Python 类——面向对象的编程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E8%AF%BE%E4%BB%B6%E5%8F%8A%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/19/07/2020/" rel="next" title="Pytorch课件及代码下载地址">
+                  Pytorch课件及代码下载地址 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zihuan Qiu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
