@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Numpy库">
 <meta property="og:type" content="article">
@@ -178,6 +178,7 @@
   </nav>
 </div>
 
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=n&d=jqzH1mFv8JIBQ2pQHwieN4kf80HFDRmViqGGMuZ--kA&co=222222'></script>
         </div>
       </div>
     </div>
@@ -258,10 +259,10 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="numpy库"><a class="markdownIt-Anchor" href="#numpy库"></a> Numpy库</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png" alt="image-20200714165326989" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png" alt="image-20200714165326989" /></p>
 <span id="more"></span>
 <h2 id="111-为什么要用numpy"><a class="markdownIt-Anchor" href="#111-为什么要用numpy"></a> 11.1 为什么要用Numpy</h2>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170121.png" alt="image-20200714170119393" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170121.png" alt="image-20200714170119393" /></p>
 <h3 id="1111-低效的python-for循环"><a class="markdownIt-Anchor" href="#1111-低效的python-for循环"></a> 11.1.1  低效的Python for循环</h3>
 <p>【例】 求100万个数的倒数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">compute_reciprocals</span>(<span class="params">values</span>):</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> values:      <span class="comment"># 每遍历到一个元素，就要判断其类型，并查找适用于该数据类型的正确函数</span></span><br><span class="line">        res.append(<span class="number">1</span>/value)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">values = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">1000000</span>))</span><br><span class="line">%timeit compute_reciprocals(values)</span><br></pre></td></tr></table></figure>
@@ -287,7 +288,7 @@
 <p>如：  1、两个向量的点乘</p>
 <p>    2、矩阵乘法</p>
 <h2 id="112-numpy数组的创建"><a class="markdownIt-Anchor" href="#112-numpy数组的创建"></a> 11.2 Numpy数组的创建</h2>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170133.png" alt="image-20200714170131042" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170133.png" alt="image-20200714170131042" /></p>
 <h3 id="1121-从列表开始创建"><a class="markdownIt-Anchor" href="#1121-从列表开始创建"></a> 11.2.1 从列表开始创建</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
 <pre><code>[1 2 3 4 5]
@@ -417,7 +418,7 @@ array([[10]])
        [3, 4, 2]])
 </code></pre>
 <h2 id="113-numpy数组的性质"><a class="markdownIt-Anchor" href="#113-numpy数组的性质"></a> 11.3 Numpy数组的性质</h2>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170141.png" alt="image-20200714170140446" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170141.png" alt="image-20200714170140446" /></p>
 <h3 id="1131-数组的属性"><a class="markdownIt-Anchor" href="#1131-数组的属性"></a> 11.3.1 数组的属性</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.randint(<span class="number">10</span>, size=(<span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
 <pre><code>array([[1, 6, 8, 9],
@@ -783,7 +784,7 @@ lower:
  [[21 22 23 24 25]]
 </code></pre>
 <h2 id="114-numpy四大运算"><a class="markdownIt-Anchor" href="#114-numpy四大运算"></a> 11.4 Numpy四大运算</h2>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170158.png" alt="image-20200714170156830" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170158.png" alt="image-20200714170156830" /></p>
 <h3 id="1141-向量化运算"><a class="markdownIt-Anchor" href="#1141-向量化运算"></a> 11.4.1 向量化运算</h3>
 <p><strong>1、与数字的加减乘除等</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x1 = np.arange(<span class="number">1</span>,<span class="number">6</span>)</span><br><span class="line">x1</span><br></pre></td></tr></table></figure>
@@ -898,7 +899,7 @@ x1/x2: [0.16666667 0.28571429 0.375      0.44444444 0.5       ]
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x+<span class="number">5</span></span><br></pre></td></tr></table></figure>
 <pre><code>array([[5, 6, 7]])
 </code></pre>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165535.png" alt="image-20200714165533041" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165535.png" alt="image-20200714165533041" /></p>
 <p><strong>规则</strong></p>
 <p>如果两个数组的形状在维度上不匹配</p>
 <p>那么数组的形式会沿着维度为1的维度进行扩展以匹配另一个数组的形状。</p>
@@ -915,7 +916,7 @@ x1/x2: [0.16666667 0.28571429 0.375      0.44444444 0.5       ]
        [1., 2., 3.],
        [1., 2., 3.]])
 </code></pre>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170011.png" alt="image-20200714170009935" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170011.png" alt="image-20200714170009935" /></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x3 = np.logspace(<span class="number">1</span>, <span class="number">10</span>, <span class="number">10</span>, base=<span class="number">2</span>).reshape(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line">x3</span><br></pre></td></tr></table></figure>
 <pre><code>array([[   2.,    4.,    8.,   16.,   32.],
        [  64.,  128.,  256.,  512., 1024.]])
@@ -940,7 +941,7 @@ x1/x2: [0.16666667 0.28571429 0.375      0.44444444 0.5       ]
        [1, 2, 3],
        [2, 3, 4]])
 </code></pre>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165921.png" alt="image-20200714165920329" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165921.png" alt="image-20200714165920329" /></p>
 <h3 id="1144-比较运算和掩码"><a class="markdownIt-Anchor" href="#1144-比较运算和掩码"></a> 11.4.4 比较运算和掩码</h3>
 <p><strong>1、比较运算</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x1 = np.random.randint(<span class="number">100</span>, size=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">x1</span><br></pre></td></tr></table></figure>
@@ -1098,7 +1099,7 @@ array([[0, 0, 0],
        [ 9, 11,  8]])
 </code></pre>
 <h2 id="115-其他numpy通用函数"><a class="markdownIt-Anchor" href="#115-其他numpy通用函数"></a> 11.5 其他Numpy通用函数</h2>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170209.png" alt="image-20200714170208060" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170209.png" alt="image-20200714170208060" /></p>
 <h3 id="1151-数值排序"><a class="markdownIt-Anchor" href="#1151-数值排序"></a> 11.5.1  数值排序</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.randint(<span class="number">20</span>, <span class="number">50</span>, size=<span class="number">10</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
 <pre><code>array([39, 21, 45, 46, 27, 32, 42, 25, 44, 32])
@@ -1317,6 +1318,8 @@ min_index: 3
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
@@ -1336,6 +1339,9 @@ min_index: 3
   <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/21/07/2020/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

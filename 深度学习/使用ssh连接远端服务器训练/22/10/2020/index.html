@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="使用SSH连接远端服务器训练  1. 租用机器 DeepShare平台：https:&#x2F;&#x2F;gpu.deepshare.net&#x2F;home 选择一个有你需要环境的机器">
 <meta property="og:type" content="article">
@@ -191,6 +191,7 @@
   </nav>
 </div>
 
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=n&d=jqzH1mFv8JIBQ2pQHwieN4kf80HFDRmViqGGMuZ--kA&co=222222'></script>
         </div>
       </div>
     </div>
@@ -274,54 +275,54 @@
 <h1 id="1-租用机器"><a class="markdownIt-Anchor" href="#1-租用机器"></a> 1. 租用机器</h1>
 <p>DeepShare平台：<a target="_blank" rel="noopener" href="https://gpu.deepshare.net/home">https://gpu.deepshare.net/home</a></p>
 <p>选择一个有你需要环境的机器</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124457.png" alt="image-20201023045041163" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124457.png" alt="image-20201023045041163" /></p>
 <span id="more"></span>
 <p>先租用CPU上传代码，配置环境，再转换为GPU以节省资费（质押可以不花费DBC，可以一直白嫖Linux环境）</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124506.png" alt="image-20201023045215184" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124506.png" alt="image-20201023045215184" /></p>
 <p>租用CPU（至少30G空间）</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124515.png" alt="image-20201023045444903" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124515.png" alt="image-20201023045444903" /></p>
 <p>支付订单（支付完要点击已支付）</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124522.png" alt="image-20201023045823511" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124522.png" alt="image-20201023045823511" /></p>
 <h1 id="2-使用cpu容器配置环境"><a class="markdownIt-Anchor" href="#2-使用cpu容器配置环境"></a> 2. 使用CPU容器配置环境</h1>
 <p>根据收到的邮件信息，连接服务器（终端），jupyter（没啥用开着吧）和网盘（用于传输文件，可能会比pycharm传输快）</p>
 <p>打开网盘，将压缩后的工程文件上传到网盘</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124528.png" alt="image-20201023050328268" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124528.png" alt="image-20201023050328268" /></p>
 <p>连接终端，可以使用conda命令查看环境和包</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124535.png" alt="image-20201023050712212" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124535.png" alt="image-20201023050712212" /></p>
 <p>连接一下jupyter</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124626.png" alt="image-20201023052123465" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124626.png" alt="image-20201023052123465" /></p>
 <p>输入命令，找一下路径</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124631.png" alt="image-20201023052218916" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124631.png" alt="image-20201023052218916" /></p>
 <p>显然我们刚刚把文件放在上一级目录了，后面就可以用终端操作了</p>
 <p>先解压文件</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124640.png" alt="image-20201023052433313" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124640.png" alt="image-20201023052433313" /></p>
 <p>打开pycharm</p>
 <p>然后创建一个远端python解释器</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124651.png" alt="image-20201023052756759" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124651.png" alt="image-20201023052756759" /></p>
 <p>配置SSH，然后测试一下，没有问题就确认</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124608.png" alt="image-20201023051533564" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124608.png" alt="image-20201023051533564" /></p>
 <p>对应到邮件信息：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124622.png" alt="image-20201023051437095" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124622.png" alt="image-20201023051437095" /></p>
 <p>根据邮件设置python解释器在服务器的路径，并且设置工程映射路径</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124656.png" alt="image-20201023053036027" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124656.png" alt="image-20201023053036027" /></p>
 <p>也可以看一下远端是否同步工程文件（配置SSH解释器的同时会自动生成deployment配置）</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124700.png" alt="屏幕快照 2020-10-23 下午05.31.34 上午" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124700.png" alt="屏幕快照 2020-10-23 下午05.31.34 上午" /></p>
 <p>然后就可以使用CPU跑一下代码看看代码有没有问题啦（batch不能太大，内存只有3G，超过会杀进程，没有问题就行）</p>
 <p>若有时候发现同步有问题，即没有你上传的文件，需要删除所有配置然后从头来一遍，我也不知道是什么bug</p>
 <h1 id="3-转用gpu容器训练模型"><a class="markdownIt-Anchor" href="#3-转用gpu容器训练模型"></a> 3. 转用GPU容器训练模型</h1>
 <p>开启GPU</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124707.png" alt="image-20201023053727776" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124707.png" alt="image-20201023053727776" /></p>
 <p>支付订单（时间尽量久一点，多了可以退，少了也能续）</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124710.png" alt="image-20201023053903258" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124710.png" alt="image-20201023053903258" /></p>
 <p>然后就可以在终端查询到GPU信息了，使用命令 watch -n1 nvidia-smi</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124715.png" alt="image-20201023054642212" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124715.png" alt="image-20201023054642212" /></p>
 <p>再转回pycharm训练即可</p>
 <p>batch设置为12就把8G的显卡塞满了，可怕</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124720.png" alt="image-20201023055255165" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124725.png" alt="image-20201023055241584" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124720.png" alt="image-20201023055255165" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124725.png" alt="image-20201023055241584" /></p>
 <h1 id="4-监控训练进程"><a class="markdownIt-Anchor" href="#4-监控训练进程"></a> 4. 监控训练进程</h1>
 <p>使用tensorboard，输入命令 tensorboard --logdir=./runs（注意，一定要登陆服务器后进行，不然就是憨批）</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124951.png" alt="image-20201023070716113" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124951.png" alt="image-20201023070716113" /></p>
 <p>再打开邮件中的tensorboard网址即可（我就失败了，打不开，也可以选择隔一段时间从服务器下载even文件在本地打开）</p>
 <h1 id="5-挂后台训练"><a class="markdownIt-Anchor" href="#5-挂后台训练"></a> 5. 挂后台训练</h1>
 <p>睡了一觉发现pycharm挂掉了（电脑休眠断网）</p>
@@ -329,7 +330,7 @@
 <p>使用screen命令后台运行，不要在pycharm里面训练</p>
 <p>使用命令 screen -ls 查看当前所有任务</p>
 <p>使用命令 screen -S session_name 创建一个新的后台</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124945.png" alt="image-20201023103938130" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124945.png" alt="image-20201023103938130" /></p>
 <p>attached表示已经连接上后台</p>
 <p>使用命令 exit 退出并删去当前后台</p>
 <p>使用命令 screen -d session_name 与目标后台脱离连接</p>
@@ -337,7 +338,7 @@
 <p>建立后台并且attached之后，直接在命令行运行python文件。之后再输入命令 screen -d session_name 与当前后台脱离（如果当前程序一直在print可以打开另外一个终端输入脱离命令）。</p>
 <p>现在就算断连，服务器也不会停止训练了。（建议先脱离连接再建立连接，无论之前有没有attached，都先脱离一下再连接，不然程序容易没有跑在后台）</p>
 <p>下次连接输入命令 screen -r session_name 连接后台，就可以看到当前程序运行了</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124957.png" alt="image-20201023104823473" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20201023124957.png" alt="image-20201023104823473" /></p>
 
     </div>
 
@@ -413,6 +414,8 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
@@ -432,6 +435,9 @@
   <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://yoursite.com/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%AD%E7%BB%83/22/10/2020/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

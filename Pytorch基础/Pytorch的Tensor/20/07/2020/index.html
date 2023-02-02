@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="1. 张量是什么 张量是一个多维数组，它是标量、向量、矩阵的高维拓展">
 <meta property="og:type" content="article">
@@ -174,6 +174,7 @@
   </nav>
 </div>
 
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=n&d=jqzH1mFv8JIBQ2pQHwieN4kf80HFDRmViqGGMuZ--kA&co=222222'></script>
         </div>
       </div>
     </div>
@@ -255,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="1-张量是什么"><a class="markdownIt-Anchor" href="#1-张量是什么"></a> 1. 张量是什么</h1>
 <p>张量是一个多维数组，它是标量、向量、矩阵的高维拓展</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720140740.png" alt="image-20200720140731459" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720140740.png" alt="image-20200720140731459" /></p>
 <span id="more"></span>
 <p>Pytorch0.4.0版开始，Variable并入Tensor</p>
 <ul>
@@ -269,10 +270,10 @@
 <p>device:张量所在设备，GPU/CPU，是加速的关键</p>
 </li>
 </ul>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720141408.png" alt="image-20200720141349926" style="zoom: 67%;" />
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720143004.png" alt="image-20200720142848284" style="zoom:67%;" />
+<img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720141408.png" alt="image-20200720141349926" style="zoom: 67%;" />
+<img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720143004.png" alt="image-20200720142848284" style="zoom:67%;" />
 <h1 id="2-张量的创建"><a class="markdownIt-Anchor" href="#2-张量的创建"></a> 2. 张量的创建</h1>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720150026.png" alt="创建Tensor" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720150026.png" alt="创建Tensor" /></p>
 <h2 id="21-从ndarray创建"><a class="markdownIt-Anchor" href="#21-从ndarray创建"></a> 2.1 从ndarray创建</h2>
 <h3 id="211-通过torchtensor创建张量"><a class="markdownIt-Anchor" href="#211-通过torchtensor创建张量"></a> 2.1.1 通过torch.tensor创建张量</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.tensor(data, </span><br><span class="line">             dtype=<span class="literal">None</span>, </span><br><span class="line">             device=<span class="literal">None</span>, </span><br><span class="line">             requires_grad=<span class="literal">False</span>, </span><br><span class="line">             pin_memory=<span class="literal">False</span>) → Tensor</span><br></pre></td></tr></table></figure>
@@ -300,7 +301,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.from_numpy(ndarray) → Tensor</span><br></pre></td></tr></table></figure>
 <p>功能：从numpy创建tensor<br />
 注意事项：从torch.from_numpy创建的tensor于原ndarray共享内存，当修改其中一个的数据，另外一个也将会被改动</p>
-<img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720142411.png" alt="image-20200720142410333" style="zoom:50%;" />
+<img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200720142411.png" alt="image-20200720142410333" style="zoom:50%;" />
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">t = torch.from_numpy(arr)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numpy array: \n&quot;</span>, arr)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;tensor : \n&quot;</span>, t)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n修改arr&quot;</span>)</span><br><span class="line">arr[<span class="number">0</span>, <span class="number">0</span>] = <span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numpy array: &quot;</span>, arr)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;tensor : &quot;</span>, t)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n修改tensor&quot;</span>)</span><br><span class="line">t[<span class="number">0</span>, <span class="number">0</span>] = -<span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numpy array: &quot;</span>, arr)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;tensor : &quot;</span>, t)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">numpy array: </span><br><span class="line"> [[<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line"> [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line">tensor : </span><br><span class="line"> tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], dtype=torch.int32)</span><br><span class="line"></span><br><span class="line">修改arr</span><br><span class="line">numpy array:  [[<span class="number">0</span> <span class="number">2</span> <span class="number">3</span>]</span><br><span class="line"> [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]]</span><br><span class="line">tensor :  tensor([[<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], dtype=torch.int32)</span><br><span class="line"></span><br><span class="line">修改tensor</span><br><span class="line">numpy array:  [[-<span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>]]</span><br><span class="line">tensor :  tensor([[-<span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</span><br><span class="line">        [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>]], dtype=torch.int32)</span><br></pre></td></tr></table></figure>
 <h2 id="22-依据数值创建"><a class="markdownIt-Anchor" href="#22-依据数值创建"></a> 2.2 依据数值创建</h2>
@@ -512,13 +513,13 @@ tensor([-0.0276,  1.4369,  2.1077,  3.9417])
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/19/07/2020/" rel="prev" title="Pytorch离线安装教程">
-                  <i class="fa fa-chevron-left"></i> Pytorch离线安装教程
+                <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/20/07/2020/" rel="prev" title="Python 标准库">
+                  <i class="fa fa-chevron-left"></i> Python 标准库
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%20%20Python%E6%A0%87%E5%87%86%E5%BA%93/20/07/2020/" rel="next" title="Python 标准库">
-                  Python 标准库 <i class="fa fa-chevron-right"></i>
+                <a href="/Pytorch%E5%9F%BA%E7%A1%80/%E5%BC%A0%E9%87%8F%E7%9A%84%E6%93%8D%E4%BD%9C/20/07/2020/" rel="next" title="张量的操作">
+                  张量的操作 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -571,6 +572,8 @@ tensor([-0.0276,  1.4369,  2.1077,  3.9417])
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
@@ -590,6 +593,9 @@ tensor([-0.0276,  1.4369,  2.1077,  3.9417])
   <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/Pytorch%E7%9A%84Tensor/20/07/2020/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

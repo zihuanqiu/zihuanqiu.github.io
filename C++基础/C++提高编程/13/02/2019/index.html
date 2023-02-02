@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="C++提高编程  本阶段主要针对C++泛型编程和STL技术做详细讲解，探讨C++更深层的使用">
 <meta property="og:type" content="article">
@@ -181,6 +181,7 @@
   </nav>
 </div>
 
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=n&d=jqzH1mFv8JIBQ2pQHwieN4kf80HFDRmViqGGMuZ--kA&co=222222'></script>
         </div>
       </div>
     </div>
@@ -270,10 +271,10 @@
 <p>模板就是建立<strong>通用的模具</strong>，大大<strong>提高复用性</strong></p>
 <p>例如生活中的模板</p>
 <p>一寸照片模板：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175128.png" alt="1547105026929" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175128.png" alt="1547105026929" /></p>
 <p>PPT模板：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175129.png" alt="1547103297864" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175130.png" alt="1547103359158" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175129.png" alt="1547103297864" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175130.png" alt="1547103359158" /></p>
 <p>模板的特点：</p>
 <ul>
 <li>模板不可以直接使用，它只是一个框架</li>
@@ -754,7 +755,7 @@
 <ul>
 <li>并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝新空间，释放原空间</li>
 </ul>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175131.jpg" alt="说明: 2015-11-10_151152" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175131.jpg" alt="说明: 2015-11-10_151152" /></p>
 <ul>
 <li>vector容器的迭代器是支持随机访问的迭代器</li>
 </ul>
@@ -908,11 +909,11 @@
 <li>deque相对而言，对头部的插入删除速度回比vector快</li>
 <li>vector访问元素时的速度会比deque快,这和两者内部实现有关</li>
 </ul>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175132.jpg" alt="说明: 2015-11-19_204101" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175132.jpg" alt="说明: 2015-11-19_204101" /></p>
 <p>deque内部工作原理:</p>
 <p>deque内部有个<strong>中控器</strong>，维护每段缓冲区中的内容，缓冲区中存放真实数据</p>
 <p>中控器维护的是每个缓冲区的地址，使得使用deque时像一片连续的内存空间</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175133.jpg" alt="clip_image002-1547547896341" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175133.jpg" alt="clip_image002-1547547896341" /></p>
 <ul>
 <li>deque容器的迭代器也是支持随机访问的</li>
 </ul>
@@ -1075,13 +1076,13 @@
 <h3 id="35-stack容器"><a class="markdownIt-Anchor" href="#35-stack容器"></a> 3.5 stack容器</h3>
 <h4 id="351-stack-基本概念"><a class="markdownIt-Anchor" href="#351-stack-基本概念"></a> 3.5.1 stack 基本概念</h4>
 <p><strong>概念：<strong>stack是一种</strong>先进后出</strong>(First In Last Out,FILO)的数据结构，它只有一个出口</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175134.jpg" alt="说明: 2015-11-15_195707" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175134.jpg" alt="说明: 2015-11-15_195707" /></p>
 <p>栈中只有顶端的元素才可以被外界使用，因此栈不允许有遍历行为</p>
 <p>栈中进入数据称为  — <strong>入栈</strong>  <code>push</code></p>
 <p>栈中弹出数据称为  — <strong>出栈</strong>  <code>pop</code></p>
 <p>生活中的栈：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175135.png" alt="img" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175136.jpg" alt="img" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175135.png" alt="img" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175136.jpg" alt="img" /></p>
 <h4 id="352-stack-常用接口"><a class="markdownIt-Anchor" href="#352-stack-常用接口"></a> 3.5.2 stack 常用接口</h4>
 <p>功能描述：栈容器常用的对外接口</p>
 <p>构造函数：</p>
@@ -1117,13 +1118,13 @@
 <h3 id="36-queue-容器"><a class="markdownIt-Anchor" href="#36-queue-容器"></a> 3.6 queue 容器</h3>
 <h4 id="361-queue-基本概念"><a class="markdownIt-Anchor" href="#361-queue-基本概念"></a> 3.6.1 queue 基本概念</h4>
 <p><strong>概念：<strong>Queue是一种</strong>先进先出</strong>(First In First Out,FIFO)的数据结构，它有两个出口</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175137.jpg" alt="说明: 2015-11-15_214429" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175137.jpg" alt="说明: 2015-11-15_214429" /></p>
 <p>队列容器允许从一端新增元素，从另一端移除元素</p>
 <p>队列中只有队头和队尾才可以被外界使用，因此队列不允许有遍历行为</p>
 <p>队列中进数据称为 — <strong>入队</strong>    <code>push</code></p>
 <p>队列中出数据称为 — <strong>出队</strong>    <code>pop</code></p>
 <p>生活中的队列：</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175138.png" alt="1547606785041" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175138.png" alt="1547606785041" /></p>
 <h4 id="362-queue-常用接口"><a class="markdownIt-Anchor" href="#362-queue-常用接口"></a> 3.6.2 queue 常用接口</h4>
 <p>功能描述：栈容器常用的对外接口</p>
 <p>构造函数：</p>
@@ -1165,7 +1166,7 @@
 <p>链表的组成：链表由一系列<strong>结点</strong>组成</p>
 <p>结点的组成：一个是存储数据元素的<strong>数据域</strong>，另一个是存储下一个结点地址的<strong>指针域</strong></p>
 <p>STL中的链表是一个双向循环链表</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175139.jpg" alt="说明: 2015-11-15_225145" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20221117175139.jpg" alt="说明: 2015-11-15_225145" /></p>
 <p>由于链表的存储方式并不是连续的内存空间，因此链表list中的迭代器只支持前移和后移，属于<strong>双向迭代器</strong></p>
 <p>list的优点：</p>
 <ul>
@@ -2282,6 +2283,8 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
@@ -2301,6 +2304,9 @@
   <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://yoursite.com/C++%E5%9F%BA%E7%A1%80/C++%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/13/02/2019/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

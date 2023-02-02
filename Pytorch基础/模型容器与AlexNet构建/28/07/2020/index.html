@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="1. 网络层容器(Containers) 上一节我们学习了如何构建一个LeNet，回顾代码如下： 12345678910111213141516171819202122import torch.nn as nnimport torch.nn.functional as Fclass LeNet(nn.Module):    def __init__(self, classes):">
 <meta property="og:type" content="article">
@@ -203,6 +203,7 @@
   </nav>
 </div>
 
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=n&d=jqzH1mFv8JIBQ2pQHwieN4kf80HFDRmViqGGMuZ--kA&co=222222'></script>
         </div>
       </div>
     </div>
@@ -289,71 +290,71 @@
 <p>如果我们可以给网络层再进行分类，把网络层放到不同的容器里，那么可以方便我们构建网络。</p>
 <span id="more"></span>
 <p>pytorch提供了三种容器</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728164650.png" alt="image-20200728164642216" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728164650.png" alt="image-20200728164642216" /></p>
 <h2 id="11-容器之sequential"><a class="markdownIt-Anchor" href="#11-容器之sequential"></a> 1.1 容器之Sequential</h2>
 <p>nn.Sequential 是 nn.module的容器，用于按顺序包装一组网络层。这里我们以LeNet为例，前四层封装为features层，后3层封装为classifier层。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728165215.png" alt="image-20200728165214229" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728165215.png" alt="image-20200728165214229" /></p>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LeNetSequential</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, classes</span>):</span><br><span class="line">        <span class="built_in">super</span>(LeNetSequential, self).__init__()</span><br><span class="line">        self.features = nn.Sequential(</span><br><span class="line">            nn.Conv2d(<span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>),)</span><br><span class="line"></span><br><span class="line">        self.classifier = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">16</span>*<span class="number">5</span>*<span class="number">5</span>, <span class="number">120</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">120</span>, <span class="number">84</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">84</span>, classes),)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.features(x)</span><br><span class="line">        x = x.view(x.size()[<span class="number">0</span>], -<span class="number">1</span>)</span><br><span class="line">        x = self.classifier(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    </span><br><span class="line">net = LeNetSequential(classes=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">fake_img = torch.randn((<span class="number">4</span>, <span class="number">3</span>, <span class="number">32</span>, <span class="number">32</span>), dtype=torch.float32)</span><br><span class="line"></span><br><span class="line">output = net(fake_img)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(net)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br></pre></td></tr></table></figure>
 <p><strong>实验：</strong></p>
 <ol>
 <li>
 <p>打断点，进入函数，观察net的初始化。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728171233.png" alt="image-20200728171231583" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728171233.png" alt="image-20200728171231583" /></p>
 </li>
 <li>
 <p>跳转到<code>class LeNetSequential(nn.Module)</code>的<code>__init__(self, classes)</code>函数。单步运行<code>nn.MaxPool2d</code>，进入再跳出（这是先完成<code>nn.MaxPool2d</code>的实例化，我们不看这个），然后再次进入。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728172050.png" alt="image-20200728172049298" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728172050.png" alt="image-20200728172049298" /></p>
 </li>
 <li>
 <p>跳转到container.py的<code>class Sequential(Module)</code>的<code>__init__(self, *args)</code>函数。可以看到，<code>Sequential</code>也是<code>nn.Module</code>的子类，所以他依然有8个有序字典属性。这里有一个判断语句。因为不是有序字典，所以会跳到else中。在else中会把传入的args依次检索出来，并用<code>self.add_module</code>将网络层加入_module属性。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173442.png" alt="image-20200728173437871" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173442.png" alt="image-20200728173437871" /></p>
 </li>
 <li>
 <p>可以看一下传入的参数args，是一个长度为6的元组，就是我们在<code>class LeNetSequential(nn.Module)</code>的<code>__init__(self, classes)</code>函数中定义的<code>self.features</code>的6个网络层。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173146.png" alt="image-20200728173144955" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173146.png" alt="image-20200728173144955" /></p>
 </li>
 <li>
 <p>单步运行，我们可以发现Sequential的<code>_module</code>属性中已经添加了第一个网络层。依次运行，最后退出函数，跳转回到<code>class LeNetSequential(nn.Module)</code>的<code>__init__(self, classes)</code>函数。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173605.png" alt="image-20200728173603896" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173605.png" alt="image-20200728173603896" /></p>
 </li>
 <li>
 <p>这时候我们发现LeNetSequential的<code>_module</code>属性还是空的，这是因为刚刚完成的是<code>self.features = nn.Sequential(...)</code>等号右边的初始化。再点击单步运行，发现LeNetSequential的<code>_module</code>属性中多了一个元素，就是我们刚刚创建的feature，它是一个Sequential，里面有6个元素。我们查看feature的类属性的<code>_module</code>属性，可以看到这6个网络层。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173957.png" alt="image-20200728173956038" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728174241.png" alt="image-20200728174240123" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728173957.png" alt="image-20200728173956038" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728174241.png" alt="image-20200728174240123" /></p>
 </li>
 <li>
 <p>对于self.classifier的构建过程同理，不再赘述。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728175155.png" alt="image-20200728175154159" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728175209.png" alt="image-20200728175208423" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728175155.png" alt="image-20200728175154159" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728175209.png" alt="image-20200728175208423" /></p>
 </li>
 <li>
 <p>然后运行<code>fake_img = torch.randn((4, 3, 32, 32), dtype=torch.float32)</code>生成了一张假图片作为输入，再运行至<code>output = net(fake_img)</code>，进入，观察前向传播的过程。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728175533.png" alt="image-20200728175532119" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728175533.png" alt="image-20200728175532119" /></p>
 </li>
 <li>
 <p>跳转到module.py的<code>class Module</code>的<code>__call__</code>函数。只要是属于<code>nn.module</code>类的，前向传播都会先进入这个<code>__call__</code>函数。然后运行到<code>result = self.forward(*input, **kwargs)</code>，进入。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728181429.png" alt="image-20200728175710118" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728181429.png" alt="image-20200728175710118" /></p>
 </li>
 <li>
 <p>跳转到主函数的<code>class LeNetSequential(nn.Module)</code>的<code>forward(self, x)</code>函数，在这里完成前向传播（宏观的）。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728180615.png" alt="image-20200728180613910" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728180615.png" alt="image-20200728180613910" /></p>
 </li>
 <li>
 <p>进入<code>x = self.features(x)</code>，跳出（第一次进入是一个判断类属性赋值类型的函数，不关心）再进入就能到达module.py的<code>class Module</code>的<code>__call__</code>函数（因为Sequential也是属于<code>nn.module</code>类）。然后运行到<code>result = self.forward(*input, **kwargs)</code>，进入。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728181429.png" alt="image-20200728175710118" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728181429.png" alt="image-20200728175710118" /></p>
 </li>
 <li>
 <p>跳转到container.py的<code>class Sequential(Module)</code>的<code>forward(self, input)</code>函数，在这里完成Sequential的网络层的前向传播（微观）。可以看到，这里用了一个for循环来依次取出Sequential内的网络层，然后依次将输入通过这些网络层。6次循环以后跳出函数，回到module.py的<code>class Module</code>的<code>__call__</code>函数。再运行会退出到<code>LeNetSequential(nn.Module)</code>的<code>forward(self, x)</code>函数，</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728181702.png" alt="image-20200728181701303" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728181702.png" alt="image-20200728181701303" /></p>
 </li>
 <li>
 <p>然后我们就完成了<code>self.features(x)</code>的前向传播。<code>self.classifier(x)</code>的前向传播同理不赘述。最终我们就得到了输出x，返回x，退回到module.py的<code>class Module</code>的<code>__call__</code>函数。再次返回result退回到主函数。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728182018.png" alt="image-20200728182017512" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728182018.png" alt="image-20200728182017512" /></p>
 </li>
 <li>
 <p>于是，我们完成了一次前向传播过程，得到了output。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728182311.png" alt="image-20200728182310733" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728182311.png" alt="image-20200728182310733" /></p>
 </li>
 <li>
 <p>我们还可以运行<code>print(net)</code>，打印出我们模型的各层信息：</p>
@@ -369,7 +370,7 @@
 </li>
 <li>
 <p>我们用同样的方法调试代码，这里就不赘述了。在进入Sequential的构建，即进入container.py的<code>class Sequential(Module)</code>的<code>__init__(self, *args)</code>函数，又面临了和上面第三步一样的条件判断。这次我们当然进入的是if而不是else。对比if和else里面的语句，很容易就能发现刚刚为什么传入元组网络层的索引是序号，而传入有序字典网络层的索引就是名字了。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728183811.png" alt="image-20200728183810343" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728183811.png" alt="image-20200728183810343" /></p>
 </li>
 <li>
 <p>同样通过<code>print(net)</code>可以打印网络的结构，现在所有的网络层都是名字索引了。</p>
@@ -397,20 +398,20 @@
 <ol>
 <li>
 <p>打断点，进入</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728191312.png" alt="image-20200728191310802" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728191312.png" alt="image-20200728191310802" /></p>
 </li>
 <li>
 <p>跳转到<code>class ModuleList(nn.Module)</code>的<code>__init__(self)</code>函数。这里用了列表解析式生成20层10神经元的全连接层。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728191705.png" alt="image-20200728191703756" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728191705.png" alt="image-20200728191703756" /></p>
 </li>
 <li>
 <p>进入会跳转到container.py的<code>class ModuleList(Module)</code>的<code>__init__(self, modules=None)</code>函数，可以发现这就是列表的拼接方法。所以ModuleList就是将网络层像列表一样拼接。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728191918.png" alt="image-20200728191917047" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728191918.png" alt="image-20200728191917047" /></p>
 </li>
 <li>
 <p>完成模型初始化跳出到主函数，可以看到net有linears属性，linears是一个ModuleList类。同样ModuleList类也是继承于nn.Module类的，所以linears也有8个有序字典属性。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728192118.png" alt="image-20200728192117057" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728192259.png" alt="image-20200728192258724" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728192118.png" alt="image-20200728192117057" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728192259.png" alt="image-20200728192258724" /></p>
 </li>
 <li>
 <p>运行<code>print(net)</code>可以打印出模型结构。</p>
@@ -418,7 +419,7 @@
 </li>
 <li>
 <p>运行到<code>output = net(fake_data)</code>，进入，观察前向传播过程。方法和之前一样，不再赘述。前向传播是在<code>class ModuleList(nn.Module)</code>的<code>forward</code>中实现的。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728200856.png" alt="image-20200728200855120" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728200856.png" alt="image-20200728200855120" /></p>
 </li>
 </ol>
 <p>可见，使用ModuleList可以很方便的实现重复的网络结构。</p>
@@ -442,28 +443,28 @@
 <ol>
 <li>
 <p>打断点进入。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728204827.png" alt="image-20200728204822310" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728204827.png" alt="image-20200728204822310" /></p>
 </li>
 <li>
 <p>跳转到<code>class ModuleDict(nn.Module)</code>的<code>__init__</code>，运行到最后进入container.py的<code>class ModuleDict(Module)</code>的<code>__init__(self, modules=None)</code></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728204940.png" alt="image-20200728204938892" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728204940.png" alt="image-20200728204938892" /></p>
 </li>
 <li>
 <p>可以看到，这和ModuleList的结构非常相似，这里用了<code>self.update</code>函数向字典内添加元素。这就是ModuleList的初始化方法。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728205220.png" alt="image-20200728205218955" /></p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728205722.png" alt="image-20200728205721570" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728205220.png" alt="image-20200728205218955" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728205722.png" alt="image-20200728205721570" /></p>
 </li>
 <li>
 <p>再看看它的前向传播实现。调试方法不再赘述，最终跳转到<code>class ModuleDict(nn.Module)</code>的<code>forward</code>函数，前向传播就是在这里实现的。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728210216.png" alt="image-20200728210215306" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728210216.png" alt="image-20200728210215306" /></p>
 </li>
 <li>
 <p>进入<code>self.choices[choice](x)</code>，跳转到container.py的<code>class ModuleDict(Module)</code>的<code>__getitem__(self, key)</code>，在这里实现从<code>ModuleDict</code>的<code>_modules</code>属性中索引出我们需要的网络层。运行完会跳回<code>class ModuleDict(nn.Module)</code>的<code>forward</code>函数，继续完成前向传播。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728210645.png" alt="image-20200728210643588" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728210645.png" alt="image-20200728210643588" /></p>
 </li>
 <li>
 <p>最终得到了输出。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728211011.png" alt="image-20200728211010393" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728211011.png" alt="image-20200728211010393" /></p>
 </li>
 </ol>
 <h2 id="14-容器总结"><a class="markdownIt-Anchor" href="#14-容器总结"></a> 1.4 容器总结</h2>
@@ -474,14 +475,14 @@
 </ul>
 <h1 id="2-alexnet构建"><a class="markdownIt-Anchor" href="#2-alexnet构建"></a> 2. AlexNet构建</h1>
 <p>学完了模型的构建以及容器，我们观察pytorch的torchvision模块中提供的AlexNet的构建。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728211556.png" alt="image-20200728211551299" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728211556.png" alt="image-20200728211551299" /></p>
 <p>实例化AlexNet的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alexnet = torchvision.models.AlexNet()</span><br></pre></td></tr></table></figure>
 <p>进入alexnet.py中，代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AlexNet</span>(nn.Module):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_classes=<span class="number">1000</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(AlexNet, self).__init__()</span><br><span class="line">        self.features = nn.Sequential(</span><br><span class="line">            nn.Conv2d(<span class="number">3</span>, <span class="number">64</span>, kernel_size=<span class="number">11</span>, stride=<span class="number">4</span>, padding=<span class="number">2</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.MaxPool2d(kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">64</span>, <span class="number">192</span>, kernel_size=<span class="number">5</span>, padding=<span class="number">2</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.MaxPool2d(kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">192</span>, <span class="number">384</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">384</span>, <span class="number">256</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">256</span>, <span class="number">256</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.MaxPool2d(kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>),</span><br><span class="line">        )</span><br><span class="line">        self.avgpool = nn.AdaptiveAvgPool2d((<span class="number">6</span>, <span class="number">6</span>))</span><br><span class="line">        self.classifier = nn.Sequential(</span><br><span class="line">            nn.Dropout(),</span><br><span class="line">            nn.Linear(<span class="number">256</span> * <span class="number">6</span> * <span class="number">6</span>, <span class="number">4096</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Dropout(),</span><br><span class="line">            nn.Linear(<span class="number">4096</span>, <span class="number">4096</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(<span class="number">4096</span>, num_classes),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.features(x)</span><br><span class="line">        x = self.avgpool(x)</span><br><span class="line">        x = torch.flatten(x, <span class="number">1</span>)</span><br><span class="line">        x = self.classifier(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
 <p>可以看到，它使用了sequential的方法构建网络。</p>
 <p>此外torchvision.models中还预设了许多其他网络，可以自行查看。</p>
-<p><img src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728212250.png" alt="image-20200728212249165" /></p>
+<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200728212250.png" alt="image-20200728212249165" /></p>
 
     </div>
 
@@ -557,6 +558,8 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
@@ -576,6 +579,9 @@
   <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://yoursite.com/Pytorch%E5%9F%BA%E7%A1%80/%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8%E4%B8%8EAlexNet%E6%9E%84%E5%BB%BA/28/07/2020/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>
