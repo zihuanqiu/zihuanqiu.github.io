@@ -19,12 +19,10 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Numpy库">
-<meta property="og:type" content="article">
+    <meta property="og:type" content="article">
 <meta property="og:title" content="Python Numpy库">
 <meta property="og:url" content="http://yoursite.com/Python%E5%9F%BA%E7%A1%80/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20Numpy%E5%BA%93/21/07/2020/index.html">
 <meta property="og:site_name" content="Zihuan&#39;s Blog">
-<meta property="og:description" content="Numpy库">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png">
 <meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170121.png">
@@ -36,7 +34,7 @@
 <meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165921.png">
 <meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170209.png">
 <meta property="article:published_time" content="2020-07-21T02:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-01T20:00:16.818Z">
+<meta property="article:modified_time" content="2023-02-02T09:32:47.274Z">
 <meta property="article:author" content="Zihuan Qiu">
 <meta property="article:tag" content="Python基础">
 <meta name="twitter:card" content="summary">
@@ -140,7 +138,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#numpy%E5%BA%93"><span class="nav-text"> Numpy库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#111-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8numpy"><span class="nav-text"> 11.1 为什么要用Numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1111-%E4%BD%8E%E6%95%88%E7%9A%84python-for%E5%BE%AA%E7%8E%AF"><span class="nav-text"> 11.1.1  低效的Python for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1112-numpy%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A6%82%E6%AD%A4%E9%AB%98%E6%95%88"><span class="nav-text"> 11.1.2  Numpy为什么如此高效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1113-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8numpy"><span class="nav-text"> 11.1.3  什么时候用Numpy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#112-numpy%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-text"> 11.2 Numpy数组的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1121-%E4%BB%8E%E5%88%97%E8%A1%A8%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA"><span class="nav-text"> 11.2.1 从列表开始创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1122-%E4%BB%8E%E5%A4%B4%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="nav-text"> 11.2.2 从头创建数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#113-numpy%E6%95%B0%E7%BB%84%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text"> 11.3 Numpy数组的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1131-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text"> 11.3.1 数组的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1132-%E6%95%B0%E7%BB%84%E7%B4%A2%E5%BC%95"><span class="nav-text"> 11.3.2 数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1133-%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%87%E7%89%87"><span class="nav-text"> 11.3.3 数组的切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1134-%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%98%E5%BD%A2"><span class="nav-text"> 11.3.4 数组的变形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1135-%E6%95%B0%E7%BB%84%E7%9A%84%E6%8B%BC%E6%8E%A5"><span class="nav-text"> 11.3.5 数组的拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1136-%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%86%E8%A3%82"><span class="nav-text"> 11.3.6 数组的分裂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#114-numpy%E5%9B%9B%E5%A4%A7%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4 Numpy四大运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1141-%E5%90%91%E9%87%8F%E5%8C%96%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4.1 向量化运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1142-%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4.2 矩阵运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1143-%E5%B9%BF%E6%92%AD%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4.3 广播运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1144-%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E5%92%8C%E6%8E%A9%E7%A0%81"><span class="nav-text"> 11.4.4 比较运算和掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1145-%E8%8A%B1%E5%93%A8%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="nav-text"> 11.4.5  花哨的索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#115-%E5%85%B6%E4%BB%96numpy%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text"> 11.5 其他Numpy通用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1151-%E6%95%B0%E5%80%BC%E6%8E%92%E5%BA%8F"><span class="nav-text"> 11.5.1  数值排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1152-%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-text"> 11.5.2  最大最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1153-%E6%95%B0%E5%80%BC%E6%B1%82%E5%92%8C-%E6%B1%82%E7%A7%AF"><span class="nav-text"> 11.5.3  数值求和、求积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1154-%E4%B8%AD%E4%BD%8D%E6%95%B0-%E5%9D%87%E5%80%BC-%E6%96%B9%E5%B7%AE-%E6%A0%87%E5%87%86%E5%B7%AE"><span class="nav-text"> 11.5.4  中位数、均值、方差、标准差</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#111-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8numpy"><span class="nav-text"> 11.1 为什么要用Numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1111-%E4%BD%8E%E6%95%88%E7%9A%84python-for%E5%BE%AA%E7%8E%AF"><span class="nav-text"> 11.1.1  低效的Python for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1112-numpy%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A6%82%E6%AD%A4%E9%AB%98%E6%95%88"><span class="nav-text"> 11.1.2  Numpy为什么如此高效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1113-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8numpy"><span class="nav-text"> 11.1.3  什么时候用Numpy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#112-numpy%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-text"> 11.2 Numpy数组的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1121-%E4%BB%8E%E5%88%97%E8%A1%A8%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA"><span class="nav-text"> 11.2.1 从列表开始创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1122-%E4%BB%8E%E5%A4%B4%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="nav-text"> 11.2.2 从头创建数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#113-numpy%E6%95%B0%E7%BB%84%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-text"> 11.3 Numpy数组的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1131-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text"> 11.3.1 数组的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1132-%E6%95%B0%E7%BB%84%E7%B4%A2%E5%BC%95"><span class="nav-text"> 11.3.2 数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1133-%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%87%E7%89%87"><span class="nav-text"> 11.3.3 数组的切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1134-%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%98%E5%BD%A2"><span class="nav-text"> 11.3.4 数组的变形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1135-%E6%95%B0%E7%BB%84%E7%9A%84%E6%8B%BC%E6%8E%A5"><span class="nav-text"> 11.3.5 数组的拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1136-%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%86%E8%A3%82"><span class="nav-text"> 11.3.6 数组的分裂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#114-numpy%E5%9B%9B%E5%A4%A7%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4 Numpy四大运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1141-%E5%90%91%E9%87%8F%E5%8C%96%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4.1 向量化运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1142-%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4.2 矩阵运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1143-%E5%B9%BF%E6%92%AD%E8%BF%90%E7%AE%97"><span class="nav-text"> 11.4.3 广播运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1144-%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E5%92%8C%E6%8E%A9%E7%A0%81"><span class="nav-text"> 11.4.4 比较运算和掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1145-%E8%8A%B1%E5%93%A8%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="nav-text"> 11.4.5  花哨的索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#115-%E5%85%B6%E4%BB%96numpy%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text"> 11.5 其他Numpy通用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1151-%E6%95%B0%E5%80%BC%E6%8E%92%E5%BA%8F"><span class="nav-text"> 11.5.1  数值排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1152-%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-text"> 11.5.2  最大最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1153-%E6%95%B0%E5%80%BC%E6%B1%82%E5%92%8C-%E6%B1%82%E7%A7%AF"><span class="nav-text"> 11.5.3  数值求和、求积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1154-%E4%B8%AD%E4%BD%8D%E6%95%B0-%E5%9D%87%E5%80%BC-%E6%96%B9%E5%B7%AE-%E6%A0%87%E5%87%86%E5%B7%AE"><span class="nav-text"> 11.5.4  中位数、均值、方差、标准差</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +164,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -241,7 +239,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：02-02-2023 04:00:16" itemprop="dateModified" datetime="2023-02-02T04:00:16+08:00">02-02-2023</time>
+      <time title="修改时间：02-02-2023 17:32:47" itemprop="dateModified" datetime="2023-02-02T17:32:47+08:00">02-02-2023</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -263,8 +261,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="numpy库"><a class="markdownIt-Anchor" href="#numpy库"></a> Numpy库</h1>
-<p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png" alt="image-20200714165326989" /></p>
+        <p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714165335.png" alt="image-20200714165326989" /></p>
 <span id="more"></span>
 <h2 id="111-为什么要用numpy"><a class="markdownIt-Anchor" href="#111-为什么要用numpy"></a> 11.1 为什么要用Numpy</h2>
 <p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200714170121.png" alt="image-20200714170119393" /></p>

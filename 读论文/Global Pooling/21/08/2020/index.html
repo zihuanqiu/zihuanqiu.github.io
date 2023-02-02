@@ -19,16 +19,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"width":240},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Global Average Pooling Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。 在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是">
+    <meta name="description" content="Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。 在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是使用GAP来替代该全连接层(即使用池化层的方式来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Global Average Pooling">
 <meta property="og:url" content="http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87/Global%20Pooling/21/08/2020/index.html">
 <meta property="og:site_name" content="Zihuan&#39;s Blog">
-<meta property="og:description" content="Global Average Pooling Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。 在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是">
+<meta property="og:description" content="Golbal Average Pooling 第一次出现在论文Network in Network[1]中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。 在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是使用GAP来替代该全连接层(即使用池化层的方式来">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200628151037.png">
 <meta property="article:published_time" content="2020-08-21T09:17:51.567Z">
-<meta property="article:modified_time" content="2023-02-02T06:05:30.839Z">
+<meta property="article:modified_time" content="2023-02-02T09:38:02.900Z">
 <meta property="article:author" content="Zihuan Qiu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200628151037.png">
@@ -118,7 +118,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -131,7 +131,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#global-average-pooling"><span class="nav-text"> Global Average Pooling</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text"> 参考文献</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -146,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -157,7 +156,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -232,7 +231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：02-02-2023 14:05:30" itemprop="dateModified" datetime="2023-02-02T14:05:30+08:00">02-02-2023</time>
+      <time title="修改时间：02-02-2023 17:38:02" itemprop="dateModified" datetime="2023-02-02T17:38:02+08:00">02-02-2023</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,8 +253,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="global-average-pooling"><a class="markdownIt-Anchor" href="#global-average-pooling"></a> Global Average Pooling</h1>
-<p>Golbal Average Pooling 第一次出现在论文Network in Network<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。</p>
+        <p>Golbal Average Pooling 第一次出现在论文Network in Network<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>中，后来又很多工作延续使用了GAP，实验证明：Global Average Pooling确实可以提高CNN效果。</p>
 <p>在常见的卷积神经网络中，全连接层之前的卷积层负责对图像进行特征提取,在获取特征后,传统的方法是送入全连接层进行分类，而GAP的思路是使用GAP来替代该全连接层(即使用池化层的方式来降维)。相比于全连接层，GAP有以下优点：</p>
 <ol>
 <li>参数量少。以往网络的参数几乎全部集中于全连接层，使用mlpconv搭配GAP可以在不降低性能的同时极大地减少参数量。</li>
@@ -264,7 +262,6 @@
 </ol>
 <p><img data-src="https://zhqdetuchuang.oss-cn-shenzhen.aliyuncs.com/img/20200628151037.png" alt="image-20200628150712960" /></p>
 <p>假设卷积层的最后输出是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>×</mo><mi>w</mi><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">h\times w\times d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的三维特征图，，经过GAP转换后，变成了大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">1\times 1\times d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的输出值，也就是每一层<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mo>×</mo><mi>w</mi></mrow><annotation encoding="application/x-tex">h\times w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>会被平均化成一个值。实验证明，这种方法是非常有效的。这样做还有另外一个好处：不用在乎网络输入的图像尺寸。同时需要注意的是，使用GAP也有可能造成收敛变慢。</p>
-<h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h1>
 <hr class="footnotes-sep" />
 <section class="footnotes">
 <ol class="footnotes-list">
