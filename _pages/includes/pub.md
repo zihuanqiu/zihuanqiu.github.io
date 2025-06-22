@@ -4,7 +4,7 @@
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2024</div><img src='images/DCMI.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Dual-consistency Model Inversion for Non-exemplar Class Incremental Learning.](https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf) \\
+[Dual-consistency Model Inversion for Non-exemplar Class Incremental Learning](https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf) \\
 **Zihuan Qiu**, Yi Xu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu
 - DCMI: Uses semantic + domain consistency to generate high-fidelity synthetic old-class images, sharply cutting domain shift.
 - Prototypical Routing: Leverages class prototypes to reduce bias and lift old-class accuracy, achieving state-of-the-art results.
@@ -15,14 +15,14 @@
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2023</div><img src='images/ISM-Net.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[ISM-Net: Mining incremental semantics for class incremental learning.](https://www.sciencedirect.com/science/article/pii/S0925231222015259) \\
+[ISM-Net: Mining incremental semantics for class incremental learning](https://www.sciencedirect.com/science/article/pii/S0925231222015259) \\
 **Zihuan Qiu**, Linfeng Xu, Zhichuan Wang, Qingbo Wu, Fanman Meng, Hongliang Li
 - Incremental Semantics Mining (ISM) – strips old-class semantics from new-class features, sharply cutting old–new confusion and catastrophic forgetting.
 - Lightweight Expansion + Old-Model Queue – distillation adds a compact extra feature space while a rolling queue preserves early knowledge, delivering SOTA accuracy with minimal memory/compute on CIFAR-100 and ImageNet.
 </div>
 </div>
 
-- `TMM 2025` [Distribution-Level Memory Recall for Continual Learning: Preserving Knowledge and Avoiding Confusion](), Shaoxu Cheng, Kanglei Geng, Chiyuan He, Zihuan Qiu, Linfeng Xu, Heqian Qiu, Lanxiao Wang, Qingbo Wu, Fanman Meng, Hongliang Li.
+- `TMM 2025` [Distribution-Level Memory Recall for Continual Learning: Preserving Knowledge and Avoiding Confusion], Shaoxu Cheng, Kanglei Geng, Chiyuan He, Zihuan Qiu, Linfeng Xu, Heqian Qiu, Lanxiao Wang, Qingbo Wu, Fanman Meng, Hongliang Li.
 - `ICASSP 2025` [GFR: Generic feature representations for class incremental learning](), Yukun Chen, Zihuan Qiu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu.
 - `Neurocomputing 2023` [GFR: Generic feature representations for class incremental learning](), Zhichuan Wang, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng, Hongliang Li.
 - `ICASSP 2023` [MFAT: A multi-level feature aggregated transformer for person re-identification](),Bowen Tan, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng.
