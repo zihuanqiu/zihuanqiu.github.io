@@ -23,8 +23,9 @@
 </div>
 
 - `TMM 2025` [Distribution-Level Memory Recall for Continual Learning: Preserving Knowledge and Avoiding Confusion], Shaoxu Cheng, Kanglei Geng, Chiyuan He, Zihuan Qiu, Linfeng Xu, Heqian Qiu, Lanxiao Wang, Qingbo Wu, Fanman Meng, Hongliang Li.
-- `ICASSP 2025` [GFR: Generic feature representations for class incremental learning](), Yukun Chen, Zihuan Qiu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu.
-- `Neurocomputing 2023` [GFR: Generic feature representations for class incremental learning](), Zhichuan Wang, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng, Hongliang Li.
-- `ICASSP 2023` [MFAT: A multi-level feature aggregated transformer for person re-identification](),Bowen Tan, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng.
-- `ICIP 2022` [Eldnet: Establishment and refinement of edge likelihood distributions for camouflaged object detection](), Chiyuan He, Linfeng Xu, Zihuan Qiu.
-- `SPIE Medical Imaging 2022` [BDG-Net: boundary distribution guided network for accurate polyp segmentation](https://arxiv.org/pdf/2201.00767), Zihuan Qiu, Zhichuan Wang, Miaomiao Zhang, Ziyong Xu, Jie Fan, Linfeng Xu.
+- `ICASSP 2025` [GFR: Generic feature representations for class incremental learning], Yukun Chen, Zihuan Qiu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu.
+- `IEEE Sensors Journal 2024` [Continual Egocentric Activity Recognition with Foreseeable-Generalized Visual-IMU Representations], Chiyuan He, Shaoxu Cheng, Zihuan Qiu, Linfeng Xu, Fanman Meng, Qingbo Wu, Hongliang Li.
+- `Neurocomputing 2023` [GFR: Generic feature representations for class incremental learning], Zhichuan Wang, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng, Hongliang Li.
+- `ICASSP 2023` [MFAT: A multi-level feature aggregated transformer for person re-identification],Bowen Tan, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng.
+- `ICIP 2022` [Eldnet: Establishment and refinement of edge likelihood distributions for camouflaged object detection], Chiyuan He, Linfeng Xu, Zihuan Qiu.
+- `SPIE Medical Imaging 2022` [BDG-Net: boundary distribution guided network for accurate polyp segmentation](https://arxiv.org/pdf/2201.00767), **Zihuan Qiu**, Zhichuan Wang, Miaomiao Zhang, Ziyong Xu, Jie Fan, Linfeng Xu.
