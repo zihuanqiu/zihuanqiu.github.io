@@ -4,6 +4,7 @@
 - *2024.12*: 🎉 One co-author paper has been accepted to ICASSP 2025.
 - *2024.06*: 🥳 I went to Seattle, USA to attend the CVPR 2024 conference.
 - *2024.02*: 🎉 One first-author paper has been accepted to CVPR 2024.
+- *2023.12*: 🎉 One co-author paper has been accepted to IEEE Sensors Journal 2024.
 - *2023.05*: 🎉 One co-author paper has been accepted to Neurocomputing 2023.
 - *2023.03*: 🎉 One co-author paper has been accepted to ICASSP 2023.
 - *2022.12*: 🎉 One first-author paper has been accepted to Neurocomputing 2023.
