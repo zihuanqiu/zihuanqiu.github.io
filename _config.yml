@@ -12,16 +12,16 @@ repository               : "zihuanqiu/zihuanqiu.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
-google_analytics_id      : #G-SWFCX99KQZ
+google_analytics_id      :
 
 # SEO Related
-google_site_verification : #b_BbOIt7d513ZXYDw-YRMicO6O5tthYiouqWDdWjGTU
-bing_site_verification   : #B5AA590E7B9C03956A6F7DEC0F776211
-baidu_site_verification  : #code-ZxFK3f4pfb
+google_site_verification :
+bing_site_verification   :
+baidu_site_verification  :
 
 # Site Author
 author:
-  name             : "Zihuan Qiu\n(邱子欢)"
+  name             : "Zihuan Qiu<br/>(邱子欢)"
   avatar           : "images/android-chrome-512x512.png"
   bio              : ""
   location         : "Chengdu, China"
@@ -29,7 +29,7 @@ author:
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=JnaUunUAAAAJ&hl=zh-CN"
   email            : "zihuanqiu@qq.com"
-  researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
+  researchgate     :
   uri              :
   bitbucket        :
   codepen          :
@@ -41,14 +41,14 @@ author:
   google_plus      :
   keybase          :
   instagram        :
-  impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
+  impactstory      :
   lastfm           :
-  linkedin         : #"rayeren"
-  dblp             : #"https://dblp.org/pid/75/6568-6.html"
-  orcid            : #"https://orcid.org/0000-0002-9160-3848"
+  linkedin         :
+  dblp             :
+  orcid            :
   pinterest        :
   soundcloud       :
-  stackoverflow    : # http://stackoverflow.com/users/123456/username
+  stackoverflow    :
   steam            :
   tumblr           :
   twitter          : 
