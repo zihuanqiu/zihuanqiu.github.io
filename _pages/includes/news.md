@@ -1,6 +1,11 @@
 # 🔥 News
-- *2024.03*: 🎉 Two papers are accepted by ICLR 2024
-- *2023.05*: 🎉 Five papers are accepted by ACL 2023
-- *2023.01*: DiffSinger was introduced in [a very popular video](https://www.bilibili.com/video/BV1uM411t7ZJ) (2000k+ views) in Bilibili!
-- *2023.01*: I join TikTok <img src='./images/tiktok.png' style='width: 6em;'> as a speech research scientist in Singapore!
-- *2022.02*: I release a modern and responsive academic personal [homepage template](https://github.com/RayeRen/acad-homepage.github.io). Welcome to STAR and FORK!
+- *2025.05*: 🎉 One co-author paper has been accepted to ICIP 2025.
+- *2025.01*: 🎉 One co-author paper have been accepted to TMM 2025.
+- *2024.12*: 🎉 One co-author paper has been accepted to ICASSP 2025.
+- *2024.06*: 🥳 I went to Seattle, USA to attend the CVPR 2024 conference.
+- *2024.02*: 🎉 One first-author paper has been accepted to CVPR 2024.
+- *2023.05*: 🎉 One co-author paper has been accepted to Neurocomputing 2023.
+- *2023.03*: 🎉 One co-author paper has been accepted to ICASSP 2023.
+- *2022.12*: 🎉 One first-author paper has been accepted to Neurocomputing 2023.
+- *2022.06*: 🎉 One co-author paper has been accepted to ICIP 2022.
+- *2021.10*: 🎉 My first paper has been accepted to SPIE Medical Imaging 2022.
