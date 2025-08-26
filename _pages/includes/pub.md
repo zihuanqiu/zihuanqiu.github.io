@@ -23,7 +23,7 @@
 </div>
 
 - `TMM 2025` [Distribution-Level Memory Recall for Continual Learning: Preserving Knowledge and Avoiding Confusion], Shaoxu Cheng, Kanglei Geng, Chiyuan He, Zihuan Qiu, Linfeng Xu, Heqian Qiu, Lanxiao Wang, Qingbo Wu, Fanman Meng, Hongliang Li.
-- `ICASSP 2025` [GFR: Generic feature representations for class incremental learning], Yukun Chen, Zihuan Qiu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu.
+- `ICASSP 2025` [Leveraging Pre-Trained Models for Multimodal Class-Incremental Learning under Adaptive Fusion], Yukun Chen, Zihuan Qiu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu.
 - `IEEE Sensors Journal 2024` [Continual Egocentric Activity Recognition with Foreseeable-Generalized Visual-IMU Representations], Chiyuan He, Shaoxu Cheng, Zihuan Qiu, Linfeng Xu, Fanman Meng, Qingbo Wu, Hongliang Li.
 - `Neurocomputing 2023` [GFR: Generic feature representations for class incremental learning], Zhichuan Wang, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng, Hongliang Li.
 - `ICASSP 2023` [MFAT: A multi-level feature aggregated transformer for person re-identification],Bowen Tan, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng.
