@@ -1,12 +1,14 @@
 # 🔥 News
-- *2025.05*: 🎉 One co-author paper has been accepted to ICIP 2025.
-- *2025.01*: 🎉 One co-author paper have been accepted to TMM 2025.
-- *2024.12*: 🎉 One co-author paper has been accepted to ICASSP 2025.
-- *2024.06*: 🥳 I went to Seattle, USA to attend the CVPR 2024 conference.
-- *2024.02*: 🎉 One first-author paper has been accepted to CVPR 2024.
-- *2023.12*: 🎉 One co-author paper has been accepted to IEEE Sensors Journal 2024.
-- *2023.05*: 🎉 One co-author paper has been accepted to Neurocomputing 2023.
-- *2023.03*: 🎉 One co-author paper has been accepted to ICASSP 2023.
-- *2022.12*: 🎉 One first-author paper has been accepted to Neurocomputing 2023.
-- *2022.06*: 🎉 One co-author paper has been accepted to ICIP 2022.
-- *2021.10*: 🎉 My first paper has been accepted to SPIE Medical Imaging 2022.
+
+**2025**
+- *Sep*: 🎉 **First-author** paper accepted to **NeurIPS 2025**.  
+
+**2024**
+- *Jun*: 🌍 Attended **CVPR 2024** (Seattle, USA).  
+- *Feb*: 🎉 **First-author** paper accepted to **CVPR 2024**.  
+
+**2022**
+- *Dec*: 🎉 **First-author** paper accepted to **Neurocomputing 2023**.  
+
+**2021**
+- *Oct*: 🎉 **First-author** paper accepted to **SPIE Medical Imaging 2022**.  
