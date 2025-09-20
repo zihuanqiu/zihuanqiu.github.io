@@ -1,4 +1,4 @@
-# 🎓 Education
+# 🎓 Educations
 - **Ph.D. Student**, Information and Communication Engineering  
   *University of Electronic Science and Technology of China (UESTC), Chengdu*  
   *2023.09 – Present*  
@@ -9,15 +9,13 @@
 
 - **B.Eng.**, Communication Engineering  
   *Tiangong University, Tianjin*  
-  *2015.09 – 2019.06*  
+  *2015.09 – 2019.06*
+
 
 # 🛠️ Services
 **Reviewer for**  
-- NeurIPS 2025  
-- ICLR 2025  
-- MM 2025  
-- ICME 2025  
-- ICASSP 2025  
+`NeurIPS’25` | `ICLR’25` | `MM’25` | `ICME’25` | `ICASSP’25`
+
 
 # 💻 Internships
 - **Research Intern**, JIIGAN / MEGVII, Chengdu  
