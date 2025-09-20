@@ -13,8 +13,8 @@
 
 
 # 🛠️ Services
-**Reviewer for**  
-`NeurIPS’25` | `ICLR’25` | `MM’25` | `ICME’25` | `ICASSP’25`
+**Reviewer for**: NeurIPS 2025 · ICLR 2025 · MM 2025 · ICME 2025 · ICASSP 2025
+
 
 
 # 💻 Internships
