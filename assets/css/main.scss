@@ -50,30 +50,43 @@
   padding: 2em 0;
 
   .paper-box-image {
-    position: relative;          /* 允许 badge 绝对定位 */
+    position: relative;
     justify-content: center;
     align-items: center;
     display: flex;
     width: 100%;
     order: 2;
 
-    /* 统一尺寸：宽度自适应上限 + 固定高度；比例不符时自动留白 */
-    img {
+    /* 这一层就是“画框”：固定宽高、圆角、阴影、留白底色 */
+    > div {
+      position: relative;           /* 让 badge 以此为定位参照 */
       width: 100%;
-      max-width: 400px;          /* 统一最大宽度（可按需调整） */
-      height: 180px;             /* 统一高度 */
-      object-fit: contain;       /* 保持比例，自动留白（信箱/信封式） */
-      background-color: #f7f7f8; /* 留白底色 */
-      border-radius: 12px;
+      max-width: 400px;             /* 统一最大宽度 */
+      height: 180px;                /* 统一高度 */
+      background-color: #f7f7f8;    /* 留白颜色 */
+      border-radius: 12px;          /* 圆角应用在画框上 */
       box-shadow: 3px 3px 6px #888;
+      overflow: hidden;             /* 防止内部溢出 */
+      display: grid;                /* 让图片在框内水平垂直居中 */
+      place-items: center;
+    }
+
+    /* 图片只做“尽量铺满但不变形”，不再强制 width:100% */
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;          /* 比例不合时自动留白（上下或左右） */
       display: block;
+      /* 不要再加圆角/阴影到 img，避免边角和阴影被图像盖住 */
     }
 
     .badge {
       position: absolute;
       top: 10px;
       left: 10px;
-      background-color: #00369f; /* 主题蓝，可按需要修改或用不同类名区分 */
+      background-color: #00369f;
       color: #fff;
       padding: 4px 10px;
       border-radius: 8px;
@@ -81,7 +94,8 @@
       font-weight: 700;
       box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
       line-height: 1;
-      pointer-events: none;      /* 避免遮挡点击 */
+      pointer-events: none;
+      z-index: 1;                   /* 确保在图片之上 */
     }
   }
 
@@ -97,9 +111,9 @@
       max-width: 40%;
       order: 1;
 
-      img {
-        max-width: 100%;         /* 在左右布局下占满容器宽度 */
-        height: 180px;           /* 保持统一高度 */
+      > div {
+        max-width: 100%;            /* 左右布局时占满列宽 */
+        height: 180px;              /* 统一高度不变 */
       }
     }
 
@@ -122,8 +136,7 @@ h1:before, .anchor:before {
   margin-top: -$scroll_offset;
 }
 
-/* 全局 badge（若有需要在其他地方使用）默认样式；
-   但在 .paper-box-image 内部的 .badge 会被上面的更具体选择器覆盖。 */
+/* 全局 badge 兜底样式 */
 .badge {
   background-color: #00369f;
   color: #fff;
