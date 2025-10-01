@@ -23,7 +23,5 @@
 
 
 <div style="max-width:300px; margin:0 auto;">
-  <script type="text/javascript" id="mapmyvisitors" 
-          src="//mapmyvisitors.com/map.js?d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0&cl=ffffff&w=a">
-  </script>
+<script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=606619&w=300&t=tt&d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=000000'></script>
 </div>
