@@ -1,25 +1,13 @@
 
-# 📝 Publications 
-
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arxiv</div><img src='images/nufilt.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-
-[Null-Space Filtering for Data-Free Continual Model Merging: Preserving Transparency, Promoting Fidelity](https://www.arxiv.org/pdf/2509.21413) \\
-**Zihuan Qiu**, Lei Wang, Yang Cao, Runtong Zhang, Bing Su, Yi Xu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
-- We formulate transparency and fidelity as two fundamental desiderata for data-free continual
-model merging, framing a new open challenge absent from prior work.
-- We propose NUFILT, a data-free continual model merging framework that combines null-space
-filtering with projection-aware adaptation to enforce both transparency and fidelity.
-</div>
-</div>
+# 📝 Selected Publications 
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS 2025</div><img src='images/TTCMM.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [MINGLE: Mixtures of Null-Space Gated Low-Rank Experts for Test-Time Continual Model Merging](https://arxiv.org/pdf/2505.11883) \\
 **Zihuan Qiu**, Yi Xu, Chiyuan He, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
-- TTCMM: We formalize Test-Time Continual Model Merging (TTCMM), a new paradigm for merging independently fine-tuned models using unlabeled test data.
-- MINGLE: We propose MINGLE, a TTCMM method with adaptive null-space constrained gating, achieving a favorable balance between stability and plasticity.
+- TTCMM: Formalizes Test-Time Continual Model Merging.
+- MINGLE: Adaptive null-space gated low-rank experts, balancing stability & plasticity.
 </div>
 </div>
 
@@ -28,8 +16,8 @@ filtering with projection-aware adaptation to enforce both transparency and fide
 
 [Dual-consistency Model Inversion for Non-exemplar Class Incremental Learning](https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf) \\
 **Zihuan Qiu**, Yi Xu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu
-- DCMI: Uses semantic + domain consistency to generate high-fidelity synthetic old-class images, sharply cutting domain shift.
-- Prototypical Routing: Leverages class prototypes to reduce bias and lift old-class accuracy, achieving state-of-the-art results.
+- DCMI: Semantic + domain consistency for high-fidelity synthetic replay.
+- Prototypical Routing: Reduces bias, boosts old-class accuracy.
 
 </div>
 </div>
@@ -39,10 +27,34 @@ filtering with projection-aware adaptation to enforce both transparency and fide
 
 [ISM-Net: Mining incremental semantics for class incremental learning](https://www.sciencedirect.com/science/article/pii/S0925231222015259) \\
 **Zihuan Qiu**, Linfeng Xu, Zhichuan Wang, Qingbo Wu, Fanman Meng, Hongliang Li
-- Incremental Semantics Mining (ISM) – strips old-class semantics from new-class features, sharply cutting old–new confusion and catastrophic forgetting.
-- Lightweight Expansion + Old-Model Queue – distillation adds a compact extra feature space while a rolling queue preserves early knowledge, delivering SOTA accuracy with minimal memory/compute on CIFAR-100 and ImageNet.
+- ISM: Strips old-class semantics from new features to reduce confusion.
+- Lightweight Expansion + Old-Model Queue: Preserves early knowledge with minimal memory.
 </div>
 </div>
+
+# Preprints
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arxiv</div><img src='images/nufilt.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Null-Space Filtering for Data-Free Continual Model Merging: Preserving Transparency, Promoting Fidelity](https://www.arxiv.org/pdf/2509.21413) \\
+**Zihuan Qiu**, Lei Wang, Yang Cao, Runtong Zhang, Bing Su, Yi Xu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
+- Challenge: Transparency & fidelity as fundamental desiderata in data-free model merging.
+- NUFILT: Combines null-space filtering with projection-aware adaptation.
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arxiv</div><img src='images/ivt.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Closing the Oracle Gap: Increment Vector Transformation for Class Incremental Learning](https://arxiv.org/pdf/2509.21898) \\
+**Zihuan Qiu**, Yi Xu, Fanman Meng, Runtong Zhang, Linfeng Xu, Qingbo Wu, Hongliang Li
+- LMC in CIL Oracles: Reveal favorable linear mode connectivity and identify mismatch between naive updates and oracle solutions.
+- IVT: Curvature-guided transformation using Fisher approximation, boosting accuracy and reducing forgetting across CIL settings.
+</div>
+</div>
+
+# Other Publications
 
 - `TMM 2025` [DesCLIP: Robust Continual Adaptation via General Attribute Descriptions for Pretrained Vision-Language Models], Chiyuan He, Zihuan Qiu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li.
 - `ICIP 2025` [DPM-CLIP: Zero-Shot Multimodal Egocentric Activity Recognition based on Dual-Prediction Mechanism], Yukun Chen, Liang Wan, Zihuan Qiu, Mingzhou He, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li.
