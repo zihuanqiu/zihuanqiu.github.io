@@ -22,6 +22,6 @@
   *2025.09 – Present*  
 
 
-<div style="max-width:200px; margin:300px auto;">
+<div style="max-width:200px; margin:100px auto;">
 <script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=cea575&w=300&t=tt&d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=000000'></script>
 </div>
