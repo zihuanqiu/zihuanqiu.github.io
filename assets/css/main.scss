@@ -1,44 +1,130 @@
+---
+---
+
+/*
+ *    Minimal Mistakes Jekyll Theme
+ *
+ *  - Michael Rose
+ *  - mademistakes.com
+ *  - https://twitter.com/mmistakes
+ *
+*/
+
+@import "vendor/breakpoint/breakpoint"; // media query mixins
+@import "variables";
+@import "mixins";
+@import "vendor/susy/susy";
+
+@import "reset";
+@import "base";
+
+@import "utilities";
+@import "animations";
+@import "tables";
+@import "buttons";
+@import "notices";
+@import "masthead";
+@import "navigation";
+@import "footer";
+@import "syntax";
+
+@import "forms";
+
+@import "page";
+@import "archive";
+@import "sidebar";
+
+@import "vendor/font-awesome/fontawesome";
+@import "vendor/font-awesome/solid";
+@import "vendor/font-awesome/brands";
+@import "vendor/magnific-popup/magnific-popup";
+@import "print";
+
 .paper-box {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom: 1px #efefef solid;
+  padding: 2em 0;
+
+  .paper-box-image {
+    position: relative;          /* 允许 badge 绝对定位 */
+    justify-content: center;
     display: flex;
-    justify-content: left;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-bottom: 1px #efefef solid;
-    padding: 2em 0;
+    width: 100%;
+    order: 2;
 
+    img {
+      width: 100%;
+      max-width: 400px;
+      height: 180px;             /* 统一高度 */
+      object-fit: cover;         /* 裁剪而非拉伸 */
+      border-radius: 12px;       /* 圆角 */
+      box-shadow: 3px 3px 6px #888;
+      display: block;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #00369f; /* 主题蓝，可按需要修改或用不同类名区分 */
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.85em;
+      font-weight: 700;
+      box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+      line-height: 1;
+      pointer-events: none;      /* 避免遮挡点击 */
+    }
+  }
+
+  .paper-box-text {
+    max-width: 100%;
+    order: 1;
+  }
+
+  @include breakpoint($medium) {
     .paper-box-image {
-        position: relative;      /* 让 badge 可以定位 */
-        justify-content: center;
-        display: flex;
-        width: 100%;
-        order: 2;
+      justify-content: left;
+      min-width: 200px;
+      max-width: 40%;
+      order: 1;
 
-        img {
-            width: 100%;
-            max-width: 400px;
-            height: 180px;          /* 固定高度 */
-            object-fit: cover;      /* 裁剪而不是拉伸 */
-            border-radius: 12px;    /* 圆角 */
-            box-shadow: 3px 3px 6px #888;
-        }
-
-        .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #007bff;    /* 统一蓝色，可按会议换色 */
-            color: white;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 0.85em;
-            font-weight: bold;
-            box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-        }
+      img {
+        max-width: 100%;         /* 在左右布局下占满容器宽度 */
+        height: 180px;           /* 保持统一高度 */
+      }
     }
 
     .paper-box-text {
-        max-width: 100%;
-        order: 1;
+      justify-content: left;
+      padding-left: 2em;
+      max-width: 60%;
+      order: 2;
     }
+  }
+}
+
+$scroll_offset : 2em;
+h1:before, .anchor:before { 
+  content: ''; 
+  display: block; 
+  position: relative; 
+  width: 0; 
+  height: $scroll_offset; 
+  margin-top: -$scroll_offset;
+}
+
+/* 全局 badge（若有需要在其他地方使用）默认样式；
+   但在 .paper-box-image 内部的 .badge 会被上面的更具体选择器覆盖。 */
+.badge {
+  background-color: #00369f;
+  color: #fff;
+  font-size: .8em;
+  padding: 0.4em 0.8em;
+  border-radius: 8px;
 }
