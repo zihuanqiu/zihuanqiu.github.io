@@ -1,6 +1,18 @@
 
 # 📝 Publications 
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arxiv</div><img src='images/nufilt.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Null-Space Filtering for Data-Free Continual Model Merging: Preserving Transparency, Promoting Fidelity](https://www.arxiv.org/pdf/2509.21413) \\
+**Zihuan Qiu**, Lei Wang, Yang Cao, Runtong Zhang, Bing Su, Yi Xu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
+- We formulate transparency and fidelity as two fundamental desiderata for data-free continual
+model merging, framing a new open challenge absent from prior work.
+- We propose NUFILT, a data-free continual model merging framework that combines null-space
+filtering with projection-aware adaptation to enforce both transparency and fidelity.
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS 2025</div><img src='images/TTCMM.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
