@@ -7,7 +7,7 @@
 [MINGLE: Mixtures of Null-Space Gated Low-Rank Experts for Test-Time Continual Model Merging](https://arxiv.org/pdf/2505.11883) \\
 **Zihuan Qiu**, Yi Xu, Chiyuan He, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
 - TTCMM: Formalizes Test-Time Continual Model Merging.
-- MINGLE: Adaptive null-space gated low-rank experts, balancing stability \& plasticity.
+- MINGLE: Adaptive null-space gated low-rank experts, balancing stability and plasticity.
 </div>
 </div>
 
@@ -39,7 +39,7 @@
 
 [Null-Space Filtering for Data-Free Continual Model Merging: Preserving Transparency, Promoting Fidelity](https://www.arxiv.org/pdf/2509.21413) \\
 **Zihuan Qiu**, Lei Wang, Yang Cao, Runtong Zhang, Bing Su, Yi Xu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
-- Challenge: Transparency \& fidelity as fundamental desiderata in data-free model merging.
+- Challenge: Transparency and fidelity as fundamental desiderata in data-free model merging.
 - NUFILT: Combines null-space filtering with projection-aware adaptation.
 </div>
 </div>
