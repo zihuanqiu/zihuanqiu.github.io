@@ -52,16 +52,19 @@
   .paper-box-image {
     position: relative;          /* 允许 badge 绝对定位 */
     justify-content: center;
+    align-items: center;
     display: flex;
     width: 100%;
     order: 2;
 
+    /* 统一尺寸：宽度自适应上限 + 固定高度；比例不符时自动留白 */
     img {
       width: 100%;
-      max-width: 400px;
+      max-width: 400px;          /* 统一最大宽度（可按需调整） */
       height: 180px;             /* 统一高度 */
-      object-fit: cover;         /* 裁剪而非拉伸 */
-      border-radius: 12px;       /* 圆角 */
+      object-fit: contain;       /* 保持比例，自动留白（信箱/信封式） */
+      background-color: #f7f7f8; /* 留白底色 */
+      border-radius: 12px;
       box-shadow: 3px 3px 6px #888;
       display: block;
     }
