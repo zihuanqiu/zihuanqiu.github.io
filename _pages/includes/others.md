@@ -22,4 +22,8 @@
   *2025.09 – Present*  
 
 
-<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0&cl=ffffff&w=a"></script>
+<div style="max-width:300px; margin:0 auto;">
+  <script type="text/javascript" id="mapmyvisitors" 
+          src="//mapmyvisitors.com/map.js?d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0&cl=ffffff&w=a">
+  </script>
+</div>
