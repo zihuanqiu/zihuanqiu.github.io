@@ -13,7 +13,7 @@
 
 
 # 🛠️ Services
-**Reviewer for**: NeurIPS 2025 · ICLR 2025 · MM 2025 · ICME 2025 · ICASSP 2025
+**Reviewer for**: CVPR 2025, ICLR 2026, NeurIPS 2025, ICLR 2025, MM 2025, ICME 2025, CASSP 2025
 
 
 
