@@ -1,3 +1,3 @@
-I am currently a second-year Ph.D. student at the School of Information and Communication Engineering, University of Electronic Science and Technology of China(UESTC, 电子科技大学) supervised by Prof. Fanman Meng (孟凡满). 
+I am currently a third-year Ph.D. student at the School of Information and Communication Engineering, University of Electronic Science and Technology of China(UESTC, 电子科技大学) supervised by Prof. Fanman Meng (孟凡满). 
 
 My research primarily centers on continual learning and the efficient reuse of multimodal large language models and vision-language models. Earlier in my Ph.D. studies, I focused on class-incremental learning. More recently, I have become interested in model merging, exploring how the efficient integration of pre-trained models can enhance multi-task performance and support continual model adaptation.
