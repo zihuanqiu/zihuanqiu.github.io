@@ -4,7 +4,7 @@
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS 2025</div><img src='images/TTCMM.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[MINGLE: Mixtures of Null-Space Gated Low-Rank Experts for Test-Time Continual Model Merging](https://arxiv.org/pdf/2505.11883) \\
+[MINGLE: Mixture of Null-Space Gated Low-Rank Experts for Test-Time Continual Model Merging](https://arxiv.org/pdf/2505.11883) \\
 **Zihuan Qiu**, Yi Xu, Chiyuan He, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li
 - TTCMM: Formalizes Test-Time Continual Model Merging.
 - MINGLE: Adaptive null-space gated low-rank experts, balancing stability and plasticity.
