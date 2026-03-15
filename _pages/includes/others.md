@@ -19,11 +19,12 @@
 
 # 💻 Internships
 - **Research Intern**, JIIGAN / MEGVII  
-  *2025.09 – 2026.02
+  *2025.09 – 2026.02*  
   
-- **Research Intern**, Huawei Noah’s Ark Lab
-  *2026.03 – Present
-  
+- **Research Intern**, Huawei Noah’s Ark Lab  
+  *2026.03 – Present*  
+
+
 <div style="max-width:200px; margin:100px auto;">
 <script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=cea575&w=300&t=tt&d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=000000'></script>
 </div>
