@@ -1,0 +1,270 @@
+/* ========== Personal homepage styles ========== */
+
+html {
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+  min-height: 100%;
+}
+
+body {
+  font-family: Optima, Candara, Calibri, Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #2d3436;
+  background-color: #ffffff;
+  text-align: left;
+  margin: 40px auto;
+  padding: 32px 48px 48px;
+  max-width: 980px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+}
+
+/* ========== Links ========== */
+a, a:link, a:visited {
+  color: #2980b9;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #1a5276;
+  text-decoration: underline;
+}
+
+/* ========== Images ========== */
+img {
+  border: 0;
+}
+
+/* ========== Typography ========== */
+h1, h2, h3, h4 {
+  font-family: Optima, Candara, Calibri, Arial, sans-serif;
+  font-weight: 600;
+}
+
+h2 {
+  color: #1c3a5a;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+h3, h4 {
+  color: #2c3e50;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+li p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+/* ========== Section spacing ========== */
+section {
+  margin-top: 32px;
+}
+
+section:first-of-type {
+  margin-top: 0;
+}
+
+/* ========== Hero: Shiqi flex layout with Richard polish ========== */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+}
+
+.hero-media {
+  flex: 1 1 220px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-text {
+  flex: 2 1 420px;
+}
+
+.hero-text h1 {
+  color: #1c3a5a;
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 1.9rem;
+}
+
+.hero-links {
+  margin-top: 14px;
+}
+
+.hero-links a {
+  margin-right: 14px;
+}
+
+.portrait {
+  display: inline-block;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  overflow: hidden;
+}
+
+.portrait img {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* ========== News timeline with transparent scrolling ========== */
+.news-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 10px;
+  background: transparent;
+}
+
+.news-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.news-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+.news-scroll::-webkit-scrollbar-thumb {
+  background: rgba(52, 152, 219, 0.35);
+  border-radius: 4px;
+}
+
+.news-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-timeline li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.news-timeline li:last-child {
+  margin-bottom: 0;
+}
+
+.news-date {
+  min-width: 64px;
+  text-align: right;
+  font-size: 13px;
+  color: #5d6d7e;
+  font-weight: 600;
+  padding-top: 2px;
+  letter-spacing: 0.2px;
+}
+
+.news-text {
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #2d3436;
+  padding-top: 1px;
+  margin-left: 16px;
+}
+
+/* ========== Publications: clean list with subtle structure ========== */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pub-item {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf2f7;
+  line-height: 1.6;
+}
+
+.pub-item:last-child {
+  border-bottom: none;
+}
+
+.pub-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.pub-authors,
+.pub-venue {
+  font-size: 14.5px;
+  color: #4a5568;
+}
+
+.pub-venue em strong,
+.pub-venue strong {
+  color: #154360;
+}
+
+/* ========== Services / Internships lists ========== */
+.clean-list {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.clean-list li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* ========== Section divider ========== */
+hr {
+  border: none;
+  border-top: 1px dashed #d0dbe5;
+  margin: 14px 0;
+}
+
+/* ========== Footer ========== */
+.footer {
+  color: #aab4be;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 640px) {
+  body {
+    padding: 24px;
+    margin: 20px auto;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-media {
+    justify-content: flex-start;
+  }
+
+  .portrait img {
+    width: 160px;
+  }
+}
