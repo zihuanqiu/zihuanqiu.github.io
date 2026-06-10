@@ -5,28 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Zihuan Qiu, Qiu Zihuan, UESTC">
     <meta name="description" content="Zihuan Qiu's Homepage">
-    <title>Zihuan Qiu's homepage</title>
+    <title>Zihuan Qiu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" href="images/favicon-32x32.png">
 </head>
 <body>
 
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+    <span class="theme-icon">🌙</span>
+</button>
+
 <section class="hero">
-    <div class="hero-media">
-        <div class="portrait">
-            <img alt="Zihuan Qiu portrait" src="images/portrait.jpg">
-        </div>
-    </div>
     <div class="hero-text">
         <h1>Zihuan Qiu (邱子欢)</h1>
         <p>I am currently a third-year Ph.D. student at the <a href="https://www.uestc.edu.cn/">School of Information and Communication Engineering</a>, <a href="https://www.uestc.edu.cn/">University of Electronic Science and Technology of China (UESTC)</a>, supervised by Prof. Fanman Meng. I received my M.S. from UESTC in 2023.</p>
         <p>My research primarily centers on three directions. (1) <strong>Continual learning of models</strong>: enabling neural networks to continuously acquire new knowledge without forgetting previously learned abilities, with a focus on stability-plasticity trade-offs and data-free replay strategies. (2) <strong>Model parameter merging</strong>: developing efficient techniques to integrate multiple task-specific models into a single unified model that preserves multi-task performance, including null-space filtering and mixture-of-experts approaches. (3) <strong>Agent self-evolution</strong>: equipping autonomous LLM and VLM agents with long-term memory and tool-use capabilities to tackle open-ended workflows through recursive skill learning and environment-driven adaptation.</p>
-        <p><span style="font-weight: bold;">Email:</span> zihuanqiu AT qq DOT com</p>
+        <p><strong>Email:</strong> zihuanqiu AT qq DOT com</p>
         <p class="hero-links">
             <a href="https://scholar.google.com/citations?user=JnaUunUAAAAJ">Google Scholar</a>
             <a href="https://github.com/zihuanqiu">GitHub</a>
             <a href="mailto:zihuanqiu@qq.com">Email</a>
         </p>
+    </div>
+    <div class="hero-media">
+        <img alt="Zihuan Qiu portrait" src="images/portrait.jpg" class="portrait">
     </div>
 </section>
 
@@ -70,82 +75,88 @@
     <h2>Selected Publications</h2>
     <div class="pub-list">
         <div class="pub-item">
-            <div class="pub-title"><a href="https://www.arxiv.org/pdf/2509.21413"><strong>Null-Space Filtering for Data-Free Continual Model Merging: Preserving Stability, Promoting Plasticity</strong></a></div>
+            <div class="pub-title"><a href="https://www.arxiv.org/pdf/2509.21413">Null-Space Filtering for Data-Free Continual Model Merging: Preserving Stability, Promoting Plasticity</a></div>
             <div class="pub-authors"><strong>Zihuan Qiu</strong>, Lei Wang, Yang Cao, Runtong Zhang, Bing Su, Yi Xu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li</div>
-            <div class="pub-venue"><em>International Conference on Learning Representations (<strong>ICLR</strong>)</em>, 2026. [<a href="https://www.arxiv.org/pdf/2509.21413">Paper</a>]</div>
+            <div class="pub-venue"><em>International Conference on Learning Representations (<strong>ICLR</strong>)</em>, 2026</div>
+            <div class="pub-links"><a href="https://www.arxiv.org/pdf/2509.21413">Paper</a></div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><a href="https://arxiv.org/pdf/2505.11883"><strong>MINGLE: Mixture of Null-Space Gated Low-Rank Experts for Test-Time Continual Model Merging</strong></a></div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/2505.11883">MINGLE: Mixture of Null-Space Gated Low-Rank Experts for Test-Time Continual Model Merging</a></div>
             <div class="pub-authors"><strong>Zihuan Qiu</strong>, Yi Xu, Chiyuan He, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li</div>
-            <div class="pub-venue"><em>Advances in Neural Information Processing Systems (<strong>NeurIPS</strong>)</em>, 2025. [<a href="https://arxiv.org/pdf/2505.11883">Paper</a>]</div>
+            <div class="pub-venue"><em>Advances in Neural Information Processing Systems (<strong>NeurIPS</strong>)</em>, 2025</div>
+            <div class="pub-links"><a href="https://arxiv.org/pdf/2505.11883">Paper</a></div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf"><strong>Dual-consistency Model Inversion for Non-exemplar Class Incremental Learning</strong></a></div>
+            <div class="pub-title"><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf">Dual-consistency Model Inversion for Non-exemplar Class Incremental Learning</a></div>
             <div class="pub-authors"><strong>Zihuan Qiu</strong>, Yi Xu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu</div>
-            <div class="pub-venue"><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR</strong>)</em>, 2024. [<a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf">Paper</a>]</div>
+            <div class="pub-venue"><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (<strong>CVPR</strong>)</em>, 2024</div>
+            <div class="pub-links"><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Qiu_Dual-Consistency_Model_Inversion_for_Non-Exemplar_Class_Incremental_Learning_CVPR_2024_paper.pdf">Paper</a></div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S0925231222015259"><strong>ISM-Net: Mining incremental semantics for class incremental learning</strong></a></div>
+            <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S0925231222015259">ISM-Net: Mining incremental semantics for class incremental learning</a></div>
             <div class="pub-authors"><strong>Zihuan Qiu</strong>, Linfeng Xu, Zhichuan Wang, Qingbo Wu, Fanman Meng, Hongliang Li</div>
-            <div class="pub-venue"><em>Neurocomputing</em>, 2023. [<a href="https://www.sciencedirect.com/science/article/pii/S0925231222015259">Paper</a>]</div>
+            <div class="pub-venue"><em>Neurocomputing</em>, 2023</div>
+            <div class="pub-links"><a href="https://www.sciencedirect.com/science/article/pii/S0925231222015259">Paper</a></div>
         </div>
     </div>
 
     <h3>Preprints</h3>
     <div class="pub-list">
         <div class="pub-item">
-            <div class="pub-title"><a href="https://arxiv.org/pdf/2509.21898"><strong>Closing the Oracle Gap: Increment Vector Transformation for Class Incremental Learning</strong></a></div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/2509.21898">Closing the Oracle Gap: Increment Vector Transformation for Class Incremental Learning</a></div>
             <div class="pub-authors"><strong>Zihuan Qiu</strong>, Yi Xu, Fanman Meng, Runtong Zhang, Linfeng Xu, Qingbo Wu, Hongliang Li</div>
-            <div class="pub-venue"><em>arXiv preprint</em>, 2025. [<a href="https://arxiv.org/pdf/2509.21898">Paper</a>]</div>
+            <div class="pub-venue"><em>arXiv preprint</em>, 2025</div>
+            <div class="pub-links"><a href="https://arxiv.org/pdf/2509.21898">Paper</a></div>
         </div>
     </div>
 
     <h3>Other Publications</h3>
     <div class="pub-list">
         <div class="pub-item">
-            <div class="pub-title"><strong>DesCLIP: Robust Continual Adaptation via General Attribute Descriptions for Pretrained Vision-Language Models</strong></div>
+            <div class="pub-title">DesCLIP: Robust Continual Adaptation via General Attribute Descriptions for Pretrained Vision-Language Models</div>
             <div class="pub-authors">Chiyuan He, Zihuan Qiu, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li</div>
             <div class="pub-venue"><em>IEEE Transactions on Multimedia (<strong>TMM</strong>)</em>, 2025.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>DPM-CLIP: Zero-Shot Multimodal Egocentric Activity Recognition based on Dual-Prediction Mechanism</strong></div>
+            <div class="pub-title">DPM-CLIP: Zero-Shot Multimodal Egocentric Activity Recognition based on Dual-Prediction Mechanism</div>
             <div class="pub-authors">Yukun Chen, Liang Wan, Zihuan Qiu, Mingzhou He, Fanman Meng, Linfeng Xu, Qingbo Wu, Hongliang Li</div>
             <div class="pub-venue"><em>IEEE International Conference on Image Processing (<strong>ICIP</strong>)</em>, 2025.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>Distribution-Level Memory Recall for Continual Learning: Preserving Knowledge and Avoiding Confusion</strong></div>
+            <div class="pub-title">Distribution-Level Memory Recall for Continual Learning: Preserving Knowledge and Avoiding Confusion</div>
             <div class="pub-authors">Shaoxu Cheng, Kanglei Geng, Chiyuan He, Zihuan Qiu, Linfeng Xu, Heqian Qiu, Lanxiao Wang, Qingbo Wu, Fanman Meng, Hongliang Li</div>
             <div class="pub-venue"><em>IEEE Transactions on Multimedia (<strong>TMM</strong>)</em>, 2025.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>Leveraging Pre-Trained Models for Multimodal Class-Incremental Learning under Adaptive Fusion</strong></div>
+            <div class="pub-title">Leveraging Pre-Trained Models for Multimodal Class-Incremental Learning under Adaptive Fusion</div>
             <div class="pub-authors">Yukun Chen, Zihuan Qiu, Fanman Meng, Hongliang Li, Linfeng Xu, Qingbo Wu</div>
             <div class="pub-venue"><em>IEEE International Conference on Acoustics, Speech and Signal Processing (<strong>ICASSP</strong>)</em>, 2025.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>Continual Egocentric Activity Recognition with Foreseeable-Generalized Visual-IMU Representations</strong></div>
+            <div class="pub-title">Continual Egocentric Activity Recognition with Foreseeable-Generalized Visual-IMU Representations</div>
             <div class="pub-authors">Chiyuan He, Shaoxu Cheng, Zihuan Qiu, Linfeng Xu, Fanman Meng, Qingbo Wu, Hongliang Li</div>
             <div class="pub-venue"><em>IEEE Sensors Journal</em>, 2024.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>GFR: Generic feature representations for class incremental learning</strong></div>
+            <div class="pub-title">GFR: Generic feature representations for class incremental learning</div>
             <div class="pub-authors">Zhichuan Wang, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng, Hongliang Li</div>
             <div class="pub-venue"><em>Neurocomputing</em>, 2023.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>MFAT: A multi-level feature aggregated transformer for person re-identification</strong></div>
+            <div class="pub-title">MFAT: A multi-level feature aggregated transformer for person re-identification</div>
             <div class="pub-authors">Bowen Tan, Linfeng Xu, Zihuan Qiu, Qingbo Wu, Fanman Meng</div>
             <div class="pub-venue"><em>IEEE International Conference on Acoustics, Speech and Signal Processing (<strong>ICASSP</strong>)</em>, 2023.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><strong>Eldnet: Establishment and refinement of edge likelihood distributions for camouflaged object detection</strong></div>
+            <div class="pub-title">Eldnet: Establishment and refinement of edge likelihood distributions for camouflaged object detection</div>
             <div class="pub-authors">Chiyuan He, Linfeng Xu, Zihuan Qiu</div>
             <div class="pub-venue"><em>IEEE International Conference on Image Processing (<strong>ICIP</strong>)</em>, 2022.</div>
         </div>
         <div class="pub-item">
-            <div class="pub-title"><a href="https://arxiv.org/pdf/2201.00767"><strong>BDG-Net: boundary distribution guided network for accurate polyp segmentation</strong></a></div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/2201.00767">BDG-Net: boundary distribution guided network for accurate polyp segmentation</a></div>
             <div class="pub-authors"><strong>Zihuan Qiu</strong>, Zhichuan Wang, Miaomiao Zhang, Ziyong Xu, Jie Fan, Linfeng Xu</div>
-            <div class="pub-venue"><em>SPIE Medical Imaging</em>, 2022. [<a href="https://arxiv.org/pdf/2201.00767">Paper</a>]</div>
+            <div class="pub-venue"><em>SPIE Medical Imaging</em>, 2022.</div>
+            <div class="pub-links"><a href="https://arxiv.org/pdf/2201.00767">Paper</a></div>
         </div>
     </div>
 </section>
@@ -153,29 +164,52 @@
 <section id="services">
     <h2>Academic Services</h2>
     <ul class="clean-list">
-        <li><p><strong>Reviewer</strong>: ECCV 2026, ICML 2026, CVPR 2026, ICLR 2026, NeurIPS 2025, ICLR 2025, MM 2025</p></li>
+        <li><strong>Reviewer</strong>: ECCV 2026, ICML 2026, CVPR 2026, ICLR 2026, NeurIPS 2025, ICLR 2025, MM 2025</li>
     </ul>
 </section>
 
 <section id="internships">
     <h2>Internships</h2>
     <ul class="clean-list">
-        <li>
-            <p><strong>Research Intern</strong>, JIIGAN / MEGVII<br>
-            2025.09 – 2026.02</p>
-        </li>
-        <li>
-            <p><strong>Research Intern</strong>, Huawei Noah's Ark Lab<br>
-            2026.03 – Present</p>
-        </li>
+        <li><strong>Research Intern</strong>, JIIGAN / MEGVII, 2025.09 – 2026.02</li>
+        <li><strong>Research Intern</strong>, Huawei Noah's Ark Lab, 2026.03 – Present</li>
     </ul>
 </section>
 
 <div style="max-width:200px; margin:40px auto; text-align:center;">
-<script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=ffffff&w=300&t=tt&d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0'></script>
+    <script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=ffffff&w=300&t=tt&d=eCIqkeZatOuSjVOMqShAlNdiRu33m_L1Kkr3tQSZjo0'></script>
 </div>
 
 <p class="footer">&copy; Zihuan Qiu | Last updated: June 2026</p>
+
+<script>
+(function() {
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const icon = toggle.querySelector('.theme-icon');
+
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved || (prefersDark ? 'dark' : 'light');
+
+    if (theme === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        icon.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            icon.textContent = '🌙';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            icon.textContent = '☀️';
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
